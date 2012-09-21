@@ -6,9 +6,15 @@ publish: false
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
-We have all been using the same code for uploading images for years, but didn't you always feel that there is something wrong with it? For every other task like writing texts, picking a date, selecting from lot of choices we have a good tool that can help in implementig such feature and improve the user experience, but file uploads almost always feel a little ... . There are some Flash tools that might help but it is still not good enough.
+## Problem
 
-Well, welcome to to world invaded by Filpicker and Aviary. Speaking short, Filepicker is a tool that let your user upload images not only from the computer itself but also from web services such as Facebook or Dropbox. Aviary provides you with a powerful HTML5 editor for manipulating photos. Both of them process the images on their serves and provide you an url for downloading a file. If you only need more powerful uploading you can stick with [Filepicker widgets](https://developers.filepicker.io/docs/web/#widgets) otherwise we need to get our hands dirty with Javascript API (or CoffeeScript as you will see) but is not hard at all.
+We all have been using the same code for uploading images for years, but didn't you always feel that there is something wrong with it? For every other task like writing texts, picking a date, selecting from lot of choices we have a good tool that can help in implementig such feature and improve the user experience, but file uploads almost always feel a little broken. There are some Flash tools that might help, but they are still not good enough.
+
+## Solution
+
+Well, welcome to the world invaded by [Filpicker](https://www.filepicker.io/) and [Aviary](http://www.aviary.com/). Speaking short, Filepicker is a tool that let the user upload images not only from the computer itself but also from web services such as Facebook or Dropbox. Aviary provides you with a powerful HTML5 editor for manipulating photos. Both of them process the images on their servers and provide you an url for downloading a file. If you only need more powerful uploading you can stick with [Filepicker widgets](https://developers.filepicker.io/docs/web/#widgets) otherwise we need to get our hands dirty with their Javascript APIs (or [CoffeeScript](coffeescript.org) as you will see) but is not hard at all.
+
+## Working with code
 
 Let's start with the view:
 
