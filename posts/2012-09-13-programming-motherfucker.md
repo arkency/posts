@@ -18,20 +18,22 @@ Well, welcome to the world invaded by [Filpicker](https://www.filepicker.io/) an
 
 Let's start with the view:
 
-  = link_to _("Set avatar"), "#", :'data-avatar' => "set"
+    = link_to _("Set avatar"), "#", :'data-avatar' => "set"
 
- tutaj wynik pokazać bo może nie wszyscy używają Rails ?
+    <a href="#" data-avatar="set">Set avatar</a>
 
-Nothing fancy here. Classic `link_to` method, using `_('')` method for translating with [FastGettext](https://github.com/grosser/fast_gettext). We don't care about URL because we are going to handle click in Javascript so I used "#" as URL. Instead of using css classes or id for such link [I prefer to use custom data-* attribute](http://roytomeij.com/2012/dont-use-class-names-to-find-HTML-elements-with-JS.html)
+Nothing fancy here. Classic Rails `link_to` method, using `_('')` method for translating with [FastGettext](https://github.com/grosser/fast_gettext). We don't care about URL because we are going to handle clicks in Javascript so I used `"#"` as URL. Instead of using css classes or id for such link [I prefer to use custom data-* attribute](http://roytomeij.com/2012/dont-use-class-names-to-find-HTML-elements-with-JS.html)
 
 First, we need to display Filepicker popup for choosing image when our link is clicked.
 
+```
 filepicker = window.filepicker
 filepicker.setKey "filepicker api key"
 $(document).ready ->
   $('body').delegate '[data-avatar="set"]', 'click', ->
     filepicker.getFile filepicker.MIMETYPES.IMAGES, (url, metadata) ->
       console.log("Choosen image is available under filepicker url: #{url}")
+```
 
 I use jQuery [delegate](http://api.jquery.com/delegate/) because if it was a Single Page Application [(SPA Todo app example)](https://github.com/gameboxed/todomvc) or the link is dynamically added via AJAX, it can still be properly handled.
 
