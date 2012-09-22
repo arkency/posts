@@ -17,7 +17,7 @@ Flash tools that might help, but they are still not good enough.
 
 ## Solution
 
-Well, welcome to the world invaded by [Filpicker](https://www.filepicker.io/)
+Well, welcome to the world invaded by [Filepicker](https://www.filepicker.io/)
 and [Aviary](http://www.aviary.com/). Speaking short, Filepicker is a tool that
 let the user upload images not only from the computer itself but also from web
 services such as Facebook or Dropbox. Aviary provides you with a powerful HTML5
