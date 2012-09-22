@@ -272,6 +272,7 @@ class AvatarToken
   class Invalid < StandardError; end
 
   attr_reader :user
+  delegate :login, to: :user
 
   def initialize(user)
     @user = user
@@ -279,12 +280,14 @@ class AvatarToken
 
   def verify!(another_token)
     unless token == another_token
-      raise Invalid, "invalid avatar token: #{another_token} for user: #{id}, #{login}"
+      msg = "invalid '#{another_token}' token for user '#{login}'"
+      raise Invalid, msg
     end
   end
 
   def token
-    Base64.strict_encode64(HMAC::SHA1.digest('key goes here', 'value goes here'))
+    digest = HMAC::SHA1.digest('some key', 'some value')
+    Base64.strict_encode64(digest)
   end
 end
 ~~~
