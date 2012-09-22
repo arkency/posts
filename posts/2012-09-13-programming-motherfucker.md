@@ -39,12 +39,12 @@ I use jQuery [delegate](http://api.jquery.com/delegate/) because if it was a Sin
 
 After clicking the user needs to give permission for using data from a service or simply upload file from computer, or even take a photo using computer built-in camera.
 
-<a href="assets/images/filepicker-aviary/1_picker.png" rel="lightbox[roadtrip]"><img src="1_picker-thumbnail.png" /></a>
-<a href="assets/images/filepicker-aviary/2_dropbox.png" rel="lightbox[roadtrip]"><img src="2_dropbox-thumbnail.png" /></a>
-<a href="assets/images/filepicker-aviary/3_dropbox.png" rel="lightbox[roadtrip]"><img src="3_dropbox-thumbnail.png" /></a>
-<a href="assets/images/filepicker-aviary/4_dropbox.png" rel="lightbox[roadtrip]"><img src="4_dropbox-thumbnail.png" /></a>
-<a href="assets/images/filepicker-aviary/5_bully.png" rel="lightbox[roadtrip]"><img src="5_bully-thumbnail.png" /></a>
-<a href="assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[roadtrip]"><img src="6_my_computer-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/1_picker.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/1_picker-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/2_dropbox.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/2_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/3_dropbox.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/3_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/4_dropbox.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/4_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/5_bully.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/5_bully-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[roadtrip]"><img src="assets/images/filepicker-aviary/6_my_computer-thumbnail.png" /></a>
 
 It's time now to run the photo editor when the file is picked instead of just using `console.log`
 
@@ -78,10 +78,11 @@ featherEditor.launch
   image: preview
   url: url
   postUrl: "http://YOUR_SERVER_IP:SOME_SERVER_PORT/aviary"
-
+```
 
 Let's see the controller that is used when Aviary notifies us of the ready image
 
+```
 class AviaryController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
@@ -92,13 +93,17 @@ class AviaryController < ApplicationController
     head :created
   end
 end
+```
 
-Find user, set avatar url and save. As simple as that. Where does remote_avatar_url field comes from ? It is a feature of [carrierwave](https://github.com/jnicklas/carrierwave/) library that I use to store and resize avatars. It can download the remote avatar itself so I do not need to bother myself with that. You can use it with RMagick, mini_magick or vips.
+Find user, set avatar url and save. As simple as that. Where does `remote_avatar_url` method comes from ? It is a feature of [carrierwave](https://github.com/jnicklas/carrierwave/) library that I use to store and resize avatars. It can download the remote avatar itself so I do not need to bother myself with that. You can use it with [`RMagick`](http://rmagick.rubyforge.org/), [`mini_magick`](https://github.com/probablycorey/mini_magick) or [`vips`](https://github.com/eltiare/carrierwave-vips).
 
+```
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 end
+```
 
+```
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -127,14 +132,23 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [64, 64]
   end
 end
+```
 
+The `default_url` is used when avatar is not set. That way your `User#avatar` method can nicely behave as [Null Object](http://en.wikipedia.org/wiki/Null_Object_pattern)
 
-But we don't want anyone to be capable to send requests to our application and change avatars, do we ? We need to add some protection. And we need to know which user avatar should be change. Every user will have its own token for updating the avatar. Again, we use custom data-* (exactly data-avatar-token) attribute to store the token in HTML.
+But we don't want anyone to be capable to send requests to our application and change avatars, do we ? We need to add some protection. And we need to know which user avatar should be changed. Every user will have its own token for updating the avatar. Again, we use custom `data-*` (exactly `data-avatar-token`) attribute to store the token in HTML.
 
+```
 = link_to _("Set avatar"), "#", :'data-avatar' => "set", :'data-avatar-token' => AvatarToken.new(current_user).token, :'data-avatar-id' => current_user.id
+```
+
+```
+<a href="#" data-avatar="set" data-avatar-token="akzlEoaW9WhV8djhtWJmCLd9vjQ=" data-avatar-id="1" >Set avatar</a>
+```
 
 We use `postData` to store addtional metadata that should come with the request from Aviary to our App.
 
+```
 $(document).ready ->
   $('body').delegate '[data-avatar="set"]', 'click', ->
     self  = $(this)
@@ -149,10 +163,11 @@ $(document).ready ->
         postUrl: "http://SERVER_IP:SERVER_PORT/users/#{id}/avatar"
         postData:
           token: token
-
+```
 
 Now we can use this data in our controller to verify the request:
 
+```
 class Users::AvatarsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
@@ -166,9 +181,11 @@ class Users::AvatarsController < ApplicationController
     head :created
   end
 end
+```
 
 And this leaves us with the implementation of AvatarToken class.
 
+```
 require 'hmac/sha1'
 require 'base64'
 
@@ -186,22 +203,25 @@ class AvatarToken
   end
 
   def token
-    Base64.strict_encode64(HMAC::SHA1.digest(...))
+    Base64.strict_encode64(HMAC::SHA1.digest('key goes here', 'value goes here'))
   end
 end
+```
 
 What do you compute digest of ? Well, that depends on your application.
 
 
-One more thing that I would like to do it always get square images from Aviary. I could not fine 100% reliable way of doing that. My trick is to allow users to use only type of crop ratio and and show crop tools as initial one. The user can still press "Cancel" unfortunatelly.
+One more thing that I would like to do is to always get square images from Aviary. I could not fine 100% reliable way of doing that. My trick is to allow users to use only one type of crop ratio and and show the crop tool as initial one. However, the user can still press "Cancel" unfortunatelly.
 
-  featherEditor.launch
-    cropPresets: ['1:1']
-    initTool: 'crop'
-
+```
+featherEditor.launch
+  cropPresets: ['1:1']
+  initTool: 'crop'
+```
 
 So the whole JS part looks like this:
 
+```
 filepicker = window.filepicker
 filepicker.setKey "Filepicker API Key"
 featherEditor = new Aviary.Feather(
@@ -231,30 +251,33 @@ $(document).ready ->
         initTool: 'crop'
         onError: (errorObj) ->
           alert(errorObj.message + errorObj.code)
-
-
+```
 
 Few more notes about good and bad parts of this solution:
 
 Pro:
+ * The concepts behind Filepicker and Aviary are amazing and I belive they will change the web. It's like 'Editor as a Service', 'Picker as a Service'. What else could be a service ? I would love to use [Gliffy](http://gliffy.com) editor in my app the same way I use Aviary.
+ 
  * Filepicker can store files directly in S3 so you do not have to keep them. I just prefer to have them on my machine.
+ 
  * Javascripts are available via HTTPS links.
 
 Cons:
- * When using filepicker the user accepts filepicker.io application when connecting to Facebook or Dropbox, not our own application. This might be also considered a good thing if you did not connected your App with Facebook, but I would prefer if the widgets asks for permissions for my app. However I am not sure if that would be possible at all.
+
+ * When using filepicker the user accepts _filepicker.io_ application when connecting to Facebook or Dropbox, not our own application. This might be also considered a good thing if you did not connected your App with Facebook, but I would prefer if the widgets asks for permissions for my app. However I am not sure if that would be possible at all.
 
  * You cannot force Aviary to provide image in one ratio.
 
  * You cannot download from Aviary the image in different resolutions. The workaround is to [upload it again to Filepicker](https://developers.filepicker.io/docs/web/#fpurl-save) and [download converted](https://developers.filepicker.io/docs/web/#fpurl-images). Too much hassle for me. It was just easier to this step on our server.
 
- * Both services ask you to link directly to their Javascript files instead of downloading them and using in your asset pipeline solution. So there are going to be addtional HTTP request when loading the page. But the good side is that if they fix some bug or improve the editor, the changes will be automatically available to your users with you deploying your app again.
+ * Both services ask you to link directly to their Javascript files instead of downloading them and using in your asset pipeline solution. So there are going to be addtional HTTP requests when loading the page. But the good side is that if they fix some bug or improve the editor, the changes will be automatically available to your users with you deploying your app again.
 
  * After save, the photo URL from Aviary is not available immediately. This presents a huge UI problem. What should I show to my user after setting new avatar when I might not yet have a new avatar image to display ? Even after refresh of the page the new avatar might not yet be ready if the server is still waiting for a request from Aviary.
 
- * Aviary is not doing exponential backoff. It sends the request to your server only once. The game is over if you failed to handle it. (Sidenote: if you ever need to implement exponential backoff strategy in Ruby or Rails, check [exponential-backoff gem](https://github.com/pawelpacana/exponential-backoff)
+ * Aviary is not doing exponential backoff. It sends the request to your server only once. The game is over if you failed to handle it. (Sidenote: if you ever need to implement exponential backoff strategy in Ruby or Rails, check [exponential-backoff gem](https://github.com/pawelpacana/exponential-backoff).
 
  * The full list of [Aviary translations](http://www.aviary.com/web-documentation#constructor-config-language) is not bad but it is still missing few important ones for me like Greek or Turkish (forgive me my Eurocentrism).
 
- * You [cannot change the language ](http://www.aviary.com/web-documentation#constructor-launch) after initial Aviary configuration. Single Page Applications that are capable of changing language without reloading the page probably need to create a new instance every time they need to use Aviary instead of using `launch` multiple times.
+ * You [cannot change the language ](http://www.aviary.com/web-documentation#constructor-launch) after initial Aviary configuration. Single Page Applications that are capable of changing language without reloading the page probably need to create a new instance every time they want to use Aviary editor instead of calling `launch` method multiple times on one object.
 
  * Filepicker does not allow you to choose any translation.
