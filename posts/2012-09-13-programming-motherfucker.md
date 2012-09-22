@@ -3,7 +3,7 @@ title: "Filepicker and Aviary - Image uploading on steroids"
 created_at: 2012-09-21 13:10:02 +0200
 kind: article
 publish: false
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas', 'coffeescript', 'rails' ]
 ---
 
 ## Problem
