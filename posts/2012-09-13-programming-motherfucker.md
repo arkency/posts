@@ -39,10 +39,16 @@ I use jQuery [delegate](http://api.jquery.com/delegate/) because if it was a Sin
 
 After clicking the user needs to give permission for using data from a service or simply upload file from computer, or even take a photo using computer built-in camera.
 
-<Screenshots 1-6 goes here>
+<a href="assets/images/filepicker-aviary/1_picker.png" rel="lightbox[roadtrip]"><img src="1_picker-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/2_dropbox.png" rel="lightbox[roadtrip]"><img src="2_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/3_dropbox.png" rel="lightbox[roadtrip]"><img src="3_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/4_dropbox.png" rel="lightbox[roadtrip]"><img src="4_dropbox-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/5_bully.png" rel="lightbox[roadtrip]"><img src="5_bully-thumbnail.png" /></a>
+<a href="assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[roadtrip]"><img src="6_my_computer-thumbnail.png" /></a>
 
-It's time now to run the photo editor when the file is picked instead of just using console.log
+It's time now to run the photo editor when the file is picked instead of just using `console.log`
 
+```
 featherEditor = new Aviary.Feather(
   apiKey: "key"
   apiVersion: 2
@@ -50,26 +56,28 @@ featherEditor = new Aviary.Feather(
     featherEditor.close()
     return false
 )
+```
 
+```
+filepicker.getFile filepicker.MIMETYPES.IMAGES, (url, metadata) ->
+  preview = $('[data-avatar="preview"]')[0]
+  preview.src = url
+  featherEditor.launch
+    image: preview
+    url: url
+```
 
-Nowy
+When user finishes editing the photo and presses "Save" button, `onSave` callback is executed. You can save the url value in JS variable or use it to fill some hidden field in a form or send it to the server. However the documentation states that _"this image may not yet be ready so you will have to poll this link, or alternatively handle the hi-res image server-side"_. This is my biggest disappointment when using those two products. For that reason we are going to use `postUrl` option so that Aviary will send us a request to this given URL when the image is ready. Obviously you will have to use different value of the setting for development, staging and production environment. In development you can either forward some port from your router (I assume it is publicaly available) to your computer or alternatively, if have a server you can use ssh to forward traffic from the server to your local machine:
 
-    filepicker.getFile filepicker.MIMETYPES.IMAGES, (url, metadata) ->
-      preview = $('[data-avatar="preview"]')[0]
-      preview.src = url
-      featherEditor.launch
-        image: preview
-        url: url
-
-
-When the user finished editing the photo and pressed "Save" button, `onSave` callback is executed. You can save the url value in JS variable or use it to fill some hidden field in a form or send it to the server. However the documentation states that _"this image may not yet be ready so you will have to poll this link, or alternatively handle the hi-res image server-side"_. This is my biggest disappointment when using those two products. For that reason we are going to use "postUrl" option so that Aviary will send us a request to this URL when the image is ready. Obviously you will have to use different url for development, staging and production environment. In development you can either forward some port from your router to your computer or Alternatively if have a server you can use ssh to forward traffic from the server to your local machine:
-
+```
 ssh user@YOUR_SERVER_IP -R YOUR_SERVER_IP:SOME_SERVER_PORT:127.0.0.1:3000
+```
 
-      featherEditor.launch
-        image: preview
-        url: url
-        postUrl: "http://YOUR_SERVER_IP:SOME_SERVER_PORT/aviary"
+```
+featherEditor.launch
+  image: preview
+  url: url
+  postUrl: "http://YOUR_SERVER_IP:SOME_SERVER_PORT/aviary"
 
 
 Let's see the controller that is used when Aviary notifies us of the ready image
