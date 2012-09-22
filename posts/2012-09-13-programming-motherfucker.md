@@ -78,7 +78,9 @@ built-in camera.
 <a href="/assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/6_my_computer-thumbnail.png" /></a>
 
 It's time now to run the photo editor when the file is picked instead of
-just using `console.log`
+just using `console.log`.
+
+Create instance of the editor:
 
 ~~~
 #!coffeescript
@@ -91,15 +93,23 @@ featherEditor = new Aviary.Feather(
 )
 ~~~
 
+Use it when file picked:
+
 ~~~
 #!coffeescript
-filepicker.getFile filepicker.MIMETYPES.IMAGES, (url, metadata) ->
+images = filepicker.MIMETYPES.IMAGES
+filepicker.getFile images, (url, metadata) ->
   preview = $('[data-avatar="preview"]')[0]
   preview.src = url
   featherEditor.launch
     image: preview
     url: url
 ~~~
+
+<a href="/assets/images/filepicker-aviary/7_crop.png"     rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/7_crop-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/8_effect.png"   rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/8_effect-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/9_warmth.png"   rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/9_warmth-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/10_toolset.png" rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/10_toolset-thumbnail.png" /></a>
 
 When user finishes editing the photo and presses "Save" button, `onSave`
 callback is executed. You can save the url value in JS variable or use it to
@@ -113,7 +123,7 @@ to use different value of the setting for development, staging and production
 environment. In development you can either forward some port from your router
 (I assume it is publicaly available) to your computer or alternatively, if
 have a server you can use ssh to forward traffic from the server to your
-local machine:
+local machine.
 
 Forwarding ports with `ssh`:
 
@@ -148,6 +158,8 @@ class AviaryController < ApplicationController
   end
 end
 ~~~
+
+<a href="/assets/images/filepicker-aviary/11_console.png" rel="lightbox"><img src="/assets/images/filepicker-aviary/11_console-thumbnail.png" /></a>
 
 Find user, set avatar url and save. As simple as that. Where does
 `remote_avatar_url` setter comes from ? It is a feature of
