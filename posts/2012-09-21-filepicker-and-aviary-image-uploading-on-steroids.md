@@ -3,10 +3,9 @@ title: "Filepicker and Aviary - Image uploading on steroids"
 created_at: 2012-09-21 13:10:02 +0200
 kind: article
 publish: false
+author: Robert Pankowecki
 tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas', 'coffeescript', 'rails' ]
 ---
-
-## Problem
 
 We all have been using the same code for uploading images for years, but didn't
 you always feel that there is something wrong with it? For every other task
@@ -14,6 +13,8 @@ like writing texts, picking a date, selecting from lot of choices we have a
 good tool that can help in implementig such feature and improve the user
 experience, but file uploads almost always feel a little broken. There are some
 Flash tools that might help, but they are still not good enough.
+
+<!-- more -->
 
 ## Solution
 
