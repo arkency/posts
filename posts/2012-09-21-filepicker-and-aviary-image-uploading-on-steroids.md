@@ -10,7 +10,7 @@ tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas
 We all have been using the same code for uploading images for years, but didn't
 you always feel that there is something wrong with it? For every other task
 like writing texts, picking a date, selecting from lot of choices we have a
-good tool that can help in implementig such feature and improve the user
+good tool that can help in implementing such feature and improve the user
 experience, but file uploads almost always feel a little broken. There are some
 Flash tools that might help, but they are still not good enough.
 
@@ -117,7 +117,7 @@ reason we are going to use `postUrl` option so that Aviary will send us a
 request to this given URL when the image is ready. Obviously you will have
 to use different value of the setting for development, staging and production
 environment. In development you can either forward some port from your router
-(I assume it is publicaly available) to your computer or alternatively, if
+(I assume it is publicly available) to your computer or alternatively, if
 have a server you can use ssh to forward traffic from the server to your
 local machine.
 
@@ -221,7 +221,7 @@ updating the avatar. Again, we use custom `data-*` (exactly
 </a>
 ```
 
-We use `postData` to store addtional metadata that should come with the request
+We use `postData` to store additional metadata that should come with the request
 from Aviary to our App.
 
 ```coffeescript
@@ -295,9 +295,9 @@ What do you compute digest of ? Well, that depends on your application.
 
 One more thing that I would like to do is to always get square images
 from Aviary. I could not find 100% reliable way of doing that. My trick
-is to allow users to use only one type of crop ratio and and show the crop
+is to allow users to use only one type of crop ratio and show the crop
 tool as initial one. However, the user can still press
-_"Cancel"_ unfortunatelly.
+_"Cancel"_ unfortunately.
 
 ```coffeescript
 featherEditor.launch
@@ -358,7 +358,7 @@ Cons:
 
  * You cannot download from Aviary the image in different resolutions. The workaround is to [upload it again to Filepicker](https://developers.filepicker.io/docs/web/#fpurl-save) and [download converted](https://developers.filepicker.io/docs/web/#fpurl-images). Too much hassle for me. It was just easier to this step on our server.
 
- * Both services ask you to link directly to their Javascript files instead of downloading them and using in your asset pipeline solution. So there are going to be addtional HTTP requests when loading the page. But the good side is that if they fix some bug or improve the editor, the changes will be automatically available to your users with you deploying your app again.
+ * Both services ask you to link directly to their Javascript files instead of downloading them and using in your asset pipeline solution. So there are going to be additional HTTP requests when loading the page. But the good side is that if they fix some bug or improve the editor, the changes will be automatically available to your users with you deploying your app again.
 
  * After save, the photo URL from Aviary is not available immediately. This presents a huge UI problem. What should I show to my user after setting new avatar when I might not yet have a new avatar image to display ? Even after refresh of the page the new avatar might not yet be ready if the server is still waiting for a request from Aviary.
 
