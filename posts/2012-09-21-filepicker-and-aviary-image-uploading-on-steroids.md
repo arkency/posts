@@ -344,7 +344,7 @@ Few more notes about good and bad parts of this solution:
 
 Pro:
 
- * The concepts behind Filepicker and Aviary are amazing and I belive they will change the web. It's like 'Editor as a Service', 'Picker as a Service'. What else could be a service ? I would love to use [Gliffy](http://gliffy.com) editor in my app the same way I use Aviary.
+ * The concepts behind Filepicker and Aviary are amazing and I believe they will change the web. It's like 'Editor as a Service', 'Picker as a Service'. What else could be a service ? I would love to use [Gliffy](http://gliffy.com) editor in my app the same way I use Aviary.
 
  * Filepicker can store files directly in S3 so you do not have to keep them. I just prefer to have them on my machine.
 
