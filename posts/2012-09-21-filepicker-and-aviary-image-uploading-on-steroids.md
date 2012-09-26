@@ -27,7 +27,7 @@ servers and provide you an url for downloading a file. If you only need more
 powerful uploading you can stick with
 [Filepicker widgets](https://developers.filepicker.io/docs/web/#widgets)
 otherwise we need to get our hands dirty with their Javascript APIs
-(or [CoffeeScript](coffeescript.org) as you will see) but is not hard at all.
+(or [CoffeeScript](http://coffeescript.org/) as you will see) but is not hard at all.
 
 ## Working with code
 
