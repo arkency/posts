@@ -294,7 +294,7 @@ What do you compute digest of ? Well, that depends on your application.
 
 
 One more thing that I would like to do is to always get square images
-from Aviary. I could not fine 100% reliable way of doing that. My trick
+from Aviary. I could not find 100% reliable way of doing that. My trick
 is to allow users to use only one type of crop ratio and and show the crop
 tool as initial one. However, the user can still press
 _"Cancel"_ unfortunatelly.
