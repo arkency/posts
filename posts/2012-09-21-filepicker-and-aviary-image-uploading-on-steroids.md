@@ -134,6 +134,10 @@ Forwarding ports with `ssh`:
 ssh user@YOUR_SERVER_IP -R YOUR_SERVER_IP:SOME_SERVER_PORT:127.0.0.1:3000
 ```
 
+(Update) Alternatively you can use a solution that does it for you and does not
+require having custom server. [Avdi did a really nice research of http forwarding
+tools](http://devblog.avdi.org/2012/04/27/http-forwarding-services-for-local-facebook-development/)
+
 Launching the editor with `postUrl`:
 
 ```
@@ -212,7 +216,9 @@ end
 ```
 
 The `default_url` is used when avatar is not set. That way `User#avatar`
-method can nicely behave as [Null Object](http://en.wikipedia.org/wiki/Null_Object_pattern)
+method can nicely behave as [Null Object](http://en.wikipedia.org/wiki/Null_Object_pattern).
+[Avdi blogpost about Null Objects](http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/)
+is definitely worth reading.
 
 But we don't want anyone to be capable to send requests to our application
 and change avatars, do we ? We need to add some protection. And we need to know
