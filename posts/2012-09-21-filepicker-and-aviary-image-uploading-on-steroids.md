@@ -165,7 +165,7 @@ class AviaryController < ApplicationController
 end
 ```
 
-<a href="/assets/images/filepicker-aviary/11_console.png" rel="lightbox"><img src="/assets/images/filepicker-aviary/11_console-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/11_console.png" rel="lightbox"><img src="/assets/images/filepicker-aviary/11_console-fit.png" class="fit" /></a>
 
 Find user, set avatar url and save. As simple as that. Where does
 `remote_avatar_url` setter comes from ? It is a feature of
