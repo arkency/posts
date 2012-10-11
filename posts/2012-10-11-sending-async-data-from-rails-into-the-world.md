@@ -10,7 +10,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 
 ## The problem
 
-Exceptions and business metrics. These are two common usecases involving
+Exceptions and business metrics. These are two common use cases involving
 delivery of data from our Rails application (or any other web application)
 to external services that are
 not so crucial and probably we would like to send them asynchronously instead
@@ -18,7 +18,7 @@ of waiting for the response, blocking the thread. We will try to balance
 speed and certainty here, which is always a hard thing to achieve.
 
 This is a series of posts which describe what techniques can be used in such
-situation. The first solution that I would like to desribe (or discredit) is
+situation. The first solution that I would like to describe (or discredit) is
 ZMQ.
 
 <!-- more -->
@@ -26,7 +26,7 @@ ZMQ.
 ## ZMQ - the holy grail of messaging
 
 What is ZMQ ? According to the
-[lenghty and funny ZMQ guide](http://zguide.zeromq.org/page:all):
+[lengthy and funny ZMQ guide](http://zguide.zeromq.org/page:all):
 
 _ØMQ (ZeroMQ, 0MQ, zmq) looks like an embeddable networking library but acts
 like a concurrency framework. It gives you sockets that carry atomic messages
@@ -39,13 +39,13 @@ of language APIs and runs on most operating systems. ØMQ is from iMatix
 and is LGPLv3 open source._
 
 You can also watch an introduction to ZMQ delivered by one of the creators of
-this library: [Matrin Sustrik: ØMQ - A way towards fully distributed architectures](http://www.youtube.com/watch?v=RcfT3b79UYM)
+this library: [Martin Sustrik: ØMQ - A way towards fully distributed architectures](http://www.youtube.com/watch?v=RcfT3b79UYM)
 
 It seems like a perfect candidate at first sight, so let's dive into this topic a little bit.
 
 ### How would that work ?
 
-I belive that we could use diagram here.
+I believe that we could use diagram here.
 
 <a href="/assets/images/async-zmq/Async-ZMQ.png" rel="lightbox"><img src="/assets/images/async-zmq/Async-ZMQ-fit.png" class="fit" /></a>
 
@@ -57,17 +57,17 @@ which will try to deliver it further.
 ### The good parts
 
 * Async. The Rails app can use async interface to ZMQ and never block for sending message.
-However it means that some messages might be droppend in case of special condition like
+However it means that some messages might be dropped in case of special condition like
 lack of connection or overflow. It might also use sync interface and block when there
 is a problem but this is not what we are trying to achieve now. We want exactly
 the contrary :)
-* ZMQ is capable of dropping messages when one of the side is not performing well enoughm
+* ZMQ is capable of dropping messages when one of the side is not performing well enough
 * ZMQ can be configured to try to deliver unsent messages in X seconds when
 process is being closed. That could be useful but it would require your webserver to
 expose hook for such event, so that you can tell ZMQ to shut down when
 webserver is shutting down. I am not sure if every popular webserver used in Ruby community
 exposes such API.
-* Capable of using exponential backoff strategy for reconnectes (although by default
+* Capable of using exponential backoff strategy for reconnects (although by default
 uses static intervals).
 
 ### Problem ?
@@ -82,7 +82,7 @@ you to get out of your comfort zone and meet ZMQ.
 * ZMQ was not designed to be exposed to wild world. It would probably require
 the external service to provide a separate endpoint (meaning at least different
 port for tcp connection) for every client.
-* [Asymetric encryption is not straightforward](http://www.riskcompletefailure.com/2012/09/tls-and-zeromq.html)
+* [Asymmetric encryption is not straightforward](http://www.riskcompletefailure.com/2012/09/tls-and-zeromq.html)
 
 ### Summary
 
@@ -113,17 +113,17 @@ infrastructure using any protocol it wants. That could be for example
 ZMQ or UDP if we value simplicity. That process is then responsible for
 delivery of events to the external service. This
 is a common pattern in business metrics solutions. Application can send
-hugh number of events to the process who is responsible for aggregation
-and periodicaly sends aggregated data further.
+huge number of events to the process who is responsible for aggregation
+and periodically sends aggregated data further.
 
-There could be benefits of using such architecutre for exception
+There could be benefits of using such architecture for exception
 delivery. The middle process is a very good candidate to put in the
-responsibility of doing retries with exponential backof strategy.
+responsibility of doing retries with exponential backoff strategy.
 
 ### The good parts
 
 * Rails application can use UDP to asynchronously send data to the 
-middle process which is still in the same network infrastracture so
+middle process which is still in the same network infrastructure so
 it has very high probability of being delivered.
 * The middle process can be responsible for retries.
 * No problem of lost messages when Rails app is restarted during deploy
