@@ -1,5 +1,5 @@
 ---
-title: "Sending async data from Rails into the world"
+title: "Sending async data from Rails into the world - Part Ⅰ"
 created_at: 2012-10-11 10:56:22 +0200
 kind: article
 publish: true
@@ -95,3 +95,62 @@ port for tcp connection) for every client.
 
 If you are building a solution and would like your customers to
 send you some data from their applications, ZMQ is probably not the way to go.
+
+## Separate process
+
+Another common way of solving this problem is to have separate process which
+your application communicate to. That process receives events from your app
+and sends them further to the external service.
+
+### Architecture
+
+Let's see a diagram:
+
+<a href="/assets/images/async-zmq/Process.png" rel="lightbox"><img src="/assets/images/async-zmq/Process-fit.png" class="fit" /></a>
+
+Rails application can communicate with the process running in customer
+infrastructure using any protocol it wants. That could be for example
+ZMQ or UDP if we value simplicity. That process is then responsible for
+delivery of events to the external service. This
+is a common pattern in business metrics solutions. Application can send
+hugh number of events to the process who is responsible for aggregation
+and periodicaly sends aggregated data further.
+
+There could be benefits of using such architecutre for exception
+delivery. The middle process is a very good candidate to put in the
+responsibility of doing retries with exponential backof strategy.
+
+### The good parts
+
+* Rails application can use UDP to asynchronously send data to the 
+middle process which is still in the same network infrastracture so
+it has very high probability of being delivered.
+* The middle process can be responsible for retries.
+* No problem of lost messages when Rails app is restarted during deploy
+because messages are kept in a separate long-living process
+which is not restarted.
+* Communication between middle process and external webservice can
+use a different, more reliable protocol such as HTTP.
+
+### Problems
+
+* One more process to manage and monitor
+* Some cloud solutions charge additional fees for such
+separate process.
+
+### Summary
+
+* Because of the additional burden related to having a separate
+process this would be a good strategy that we could recommend for
+semi advanced customers. Those who do not feel the [Fear of adding processes](http://www.youtube.com/watch?v=BYmHOF58bDY)
+or at least are capable of overcoming it.
+
+## Tell me more
+
+Stay tunned for the next episodes. Follow us on twitter
+or subscribe to RSS feed so you do not miss it.
+
+You might also want to
+[subscribe to our newsletter](http://arkency.com/newsletter) so you
+know what we find to be interesting in the internets. [Read last
+issue](<%= last_newsletter_issue %>).

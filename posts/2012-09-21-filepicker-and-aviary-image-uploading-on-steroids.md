@@ -36,7 +36,7 @@ Let's start with the view:
 
 ```
 #!html+erb
-<%= link_to _("Set avatar"), "#", :'data-avatar' => "set" %>
+<%%= link_to _("Set avatar"), "#", :'data-avatar' => "set" %%>
 ```
 
 ```
@@ -228,7 +228,7 @@ updating the avatar. Again, we use custom `data-*` (exactly
 
 ```
 #!html+erb
-<%= link_to _("Set avatar"), "#", :'data-avatar' => "set", :'data-avatar-token' => AvatarToken.new(current_user).token, :'data-avatar-id' => current_user.id %>
+<%%= link_to _("Set avatar"), "#", :'data-avatar' => "set", :'data-avatar-token' => AvatarToken.new(current_user).token, :'data-avatar-id' => current_user.id %%>
 ```
 
 ```
