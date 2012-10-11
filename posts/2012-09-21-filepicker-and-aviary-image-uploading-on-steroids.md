@@ -2,7 +2,7 @@
 title: "Filepicker and Aviary - Image uploading on steroids"
 created_at: 2012-09-21 13:10:02 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency
 tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas', 'coffeescript', 'rails' ]
