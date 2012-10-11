@@ -21,7 +21,8 @@ There are many ways to create objects in JavaScript, so let's name some of them.
 
 ### Object literal
 
-```javascript
+```
+#!javascript
 var dog = {
   name: "Jose",
   woof: function() {
@@ -34,7 +35,8 @@ It explicitly creates dog object with ```name``` field and ```woof``` method. Ba
 
 ### Object.create method
 
-```javascript
+```
+#!javascript
 var cat = Object.create()
 cat.name = "David"
 cat.miau = function() {
@@ -46,7 +48,8 @@ Object.create instantiate empty cat object -- without any field. If you'd pass o
 
 ### Constructor function
 
-```javascript
+```
+#!javascript
 function Owl(name) {
   this.name = name;
   this.hoohoo = function() {
@@ -61,7 +64,8 @@ First of all what is Owl? As you see it's a function, but kind of special. It's 
 
 That's the first way to differentiate class of objects - if you created object with constructor you can say, that object is it's instance 
 
-```javascript
+```
+#!javascript
 owl instanceof Owl //=> true
 ```
 
@@ -69,4 +73,84 @@ But remember - owl is not instance of Owl class, but rather owl is instantiated 
 
 ## Prototypical inheritance
 
+In JS inheritance base on objects, so object ```a``` can inherit data and behaviour form object ```b``` and then object ```b``` is called prototype of object ```a```. Of course ```b``` can also have prototype, so each object has chain of prototypes. Ok, let's see example.
 
+```
+#!javascript
+var protoCat = {
+  name: "Tom",
+  miau: function() {
+    return this.name + ": miau miau"
+  }
+}
+// 1
+var cat = Object.create(protoCat)
+console.log(cat.name) // Tom
+console.log(cat.miau()) // Tom: miau miau
+
+// 2
+protoCat.name = "Proto"
+console.log(cat.name) // Proto
+console.log(cat.miau()) // Proto: miau miau
+
+// 3
+cat.name = "Silly Cat"
+console.log(cat.name) // Silly Cat
+console.log(protoCat.name) // Proto
+console.log(cat.miau()) // Silly Cat: miau miau
+
+// 4
+cat.miau = function() {
+  return this.name + ": woof woof"
+}
+console.log(cat.miau()) // Silly Cat: woof woof
+console.log(protoCat.miau()) // Proto Cat: miau miau
+```
+
+As you see in this example protoCat's fields are fallback for cat's one - if cat doesn't have field interpreter looks for it in prototype, and then recursively in prototype's prototype... If that field is function he also passes right object - on which method was invoked - as this. And if found method uses object's field interpreter start searching from original object.
+
+So prototype defines default data and behaviour of objects that inherits from it and that's the way to share and reuse common behaviours. The biggest difference here is that you don't inherit from class of instances, but just instance, so if you'd change prototype field in runtime, all object's that inherits from it will be affected unless they override that field.
+
+### Common prototype for constructed objects
+
+I showed you how to create object with prototype with ```Object.create```. You can also assign common prototype for objects created by constructor:
+
+```
+#!javascript
+var animal = {
+  woof: function() {
+    return this.name + ": woof woof"
+  }
+}
+
+function Owl(name) {
+  this.name = name
+}
+Owl.prototype = animal
+
+var owl = new Owl("Albert")
+console.log(owl.woof()) // Albert: woof woof
+```
+
+```Owl.prototype = animal``` means, you want each of constructed object to have animal as prototype. Of course prototype can be also created with constructor:
+
+```
+#!javascript
+function Animal() {
+  //...
+}
+
+function Owl() {
+  //...
+}
+Owl.prototype = new Animal()
+var owl = new Owl()
+```
+
+In that case owl object is both instance of Owl and Animal in terms of ```instanceof``` operator. Why ```owl instanceof Animal```? Suppose that we remove all Owl-specific fields - how would owl behave like? Animal, of course, so that's the answer.
+
+## Ending words
+
+Prototype-based inheritance is emanation of inability to create perfect taxonomy of objects in terms class-based inheritance. As software engineer you probably know that there's no way to create perfect class inheritance tree, that won't be affected by change of your knowledge about domain. Prototype-based object orientation is no better, but simplicize meaning of object - it doesn't have to have type, class - it's just container for data and behaviour, which have meaning in current context - for our knowledge of problem domain.
+
+I hope that now you **feel** JavaScript object orientation, but if you still feel uncertain about object-oriented programming in JS write a comment or ping me on Twitter.
