@@ -1,6 +1,6 @@
 ---
 title: "JavaScript objects philosophy"
-created_at: 2012-10-12 10:30:38 +0200
+created_at: 2012-10-12 11:30:38 +0200
 kind: article
 publish: true
 author: "Jan Filipowski"
