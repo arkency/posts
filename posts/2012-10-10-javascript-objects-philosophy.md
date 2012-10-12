@@ -31,7 +31,7 @@ var dog = {
 }
 ```
 
-It explicitly creates dog object with ```name``` field and ```woof``` method. Basic concept here is many times in your app there is no need for many objects with same data structure and behaviour, but rather one object with its data and behaviour. *Object orientation* reveals on instances, not classes. If you feel better with it you can call that it's **real** object orientation.
+It explicitly creates dog object with *name* field and *woof* method. Basic concept here is many times in your app there is no need for many objects with same data structure and behaviour, but rather one object with its data and behaviour. *Object orientation* reveals on instances, not classes. If you feel better with it you can call that it's **real** object orientation.
 
 ### Object.create method
 
@@ -44,7 +44,7 @@ cat.meow = function() {
 }
 ```
 
-[Object.create](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create) instantiate empty cat object -- without any field. If you'd pass object as ```create```'s parameter it'd become prototype of created object. More on prototypes later, so let's focus on ```cat```. We add its data and behaviour by assigning values and functions to its not-yet-existing fields. Of course in runtime you can change both field value to new values (or functions) and even remove field.
+[Object.create](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create) instantiate empty cat object -- without any field. If you'd pass object as *create*'s parameter it'd become prototype of created object. More on prototypes later, so let's focus on *cat*. We add its data and behaviour by assigning values and functions to its not-yet-existing fields. Of course in runtime you can change both field value to new values (or functions) and even remove field.
 
 ### Constructor function
 
@@ -73,7 +73,7 @@ But remember - owl is not instance of Owl class, but rather owl is instantiated 
 
 ## Prototypical inheritance
 
-In JS inheritance base on objects, so object ```a``` can inherit data and behaviour form object ```b``` and then object ```b``` is called prototype of object ```a```. Of course ```b``` can also have prototype, so each object has chain of prototypes. Ok, let's see example.
+In JS inheritance base on objects, so object *a* can inherit data and behaviour form object *b* and then object *b* is called prototype of object *a*. Of course *b* can also have prototype, so each object has chain of prototypes. Ok, let's see example.
 
 ```
 #!javascript
@@ -113,7 +113,7 @@ So prototype defines default data and behaviour of objects that inherits from it
 
 ### Common prototype for constructed objects
 
-I showed you how to create object with prototype with ```Object.create```. You can also assign common prototype for objects created by constructor:
+I showed you how to create object with prototype with *Object.create*. You can also assign common prototype for objects created by constructor:
 
 ```
 #!javascript
@@ -132,7 +132,7 @@ var owl = new Owl("Albert")
 console.log(owl.woof()) // Albert: woof woof
 ```
 
-```Owl.prototype = animal``` means, you want each of constructed object to have animal as prototype. Of course prototype can be also created with constructor:
+*Owl.prototype = animal* means, you want each of constructed object to have animal as prototype. Of course prototype can be also created with constructor:
 
 ```
 #!javascript
