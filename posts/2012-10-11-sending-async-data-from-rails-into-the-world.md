@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: "Robert Pankowecki"
 newsletter: :arkency
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process']
 ---
 
 ## The problem
