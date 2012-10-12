@@ -39,8 +39,8 @@ It explicitly creates dog object with ```name``` field and ```woof``` method. Ba
 #!javascript
 var cat = Object.create()
 cat.name = "David"
-cat.miau = function() {
-  console.log("miau miau")
+cat.meow = function() {
+  console.log("meow meow")
 }
 ```
 
@@ -79,32 +79,32 @@ In JS inheritance base on objects, so object ```a``` can inherit data and behavi
 #!javascript
 var protoCat = {
   name: "Tom",
-  miau: function() {
-    return this.name + ": miau miau"
+  meow: function() {
+    return this.name + ": meow meow"
   }
 }
 // 1
 var cat = Object.create(protoCat)
 console.log(cat.name) // Tom
-console.log(cat.miau()) // Tom: miau miau
+console.log(cat.meow()) // Tom: meow meow
 
 // 2
 protoCat.name = "Proto"
 console.log(cat.name) // Proto
-console.log(cat.miau()) // Proto: miau miau
+console.log(cat.meow()) // Proto: meow meow
 
 // 3
 cat.name = "Silly Cat"
 console.log(cat.name) // Silly Cat
 console.log(protoCat.name) // Proto
-console.log(cat.miau()) // Silly Cat: miau miau
+console.log(cat.meow()) // Silly Cat: meow meow
 
 // 4
-cat.miau = function() {
+cat.meow = function() {
   return this.name + ": woof woof"
 }
-console.log(cat.miau()) // Silly Cat: woof woof
-console.log(protoCat.miau()) // Proto Cat: miau miau
+console.log(cat.meow()) // Silly Cat: woof woof
+console.log(protoCat.meow()) // Proto Cat: meow meow
 ```
 
 As you see in this example protoCat's fields are fallback for cat's one - if cat doesn't have field interpreter looks for it in prototype, and then recursively in prototype's prototype... If that field is function he also passes right object - on which method was invoked - as this. And if found method uses object's field interpreter start searching from original object.
