@@ -107,7 +107,7 @@ console.log(cat.meow()) // Silly Cat: woof woof
 console.log(protoCat.meow()) // Proto Cat: meow meow
 ```
 
-As you see in this example protoCat's fields are fallback for cat's one - if cat doesn't have field interpreter looks for it in prototype, and then recursively in prototype's prototype... If that field is function he also passes right object - on which method was invoked - as this. And if found method uses object's field interpreter start searching from original object.
+As you see in this example protoCat's fields are fallback for cat's one - if cat doesn't have field interpreter looks for it in prototype, and then recursively in prototype's prototype... If that field is function it also passes right object - on which method was invoked - as this. And if found method uses object's field interpreter start searching from original object.
 
 So prototype defines default data and behaviour of objects that inherits from it and that's the way to share and reuse common behaviours. The biggest difference here is that you don't inherit from class of instances, but just instance, so if you'd change prototype field in runtime, all object's that inherits from it will be affected unless they override that field.
 
