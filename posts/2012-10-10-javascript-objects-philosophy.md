@@ -151,6 +151,6 @@ In that case owl object is both instance of Owl and Animal in terms of ```instan
 
 ## Ending words
 
-Prototype-based inheritance is emanation of inability to create perfect taxonomy of objects in terms class-based inheritance. As software engineer you probably know that there's no way to create perfect class inheritance tree, that won't be affected by change of your knowledge about domain. Prototype-based object orientation is no better, but simplicize meaning of object - it doesn't have to have type, class - it's just container for data and behaviour, which have meaning in current context - for our knowledge of problem domain.
+Prototype-based inheritance is emanation of inability to create perfect taxonomy of objects in terms class-based inheritance. As software engineer you probably know that there's no way to create perfect class inheritance tree, that won't be affected by change of your knowledge about domain. Prototype-based object orientation is no better, but simplicize meaning of object - it doesn't have to have type, class - it's just container for data and behaviour, which have meaning in current context - for our knowledge of problem domain. Please remember: when you are thinking about prototype-based object orientation you should focus on easy-to-create objects, not prototype-inheritance, which is just consequence.
 
 I hope that now you **feel** JavaScript object orientation, but if you still feel uncertain about object-oriented programming in JS write a comment or [ping me on Twitter](https://twitter.com/janfilipowski).
