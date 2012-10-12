@@ -44,7 +44,7 @@ cat.meow = function() {
 }
 ```
 
-[Object.create](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create) instantiate empty cat object -- without any field. If you'd pass object as ```create```'s parameter it'd become created object prototype. More on prototypes later, so let's focus on ```cat```. We add its data and behaviour by assigning values and functions to its not-yet-existing fields. Of course in runtime you can change both field value to new values (or functions) and even remove field.
+[Object.create](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create) instantiate empty cat object -- without any field. If you'd pass object as ```create```'s parameter it'd become prototype of created object. More on prototypes later, so let's focus on ```cat```. We add its data and behaviour by assigning values and functions to its not-yet-existing fields. Of course in runtime you can change both field value to new values (or functions) and even remove field.
 
 ### Constructor function
 
