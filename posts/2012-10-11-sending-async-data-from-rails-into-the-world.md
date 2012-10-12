@@ -73,11 +73,13 @@ uses static intervals).
 ### Problem ?
 
 * ZMQ probably works best when compiled from source. We had problems with the
-version provided in debian packages. People generally do not like doing that
-and for some reason are scared of it.
+version provided in debian packages when using ZMQ from Mongrel2
+([M2 issue](https://github.com/zedshaw/mongrel2/issues/78), 
+[Arch issue](https://bugs.archlinux.org/task/29761)
+). People generally do not like doing that and for some reason are scared of it.
 * Although ZMQ is getting more and more popular, people are still not
 familiar with it. And we tend to avoid what we don't know. But I encourage
-you to get out of your comfort zone and meet ZMQ.
+you to get out of your comfort zone and [meet ZMQ](http://zguide.zeromq.org/page:all).
 * ZMQ will not retry sending undelivered messages.
 * ZMQ was not designed to be exposed to wild world. It would probably require
 the external service to provide a separate endpoint (meaning at least different
