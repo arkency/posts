@@ -2,7 +2,7 @@
 title: "Sending async data from Rails into the world - Part Ⅰ"
 created_at: 2012-10-11 10:56:22 +0200
 kind: article
-publish: true
+publish: false
 author: "Robert Pankowecki"
 newsletter: :arkency
 tags: [ 'foo', 'bar', 'baz' ]
