@@ -105,7 +105,7 @@ cat.meow = function() {
   return this.name + ": woof woof"
 }
 console.log(cat.meow()) // Silly Cat: woof woof
-console.log(protoCat.meow()) // Proto Cat: meow meow
+console.log(protoCat.meow()) // Proto: meow meow
 ```
 
 As you see in this example protoCat's fields are fallback for cat's one - if cat doesn't have field interpreter looks for it in prototype, and then recursively in prototype's prototype... If that field is function it also passes right object - on which method was invoked - as this. And if found method uses object's field interpreter start searching from original object.
