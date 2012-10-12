@@ -2,7 +2,7 @@
 title: "JavaScript objects philosophy"
 created_at: 2012-10-10 15:41:38 +0200
 kind: article
-publish: false
+publish: true
 author: "Jan Filipowski"
 newsletter: :arkency
 tags: [ 'javascript', 'oop' ]
