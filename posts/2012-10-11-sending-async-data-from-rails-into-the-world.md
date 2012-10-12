@@ -1,6 +1,6 @@
 ---
 title: "Sending async data from Rails into the world - Part Ⅰ"
-created_at: 2012-10-11 10:56:22 +0200
+created_at: 2012-10-15 10:56:22 +0200
 kind: article
 publish: false
 author: "Robert Pankowecki"
