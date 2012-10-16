@@ -2,7 +2,7 @@
 title: "Sending async data from Rails into the world - Part Ⅰ"
 created_at: 2012-10-16 10:56:22 +0200
 kind: article
-publish: false
+publish: true
 author: "Robert Pankowecki"
 newsletter: :arkency
 tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process']
