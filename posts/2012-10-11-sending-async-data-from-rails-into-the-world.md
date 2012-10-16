@@ -131,7 +131,7 @@ it has very high probability of being delivered.
 * No problem of lost messages when Rails app is restarted during deploy
 because messages are kept in a separate long-living process
 which is not restarted.
-* Communication between middle process and external webservice can
+* Communication between middle process and external web service can
 use a different, more reliable protocol such as HTTP.
 
 ### Problems
