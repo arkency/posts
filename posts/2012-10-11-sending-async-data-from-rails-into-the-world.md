@@ -4,7 +4,7 @@ created_at: 2012-10-16 10:56:22 +0200
 kind: article
 publish: true
 author: "Robert Pankowecki"
-newsletter: :arkency
+newsletter: :chilloutio
 tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process']
 ---
 
@@ -149,10 +149,7 @@ or at least are capable of overcoming it.
 
 ## Tell me more
 
-Stay tunned for the next episodes. Follow us on twitter
+Stay tunned for the next episodes. [Follow us on twitter](https://twitter.com/arkency)
 or subscribe to RSS feed so you do not miss it.
 
-You might also want to
-[subscribe to our newsletter](http://arkency.com/newsletter) so you
-know what we find to be interesting in the internets. [Read last
-issue](<%= last_newsletter_issue %>).
+You may be wondering why I'm writing about it. This is a part of our research for our new exciting product. [Sign up](http://eepurl.com/qHcUT) to be the first to know more about what we're doing.
