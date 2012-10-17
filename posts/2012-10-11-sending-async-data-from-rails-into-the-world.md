@@ -1,6 +1,6 @@
 ---
 title: "Sending async data from Rails into the world - Part Ⅰ"
-created_at: 2012-10-16 10:56:22 +0200
+created_at: 2012-10-17 11:04:22 +0200
 kind: article
 publish: true
 author: "Robert Pankowecki"
@@ -152,4 +152,4 @@ or at least are capable of overcoming it.
 Stay tunned for the next episodes. [Follow us on twitter](https://twitter.com/arkency)
 or subscribe to RSS feed so you do not miss it.
 
-You may be wondering why I'm writing about it. This is a part of our research for our new exciting product. [Sign up](http://eepurl.com/qHcUT) to be the first to know more about what we're doing.
+You may be wondering why I'm writing about it. This is a part of research for our new exciting product. [Sign up](http://eepurl.com/qHcUT) to be the first to know more about what we're doing.
