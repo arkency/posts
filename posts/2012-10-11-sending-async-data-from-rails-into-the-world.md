@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Robert Pankowecki"
 newsletter: :chilloutio
-tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process']
+tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process', 'exceptions']
 ---
 
 ## The problem
