@@ -285,7 +285,7 @@ And this leaves us with the implementation of AvatarToken class.
 
 ```
 #!ruby
-require 'hmac/sha1'
+require 'openssl'
 require 'base64'
 
 class AvatarToken
@@ -295,7 +295,8 @@ class AvatarToken
   delegate :login, to: :user
 
   def initialize(user)
-    @user = user
+    @user      = user
+    @algorithm = OpenSSL::Digest::Digest.new('sha1')
   end
 
   def verify!(another_token)
@@ -306,7 +307,7 @@ class AvatarToken
   end
 
   def token
-    digest = HMAC::SHA1.digest('some key', 'some value')
+    digest = OpenSSL::HMAC.digest(@algorithm, key, id)
     Base64.strict_encode64(digest)
   end
 end
