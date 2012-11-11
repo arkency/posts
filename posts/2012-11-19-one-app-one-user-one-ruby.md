@@ -55,7 +55,7 @@ If your software is not directly executed inside bash you have two options:
 
 Here is an example. [Runit](http://smarden.org/runit/) by default executes
 supervised processes as `root`. We use `su` to switch to user with no
-special abilites. The `-c` switch allows you to execute a command that will
+special abilities. The `-c` switch allows you to execute a command that will
 be invoked in a shell. You can use `-s, --shell SHELL` specify which shell
 is going to be used. Thanks to such behavior `.bashrc` is used and `$PATH`
 variable is set up properly.
@@ -95,7 +95,7 @@ just is.
 ## Benefits
 
 * No need to use rvm wrappers in every possible place such as
-cron, capistrano recipies etc.
+cron, capistrano recipes etc.
 * No need to switch ruby versions because you just log in as
 proper user associated with the application and there is just
 the right ruby that you should be using with this app.
