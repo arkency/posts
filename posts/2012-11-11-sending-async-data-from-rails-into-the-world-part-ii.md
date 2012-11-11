@@ -1,6 +1,6 @@
 ---
 title: "Sending Async data from rails into the world - part ⅠⅠ"
-created_at: 2012-10-26 12:58:16 +0200
+created_at: 2012-11-11 08:58:16 +0200
 kind: article
 publish: true
 author: "Robert Pankowecki"
@@ -14,7 +14,8 @@ In this series of blog posts we discuss possible implementation options for
 sending data asynchronously from Rails applications. The two common use cases
 involve delivering exceptions and business metrics to external services.
 
-The second part describes using Thin and classic threads. Read the
+The second part describes another two solutions: using Thin and classic
+threads. Read the
 [first part](/2012/10/sending-async-data-from-rails-into-the-world/) if you
 have not done it yet.
 
@@ -62,7 +63,7 @@ of a product that is supposed to receive data from clients you cannot
 (nor want to) force your customers to use specific webserver which might
 simply not be the best fit for their needs.
 * If you start implementing things such as exponential backoff based on
-EventMachine framework you might end up with a process who has two
+EventMachine framework you might end up with a process which has two
 responsibilities. Not only it manages your http requests but also needs
 to deliver errors, trace timeouts, schedule exponential retries, log them
 and what not. And that's like having two applications in one process. Bad
@@ -92,8 +93,8 @@ they take. You might need small number for sending exceptions but big
 number for sending metrics. YMMV.
 
 For sharing the jobs between Rails and worker threads you can use standard
-Ruby [Queue](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/thread/rdoc/Queue.html)
-(remember to require 'thread') which is already threadsafe.
+Ruby [`Queue`](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/thread/rdoc/Queue.html)
+(remember to `require 'thread'`) which is already threadsafe.
 
 But if you feel brave you can instead use
 [`PUSH`](http://api.zeromq.org/2-1:zmq-socket#toc12)/[`PULL`](http://api.zeromq.org/2-1:zmq-socket#toc13)
@@ -114,9 +115,9 @@ too little of them the queue size might keep growing. The solution would be
 to have min and max number of possible worker threads and create/destroy them
 depending of queue size. That is however a tedious work.
 * When the webserver or application is being stopped/restarted there still might
-be queued jobs. We might try to send them if your webserver provides hook that
-is executed when application is being stopped. When no such hook is available
-we might need to resort to implementing such logic in `at_exit` hook. However
+be queued jobs. You might try to send them if your webserver provides hook that
+is executed when the application is being stopped. When no such hook is available
+you might need to resort to implementing such logic in `at_exit` hook. However
 its execution depends on the signal that was used to finish the process. It
 works when `TERM` was used but not when `KILL` (obviously).
 
