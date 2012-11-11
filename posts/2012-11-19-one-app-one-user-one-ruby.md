@@ -17,8 +17,8 @@ their ruby installation into `deb` packages. We like nothing.
 ## You ain't need it in production.
 
 Yes, you read it well. Using no tool is better than using some tool if we can
-simply avoid it. Let me state it clearly: "RVM is a great tool for development
-environment" however we do not see much use for it in production. Even in
+simply avoid it. Let me state it clearly: RVM is a great tool for *development*
+environment however we do not see much use for it in production. Even in
 development some of us started to separate projects on higher level using
 Vagrant or LXC containers but that is another story.
 
@@ -30,7 +30,7 @@ Every project has its own container/VM .
 
 We do not have a globally installed ruby except for ruby coming from system
 package that is used mostly by [littlechef](https://github.com/tobami/littlechef).
-*For every application* that is a part of bigger project *separate user is created*
+For *every application* that is a part of bigger project *separate user is created*
 and *separate ruby is installed* in its *home directory*. If we end up having five
 users using same ruby version but different ruby installtion then fine. Storage
 is cheap. Easy upgrades are more important.
