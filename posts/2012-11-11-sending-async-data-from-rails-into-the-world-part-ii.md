@@ -82,7 +82,7 @@ with it. So just don't make the job for them harder :)
 Probably one of the most obvious solution is to use bunch of threads and
 delegate the job of sending data to them.
 
-<a href="/assets/images/async-zmq/threads-queue.png" rel="lightbox"><img src="/assets/images/async-zmq/threads-queue.png" class="fit" /></a>
+<a href="/assets/images/async-zmq/threads-queue.png" rel="lightbox"><img src="/assets/images/async-zmq/threads-queue-fit.png" class="fit" /></a>
 
 We can have multiple threads processing HTTP requests (probably spawned
 by our webserver such as Puma) or one main thread doing that (as in
