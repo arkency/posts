@@ -1,6 +1,6 @@
 ---
 title: "One app, one user, one ruby"
-created_at: 2012-11-19 18:40:51 +0100
+created_at: 2012-11-21 12:40:51 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
@@ -23,16 +23,17 @@ development some of us started to separate projects on higher level using
 Vagrant or LXC containers but that is another story.
 
 A little background: Our customers usually host their applications using our
-infrastructure or their own. These solution are based on either LXC or XEN.
+infrastructure or their own. These solution are based on LXC, XEN, or KVM.
 Every project has its own container/VM .
 
 ## Simplest thing that can possibly work
 
 We do not have a globally installed ruby except for ruby coming from system
-package that is used mostly by [littlechef](https://github.com/tobami/littlechef).
+package that is used mostly by [littlechef](https://github.com/tobami/littlechef) to
+setup the virtual machine according to our conventions and application requirements.
 For *every application* that is a part of bigger project *separate user is created*
 and *separate ruby is installed* in its *home directory*. If we end up having five
-users using same ruby version but different ruby installtion then fine. Storage
+users using same ruby version but different ruby installation then fine. Storage
 is cheap. Easy upgrades are more important.
 
 ## Running ruby
@@ -41,7 +42,7 @@ is cheap. Easy upgrades are more important.
 
 You might wonder how to execute your scripts and run applications with that ruby.
 We just add the ruby bin path to user `$PATH` via `.bashrc` and voilà.
-Whenver you run something inside bash it just works. And gem binaries are
+Whenever you run something inside bash it just works. And gem binaries are
 installed into the same directory so they also work properly.
 
 ### not bash ?
