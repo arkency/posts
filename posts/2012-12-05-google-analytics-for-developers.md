@@ -14,7 +14,7 @@ Yes, we have to be honest - we're doing content marketing for [our product for R
 
 ## Basic features
 
-You probably use most of basic features of [http://www.google.com/analytics](Google Analytics) - you know how to get information how many visits was made each day, you know your users browser segmentation etc. But how can you measure effects of your blog post?
+You probably use most of basic features of [Google Analytics](http://www.google.com/analytics) - you know how to get information how many visits was made each day, you know your users browser segmentation etc. But how can you measure effects of your blog post?
 
 You can check what happened when you posted link to Hacker News or Reddit in Real-Time - just go "Home" and click "Real-Time".
 
