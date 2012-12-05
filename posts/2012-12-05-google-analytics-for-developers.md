@@ -1,8 +1,8 @@
 ---
 title: "Google Analytics for developers"
-created_at: 2012-12-04 23:08:47 +0100
+created_at: 2012-12-05 12:22:32 +0100
 kind: article
-publish: false
+publish: true
 author: 'Jan Filipowski'
 newsletter: :chillout
 tags: [ 'google analytics', 'business metrics', 'marketing' ]
@@ -22,7 +22,7 @@ You can check what happened when you posted link to Hacker News or Reddit in Rea
 
 ## Users actions
 
-When you promote product with blog you should be able to meassure how many readers did what you want - click link or sign up with some form. Here's our little script that solves that problems.
+When you promote product with blog you should be able to measure how many readers did what you want - click link or sign up with some form. Here's our little script that solves that problems.
 
 ```
 #!javascript
@@ -63,6 +63,6 @@ We set two goals - for event with label http://chillout.io/ and for newsletter s
 
 How to use goals? You can find them in "Standard Reporting" in "Convertions -> Goals" section. It's useful, that you can see which page have biggest conversion to goals.
 
-## Start meassuring now
+## Start measuring now
 
-Don't waste your creative effort - start tracking what's catchy and interesting. It could be useful if you're trying to make product or if you looking for interesting trend in your industry.
+Don't waste your creative effort - start tracking what's catchy and interesting. It could be useful if you're trying to make product or if you're looking for trend in your industry.
