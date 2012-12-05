@@ -2,7 +2,7 @@
 title: "Why we don't use ORM"
 created_at: 2012-12-03 11:25:59 +0100
 kind: article
-publish: false
+publish: true
 author: 'Jan Filipowski'
 newsletter: :chillout
 tags: [ 'ruby', 'storage', 'repository', 'orm' ]
