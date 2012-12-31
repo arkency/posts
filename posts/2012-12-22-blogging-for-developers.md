@@ -2,7 +2,7 @@
 title: "Blogging for developers"
 created_at: 2012-12-22 15:11:52 +0100
 kind: article
-publish: true
+publish: false
 author: Robert Pankowecki
 newsletter: :chillout
 tags: [ 'blog', 'nanoc']
