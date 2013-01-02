@@ -1,8 +1,8 @@
 ---
 title: "Blogging for developers"
-created_at: 2012-12-22 15:11:52 +0100
+created_at: 2013-01-02 10:11:52 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :chillout
 tags: [ 'blog', 'nanoc']
@@ -10,10 +10,10 @@ tags: [ 'blog', 'nanoc']
 
 There are many possible blogging platforms out there to be used, yet we decided not to use any of them.
 It was a controversial decision even inside our own, small team. Before we started blogging there was
-a heated discussion whether we should use something that can quickly get your running so that when you
-feel in a mood for a blog post there are no obstacles preventing you from writing. Or the alternative
+a heated discussion whether we should use something that can quickly get you running so that when you
+feel in a mood for a blog post, there are no obstacles preventing you from writing. Or the alternative
 was to build something custom and have more control. We ended up using existing tools
-but put a little effor to combine them together into something that we like.
+but put a little effort to combine them together into something that we like.
 
 <!-- more -->
 
@@ -37,13 +37,13 @@ Pro:
 
 Cons:
 
-* written in Ruby (bad for non-technical people, fortunately we do not have such in our team)
+* written in Ruby (bad for non-technical people, but we do not have such in our team)
 
 ## Responsive layout
 
 About 20% of our traffic comes from mobile devices. I love reading blog posts on my mobile when
 moving around the city. Especially those that are comfortable, so no wonder that it was important
-for us to keep readers using mobile devices happy. We achived it simply by using
+for us to keep readers using mobile devices happy. We achieved it simply by using
 [bourbon](https://github.com/thoughtbot/bourbon). You can see how our blog looks when using
 different devices using [responsive.is](http://responsive.is/blog.arkency.com) (seriously, 
 click the link to see it). Overall we are very happy with bourbon and started using it in
@@ -65,6 +65,9 @@ pinch-to-zoom works flawlessly, the image is displayed with proper zoom and when
 just press "Back" and browsers redirect you back to the previous page (the blog post) and position the
 screen at the place where you finished reading. Works way better than any lightbox that I have tested.
 
+However if you think that I am wrong and there is lightbox of such high quality, please leave a comment.
+I would be more than happy to try it out.
+
 ## Images
 
 For every image we generate additional 2 versions.
@@ -78,7 +81,7 @@ And "fit" version that is as wide as it can be on a tablet in landscape position
 
 <a href="/assets/images/blog-developers/wide.png" rel="lightbox"><img src="/assets/images/blog-developers/wide-fit.png" class="fit"></a>
 
-The code for doing that is pretty straightforward and uses ImageMagick command line:
+The code for doing that is pretty straightforward and uses ImageMagick `convert` binary:
 
 ```
 #!ruby
@@ -126,7 +129,7 @@ Other nice optimization are yet to be added such as:
 ## Code
 
 Nothing fancy here, we use good, old [pygments](http://pygments.org/) with
-a [ruby wrapper](pygments.rb) .
+a [ruby wrapper](https://github.com/tmm1/pygments.rb) .
 
 ```
 #!ruby
@@ -161,35 +164,37 @@ end
 
 If you ever read our blog before you might have noticed that we usually try to end our posts
 with call to action. That is in most situations invitation to one of our newsletters or link to
-[chillout.io landing page](http://chillout.io). Fortunatelly we don't need to add them
+[chillout.io landing page](http://chillout.io). Fortunately we don't need to add them
 manually. Instead we use a feature of nanoc which let's you include
 metadata to every post.
 
 <a href="/assets/images/blog-developers/metadata.png" rel="lightbox"><img src="/assets/images/blog-developers/metadata-fit.png" class="fit"></a>
 
-Add the end of post layout file we use custom `#newsletter` helper method to output proper code
+At the end of post layout file we use custom `#newsletter` helper method to output proper code
 based on the metadata. If we ever decide to change it, we can do so in one place.
 
 ```
 #!html+erb
 <section class='metadata'>
   <p class='date'>
-    <time datetime="<%= post_date(item, :iso) %>" pubdate><%%= post_date(item) %%></time>
+    <time datetime="<%%= post_date(item, :iso) %>" pubdate>
+      <%%= post_date(item) %>
+    </time>
   </p>
   <p class='author'>
-    by <%%= item[:author] %%>
+    by <%%= item[:author] %>
   </p>
   <p class='tags'>
-    <%%= tags_for(item, none_text: '', base_url: '#') %%>
+    <%%= tags_for(item, none_text: "", base_url: "#") %>
   </p>
   <p class='comments'>
     <a href='#disqus_thread'></a>
   </p>
 </section>
 
-<%%= yield %%>
+<%%= yield %>
 
-<%%= newsletter(item[:newsletter]) %%>
+<%%= newsletter(item[:newsletter]) %>
 ```
 
 Here is the simplified version of the helper:
