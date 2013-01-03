@@ -49,7 +49,7 @@ We track events, so where can we find them?
 
 <a href="/assets/images/google-analytics-for-developers/ga-events.png" rel="lightbox"><img src="/assets/images/google-analytics-for-developers/ga-events-fit.png" class="fit"></a>
 
-In this section you can choose which category, action or label is interesting for you and show only occurences of that type. You can also see flow of your users in terms of events - below "Events overview" you can find "Events Flow".
+In this section you can choose which category, action or label is interesting for you and show only occurrences of that type. You can also see flow of your users in terms of events - below "Events overview" you can find "Events Flow".
 
 ## Goals
 
@@ -61,7 +61,7 @@ You now have quite good insight what's happening on your site, but that's not al
 
 We set two goals - for event with label http://chillout.io/ and for newsletter sign up event.
 
-How to use goals? You can find them in "Standard Reporting" in "Convertions -> Goals" section. It's useful, that you can see which page have biggest conversion to goals.
+How to use goals? You can find them in "Standard Reporting" in "Conversions -> Goals" section. It's useful, that you can see which page have biggest conversion to goals.
 
 ## Start measuring now
 
