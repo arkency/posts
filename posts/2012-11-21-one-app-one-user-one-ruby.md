@@ -83,14 +83,14 @@ path in a script:
 ## Cookbook
 
 You can see our open-sourced cookbook for ruby installation on
-github [arkency/ruby-build](https://github.com/arkency/ruby-build).
+github [arkency/ruby-build-cookbook](https://github.com/arkency/ruby-build-cookbook).
 This is first thing that we open sourced as a company (we do have lot
 of open source experience as individuals) and we hope
 that in the future you can expect even more from us.
 
 And if you are not that much into cooking (with chef) you can
 see for yourself how simple the whole
-[ruby installation process](https://github.com/arkency/ruby-build/blob/master/definitions/ruby.rb)
+[ruby installation process](https://github.com/arkency/ruby-build-cookbook/blob/master/definitions/ruby.rb)
 just is.
 
 ## Benefits
