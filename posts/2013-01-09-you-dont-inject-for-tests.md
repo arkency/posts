@@ -16,7 +16,7 @@ What is unit testing for? Is it a way to make sure that your code is correct and
 
 We started this week drama in Ruby community with DHH's ["Dependency injection is not a virtue"](http://david.heinemeierhansson.com/2012/dependency-injection-is-not-a-virtue.html) blog post. I agree that we shouldn't use dependency injection to make software testable - testability is not a basic goal when creating software. It's rather part of maintainability goal.
 
-Let's walk through application parts and find out how testability helps in maintanance and by this why dependency injection is useful
+Let's walk through application parts and find out how testability helps in maintanance and by this why dependency injection is useful.
 
 ### Domain level
 
@@ -26,9 +26,36 @@ Where's maintainability in this example? With smaller classes each change in one
 
 ### Application level
 
-Let's suppose you use some external services like database or REST API. First of all you use them with some reason, like "I want to get all tweets with #sillycat hashtag". When you write classes that will communicate with those services you should expose that reason. And here's the place for border tests - you write them to make sure, that service adapters (which expose our need) do what they should really do. For db it would be getting records from that db, for REST API it would be making real request and checking if the answer is what we assumed.
+Let's suppose you use some external services like database or REST API. First of all you use them for a reason, like "I want to get all tweets with #sillycat hashtag". When you write classes that will communicate with those services you should expose that reason. And here's the place for border tests - you write them to make sure, that service adapters (which expose our need) do what they should really do. For db it would be getting records from that db, for REST API it would be making real request and checking if the answer is what we assumed.
 
-By dependency injection in objects that use such adapters you get easiness of adding new similar services, single place to fix when you have problems with one of services etc. If you'd hardcode such adapter it could be hard to use different configuration interfaces too.
+```
+#!ruby
+class TwitterMessageAdapter
+  def initialize(app, secret) # configuration
+    @app = app
+    @secret = secret
+  end
+
+  def get_messages_with(hashtag)
+    raw_messages = (...) # all the HTTP request stuff
+    raw_messages.map do |raw_message|
+      Message.new(raw_message['content'], raw_message['author_name'])
+    end
+  end
+end
+
+class MessageSeeker
+  def initialize(message_adapter)
+    @message_adapter = message_adapter
+  end
+
+  def print_interesting_messages
+    puts @message_adapter.get_messages_with("#sillycat")
+  end
+end
+```
+
+With dependency injection in objects that use such adapters you get easiness of adding new similar services, single place to fix when you have problems with one of services etc. If you'd hardcode such adapter dependency (i.e. by instantiating) it could be hard to use different configurations too.
 
 ## Conclusion
 
