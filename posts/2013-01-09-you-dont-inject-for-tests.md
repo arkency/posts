@@ -1,8 +1,8 @@
 ---
 title: "You don't inject for tests"
-created_at: 2013-01-09 11:40:03 +0100
+created_at: 2013-01-09 14:49:03 +0100
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
 newsletter: :rails_report
 tags: [ 'Ruby drama', 'dependency injection', 'OOD', 'mostly obvious' ]
