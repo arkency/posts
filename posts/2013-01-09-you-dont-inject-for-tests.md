@@ -59,4 +59,4 @@ With dependency injection in objects that use such adapters you get easiness of 
 
 ## Conclusion
 
-As you can see dependency injection is a way to make you application more flexible, but what's more important - more ordered. With dependency injection you have to ask yourself very often how many objects depends on this one and how to minimize it.
+As you can see dependency injection is a way to make you application more flexible, but what's more important - more ordered. With dependency injection you have to ask yourself very often on how many objects this one depends and how to minimize it.
