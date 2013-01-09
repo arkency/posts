@@ -14,16 +14,10 @@ solution and it does not make your models concerned with another responsibility.
 
 <!-- more -->
 
-## Note
-
-If you dislike my solution, feel free to use [roar](https://github.com/apotonick/roar),
-[rails-api](https://github.com/rails-api/rails-api) or [active model serializers](https://github.com/rails-api/active_model_serializers).
-I think they all have their own advantages.
-
 ## Naming
 
-First, I have a problem with the naming around API. Because of `active_model_serializers` I belive we now use
-invalid nomenclature for our actions. Let's think about it for a moment. Imaging we have a `Customer` object
+First, I have a problem with the naming around API. I belive we use invalid nomenclature to describe our intentions.
+Let's think about it for a moment. Imaging we have a `Customer` object
 and we need to keep it somewhere between the restarts of our application (not necessarily Rails application).
 So what do we do ? We use serialization to store it in a file. May it be binary format, JSON, XML or YAML:
 
@@ -32,7 +26,7 @@ So what do we do ? We use serialization to store it in a file. May it be binary 
 require 'yaml'
 
 class Customer < Struct.new(:first_name, :last_name, :email) # Or ActiveRecord::Base
-  def long_name
+  def full_name
     [first_name, last_name].join(" ")
   end
 end
@@ -61,16 +55,16 @@ To store the _inner state_ of an object and use it to recreate it later.
 But this is not what we usually want to achieve when building APIs. In such case we want to deliver
 some data to the consumer of our API. We don't try to save the state of an object.
 
-Rather I would say, we present it. Therfore I prefer to use the name `serialization` when the object
-is stored and processed by the same application and its _inner state_ is stored. And the name `presenter`
-sound good to me in cases when you talk about an object with a separate application. When you display it
+Rather I would say, we present it. Therfore I prefer to use the name **serialization** when the object
+is stored and processed by the same application and its _inner state_ is stored. And the name **presenter**
+sounds good to me in cases when you talk about an object with a separate application. When you display it
 to others. When you show its, what I would say, _external state_ (if such thing might exist).
 
 You might wanna ask _"well, what is the difference"?_ I shall answer you immediately.
 
 The _inner state_ and _external state_ might often not be the same thing. In our case we store `first_name` and
-`last_name` separately but our clients might only be interested in `long_name`. There is no reason to send them
-`{"first_name":"Robert","last_name":"Pankowecki"}` when they actually need: `{"long_name":"Robert Pankowecki"}`.
+`last_name` separately but our clients might only be interested in `full_name`. There is no reason to send them
+`{"first_name":"Robert","last_name":"Pankowecki"}` when they actually need: `{"full_name":"Robert Pankowecki"}`.
 
 So... What shall we do ? Bring up the presenters on stage.
 
@@ -84,7 +78,7 @@ domain and most likely contain some presentation logic that should not be in mod
 #!ruby
 class CustomerPresenter
   attr_accessor :customer
-  delegate :long_name, to: :customer
+  delegate :full_name, to: :customer
 
   def initialize(customer)
     @customer = customer
@@ -92,7 +86,7 @@ class CustomerPresenter
 
   def as_json(*)
     {
-      longName: long_name
+      fullName: full_name
     }
   end
 end
@@ -127,7 +121,7 @@ I would prefer to have a method for that in the presenter itself.
 #!ruby
 class CustomerPresenter
   attr_accessor :customer
-  delegate :long_name, :email, to: :customer
+  delegate :full_name, :email, to: :customer
 
   def initialize(customer)
     @customer = customer
@@ -135,7 +129,7 @@ class CustomerPresenter
 
   def as_json(*)
     {
-      longName:  long_name,
+      fullName:  full_name,
       avatarUrl: gravatar_url
     }
   end
@@ -150,7 +144,7 @@ end
 
 ## Presenters might use multiple objects
 
-Do you like Hypermedia API ? I still don't know but let's give it a try here just to prove my point :)
+Do you like Hypermedia API ? I still don't know but let's give it a try here just to prove my point _☺_.
 There is a feature that customer can be notified about promotions and other events. It is done by
 sending request to URL that we have available under `customer_notification_url` route method in our controller.
 We would like to send it also to the API clients of our app.
@@ -160,8 +154,8 @@ We would like to send it also to the API clients of our app.
 class CustomerPresenter
   attr_accessor :customer, :url_generator
 
-  delegate :long_name, :email,          to: :customer
-  delegate :customer_notification_url,  to: url_generator
+  delegate :full_name, :email,          to: :customer
+  delegate :customer_notification_url,  to: :url_generator
 
   def initialize(customer, url_generator)
     @customer      = customer,
@@ -170,7 +164,7 @@ class CustomerPresenter
 
   def as_json(*)
     {
-      longName:        long_name,
+      fullName:        full_name,
       avatarUrl:       gravatar_url,
       notificationUrl: notification_url
     }
@@ -205,7 +199,8 @@ end
 
 ## Tidying up the the presenter
 
-You can simply have you presenter talk multiple dialects:
+You can simply have you presenter talk multiple dialects by including
+[`ActiveModel::Serializers`](http://api.rubyonrails.org/classes/ActiveModel/Serializers.html) :
 
 ```
 #!ruby
@@ -216,8 +211,8 @@ class CustomerPresenter
 
   attr_accessor :customer, :url_generator
 
-  delegate :long_name, :email,          to: :customer
-  delegate :customer_notification_url,  to: url_generator
+  delegate :full_name, :email,          to: :customer
+  delegate :customer_notification_url,  to: :url_generator
 
   def initialize(customer, url_generator)
     @customer      = customer,
@@ -226,7 +221,7 @@ class CustomerPresenter
 
   def attributes
     @attributes ||= {
-      longName:        long_name,
+      fullName:        full_name,
       avatarUrl:       gravatar_url,
       notificationUrl: notification_url
     }
@@ -301,4 +296,113 @@ end
 
 ## Multiple presenters
 
-TODO: ...
+It might happen that different usecases demend different presentation. We might need a different value
+or additional field. I heard you like inheritance:
+
+```
+#!ruby
+class Admin::CustomerPresenter < ::CustomerPresenter
+  def attributes
+    @admin_attributes ||= super.merge(
+      admin_field: some_value
+    )
+  end
+
+  private
+
+  def some_value
+    # ...
+  end
+end
+```
+
+Or maybe you prefer dynamic mixins ?
+
+```
+#!ruby
+module Admin::CustomerPresenter
+  def attributes
+    @admin_attributes ||= super.merge(
+      admin_field: some_value
+    )
+  end
+
+  private
+
+  def some_value
+    # ...
+  end
+end
+
+presenter = CustomerPresenter.new(...)
+presenter.extend(Admin::CustomerPresenter)
+```
+
+Delegation ?
+
+```
+#!ruby
+class Admin::CustomerPresenter
+  include ActiveModel::Serializers::JSON
+  include ActiveModel::Serializers::Xml
+
+  def initialize(base_presenter)
+    @base_presenter = base_presenter
+  end
+
+  def attributes
+    @attributes ||= base_presenter.attributes.merge(
+      admin_field: some_value
+    )
+  end
+
+  def to_xml(options = {})
+    options        ||= {}
+    options[:root] ||= :"customer-for-admin"
+    super(options)
+  end
+
+  def to_json(options = {})
+    options        ||= {}
+    options[:root] ||= :"customer-for-admin"
+    super(options)
+  end
+
+  private
+
+  def some_value
+    # ...
+  end
+end
+
+base_presenter = CustomerPresenter.new(...)
+presenter      = Admin::CustomerPresenter.new(base_presenter)
+```
+
+It doesn't matter which way you like most. All options are still available to you. You know
+how they work and what are the implications of using the solution you have choosen. Because
+they are part of the language that you use daily. Not yet another DSL which must implement its
+own syntax to let you share some parts of the code and mimic inheritance. Plain, old, simple
+Ruby.
+
+## Limitations
+
+Nothing of what I showed here will help in the case where you actually need to created objects
+based on XML or JSON that you received. Roar might be really helpful in such situation.
+
+## Note
+
+If you dislike my solution, feel free to use 
+[roar](https://github.com/apotonick/roar),
+[rails-api](https://github.com/rails-api/rails-api) or 
+[active model serializers](https://github.com/rails-api/active_model_serializers).
+
+I think they all have their own advantages.
+
+## Conclusion
+
+There many libraries that try to help you deliver a well crafted API representations.
+But maybe you do not need them and you can achieve your goals using just plain Ruby features ?
+
+If you like this article you might be interested in our product that we would like to publish
+in the future. It will be full of such analysis. You can sign up right here:
