@@ -50,7 +50,7 @@ class MessageSeeker
   end
 
   def print_interesting_messages
-    puts @message_adapter.get_messages_with("#sillycat")
+    puts @message_adapter.get_messages_with("#sillycat").map(&:to_s)
   end
 end
 ```
