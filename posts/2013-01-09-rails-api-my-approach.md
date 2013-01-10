@@ -396,7 +396,6 @@ If you dislike my solution, feel free to use
 [roar](https://github.com/apotonick/roar),
 [rails-api](https://github.com/rails-api/rails-api) or 
 [active model serializers](https://github.com/rails-api/active_model_serializers).
-
 I think they all have their own advantages.
 
 ## Conclusion
