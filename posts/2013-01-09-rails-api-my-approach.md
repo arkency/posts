@@ -1,6 +1,6 @@
 ---
 title: "Rails API - my simple approach"
-created_at: 2013-01-09 16:40:12 +0100
+created_at: 2013-01-10 18:30:12 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
