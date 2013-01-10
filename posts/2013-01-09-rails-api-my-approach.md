@@ -8,7 +8,7 @@ newsletter: :rails_report
 tags: [ 'rails', 'api' ]
 ---
 
-I've seen people using very different techniques to build API around Rails applications.
+I have seen people using very different techniques to build API around Rails applications.
 I wanted to show what I like to do in my projects. Mostly because it is a very simple
 solution and it does not make your models concerned with another responsibility.
 
@@ -16,8 +16,8 @@ solution and it does not make your models concerned with another responsibility.
 
 ## Naming
 
-First, I have a problem with the naming around API. I belive we use invalid nomenclature to describe our intentions.
-Let's think about it for a moment. Imaging we have a `Customer` object
+First, I have a problem with the naming around API. I believe we use invalid nomenclature to describe our intentions.
+Let's think about it for a moment. Imagine we have a `Customer` object
 and we need to keep it somewhere between the restarts of our application (not necessarily Rails application).
 So what do we do ? We use serialization to store it in a file. May it be binary format, JSON, XML or YAML:
 
@@ -55,7 +55,7 @@ To store the _inner state_ of an object and use it to recreate it later.
 But this is not what we usually want to achieve when building APIs. In such case we want to deliver
 some data to the consumer of our API. We don't try to save the state of an object.
 
-Rather I would say, we present it. Therfore I prefer to use the name **serialization** when the object
+Rather I would say, we present it. Therefore I prefer to use the name **serialization** when the object
 is stored and processed by the same application and its _inner state_ is stored. And the name **presenter**
 sounds good to me in cases when you talk about an object with a separate application. When you display it
 to others. When you show its, what I would say, _external state_ (if such thing might exist).
