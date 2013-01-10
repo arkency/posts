@@ -380,7 +380,7 @@ presenter      = Admin::CustomerPresenter.new(base_presenter)
 ```
 
 It doesn't matter which way you like most. All options are still available to you. You know
-how they work and what are the implications of using the solution you have choosen. Because
+how they work and what are the implications of using the solution you have chosen. Because
 they are part of the language that you use daily. Not yet another DSL which must implement its
 own syntax to let you share some parts of the code and mimic inheritance. Plain, old, simple
 Ruby.
