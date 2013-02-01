@@ -14,7 +14,7 @@ Our product's architecture is distributed - currently just as few processes on s
 
 ## Test runner
 
-Chillout.io backend is built with 3 apps. It has also gem dedicated to Rails applications, which communicates with our API. So to test whole stack we have to run 3 apps + Rails server. Let's have a look at our ```AcceptanceTestCase``` class:
+[Chillout.io](http://chillout.io/) backend is built with 3 apps. It has also gem dedicated to Rails applications, which communicates with our API. So to test whole stack we have to run 3 apps + Rails server. Let's have a look at our ```AcceptanceTestCase``` class:
 
 
 ```
@@ -23,11 +23,11 @@ Chillout.io backend is built with 3 apps. It has also gem dedicated to Rails app
 class AcceptanceTestCase < MiniTest::Unit::TestCase
   def commands_to_run
     # Sample structure
-    # [
-    #   ["bundle exec ruby -Iapi/lib api/bin/chillout-api", {"BUNDLE_GEMFILE" => "api/Gemfile"}],
-    #   ["bundle exec sample_rails_app/script/rails s --binding=127.0.0.1 --port=3000 --environment=production", ...]
-    #   ...
-    # ]
+    [
+      ["bundle exec ruby -Iapi/lib api/bin/chillout-api", {"BUNDLE_GEMFILE" => "api/Gemfile"}],
+      ["bundle exec sample_rails_app/script/rails s --binding=127.0.0.1 --port=3000 --environment=production", ...]
+      ...
+    ]
   end
 
   def run(runner, &block)
@@ -84,9 +84,9 @@ end
 Here's an explation what really happens in this scenario:
 
 1. ```admin.add_project``` and ```admin.add_recipients``` add project and notification recipients to test database.
-2. ```app.create_entity!``` enters (using capybara-webkit) sample Rails app's scaffold and create entity with "Dog" name
+2. ```app.create_entity!``` enters, using [capybara-webkit](https://github.com/thoughtbot/capybara-webkit), sample Rails app's scaffold and create entity with "Dog" name
 3. Scheduler execute shell command to run our reporter app.
-3. We run mailcatcher in background and owner use it to check if he got an email - he enters (also using capybara-webkit) it's web interface and looks for given data - daily report.
+3. We run [mailcatcher](http://mailcatcher.me/) in background and owner use it to check if he got an email - he enters (also using capybara-webkit) it's web interface and looks for given data - daily report.
 
 ## Real black box
 
