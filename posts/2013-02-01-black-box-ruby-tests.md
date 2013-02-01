@@ -8,14 +8,24 @@ newsletter: :chillout
 tags: [ 'ATDD', 'testing', 'ruby' ]
 ---
 
-Our product's architecture is distributed - currently just as few processes on same production server. As professionals we decided to prepare integration tests for each of application (maybe in terms of their business we could call them acceptance tests), but that wasn't enough - we wanted to expose business scenarios that we're actually aiming in. We achieved that with fully black-box tests. Curious how we did that? Read on.
+[Chillout.io](http://chillout.io/) architecture is distributed - currently just as few processes on same production server. As professionals we decided to prepare integration tests for each of application (maybe in terms of their business we could call them acceptance tests), but that wasn't enough - _we wanted to expose business scenarios that we're actually aiming in_. We achieved that with fully black-box tests. Curious how we did that? Read on.
 
 <!-- more -->
 
+## Architecture
+
+[Chillout.io](http://chillout.io/) purpose is to _help Rails developers maintain existing projects_ - currently react on exception events and be up-to-date with simple business metrics like model creations. To provide this features its backend is splitted into following apps:
+
+* *api* - API endpoint
+* *brain* - decides how to react on messages from *api*
+* *brain-reporter* - generates reports for customers
+* *mailing* - sends email to customers
+
+It has also gem dedicated to Rails applications, which communicates with our API.
+
 ## Test runner
 
-[Chillout.io](http://chillout.io/) backend is built with 3 apps. It has also gem dedicated to Rails applications, which communicates with our API. So to test whole stack we have to run 3 apps + Rails server. Let's have a look at our ```AcceptanceTestCase``` class:
-
+To test whole stack we have to run all apps + Rails server. Let's have a look at our ```AcceptanceTestCase``` class:
 
 ```
 #!ruby
@@ -51,7 +61,7 @@ As you see we also have sample Rails app to make sure, that our gem really works
 
 ## Scenario language
 
-Business scenarios - stories or use cases - are defined with high-level terms, i.e. "Rails app raises exception, so its owner should get email notification with details about that exception". To expose that business, our products real value, we use same terms in tests:
+_Business scenarios - stories or use cases - are defined with high-level terms_, i.e. "Someone created model in Rails app, so at the beginning of next day (when scheduler trigger) owner should get email with report containing model's counter increased by one". To expose that business, our product's real value, we use same terms in tests:
 
 ```
 #!ruby
@@ -80,17 +90,24 @@ class SendingBusinessMetricsTest < AcceptanceTestCase
 end
 ```
 
-Here's an explation what really happens in this scenario:
+Here's an explanation what really happens in scenario:
 
 1. ```admin.add_project``` and ```admin.add_recipients``` add project and notification recipients to test database.
 2. ```app.create_entity!``` enters, using [capybara-webkit](https://github.com/thoughtbot/capybara-webkit), sample Rails app's scaffold and create entity with "Dog" name
 3. Scheduler execute shell command to run our reporter app.
-3. We run [mailcatcher](http://mailcatcher.me/) in background and owner use it to check if he got an email - he enters (also using capybara-webkit) it's web interface and looks for given data - daily report.
+4. We run [mailcatcher](http://mailcatcher.me/) in background and owner use it to check if he got an email - he enters (also using capybara-webkit) it's web interface and looks for given data - daily report.
+
+As you can see all steps of this scenario are described in terms of real usage. If we'd describe how our product subcomponents cooperate to handle this use case it would look like this:
+
+<a href="/assets/images/black-box-ruby-tests/flow1.png" rel="lightbox"><img src="/assets/images/black-box-ruby-tests/flow1-fit.png" class="fit"></a>
+<a href="/assets/images/black-box-ruby-tests/flow2.png" rel="lightbox"><img src="/assets/images/black-box-ruby-tests/flow2-fit.png" class="fit"></a>
+
+As a side note: approach of tests with actors was introduced in [bbq](http://github.com/drugpl/bbq) gem.
 
 ## Real black box
 
 As you can see it is about what scenario actor's will do in real life - one of them will get to Rails app and create some entity, scheduler (cron) will invoke daily report at given time, and then Rails app's owner will go to web mail and see our notification.
 
-All details about our architecture are not available on scenario level. If we decide to split one of our apps to few smaller we will just have to add new commands to run in ```AcceptanceTestClass```. We also can show it to you to tell you about our new feature - automatic simple business metrics.
+All details about our architecture are not available on scenario level. If we decide to split one of our apps to few smaller we will just have to add new commands to run in ```AcceptanceTestClass```. We can also show it to you to tell you about our new feature - _automatic simple business metrics_.
 
 How do like this style of testing? Please leave a comment - maybe you have something better?
