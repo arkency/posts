@@ -36,7 +36,6 @@ class AcceptanceTestCase < MiniTest::Unit::TestCase
       commands_to_run.each do |(cmd, env)|
         Bundler.with_clean_env { pids << ProcessSpawner.new(cmd, env).spawn }
       end
-      sleep(10) # just to ensure everything is running
       super
     rescue => exc
       runner.puke(self.class, self.__name__, exc)
