@@ -1,8 +1,8 @@
 ---
-title: "Black box Ruby tests"
-created_at: 2013-02-01 11:28:58 +0100
+title: "Black-box Ruby tests"
+created_at: 2013-02-01 16:45:58 +0100
 kind: article
-publish: false
+publish: true
 author: 'Jan Filipowski'
 newsletter: :chillout
 tags: [ 'ATDD', 'testing', 'ruby' ]
