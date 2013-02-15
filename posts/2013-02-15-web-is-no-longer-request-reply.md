@@ -4,7 +4,7 @@ created_at: 2013-02-15 10:30:12 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :rails_report_experience
+newsletter: :rails_report
 tags: [ 'web', 'servers', 'patterns' ]
 ---
 
@@ -80,5 +80,5 @@ advantage when it comes to developing and maintenance of a distributed solution.
 What do you think about current state of the web and our tools? Is req-repl now becomming a burden in the development?
 Which of our frameworks and tools are ready for the future of the web? Or perhaps I delude myself that all of that can be solved
 with one tool. Maybe the usage of multiple tools for solving such problems is good because you can tweak them according
-to their needs and the needs of HTTP connection are different then those of long running, mostly inactive Websocket or
+to their needs and the needs of HTTP connection are different than those of long running, mostly inactive Websocket or
 SSE connections? I am very curious of your opinion ...
