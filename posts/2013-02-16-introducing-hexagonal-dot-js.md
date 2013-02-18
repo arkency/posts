@@ -1,10 +1,10 @@
 ---
 title: "Introducing hexagonal.js"
-created_at: 2013-02-16 15:51:11 +0100
+created_at: 2013-02-18 12:10:11 +0100
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
-newsletter: :chillout
+newsletter: :rails_report
 tags: [ 'javascript', 'hexagonal', 'architecture', 'coffeescript', 'hexagonal.js' ]
 ---
 
