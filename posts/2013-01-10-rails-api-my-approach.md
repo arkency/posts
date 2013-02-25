@@ -404,4 +404,4 @@ There many libraries that try to help you deliver a well crafted API representat
 But maybe you do not need them and you can achieve your goals using just plain Ruby features ?
 
 If you like this article you might be interested in our product that we would like to publish
-in the future. It will be full of such analysis. You can sign up right here:
+in the future. It will be full of such analysis. You can sign up below.
