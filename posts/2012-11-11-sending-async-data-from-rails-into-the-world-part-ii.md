@@ -8,8 +8,6 @@ newsletter: :chillout
 tags: [ 'async', 'rails', 'exceptions', 'business metrics', 'thin', 'eventmachine', 'threads']
 ---
 
-## The problem
-
 In this series of blog posts we discuss possible implementation options for
 sending data asynchronously from Rails applications. The two common use cases
 involve delivering exceptions and business metrics to external services.

@@ -8,8 +8,6 @@ newsletter: :chillout
 tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process', 'exceptions']
 ---
 
-## The problem
-
 Exceptions and business metrics. These are two common use cases involving
 delivery of data from our Rails application (or any other web application)
 to external services that are
