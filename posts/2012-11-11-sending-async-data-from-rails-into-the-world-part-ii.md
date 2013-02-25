@@ -1,5 +1,5 @@
 ---
-title: "Sending Async data from rails into the world - part ⅠⅠ"
+title: "Sending async data from Rails into the world (II)"
 created_at: 2012-11-11 08:58:16 +0200
 kind: article
 publish: true
