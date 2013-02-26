@@ -1,5 +1,5 @@
 ---
-title: "Sending async data from Rails into the world - Part Ⅰ"
+title: "Sending async data from Rails into the world"
 created_at: 2012-10-17 11:04:22 +0200
 kind: article
 publish: true
@@ -7,8 +7,6 @@ author: "Robert Pankowecki"
 newsletter: :chillout
 tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process', 'exceptions']
 ---
-
-## The problem
 
 Exceptions and business metrics. These are two common use cases involving
 delivery of data from our Rails application (or any other web application)

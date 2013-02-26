@@ -14,7 +14,7 @@ their ruby installation into `deb` packages. We like nothing.
 
 <!-- more -->
 
-## You ain't need it in production.
+## You ain't need it in production
 
 Yes, you read it well. Using no tool is better than using some tool if we can
 simply avoid it. Let me state it clearly: RVM is a great tool for *development*
@@ -36,16 +36,16 @@ and *separate ruby is installed* in its *home directory*. If we end up having fi
 users using same ruby version but different ruby installation then fine. Storage
 is cheap. Easy upgrades are more important.
 
-## Running ruby
+## Running Ruby
 
-### bash
+### Bash
 
 You might wonder how to execute your scripts and run applications with that ruby.
 We just add the ruby bin path to user `$PATH` via `.bashrc` and voilà.
 Whenever you run something inside bash it just works. And gem binaries are
 installed into the same directory so they also work properly.
 
-### not bash ?
+### Not Bash?
 
 If your software is not directly executed inside bash you have two options:
 
