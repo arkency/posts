@@ -1,8 +1,8 @@
 ---
 title: "Naming in OOP"
-created_at: 2013-03-21 09:07:19 +0100
+created_at: 2013-03-21 11:52:19 +0100
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
 tags: [ 'OOP', 'OOD', 'mostly obious' ]
 newsletter: :arkency
