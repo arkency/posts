@@ -1,10 +1,10 @@
 ---
-title: "Naming in OOD"
+title: "Naming in OOP"
 created_at: 2013-03-21 09:07:19 +0100
 kind: article
 publish: false
 author: Jan Filipowski
-tags: [ 'OOD', 'mostly obious' ]
+tags: [ 'OOP', 'OOD', 'mostly obious' ]
 newsletter: :arkency
 ---
 
