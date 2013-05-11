@@ -27,8 +27,8 @@ First thought:
 #!ruby
 class ApiProvider
   def initialize(login = nil, password = nil)
-    login    ||= ENV['APIPROVDER_LOGIN']
-    password ||= ENV['APIPROVDER_PASSWORD']
+    login    ||= ENV['APIPROVIDER_LOGIN']
+    password ||= ENV['APIPROVIDER_PASSWORD']
     @uri       = Addressable::URI.parse("http://api.example.org/query")
     @uri.query_values = {usr: login, pwd: password}
   end
@@ -48,13 +48,13 @@ But in Ruby every class is a factory, so why not use is to our advantage...
 
 class ApiProvider
   def self.new(login = nil, password = nil)
-    login    ||= ENV['APIPROVDER_LOGIN']
-    password ||= ENV['APIPROVDER_PASSWORD']
+    login    ||= ENV['APIPROVIDER_LOGIN']
+    password ||= ENV['APIPROVIDER_PASSWORD']
     super(login, password)
   end
 
   def initialize(login, password)
-    @uri      = Addressable::URI.parse("http://api.example.org/query")
+    @uri = Addressable::URI.parse("http://api.example.org/query")
     @uri.query_values = {usr: login, pwd: password}
   end
 end
@@ -73,7 +73,7 @@ class ApiProvider
   end
  
   def self.new(credentials = nil)
-    credentials ||= Credentials.new( ENV['APIPROVDER_LOGIN'], ENV['APIPROVDER_PASSWORD'] )
+    credentials ||= Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
     super(credentials)
   end
  
@@ -95,8 +95,17 @@ But there are coworkers who disagree with me and I wonder what you think.
 ```
 #!ruby
 class ApiProvider
-  def self.new(credentials = Credentials.new( ENV['APIPROVDER_LOGIN'], ENV['APIPROVDER_PASSWORD'] ))
+  def self.new(credentials = Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] ))
     super
+  end
+end
+
+# or
+
+class ApiProvider
+  def initialize(credentials = Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] ))
+    @uri = Addressable::URI.parse("http://api.example.org/query")
+    @uri.query_values = {usr: credentials.login, pwd: credentials.password}
   end
 end
 ```
@@ -110,7 +119,7 @@ Somehow this seems to be less readable to me
 class ApiProvider
   class Credentials < Struct.new(:login, :password)
     def self.default
-      new( ENV['APIPROVDER_LOGIN'], ENV['APIPROVDER_PASSWORD'] )
+      new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
     end
   end
  
@@ -125,6 +134,16 @@ Nice, but the knowledge about defaults was transffered from `ApiProvider.new` fa
 to `Credentials` and I believe that `Credentials` should but just a dumb class responsible only for
 keeping `login` and `password` always together. Because in terms of this api it never makes sense
 to operate separately on them.
+
+* External context is always responsible for providing the configuration
+
+```
+#!ruby
+api = ApiProvider.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
+api.do_something
+```
+
+This leads to repeated code if there are multiple places that need to instantiate `ApiProvider`.
 
 ## TLDR
 
@@ -148,7 +167,7 @@ explicit credentials because defaults can be used.
 #!ruby
 class ApiProvider
   def self.new(credentials = nil)
-    credentials ||= Credentials.new( ENV['APIPROVDER_LOGIN'], ENV['APIPROVDER_PASSWORD'] )
+    credentials ||= Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
     super(credentials)
   end
 end
