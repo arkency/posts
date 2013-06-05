@@ -8,13 +8,13 @@ newsletter: :chillout
 tags: ['rails', 'active record', 'metrics']
 ---
 
-If you're really serious about you application you have to collect and analyze its statistics. You can use Google Analytics or any other tool [to track visits and basic events](http://blog.arkency.com/2012/12/google-analytics-for-developers/), or you can send specific events on demand. There's also a way to automatically track ActiveRecord model creations and in this post I'll show you how easy it is.
+If you're really serious about your application you have to collect and analyze its statistics. You can use Google Analytics or any other tool [to track visits and basic events](http://blog.arkency.com/2012/12/google-analytics-for-developers/), or you can send specific events on demand. There's also a way to automatically track ActiveRecord model creations and in this post I'll show you how easy it is.
 
 <!-- more -->
 
 ## The solution
 
-Let's digg into most important source code:
+Let's digg into the most important source code:
 
 ```
 #!ruby
@@ -32,7 +32,7 @@ end
 ActiveRecord::Base.extend(CreationListener)
 ```
 
-I think you already know what it does - it binds to ActiveRecord::Base's callback and puts appropriate message with time of creation and class name of created model. Then log messages are parsed with following rake task:
+I think you already know what it does - it binds to ActiveRecord::Base's callback and puts appropriate message with time of creation and class name of created model. Then log messages are parsed with the following rake task:
 
 ```
 #!ruby
@@ -64,7 +64,7 @@ end
 
 ```
 
-I just define how to look for and parse creation messages, which log file I want to check and for which date. Then both parsing and calculating result happens - if line matches to regexp and given date is one we are looking for it increments result for given model. So as a result you get list of all model classes which instances were created on given day.
+I just define how to look for and parse creation messages, which log file I want to check and for which date. Then both parsing and calculating result happens - if line matches to regexp and given date is one we are looking for it increments result for given model. So as a result you get the list of all model classes which instances were created on given day.
 
 You can check how it works using [this sample project](https://github.com/chilloutio/creations_counting_rails_example).
 
@@ -72,9 +72,9 @@ You can check how it works using [this sample project](https://github.com/chillo
 
 In this example I assume, that the only method to persist information about created model is to use log messages. Of course it's just a simplification. In real world you don't want to gather all statistics in log: it can be time consuming to calculate the results, logs can be really big or rotated.
 
-For alternative persistance method you have to be aware of 2 things:
+For alternative persitsence method you have to be aware of 2 things:
 
-1. It shouldn't influence much response time.
+1. It shouldn't slow down response time too much.
 2. It should be threadsafe.
 
-If you dig into [chillout](https://github.com/chilloutio/chillout) gem you'll see how can you achieve that - you can use ```Thread.current``` to pass information about created models and middleware to get this information and send it to storage - in our case to API endpoint. There are few simple optimizations that will help you not kill app's performance when dealing with API, but that's subject for another post.
+If you dig into [chillout](https://github.com/chilloutio/chillout) gem you'll see how you can achieve that - you can use ```Thread.current``` to pass information about created models and middleware to get this information and send it to the storage - in our case to API endpoint. There are a few simple optimizations that will help you not to kill app's performance when dealing with API, but that's subject for another post.
