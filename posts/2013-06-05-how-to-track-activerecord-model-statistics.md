@@ -72,7 +72,7 @@ You can check how it works using [this sample project](https://github.com/chillo
 
 In this example I assume, that the only method to persist information about created model is to use log messages. Of course it's just a simplification. In real world you don't want to gather all statistics in log: it can be time consuming to calculate the results, logs can be really big or rotated.
 
-For alternative persitsence method you have to be aware of 2 things:
+For alternative persistence method you have to be aware of 2 things:
 
 1. It shouldn't slow down response time too much.
 2. It should be threadsafe.
