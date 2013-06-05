@@ -2,7 +2,7 @@
 title: "How to track ActiveRecord model statistics"
 created_at: 2013-06-05 11:56:43 +0200
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
 newsletter: :chillout
 tags: ['rails', 'active record', 'metrics']
