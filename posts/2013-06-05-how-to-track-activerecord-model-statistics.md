@@ -18,7 +18,7 @@ Let's digg into the most important source code:
 
 ```
 #!ruby
-# config/initializers/creation_listener.rake
+# config/initializers/creation_listener.rb
 module CreationListener
   def inherited(subclass)
     super
