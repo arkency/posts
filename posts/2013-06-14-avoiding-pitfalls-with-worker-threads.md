@@ -4,7 +4,7 @@ created_at: 2013-06-14 10:47:05 +0200
 kind: article
 publish: true
 newsletter: :chillout
-author: Paweł Pacana
+author: Pawel Pacana
 tags: [ 'ruby', 'thread', 'fork', 'chillout', 'unicorn', 'puma', 'passenger' ]
 ---
 
