@@ -1,6 +1,6 @@
 ---
 title: "Implementing worker threads in Rails"
-created_at: 2013-06-14 10:47:05 +0200
+created_at: 2013-06-17 10:47:05 +0200
 kind: article
 publish: true
 newsletter: :chillout
@@ -14,7 +14,7 @@ If you care about your application performance you have to schedule extra tasks 
 
 ## Problem
 
-I was working on chillout gem to collect metrics from ActiveRecord creations. Initially the code was sending collected metrics during the request. It was simpler but slowed the response to the client and was also fragile in terms of metrics endpoint availability. So I had the idea to start a worker thread in background to be responsible for that. Since everything worked like charm in development, a deployment was inevitable. And then things started to get hairy.
+I was working on [chillout](http://chillout.io) client to collect metrics from ActiveRecord creations. Initially the code was sending collected metrics during the request. It was simpler but slowed down the application response to the customer. The response time was also fragile with regard to metrics endpoint availability. So I had the idea to start a worker thread in background responsible for that. Since everything worked like a charm in development, a deployment was inevitable. Then things started to get hairy.
 
 ## Forking servers
 
@@ -104,7 +104,7 @@ Now we're good to go on any forking or threading web server. We're covered even 
 There's one peculiar thing left. If you happen to use logger in your worker thread and it is [BufferedLogger](http://api.rubyonrails.org/classes/ActiveSupport/BufferedLogger.html) from Rails you'll be surprised to find out some of your messages don't get logged. It's a [known](http://log.kares.org/2011/04/railslogger-is-not-threadsafe.html) and apparently [solved](https://github.com/rails/rails/commit/b838570bd69ff13d677fb43e79f10d6f3168c696) issue. If you have to support apps which didn't get the fix just remember to explicitly call [flush](http://stackoverflow.com/questions/1598494/logging-inside-threads-in-a-rails-application) on logger.
 
 
-You can see all the solutions from above applied in [chillout](https://github.com/chilloutio/chillout) gem. Happy hacking!
+You can see all the solutions from above applied in [chillout](https://github.com/chilloutio/chillout) gem. If you're interested how we're collecting metrics have look on [How to track ActiveRecord model statistics](http://blog.arkency.com/2013/06/how-to-track-activerecord-model-statistics/). Happy hacking!
 
 
 
