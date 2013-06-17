@@ -14,7 +14,7 @@ If you're really serious about your application you have to collect and analyze 
 
 ## The solution
 
-Let's digg into the most important source code:
+Let's dig into the most important source code:
 
 ```
 #!ruby
