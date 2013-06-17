@@ -1,5 +1,5 @@
 ---
-title: "Avoiding pitfalls with worker threads"
+title: "Implementing worker threads in Rails"
 created_at: 2013-06-14 10:47:05 +0200
 kind: article
 publish: true
@@ -8,13 +8,13 @@ author: Pawel Pacana
 tags: [ 'ruby', 'thread', 'fork', 'chillout', 'unicorn', 'puma', 'passenger' ]
 ---
 
-I bet you care about your application performance and how it impacts your client's experience. If so you need to schedule any extra tasks that happen when servicing client into background. One of such tasks may be collecting performance or business metrics. In this post I'll show you how to avoid potential problems with threaded background workers.
+If you care about your application performance you have to schedule extra tasks into background when handling requests. One of such tasks may be collecting performance or business metrics. In this post I'll show you how to avoid potential problems with threaded background workers.
 
 <!-- more -->
 
 ## Problem
 
-I wanted to gain more insights into my app and started collecting metrics during request. It adds extra time to process them so I had the idea to start a worker thread in background. Now a background thread was responsible for aggregating and sending metrics to collector endpoint. Since everything worked correctly in development, a deployment was inevitable. And then things started to get hairy.
+I was working on chillout gem to collect metrics from ActiveRecord creations. Initially the code was sending collected metrics during the request. It was simpler but slowed the response to the client and was also fragile in terms of metrics endpoint availability. So I had the idea to start a worker thread in background to be responsible for that. Since everything worked like charm in development, a deployment was inevitable. And then things started to get hairy.
 
 ## Forking servers
 
