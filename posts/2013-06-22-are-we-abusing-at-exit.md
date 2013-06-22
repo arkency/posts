@@ -326,9 +326,10 @@ What could `capybara` could do to avoid using `at_exit` directly ? Perhaps a bet
 would be to keep this kind of code dependent of test suite used underneath and
 specify the hook via different gems such as `capybara-minitest`, `capybara-rspec`
 etc. It is now possible in some major frameworks:
+
 * in `minitest` you can use `Minitest.after_run`. currently it uses `at_exit` but you do not
 need to worry if they ever decide to the internal implementation to simply execute it manually
-at the end of `minitest` binary. And it states you intention more explicitly.
+at the end of `minitest` binary. And it states your intention more explicitly.
 * in `rspec` you can use [`after(:suite)`](http://rubydoc.info/gems/rspec-core/RSpec/Core/Hooks)
 * [`cucumber` unfortunatelly recommends using `at_exit` directly](https://github.com/cucumber/cucumber/wiki/Hooks#global-hooks)
 
