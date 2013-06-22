@@ -178,7 +178,7 @@ end
 ```
 
 You can run it with `ruby test.rb`. As easy as that. But here is the issue:
-"How can minitest run our test if it is defined _after_ we require it" ?
+_How can minitest run our test if the test is defined after we require `minitest`_ ?
 You probably already know the answer:
 
 * it uses [`at_exit` hook to trigger test running](https://github.com/seattlerb/minitest/blob/f771b23367dc698586f1e794eae83bcb905fa0d8/lib/minitest.rb#L36)
@@ -231,6 +231,10 @@ class TestStruct < Minitest::Test
   end
 end
 
+# Need to override it to do nothing
+# because pride_plugin is loading
+# minitest/autorun anyway:
+# https://github.com/seattlerb/minitest/blob/f771b23367dc698586f1e794eae83bcb905fa0d8/lib/minitest/pride_plugin.rb#L1
 def Minitest.autorun
 end
 
@@ -258,19 +262,15 @@ with a little helper:
 gem "minitest"
 require "minitest"
 
+require "./test1"
 require "./test2"
-require "./test"
 
-# Need to override it to do nothing
-# because pride_plugin is loading
-# minitest/autorun anyway:
-# https://github.com/seattlerb/minitest/blob/f771b23367dc698586f1e794eae83bcb905fa0d8/lib/minitest/pride_plugin.rb#L1
 def Minitest.autorun
 end
 Minitest.run
 ```
 
-but then you need to keep `Minitest.run` out of your test files (to avoid running
+But then you need to keep `Minitest.run` out of your test files (to avoid running
 it multiple times), which make it impossible for us, to run tests from a single file, using
 the old syntax that we are used to: `ruby single_file_test.rb`.
 
@@ -322,13 +322,13 @@ def browser
 end
 ```
 
-What could `capybara` could do to avoid using `at_exit` directly ? Perhaps a better way
-would be to keep this kind of code dependent of test suite used underneath and
+What could `capybara` do to avoid using `at_exit` directly ? Perhaps a better way
+would be to keep this kind of code dependent on test suite used underneath and
 specify the hook via different gems such as `capybara-minitest`, `capybara-rspec`
 etc. It is now possible in some major frameworks:
 
 * in `minitest` you can use `Minitest.after_run`. currently it uses `at_exit` but you do not
-need to worry if they ever decide to the internal implementation to simply execute it manually
+need to worry if they ever decide to change the internal implementation to simply execute it manually
 at the end of `minitest` binary. And it states your intention more explicitly.
 * in `rspec` you can use [`after(:suite)`](http://rubydoc.info/gems/rspec-core/RSpec/Core/Hooks)
 * [`cucumber` unfortunatelly recommends using `at_exit` directly](https://github.com/cucumber/cucumber/wiki/Hooks#global-hooks)
@@ -352,5 +352,5 @@ executing code at the end of a program. That way we could all forget about
 ## Appendix
 
 So much words said and I still gave you no reason for avoiding `at_exit` right?
-Well it seems that every project using is sooner or later being hit by bugs
+Well it seems that every project using this feature is sooner or later being hit by bugs
 related to its behavor and tries to find workarounds.
