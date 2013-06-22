@@ -68,7 +68,7 @@ inside at_exit
 7
 ```
 
-But exit code might get changed so explicitly. It might happen in less direct way due to an exception:
+But exit code might get changed in implicit way due to an exception:
 
 ```
 #!ruby
@@ -102,3 +102,63 @@ See for yourself:
 exiting.rb:2:in `block in <main>': surprise, exception happend inside at_exit (RuntimeError)
 0
 ```
+
+But wait, there is even more:
+
+### at_exit handlers order
+
+The documentation says: [_If multiple handlers are registered, they are executed
+in reverse order of registration_](http://www.ruby-doc.org/core-2.0/Kernel.html#method-i-at_exit).
+
+So, can you predict the result of this code ?:
+
+```
+#!ruby
+puts "start"
+
+at_exit do
+  puts "start of first at_exit"
+  at_exit { puts "nested inside first at_exit" }
+  at_exit { puts "another one nested inside first at_exit" }
+  puts "end of first at_exit"
+end
+
+at_exit do
+  puts "start of second at_exit"
+  at_exit { puts "nested inside second at_exit" }
+  at_exit { puts "another one nested inside second at_exit" }
+  puts "end of second at_exit"
+end
+
+puts "end"
+```
+
+Here is my output:
+
+```
+start
+end
+start of second at_exit
+end of second at_exit
+another one nested inside second at_exit
+nested inside second at_exit
+start of first at_exit
+end of first at_exit
+another one nested inside first at_exit
+nested inside first at_exit
+```
+
+So it is more like stack-based behaviour. There were even few bugs when this
+behavior changed and things broke:
+
+* http://bugs.ruby-lang.org/issues/5197
+* https://github.com/seattlerb/minitest/issues/25
+
+Which brings us to `minitest`
+
+## Usage
+
+One of the best known example of using 
+`at_exit` is [`minitest`](https://github.com/seattlerb/minitest).
+
+
