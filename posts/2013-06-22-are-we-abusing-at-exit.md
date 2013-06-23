@@ -1,5 +1,5 @@
 ---
-title: "Are we abusing at_exit ?"
+title: "Are we abusing at_exit?"
 created_at: 2013-06-22 18:05:22 +0200
 kind: article
 publish: true
@@ -11,7 +11,7 @@ tags: [ 'ruby', 'at_exit', 'tempfile', 'webservers' ]
 If you are deeply interested in Ruby, you probably already know about
 [`Kernel#at_exit`](http://www.ruby-doc.org/core-2.0/Kernel.html#method-i-at_exit).
 You might even use it daily, without knowing that it is there, in many gems, solving
-many problems. Maybe even too many ?
+many problems. Maybe even too many?
 
 <!-- more -->
 
@@ -110,7 +110,7 @@ But wait, there is even more:
 The documentation says: [_If multiple handlers are registered, they are executed
 in reverse order of registration_](http://www.ruby-doc.org/core-2.0/Kernel.html#method-i-at_exit).
 
-So, can you predict the result of this code ?:
+So, can you predict the result of this code?:
 
 ```
 #!ruby
@@ -178,7 +178,7 @@ end
 ```
 
 You can run it with `ruby test.rb`. As easy as that. But here is the issue:
-_How can minitest run our test if the test is defined after we require `minitest`_ ?
+_How can minitest run our test if the test is defined after we require `minitest`_?
 You probably already know the answer:
 
 * it uses [`at_exit` hook to trigger test running](https://github.com/seattlerb/minitest/blob/f771b23367dc698586f1e794eae83bcb905fa0d8/lib/minitest.rb#L36)
@@ -216,9 +216,9 @@ def self.after_run &block
 end
 ```
 
-But why does it need to use `at_exit` hook at all ? Is it not some kind of hack ?
+But why does it need to use `at_exit` hook at all? Is it not some kind of hack?
 Don't know about you, but it certainly feels a little hackish to me. Let's see
-what we can do without `at_exit` ?
+what we can do without `at_exit`?
 
 ```
 #!ruby
@@ -322,7 +322,7 @@ def browser
 end
 ```
 
-What could `capybara` do to avoid using `at_exit` directly ? Perhaps a better way
+What could `capybara` do to avoid using `at_exit` directly? Perhaps a better way
 would be to keep this kind of code dependent on test suite used underneath and
 specify the hook via different gems such as `capybara-minitest`, `capybara-rspec`
 etc. It is now possible in some major frameworks:
