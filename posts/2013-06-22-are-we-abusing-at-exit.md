@@ -110,7 +110,7 @@ But wait, there is even more:
 The documentation says: [_If multiple handlers are registered, they are executed
 in reverse order of registration_](http://www.ruby-doc.org/core-2.0/Kernel.html#method-i-at_exit).
 
-So, can you predict the result of this code?:
+So, can you predict the result of the following code?
 
 ```
 #!ruby
