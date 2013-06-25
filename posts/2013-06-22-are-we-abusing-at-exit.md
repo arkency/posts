@@ -167,7 +167,7 @@ Here is a simple minitest file:
 ```
 #!ruby
 # test.rb
-require "minitest"
+gem "minitest"
 require "minitest/autorun"
 
 class TestStruct < Minitest::Test
@@ -177,8 +177,8 @@ class TestStruct < Minitest::Test
 end
 ```
 
-You can run it with `ruby test.rb`. As easy as that. But here is the issue:
-_How can minitest run our test if the test is defined after we require `minitest`_?
+You can run it with `ruby test.rb`. As easy as that. But here is the question:
+_How can minitest run our test if the test is defined after we require `minitest`?_
 You probably already know the answer:
 
 * it uses [`at_exit` hook to trigger test running](https://github.com/seattlerb/minitest/blob/f771b23367dc698586f1e794eae83bcb905fa0d8/lib/minitest.rb#L36)
@@ -347,10 +347,20 @@ to run itself (the application).
 I think it would be best if every long running and commonly used process such as
 web servers or test frameworks provide there own binary and custom hooks for 
 executing code at the end of a program. That way we could all forget about
-`at_exit` and live happily ever after.
+`at_exit` and live happily ever after. We were considering `at_exit` usage for
+our [`chillout`](https://github.com/chilloutio/chillout) gem to ensure that
+statistics collected during last requests just before the webserver is stopped are also
+happily delivered to our backend. Although we are still not sure if we want to go
+that way.
 
 ## Appendix
 
 So much words said and I still gave you no reason for avoiding `at_exit` right?
 Well it seems that every project using this feature is sooner or later being hit by bugs
 related to its behavor and tries to find workarounds.
+
+## Kudos
+
+Big kudos to Seattle Ruby Brigade (especially Ryan Davis) and Jonas Nicklas
+for creating amazing software that we use daily. I hope you don't mind a little
+rant about `at_exit` ;)
