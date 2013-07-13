@@ -95,6 +95,7 @@ I told you about join points. It's a simple, yet abstract idea - and how we can 
 A good example of join point and used in [aquarium](http://aquarium.rubyforge.org/) gem is an <strong>invocation of method</strong>. We specify how we inject our aspect code using <strong>advices</strong>.
 
 What are advices? When we encounter a certain join point, we can connect it with an advice, which can be one of the following:
+
 * Evaluate code <strong>after</strong> given join-point
 * Evaluate code <strong>before</strong> given join-point
 * Evaluate code <strong>around</strong> given join-point
