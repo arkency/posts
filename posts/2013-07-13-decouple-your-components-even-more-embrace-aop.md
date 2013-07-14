@@ -4,6 +4,7 @@ created_at: 2013-07-13 17:16:03 +0200
 kind: article
 publish: true
 author: Marcin Grzywaczewski
+newsletter: :spa1product
 tags: [ 'ruby', 'aop' ]
 ---
 
