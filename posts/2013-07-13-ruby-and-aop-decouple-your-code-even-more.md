@@ -83,7 +83,7 @@ We can ask ourselves, to perform some kind of SRP check: <i>For what this object
 
 But the context of this class is somehow broad and we have dependencies - very weak, but still dependencies:
 
-* Some kind of repository object, which provides <strong>persistance</strong> to our snippets.
+* Some kind of repository object, which provides <strong>persistence</strong> to our snippets.
 * Logger, which <strong>helps us to track activity</strong>.
 
 Use case is a kind of a class which belongs to our logic. But it knows about <strong>aspects</strong> in our app - and we have to get rid of it, to ease our pain!
@@ -196,7 +196,7 @@ class Application
 end
 ```
 
-And that's it. Now our use case is a pure domain object, without even knowing he's connected with some kind of persistance and logging layer. We eliminated aspects knowledge from this class.
+And that's it. Now our use case is a pure domain object, without even knowing he's connected with some kind of persistence and logging layer. We eliminated aspects knowledge from this class.
 
 ## Further read:
 
@@ -214,9 +214,9 @@ We're using AOP to separate this aspects in [chillout](http://chillout.io) - and
 
 Someone can argue: 
 
-> It's not an improvement at all. You pushed the knowledge about logger and persistance to another object. I can achieve it without AOP!
+> It's not an improvement at all. You pushed the knowledge about logger and persistence to another object. I can achieve it without AOP!
 
-Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The next refactor I would do in this code is to abstract persistance and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
+Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The first further refactor I would do in this code is to abstract persistence and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
 
 I'm very interested about your thoughts about AOP. Have you done any projects embracing AOP? What was your use cases? Do you think it's a good idea at all?
 
