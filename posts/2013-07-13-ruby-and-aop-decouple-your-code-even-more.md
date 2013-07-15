@@ -4,7 +4,7 @@ created_at: 2013-07-13 17:16:03 +0200
 kind: article
 publish: true
 author: Marcin Grzywaczewski
-tags: [ 'ruby', 'aop' ]
+tags: [ 'ruby', 'AOP' ]
 ---
 
 As programmers, we greatly care about design of our applications. We can spend
@@ -39,7 +39,7 @@ we have to create a dependency with them when we need to use it in our component
 Aspect-oriented programming is an approach to get rid of cross-cuts by separating
 <i>aspect code</i> from <i>component code</i> and inject our aspects in certain <i>join points</i>
 in our component code. An idea comes from Java community and it may sound a bit scary at first,
-but [before you start hating](http://andrzejonsoftware.blogspot.com/2011/07/stop-hating-java.html/) - 
+but [before you start hating](http://andrzejonsoftware.blogspot.com/2011/07/stop-hating-java.html) - 
 read an example and everything should be more clear.
 
 ## Let's start it simple
@@ -79,7 +79,7 @@ end
 ```
 
 Here, we have a simple usecase of inserting our snippets to our application.
-We can ask ourselves, to perform some kind of SRP check: <i>For what this object is responsible for?</i>. The answer can be: <i>It's responsible for pushing snippets scenario.</i>. So it's a good, SRP-conformant object.
+We can ask ourselves, to perform some kind of SRP check: <i>For what this object is responsible for?</i> The answer can be: <i>It's responsible for pushing snippets scenario.</i> So it's a good, SRP-conformant object.
 
 But the context of this class is somehow broad and we have dependencies - very weak, but still dependencies:
 
@@ -204,7 +204,7 @@ Of course, it's a very basic use case of aspect oriented programming. You can be
 
 * [Ports and adapters (hexagonal) design](http://alistair.cockburn.us/Hexagonal+architecture) - one of the most useful usecases of using AOP to structure your code wisely. Use of AOP here is not a need, but it's very convenient and in Arkency we favor to glue things up with advices against evented model, which have its pains.
 * [aquarium gem homepage](http://aquarium.rubyforge.org/) - aquarium is quite powerful (for example, you can create your own join points) library and you can learn about more advanced topics here.
-* [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - aop library that Arkency uses for JavaScript code. Extremely simple and useful for web developers.
+* [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - AOP library that Arkency uses for JavaScript code. Extremely simple and useful for web developers.
 * [AOP inventor paper about it, with a extremely shocking use case](http://www2.parc.com/csl/groups/sda/publications/papers/Kiczales-ECOOP97/for-web.pdf) - Kiczales' academic paper about AOP. His use case of AOP to improve efficiency of his app without making it unmaintainable is... interesting.
 
 ## Summary
@@ -212,9 +212,11 @@ Aspect-oriented programming is fixing our pain with polluting pure logic objects
 
 We're using AOP to separate this aspects in [chillout](http://chillout.io) - and we're very happy about it. Also, when developing single-page apps in Arkency we embrace AOP when designing in [hexagonal architecture](http://hexagonaljs.com/). It performing very nice - just try it, and your application design will improve.
 
-Someone can argue: <i>It's not an improvement at all. You pushed the knowledge about logger and persistance to another object. I can achieve it without AOP!</i>
+Someone can argue: 
 
-Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The first further refactor I would do in this code is to abstract persistance and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
+> It's not an improvement at all. You pushed the knowledge about logger and persistance to another object. I can achieve it without AOP!
+
+Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The next refactor I would do in this code is to abstract persistance and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
 
 I'm very interested about your thoughts about AOP. Have you done any projects embracing AOP? What was your use cases? Do you think it's a good idea at all?
 
