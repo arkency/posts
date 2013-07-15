@@ -8,44 +8,43 @@ author: Marcin Grzywaczewski
 tags: [ 'ruby', 'AOP' ]
 ---
 
-As programmers, we greatly care about design of our applications. We can spend
-hours, arguing about solutions that we dislike and refactoring our code to
+We, programmers, care for our applications' design greatly. We can spend
+hours arguing about solutions that we dislike and refactoring our code to
 loose coupling and weaken dependencies between our objects.
 
-Unfortunately, there are the Dark Parts in our apps. Like persistence,
-networking, logging, notifications... that parts are scattered in our code - 
-we have to explicitly specify dependencies to them in domain objects.
+Unfortunately, there are Dark Parts in our apps - persistence,
+networking, logging, notifications... these parts are scattered in our code - 
+we have to specify explicit dependencies between them and domain objects.
 
-Is there something that can be done about it? 
-Or we have to live in this purist's nighmare?
-Fortunately, a solution exists. 
-Ladies and gentlemans, we present an aspect-oriented programming!
+Is there anything that can be done about it or is the real world a nightmare for purists?
+Fortunately, a solution exists.
+Ladies and gentlemen, we present aspect-oriented programming!
 
 <!-- more -->
 
 ## A bit of theory
 
-Before we dive into fascinating world of AOP, we need to grasp some concepts
+Before we dive into the fascinating world of AOP, we need to grasp some concepts
 which are crucial to this paradigm.
 
-When we look at our app, we can split it in to two parts: <strong>aspects</strong>
+When we look at our app we can split it into two parts: <strong>aspects</strong>
 and <strong>components</strong>. Basically, components are parts we can easily
-encapsulate into some kind of code abstraction - a method, object or procedure.
-Application's logic is a great example of component. 
-Aspects, on the other hand, can not be simply isolated in code - they're things 
-like our Dark Parts, or somehow more abstract things - like 'coupling', 'efficiency'. 
-Aspects cross-cut our application - when we're using some kind of persistence (like a database), or network communication (like ZMQ sockets) 
-we have to create a dependency with them when we need to use it in our components.
+encapsulate into some kind of code abstraction - a methods, objects or procedures.
+The application's logic is a great example of a component. 
+Aspects, on the other hand, can't be simply isolated in code - they're things
+like our Dark Parts or even more abstract concepts - such as 'coupling' or 'efficiency'. 
+Aspects cross-cut our application - when we use some kind of persistence (e.g. a database) or network communication (such as ZMQ sockets) 
+our components need to know about it.
 
-Aspect-oriented programming is an approach to get rid of cross-cuts by separating
-<i>aspect code</i> from <i>component code</i> and inject our aspects in certain <i>join points</i>
-in our component code. An idea comes from Java community and it may sound a bit scary at first,
+Aspect-oriented programming aims to get rid of cross-cuts by separating
+<i>aspect code</i> from <i>component code</i> using injections of our aspects in certain <i>join points</i>
+in our component code. The idea comes from Java community and it may sound a bit scary at first
 but [before you start hating](http://andrzejonsoftware.blogspot.com/2011/07/stop-hating-java.html) - 
-read an example and everything should be more clear.
+read an example and everything should get clearer.
 
 ## Let's start it simple
 
-Imagine: You build an application which stores code snippets. You can start one of the usecases like that:
+Imagine: You build an application which stores code snippets. You can start one of the usecases this way:
 
 ```
 #!ruby
@@ -74,41 +73,41 @@ class SnippetsUseCase
   def user_fails_to_push(snippet, pushing)
     snippets.delete(snippet)
 
-    logger.error "Failed to push our snippet: #{pushing.error}"
+    logger.error "Failed to push the snippet: #{pushing.error}"
   end
 end
 ```
 
-Here, we have a simple usecase of inserting our snippets to our application.
-We can ask ourselves, to perform some kind of SRP check: <i>For what this object is responsible for?</i> The answer can be: <i>It's responsible for pushing snippets scenario.</i> So it's a good, SRP-conformant object.
+Here we have a simple usecase of inserting snippets to the application.
+To perform some kind of SRP check, we can ask ourselves: <i>What's the responsibility of this object?</i> The answer can be: <i>It's responsible for pushing snippets scenario.</i> So it's a good, SRP-conformant object.
 
-But the context of this class is somehow broad and we have dependencies - very weak, but still dependencies:
+However, the context of this class is broad and we have dependencies - very weak, but still dependencies:
 
-* Some kind of repository object, which provides <strong>persistence</strong> to our snippets.
-* Logger, which <strong>helps us to track activity</strong>.
+* Repository object which provides <strong>persistence</strong> to our snippets.
+* Logger which <strong>helps us track activity</strong>.
 
-Use case is a kind of a class which belongs to our logic. But it knows about <strong>aspects</strong> in our app - and we have to get rid of it, to ease our pain!
+Use case is a kind of a class which belongs to our logic. But it knows about <strong>aspects</strong> in our app - and we have to get rid of it to ease our pain!
 
-## Introducing advices
+## Introducing advice
 
-I told you about join points. It's a simple, yet abstract idea - and how we can turn it into something specific? What are our join points in Ruby?
-A good example of join point and used in [aquarium](http://aquarium.rubyforge.org/) gem is an <strong>invocation of method</strong>. We specify how we inject our aspect code using <strong>advices</strong>.
+I have told you about join points. It's a simple, yet abstract idea - and how can we turn it into something specific? What are the join points in Ruby?
+A good example of join point (used in the [aquarium](http://aquarium.rubyforge.org/) gem) is an <strong>invocation of method</strong>. We specify how we inject our aspect code using <strong>advice</strong>.
 
-What are advices? When we encounter a certain join point, we can connect it with an advice, which can be one of the following:
+What are advice? When we encounter a certain join point, we can connect it with an advice, which can be one of the following:
 
-* Evaluate code <strong>after</strong> given join-point
-* Evaluate code <strong>before</strong> given join-point
-* Evaluate code <strong>around</strong> given join-point
+* Evaluate code <strong>after</strong> given join-point.
+* Evaluate code <strong>before</strong> given join-point.
+* Evaluate code <strong>around</strong> given join-point.
 
-When after and before advices are rather straightforward, around advice is cryptic - what does it mean "evaluate code around" something?
+While after and before advice are rather straightforward, around advice is cryptic - what does it mean to "evaluate code around" something?
 
-In our case, it means: <i>Don't run this method. Take it and push to my advice as an argument, and evaluate this advice</i>. In most cases after and before advices are sufficient.
+In our case it means: <i>Don't run this method. Take it and push to my advice as an argument and evaluate this advice</i>. In most cases after and before advice are sufficient.
 
 ## Fix our code
 
 We'll refactor our code to embrace aspect-oriented programming techniques. You'll see how easy it is.
 
-Our first step is to remove dependencies from our usecase. So, we delete constructor arguments and our usecase code looks like this after this change:
+Our first step is to remove dependencies from our usecase. So, we delete constructor arguments and our usecase code after the change looks like this:
 
 ```
 #!ruby
@@ -131,7 +130,7 @@ class SnippetsUseCase
 end
 ```
 
-Notice the empty method `user_pushed `- it's perfectly fine, we're maintaining it only to provide a join point for our solution. You'll often see empty methods in code written in AOP paradigm. In my code, with a bit of metaprogramming I turn it into helper, so it becomes something like:
+Notice the empty method `user_pushed `- it's perfectly fine, we're maintaining it only to provide a join point for our solution. You'll often see empty methods in code written in AOP paradigm. In my code, with a bit of metaprogramming, I turn it into a helper, so it becomes something like:
 
 ```
 #!ruby
@@ -140,7 +139,7 @@ join_point :user_pushed
 
 Now we can test this unit class <strong>without any stubbing or mocking</strong>. Extremely convenient, isn't it?
 
-Afterwards, we have to provide aspect code to link it with our use case. So, we create `SnippetsUseCaseGlue` class:
+Afterwards, we have to provide aspect code to link with our use case. So, we create `SnippetsUseCaseGlue` class:
 
 ```
 #!ruby
@@ -175,9 +174,9 @@ class SnippetsUseCaseGlue
 end
 ```
 
-Inside advice block, we have a lot of info - including very broad info about join point context (`jp`), called object and all arguments of invoked method.
+Inside the advice block, we have a lot of info - including very broad info about join point context (`jp`), called object and all arguments of the invoked method.
 
-After that, we can use it in application like this:
+After that, we can use it in an application like this:
 
 ```
 #!ruby
@@ -197,27 +196,27 @@ class Application
 end
 ```
 
-And that's it. Now our use case is a pure domain object, without even knowing he's connected with some kind of persistence and logging layer. We eliminated aspects knowledge from this class.
+And that's it. Now our use case is a pure domain object, without even knowing it's connected with some kind of persistence and logging layer. We've eliminated aspects knowledge from this object.
 
 ## Further read:
 
-Of course, it's a very basic use case of aspect oriented programming. You can be interested in expanding your knowledge about it and that's my proposals:
+Of course, it's a very basic use case of aspect oriented programming. You can be interested in expanding your knowledge about it and these are my suggestions:
 
-* [Ports and adapters (hexagonal) design](http://alistair.cockburn.us/Hexagonal+architecture) - one of the most useful usecases of using AOP to structure your code wisely. Use of AOP here is not a need, but it's very convenient and in Arkency we favor to glue things up with advices instead of evented model, where we push and receive events.
-* [aquarium gem homepage](http://aquarium.rubyforge.org/) - aquarium is quite powerful (for example, you can create your own join points) library and you can learn about more advanced topics here.
+* [Ports and adapters (hexagonal) design](http://alistair.cockburn.us/Hexagonal+architecture) - one of the most useful usecases of using AOP to structure your code wisely. Use of AOP here is not needed, but it's very convenient and in Arkency we favor to glue things up with advice instead of evented model, where we push and receive events.
+* [aquarium gem homepage](http://aquarium.rubyforge.org/) - aquarium is a quite powerful (for example, you can create your own join points) library and you can learn about more advanced topics here.
 * [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - AOP library that Arkency uses for JavaScript code. Extremely simple and useful for web developers.
 * [AOP inventor paper about it, with a extremely shocking use case](http://www2.parc.com/csl/groups/sda/publications/papers/Kiczales-ECOOP97/for-web.pdf) - Kiczales' academic paper about AOP. His use case of AOP to improve efficiency of his app without making it unmaintainable is... interesting.
 
 ## Summary
-Aspect-oriented programming is fixing our pain with polluting pure logic objects with technical context of our applications. Its usecases are far more broader - one of the most fascinating usecase of AOP with a gigantic 'wow factor' is linked in a 'Further Read' section. Be sure to check it out! 
+Aspect-oriented programming is fixing the problem with polluting pure logic objects with technical context of our applications. Its usecases are far broader - one of the most fascinating usecase of AOP with a huge 'wow factor' is linked in the 'Further Read' section. Be sure to check it out! 
 
-We're using AOP to separate this aspects in [chillout](http://chillout.io) - and we're very happy about it. Also, when developing single-page apps in Arkency we embrace AOP when designing in [hexagonal architecture](http://hexagonaljs.com/). It performing very nice - just try it, and your application design will improve.
+We're using AOP to separate these aspects in [chillout](http://chillout.io) - and we're very happy about it. What's more, when developing single-page apps in Arkency we embrace AOP when designing in [hexagonal architecture](http://hexagonaljs.com/). It performing very nice - just try it and your application design will improve.
 
 Someone can argue: 
 
 > It's not an improvement at all. You pushed the knowledge about logger and persistence to another object. I can achieve it without AOP!
 
-Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The first further refactor I would do in this code is to abstract persistence and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
+Sure you can. It's a very simple usecase of AOP. But we treat our glues as a <strong>configuration part</strong>, not the <strong>logic part</strong> of our apps. The next refactor I would do in this code is to abstract persistence and logging objects in some kind of adapter thing - making our code a bit more 'hexagonal' ;). Glues should not contain any logic at all.
 
-I'm very interested about your thoughts about AOP. Have you done any projects embracing AOP? What was your use cases? Do you think it's a good idea at all?
+I'm very interested in your thoughts on AOP. Have you done any projects embracing AOP? What were your use cases? Do you think it's a good idea at all?
 
