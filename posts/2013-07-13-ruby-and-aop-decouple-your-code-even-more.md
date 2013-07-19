@@ -203,7 +203,7 @@ And that's it. Now our use case is a pure domain object, without even knowing it
 Of course, it's a very basic use case of aspect oriented programming. You can be interested in expanding your knowledge about it and these are my suggestions:
 
 * [Ports and adapters (hexagonal) design](http://alistair.cockburn.us/Hexagonal+architecture) - one of the most useful usecases of using AOP to structure your code wisely. Use of AOP here is not needed, but it's very convenient and in Arkency we favor to glue things up with advice instead of evented model, where we push and receive events.
-* [aquarium gem homepage](http://aquarium.rubyforge.org/) - aquarium is a quite powerful (for example, you can create your own join points) library and you can learn about more advanced topics here.
+* [aquarium gem homepage](http://aquarium.rubyforge.org/) - aquarium is a quite powerful (for example, you can create your own join points) library and you can learn about more advanced topics here. It might be worth noting, though, that aquarium [doesn't work well with threads](https://github.com/deanwampler/Aquarium/issues/39).
 * [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - AOP library that Arkency uses for JavaScript code. Extremely simple and useful for web developers.
 * [AOP inventor paper about it, with a extremely shocking use case](http://www2.parc.com/csl/groups/sda/publications/papers/Kiczales-ECOOP97/for-web.pdf) - Kiczales' academic paper about AOP. His use case of AOP to improve efficiency of his app without making it unmaintainable is... interesting.
 
