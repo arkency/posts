@@ -16,7 +16,7 @@ This is just a beginning of series about testing CoffeeScript in Rails stack, so
 
 ## Tools
 
-Let's start with toolset, because it will influence a way we test - with frameworks' syntax and behaviours. I recommend you to use [https://github.com/jfirebaugh/konacha](konacha gem) - it's dedicated for Rails apps, it uses [mocha.js](http://visionmedia.github.io/mocha/) + [chai.js](http://chaijs.com/) as test framework and can be easily run in browser and command line. Each test suite is run in iframe, which prevents leaks on global state - both global variables and DOM. You can try [jasmine](https://github.com/pivotal/jasmine-gem) or [evergreen](https://github.com/jnicklas/evergreen) as well, but you'll eventually get back to konacha ;)
+Let's start with toolset, because it will influence a way we test - with frameworks' syntax and behaviours. I recommend you to use [konacha gem](https://github.com/jfirebaugh/konacha) - it's dedicated for Rails apps, it uses [mocha.js](http://visionmedia.github.io/mocha/) + [chai.js](http://chaijs.com/) as test framework and can be easily run in browser and command line. Each test suite is run in iframe, which prevents leaks on global state - both global variables and DOM. You can try [jasmine](https://github.com/pivotal/jasmine-gem) or [evergreen](https://github.com/jnicklas/evergreen) as well, but you'll eventually get back to konacha ;)
 
 I won't run into details of konacha installation, but I recommend you to use ```:webkit``` or any other headless browser driver instead of default - selenium.
 
@@ -68,7 +68,7 @@ Ok, you know how to write tests, but how can you run them? While developing feat
 $ rake konacha:serve
 ```
 
-It will run server on localhost:3500 with mocha.js HTML reporter.
+It will run server on http://localhost:3500/ with mocha.js HTML reporter.
 
 You can also run all tests with command line - you just have to use selenium or any headless browser. Konacha uses capybara as browser driver, so you can use any of provided capybara drivers like webkit, poltergeist etc. To run tests in command line just execute:
 
