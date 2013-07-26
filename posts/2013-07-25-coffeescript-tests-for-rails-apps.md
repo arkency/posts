@@ -1,8 +1,8 @@
 ---
 title: "CoffeeScript tests for Rails apps"
-created_at: 2013-07-19 10:54:20 +0200
+created_at: 2013-07-26 10:41:20 +0200
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
 newsletter: :cs_testing
 tags: [ 'TDD', 'CS', 'Rails' ]
