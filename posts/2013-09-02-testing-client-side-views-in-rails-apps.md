@@ -1,6 +1,6 @@
 ---
 title: "Testing client-side views in Rails apps"
-created_at: 2013-08-30 14:00:51 +0200
+created_at: 2013-09-02 13:05:51 +0200
 kind: article
 publish: false
 author: Jan Filipowski
@@ -187,6 +187,14 @@ describe "colorChanger", ->
 
   # other tests the same way
 ```
+
+## Summary
+
+If you want to test your already existing views follow these steps:
+
+1. Separate definition from start-up.
+2. Write tests with duplicated HTML.
+3. Extract HTML as template and render it client-side.
 
 ## In next post
 
