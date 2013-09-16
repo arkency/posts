@@ -1,5 +1,5 @@
 ---
-title: "Arkency survival guide to effective programming"
+title: "Arkency survival guide to effective remote programming"
 created_at: 2013-09-16 18:25:12 +0200
 kind: article
 publish: true
@@ -43,8 +43,9 @@ And with this pack of knowledge, programmers can become great managers. So if
 you ever felt undervalued as developer and wondered how a different environment,
 which gives you more responsibility, might look like, go and read it.
 
+## What can you expect
 
-## Arkency survival guide to effective programming
+## Arkency survival guide to effective remote programming
 
 You can order beta version (including all the future releases) for $7 right now:
 [Remote, Async, Anarchy](https://sellboxhq.com/l/Ak8L/Remote-Async-Anarchy-Arkency-survival-guide-to-effective-programming) .
