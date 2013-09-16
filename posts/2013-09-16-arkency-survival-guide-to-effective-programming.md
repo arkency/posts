@@ -45,10 +45,36 @@ which gives you more responsibility, might look like, go and read it.
 
 ## What can you expect
 
+The first chapter focuses on topic of story size. Specifically why using
+stories of size 1 helps you deliver and gives team members
+a [closure](http://en.wikipedia.org/wiki/Closure_%28psychology%29). And how it
+also allows you to manage priorities on daily basis and avoid risk.
+
+The second chapter, that is currently being written by Andrzej Krzywda, is about
+overcommunication. About the essence of our communication. How a little too much
+is always better than a little not enough. What things are worth communicating
+and which new tools and techniques can help you deliver your message more
+clearly.
+
+Another topics that we hope to cover:
+
+* Continuous deployment,
+* Lack of Pull Requests,
+* Green Build
+* Screencasts
+* Developers talking to clients and creating tickets
+* Lack of Project Managers
+* Sprints
+* Automation
+* Standups and Meetings
+* Splitting tickets across developers
+* Estimations
+* And probably even more
+
 ## Arkency survival guide to effective remote programming
 
 You can order beta version (including all the future releases) for $7 right now:
-[Remote, Async, Anarchy](https://sellboxhq.com/l/Ak8L/Remote-Async-Anarchy-Arkency-survival-guide-to-effective-programming) .
+[Arkency survival guide to effective remote programming](https://sbx.sk/Ak8L) .
 The final release is planned around the end of the year.
 
 If you are not sure yet, but want to receive tips and excerpts from our upcoming
