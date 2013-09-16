@@ -51,7 +51,7 @@ a [closure](http://en.wikipedia.org/wiki/Closure_%28psychology%29). And how it
 also allows you to manage priorities on daily basis and avoid risk.
 
 The second chapter, that is currently being written by Andrzej Krzywda, is about
-overcommunication. About the essence of our communication. How a little too much
+overcommunication. That is the essence of our communication. How a little too much
 is always better than a little not enough. What things are worth communicating
 and which new tools and techniques can help you deliver your message more
 clearly.
@@ -71,11 +71,13 @@ Another topics that we hope to cover:
 * Estimations
 * And probably even more
 
-## Arkency survival guide to effective remote programming
+## Shut up and take my money
 
 You can order beta version (including all the future releases) for $7 right now:
 [Arkency survival guide to effective remote programming](https://sbx.sk/Ak8L) .
 The final release is planned around the end of the year.
+
+## or not
 
 If you are not sure yet, but want to receive tips and excerpts from our upcoming
 book, just [subscribe to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f) below.
