@@ -8,16 +8,24 @@ newsletter: :effective_guide
 tags: [ 'ebook', 'pdf', 'guide', 'effective', 'programming' ]
 ---
 
-Working remotely is still a relatively new thing compared to going to office,
+Working remotely is still a relatively new thing compared to going to an office,
 which has centuries long tradition. Despite its tremendous growth recently
-(especially in IT industry), there is not lot of literature about best
+(especially in IT industry), there is not a lot of literature about best
 practices and working solutions. We still miss patterns for remote
-collaboration. Many companies try remote working, but fail at doing it
-effectively and go with the conclusion that it is a broken model. But the truth
+collaboration. 
+
+**Many companies try remote working, but fail at doing it
+effectively.** 
+
+They go with the conclusion that it is a broken model. But the truth
 is, that working remotely is just different, and expecting it to be the same as
 stationary work, with just people in different places, is the biggest mistake
 that one can made about it. To fully benefit from it, one must learn how to get
-most out of it. How to embrace it, instead of workaround it. On the other hand,
+most out of it. 
+
+**You need to learn how to embrace remote work, instead of working around it** 
+
+On the other hand,
 some companies are already there, when it comes to remote working. Or at least
 they think they are. But is there something more that we can strive for? More
 ideas that we can try and benefit from? Many of them.
