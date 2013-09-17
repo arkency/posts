@@ -82,7 +82,7 @@ Another topics that we hope to cover:
 ## Shut up and take my money
 
 You can order beta version (including all the future releases) for $7 right now:
-[Arkency survival guide to effective remote programming](https://sbx.sk/Ak8L) .
+[Arkency survival guide to effective remote programming](http://sbx.sk/Ak8L) .
 The final release is planned around the end of the year.
 
 ## or not
