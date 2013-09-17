@@ -12,10 +12,10 @@ Working remotely is still a relatively new thing compared to going to an office,
 which has centuries long tradition. Despite its tremendous growth recently
 (especially in IT industry), there is not a lot of literature about best
 practices and working solutions. We still miss patterns for remote
-collaboration. 
+collaboration.
 
 **Many companies try remote working, but fail at doing it
-effectively.** 
+effectively.**
 
 They go with the conclusion that it is a broken model. But the truth
 is, that working remotely is just different, and expecting it to be the same as
@@ -23,7 +23,7 @@ stationary work, with just people in different places, is the biggest mistake
 that one can made about it. To fully benefit from it, one must learn how to get
 most out of it. 
 
-**You need to learn how to embrace remote work, instead of working around it** 
+**You need to learn how to embrace remote work, instead of working around it.**
 
 On the other hand,
 some companies are already there, when it comes to remote working. Or at least
