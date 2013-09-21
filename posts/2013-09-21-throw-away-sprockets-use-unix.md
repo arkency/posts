@@ -38,13 +38,15 @@ necessarily C, C++ or Objective-C.
 Say I have two files, one called `deep_thought.coffee` and the other one called
 `answer.coffee`. They're listed below.
 
-    # answer.coffee
+__answer.coffee__:
+
     answer = 42
 
 I'd like to use the `answer` in the other module of my application. It's really
 simple with the `#import` directive.
 
-    # deep_thought.coffee
+__deep_thought.coffee__:
+
     #import "answer.coffee"
 
     console.log "The answer to the Ultimate Question is #{answer}"
@@ -85,7 +87,8 @@ commands in the `Makefile`. There is only one wrapping anonymous function. This
 is because it first concatenates all CoffeeScript files and then it compiles
 one big file. Sprockets work the other way around - the files are compiled and
 then they are concatenated. That allows mixing JavaScript and CoffeeScript
-files.
+files. Comments in CoffeeScript files probably won't work, because they'll be
+treated as `cpp` directives.
 
 This can be also achieved using `cpp`, but that would require extending
 CoffeeScript compiler to support preserving the `#import` directive in the
