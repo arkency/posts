@@ -7,8 +7,6 @@ author: 'Mateusz Lenik'
 tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
 
-# Throw away Sprockets, use UNIX!
-
 The Sprockets gem is the standard way to combine asset files in Rails, but it
 isn't very straight forward to use in stand-alone projects, like Single Page
 Applications without backend.
@@ -22,7 +20,7 @@ already solved, but in a different language and in different era of computing.
 
 <!-- more -->
 
-## The C PreProcessor
+### The C PreProcessor
 
 The designers of C language had to solve a similar problem, so they came up
 with a preprocessor that understands directives that allow concatenating
@@ -35,7 +33,7 @@ can be used to invoke the preprocessor.
 It's key feature here is that it can be used with any programming language, not
 necessarily C, C++ or Objective-C.
 
-## Let's give it a try
+### Let's give it a try
 
 Say I have two files, one called `deep_thought.coffee` and the other one called
 `answer.coffee`. They're listed below.
@@ -49,13 +47,13 @@ simple with the `#import` directive.
     # deep_thought.coffee
     #import "answer.coffee"
 
-    console.log "The answer to the Ultimate Question of Universe, Life and Everything is #{answer}"
+    console.log "The answer to the Ultimate Question is #{answer}"
 
 Now let's run the preprocessor and see what happens (blank lines removed).
 
     $ cpp -P deep_thought.coffee
     answer = 42
-    console.log "The answer to the Ultimate Question of Universe, Life and Everything is #{answer}"
+    console.log "The answer to the Ultimate Question is #{answer}"
 
 Looks like it's what we need. The only thing that's left to do is to compile
 the file. Lets use some pipes then.
@@ -64,13 +62,13 @@ the file. Lets use some pipes then.
     (function() {
       var answer;
       answer = 42;
-      console.log("The answer to the Ultimate Question of Universe, Life and Everything is " + answer);
+      console.log("The answer to the Ultimate Question is " + answer);
     }).call(this);
 
 As you can see from the above, there is no magic and even old UNIX tools can
 get this work done properly.
 
-## Is it any good in practice?
+### Is it any good in practice?
 
 The short answer is yes. To prove this I resurrected the [hexagonal.js
 implementation of TodoMVC](https://github.com/hexagonaljs/todomvc) and replaced
@@ -80,7 +78,7 @@ commit](https://github.com/mlen/todomvc/commit/69c3c8495f3c07d40bbeb46ab5a4460ce
 To compile it, just run `make` from the command line and given you have
 `coffee` and `cpp` command line utilities installed, it just works!
 
-## Yet still it isn't good enough to replace Sprockets
+### Yet still it isn't good enough to replace Sprockets
 
 You may have noticed some differences in the output file produced by the
 commands in the `Makefile`. There is only one wrapping anonymous function. This
@@ -94,7 +92,7 @@ CoffeeScript compiler to support preserving the `#import` directive in the
 output files. That would allow to create a `Makefile` that'd support parallel
 compilation. How cool would that be?
 
-## One more thing
+### One more thing
 
 Some of you'd probably say that `#import` is deprecated. I know that. My
 solution is already hackish, so I don't care about deprecations.
