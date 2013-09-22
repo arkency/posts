@@ -11,12 +11,11 @@ The Sprockets gem is the standard way to combine asset files in Rails, but it
 wasn't very straight forward to use in stand-alone projects, like Single Page
 Applications without backend, before the `sprockets` command was added.
 
-Few weeks before I realized that Sprockers solve the problem that has been
+Few weeks ago I realized that Sprockers solve the problem that has been
 already solved, but in a different language and in different era of computing.
 
 Later I wanted to check whether my idea would actually work and started
-hacking. You can see the results below. Obviously it's not something you'd use
-in production.
+hacking. You can see the results below.
 
 <!-- more -->
 
@@ -40,6 +39,7 @@ Say I have two files, one called `deep_thought.coffee` and the other one called
 
 __answer.coffee__:
 
+    #!coffeescript
     answer = 42
 
 I'd like to use the `answer` in the other module of my application. It's really
@@ -47,12 +47,14 @@ simple with the `#import` directive.
 
 __deep_thought.coffee__:
 
+    #!coffeescript
     #import "answer.coffee"
 
     console.log "The answer to the Ultimate Question is #{answer}"
 
-Now let's run the preprocessor and see what happens (blank lines removed).
+Now let's run the preprocessor and see what happens.
 
+    #!coffeescript
     $ cpp -P deep_thought.coffee
     answer = 42
     console.log "The answer to the Ultimate Question is #{answer}"
@@ -60,6 +62,7 @@ Now let's run the preprocessor and see what happens (blank lines removed).
 Looks like it's what we need. The only thing that's left to do is to compile
 the file. Lets use some pipes then.
 
+    #!javascript
     $ cpp -P deep_thought.coffee | coffee -s -p
     (function() {
       var answer;
@@ -74,8 +77,7 @@ get this work done properly.
 
 The short answer is yes. To prove this I resurrected the [hexagonal.js
 implementation of TodoMVC](https://github.com/hexagonaljs/todomvc) and replaced
-`coffee-toaster` with a `Makefile` listed below (and removed lots of crap committed to the
-repository in the meantime).
+`coffee-toaster` with a `Makefile` listed below.
 
     MAIN=src/todo_app.coffee
     RELEASE_DIR=release
