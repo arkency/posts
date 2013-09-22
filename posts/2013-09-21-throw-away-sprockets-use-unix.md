@@ -18,6 +18,10 @@ available, so I had to hack a bit to get the thing working.
 Few weeks before I realized that Sprockers solve the problem that has been
 already solved, but in a different language and in different era of computing.
 
+Later I wanted to check whether that idea would actually work and started
+hacking. You can see the results below. Obviously it's not something you'd use
+in production.
+
 <!-- more -->
 
 ### The C PreProcessor
@@ -74,32 +78,75 @@ get this work done properly.
 
 The short answer is yes. To prove this I resurrected the [hexagonal.js
 implementation of TodoMVC](https://github.com/hexagonaljs/todomvc) and replaced
-`coffee-toaster` with a `Makefile` (and removed lots of crap committed to the
-repository in the meantime). You can see [all the relevant changes in this
+`coffee-toaster` with a `Makefile` listed below (and removed lots of crap committed to the
+repository in the meantime).
+
+    MAIN=src/todo_app.coffee
+    RELEASE_DIR=release
+    RELEASE_MAIN="$(RELEASE_DIR)/todo_app.js"
+
+    debug:
+        cpp $(MAIN) | coffee -s -p > $(RELEASE_MAIN)
+
+    release:
+        cpp $(MAIN) | coffee -s -p | uglifyjs > $(RELEASE_MAIN)
+
+    clean:
+        rm -f $(RELEASE_DIR)/*
+
+    .PHONY: debug release clean
+
+That's it. There are three targets defined: `debug`, `release` and `clean`. The
+default one is `debug`. `.PHONY` just means that there are no dependencies for
+these targets and they should be executed every time.
+
+You can see [all the relevant changes in this
 commit](https://github.com/mlen/todomvc/commit/69c3c8495f3c07d40bbeb46ab5a4460ce61a1eb2).
 To compile it, just run `make` from the command line and given you have
 `coffee` and `cpp` command line utilities installed, it just works!
 
-### Yet still it isn't good enough to replace Sprockets
+### But is it faster?
 
-You may have noticed some differences in the output file produced by the
-commands in the `Makefile`. There is only one wrapping anonymous function. This
+To check it I modified the `Makefile` to run Sprockets and performed simple
+benchmark. I ran both versions in the clean environment 50 times and took an
+average. The run time for Sprockets doesn't include the time of running `bundle
+exec`. You can [see the modifications on a separate
+branch](https://github.com/mlen/todomvc/commit/35442c8da443ce075eccf963c3387859355fea9a).
+
+The `cpp` took 0.23 seconds to compile the assets, while for Sprockets it was
+1.57 seconds, which is almost seven times slower! Looks like it is doing a lot
+more work than is needed to just compile few CoffeeScript files.
+
+You can easily perform similar benchmark using the `time` command if you don't
+believe the results.
+
+### When not to use it
+
+You may have noticed some differences in the output file produced by the `cpp`
+solution. There is only one wrapping anonymous function on the top level. This
 is because it first concatenates all CoffeeScript files and then it compiles
-one big file. Sprockets work the other way around - the files are compiled and
+one big file.  Sprockets work the other way around - the files are compiled and
 then they are concatenated. That allows mixing JavaScript and CoffeeScript
-files. Comments in CoffeeScript files probably won't work, because they'll be
-treated as `cpp` directives.
+files.
 
-This can be also achieved using `cpp`, but that would require extending
-CoffeeScript compiler to support preserving the `#import` directive in the
-output files. That would allow to create a `Makefile` that'd support parallel
-compilation. How cool would that be?
+Comments in CoffeeScript files don't work either, because they are treated as
+directives for the preprocessor and are reported as errors. At Arkency we
+rarely use comments in the code - we believe that the code should be always
+readable without needing additional explanation in the comment. It isn't an
+issue if you do the same.
 
-### One more thing
+The performance may be also a problem, even though the benchmarks show that
+`cpp` is clearly faster. However, when a single file is modified in the large
+project, Sprockets recompile only that file, whereas in this solution all
+imported files need to be recompiled.
 
-Some of you'd probably say that `#import` is deprecated. I know that. My
-solution is already hackish, so I don't care about deprecations.
+### Conclusion
 
-The other way would be to use `#include` statements and few `#define`s combined
-with `#ifndef`s. That would be a proper way, but it is also the ugly way. After
-all, readability matters.
+The problem with Sprockets is that they are responsible for doing lot of tasks.
+They have to manage the dependencies, run the compiler and then concatenate all
+the resulting files. It is clearly, against the UNIX way. There should be one
+component for each task. The `make` command can be used to schedule the
+compilation, compiler should only do the compilation, another tool should
+create the dependency map and yet another one should put the resulting files
+together using the compiled results and the dependency map. That'd be the UNIX
+way to solve this problem!
