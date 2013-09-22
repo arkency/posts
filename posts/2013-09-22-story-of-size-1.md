@@ -8,11 +8,30 @@ newsletter: :effective_guide
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
-In one of our projects we decided to try a lot of new things when it comes
-to managing it. One of the most beneficial change that I noticed was using very,
+In one of our projects we decided to try a lot of new things in the are of
+project managment. One of the most beneficial change that I noticed was using very,
 very small task as the primary tool to assign and track work.
 
 <!-- more -->
+
+## The Pain
+
+It's the middle of the Wednesday. You tought it is gonna be such a good week.
+You started coding your task on Monday, and you still keep working on it.
+Your boss keeps asking for status update. Customer would
+also like to know how things are going. It's the third day of working on
+it. It's finally the time to deliver some code. You need to merge your branch
+with master often to stay in the loop. And you can't help much your friends
+working on different part of the system. Lot of time put into the task,
+but yet no visible effects to anyone except you so far. This whole situation
+feels little stressful. Not only for you, but actually for everyone.
+
+This story might sound familiar to you. Maybe you don't experience it every
+week but surely every now and then. If not, consider yourself lucky! There
+are many factors that can lead to such situation but one of the problem is
+usually the size of the story (ticket). It's just too big. The solution?
+Make it small. How small? Really small. About the [size](http://agilefaq.wordpress.com/2007/11/13/what-is-a-story-point/)
+of one point.
 
 ## One point story
 
