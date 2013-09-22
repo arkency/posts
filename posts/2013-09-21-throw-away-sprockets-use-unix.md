@@ -8,17 +8,13 @@ tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
 
 The Sprockets gem is the standard way to combine asset files in Rails, but it
-isn't very straight forward to use in stand-alone projects, like Single Page
-Applications without backend.
-
-Later the `sprockets` binary was added to address this issue.
-Unfortunately at the time I tried to use them with Nanoc, that command wasn't
-available, so I had to hack a bit to get the thing working.
+wasn't very straight forward to use in stand-alone projects, like Single Page
+Applications without backend, before the `sprockets` command was added.
 
 Few weeks before I realized that Sprockers solve the problem that has been
 already solved, but in a different language and in different era of computing.
 
-Later I wanted to check whether that idea would actually work and started
+Later I wanted to check whether my idea would actually work and started
 hacking. You can see the results below. Obviously it's not something you'd use
 in production.
 
