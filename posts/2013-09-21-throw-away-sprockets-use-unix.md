@@ -3,6 +3,7 @@ title: "Throw away Sprockets, use UNIX!"
 created_at: 2013-09-21 21:59:29 +0200
 kind: article
 publish: false
+newsletter: :spa1product
 author: 'Mateusz Lenik'
 tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
