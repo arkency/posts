@@ -2,17 +2,17 @@
 title: "Throw away Sprockets, use UNIX!"
 created_at: 2013-09-21 21:59:29 +0200
 kind: article
-publish: false
+publish: true
 newsletter: :spa1product
 author: 'Mateusz Lenik'
 tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
 
 The Sprockets gem is the standard way to combine asset files in Rails, but it
-wasn't very straight forward to use in stand-alone projects, like Single Page
+wasn't very straightforward to use in stand-alone projects, like Single Page
 Applications without backend, before the `sprockets` command was added.
 
-Few weeks ago I realized that Sprockers solve the problem that has been
+Few weeks ago I realized that Sprockets solve the problem that has been
 already solved, but in a different language and in different era of computing.
 
 Later I wanted to check whether my idea would actually work and started
@@ -20,17 +20,17 @@ hacking. You can see the results below.
 
 <!-- more -->
 
-### The C PreProcessor
+### The C Preprocessor
 
 The designers of C language had to solve a similar problem, so they came up
 with a preprocessor that understands directives that allow concatenating
-multiple files into one. Additionally it offers some macros and other stuff,
+multiple files into one. Additionally, it offers some macros and other stuff,
 but it isn't really important in this application.
 
 In most UNIX-like systems there exists a separate binary, called `cpp`, that
 can be used to invoke the preprocessor.
 
-It's key feature here is that it can be used with any programming language, not
+Its key feature here is that it can be used with any programming language, not
 necessarily C, C++ or Objective-C.
 
 ### Let's give it a try
@@ -44,7 +44,7 @@ __answer.coffee__:
     answer = 42
 
 I'd like to use the `answer` in the other module of my application. It's really
-simple with the `#import` directive.
+simple with the `#import` directive, which includes the dependency only once.
 
 __deep_thought.coffee__:
 
@@ -61,7 +61,7 @@ Now let's run the preprocessor and see what happens.
     console.log "The answer to the Ultimate Question is #{answer}"
 
 Looks like it's what we need. The only thing that's left to do is to compile
-the file. Lets use some pipes then.
+the file.
 
     #!javascript
     $ cpp -P deep_thought.coffee | coffee -s -p
