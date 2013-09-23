@@ -1,15 +1,15 @@
 ---
 title: "Story of size 1"
-created_at: 2013-09-22 10:17:43 +0200
+created_at: 2013-09-23 20:17:43 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :effective_guide
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'story', 'size', 'one', 'remote', 'work', 'project', 'management' ]
 ---
 
-In one of our projects we decided to try a lot of new things in the are of
-project managment. One of the most beneficial change that I noticed was using very,
+In one of our projects we decided to try a lot of new things in the area of
+project management. One of the most beneficial change that I noticed was using very,
 very small task as the primary tool to assign and track work.
 
 <!-- more -->
