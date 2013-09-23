@@ -1,6 +1,6 @@
 ---
 title: "Throw away Sprockets, use UNIX!"
-created_at: 2013-09-21 21:59:29 +0200
+created_at: 2013-09-23 12:49:29 +0200
 kind: article
 publish: true
 newsletter: :spa1product
