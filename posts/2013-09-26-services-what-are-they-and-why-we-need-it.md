@@ -1,5 +1,5 @@
 ---
-title: "Services - what are they and why we need it?"
+title: "Services - what are they and why we need them?"
 created_at: 2013-09-26 01:12:28 +0200
 kind: article
 publish: true
