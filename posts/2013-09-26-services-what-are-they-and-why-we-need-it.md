@@ -54,15 +54,15 @@ That's where service objects comes to play. Service objects **encapsulates singl
 
 We get a lot of benefits when we introduce services, including:
 
-* Ability to test controllers - controller becomes a really thin wrapper which provides collaborators to services - thus we can only check if certain methods within controller are called when certain action occurs,
+* **Ability to test controllers** - controller becomes a really thin wrapper which provides collaborators to services - thus we can only check if certain methods within controller are called when certain action occurs,
 
-* Ability to test business process in isolation - when we separate process from it's environment, we can easily stub all collaborators and only check if certain steps are performed within our service.
+* **Ability to test business process in isolation** - when we separate process from it's environment, we can easily stub all collaborators and only check if certain steps are performed within our service.
 
-* Lesser coupling between our application and a framework - in an ideal world, with service objects we can achieve an absolutely technology-independent domain world with very small Rails part which only supplies entry points, routing and all 'middleware'. In this case we can even copy our application code without Rails and put it into, for example, desktop application.
+* **Lesser coupling between our application and a framework** - in an ideal world, with service objects we can achieve an absolutely technology-independent domain world with very small Rails part which only supplies entry points, routing and all 'middleware'. In this case we can even copy our application code without Rails and put it into, for example, desktop application.
 
-* They make controllers slim - even in bigger applications actions using service objects usually don't take more than 10 LoC.
+* **They make controllers slim** - even in bigger applications actions using service objects usually don't take more than 10 LoC.
 
-* It's a solid border between domain and the framework - without services our framework works directly on domain objects to produce desired result to clients. When we introduce this new layer we obtain a very solid border between Rails and domain - controllers see only services and should only interact with domain using them.
+* **It's a solid border between domain and the framework** - without services our framework works directly on domain objects to produce desired result to clients. When we introduce this new layer we obtain a very solid border between Rails and domain - controllers see only services and should only interact with domain using them.
 
 ## Example
 
@@ -82,11 +82,11 @@ class TripReservationsController < ApplicationController
     payment_adapter = PaymentAdapter.new(buyer: current_user)
 
     unless current_user.can_book_from?(agency)
-      redirect_to trip_reservations_page, notice: 'You cannot book a trip from this agency.'
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:agency_rejection)
     end
 
     unless trip.has_free_tickets?
-      redirect_to trip_reservations_page, notice: 'All tickets for this trip are sold.'
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:tickets_sold)
     end
 
     begin
@@ -95,13 +95,13 @@ class TripReservationsController < ApplicationController
 
       unless reservation.save
         logger.info "Failed to save reservation: #{reservation.errors.inspect}"
-        redirect_to new_trip_reservation_page, notice: "Failed to save a reservation."
+        redirect_to trip_reservations_page, notice: TripReservationNotice.new(:save_failed)
       end
 
-      redirect_to trip_reservations_page(reservation), notice: 'Successfully booked your trip.'
+      redirect_to trip_reservations_page(reservation), notice: :reservation_booked
     rescue PaymentError
       logger.info "User #{current_user.name} failed to pay for a trip #{trip.name}: #{$!.message}"
-      redirect_to trip_reservations_page, notice: "Failed to pay for a trip. Reason: #{$!.message}"
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:payment_failed, reason: $!.message)
     end
   end
 end
@@ -126,8 +126,8 @@ class TripReservationService
   end
 
   def process(user, trip, agency, reservation)
-    raise AgencyRejectionError.new('You cannot book a trip from this agency.') unless user.can_book_from?(agency)
-    raise NoTicketError.new('All tickets for this trip are sold.') unless trip.has_free_tickets?
+    raise AgencyRejectionError.new unless user.can_book_from?(agency)
+    raise NoTicketError.new unless trip.has_free_tickets?
 
     begin
       receipt = payment_adapter.pay(trip.price)  
@@ -135,11 +135,11 @@ class TripReservationService
 
       unless reservation.save
         logger.info "Failed to save reservation: #{reservation.errors.inspect}"
-        raise ReservationError.new('Failed to save your reservation.')
+        raise ReservationError.new
       end
     rescue PaymentError
       logger.info "User #{user.name} failed to pay for a trip #{trip.name}: #{$!.message}"
-      raise TripPaymentError.new("Failed to pay for a trip. Reason: #{$!.message}")
+      raise TripPaymentError.new $!.message
     end
   end
 end
@@ -161,14 +161,17 @@ class TripReservationsController < ApplicationController
 
     begin
       trip_reservation_service.process(user, trip, agency, reservation)
-    rescue TripReservationService::TripPaymentError,
-           TripReservationService::ReservationError,
-           TripReservationService::NoTicketError,
-           TripReservationService::AgencyRejectionError
-      redirect_to trip_reservations_page, notice: $!.message
+    rescue TripReservationService::TripPaymentError
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:payment_failed, reason: $!.message)
+    rescue TripReservationService::ReservationError
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:save_failed)
+    rescue TripReservationService::NoTicketError
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:tickets_sold)
+    rescue TripReservationService::AgencyRejectionError
+      redirect_to trip_reservations_page, notice: TripReservationNotice.new(:agency_rejection)
     end
 
-    redirect_to trip_reservations_page(reservation), notice: 'Successfully booked your trip.'
+    redirect_to trip_reservations_page(reservation), notice: :reservation_booked
   end
 
   private
@@ -186,7 +189,7 @@ You can easily test your service using a simple unit testing, mocking your Payme
 
 ## Conclusion
 
-Services in Rails can greatly improve our overall design as our application grow. We used this pattern  combined with service-based architecture and repository objects in [Chillout.io](http://chillout.io/) to improve maintainability even more. Results are excellent and we can be (and we are!) proud of Chillout's codebase.
+Services in Rails can greatly improve our overall design as our application grow. We used this pattern  combined with service-based architecture and repository objects in [Chillout.io](http://chillout.io/) to improve maintainability even more. Our payment controllers heavy uses services to handle each situation - like payment renewal, initial payments etc. Results are excellent and we can be (and we are!) proud of Chillout's codebase. Also, we use Dependor and AOP to simplify and decouple our services even more. But that's a topic for another post.
 
 What are your patterns to increase maintainability of your Rails applications? Do you stick with your framework, or try to escape from it? I wait for your comments!
 
