@@ -1,5 +1,5 @@
 ---
-title: "Refactor to remote. Step 2: leave tasks unassigned"
+title: "Refactor to remote: Leave tasks unassigned"
 created_at: 2013-10-04 10:11:54 +0200
 kind: article
 publish: true
@@ -8,14 +8,15 @@ newsletter: :refactor_to_remote
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
 ---
 
-As with software, improving your company is an ongoing process consisting of
-multiple small steps. If you want your company to be more remote-friendly it
+As with software, **improving your company is an ongoing process consisting of
+multiple small steps**. If you want your company to be more remote-friendly it
 is also not _all-or-nothing_ decision. You can gradually start using techniques that
 will bring you closer to your goal. This series of blogposts is not about
-why you should go remote, but rather how. Also, we belive that those techniques
+_why_ you should go remote, but rather _how_. Also, we belive that those techniques
 will help you even if you are not planning to working remotely.
 
-The first part was [about having very small stories](/2013/09/story-of-size-1/).
+The first part was [about having very small stories](/2013/09/story-of-size-1/)
+and how it helps everyone track progress and provides closure.
 Today we are going to talk about leaving tasks unassigned instead of delegating
 them to particular developers at the beginning of an iteration.
 
@@ -37,8 +38,8 @@ be easier and was finished earlier.
 
 <a href="/assets/images/unassigned/reality.png" rel="lightbox"><img src="/assets/images/unassigned/reality.png" class="fit"></a>
 
-What effect does it have for your project? Multiple times during this iteration
-people are working on tasks which are not most important. The first developer is
+What effect does it have for your project? **Multiple times during this iteration
+people are working on tasks which are not most important**. The first developer is
 working on task 6, when task 4 and 5 are not even started. Task 7 won't be
 finished by the end of the sprint even if it could be done instead of task 8.
 And so on...
@@ -62,7 +63,7 @@ be tight to the project they are currently working on. If your prioritiy is
 for them to balance their personal and work life you cannot relay that they will
 be available for given number of hours for the work on the project. Not to
 mention the fact that the performance of developers vary greatly on daily
-basis depending on their mood, healt, and many external factors. There is only
+basis depending on their mood, health, and many external factors. There is only
 one way to manage it. Surrender ;). Accept the fact that our power over reality
 is limited and adapt often and quickly. Leave unassigned tasks to be done and let people
 do them. If someone is not working today, someone else can simply do the task
@@ -82,13 +83,27 @@ Opportunities arrive and we would like to take them. So we need elasticity to
 manage all that complexity that a software project is. And small, unassigned
 tasks bring you that.
 
-### That's not all
+Also it lowers the amount of micrmanagement and attention that the project
+needs. Instead of daily assigning tasks to people you just need to set their
+prorities which you do for everything anyway.
 
-There is more beyond what we wrote in this article. Find out by [buying our
+### Find out more
+
+There is more beyond what we wrote in this article. Find out [in our
 Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)
-or [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+that we will be releasing soon
+or by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.
 The newsletter will also containt exclusive content from the book that is
-not published on the blog. The next blog post will be about _Collective
-Ownership_ and what it has in common with the techniques that we already
-described.
+not published on the blog.
+
+### In next episode
+
+The next blog post will be about _Collective Ownership_ and what it has in
+common with the techniques that we already described. [Subscribe](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+to make sure you do not miss it.
+
+### What is your opinion
+
+Does your company practice these techniques? How is that working for you?
+Share your opinion in comments or on [twitter](https://twitter.com/intent/tweet?source=webclient&text=I+just+read+newest+%40arkency+blogpost+and+completely+disagree+%3AP).
