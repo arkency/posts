@@ -8,9 +8,9 @@ newsletter: :refactor_to_remote
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
 ---
 
-We recently talked how [small](/2013/09/story-of-size-1/)
+We recently talked how **[small](/2013/09/story-of-size-1/)
 and [unassgined](/2013/10/refactor-to-remote-step-2-leave-tasks-unassigned/)
-tasks can help you manage the risk in the project. In short: they help to
+tasks can help you manage the risk in the project**. In short: they help to
 guarantee that despite the obstacles people keep working on the most important
 tasks.
 
@@ -45,13 +45,21 @@ Get it done, deliver on production and forget about it.
 
 ### Get more
 
-You can find out more in the upcoming beta version of [our
-Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)
+You can find out more in the upcoming beta version of our
+_[Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)_
 or if you are not sure yet, by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.
 
 ### In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
-and what are the alternatives to hiring them. Subscribe to be notified when it
-is out.
+and what are the alternatives to hiring them.
+[Subscribe](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+to be notified when it is out.
+
+### How about you?
+
+**Is it immediately clear to you in your current project what you should be
+working on as a developer?** How long does it take to figure it out? Do you need to
+talk to someone to get that information? Leave your feedback in comments or 
+on [twitter](https://twitter.com/intent/tweet?source=webclient&text=Hi+%40arkency+I+have+just+joined+a+new+project+and+it+takes+me+XYZ+seconds%2Fminutes%2Fdays+to+figure+out+what+to+work+on).
