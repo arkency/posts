@@ -1,5 +1,5 @@
 ---
-title: "Story of size 1"
+title: "Refactor to remote: Story of size 1"
 created_at: 2013-09-23 20:17:43 +0200
 kind: article
 publish: true
