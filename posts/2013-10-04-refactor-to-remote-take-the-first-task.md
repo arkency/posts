@@ -12,7 +12,7 @@ We recently talked how **[small](/2013/09/story-of-size-1/)
 and [unassgined](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
 tasks can help you manage the risk in the project**. In short: they help to
 guarantee that despite the obstacles people keep working on the most important
-tasks.
+things.
 
 But to take most from such
 approach we need one more rule. Let's talk a little about it.
