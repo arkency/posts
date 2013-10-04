@@ -24,8 +24,8 @@ them to particular developers at the beginning of an iteration.
 
 ### You do not know how long given task is going to take
 
-Let's start with an assumption. You want your developers to be doing the most
-important task for the project that can be currently done. Usually this is one
+Let's start with an assumption. You want your developers to be doing **the most
+important task for the project that can be currently done**. Usually this is one
 of the most important criterias taken into consideration when assigning task. So
 let's say you have three developers and ten tasks to be done during the iteration.
 Here is how you decided to split the work.
@@ -56,9 +56,9 @@ image the third developer is crucial to the success of this iteration. If it
 leaves the team due to health or personal reasons for some time there will
 be some damage. The effects are similar to the ones mentioned in previous
 paragraph. People are not working on the most important tasks, the ones
-bringing the most business value.
+**bringing the most business value**.
 
-If you want most possible freedom for your developers and coworkers they cannot
+If you want **most possible freedom for your developers and coworkers** they cannot
 be tight to the project they are currently working on. If your prioritiy is
 for them to balance their personal and work life you cannot relay that they will
 be available for given number of hours for the work on the project. Not to
@@ -79,18 +79,18 @@ we need guidance that will help us deliver as much business value much as possib
 and being constantly focused on most important aspects of our project. We need
 flexibility in managing the project. The more the better. But good things also
 happen. Sometimes people suprise us with their solutions and performance.
-Opportunities arrive and we would like to take them. So we need elasticity to
+Opportunities arrive and we would like to take them. **So we need elasticity to
 manage all that complexity that a software project is. And small, unassigned
-tasks bring you that.
+tasks bring you that**.
 
-Also it lowers the amount of micrmanagement and attention that the project
+Also it lowers the amount of _micrmanagement_ and attention that the project
 needs. Instead of daily assigning tasks to people you just need to set their
 prorities which you do for everything anyway.
 
 ### Find out more
 
-There is more beyond what we wrote in this article. Find out [in our
-Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)
+There is more beyond what we wrote in this article. Find out _[in our
+Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)_
 that we will be releasing soon
 or by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.
@@ -106,4 +106,4 @@ to make sure you do not miss it.
 ### What is your opinion
 
 Does your company practice these techniques? How is that working for you?
-Share your opinion in comments or on [twitter](https://twitter.com/intent/tweet?source=webclient&text=I+just+read+newest+%40arkency+blogpost+and+completely+disagree+%3AP).
+**Share your opinion in comments or on [twitter](https://twitter.com/intent/tweet?source=webclient&text=I+just+read+newest+%40arkency+blogpost+and+completely+disagree+%3AP)**.
