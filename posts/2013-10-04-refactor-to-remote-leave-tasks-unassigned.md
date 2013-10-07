@@ -26,7 +26,7 @@ them to particular developers at the beginning of an iteration.
 
 Let's start with an assumption. You want your developers to be doing **the most
 important task for the project that can be currently done**. Usually this is one
-of the most important criterias taken into consideration when assigning task. So
+of the most important criteria taken into consideration when assigning a task. So
 let's say you have three developers and ten tasks to be done during the iteration.
 Here is how you decided to split the work.
 
