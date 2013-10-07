@@ -32,8 +32,8 @@ Here is how you decided to split the work.
 
 <a href="/assets/images/unassigned/plan.png" rel="lightbox"><img src="/assets/images/unassigned/plan.png" class="fit"></a>
 
-Looks very promising. But here comes the reality. The most important task (nr 1)
-takes longer than anticipated. And suprisingly one of the tasks (nr 3) turned out to
+Looks very promising. But here comes the reality. The most important task (no. 1)
+takes longer than anticipated. And suprisingly one of the tasks (no. 3) turned out to
 be easier and was finished earlier.
 
 <a href="/assets/images/unassigned/reality.png" rel="lightbox"><img src="/assets/images/unassigned/reality.png" class="fit"></a>
