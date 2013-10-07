@@ -13,7 +13,7 @@ multiple small steps**. If you want your company to be more remote-friendly it
 is also not _all-or-nothing_ decision. You can gradually start using techniques that
 will bring you closer to your goal. This series of blogposts is not about
 _why_ you should go remote, but rather _how_. Also, we belive that those techniques
-will help you even if you are not planning to working remotely.
+will help you even if you are not planning to work remotely.
 
 The first part was [about having very small stories](/2013/09/story-of-size-1/)
 and how it helps everyone track progress and provides closure.

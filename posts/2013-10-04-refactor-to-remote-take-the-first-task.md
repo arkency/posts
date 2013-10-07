@@ -2,7 +2,7 @@
 title: "Refactor to remote: Take the first task"
 created_at: 2013-10-04 12:34:09 +0200
 kind: article
-publish: true
+publish: false
 author: Robert Pankowecki
 newsletter: :refactor_to_remote
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
