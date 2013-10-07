@@ -52,9 +52,9 @@ free working on anything else.
 
 If one of your developers gets sick or needs a little break your most
 important tasks might be damaged. If you look at the original estimation
-image the third developer is crucial to the success of this iteration. If it
+image the third developer is crucial to the success of this iteration. If (s)he
 leaves the team due to health or personal reasons for some time there will
-be some damage. The effects are similar to the ones mentioned in previous
+be some damage. The effects are similar to the ones mentioned in the previous
 paragraph. People are not working on the most important tasks, the ones
 **bringing the most business value**.
 
