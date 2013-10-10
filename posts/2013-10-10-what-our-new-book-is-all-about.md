@@ -4,6 +4,7 @@ created_at: 2013-10-10 12:08:51 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
+newsletter: :refactor_to_remote
 tags: [ 'happiness', 'remote' ]
 ---
 
