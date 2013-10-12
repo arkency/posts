@@ -1,5 +1,5 @@
 ---
-title: "Refactor to remote: Leave tasks unassigned"
+title: "Developers oriented project management: Leave tasks unassigned"
 created_at: 2013-10-04 10:11:54 +0200
 kind: article
 publish: true
@@ -90,7 +90,7 @@ prorities which you do for everything anyway.
 ### Find out more
 
 There is more beyond what we wrote in this article. Find out _[in our
-Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)_
+Developers oriented project management ebook](http://sbx.sk/Ak8L)_
 that we will be releasing soon
 or by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.

@@ -1,5 +1,5 @@
 ---
-title: "Refactor to remote: Take the first task"
+title: "Developers oriented project management: Take the first task"
 created_at: 2013-10-04 12:34:09 +0200
 kind: article
 publish: false
@@ -46,7 +46,7 @@ Get it done, deliver on production and forget about it.
 ### Get more
 
 You can find out more in the upcoming beta version of our
-_[Arkency Survival Guide to effective remote programming ebook](http://sbx.sk/Ak8L)_
+_[Developers oriented project management ebook](http://sbx.sk/Ak8L)_
 or if you are not sure yet, by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.
 
