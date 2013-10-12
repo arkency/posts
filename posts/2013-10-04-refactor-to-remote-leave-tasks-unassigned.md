@@ -107,3 +107,10 @@ to make sure you do not miss it.
 
 Does your company practice these techniques? How is that working for you?
 **Share your opinion in comments or on [twitter](https://twitter.com/intent/tweet?source=webclient&text=I+just+read+newest+%40arkency+blogpost+and+completely+disagree+%3AP)**.
+
+## In this series
+
+* [Story of size 1](/2013/09/story-of-size-1/)
+* [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
+* [Take the first task](/2013/10/take-the-first-task/)
+* [What our new book is all about](/2013/10/what-our-new-book-is-all-about/)

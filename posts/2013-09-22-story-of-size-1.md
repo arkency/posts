@@ -89,3 +89,10 @@ in our upcoming book _"Developers oriented project management"_](http://sbx.sk/A
 You can also [subscribe to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 below if you want to receive tips and excerpts from our work on the book.
 They will be similar in form to this blogpost.
+
+## In this series
+
+* [Story of size 1](/2013/09/story-of-size-1/)
+* [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
+* [Take the first task](/2013/10/take-the-first-task/)
+* [What our new book is all about](/2013/10/what-our-new-book-is-all-about/)

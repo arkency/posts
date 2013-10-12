@@ -63,3 +63,10 @@ to be notified when it is out.
 working on as a developer?** How long does it take to figure it out? Do you need to
 talk to someone to get that information? Leave your feedback in comments or 
 on [twitter](https://twitter.com/intent/tweet?source=webclient&text=Hi+%40arkency+I+have+just+joined+a+new+project+and+it+takes+me+XYZ+seconds%2Fminutes%2Fdays+to+figure+out+what+to+work+on).
+
+## In this series
+
+* [Story of size 1](/2013/09/story-of-size-1/)
+* [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
+* [Take the first task](/2013/10/take-the-first-task/)
+* [What our new book is all about](/2013/10/what-our-new-book-is-all-about/)
