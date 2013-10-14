@@ -1,8 +1,8 @@
 ---
 title: "Developers oriented project management: Take the first task"
-created_at: 2013-10-04 12:34:09 +0200
+created_at: 2013-10-09 12:34:09 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :refactor_to_remote
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
@@ -20,7 +20,7 @@ approach we need one more rule. Let's talk a little about it.
 <!-- more -->
 
 When project managers assign tasks to developers they will usually try to do it
-based on who they think are most qualified for them. Unfortunatelly when
+based on who they think are most qualified for them. Unfortunately when
 developers are in charge of assigning stories the effect is not much better. They
 will usually try to take tasks, that they feel most comfortable with. Frontend
 developers will take frontend tasks. Developers with more backend background
@@ -53,7 +53,7 @@ with tips and excerpts from the book similar in form to what you just read.
 ### In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
-and what are the alternatives to hiring them.
+and what are the alternatives to hiring them. 
 [Subscribe](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 to be notified when it is out.
 
