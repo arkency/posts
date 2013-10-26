@@ -8,7 +8,7 @@ newsletter: :skip
 tags: [ 'happiness', 'remote', 'organized', 'project' ]
 ---
 
-At first, we thought that our [new book](http://sbx.sk/Ak8L) is all about remote
+At first, we thought that our <%= landing_link("new book") %> is all about remote
 work. But then after writing few chapters we saw that it is not. That those
 techniques can be applied to any team. So what is it all about?
 
@@ -82,7 +82,7 @@ the book even if remote working is not your highest priority right now.
 ## Developers oriented project management
 
 You can find out more in the upcoming beta version of our
-**_[Developers oriented project management](http://sbx.sk/Ak8L)_ ebook**
+**<%= landing_link("Developers oriented project management") %> ebook**
 or if you are not sure yet, by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you can read in our previous blog posts:
 

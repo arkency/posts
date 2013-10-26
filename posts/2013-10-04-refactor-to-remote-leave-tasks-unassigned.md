@@ -89,8 +89,8 @@ prorities which you do for everything anyway.
 
 ### Find out more
 
-There is more beyond what we wrote in this article. Find out _[in our
-Developers oriented project management ebook](http://sbx.sk/Ak8L)_
+There is more beyond what we wrote in this article. Find out in our 
+_<%= landing_link() %>_ ebook
 that we will be releasing soon
 or by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 with tips and excerpts from the book similar in form to what you just read.

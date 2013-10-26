@@ -83,9 +83,8 @@ have their own nature and small tasks fits great in this environment.
 
 ## What's more
 
-Did you like this article? You can [find out more on this and similar topics
-in our upcoming book _"Developers oriented project management"_](http://sbx.sk/Ak8L)
-
+Did you like this article? You can find out more on this and similar topics
+in our upcoming book _<%= landing_link() %>_.
 You can also [subscribe to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
 below if you want to receive tips and excerpts from our work on the book.
 They will be similar in form to this blogpost.
