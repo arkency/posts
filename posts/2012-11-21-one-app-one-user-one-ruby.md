@@ -4,7 +4,7 @@ created_at: 2012-11-21 12:40:51 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :chillout
+newsletter: :aar
 tags: [ 'ruby', 'deployment', 'chef', 'littlechef', 'ruby-build', 'cookbooks' ]
 ---
 

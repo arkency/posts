@@ -4,7 +4,7 @@ created_at: 2013-02-15 10:30:12 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :rails_report
+newsletter: :aar
 tags: [ 'web', 'servers', 'patterns' ]
 ---
 
