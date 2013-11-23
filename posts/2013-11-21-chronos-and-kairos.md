@@ -10,10 +10,10 @@ tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
 <img src="/assets/images/chronos_kairos/clock.png" width="100%">
 
 When working on any project (personal or professional) we are always confrontend
-with tremendous amount of task that will bring us closer to the goal or let us
-finish the project (many, many times there is no such thing as end of a project,
+with tremendous amount of tasks that bring us closer to the goal or let us
+finish the project (many, many times there is no such a thing as the end of a project,
 just years of long, ongoing, constant improvement of the process and code).
-There are two ways that you can look at such situation...
+There are two ways you can look at it...
 
 <!-- more -->
 
@@ -33,11 +33,11 @@ There are two ways that you can look at such situation...
     nature.
 
 From now on, I encourage you to look at your project in the second way always.
-The amount of tasks is probably never going to drop down. Everything that we do,
-needs improvment. There are always thousands of ideas on to how to make the
+The amount of tasks is probably never going to drop down. Everything that we do
+needs improvment. There are always thousands of ideas on how to make the
 software better, which technical debt to pay, what new features should be added,
 what parts of the design improved, etc. The backlog is probably full no matter
-how much you try. And that is ok. When you work, time will just pass by (_Chronos_),
+how hard you try. And that is ok. When you work, time will just pass by (_Chronos_),
 but what happens to you and your project when working, can be _Kairos_. Therefore:
 
 * [small](/2013/09/story-of-size-1/)
