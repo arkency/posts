@@ -1,8 +1,8 @@
 ---
-title: "Chronos and Kairos"
+title: "Chronos vs Kairos: Find out how you think about time when working on a project"
 created_at: 2013-11-21 17:18:19 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
 ---
