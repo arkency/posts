@@ -41,57 +41,110 @@ rob.addresses.create!(country: "France", city: "Paris", postal_code: "75008", st
 bob.addresses.create!(country: "Germany", city: "Berlin", postal_code: "10551", street: "Tiergarten")
 ```
 
-Here goes the content and explanation ...
+## Rails 3
+
+Typically, when you want to use the eager loading feature you would use the
+`#includes` method, which Rails encouraged you to use since Rails2 or maybe even
+Rails1 ;). And that works like a charm doing 2 queries:
 
 ```
-#
+#!ruby
 User.includes(:addresses)
+#  SELECT "users".* FROM "users" 
+#  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+```
 
-2.0.0-p247 :018 >   User.includes(:addresses)
-  User Load (0.4ms)  SELECT "users".* FROM "users" 
-  Address Load (0.5ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+So what are those two other methods for? First let's see them in action.
 
-
+```
+#!ruby
 User.preload(:addresses)
+#  SELECT "users".* FROM "users" 
+#  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+```
 
-2.0.0-p247 :020 >   User.preload(:addresses)
-  User Load (0.4ms)  SELECT "users".* FROM "users" 
-  Address Load (0.5ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+Apparently `#preload` behave just like `#includes`. Or is it the other way around?
 
+And as for the `#eager_load`:
 
-2.0.0-p247 :021 > User.eager_load(:addresses)
-  SQL (0.2ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
+```
+#!ruby
+User.eager_load(:addresses)
+#  SELECT
+#  "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
+#  "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
+#  FROM "users" 
+#  LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
+```
 
+It is a completely different story, isn't it? The whole mystery is that Rails
+has 2 ways of preloading data. One is using separate db queries to obtain the addtional
+data. And one is using one query (with `left join`) to get them all.
 
-#~~~
+If you use `#preload`, it means you always want separate queries. If you use
+`#eager_load` you are doing one query. So what is `#includes` for? It decides
+for you which one way it is going to be. You let Rails handle that decision.
+What is the decision based on, you might ask? It is based on query conditions.
+Let's see an example where `#includes` delegates to `#eager_load` so that there
+is one big query only.
 
+```
+#!ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland")
 User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 
-2.0.0-p247 :023 >   User.includes(:addresses).where("addresses.country = ?", "Poland")
-  SQL (0.6ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
+# SELECT 
+# "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
+# "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
+# FROM "users"
+# LEFT OUTER JOIN "addresses" 
+# ON "addresses"."user_id" = "users"."id" 
+# WHERE (addresses.country = 'Poland')
+```
+
+In the previous example Rails detected that the condition in `where` clause
+is using columns from preloaded (included) table names. So `#includes` delegates
+the job to `#eager_load`. You can always achieve the same result by using the
+`#eager_load` method directly.
 
 
-2.0.0-p247 :025 > User.preload(:addresses).where("addresses.country = ?", "Poland")
-  User Load (0.5ms)  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
-SQLite3::SQLException: no such column: addresses.country: SELECT "users".* FROM "users"  WHERE (addresses.country = 'Poland')
-ActiveRecord::StatementInvalid: SQLite3::SQLException: no such column: addresses.country: SELECT "users".* FROM "users"  WHERE (addresses.country = 'Poland')
+What happens if you instead try to use `#preload` explicitely?
 
+```
+#!ruby
+User.preload(:addresses).where("addresses.country = ?", "Poland")
+#  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
 
+#  SQLite3::SQLException: no such column: addresses.country
+```
 
-A funny thing:
+We get an exception because we haven't joined `users` table with
+`addresses` table in any way.
 
-what do you want to achieve?
+### Is this intention revealing?
 
-* Give me all users and their polish addresses.
+If you look at our example again
+
+```
+#!ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland")
+```
+
+you might wonder, what is the original intention of this code.
+What did the author mean by that? What are we trying to achieve here
+with our simple Rails code:
+
+* Give me users with polish addresses and preload only polish addresses
 * Give me users with polish addresses and preload all of their addresses
-* Give me users with polish addresses and preload only polish addresses (achieved)
+* Give me all users and their polish addresses.
+
+We can check that the basic rails way achieves ... (1)
 
 
-#~~~
 
 Give me users with polish addresses but preload all of their addresses. I need to know all addreeses of people whose at least one address is in Poland.
 
+```
 User.joins(:addresses).where("addresses.country = ?", "Poland").includes(:addresses)
 
 2.0.0-p247 :041 > r[0]
