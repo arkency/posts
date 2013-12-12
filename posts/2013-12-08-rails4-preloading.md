@@ -4,7 +4,7 @@ created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: false
 author: Robert Pankowecki
-tags: [ 'rails', 'active record', 'preloading' ]
+tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
 You are probably already familiar with the method `#includes` for eager loading
@@ -138,88 +138,177 @@ with our simple Rails code:
 * Give me users with polish addresses and preload all of their addresses
 * Give me all users and their polish addresses.
 
-We can check that the basic rails way achieves ... (1)
+Do you know which goal we achieved? The first one. Let's see if we can
+achieve the second and the third ones.
 
+## Is `#preload` any good?
 
+Our current goal: _Give me users with polish addresses but preload all of their addresses. I need to know all addreeses of people whose at least one address is in Poland._
 
-Give me users with polish addresses but preload all of their addresses. I need to know all addreeses of people whose at least one address is in Poland.
+We know that we only users with polish addresses. That itself is easy:
+`User.joins(:addresses).where("addresses.country = ?", "Poland")` and we know
+that we want to eager load the addresses so we also need `includes(:addresses)`
+part right?
 
 ```
-User.joins(:addresses).where("addresses.country = ?", "Poland").includes(:addresses)
+#!ruby
+r = User.joins(:addresses).where("addresses.country = ?", "Poland").includes(:addresses)
 
-2.0.0-p247 :041 > r[0]
- => #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24"> 
-2.0.0-p247 :042 > r[0].addresses
- => [#<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">] 
+r[0]
+#=> #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24"> 
 
-This won't work because rails automatically default to the old method.
+r[0].addresses
+# [
+#   #<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">
+# ]
+```
 
+Well, that didn't work exactly like we wanted.
+We are missing the second user address that wanted to have this time.
+Rails still detected that we are using included table in where statement
+and used `#eager_load` implementation under the hood. The only difference compared to
+previous example is that is that Rails used `INNER JOIN` instead of `LEFT JOIN`,
+but for that query it doesn't even make any difference.
 
-2.0.0-p247 :047 > r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
-  User Load (0.5ms)  SELECT "users".* FROM "users" INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
-  Address Load (0.4ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1)
- => [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">] 
-2.0.0-p247 :048 > r[0].addresses
- => [#<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">, #<Address id: 3, user_id: 1, country: "France", street: "8 rue Chambiges", postal_code: "75008", city: "Paris", created_at: "2013-12-08 11:36:30", updated_at: "2013-12-08 11:36:30">] 
+```
+#!sql
+SELECT 
+"users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
+"addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
+FROM "users"
+INNER JOIN "addresses" 
+ON "addresses"."user_id" = "users"."id" 
+WHERE (addresses.country = 'Poland')
+```
 
+This is that kind of situation where you can outsmart Rails and be explicit
+about what you want to achieve by directly calling `#preload` instead of
+`#includes`.
 
-But this does.
+```
+#!ruby
+r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
+# SELECT "users".* FROM "users" INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
+# SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1)
 
-#~~~
+r[0] 
+# [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">] 
 
-Give me all users and their polish addresses.
+r[0].addresses
+# [
+#  <Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">,
+#  <Address id: 3, user_id: 1, country: "France", street: "8 rue Chambiges", postal_code: "75008", city: "Paris", created_at: "2013-12-08 11:36:30", updated_at: "2013-12-08 11:36:30">] 
+# ]
+```
 
+This is exactly what we wanted to achieve.
+Thanks to using `#preload` we are no longer mixing which users we want to fetch
+with what data we would like to preload for them. And the queries are plain
+and simple again.
 
-To be honest, I never like loading only a subset of association. If I need that, I would add the condition to the association itself and load it.
+## Preloading subset of association
 
-User.preload(:polish_addresses)
+The goal of the next exercise is: _Give me all users and their polish addresses_.
 
-2.0.0-p247 :055 > r = User.preload(:polish_addresses)
-  User Load (0.4ms)  SELECT "users".* FROM "users" 
-  Address Load (0.5ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."country" = 'Poland' AND "addresses"."user_id" IN (1, 2)
- => [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">, #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">] 
-2.0.0-p247 :056 > r[0].polish_addresses
- => [#<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">] 
-2.0.0-p247 :057 > r[1].polish_addresses
- => [] 
+To be honest, I never like preloading only a subset of association because some
+parts of your application probably assume that it is fully loaded. It might only
+make sense if you are getting the data to display it.
 
+In such case, I would prefer to add the condition to the association itself:
 
-2.0.0-p247 :060 > r = User.eager_load(:polish_addresses)
-  SQL (0.6ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" AND "addresses"."country" = 'Poland'
- => [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">, #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">] 
-2.0.0-p247 :061 > r[0].polish_addresses
- => [#<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">] 
-2.0.0-p247 :062 > r[1].polish_addresses
- => [] 
+```
+#!ruby
+class User < ActiveRecord::Base
+  has_many :polish_addresses, conditions: {country: "Poland"}, class_name: "Address"
+end
+```
 
+And just preload it explicitely using one way:
 
-#~~~
+```
+#!ruby
+r = User.preload(:polish_addresses)
 
+# SELECT "users".* FROM "users" 
+# SELECT "addresses".* FROM "addresses" WHERE "addresses"."country" = 'Poland' AND "addresses"."user_id" IN (1, 2)
 
+r
 
+# [
+#   <User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">
+#   <User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">
+# ] 
 
+r[0].polish_addresses
 
+# [
+#   #<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">
+# ] 
 
+r[1].polish_addresses
+# [] 
+```
 
+or another:
 
+```
+#!ruby
+r = User.eager_load(:polish_addresses)
 
+# SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
+#        "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
+# FROM "users" 
+# LEFT OUTER JOIN "addresses" 
+# ON "addresses"."user_id" = "users"."id" AND "addresses"."country" = 'Poland'
 
+r
+# [
+#   #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">,
+#   #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">
+# ]
 
+r[0].polish_addresses
+# [
+#   #<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">
+# ]
 
+r[1].polish_addresses
+# []
+```
 
+What should we do when we only know at runtime about the association conditions
+that we would like to apply? I honestly don't know.
 
+## The ultimate question
 
+You might ask: _What is this stuff so hard?_ I am not sure but I think most ORMs
+are build to help you construct single query and load data from one table. With
+eager loading the situation gest more complicated and we want load multiple data
+from multiple tables with multiple conditions. Here we are using chainable API
+to build 2 or more queries (in case of using `#preload`).
 
+What kind of API would I love? I am thinking about something like:
 
+```
+#!ruby
+User.joins(:addresses).where("addresses.country = ?", "Poland").preload do |users|
+  users.preload(:addresses).where("addresses.country = ?", "Germany")
+  users.preload(:lists) do |lists|
+    lists.preload(:tasks).where("tasks.state = ?", "unfinished")
+  end
+end
+```
 
+I hope you get the idea :)
 
+## Rails 4 changes
 
-Rails 4
+Now, let's about what changed in Rails 4.
 
+```
 class User < ActiveRecord::Base
   has_many :addresses
   has_many :polish_addresses, -> {where(country: "Poland")}, class_name: "Address"
-  #attr_protected
 end
 
 
