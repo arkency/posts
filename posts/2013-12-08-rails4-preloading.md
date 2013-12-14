@@ -1,5 +1,5 @@
 ---
-title: "Rails 3 & 4 - what you need to know about preloading"
+title: "The 3 ways to do eager loading (preloading) in Rails 3 & 4"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: false
@@ -114,7 +114,7 @@ What happens if you instead try to use `#preload` explicitely?
 #!ruby
 User.preload(:addresses).where("addresses.country = ?", "Poland")
 #  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
-
+#
 #  SQLite3::SQLException: no such column: addresses.country
 ```
 
@@ -306,80 +306,189 @@ I hope you get the idea :)
 Now, let's about what changed in Rails 4.
 
 ```
+#!ruby
 class User < ActiveRecord::Base
   has_many :addresses
   has_many :polish_addresses, -> {where(country: "Poland")}, class_name: "Address"
 end
-
-
-.0.0-p247 :005 > User.includes(:addresses)
-  User Load (1.0ms)  SELECT "users".* FROM "users"
-  Address Load (0.2ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">, #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">]> 
-2.0.0-p247 :006 > User.preload(:addresses)
-  User Load (0.6ms)  SELECT "users".* FROM "users"
-  Address Load (0.5ms)  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">, #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">]> 
-2.0.0-p247 :007 > User.eager_load(:addresses)
-  SQL (0.4ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">, #<User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">]> 
-
-
-
-
-#~~~
-
-2.0.0-p247 :010 >   User.includes(:addresses).where("addresses.country = ?", "Poland")
-DEPRECATION WARNING: It looks like you are eager loading table(s) (one of: users, addresses) that are referenced in a string SQL snippet. For example: 
-
-    Post.includes(:comments).where("comments.title = 'foo'")
-
-Currently, Active Record recognizes the table in the string, and knows to JOIN the comments table to the query, rather than loading comments in a separate query. However, doing this without writing a full-blown SQL parser is inherently flawed. Since we don't want to write an SQL parser, we are removing this functionality. From now on, you must explicitly tell Active Record when you are referencing a table from a string:
-
-    Post.includes(:comments).where("comments.title = 'foo'").references(:comments)
-
-If you don't rely on implicit join references you can disable the feature entirely by setting `config.active_record.disable_implicit_join_references = true`. (called from block in <module:IRB> at /home/paneq/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/irb/inspector.rb:122)
-  SQL (0.7ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">]> 
-2.0.0-p247 :011 > User.eager_load(:addresses).where("addresses.country = ?", "Poland")
-  SQL (0.7ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">]> 
-
-
-
-
-
-2.0.0-p247 :016 >   User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
-  SQL (0.7ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">]> 
-2.0.0-p247 :017 > r = User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
-  SQL (0.8ms)  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
- => #<ActiveRecord::Relation [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">]> 
-2.0.0-p247 :018 > r[0]
- => #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24"> 
-2.0.0-p247 :019 > r[0].addresses
- => #<ActiveRecord::Associations::CollectionProxy [#<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">]> 
-
-
-#~~~
-
-2.0.0-p247 :021 >   User.preload(:addresses).where("addresses.country = ?", "Poland")
-  User Load (0.7ms)  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
-SQLite3::SQLException: no such column: addresses.country: SELECT "users".* FROM "users"  WHERE (addresses.country = 'Poland')
-ActiveRecord::StatementInvalid: SQLite3::SQLException: no such column: addresses.country: SELECT "users".* FROM "users"  WHERE (addresses.country = 'Poland')
-
-
-
-what do you want to achieve?
-
-* Give me all users and their polish addresses.
-* Give me users with polish addresses and preload all of their addresses
-* Give me users with polish addresses and preload only polish addresses (achieved before)
-
-
-* Give me users with polish addresses and preload all of their addresses
-r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
-
-* Give me all users and their polish addresses.
-r = User.preload(:polish_addresses)
 ```
+
+Rails now encourages you to use the new Proc syntax for defining association
+conditions. This is very good because I have seen many times errors in that
+area where the condition were interpreted only once when the class was loaded.
+
+It is the same way you are encouraged to use lambda syntax or method syntax to
+express scope conditions.
+
+```
+#!ruby
+# Bad, Time.now would be always the time when the class was loaded
+# You might not even spot the bug in development because classes are
+# automatically reloaded for you after changes.
+scope :from_the_past, where("happens_at <= ?", Time.now) 
+
+# OK
+scope :from_the_past, -> { where("happens_at <= ?", Time.now) }
+
+# OK
+def self.from_the_past # OK
+  where("happens_at <= ?", Time.now)
+end
+```
+
+In our case the condition is always the same, no matter wheter interpreted
+dynamically or once at the beginning. But it is good that rails is trying to
+make the syntax coherent in both cases (association and scope conditions)
+and protect us from the such kind of bugs.
+
+Now that we have the syntax changes in place, we can check for any differences
+in the behavior.
+
+```
+#!ruby
+User.includes(:addresses)
+#  SELECT "users".* FROM "users"
+#  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+
+User.preload(:addresses)
+#  SELECT "users".* FROM "users"
+#  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
+
+User.eager_load(:addresses)
+#  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
+#         "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
+#  FROM "users" 
+#  LEFT OUTER JOIN "addresses" 
+#  ON "addresses"."user_id" = "users"."id"
+```
+
+Well, this looks pretty much the same. No surprise here.
+Let's add the condition that caused us so much trouble before:
+
+```
+#!ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland")
+
+#DEPRECATION WARNING: It looks like you are eager loading table(s)
+# (one of: users, addresses) that are referenced in a string SQL
+# snippet. For example: 
+#
+#    Post.includes(:comments).where("comments.title = 'foo'")
+#
+# Currently, Active Record recognizes the table in the string, and knows
+# to JOIN the comments table to the query, rather than loading comments
+# in a separate query. However, doing this without writing a full-blown
+# SQL parser is inherently flawed. Since we don't want to write an SQL
+# parser, we are removing this functionality. From now on, you must explicitly
+# tell Active Record when you are referencing a table from a string:
+#
+#   Post.includes(:comments).where("comments.title = 'foo'").references(:comments)
+# 
+# If you don't rely on implicit join references you can disable the
+# feature entirely by setting `config.active_record.disable_implicit_join_references = true`. (
+
+# SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
+#        "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
+# FROM "users" 
+# LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
+# WHERE (addresses.country = 'Poland')
+```
+
+Wow, now that is quite a verbose deprection :) I recommend that you read
+it all because it explains the situation quite accuratelly.
+
+In other words, because Rails does not want to be super smart anymore and
+spy on our `where` conditions to detect which algorithm to use, it expects
+our help. We must tell it that there is condition for one of the tables.
+Like that:
+
+```
+#!ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
+```
+
+I was wondering what would happen if we try to preload more tables but
+reference only one of them:
+
+```
+#!ruby
+User.includes(:addresses, :places).where("addresses.country = ?", "Poland").references(:addresses)
+
+#  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
+#         "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7,
+#         "places"."id" AS t2_r0, "places"."user_id" AS t2_r1, "places"."name" AS t2_r2, "places"."created_at" AS t2_r3, "places"."updated_at" AS t2_r4 
+#  FROM "users" 
+#  LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
+#  LEFT OUTER JOIN "places" ON "places"."user_id" = "users"."id" 
+#  WHERE (addresses.country = 'Poland')
+```
+
+I imagined that `addresses` would be loaded using the `#eager_load`
+algorithm (by doing `LEFT JOIN`) and `places` would be loaded using
+the `#preload` algorithm (by doing separate query to get them) but
+as you can see that's not the case. Maybe they will change the
+behavior in the future.
+
+Rails 4 does not warn you to use the `#references` method if you 
+explicitely use `#eager_load` to get the data and the executed
+query is identical:
+
+```
+#!ruby
+User.eager_load(:addresses).where("addresses.country = ?", "Poland")
+```
+
+In other words, these two are the same:
+
+```
+#!ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
+User.eager_load(:addresses).where("addresses.country = ?", "Poland")
+```
+
+And if you try to use `#preload`, you still get the same exception:
+
+```
+#!ruby
+User.preload(:addresses).where("addresses.country = ?", "Poland")
+#  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
+#
+#  SQLite3::SQLException: no such column: addresses.country: SELECT "users".* FROM "users"  WHERE (addresses.country = 'Poland')
+```
+
+If you try to use the other queries that I showed you, they still work
+the same in Rails 4:
+
+```
+#!ruby
+# Give me users with polish addresses and preload all of their addresses
+User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
+
+#Give me all users and their polish addresses.
+User.preload(:polish_addresses)
+```
+
+## Summary
+
+There are 3 ways to do eager loading in Rails:
+
+* `#includes`
+* `#preload`
+* `#eager_load`
+
+`#includes` delegates the job to `#preload` or `#eager_load` depending on the
+presence or absence of condition related to one of the preloaded table.
+
+`#preload` is usining separate DB queries to get the data.
+
+`#eager_load` is using one big query with `LEFT JOIN` for every eager loaded
+table.
+
+In Rails 4 you should use `#references` combined with `#includes` if you
+have the additional condition for one of the eager loaded table.
+
+## Personal opinion
+
+I personally try to always use `#preload` explicitely 
+
+TODO: Tell more why. Link to documentation
