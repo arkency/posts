@@ -2,8 +2,9 @@
 title: "The 3 ways to do eager loading (preloading) in Rails 3 & 4"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
+newsletter: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
@@ -83,8 +84,8 @@ data. And one is using one query (with `left join`) to get them all.
 
 If you use `#preload`, it means you always want separate queries. If you use
 `#eager_load` you are doing one query. So what is `#includes` for? It decides
-for you which one way it is going to be. You let Rails handle that decision.
-What is the decision based on, you might ask? It is based on query conditions.
+for you which way it is going to be. You let Rails handle that decision.
+What is the decision based on, you might ask. It is based on query conditions.
 Let's see an example where `#includes` delegates to `#eager_load` so that there
 is one big query only.
 
@@ -121,7 +122,7 @@ User.preload(:addresses).where("addresses.country = ?", "Poland")
 We get an exception because we haven't joined `users` table with
 `addresses` table in any way.
 
-### Is this intention revealing?
+## Is this intention revealing?
 
 If you look at our example again
 
@@ -164,7 +165,7 @@ r[0].addresses
 ```
 
 Well, that didn't work exactly like we wanted.
-We are missing the second user address that wanted to have this time.
+We are missing the user's second address that wanted to have this time.
 Rails still detected that we are using included table in where statement
 and used `#eager_load` implementation under the hood. The only difference compared to
 previous example is that is that Rails used `INNER JOIN` instead of `LEFT JOIN`,
@@ -303,7 +304,7 @@ I hope you get the idea :)
 
 ## Rails 4 changes
 
-Now, let's about what changed in Rails 4.
+Now, let's talk about what changed in Rails 4.
 
 ```
 #!ruby
@@ -331,12 +332,12 @@ scope :from_the_past, where("happens_at <= ?", Time.now)
 scope :from_the_past, -> { where("happens_at <= ?", Time.now) }
 
 # OK
-def self.from_the_past # OK
+def self.from_the_past
   where("happens_at <= ?", Time.now)
 end
 ```
 
-In our case the condition is always the same, no matter wheter interpreted
+In our case the condition `where(country: "Poland")` is always the same, no matter wheter interpreted
 dynamically or once at the beginning. But it is good that rails is trying to
 make the syntax coherent in both cases (association and scope conditions)
 and protect us from the such kind of bugs.
@@ -457,7 +458,7 @@ User.preload(:addresses).where("addresses.country = ?", "Poland")
 ```
 
 If you try to use the other queries that I showed you, they still work
-the same in Rails 4:
+the same way in Rails 4:
 
 ```
 #!ruby
@@ -467,6 +468,13 @@ User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:address
 #Give me all users and their polish addresses.
 User.preload(:polish_addresses)
 ```
+
+Finally in Rails 4 there is at least some documentation for the methods,
+which Rails 3 has been missing for years:
+
+* [`#includes`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-includes)
+* [`#preload`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-preload)
+* [`#eager_load`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-eager_load)
 
 ## Summary
 
@@ -479,16 +487,17 @@ There are 3 ways to do eager loading in Rails:
 `#includes` delegates the job to `#preload` or `#eager_load` depending on the
 presence or absence of condition related to one of the preloaded table.
 
-`#preload` is usining separate DB queries to get the data.
+`#preload` is using separate DB queries to get the data.
 
-`#eager_load` is using one big query with `LEFT JOIN` for every eager loaded
+`#eager_load` is using one big query with `LEFT JOIN` for each eager loaded
 table.
 
 In Rails 4 you should use `#references` combined with `#includes` if you
 have the additional condition for one of the eager loaded table.
 
-## Personal opinion
+## Don't miss our next blog post
 
-I personally try to always use `#preload` explicitely 
-
-TODO: Tell more why. Link to documentation
+If you enjoyed the article, you can subscribe below so that you are always
+the first one to get the knowledge that you might find useful in your
+everyday programmer job. Content is mostly focused on (but not limited to)
+Rails, Webdevelopment and Agile.
