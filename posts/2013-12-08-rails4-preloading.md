@@ -8,6 +8,8 @@ newsletter: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
+<img src="/assets/images/preloading/header.png" width="100%">
+
 You are probably already familiar with the method `#includes` for eager loading
 data from database if you are using Rails and ActiveRecord. But do you know
 about `#preload` and `#eager_load` which can help you achieve the same goal?
