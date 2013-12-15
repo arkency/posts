@@ -2,7 +2,7 @@
 title: "The 3 ways to do eager loading (preloading) in Rails 3 & 4"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
-publish: true
+publish: false
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
