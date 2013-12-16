@@ -94,4 +94,5 @@ They will be similar in form to this blogpost.
 * [Story of size 1](/2013/09/story-of-size-1/)
 * [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
 * [Take the first task](/2013/10/take-the-first-task/)
-* [What our new book is all about](/2013/10/what-our-new-book-is-all-about/)
+* [Chronos vs Kairos: Find out how you think about time when working on a project](/2013/11/chronos-and-kairos/)
+* [Developers oriented project management](/developers-oriented-project-management/)
