@@ -115,7 +115,7 @@ the job to `#eager_load`. You can always achieve the same result by using the
 `#eager_load` method directly.
 
 
-What happens if you instead try to use `#preload` explicitely?
+What happens if you instead try to use `#preload` explicitly?
 
 ```
 #!ruby
