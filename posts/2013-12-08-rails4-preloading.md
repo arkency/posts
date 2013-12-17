@@ -1,8 +1,8 @@
 ---
-title: "The 3 ways to do eager loading (preloading) in Rails 3 & 4"
+title: "3 ways to do eager loading (preloading) in Rails 3 & 4"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
@@ -11,10 +11,13 @@ tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 <img src="/assets/images/preloading/header.png" width="100%">
 
 You are probably already familiar with the method `#includes` for eager loading
-data from database if you are using Rails and ActiveRecord. But do you know
+data from database if you are using Rails and ActiveRecord. 
+But do you know why you someties get few small and nice SQL queries and sometimes
+one giant query with every table and column renamed? And do you know
 about `#preload` and `#eager_load` which can help you achieve the same goal?
-And you know what changed in Rails 4 in that matter? If not, sit down and
-listen. This lesson won't take long.
+Are you aware of what changed in Rails 4 in that matter? If not, sit down and
+listen. This lesson won't take long and will help you clarify some aspects
+of eager loading that you might not be yet familiar with.
 
 <!-- more -->
 
@@ -67,6 +70,7 @@ User.preload(:addresses)
 ```
 
 Apparently `#preload` behave just like `#includes`. Or is it the other way around?
+Keep reading to find out.
 
 And as for the `#eager_load`:
 
@@ -105,7 +109,7 @@ User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 # WHERE (addresses.country = 'Poland')
 ```
 
-In the previous example Rails detected that the condition in `where` clause
+In the last example Rails detected that the condition in `where` clause
 is using columns from preloaded (included) table names. So `#includes` delegates
 the job to `#eager_load`. You can always achieve the same result by using the
 `#eager_load` method directly.
@@ -148,7 +152,7 @@ achieve the second and the third ones.
 
 Our current goal: _Give me users with polish addresses but preload all of their addresses. I need to know all addreeses of people whose at least one address is in Poland._
 
-We know that we only users with polish addresses. That itself is easy:
+We know that we need only users with polish addresses. That itself is easy:
 `User.joins(:addresses).where("addresses.country = ?", "Poland")` and we know
 that we want to eager load the addresses so we also need `includes(:addresses)`
 part right?
@@ -167,7 +171,7 @@ r[0].addresses
 ```
 
 Well, that didn't work exactly like we wanted.
-We are missing the user's second address that wanted to have this time.
+We are missing the user's second address that expected to have this time.
 Rails still detected that we are using included table in where statement
 and used `#eager_load` implementation under the hood. The only difference compared to
 previous example is that is that Rails used `INNER JOIN` instead of `LEFT JOIN`,
@@ -191,7 +195,10 @@ about what you want to achieve by directly calling `#preload` instead of
 ```
 #!ruby
 r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
-# SELECT "users".* FROM "users" INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland')
+# SELECT "users".* FROM "users" 
+# INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
+# WHERE (addresses.country = 'Poland')
+
 # SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1)
 
 r[0] 
@@ -217,11 +224,12 @@ To be honest, I never like preloading only a subset of association because some
 parts of your application probably assume that it is fully loaded. It might only
 make sense if you are getting the data to display it.
 
-In such case, I would prefer to add the condition to the association itself:
+I prefer to add the condition to the association itself:
 
 ```
 #!ruby
 class User < ActiveRecord::Base
+  has_many :addresses
   has_many :polish_addresses, conditions: {country: "Poland"}, class_name: "Address"
 end
 ```
@@ -280,14 +288,15 @@ r[1].polish_addresses
 ```
 
 What should we do when we only know at runtime about the association conditions
-that we would like to apply? I honestly don't know.
+that we would like to apply? I honestly don't know. Please tell me in the
+comments if you found it out.
 
 ## The ultimate question
 
 You might ask: _What is this stuff so hard?_ I am not sure but I think most ORMs
 are build to help you construct single query and load data from one table. With
 eager loading the situation gest more complicated and we want load multiple data
-from multiple tables with multiple conditions. Here we are using chainable API
+from multiple tables with multiple conditions. In Rails we are using chainable API
 to build 2 or more queries (in case of using `#preload`).
 
 What kind of API would I love? I am thinking about something like:
@@ -302,11 +311,11 @@ User.joins(:addresses).where("addresses.country = ?", "Poland").preload do |user
 end
 ```
 
-I hope you get the idea :)
+I hope you get the idea :) But this is just a dream. Let's get back to reality...
 
 ## Rails 4 changes
 
-Now, let's talk about what changed in Rails 4.
+... and talk about what changed in Rails 4.
 
 ```
 #!ruby
@@ -316,7 +325,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-Rails now encourages you to use the new Proc syntax for defining association
+Rails now encourages you to use the new lambda syntax for defining association
 conditions. This is very good because I have seen many times errors in that
 area where the condition were interpreted only once when the class was loaded.
 
