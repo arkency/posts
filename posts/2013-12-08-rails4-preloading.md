@@ -1,5 +1,5 @@
 ---
-title: "3 ways to do eager loading (preloading) in Rails 3 & 4"
+title: "3 ways to do eager loading (preloading) in Rails&nbsp;3&nbsp;&&nbsp;4"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: true
