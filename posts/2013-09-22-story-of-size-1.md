@@ -8,6 +8,8 @@ newsletter: :effective_guide
 tags: [ 'story', 'size', 'one', 'remote', 'work', 'project', 'management' ]
 ---
 
+<img src="/assets/images/story-1/full.png" width="100%">
+
 In one of our projects we decided to try a lot of new things in the area of
 project management. One of the most beneficial change that I noticed was using very,
 very small task as the primary tool to assign and track work.
