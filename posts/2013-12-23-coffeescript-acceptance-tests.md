@@ -1,12 +1,14 @@
 ---
 title: "CoffeeScript acceptance tests"
-created_at: 2013-12-20 09:06:29 +0200
+created_at: 2013-12-23 15:00:00 +0200
 kind: article
-publish: false
+publish: true
 author: Jan Filipowski
 newsletter: :cs_testing
 tags: [ 'TDD', 'ATDD', 'CoffeeScript' ]
 ---
+
+<img src="/assets/images/coffee-acceptance/coffeescript_acceptance_tests.png" width="100%">
 
 You've already learned how to implement simple model and view tests, so as I promised now I'll show you how you can introduce acceptance tests on client-side. We're not too far from this goal - you know how to write test cases, make assertions and "click through DOM". Let's apply some abstraction then - to look at our app like the end user.
 
@@ -21,13 +23,13 @@ First let's think what our application really is - it could be single page app t
 3. **independent start-up** - it can render itself and load all initial data
 4. **own data source** - it has an access to storage - through AJAX calls, LocalStorage etc.
 
-If you go with the approach presented in [Testing client-side views in Rails app](http://blog.arkency.com/2013/09/testing-client-side-views-in-rails-apps/) you should be able to extract widget you've found - for a moment you can just assume it's a huge view with a state and access to external services (called "big ball of mud"). You know how to unit test the view, even if the unit is so big. The job is to handle external services interactions with mocks and write tests as scenarios using higher-level language.
+If you go with the approach presented in [Testing client-side views in Rails app](/2013/09/testing-client-side-views-in-rails-apps/) you should be able to extract widget you've found - for a moment you can just assume it's a huge view with a state and access to external services (called "big ball of mud"). You know how to unit test the view, even if the unit is so big. The job is to handle external services interactions with mocks and write tests as scenarios using higher-level language.
 
 ## External services
 
 Your application may use backend via AJAX, WebSockets or external library with backend - like Facebook's JS SDK. You may try to use real data sources, but it will be hard - if you use konacha gem you won't have easy access to your backend, it won't be easy to clear state on backend or in external service. So it will be easier to just mock them - it violates end-to-end testing principles, but I didn't find better way yet.
 
-Please remember that there might be external services with easy access from DOM - like LocalStorage, Web Audio API - some of them could be used directly with no need to mock them, but you still could need to mock other - i. e. if you don't want to hear the sound when testing application which uses Web Audio API.
+Please remember that there might be external services with easy access from DOM - like LocalStorage, Web Audio API - some of them could be used directly with no need to mock them, but you still might need to mock other - i. e. if you don't want to hear the sound when testing application which uses Web Audio API.
 
 ## Test scenarios
 
