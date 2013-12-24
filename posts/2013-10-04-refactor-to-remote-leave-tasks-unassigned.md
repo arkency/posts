@@ -92,7 +92,7 @@ prorities which you do for everything anyway.
 There is more beyond what we wrote in this article. Find out in our 
 _<%= landing_link() %>_ ebook
 that we will be releasing soon
-or by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+or by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 The newsletter will also containt exclusive content from the book that is
 not published on the blog.
@@ -100,7 +100,7 @@ not published on the blog.
 ### In next episode
 
 The next blog post will be about _Collective Ownership_ and what it has in
-common with the techniques that we already described. [Subscribe](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+common with the techniques that we already described. [Subscribe](<%= aar_newsletter_subscription_link %>)
 to make sure you do not miss it.
 
 ### What is your opinion

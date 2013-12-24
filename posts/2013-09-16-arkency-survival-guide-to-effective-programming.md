@@ -88,4 +88,4 @@ The final release is planned around the end of the year.
 ## or not
 
 If you are not sure yet, but want to receive tips and excerpts from our upcoming
-book, just [subscribe to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f) below.
+book, just [subscribe to the newsletter](<%= aar_newsletter_subscription_link %>) below.

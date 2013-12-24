@@ -135,7 +135,3 @@ or subscribe to RSS feed so you do not miss it. In the last episode I am going
 to cover `Rails.queue` which will be released in the upcoming Rails 4 version
 as well as using external queues. Also I want to write a simple summary of all
 approaches that will help you visualize them as variants of one simple pattern.
-
-You may be wondering why I'm writing about it. This is a part of research for our
-new exciting product. [Sign up](http://eepurl.com/qHcUT) to be the first to know
-more about what we're doing.

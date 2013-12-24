@@ -47,14 +47,14 @@ Get it done, deliver on production and forget about it.
 
 You can find out more in the upcoming beta version of our
 _<%= landing_link() %>_
-or if you are not sure yet, by [subscribing to the newsletter](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 
 ### In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
 and what are the alternatives to hiring them. 
-[Subscribe](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=aed2a3766f)
+[Subscribe](<%= aar_newsletter_subscription_link %>)
 to be notified when it is out.
 
 ### How about you?
