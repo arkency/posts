@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'architecture', 'rails', 'service', 'multiapp', 'soa' ]
+newsletter: :arkency_form
 ---
 
 Developing complex web applications (not particularly Rails apps) is a tricky
