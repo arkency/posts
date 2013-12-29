@@ -284,7 +284,7 @@ Also, Clean Architecture is a great start to organize monolithic app to create a
 
 ## Conclusion
 
-Software oriented architecture can be a great alternative for maintaining a big,
+Service oriented architecture can be a great alternative for maintaining a big,
 complex singular application. When we were developing chillout we had lots of fun
 with this kind of architecture - features adding were simple, tests were quick
 and thinking about an application was simpler.
