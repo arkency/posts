@@ -40,15 +40,15 @@ e = [1,2,3].each
 You can manually fetch new elemens:
 
 ```
+#!ruby
 e.next
 # => 1 
 
 e.next
-
 # => 2 
 
-# e.next
-=> 3 
+e.next
+#=> 3 
 
 e.next
 # StopIteration: iteration reached an end
@@ -73,23 +73,35 @@ There are 3 ways to create your own `Enumerator`:
 * `Kernel#enum_for`
 * `Enumerator.new`
 
-### `to_enum` & `enum_for`
-
-Same thing:
-
-* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L1994
-* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L2021
-
-void
-InitVM_Enumerator(void)
-{
-    rb_define_method(rb_mKernel, "to_enum", obj_to_enum, -1);
-    rb_define_method(rb_mKernel, "enum_for", obj_to_enum, -1);
+But if you look into MRI implemention you will notice that both `#to_enum` and
+`#enum_for` are implemented in the same way:
 
 
+```
+#!cpp
+rb_define_method(rb_mKernel, "to_enum", obj_to_enum, -1);
+rb_define_method(rb_mKernel, "enum_for", obj_to_enum, -1);
 
-   rb_define_method(rb_cLazy, "to_enum", lazy_to_enum, -1);
-    rb_define_method(rb_cLazy, "enum_for", lazy_to_enum, -1);
+rb_define_method(rb_cLazy, "to_enum", lazy_to_enum, -1);
+rb_define_method(rb_cLazy, "enum_for", lazy_to_enum, -1);
+```
+
+You can check it out here:
+
+* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L1994-1995
+* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L2021-2022
+
+And if you look into rubyspec you will also notice that they are supposed to
+have identicial behavior, so I guess currently there is really no difference
+between them
+
+* https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/to_enum_spec.rb#L7
+* https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/enum_for_spec.rb#7
+
+Therfore whenever you see an example using one of them, you can just substitue
+it with the other.
+
+## `#to_enum` & `#enum_for`
 
 ```
 #!ruby
