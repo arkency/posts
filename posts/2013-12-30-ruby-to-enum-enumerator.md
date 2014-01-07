@@ -1,5 +1,5 @@
 ---
-title: "ruby to enum enumerator"
+title: "Don't be Enumerable, return enumerable Enumerator"
 created_at: 2013-12-30 17:22:14 +0100
 kind: article
 publish: false
