@@ -22,8 +22,8 @@ those who need to call one of the many useful `Enumerable` methods on the
 collection. I think that we need to ask ourselves a question: _Is that class a
 collection?_. If it really is then it absolutely makes sense to
 `include Enumerable`. If however it is not a collection, but rather a class
-which happens contain something else, well then maybe external `Enumerator`
-is your solution.
+which happens contain something else, or providing a collection,
+well then maybe external `Enumerator` is your solution.
 
 ## Standard library
 
@@ -103,12 +103,58 @@ it with the other.
 
 ## `#to_enum` & `#enum_for`
 
+What can `#to_enum` & `#enum_for` do for you? Well, they can create the
+`Enumerator` based on any method which `yield`s arguments. Usually
+the convention is to create the `Enumerator` based on method `#each`
+(no surprise here).
+
 ```
 #!ruby
 a = [1,2,3]
-e = a.to_enum(:each)
+enumerator = a.to_enum(:each)
 ```
 
-## Your library
+We will see it in action later in the post.
 
-If you want to pr
+## `Enumerator.new`
+
+This way (contrary to the previous) has a [nice documentation in Ruby doc](http://www.ruby-doc.org/core-2.1.0/Enumerator.html#method-c-new)
+which I am just gonna paste here:
+
+_Iteration is defined by the given block, in which a “yielder” object, given as block parameter, can be used to yield a value_:
+
+```
+#!ruby
+fib = Enumerator.new do |y|
+  a = b = 1
+  loop do
+    y << a
+    a, b = b, a + b
+  end
+end
+
+fib.take(10) # => [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+```
+
+_The optional parameter can be used to specify how to calculate the size in a lazy fashion. It can either be a value or a callable object._
+
+Here is my example:
+
+```
+#!ruby
+polish_postal_codes = Enumerator.new(100_000) do |y|
+  100_000.times.each do |number|
+    code    = sprintf("%05d", number)
+    code[1] = code[1] + "-"
+    y.yield(code)
+  end
+end
+
+polish_postal_codes.size    # => 100000
+polish_postal_codes.take(3) # => ["00-000", "00-001", "00-002"]
+```
+
+
+## What's in it for you, for your code
+
+TODO: That's what I need to finish. Probably based on: https://gist.github.com/paneq/a11bb2e4453e43ae06c7#file-fee-rb-L53
