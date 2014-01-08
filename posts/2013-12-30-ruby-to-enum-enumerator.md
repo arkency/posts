@@ -1,5 +1,5 @@
 ---
-title: "Don't be Enumerable, return enumerable Enumerator"
+title: "Don't be Enumerable, just return Enumerator"
 created_at: 2013-12-30 17:22:14 +0100
 kind: article
 publish: false
@@ -155,7 +155,90 @@ polish_postal_codes.size    # => 100000
 polish_postal_codes.take(3) # => ["00-000", "00-001", "00-002"]
 ```
 
+## Why?
 
-## What's in it for you, for your code
+Of course returning `Enumerator` makes most sense when returning collection
+would be inconvinient or impossible due to performance reasons, like
+[IO#each_byte](http://www.ruby-doc.org/core-2.1.0/IO.html#method-i-each_byte) or
+[IO#each_char](http://www.ruby-doc.org/core-2.1.0/IO.html#method-i-each_char).
 
-TODO: That's what I need to finish. Probably based on: https://gist.github.com/paneq/a11bb2e4453e43ae06c7#file-fee-rb-L53
+## What do you need to remember?
+
+Not much actually. Whenever your method `yield`s values, just use `#to_enum`
+(or `#enum_for` as you already know there are identical) to create
+`Enumerator` based on the method itself, if block code is not provided.
+Sounds complicated? It is not. Have a look at the example.
+
+```
+#!ruby
+require 'digest/md5'
+
+class UsersWithGravatar
+  def each
+    return enum_for(:each) unless block_given?
+
+    User.all.find_each do |user|
+      hash  = Digest::MD5.hexdigest(user.email)
+      image = "http://www.gravatar.com/avatar/#{hash}"
+      yield user unless Net::HTTP.get_response(URI.parse(image)).body == missing_avatar
+    end
+  end
+
+
+  private
+
+  def missing_avatar
+    @missing_avatar ||= begin
+      image_url = "http://www.gravatar.com/avatar/fake"
+      Net::HTTP.get_response(URI.parse(image_src)).body
+    end
+  end
+end
+```
+
+We are working in super startup having milions of users. And thousands of them can
+have gravatar. We would prefer not to return them all in an array right? No problem.
+Thanks to our magic oneliner `return enum_for(:each) unless block_given?` we can
+share the collection without computing all the data.
+
+This might be really usefull, especially when the caller does not need to have it all:
+
+```
+#!ruby
+class PutUsersWithAvatarsOnFrontPage
+  def users
+    @users ||= UsersWithGravatar.new.each.take(20)
+  end
+end
+```
+
+Or when the caller wants to be a bit [`#lazy`](http://ruby-doc.org/core-2.1.0/Enumerable.html#method-i-lazy) :
+
+```
+#!ruby
+UsersWithGravatar.
+  new.
+  each.
+  lazy.
+  select{|user| FacebookFriends.new(user).has_more_than?(10) }.
+  and_what_not # ...
+```
+
+Did i just say `lazy`? I think I should stop here now, because that is a completely
+different [story](http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-can-be-lazy).
+
+## TLDR
+
+To be consistent with Ruby Standard Library behavior, please return
+`Enumerator` for your `yield`ing methods when block is not provided. Use this code 
+
+```
+#!ruby
+return enum_for(:your_method_name_which_is_usually_each) unless block_given?`
+````
+
+to just do that.
+
+Your class don't need to be `Enumerable`. It's ok if it just returns `Enumerator`.
+
+## TODO: Newsletter and stuff
