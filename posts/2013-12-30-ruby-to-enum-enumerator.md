@@ -5,6 +5,7 @@ kind: article
 publish: false
 author: Robert Pankowecki
 tags: [ 'ruby', 'to_enum', 'enumerator', 'enumerable' ]
+newsletter: :arkency_form
 ---
 
 Many times I have seen people including `Enumerable` module into their
