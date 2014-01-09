@@ -1,6 +1,6 @@
 ---
 title: "37 signals was not lying, you win by being remote"
-created_at: 2014-01-07 19:15:00 +0100
+created_at: 2014-01-09 12:21:00 +0100
 kind: article
 publish: true
 author: Szymon Fiedler

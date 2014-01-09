@@ -1,6 +1,6 @@
 ---
 title: "Stop including Enumerable, return Enumerator instead"
-created_at: 2013-12-30 17:22:14 +0100
+created_at: 2014-01-08 17:22:14 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
