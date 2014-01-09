@@ -1,12 +1,14 @@
 ---
-title: "Don't be Enumerable, just return Enumerator"
+title: "Stop including Enumerable, return Enumerator instead"
 created_at: 2013-12-30 17:22:14 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'to_enum', 'enumerator', 'enumerable' ]
 newsletter: :arkency_form
 ---
+
+<img src="/assets/images/enumerator/each.png" width="100%">
 
 Many times I have seen people including `Enumerable` module into their
 classes. But I cannot stop thinking that in many cases having methods
@@ -89,15 +91,15 @@ rb_define_method(rb_cLazy, "enum_for", lazy_to_enum, -1);
 
 You can check it out here:
 
-* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L1994-1995
-* https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L2021-2022
+* [enumerator.c#L1994-1995](https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L1994-1995)
+* [enumerator.c#L2021-2022](https://github.com/ruby/ruby/blob/520f0fec9519647e8ae1dfc15756b537fe580d6e/enumerator.c#L2021-2022)
 
 And if you look into rubyspec you will also notice that they are supposed to
 have identicial behavior, so I guess currently there is really no difference
 between them
 
-* https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/to_enum_spec.rb#L7
-* https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/enum_for_spec.rb#7
+* [to\_enum\_spec.rb#L7](https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/to_enum_spec.rb#L7)
+* [enum\_for\_spec.rb#7](https://github.com/rubyspec/rubyspec/blob/7fb7465aac1ec8e2beffdfa9053758fa39b443a5/core/enumerator/enum_for_spec.rb#7)
 
 Therfore whenever you see an example using one of them, you can just substitue
 it with the other.
@@ -144,20 +146,23 @@ Here is my example:
 ```
 #!ruby
 polish_postal_codes = Enumerator.new(100_000) do |y|
-  100_000.times.each do |number|
+  100_000.times do |number|
     code    = sprintf("%05d", number)
     code[1] = code[1] + "-"
     y.yield(code)
   end
 end
 
-polish_postal_codes.size    # => 100000
+polish_postal_codes.size    # => 100000 
+                            # returned without computing
+                            # all elements
+
 polish_postal_codes.take(3) # => ["00-000", "00-001", "00-002"]
 ```
 
 ## Why?
 
-Of course returning `Enumerator` makes most sense when returning collection
+Of course returning `Enumerator` makes most sense when returning collection (such as `Array`)
 would be inconvinient or impossible due to performance reasons, like
 [IO#each_byte](http://www.ruby-doc.org/core-2.1.0/IO.html#method-i-each_byte) or
 [IO#each_char](http://www.ruby-doc.org/core-2.1.0/IO.html#method-i-each_char).
@@ -175,7 +180,7 @@ require 'digest/md5'
 
 class UsersWithGravatar
   def each
-    return enum_for(:each) unless block_given?
+    return enum_for(:each) unless block_given? # Sparkling magic!
 
     User.all.find_each do |user|
       hash  = Digest::MD5.hexdigest(user.email)
@@ -239,6 +244,15 @@ return enum_for(:your_method_name_which_is_usually_each) unless block_given?`
 
 to just do that.
 
-Your class don't need to be `Enumerable`. It's ok if it just returns `Enumerator`.
+Your class does not always need to be `Enumerable`. It is ok if it just
+returns `Enumerator`.
 
-## TODO: Newsletter and stuff
+## Don't miss our next blog post
+
+If you enjoyed the article, 
+[follow us on Twitter](https://twitter.com/arkency)
+[and Facebook](https://www.facebook.com/pages/Arkency/107636559305814), 
+or subscribe to our newsletter below so that you are always
+the first one to get the knowledge that you might find useful in your
+everyday programmer job. Content is mostly focused on (but not limited to)
+Rails, Webdevelopment and Agile.
