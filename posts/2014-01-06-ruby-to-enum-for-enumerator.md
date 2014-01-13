@@ -182,7 +182,7 @@ class UsersWithGravatar
   def each
     return enum_for(:each) unless block_given? # Sparkling magic!
 
-    User.all.find_each do |user|
+    User.find_each do |user|
       hash  = Digest::MD5.hexdigest(user.email)
       image = "http://www.gravatar.com/avatar/#{hash}"
       yield user unless Net::HTTP.get_response(URI.parse(image)).body == missing_avatar
