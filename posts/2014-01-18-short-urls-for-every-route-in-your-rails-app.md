@@ -1,0 +1,310 @@
+---
+title: "Pretty, short urls for every route in your Rails app"
+created_at: 2014-01-18 14:41:04 +0100
+kind: article
+publish: false
+author: Robert Pankowecki
+newsletter: :arkency_form_short_urls
+tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
+---
+
+<img src="/assets/images/short-urls/bench.jpg" width="100%">
+
+One of our recent project had the requirement so that admins are be able to generate
+short top level urls (like `/cool`) for every page in our system. Basically a
+url shortening service inside our app. This might be especially usefull in your app
+if those urls are meant to appear in printed materials (like `/productName` or
+`/awesomePromotion`). Let's see what choices we have in our Rails routing.
+
+<!-- more -->
+
+## Top level routing for multiple resources
+
+If your requirements are less strict, you might be in a better position to use a
+simpler solution. Let's say that your current routing rules are like:
+
+```
+#!ruby
+resources :authors
+resources :posts
+
+#author GET    /authors/:id(.:format)      authors#show
+#  post GET    /posts/:id(.:format)        posts#show
+```
+
+We assume that `:id` might be either resource _id_ or its _slug_ and you
+handle that in your controller (using friendly_id gem or whatever other
+solution you use).
+
+And you would like to add route like:
+
+```
+#!ruby
+match '/:slug'
+```
+
+that would either route to `AuthorsController` or `PostController` depending on
+what the slug points to. Well, you can solve this problem with constraints.
+
+```
+#!ruby
+class AuthorUrlConstrainer
+  def matches?(request)
+    id = request.path.gsub("/", "")
+    Author.find_by_slug(id)
+  end
+end
+
+constraints(AuthorUrlConstrainer.new) do
+  match '/:id', to: "authors#show", as: 'short_author'
+end
+```
+
+```
+#!ruby
+class PostUrlConstrainer
+  def matches?(request)
+    id = request.path.gsub("/", "")
+    Post.find_by_slug(id)
+  end
+end
+
+constraints(PostUrlConstrainer.new) do
+  match '/:id', to: "posts#show", as: 'short_post'
+end
+```
+
+This will work fine but there are few downsides to such solution and you
+need to remember about couple of things.
+
+First, you must make sure that slugs are unique across all your resources
+that you use this for. In our project this is the responsibility of 
+[services](http://rails-refactoring.com/) which first try to reserve
+the slug across the whole application,
+and assign it to the resource if it succeeded. But you can also implement
+it with a hook in your ActiveRecord class. It's up to you whether you choose
+more coupled or decoupled solution.
+
+The second problem is that adding more resources leads to more DB queries.
+In your example the second resource (posts) triggers a query for authors first
+(because the first constraint is checked first) and only if it does not match,
+we try to find the post. N-th resource will trigger N db queries before we
+match it. That is obviously not good.
+
+## Render or redirect
+
+One of the thing that you are going to decide is whether visiting such short url
+should lead to rendering the page or redirection.
+
+What we saw in previous chapter
+gives us rendering. So the browser is going to display the visited url such as
+`/MartinFowler` . In such case there might be multiple URLs pointing to the same
+resource in your application and for best SEO you probably should standarize
+which url is the [canonical](https://support.google.com/webmasters/answer/139394?hl=en): 
+`/authors/MartinFowler` or `/MartinFowler/` ?
+
+You won't have such dillemmas if you go with redirecting so that `/MartinFowler`
+simply redirects to `/authors/MartinFowler`. It is not hard with Rails routing.
+Just change
+
+```
+#!ruby
+constraints(AuthorUrlConstrainer.new) do
+  match '/:id', to: "authors#show", as: 'short_author'
+end
+```
+
+into
+
+```
+#!ruby
+constraints(AuthorUrlConstrainer.new) do
+  match('/:id', as: 'short_author', to: redirect do |params, request|
+    Rails.application.routes_url_helpers.author_path(params[:id])
+  end)
+end
+```
+
+## Top level routing for everything
+
+But we started with the requirement that every page can have its short
+version if admins generate it. In such case we store the slug and the
+path that it was generated based on in `Short::Url` class. It has the
+`slug` and `target` attributes.
+
+```
+#!ruby
+class Vanity::Url < ActiveRecord::Base
+  validates_format_of     :slug, with: /\A[0-9a-z\-\_]+\z/i
+  validates_uniqueness_of :slug, case_sensitive: false
+
+  def action
+    [:render, :redirect].sample
+  end
+end
+
+url = Short::Url.new
+url.slug = "fowler"
+url.target = "/authors/MartinFowler"
+url.save!
+```
+
+Now our routing can use that information.
+
+```
+#!ruby
+class ShortDispatcher
+  def initialize(router)
+    @router = router
+  end
+  def call(env)
+    id     = env["action_dispatch.request.path_parameters"][:id]
+    slug   = Short::Url.find_by_slug(id)
+    strategy(slug).call(@router, env)
+  end
+
+  private
+
+  def strategy(url)
+    {redirect: Redirect, render: Render }.fetch(url.action).new(url)
+  end
+
+  class Redirect
+    def initialize(url)
+      @url = url
+    end
+    def call(router, env)
+      to = @url.target
+      router.redirect{|p, req| to }.call(env)
+    end
+  end
+
+  class Render
+    def initialize(url)
+      @url = url
+    end
+    def call(router, env)
+      routing    = Rails.application.routes.recognize_path(@url.target)
+      controller = (routing.delete(:controller) + "_controller").
+        classify.
+        constantize 
+      action     = routing.delete(:action)
+      env["action_dispatch.request.path_parameters"] = routing
+      controller.action(action).call(env)
+    end
+  end
+end
+
+match '/:id', to: ShortDispatcher.new(self)
+```
+
+You can simplify this code greatly (and throw away most of it)
+if you go with either render or redirect and don't mix those two
+approaches. I just wanted to show that you can use any of them.
+
+Let's focus on the `Render` strategy for this moment. What happens here.
+Assuming some visited `/fowler` in the browser, we found the right `Short::Url` 
+in the dispatcher, now in our `Render#call` we need to do some work that
+usually Rails does for us. 
+
+First we need to recognize what the shortened,
+target url (`/authors/MartinFowler`) points to.
+
+```
+#!ruby
+routing = Rails.application.routes.recognize_path(@url.target)
+# => {:action=>"show", :controller=>"authors", :id=>"1"}
+```
+
+Based on that knowledge we can obtain the controller class.
+
+```
+#!ruby
+controller = (routing.delete(:controller) + "_controller").classify.constantize 
+# => AuthorsController
+```
+
+And we know what controller action that is.
+
+```
+#!ruby
+action = routing.delete(:action)
+# => "show"
+```
+
+No we can trick rails into thinking that the actual parameters coming from recognized url were different
+
+```
+#!ruby
+env["action_dispatch.request.path_parameters"] = routing
+# => {:id => "MartinFowler"}
+```
+
+If we generated the slug url based on nested resources path, we would have here two hash keys
+with ids, instead of just one.
+
+And at the and we create [new instance of rack compatible application](https://github.com/rails/rails/blob/64226302d82493d9bf67aa9e4fa52b4e0269ee3d/actionpack/lib/action_controller/metal.rb#L244)
+based on the `#show()` method of our `controller`. And we put everything in motion with
+`#call()` and pass it `env` (the `Hash` with [Rack environment](http://rack.rubyforge.org/doc/SPEC.html)).
+
+```
+#!ruby
+controller.action(action).call(env)
+# AuthorsController.action("show").call(env)
+```
+
+That's it. You delegated the job back to the rails controller that you
+already have had implemented. Great job! Now our admins can generate
+those short urls like crazy for the printed materials.
+
+## Is it any good?
+
+Interestingly, after prooving that this is possible, I am not sure whether
+we should be actually doing it 😉 . What's your opinion? Would you rather
+render or redirect? Should we be solving this on application level (render)
+or HTTP level (redirect) ?
+
+## Dalej ...
+
+Zastanawiam się czy już skończyć tutaj czy pisać dalej.
+W billetto było takie wymaganie, że akurat eventy wszystkie mają mieć
+swój krótki url /:eventName . Czyli możemy generować krótie wersje każdego
+urla ale event musi je mieć od razu wygenerowane. I u nas to ogarnia serwis
+(wersja poniżej nie jest docelowa tylko proof of concept). I zasntawiam
+się czy o tym też warto powiedzieć w tym kontekście czy lepiej jednak zakończyć
+już temat i niech ten artykuł będzie głównie o routingu?
+
+```
+#!ruby
+  def build_event(user, organization, event_params, &last_step)
+
+      Event.transaction do
+        vu = Vanity::Url.new
+        begin
+          vu.path   = identifier = event_params[:identifier]
+          vu.target = Rails.application.routes_url_helpers.event_path(id: identifier, locale: "")
+          vu.save!
+        rescue
+          event.invalidate_identifier(vu.errors[:path].first || "Unknown error")
+        end
+        enqueue_geocode_locations(event.locations)
+
+        raise unless last_step.call(event)
+
+        veu = Vanity::EventUrl.new
+        veu.event_id = event.id
+        veu.url_id   = vu.id
+        veu.save!
+      end
+      enqueue_url_shortening(event)
+      controller.create_event_succeeded(event)
+    rescue RuntimeError
+      controller.create_event_failed(event)
+    end
+  end
+```
+
+## TODO
+
+* Newsletter
+* licencja CC dla zdjęcia - http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/
