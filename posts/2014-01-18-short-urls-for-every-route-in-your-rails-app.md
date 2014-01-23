@@ -2,15 +2,25 @@
 title: "Pretty, short urls for every route in your Rails app"
 created_at: 2014-01-18 14:41:04 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form_short_urls
 tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
 ---
 
-<img src="/assets/images/short-urls/bench.jpg" width="100%">
+<p>
+  <figure>
+    <img src="/assets/images/short-urls/bench.jpg" width="100%">
+    <details>
+      <a href="http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/">Photo</a> 
+      remix available thanks to the courtesy of
+      <a href="http://www.flickr.com/photos/aigle_dore/">Moyan Brenn</a>.
+      <a href="http://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+    </details>
+  </figure>
+</p>
 
-One of our recent project had the requirement so that admins are be able to generate
+One of our recent project had the requirement so that admins are able to generate
 short top level urls (like `/cool`) for every page in our system. Basically a
 url shortening service inside our app. This might be especially usefull in your app
 if those urls are meant to appear in printed materials (like `/productName` or
@@ -44,7 +54,14 @@ match '/:slug'
 ```
 
 that would either route to `AuthorsController` or `PostController` depending on
-what the slug points to. Well, you can solve this problem with constraints.
+what the slug points to. Our client wants Pretty Urls:
+
+```
+/rails-team
+/rails-4-0-2-have-been-released
+```
+
+Well, you can solve this problem with constraints.
 
 ```
 #!ruby
@@ -79,7 +96,7 @@ need to remember about couple of things.
 
 First, you must make sure that slugs are unique across all your resources
 that you use this for. In our project this is the responsibility of 
-[services](http://rails-refactoring.com/) which first try to reserve
+<%= service_landing_link("services") %> which first try to reserve
 the slug across the whole application,
 and assign it to the resource if it succeeded. But you can also implement
 it with a hook in your ActiveRecord class. It's up to you whether you choose
@@ -101,7 +118,8 @@ gives us rendering. So the browser is going to display the visited url such as
 `/MartinFowler` . In such case there might be multiple URLs pointing to the same
 resource in your application and for best SEO you probably should standarize
 which url is the [canonical](https://support.google.com/webmasters/answer/139394?hl=en): 
-`/authors/MartinFowler` or `/MartinFowler/` ?
+`/authors/MartinFowler` or `/MartinFowler/` ? Eventually you might also consider
+dropping the longer URL entirely in your app to have a consistent routing.
 
 You won't have such dillemmas if you go with redirecting so that `/MartinFowler`
 simply redirects to `/authors/MartinFowler`. It is not hard with Rails routing.
@@ -207,7 +225,7 @@ Assuming some visited `/fowler` in the browser, we found the right `Short::Url`
 in the dispatcher, now in our `Render#call` we need to do some work that
 usually Rails does for us. 
 
-First we need to recognize what the shortened,
+First we need to recognize what the long,
 target url (`/authors/MartinFowler`) points to.
 
 ```
@@ -224,7 +242,7 @@ controller = (routing.delete(:controller) + "_controller").classify.constantize
 # => AuthorsController
 ```
 
-And we know what controller action that is.
+And we know what controller action should be processed.
 
 ```
 #!ruby
@@ -264,47 +282,17 @@ we should be actually doing it 😉 . What's your opinion? Would you rather
 render or redirect? Should we be solving this on application level (render)
 or HTTP level (redirect) ?
 
-## Dalej ...
+## Don't miss our next blog post
 
-Zastanawiam się czy już skończyć tutaj czy pisać dalej.
-W billetto było takie wymaganie, że akurat eventy wszystkie mają mieć
-swój krótki url /:eventName . Czyli możemy generować krótie wersje każdego
-urla ale event musi je mieć od razu wygenerowane. I u nas to ogarnia serwis
-(wersja poniżej nie jest docelowa tylko proof of concept). I zasntawiam
-się czy o tym też warto powiedzieć w tym kontekście czy lepiej jednak zakończyć
-już temat i niech ten artykuł będzie głównie o routingu?
+Subscribe to our newsletter below so that you are always
+the first one to get the knowledge that you might find useful in your
+everyday programmer job. Content is mostly focused on (but not limited to)
+Rails, Webdevelopment and Agile. 700 readers are already enjoying great content
+and we are regularly included in [Ruby Weekly](http://rubyweekly.com) issues.
 
-```
-#!ruby
-  def build_event(user, organization, event_params, &last_step)
+You can also
+[follow us on Twitter](https://twitter.com/arkency)
+[Facebook](https://www.facebook.com/pages/Arkency/107636559305814), or
+[Google Plus](https://plus.google.com/+Arkency)
 
-      Event.transaction do
-        vu = Vanity::Url.new
-        begin
-          vu.path   = identifier = event_params[:identifier]
-          vu.target = Rails.application.routes_url_helpers.event_path(id: identifier, locale: "")
-          vu.save!
-        rescue
-          event.invalidate_identifier(vu.errors[:path].first || "Unknown error")
-        end
-        enqueue_geocode_locations(event.locations)
-
-        raise unless last_step.call(event)
-
-        veu = Vanity::EventUrl.new
-        veu.event_id = event.id
-        veu.url_id   = vu.id
-        veu.save!
-      end
-      enqueue_url_shortening(event)
-      controller.create_event_succeeded(event)
-    rescue RuntimeError
-      controller.create_event_failed(event)
-    end
-  end
-```
-
-## TODO
-
-* Newsletter
-* licencja CC dla zdjęcia - http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/
+P.S We are releasing soon a new product that you might be interested in: <%= service_landing_link %> .
