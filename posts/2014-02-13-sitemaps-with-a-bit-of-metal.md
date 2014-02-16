@@ -41,7 +41,7 @@ Installation is very easy. You only need to add one line to your `Gemfile`:
 
 ```
 #!ruby
-sitemap_generator, require: false
+sitemap_generator
 ```
 
 Then you should run `bundle` and `rake sitemap:install`.
@@ -159,7 +159,7 @@ Content of `sitemap1.xml.gz`:
 </urlset>
 ```
 
-Content of `sitemap1.xml.gz`:
+Content of `sitemap2.xml.gz`:
 
 ```
 #!xml
@@ -455,5 +455,4 @@ your sales and marketing teams happy providing better search engine results.
 I will try to write another blogpost focused on usage of `ActionController::Metal` in different, but maybe more
 surprising use case, on condition that this topic is interesting for you and
 [Robert](http://blog.arkency.com/by/pankowecki/) won't forestall me. :)
-
 
