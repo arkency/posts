@@ -442,7 +442,7 @@ Our controller is much lighter and contains mostly necessary things to serve our
 Bing, Yandex or whoever wants our `Sitemap`. [José Valim](https://twitter.com/josevalim) inspired me
 to use [ActionController::Metal](http://api.rubyonrails.org/classes/ActionController/Metal.html) in his
 _Crafting Rails Applications_ book. Picking only those modules which are indispensable for our
-controllers is a pretty cool approach, but in my humble opinion, not rarely seen in Rails applications.
+controllers is a pretty cool approach, but in my humble opinion, not often seen in Rails applications.
 Mounting Sinatra application with requested functionality in `routes.rb` or `config.ru` could be alternative,
 but still lightweight solution.
 
