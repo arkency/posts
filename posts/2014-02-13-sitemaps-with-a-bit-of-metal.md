@@ -2,7 +2,7 @@
 title: "Sitemaps with a bit of Metal"
 created_at: 2014-02-13 22:06:47 +0100
 kind: article
-publish: false
+publish: true
 author: Szymon Fiedler
 newsletter: :arkency_form
 tags: [ 'seo', 'rails', 'sitemap', 'actioncontroller::metal' ]
