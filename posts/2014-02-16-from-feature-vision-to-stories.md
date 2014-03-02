@@ -1,8 +1,8 @@
 ---
-title: "From feature vision to stories. How do you deal with big and complicated features?"
-created_at: 2014-02-16 12:45:56 +0100
+title: "2 ways to deal with big and complicated features"
+created_at: 2014-02-28 22:45:56 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :aar_newsletter
 tags: [ ]
@@ -20,6 +20,8 @@ tags: [ ]
   </figure>
 </p>
 
+## From feature vision to stories
+
 One of the challenges of managing software projects is delivering big features.
 We already told you that we prefer to work with [small](/2013/09/story-of-size-1/), 
 [prioritized and unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
@@ -36,7 +38,7 @@ you received or vision of the customer.
 
 This is sometimes possible. **When the change or feature 
 request by the customer is in the scope of week
-work and unliekly to change, it might be worthy
+work and unlikely to change, it might be worthy
 to spend a little time, think about how to reach the
 goal with small steps, and extract all the tickets**. The
 benefit is that from now on, other people can just
@@ -63,9 +65,9 @@ _Collective Ownership_ which we care deeply about.
 In the spirit of Agile **we don't want to deploy this feature after
 long time of working on it. We want to build it iteratively and
 deploy often**. We will seek the feedback from the customer and from
-the users of our software. We want to continiously deliver value.
+the users of our software. We want to continuously deliver value.
 And if the customer decides to change the priorities and focus after
-10 days of working on the feature to something new, that can possibily
+10 days of working on the feature to something new, that can possibly
 bring greater value, then it shall remain her/his right. In such case
 we would like everything that has been done and deployed so far
 to be usable and beneficial to the users.
@@ -73,7 +75,7 @@ to be usable and beneficial to the users.
 When the programmers implement small parts of the feature **we want
 them to have a good overview of it**. Although when they work on a
 small ticket, their responsibility is to implement the small part
-enought to mark the story as done, it is also their responsibility
+enough to mark the story as done, it is also their responsibility
 to make the solution friendly to next programmers implementing
 further stories related to the feature. In other words, to implement
 something small, but have in mind the big picture.
@@ -122,7 +124,7 @@ can move it down. You can have strict rule how much it
 should be moved or you can do it based on your judgment
 and knowledge about project priorities. If everything from
 spec is done, mark it as done as you do with the rest of the
-tickets. If get the knowledge in the meantime that there are
+tickets. If you get the knowledge in the meantime that there are
 more important issues and your team should stop working
 on features listed in the spec, then it might be a good idea
 to put it out of backlog, until the customer decides to bring
@@ -131,7 +133,7 @@ it back in the game.
 You end up with extracted tickets, spec knowledge, updated
 document about which parts are already moved into tickets
 and which parts are still only covered in the spec. You can
-go back to using Take the first task strategy until you are
+go back to using _Take the first task_ strategy until you are
 out of tickets, at which point you need to find your project
 manager hat and wear it for at least a moment again.
 
