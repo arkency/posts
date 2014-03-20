@@ -1,11 +1,11 @@
 ---
-title: "PDF in Rails - without controllers"
-created_at: 2014-02-24 14:43:25 +0100
+title: "HTML template based PDF in Rails. From background job, without controllers"
+created_at: 2014-03-20 10:43:25 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'rails', 'pdf', 'background', 'job' ]
 ---
 
 <p>
@@ -129,6 +129,11 @@ During the refactoring this part of code I also extracted a separate layer
 responsible for getting all the data required to generate the PDF. As a result the
 renderer is called with `order` and not just `order_id`. That makes testing everything
 easier.
+
+We could probably try to go [even further](https://gist.github.com/paneq/9ccfb2722c80d2cca77b)
+and use less and less of what we don't need from Rails in such situation. Perhaps there is 
+a clean way of using `ActionView` part for such purpose without the coupling to
+controllers and HTTP-context at all?
 
 ## Summary
 
