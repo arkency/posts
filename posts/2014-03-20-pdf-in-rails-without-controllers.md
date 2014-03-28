@@ -1,5 +1,5 @@
 ---
-title: "HTML template based PDF in Rails. From background job, without controllers"
+title: "Don't call controller from background job, please. Do it differently!"
 created_at: 2014-03-20 10:43:25 +0100
 kind: article
 publish: true
@@ -45,7 +45,7 @@ class PdfController < ApplicationController
 end
 ```
 
-I was a bit speachless. Calling controller out of HTTP request/response
+I was a bit speechless. Calling controller out of HTTP request/response
 loop sounds like an odd thing to do. I had to investigate and refactor.
 
 <!-- more -->
