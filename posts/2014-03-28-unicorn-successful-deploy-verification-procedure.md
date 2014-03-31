@@ -28,13 +28,19 @@ and you won't even notice.
 
 So what you need is a small verification procedure that everything worked as
 exptected. This article will demonstrate simple solution for achieving it
-when you are using `capistrano` for deploying the app.
+when you are using `capistrano` for deploying the app. However you can use very similar
+procedure if you deploy your app with other tools.
 
 <!-- more -->
 
-Here is what we assume
+Here is what we assume that you already have
 
 ## deploy.rb
+
+Nothing fancy here. As the documentation states:
+
+`USR2` signal for master process - _reexecute the running binary. A separate
+`QUIT` should be sent to the original process once the child is verified to be up and running._
 
 ```
 #!ruby
@@ -50,6 +56,11 @@ end
 ```
 
 ## config/unicorn.rb
+
+Whener we spaw new child process we decrement the number of worker
+processes by one with sending `TTOU` signal to master process.
+
+At the end we send `QUIT` so the new master worker can take it place.
 
 ```
 #!ruby
@@ -74,24 +85,35 @@ Let's add the verification step after deployment.
 We want to trigger our verification procedure for deploy no matter whether we
 executed it with or without migrations.
 
-Also we don't want to implement the verification procedure in this file. So we
-extract it into `'./config/deploy/verify'` and requre in the task.
+Also we don't want to implement the entire verification procedure algorithm in
+this file. So we extract it into `'./config/deploy/verify'` and requre
+inside the task.
 
 ```
 #!ruby
-namespace :deploy do
-  task :verify, :roles => :app, :except => { :no_release => true } do
-    require './config/deploy/verify'
 
-    DeployVerification.new(
-      fetch(:target_host),
-      current_release
-    ).start
+require 'securerandom'
+set :deploy_token, SecureRandom.hex(16)
+
+namespace :deploy do
+  namespace :verify do
+    task :prepare, :roles => :app, :except => { :no_release => true } do
+      run "echo -n #{deploy_token} > #{release_path}/TOKEN"
+    end
+
+    task :check, :roles => :app, :except => { :no_release => true } do
+      require './config/deploy/verify'
+
+      user = 'about'
+      pass = 'VerySecretPass'
+      url  = "https://#{user}:#{pass}@#{target_host}/about/deploy"
+      DeployVerification.new(url, deploy_token).start
+    end
   end
 end
 
-after "deploy",            "deploy:verify"
-after "deploy:migrations", "deploy:verify"
+before "deploy:restart", "deploy:verify:prepare"
+after  "deploy:restart", "deploy:verify:check"
 ```
 
 ## config/deploy/production.rb
@@ -108,44 +130,129 @@ set :target_host, "app.example.org"
 
 ## config/deploy/verify.rb
 
+The whole idea is that we do the request to our just deployed/restarted webapp
+and check whether it returns randomly generated token that we set before
+restart. If it does, everything went smoothly and new workers started, they
+read the new token and are serving it.
+
+If however the new Unicorn workers could not properly start after deploy,
+the old workers will be still working and serving requests, including the
+request to `/about/deploy` that will give us the old token generated during
+previous deploy.
+
+It takes some time to start new Rails app, create new workers, kill old workers
+and for the master unicorn worker to switch to the new process. So we wait max 60s
+for the entire procedure to finish. In this time we are hitting our application
+with request every now and then to check whether new workers are serving requests
+or the old ones.
 
 ```
 #!ruby
 require 'net/http'
+require 'net/https'
 require 'timeout'
 
 class DeployVerification
   class VerificationFailedAtDir < StandardError; end
 
-  attr_reader :target_host, :current_release
-
-  def initialize(target_host, current_release)
-    @timeout         = 60
-    @target_host     = target_host
-    @current_release = current_release
+  def initialize(url, token, timeout = 60)
+    @timeout = timeout
+    @url     = url
+    @token   = token
   end
 
   def start
     Timeout.timeout(@timeout) do
       begin
-        uri = URI.parse('http://about:a76ffd@example.com/about/deploy')
-        uri.host = target_host
-        Net::HTTP.start(uri.host, uri.port) do |http|
+        uri  = URI.parse(@url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.start do |http|
           req = Net::HTTP::Get.new(uri.path)
-          req.basic_auth uri.user, uri.password
+
+          if uri.user && uri.password
+            req.basic_auth uri.user, uri.password
+          end
+
           result = http.request(req).body
-          unless result == current_release
-            raise VerificationFailedAtDir, "Invalid app working dir. Expected: #{current_release}, got: #{result}"
+          unless result == @token
+            raise VerificationFailedAtDir, "Invalid verification token.
+                                            Expected: #{@token},
+                                            got: #{result}."
           end
           puts "Verified deploy is running"
         end
       rescue VerificationFailedAtDir => x
         puts x.message
         puts "Error when running verification. Retrying... \n"
-        sleep(1)
+        sleep(0.5)
         retry
       end
     end
   end
 end
 ```
+
+## config/routes.rb
+
+```
+#!ruby
+
+get "about/deploy"
+```
+
+## app/controllers/about_controller.rb
+
+Here is the controller doing basic auth and serving the token. It does
+not try to dynamically read the `TOKEN` file because that would
+always return the new value written to that file during last deploy.
+
+Instead it returns the token that is instantiated only once during Rails
+startup process.
+
+```
+#!ruby
+class AboutController < ApplicationController
+
+  before_filter :http_basic_authentication
+
+  def http_basic_authentication
+    authenticate_or_request_with_http_basic do |name, pass|
+      name == 'about' && pass == 'VerySecretPass'
+    end
+  end
+
+  def deploy
+    render text: Rails.configuration.deploy_token, layout: false
+  end
+end
+```
+
+## config/application.rb
+
+Here you can see that we are storing the token when rails is starting.
+
+```
+#!ruby
+deploy_token_file   = Rails.root.join('TOKEN')
+config.deploy_token = if deploy_token_file.exist?
+  deploy_token_file.read
+else
+  'none'
+end
+```
+
+## But why?
+
+Now that you know how, you are still probably wondering why.
+
+Not everything can be catched up by your tests, especially not errors made in
+production environment configuration. That can be even something as simple as
+typo in `config/environments/production.rb`.
+
+We also experienced gems behaving differently and preventing app from being
+started due to tiny difference in environment variables (`ENV`). So now,
+whenever we manage application that is not hosted in cloud because of customer
+preferences, we just add this little script to make sure that the deployed code
+was actually deployed and workers restarted properly. Because sending signal
+is sometimes just not good enough :)
