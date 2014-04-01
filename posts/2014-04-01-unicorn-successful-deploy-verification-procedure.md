@@ -1,8 +1,8 @@
 ---
-title: "Unicorn successful deploy verification procedure"
-created_at: 2014-03-28 16:21:18 +0100
+title: "Zero uptime deploy"
+created_at: 2014-04-01 16:21:18 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'rails', 'ruby', 'unicorn', 'deploy', 'verification' ]
@@ -24,11 +24,12 @@ Unicorn has a nice feature that bought it a lot of popularity and set standards
 for other Ruby web servers: The ability to do _Zero Downtime Deploy_, also known
 by the name _rolling deploy_ or _rolling restart_ aka _hot restart_. You start it by issuing
 `USR2` signal. But here is something that most websites won't tell you. It can fail
-and you won't even notice.
+and you won't even notice. You will be thinking that everything went ok, living in Wonderland,
+whereas in reality your deploy achieved uptime of exactly 0 seconds.
 
 So what you need is a small verification procedure that everything worked as
-exptected. This article will demonstrate simple solution for achieving it
-when you are using `capistrano` for deploying the app. However you can use very similar
+expected. This article will demonstrate simple solution for achieving it
+in case you are using `capistrano` for deploying the app. However you can use very similar
 procedure if you deploy your app with other tools.
 
 <!-- more -->
@@ -57,7 +58,7 @@ end
 
 ## config/unicorn.rb
 
-Whener we spaw new child process we decrement the number of worker
+Whenever we spawn new child process we decrement the number of worker
 processes by one with sending `TTOU` signal to master process.
 
 At the end we send `QUIT` so the new master worker can take it place.
@@ -86,7 +87,7 @@ We want to trigger our verification procedure for deploy no matter whether we
 executed it with or without migrations.
 
 Also we don't want to implement the entire verification procedure algorithm in
-this file. So we extract it into `'./config/deploy/verify'` and requre
+this file. So we extract it into `'./config/deploy/verify'` and require
 inside the task.
 
 ```
@@ -246,7 +247,7 @@ end
 
 Now that you know how, you are still probably wondering why.
 
-Not everything can be catched up by your tests, especially not errors made in
+Not everything can be caught by your tests, especially not errors made in
 production environment configuration. That can be even something as simple as
 typo in `config/environments/production.rb`.
 
