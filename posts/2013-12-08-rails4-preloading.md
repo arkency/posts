@@ -511,7 +511,7 @@ have the additional condition for one of the eager loaded table.
 If you enjoyed the article, 
 [follow us on Twitter](https://twitter.com/arkency)
 [and Facebook](https://www.facebook.com/pages/Arkency/107636559305814), 
-or subscribe to our newsletter below so that you are always
-the first one to get the knowledge that you might find useful in your
-everyday programmer job. Content is mostly focused on (but not limited to)
-Rails, Webdevelopment and Agile.
+or subscribe to our [newsletter](http://arkency.us5.list-manage1.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=1)
+
+Also you might wanna check out our
+[_Fearless refactoring: Rails controllers_ book](http://rails-refactoring.com/).
