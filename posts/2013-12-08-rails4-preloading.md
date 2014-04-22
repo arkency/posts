@@ -4,7 +4,7 @@ created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: :fearless
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
