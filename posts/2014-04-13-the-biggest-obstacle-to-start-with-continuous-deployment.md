@@ -2,7 +2,8 @@
 title: "The biggest obstacle to start with Continuous Deployment - database migrations"
 created_at: 2014-04-13 19:28:23 +0200
 kind: article
-publish: false
+publish: true
+newsletter: :fearless
 author: Robert Pankowecki
 tags: [ 'continuous', 'deployment', 'rails', 'database', 'migrations' ]
 ---
@@ -19,10 +20,17 @@ tags: [ 'continuous', 'deployment', 'rails', 'database', 'migrations' ]
   </figure>
 </p>
 
-There are still startups which disable the website during deploys with database
+There are still companies which disable the website during deploys with database
 migrations and believe that db migrations prevent them from going fully with CD.
 They even have time window for triggering such activities (usually early in the
-morning or late at night). However you must be aware of few things.
+morning or late at night).
+
+If you are working in a place like that, and you would deeply want in your heart to
+adopt _Continuous Deployment_ but you can't find a way to convince your boss, this
+is a step by step guide for you. Instead of going from zero to
+[warp nine](http://en.wikipedia.org/wiki/Warp_drive), you can go towards your goal
+with small steps that can be part of your current, normal tasks that you are doing for
+the client.
 
 <!-- more -->
 
@@ -64,7 +72,9 @@ for all old records containing nulls. Then you deploy code which marks that colu
 step by step, without trying to achieve it in one giant commit or giant deploy. Notice how very well
 this approach can work with [small stories](/2013/09/story-of-size-1/).
 
-There is amazing presentation about how to do it: [Zero downtime deploys for rails apps](http://www.slideshare.net/pedrobelo/zero-downtime-deploys-for-rails-apps)
+There is an amazing presentation about how to do it:
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/12676486" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/pedrobelo/zero-downtime-deploys-for-rails-apps" title="Zero downtime deploys for Rails apps" target="_blank">Zero downtime deploys for Rails apps</a> </strong> from <strong><a href="http://www.slideshare.net/pedrobelo" target="_blank">pedrobelo</a></strong> </div>
 
 ## Summary
 
