@@ -1,8 +1,8 @@
 ---
-title: "Custom validation contexts in Rails"
+title: "Mastering Rails Validations: Contexts"
 created_at: 2014-04-27 10:56:47 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'custom', 'validation', 'context', 'rails', 'activemodel', 'activerecord' ]
@@ -39,7 +39,7 @@ Our users can change the [slug](http://en.wikipedia.org/wiki/Slug_\(web_publishi
 (`/u/slug`) under which their profiles will appear. However the most valuable
 short slugs are not available for them. Our business model dictates that we are going to
 sell them to [earn a lot of money](https://www.youtube.com/watch?v=N-mjc25R0Nc)
-[disclaimer: this joke is only understandable to Poles, I could not resist :)]
+[disclaimer: polish joke, I could not resist]
 
 So, we need to add conditional validation that will be different for admins and
 different for users. Nothing simpler, right?
@@ -237,7 +237,7 @@ end
 The idea was, that it should not be possible to delete user who already took
 part of some important business activity.
 
-Nowdays we have [has\_many(dependent: :restrict\_with\_exception)](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many)
+Nowdays we have [`has_many(dependent: :restrict_with_exception`)](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many)
 but you might still find this technique beneficial in other cases where you would
 like to run some validations before destroying an object.
 
@@ -245,7 +245,8 @@ like to run some validations before destroying an object.
 
 That was quick introduction to custom validation contexts in Rails. In the
 next episode we are going to talk about other, perhaps better, ways to solve our initial
-dillema. Subscribe to our newsletter below if you don't want to miss it.
+dillema that started with validations being context dependent.
+Subscribe to our newsletter below if you don't want to miss it.
 
 You might also want to read some of our other popular blogposts ActiveRecord-related:
 
