@@ -78,11 +78,11 @@ Do you remember it?
 ```
 #!ruby
 class Meeting < ActiveRecord::Base
-  validate :starts_in_future, on: create
+  validate :starts_in_future, on: :create
 end
 ```
 
-We've got `on: create` option which makes a validation run only when saving new
+We've got `on: :create` option which makes a validation run only when saving new
 record ([`#new_record?`](http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-new_record-3F)).
 
 I wonder whether we could use it...
@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
   end
 
   {on: :admin}.with_options do |for_admin|
-    for_admin.validates_length_of :slug, minimum: 1, on: :admin
+    for_admin.validates_length_of :slug, minimum: 1
   end
 end
 ```
@@ -245,7 +245,7 @@ like to run some validations before destroying an object.
 
 That was quick introduction to custom validation contexts in Rails. In the
 next episode we are going to talk about other, perhaps better, ways to solve our initial
-dillema that started with validations being context dependent.
+dilemma that started with validations being context dependent.
 Subscribe to our newsletter below if you don't want to miss it.
 
 You might also want to read some of our other popular blogposts ActiveRecord-related:
