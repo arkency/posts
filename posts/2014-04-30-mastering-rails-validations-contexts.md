@@ -1,6 +1,6 @@
 ---
 title: "Mastering Rails Validations: Contexts"
-created_at: 2014-04-27 10:56:47 +0200
+created_at: 2014-04-30 18:29:47 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
