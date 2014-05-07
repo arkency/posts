@@ -131,12 +131,12 @@ redundant in case of multiple rules: [`Object#with_options`](http://api.rubyonra
 ```
 #!ruby
 class User < ActiveRecord::Base
-  {on: :user}.with_options do |for_user|
+  with_options({on: :user}) do |for_user|
     for_user.validates_length_of :slug, minimum: 3
     for_user.validates_acceptance_of :terms_of_service
   end
 
-  {on: :admin}.with_options do |for_admin|
+  with_options({on: :admin}) do |for_admin|
     for_admin.validates_length_of :slug, minimum: 1
   end
 end
