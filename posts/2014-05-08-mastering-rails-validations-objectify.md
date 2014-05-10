@@ -167,9 +167,9 @@ end
 
 ## or the highway
 
-I couldn't find an easy way to register multiple **instances**
+I could not find an easy way to register multiple **instances**
 of validation rules. So below is a bit hacky (although valid) way
-to do it.
+to work around the problem.
 
 It gives us a nice ability to group common rules in Array and add
 or subtract other rules.
@@ -247,7 +247,7 @@ end
 ```
 
 But you can easily overwrite the
-`#erros` that come from [including `ActiveModel::Validations`](http://api.rubyonrails.org/classes/ActiveModel/Validations.html#method-i-errors),
+`#errors` that come from [including `ActiveModel::Validations`](http://api.rubyonrails.org/classes/ActiveModel/Validations.html#method-i-errors),
 by delegating them to the validated object, which in our case
 is `#user`.
 
@@ -273,7 +273,7 @@ end
 
 ## What next?
 
-That was a breif introduction to the more object oriend aspects of rails
+That was a brief introduction to the more object oriented aspects of rails
 validations. Subscribe to our newsletter below if you don't want to miss our next
 blogpost that are going to be about problems with refactoring in rails,
 active record aggregates, another part on validations problems and service
