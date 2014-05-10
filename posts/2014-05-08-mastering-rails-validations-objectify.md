@@ -2,9 +2,10 @@
 title: "Mastering Rails Validations - Objectify"
 created_at: 2014-05-08 20:05:51 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+newsletter: :arkency_form
+tags: [ 'objectify', 'validation', 'context', 'rails', 'activemodel', 'activerecord' ]
 ---
 
 <p>
@@ -15,7 +16,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 
 In my previous blogpost I showed you
 [how Rails validations might become context dependent](/2014/04/mastering-rails-validations-contexts/)
-and few ways how to handle such situation. However none of them were perfect
+and a few ways how to handle such situation. However none of them were perfect
 because our object had to become context-aware. The alternative solution that
 I would like to show you now is to extract the validations rules outside, making
 our validated object lighter.
@@ -24,7 +25,7 @@ our validated object lighter.
 
 ## Not so far from our comfort zone
 
-For start we are gonna use the trick with `SimpleDelegator` (we use it sometimes
+For start we are gonna use the trick with `SimpleDelegator` (we use it sometimes in
 our [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com/)
 book as an intermediary step).
 
@@ -40,6 +41,9 @@ end
 
 ```
 #!ruby
+user = User.find(1)
+user.attributes = {slug: "summertime-blues"}
+
 validator = UserEditedByAdminValidator.new(user)
 if validator.valid?
   user.save!(validate: false)
@@ -55,7 +59,7 @@ business rules when used in another context.
 The context in your system can be almost everything. Sometimes the
 difference is just _create_ vs _update_. Sometimes it is
 in _save as draft_ vs _publish as ready_. And sometimes it based on the
-use role like _admin_ vs _moderator_.
+user role like _admin_ vs _moderator_.
 
 ## One step further
 
@@ -170,57 +174,86 @@ to do it.
 It gives us a nice ability to group common rules in Array and add
 or subtract other rules.
 
+Rules definitions:
+
 ```
 #!ruby
-class SlugMustStartWithU < ActiveModel::Validations::FormatValidator
+
+format_validator = ActiveModel::Validations::FormatValidator
+length_validator = ActiveModel::Validations::LengthValidator
+
+class SlugMustStartWithU < format_validator
   def initialize(*)
     super(attributes: [:slug], with: /\Au/)
   end
 end
 
-class SlugMustEndWithZ < ActiveModel::Validations::FormatValidator
+class SlugMustEndWithZ < format_validator
   def initialize(*)
     super(attributes: [:slug], with: /z\Z/)
   end
 end
 
-class SlugMustHaveAtLeastOneCharacter < ActiveModel::Validations::LengthValidator
+class SlugMustHaveAtLeastOneCharacter < length_validator
   def initialize(*)
     super(attributes: [:slug], minimum: 1)
   end
 end
 
-class SlugMustHaveAtLeastThreeCharacters < ActiveModel::Validations::LengthValidator
+class SlugMustHaveAtLeastThreeCharacters < length_validator
   def initialize(*)
     super(attributes: [:slug], minimum: 5)
   end
 end
 ```
 
+Validators using the rules:
+
 ```
 #!ruby
 CommonValidations = [SlugMustStartWithU, SlugMustEndWithZ]
 
-class UserEditedByAdminValidatorV6 < SimpleDelegator
+class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
-  validates_with *(CommonValidations + [SlugMustHaveAtLeastOneCharacter])
+  validates_with *(CommonValidations + 
+    [SlugMustHaveAtLeastOneCharacter]
+  )
 end
 
-class UserEditedByUserValidatorV6 < SimpleDelegator
+class UserEditedByUserValidator < SimpleDelegator
   include ActiveModel::Validations
 
-  validates_with *(CommonValidations + [SlugMustHaveAtLeastThreeCharacters])
+  validates_with *(CommonValidations + 
+    [SlugMustHaveAtLeastThreeCharacters]
+  )
 end
 ```
 
 ## Cooperation with rails forms
 
-Keeping errors on the user
+The previous examples won't cooperate nicely with Rails features expecting
+list of errors validations on the validated object, because as I showed in
+first example, the `#errors` that are filled are defined on the 
+validator object.
+
 
 ```
 #!ruby
-class UserEditedByAdminValidatorV7
+validator = UserEditedByAdminValidator.new(user)
+unless validator.valid?
+  puts validator.errors.full_messages
+end
+```
+
+But you can easily overwrite the
+`#erros` that come from [including `ActiveModel::Validations`](http://api.rubyonrails.org/classes/ActiveModel/Validations.html#method-i-errors),
+by delegating them to the validated object, which in our case
+is `#user`.
+
+```
+#!ruby
+class UserEditedByAdminValidator
   include ActiveModel::Validations
 
   delegate :slug, :errors, to: :user
@@ -229,9 +262,24 @@ class UserEditedByAdminValidatorV7
     @user = user
   end
 
-  validates_with *(CommonValidations + [UserEditedByAdminLengthValidationRuleClass])
+  validates_with *(CommonValidations + 
+    [SlugMustHaveAtLeastOneCharacter]
+  )
 
   private
   attr_reader :user
 end
 ```
+
+## What next?
+
+That was a breif introduction to the more object oriend aspects of rails
+validations. Subscribe to our newsletter below if you don't want to miss our next
+blogpost that are going to be about problems with refactoring in rails,
+active record aggregates, another part on validations problems and service
+objects. We have plenty of ideas for our next posts.
+
+You might also want to read some of our other popular blogposts ActiveRecord-related:
+
+* [3 ways to do eager loading (preloading) in Rails 3 & 4](/2013/12/rails4-preloading/)
+* [Single Table Inheritance - problems and solutions](/2013/07/sti/)
