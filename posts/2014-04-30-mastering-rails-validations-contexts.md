@@ -252,3 +252,9 @@ You might also want to read some of our other popular blogposts ActiveRecord-rel
 
 * [3 ways to do eager loading (preloading) in Rails 3 & 4](/2013/12/rails4-preloading/)
 * [Single Table Inheritance - problems and solutions](/2013/07/sti/)
+
+## Update
+
+The next part is out:
+
+* [Mastering Rails Validations: Objectify](/2014/05/mastering-rails-validations-objectify/)
