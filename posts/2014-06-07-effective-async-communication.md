@@ -1,6 +1,6 @@
 ---
 title: "Effective async communication"
-created_at: 2014-06-07 18:39:02 +0200
+created_at: 2014-06-13 18:39:02 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
