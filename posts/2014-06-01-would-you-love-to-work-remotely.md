@@ -1,11 +1,11 @@
 ---
-title: "Would you love to work remotely?"
+title: "Would you love to work remotely (and asynchronously)?"
 created_at: 2014-06-09 17:13:32 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
-tags: [ 'remote' ]
+tags: [ 'remote', 'async' ]
 ---
 
 <p>
@@ -36,4 +36,8 @@ And then there is the most important reason for some of us. Family. If you want 
 
 <img src="/assets/images/love-remotely/deploy.jpg" width="100%">
 
-But no matter what reasons for going remote you have, you also need to know how. So in the next posts we are going to tell you how we did it. What tools we use, and how we handle communication. What's our process like and what we value.
+## What's next?
+
+But no matter what reasons for going remote you have, you also need to know how. So in the next posts we are going to tell you how we did it. What tools we use, and how we handle communication. What's our process like and what we value. How we work remotely and asynchronously and what interesting techniques you might wanna try yourself.
+
+This was just a teaser. In next 2 weeks you will get 4 articles covering a lot of content. See you in two days.
