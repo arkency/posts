@@ -1,9 +1,10 @@
 ---
-title: "Remote work - toolbox"
+title: "Async & remote - toolbox"
 created_at: 2014-06-11 20:16:56 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
+newsletter: :arkency_form
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
