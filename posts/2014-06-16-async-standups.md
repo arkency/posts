@@ -1,5 +1,5 @@
 ---
-title: "Async standups"
+title: "Take most out of async textual standups"
 created_at: 2014-06-16 19:04:36 +0200
 kind: article
 publish: false
@@ -14,15 +14,15 @@ tags: [ 'remote', 'async', 'communication', 'standups' ]
   </figure>
 </p>
 
-When you work remotely, you want to have some kind of a standup meeting regularly. In our team, after experimenting with many different approaches, we settled with text-based, asynchronous standups every day. Additionally, every project has a weekly 'sync' meeting.
+When you work remotely, you want to have some kind of a standup meeting regularly. In our team, after experimenting with many different approaches, we settled with **text-based, asynchronous standups every day**. Additionally, every project has a weekly 'sync' meeting.
 
 <!-- more -->
 
-Whatever tool we currently use for remote communication (irc in the past, now Slack), we create a channel that is dedicated to #standup. We don't have a specific time to post there, usually we do it, when we begin our work session - so, in the spirit of async - different people at different times.
+Whatever tool we currently use for remote communication (irc in the past, now Slack), we create a channel that is dedicated to #standup. **We don't have a specific time to post there, usually we do it, when we begin our work session** - so, in the spirit of async - different people at different times.
 
-I consider #standup to be a very good opportunity to communicate cross-project, to educate, to learn, to help. Short standup messages are not bad, but they miss this opportunity.
+I consider #standup to be a very good opportunity **to communicate cross-project, to educate, to learn, to help**. Short standup messages are not bad, but they miss this opportunity.
 
-When writing the standup message, think more about the others, than about yourself - what can they get from it by reading your status?
+When writing the standup message, **think more about the others, than about yourself** - what can they get from it by reading your status?
 
 ### Example
 
