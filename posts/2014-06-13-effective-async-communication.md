@@ -2,7 +2,7 @@
 title: "Effective async communication"
 created_at: 2014-06-13 18:39:02 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'remote', 'async', 'communication' ]
@@ -10,7 +10,7 @@ tags: [ 'remote', 'async', 'communication' ]
 
 <p>
   <figure>
-    <img src="/assets/images/async-communication/async-communication-effecitve-fit.jpg" width="100%">
+    <img src="/assets/images/async-communication/async-fit.jpg" width="100%">
   </figure>
 </p>
 
