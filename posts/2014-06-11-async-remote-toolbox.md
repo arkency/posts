@@ -200,3 +200,9 @@ But recently we started to experiment with non-public videos on youtube and that
 It's important to understand that those are only tools. They can change. I'm pretty sure, next year, we'll use a different toolset. What's important is the process around it - how you collaborate on projects, how you split stories, how you discuss, how you collaborate on the code, how do you spread the knowledge and achieve consensus.
 
 What tools are you using? What would you recommend? What's your process?
+
+## Update
+
+Next part:
+
+[Effective async communication](/2014/06/effective-async-communication/)

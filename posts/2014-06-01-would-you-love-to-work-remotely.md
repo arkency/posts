@@ -41,3 +41,7 @@ And then there is the most important reason for some of us. Family. If you want 
 But no matter what reasons for going remote you have, you also need to know how. So in the next posts we are going to tell you how we did it. What tools we use, and how we handle communication. What's our process like and what we value. How we work remotely and asynchronously and what interesting techniques you might wanna try yourself.
 
 This was just a teaser. In next 2 weeks you will get 4 articles covering a lot of content. See you in two days.
+
+Next part:
+
+[Async & remote - toolbox](/2014/06/async-remote-toolbox/)
