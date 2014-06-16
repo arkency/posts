@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :effective_guide
 tags: [ 'story', 'size', 'one', 'remote', 'work', 'project', 'management' ]
+stories: ['async-remote']
 ---
 
 <img src="/assets/images/story-1/full.png" width="100%">

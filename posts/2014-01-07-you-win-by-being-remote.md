@@ -6,6 +6,7 @@ publish: true
 author: Szymon Fiedler
 tags: ['identity', 'team']
 newsletter: :arkency_form
+stories: ['async-remote']
 ---
 
 <img src="/assets/images/fidelski/samojebka.jpg" width="100%">

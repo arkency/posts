@@ -6,6 +6,7 @@ publish: true
 author: Andrzej Krzywda
 newsletter: :arkency_form
 tags: [ 'foo', 'bar', 'baz' ]
+stories: ['async-remote']
 ---
 
 <p>

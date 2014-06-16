@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :refactor_to_remote
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
+stories: ['async-remote']
 ---
 
 We recently talked how **[small](/2013/09/story-of-size-1/)

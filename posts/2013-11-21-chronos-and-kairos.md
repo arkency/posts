@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :refactor_to_remote 
 tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
+stories: ['async-remote']
 ---
 
 <img src="/assets/images/chronos_kairos/clock.png" width="100%">

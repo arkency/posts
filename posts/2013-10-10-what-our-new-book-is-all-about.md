@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :skip
 tags: [ 'happiness', 'remote', 'organized', 'project' ]
+stories: ['async-remote']
 ---
 
 At first, we thought that our <%= landing_link("new book") %> is all about remote

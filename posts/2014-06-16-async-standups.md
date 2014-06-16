@@ -6,6 +6,7 @@ publish: true
 author: Andrzej Krzywda
 newsletter: :arkency_form
 tags: [ 'remote', 'async', 'communication', 'standups' ]
+stories: ['async-remote']
 ---
 
 <p>

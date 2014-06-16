@@ -6,6 +6,7 @@ publish: true
 newsletter: :fearless
 author: Robert Pankowecki
 tags: [ 'continuous', 'deployment', 'rails', 'database', 'migrations' ]
+stories: ['async-remote']
 ---
 
 <p>

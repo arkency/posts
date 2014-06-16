@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'remote', 'async' ]
+stories: ['async-remote']
 ---
 
 <p>

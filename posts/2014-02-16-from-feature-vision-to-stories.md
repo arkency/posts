@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :aar_newsletter
 tags: [ ]
+stories: ['async-remote']
 ---
 
 <p>
