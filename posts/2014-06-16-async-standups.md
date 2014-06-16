@@ -2,7 +2,7 @@
 title: "Take most out of async textual standups"
 created_at: 2014-06-16 19:04:36 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :arkency_form
 tags: [ 'remote', 'async', 'communication', 'standups' ]
