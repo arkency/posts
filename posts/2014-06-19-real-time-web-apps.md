@@ -2,7 +2,7 @@
 title: "Real-time Web Apps"
 created_at: 2014-06-19 22:04:18 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 tags: [ 'real-time', 'websockets', 'eventsource', 'web apps' ]
 ---
