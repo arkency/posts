@@ -98,7 +98,7 @@ end
 This test doesn't even make sense anymore because we no longer look for the dictionaries that are available for a pupil
 in _Assignments_ but rather in _KlassLanguages_.
 
-When you have hundreds of *factory_girl-based* test like that they are (ihmo) preventing you from bigger changes to your
+When you have hundreds of *factory_girl-based* test like that they are (imho) preventing you from bigger changes to your
 app. From making changes to your db structure, from moving the logic around. It's almost as if every step you wanna
 make in a different direction was not permitted.
 
