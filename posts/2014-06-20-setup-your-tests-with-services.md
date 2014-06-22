@@ -2,7 +2,7 @@
 title: "Setup your tests with services & the problem with factory girl specs"
 created_at: 2014-06-20 12:00:20 +0200
 kind: article
-publish: fakse
+publish: false
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'foo', 'bar', 'baz' ]
