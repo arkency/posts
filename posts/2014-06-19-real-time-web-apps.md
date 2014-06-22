@@ -20,7 +20,7 @@ From the very beginning web pages were just static. Internet browsers received s
 
 Nowadays, more and more often we'd like to have a **real-time experience** in our web applications. We are lazy and we want to be **notified** about changes without continuously clicking on refresh button in our browsers. Unfortunately HTTP protocol is based on request-response paradigm, so rather than being notified by a sever or listening on an open connection, we make some GETs or POSTs and receive data as an answer.
 
-So far, to simulate this real-time behavior, we had to do some work-arounds such as a [interval-timeout JS pattern](http://stackoverflow.com/questions/3138756/jquery-repeat-function-every-60-seconds) or more sophisticated, butt confusing [long pooling design concept](http://stackoverflow.com/questions/15724055/long-polling-really).
+So far, to simulate this real-time behavior, we had to do some work-arounds such as a [interval-timeout JS pattern](http://stackoverflow.com/questions/3138756/jquery-repeat-function-every-60-seconds) or more sophisticated, but confusing [long pooling design concept](http://stackoverflow.com/questions/15724055/long-polling-really).
 Luckily, things have changed. In the age of modern browsers, HTML5 API, smarter users and skilled developers we have (and _should_ use) great tools to build real real-time web applications.
 
 ### Let's start from WebSockets.
