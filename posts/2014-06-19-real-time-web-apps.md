@@ -53,7 +53,14 @@ wss.on 'connection', (ws) ->
 
 ```
 
-![ES](/assets/images/real-time-web/web-sockets.png)
+<p>
+  <figure>
+    <img src="/assets/images/real-time-web/web-sockets.png" width="100%">
+    <details>
+      Source: <a href="http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/">dsheiko.com</a>
+    </details>
+  </figure>
+</p>
 
 ##### Note about websockets
 Because establishing a `WebSocket` connection might be a little bit tricky, it is worth to describe here some more details about that.
@@ -86,7 +93,40 @@ Response Headers
 We can see here that client sends `Sec-WebSocket-Key` header with some `base64` value. Next, server append to it [`258EAFA5-E914-47DA-95CA-C5AB0DC85B11`](http://tools.ietf.org/html/rfc6455) string and return `base64` of `SHA-1` from this concatenation as a `Sec-WebSocket-Accept` header.
 This handshake is supposed to replace initial `HTTP` protocol with WebSocket using the same `TCP/IP` connection under the hood. Provisioning process allows to get known both sides and be recognized in future messages. [Here is some nice demo.](http://codepen.io/squixy/full/jIECq/)
 
+#### A word about Event Machine
+
+If you are reading us, there is a high chance that you are a Ruby developer. So naturally you might be tempted to use
+ruby solution for you server side code such as `EventMachine` for [example](http://localhost:3000/2014/06/real-time-web-apps/).
+That might be great learning exercise to get
+more familiar with async code and feel more confident. However we would advise against using EM on production (_speaking
+from experience because we once did_).
+
+Long story short. EM is quite ok but the ecosystem around is unfortunately pretty small. And sometimes buggy in hard to
+reproduce or notice way. There are plenty of libraries in Ruby ecosystem that can help integrate your software with many
+3rd party solutions and speed up the development of an application. However you can't use most of them in your EM-based
+application because their behavior is blocking and it would block your event loop (and take away all the benefits from
+using EM and its non-blocking approach). If you wanted to integrate such blocking library into your EM application anyway
+you would have to schedule calling the library by using [`EventMachine.defer`](http://www.rubydoc.info/github/eventmachine/eventmachine/EventMachine.defer).
+That would lead to mixing non-blocking event based appraoch represented by EM and blocking approach from your library.
+The mental overhead of it is not small.
+
+At first sight it might seem that EM-compatible libraries are existing and working. There are certainly some
+http libraries and database drivers. But once you start looking for those that will work properly
+with more advanced options such as replication you might find your options limited. It's a shaky ground.
+
+Another problem is that you won't probably find much commercial options available for deployment of EM-based
+applications. So you will have to figure out the problem of deployment, rolling deploys, clean exit yourself.
+ 
+So if you need non-blocking, server side solution for your application our recommendation would be to rather go with
+node.js which is much more popular and battle tested solution compared to EM. We really enjoyed using EM and a few 
+gem which were nicely designed and tested. But the more you move away from _get N-bytes from here and send them out there_
+usecase and more towards application logic, flow and business proceses, the more painful experience it becomes to keep
+using EM.
+
+TLDR: EM for fun? Yes. EM in production? You better consider twice your options.
+
 ### Now move on to Server-Sent Events.
+
 Server-Sent Events intended for **streaming text-based event data from server directly to client**. There are two requirements to use this mechanism: browser interface for **EventSource** and server `'text/event-stream'` content type. SSE are used to **push notifications** into your web application, which makes it more **interactive with user** and provides **dynamic content** at the time it appears.
 
 Client side:
@@ -123,7 +163,14 @@ class NotificationsController < ApplicationController
 end
 ```
 
-![ES](/assets/images/real-time-web/event-source.png)
+<p>
+  <figure>
+    <img src="/assets/images/real-time-web/event-source.png" width="100%">
+    <details>
+      Source: <a href="http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/">dsheiko.com</a>
+    </details>
+  </figure>
+</p>
 
 ### Basic differences:
 
