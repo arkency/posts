@@ -24,7 +24,7 @@ So far, to simulate this real-time behavior, we had to do some work-arounds such
 Luckily, things have changed. In the age of modern browsers, HTML5 API, smarter users and skilled developers we have (and _should_ use) great tools to build real real-time web applications.
 
 ### Let's start from WebSockets.
-WebSockets establish **persistent connection** between user's browser and a server. Both of them can use it any time to **send messages** to each other. Every side of this connection listens on it to immediately receive incoming data. These messages can be primitives or even binary data. WebSockets allow to **cross-domain communication** so developer should pay attention on security issues on his own, because he isn't bound to same-origin policy any more and can communicate across domains.
+WebSockets establish **persistent connection** between user's browser and a server. Both of them can use it any time to **send messages** to each other. Every side of this connection listens on it to immediately receive incoming data. These messages can be primitives or even binary data. WebSockets allow to **cross-domain communication** so developers should pay attention on security issues on their own, because we aren't bound to same-origin policy anymore and can communicate across domains.
 
 There's no special WebSocket opening method. After created, browser immediately tries to open a new connection. One of WebSocket property is `readyState` which is initialized with `WebSocket.CONNECTING`. Once connected, state changes to `WebSocket.OPEN`.
 
