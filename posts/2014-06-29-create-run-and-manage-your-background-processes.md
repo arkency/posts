@@ -14,9 +14,9 @@ tags: [ 'upstart', 'background', 'process' ]
   </figure>
 </p>
 
-Have you ever wanted to run some of your ruby program as a background service? There are a couple ways to do that starting from simple `&`, through `runit` to complex services.
+Have you ever wanted to run some of your **ruby program as a background service**? There are a couple ways to do that starting from simple `&`, through `runit` to complex services.
 
-This tutorial is intended to give you a quick overview at `upstart`, which is one of the possible solutions to run and manage your background processes.
+This tutorial is intended to give you a quick overview of `upstart`, which is one of the possible solutions to run and manage your background processes.
 
 <!-- more -->
 
@@ -29,7 +29,11 @@ According to [upstart homepage](http://upstart.ubuntu.com/index.html):
 
 ## How to use it?
 
-Assuming that you are using `rvm` for managing rubies, you'll need to create [wrapper](https://rvm.io/integration/init-d) for ruby executable to be accessible from `my_program.conf`.
+[In properly set up production environment there is no ruby version manager](http://blog.arkency.com/2012/11/one-app-one-user-one-ruby/). Using **one ruby per user** makes your script extremely easy to run and there's no need to provide any special configuration here.
+
+Unfortunately, there are still some environments, which use `rvm` or `rbenv` so, to make this article comprehensive, we need to show how to configure at least one of them.
+
+Let's choose `rvm` for managing rubies. You'll need to create [wrapper](https://rvm.io/integration/init-d) for ruby executable to be accessible from `my_program.conf`.
 
 According to [rvm website](https://rvm.io/rubies/alias) it can be done via simple command:
 
@@ -46,7 +50,7 @@ Now your ruby bin can be found under:
 /usr/local/rvm/wrappers/my_program/ruby
 ```	
 
-Then, create configuration file that contains script to be executed in a background process:
+Then, create configuration file that contains script to be executed in a background job:
 
 ```
 #!ruby
@@ -68,11 +72,10 @@ start on <your_command>
 
 ```
 #!ruby
-	- filesystem 			# when filesystem is ready
-	- startup 				# when system booted up
-	- started networking 	# when networking is up
-	- runlevel [2345] 		# when the system reaches ]runlevel 2, 3, 4, or 5
-	- custom_command 		# when you manually emitted event
+	- startup				# start a job as early as possible
+	- filesystem 			# start after all filesystems are mounted
+	- started networking 	# start after network is connected
+	- custom_command 		# start job only on demand after explicitly run by user
 ```
 
   b) In the same way you can define `stop on` command.
@@ -150,6 +153,7 @@ On the very end I'd like to recommend you a bunch of resources containing many e
 ## Resources:
 - http://upstart.ubuntu.com/wiki/Stanzas
 - http://upstart.ubuntu.com/cookbook/
+- http://upstart.ubuntu.com/getting-started.html
 - https://help.ubuntu.com/community/UbuntuBootupHowto
 - https://help.ubuntu.com/community/UpstartHowto
 - http://manpages.ubuntu.com/manpages/trusty/en/man8/runlevel.8.html
