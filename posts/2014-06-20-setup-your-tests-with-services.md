@@ -1,6 +1,6 @@
 ---
 title: "Setup your tests with services & the problem with factory girl specs"
-created_at: 2014-06-20 12:00:20 +0200
+created_at: 2014-06-31 12:00:20 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
@@ -38,15 +38,31 @@ Let's think about our tests for a moment.
 
 ```
 #!ruby
-let!(:dictionary) { create(:dictionary, native_language: "en", learning_language: "fr") }
 let!(:school)     { create(:school, native_language: "en") }
-let!(:teacher)    { create(:teacher, school: school, languages: %w(fr it) ) }
 let!(:klass)      { create(:klass, school: school) }
 let!(:pupil)      { create(:pupil, klass: klass) }
-let!(:assignment) { create(:assignment, klass: klass, teacher: teacher, dictionary: dictionary) }
+
+let!(:teacher)    { create(:teacher,
+  school:    school, 
+  languages: %w(fr it),
+) }
+
+let!(:dictionary) { create(:dictionary, 
+  native_language:   "en", 
+  learning_language: "fr",
+) }
+
+let!(:assignment) { create(:assignment, 
+  klass:      klass, 
+  teacher:    teacher, 
+  dictionary: dictionary,
+) }
+
 
 specify "pupil can learn from class dictionaries" do
-  expect( teaching.dictionaries_for(pupil.id) ).to include(dictionary)
+  expect(
+    teaching.dictionaries_for(pupil.id)
+  ).to include(dictionary)
 end
 ```
 
@@ -75,7 +91,10 @@ Our tests fail because we must add one more piece of data to them. The `KlassLan
 
 ```
 #!ruby
-let!(:klass_language) { create(:klass_language, klass: klass, dictionary: dictionary) }
+let!(:klass_language) { create(:klass_language,
+  klass: klass, 
+  dictionary: dictionary,
+) }
 ```
 
 Imagine adding that to dozens or hundred tests that you already wrote. No fun. It would be as if almost all those tests
@@ -88,10 +107,16 @@ Like imagine you had a test like this:
 ```
 #!ruby
 
-let!(:assignment) { create(:assignment, klass: klass, teacher: teacher, dictionary: french_dictionary) }
+let!(:assignment) { create(:assignment,
+  klass:      klass, 
+  teacher:    teacher, 
+  dictionary: french_dictionary
+) }
 
 specify "pupil cannot learn from other dictionaries" do
-  expect( teaching.dictionaries_for(pupil.id) ).not_to include(german_dictionary)
+  expect(
+    teaching.dictionaries_for(pupil.id)
+  ).not_to include(german_dictionary)
 end
 ```
 
@@ -175,7 +200,12 @@ to revisit them later with the intent to verify the setup and fix it. Given enou
 what sequence of events in system the original test author imagined leading to a state described in a test. 
 
 This means that we are not protected in any way against changes to the internal implementation that happen in the future.
-Same way you can't just rename `@collection` in the stack example because the test is fragile. 
+Same way you can't just rename `@collection` in the stack example because the test is fragile.
+ 
+In other words, we introduced a third element into _Command/Query_ separation model for our tests. Instead of issuing
+_Commands_ and testing the result with _Queries_ we issue commands and test what's in db. And for _Queries_ we set state
+in db and then we run _Queries_. But we usually have no way to ensure synchronization of those test. We are not sure
+that what _Commands_ created is the same for what we test in _Queries_.
 
 ## You take revenge
 
@@ -185,37 +215,40 @@ with the system instead of building its state. In case of our original school ex
 ```
 #!ruby
 
-before do 
-  registration = SchoolRegistration.new
-  registration.call(SchoolRegistration::Input.new.tap do |i|
-    i.school_attributes  = attributes(:school, native_language: "en")
-    i.teacher_attributes = teacher_attributes = attributes(:teacher, id: "f154cc85-0f0d-4c5a-9be1-f71aa217b2c0", languages: %w(fr it) )
-  end)
-  
-  class_creation = ClassCreation.new
-  class_creation.call(ClassCreation::Input.new.tap do |i|
-    i.id = "5c7a1aa9-72ca-46b2-bf8c-397d62e7db19"
-    i.klass_number = "1"
-    i.klass_letter = "A"
-    i.klass_pupils = [{
-      id: "6d805bdd-79ff-4357-88cc-45baf103965a",
-      first_name: "John",
-      last_name:  "Doe",
-    }]
-  end)
-  
-  assignment = ClassAssignment.new
-  assignment.call(ClassAssignment::Input.new.tap do |i|
-    i.klass_id   = "6d805bdd-79ff-4357-88cc-45baf103965a"
-    i.teacher_id = teacher_attributes.id
-    i.learning_language = "fr"
-  end)
-end
+registration = SchoolRegistration.new
+registration.call(SchoolRegistration::Input.new.tap do |i|
+  i.school_attributes  = attributes(:school, native_language: "en")
+  i.teacher_attributes = teacher_attributes = attributes(:teacher,
+    id: "f154cc85-0f0d-4c5a-9be1-f71aa217b2c0", 
+    languages: %w(fr it) 
+  )
+end)
+
+class_creation = ClassCreation.new
+class_creation.call(ClassCreation::Input.new.tap do |i|
+  i.id = "5c7a1aa9-72ca-46b2-bf8c-397d62e7db19"
+  i.klass_number = "1"
+  i.klass_letter = "A"
+  i.klass_pupils = [{
+    id: "6d805bdd-79ff-4357-88cc-45baf103965a",
+    first_name: "John",
+    last_name:  "Doe",
+  }]
+end)
+
+assignment = ClassAssignment.new
+assignment.call(ClassAssignment::Input.new.tap do |i|
+  i.klass_id   = "5c7a1aa9-72ca-46b2-bf8c-397d62e7db19"
+  i.teacher_id = teacher_attributes.id
+  i.learning_language = "fr"
+end)
 ```
 
 This setup is way longer because in some places we decided to go with longer syntax and set some attribute by hand
 (although) we didn't have to. This example mixes two approaches so you can see how you can do things *longer-way* and
-*shorter-way* (by using attributes).
+*shorter-way* (by using attributes). We didn't take a single step to refactor it into shorter expression and to be more reusable in
+multiple tests because I wanted you to see a full picture of it. But extracting it into smaller test helpers, so that the
+test setup would be as short and revealing in our factory girl example would be trivial. For now let's keep focus on our case. 
 
 What can we see from this test setup? We can see the interactions that led to the state of the system. There were 3 of
 them and are similar to how I described the entire story for you. First teacher registered (first teacher creates the school
@@ -231,11 +264,13 @@ Let's recall our test:
 #!ruby
 
 specify "pupil can learn from class dictionaries" do
-  expect( teaching.dictionaries_for(pupil.id) ).to include(dictionary)
+  expect(
+    teaching.dictionaries_for(pupil.id)
+  ).to include(dictionary)
 end
 ```
 
-I didn't tell you what `teaching` was in our first version of the code. It doesn't matter much for our discussion and
+I didn't tell you what `teaching` was in our first version of the code. It doesn't matter much for our discussion or
 to see the point of our changes but let's think about it for a moment. It had to be some kind of
 [Repository](http://martinfowler.com/eaaCatalog/repository.html) object implementing `#dictionaries_for` method.
 Or a [Query](http://martinfowler.com/eaaCatalog/queryObject.html) object. Something definitely related and coupled to
@@ -245,20 +280,38 @@ It can be the same in our last example. But it doesn't have to! All those servic
 communicate with them and `teaching` would be just a repository object querying the db for dictionaries of class that
 the pupil is in. And that would be fine.
 
+But `teaching` could be a submodule of our application that the services are communicating with. Maybe the key Commands/Services
+in our system communicate with multiple modules such as `Teaching`, `Accounting`, `Licensing` and in this test we are
+only interested in what happened in one of them. So we could stub other dependencies except for `teaching` if they were
+explicitly passed in constructor.
 
-Tutaj o tym, że teaching może być czymkolwiek i może być czymś innym niż query i że może być innym modułem z którym tamte
-serwisy się będą komunikować by przekazać mu informacje o tym że ktoś się czegoś uczy. Że teraz w tym teście to już nie
-ma tak dużego znaczenia.
+```
+#!ruby
+teaching = Teaching.new
+class_creation = ClassCreation.new(
+  teaching, 
+  double(:accounting), 
+  double(:licensing)
+)
+```
+
+So with this kind of test setup you are way more flexible and less constrained. Having data in db is no longer your only
+option.
+
+## TLDR;
+
+In some cases you might wanna consider setting up the state of your system using Services/Commands instead of directly
+on DB using *factory_girl*. The benefit will be that it will allow you to more freely change the internal implementation
+of your system without much hassle for changing your tests.
 
 ## TODO
 
 * rozdział w książce
 * dalszy ciąg o tych rzeczach co poniżej wspomniane w książce
-* fixnąć kod by na blogu dobrze wyglądał desktop/mobile
 * zrobić pogrubienia tweetowalnych fragmentów by rzucały się w oczy i bym wiedział co wrzucać na twittera.
 
 ## More
 
-This is an excerpt from ... . for blogpost and newsletter we end here but in the book there is a following discussion
+This is an excerpt from ... . for blogpost and newsletter we end here but in the book there will be a following discussion
 which makes the setup shorter. We also talk about the value of setting UUIDs and generating them on frontend. As well
 as we discuss the why it is worth to have an `Input` class that keeps the incoming data for your service. 
