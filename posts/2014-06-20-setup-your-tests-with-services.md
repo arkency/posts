@@ -311,13 +311,8 @@ there are 10 things that the user can do in my app, maybe 100 or maybe 1000. But
 match them in whatever order I wish to create the setup of situation that I wish to test. It's hard to set incorrect
 state that way that would not have happened in your real app, because you are just using your production code.
 
-## TODO
-
-* rozdział w książce
-* dalszy ciąg o tych rzeczach co poniżej wspomniane w książce
-
 ## More
 
-This is an excerpt from ... . for blogpost and newsletter we end here but in the book there will be a following discussion
-which makes the setup shorter. We also talk about the value of setting UUIDs and generating them on frontend. As well
-as we discuss the why it is worth to have an `Input` class that keeps the incoming data for your service. 
+This is an excerpt from <%= service_landing_link %> . For our blog post and newsletter we end up here but in the book there will be a
+following discussion about shortening the setup. We will also talk about the value of setting UUIDs and generating them
+on frontend. As well why it is worth to have an `Input` class that keeps the incoming data for your service (usually user input). 
