@@ -2,7 +2,7 @@
 title: "Create, run and manage your Ruby background processes with upstart"
 created_at: 2014-06-29 16:21:01 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :arkency_form
 tags: [ 'upstart', 'background', 'process' ]
