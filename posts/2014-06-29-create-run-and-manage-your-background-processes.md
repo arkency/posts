@@ -129,18 +129,12 @@ sudo service my_program start
 
 ```
 #!ruby	
-sudo initctl start my_program
+sudo start my_program
 ```
 
-I recommend you to use [initctl](http://manpages.ubuntu.com/manpages/quantal/en/man8/initctl.8.html), which offers quite nice helpers like:
+You can execute the basic commands like `start`, `stop`, `restart` and `status` directly without preceding them with `initctl`.
 
-```
-#!ruby
-		list 		# lists registered services and their state
-		restart		# restarts our script
-		stop 		# stops script
-		status		# displays job status
-```
+I recommend you to take a look at [initctl](http://manpages.ubuntu.com/manpages/quantal/en/man8/initctl.8.html), which offers quite nice helpers like e.g. `list`, which lists all registered services and their state.
 
 If you want to see execution logs (to check whether everything goes correctly) there's a handy way to display them:
 
