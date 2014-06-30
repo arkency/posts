@@ -4,7 +4,8 @@ created_at: 2014-06-31 12:00:20 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: :skip
+newsletter_inside: :fearless_refactoring_1
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
@@ -299,6 +300,8 @@ class_creation = ClassCreation.new(
 
 So with this kind of test setup you are way more flexible and less constrained. Having data in db is no longer your only
 option.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## TLDR;
 
