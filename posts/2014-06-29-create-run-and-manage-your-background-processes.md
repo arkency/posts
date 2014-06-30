@@ -57,7 +57,7 @@ Then, create configuration file that contains script to be executed in a backgro
 vim /etc/init/my_program.conf
 ```
 
-It's time to start writing your script.
+## How to write it?
 	
   a) You have to tell your script when to run and `start on` command is used for that. The syntax looks like:
 
@@ -107,7 +107,9 @@ is for multiline code.
 		end script
 ```
 		
-How to run our program? As you might have guessed, there a couple ways to do that.
+## How to run it?
+
+As you might have guessed, there a couple ways to do that.
 
   a) when we run our script on custom event you can run it like
 
@@ -157,3 +159,7 @@ On the very end I'd like to recommend you a bunch of resources containing many e
 - https://help.ubuntu.com/community/UbuntuBootupHowto
 - https://help.ubuntu.com/community/UpstartHowto
 - http://manpages.ubuntu.com/manpages/trusty/en/man8/runlevel.8.html
+
+## Disclaimer
+
+Although [`upstart` has been sunset in favor of `systemd`](https://bbs.archlinux.org/viewtopic.php?pid=1149530#p1149530) as a default init system, it is still used for other usecases. What is more, [`systemd` adoption](http://en.wikipedia.org/wiki/Systemd#Adoption) is wider than [`upstart`](http://en.wikipedia.org/wiki/Upstart#Adoption) across Linux distributions. However, there are [some fallacies](http://monolight.cc/2011/05/the-systemd-fallacy/) about the former, which is thought to be more [complex](http://www.freedesktop.org/software/systemd/man/daemon.html) than intended. Moreover there are still not many [resources](https://wiki.archlinux.org/index.php/systemd#Writing_custom_.service_files) and [tutorials](http://patrakov.blogspot.com/2011/01/writing-systemd-service-files.html) that well explains `systemd` and provide step-by-step solutions to write and run background scripts. We encourage you to dive into both of them and choose by yourself which one is more suitable and less complex for your own needs.
