@@ -6,6 +6,7 @@ publish: true
 author: Tomasz Rybczyński
 newsletter: :arkency_form
 tags: [ 'work-style']
+stories: ['async-remote']
 ---
 
 <p>
