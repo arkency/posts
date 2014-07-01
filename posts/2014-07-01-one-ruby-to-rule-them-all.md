@@ -2,9 +2,10 @@
 title: "One Ruby to rule them all"
 created_at: 2014-07-01 09:49:36 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
-newsletter: :arkency_form
+newsletter: :skip
+newsletter_inside: :mobile
 tags: [ 'android', 'ios', 'rubymotion', 'mobile' ]
 ---
 
@@ -70,3 +71,6 @@ From the many [videocasts](http://bigbinary.com/videos/learn-rubymotion), [sourc
 We encourage every ruby developer to **try RubyMotion**. It's a great way to **go into mobile** even if you don't know (and like) Java or Objective-C. We are impressed the **RubyMotion great support**, tools and community despite it's a standard as befits the Ruby world.
 
 For now, stay tuned for more mobile blogposts!
+
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
