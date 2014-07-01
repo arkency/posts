@@ -1,5 +1,5 @@
 ---
-title: "One Ruby to rule them all"
+title: "From Rails to RubyMotion: basic toolkit"
 created_at: 2014-07-01 09:49:36 +0200
 kind: article
 publish: true
@@ -42,9 +42,9 @@ I'm not sure if framework is the best word word for describing what I want do pr
 
 - **Vanilla [RubyMotion](http://www.rubymotion.com/features/)** - this is RubyMotion itself, that allows to write the same methods taken form native platforms in ruby with just a little tweaks. It's the closest implementation to Java or Objective-C.
 
-- **[ProMotion](https://github.com/clearsightstudio/ProMotion)** - it makes verbose Objective-C syntax more rubish by hiding native methods behind ruby-convention ones. PM also offers a bunch of ready classes to manipulate views without struggling with sometime complex implementation.
+- **[ProMotion](https://github.com/clearsightstudio/ProMotion)** - it makes verbose Objective-C syntax more ruby-like by hiding native methods behind ruby-convention ones. PM also offers a bunch of ready classes to manipulate views without struggling with sometime complex implementation.
 
-- **[RMQ](http://infinitered.com/rmq/)** - this is the jQuery for Objective-C. It makes extremely easy to manipulate views, traverse between components, animate and style whatever we want and handle events and user gestures.
+- **[RMQ](http://infinitered.com/rmq/)** - this is the jQuery for Objective-C. It makes extremely easy to manipleulate views, traverse between components, animate and style whatever we want and handle events and user gestures.
 
 ### Gether them all
 From the many [videocasts](http://bigbinary.com/videos/learn-rubymotion), [sources](http://rubymotion-tutorial.com/) and [examples](http://confreaks.com/videos?search=rubymotion) we've extracted basic configurations used among the projects and here they are:
