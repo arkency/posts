@@ -2,7 +2,7 @@
 title: "Setup your tests with services & the problem with factory girl specs"
 created_at: 2014-06-31 12:00:20 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_1
@@ -29,9 +29,9 @@ Let's start with a little background from an imaginary application for teaching 
  
 There is a school in our system which decided to use our software and buy a license. Teacher can create classes to
 teach a language (or use existing one created by someone else). During the procedure multiple pupils can be imported
-from file or added manually on the webui. The teacher will be teaching a class in given School Year. The school is
-having a native language and the class is go to learn a foreign language. Based on that we provide them with access
-to school dictionaries suited to kids needs.
+from file or added manually on the webui. The teacher will be teaching a class. The school is
+having a native language and the class is learning a foreign language. Based on that we provide them with access
+to school dictionaries suited to kids' needs.
 
 ## Everything is ok 
 
