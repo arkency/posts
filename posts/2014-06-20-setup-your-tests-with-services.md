@@ -1,5 +1,5 @@
 ---
-title: "Setup your tests with services & the problem with factory girl specs"
+title: "Service objects as a way of testing Rails apps (without factory_girl)"
 created_at: 2014-06-31 12:00:20 +0200
 kind: article
 publish: true
@@ -20,7 +20,8 @@ using built-in Rails fixtures (because of speed and simplicity). Others are in f
 gems. I can't provide definite numbers but judging  based on the apps that we review, **in terms of adoption,
 *factory_girl* seems to have won**. 
 
-I would like to present you a third alternative "**Setting up tests with services**" and compare it to *factory_girl*
+I would like to present you a third alternative "**Setting up tests with services**" (the same ones you use in your
+production code, not ones crafted specifically for tests) and compare it to *factory_girl*
 to show where it might be beneficial to go with such approach.
 
 <!-- more -->
@@ -303,7 +304,7 @@ option.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
-## TLDR;
+## TL;DR;
 
 In some cases you might wanna consider setting up the state of your system using Services/Commands instead of directly
 on DB using *factory_girl*. The benefit will be that it will allow you to more **freely change the internal implementation
