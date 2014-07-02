@@ -4,7 +4,8 @@ created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :fearless
+newsletter: :skip
+newsletter_inside: :mastering_active_record1
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
@@ -312,6 +313,8 @@ end
 ```
 
 I hope you get the idea :) But this is just a dream. Let's get back to reality...
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## Rails 4 changes
 
