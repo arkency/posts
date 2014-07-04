@@ -1,17 +1,17 @@
 ---
-title: "On microservices"
+title: "The many flavours of Microservices"
 created_at: 2014-07-04 22:27:25 +0200
 kind: article
 publish: false
 author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'soa', 'microservices', 'architecture' ]
 ---
 
-Microservices - everyone talks about them nowadays. Not everyone understands them however the same way. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos. Below you can find this research with my comments. I've already distilled what characteristic does "ideal" microservice have. What does it have for you?
+Microservices - everyone talks about them nowadays. Not everyone understands them however the same way. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos.  
 
 <!-- more -->
 
-# Articles and presentations
+## Articles and presentations
 
 * [http://martinfowler.com/articles/microservices.html]()
 
@@ -244,7 +244,7 @@ Presumably Event Sourcing.
 
 	API contracts, IDL, RPC. Not my microservices world. Interesting only if you're into RPC and contracts.
 
-# Videos 
+## Videos 
 
 * [http://gotocon.com/video#47
 ]()
@@ -327,3 +327,7 @@ allow yourself to experiment and try.
 * [http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/]()
 * [http://microsvcs.io/]()
 * [https://www.youtube.com/watch?v=ZFBvvUlqQ6w]()
+
+## Summary
+
+That's a lot of reading and watching but not all for sure. I'll be glad to receive recommendations on publications you find influential.
