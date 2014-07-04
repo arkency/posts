@@ -3,7 +3,8 @@ title: "The many flavours of Microservices"
 created_at: 2014-07-04 22:27:25 +0200
 kind: article
 publish: false
-author: anonymous
+author: Paweł Pacana
+newsletter: :microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
 ---
 
