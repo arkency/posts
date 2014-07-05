@@ -22,7 +22,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 
 ## Articles and presentations
 
-* [http://martinfowler.com/articles/microservices.html]()
+* [http://martinfowler.com/articles/microservices.html](http://martinfowler.com/articles/microservices.html)
 
 	Good broad introduction to the topic and further references, mentions *"you build it, you run it"* from Werner Vogels. Make sure to check related comments: [https://news.ycombinator.com/item?id=7382390
 ]()
@@ -74,7 +74,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	Not sure if microservices but still relevant on importance of monitoring in distributed system.
 
 * [http://highscalability.com/blog/2014/4/8/microservices-not-a-free-lunch.html
-]() and [http://contino.co.uk/blog/2013/03/31/microservices-no-free-lunch.html]()
+]() and [http://contino.co.uk/blog/2013/03/31/microservices-no-free-lunch.html](http://contino.co.uk/blog/2013/03/31/microservices-no-free-lunch.html)
 
 	Good list of potential problems and fantastic response in comments:
 
@@ -85,11 +85,11 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	
 	Mentions most common reasons to partition the system and organization, also confirms that bounded context makes great microservice.
 
-* [http://davidmorgantini.blogspot.com/2013/08/micro-services-introduction.html](),
-[http://davidmorgantini.blogspot.co.uk/2013/08/micro-services-what-are-micro-services.html](),
-[http://davidmorgantini.blogspot.com/2013/08/micro-services-when-should-you-use.html](), 
-[http://davidmorgantini.blogspot.com/2013/08/micro-services-why-shouldnt-you-use.html]() and 
-[http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html]()
+* [http://davidmorgantini.blogspot.com/2013/08/micro-services-introduction.html](http://davidmorgantini.blogspot.com/2013/08/micro-services-introduction.html),
+[http://davidmorgantini.blogspot.co.uk/2013/08/micro-services-what-are-micro-services.html](http://davidmorgantini.blogspot.co.uk/2013/08/micro-services-what-are-micro-services.html),
+[http://davidmorgantini.blogspot.com/2013/08/micro-services-when-should-you-use.html](http://davidmorgantini.blogspot.com/2013/08/micro-services-when-should-you-use.html), 
+[http://davidmorgantini.blogspot.com/2013/08/micro-services-why-shouldnt-you-use.html](http://davidmorgantini.blogspot.com/2013/08/micro-services-why-shouldnt-you-use.html) and 
+[http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html](http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html)
 
 	Not bad but mostly obvious when you've read Fowler, more why than how.
 
@@ -118,12 +118,12 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	Most importantly this presentation shows difference between layered architecture in SOA form and proper SOA (microservices).
 	
 	Also related:
-	*  [http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-1/]()
-	* [http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-2/]() 
+	*  [http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-1/](http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-1/)
+	* [http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-2/](http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-2/) 
  	
 		Contains answer to important question *How do we split our data / services and identify them?*
 
-   * [http://www.tigerteam.dk/2014/microservices-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-3/]() 
+   * [http://www.tigerteam.dk/2014/microservices-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-3/](http://www.tigerteam.dk/2014/microservices-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-3/) 
 
 		On services communication.
 
@@ -132,7 +132,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 
 		Technique to decouple from monolith. Data duplication for events. Boundaries. Saga (workflow). Remarks on eventual consistency. Good exemplary system to be implemented using microservives.
 
-	* [http://www.tigerteam.dk/2014/soa-synchronous-communication-data-ownership-and-coupling/]() 
+	* [http://www.tigerteam.dk/2014/soa-synchronous-communication-data-ownership-and-coupling/](http://www.tigerteam.dk/2014/soa-synchronous-communication-data-ownership-and-coupling/) 
 
 		On SOA design principles, interesting.
 
@@ -168,7 +168,7 @@ add a new microservice, no impact, route test traffic to it version aware routin
 	Bashing on monorail, how they split it [no details on process]
 details on tools used in twitter: twitter-server, finagle, zipkin.
 
-* [http://www.slideshare.net/mobile/pcalcado/from-a-monolithic-ruby-on-rails-app-to-the-jvm]()
+* [http://www.slideshare.net/mobile/pcalcado/from-a-monolithic-ruby-on-rails-app-to-the-jvm](http://www.slideshare.net/mobile/pcalcado/from-a-monolithic-ruby-on-rails-app-to-the-jvm)
 
 	Microservices as a way to reduce the risk of trying thins
 choose jvm [jruby, scala, clojure]. Composite UI (api) and services with own storage. Apparently they have custom tool to bring services up/down.
@@ -233,7 +233,7 @@ choose jvm [jruby, scala, clojure]. Composite UI (api) and services with own sto
 	
 	Didn't provide much value having consummed previous articles.
 
-* [http://www.infoq.com/articles/microservices-intro]()
+* [http://www.infoq.com/articles/microservices-intro](http://www.infoq.com/articles/microservices-intro)
 
 	Didn't provide much value having consummed previous articles.
 
@@ -265,7 +265,7 @@ Presumably Event Sourcing.
 ]()
 
 
-	Related to [http://www.slideshare.net/spnewman/practical-microservices-yow-2013](). Practical - starts good
+	Related to [http://www.slideshare.net/spnewman/practical-microservices-yow-2013](http://www.slideshare.net/spnewman/practical-microservices-yow-2013). Practical - starts good
 why microservices or "fine-grained" architectures. In reality many more options to scale in "fine-grained". Need to standardise for own sanity.
 
 	>Standardise in the gaps between services - be flexible about what happens inside the boxes. 
@@ -306,36 +306,36 @@ why microservices or "fine-grained" architectures. In reality many more options 
 	Apache Kafka, ZeroMQ. Publish to rapids, subscribe to rivers. Asynchronous services. Channel interfaces - email, counter, website, all of the can pump events into bus. Services have own persistance.
 Events, not entities. Push to client, so that it does not wait. Circuit-breaker with defaults. Service as a class in OOP.
 
-* [http://new.livestream.com/websummit/DeveloperStage2013/videos/33533032]()
+* [http://new.livestream.com/websummit/DeveloperStage2013/videos/33533032](http://new.livestream.com/websummit/DeveloperStage2013/videos/33533032)
 
-	Basically Fred George + Immutable Servers + no async Pub/Sub by default. Intelligent routing as pattern matching [so that service can make synchronous call without explicit receiver] - somehow I dislike this idea [and it wasn't implemented]. Contacts in json schema, used by monitoring to match flowing requests. [http://en.wikipedia.org/wiki/Jon_Postel#Postel.27s_Law](). Code small enough so that you can remove it.
+	Basically Fred George + Immutable Servers + no async Pub/Sub by default. Intelligent routing as pattern matching [so that service can make synchronous call without explicit receiver] - somehow I dislike this idea [and it wasn't implemented]. Contacts in json schema, used by monitoring to match flowing requests. [http://en.wikipedia.org/wiki/Jon_Postel#Postel.27s_Law](so that service can make synchronous call without explicit receiver] - somehow I dislike this idea [and it wasn't implemented]. Contacts in json schema, used by monitoring to match flowing requests. [http://en.wikipedia.org/wiki/Jon_Postel#Postel.27s_Law). Code small enough so that you can remove it.
 
 
-* [https://www.youtube.com/watch?v=6mesJxUVZyI]()
+* [https://www.youtube.com/watch?v=6mesJxUVZyI](https://www.youtube.com/watch?v=6mesJxUVZyI)
 
-	They use REST, services run on JVM, no big details. Fake service dependencies in development. Mostly uninteresting, trivial stuff. Mentioned [http://square.github.io/cubism/](). ACLs for service API endpoints, enforced by certificates wiht certain OUs.
+	They use REST, services run on JVM, no big details. Fake service dependencies in development. Mostly uninteresting, trivial stuff. Mentioned [http://square.github.io/cubism/](http://square.github.io/cubism/). ACLs for service API endpoints, enforced by certificates wiht certain OUs.
 
-* [https://www.youtube.com/watch?v=A9rwSDMp-ls]()
+* [https://www.youtube.com/watch?v=A9rwSDMp-ls](https://www.youtube.com/watch?v=A9rwSDMp-ls)
 
 	Components scale individually. Break down knowledge of the huge monolithic system (scale organization), Rails as composite UI, however sometimes UI talks straight to service. Memcache becomes database. Troubles with moving from monolith's AR to service. Migrating to services with "double dispatching" - service is redundant at the beginning to monolith before completely migrating to it, allows profiling, leaves backup plan. Custom tools for deployment. Standardized tools, no snowflakes - they use dropwizard. 10-week teams, then they rotate. 
 
 	Good, general presentation.
 
-* [https://skillsmatter.com/skillscasts/5233-separating-fact-from-fiction-what-do-microservices-really-look-like]()
+* [https://skillsmatter.com/skillscasts/5233-separating-fact-from-fiction-what-do-microservices-really-look-like](https://skillsmatter.com/skillscasts/5233-separating-fact-from-fiction-what-do-microservices-really-look-like)
 
 	Optimize for change. SOA can evolve to microservices. Small, the more chance you can accept change. Single purpose. May be stateful. Polyglot (and the weirdness of recruiting for X tech developer). Flat services. Pipelines interaction. Scaling - lots of options. Antifragility. Favors HTTP as protocol. No free lunch *yet*. Docus on data flow rather than strcuture (pipelines). Microservices don't need manifesto, they're just enough to build systems that change and adapt
 allow yourself to experiment and try.
 
-* [http://www.infoq.com/presentations/Micro-Services]()
-* [http://vimeo.com/74589816]()
-* [http://vimeo.com/74452550]()
-* [https://www.youtube.com/watch?v=2ofzdPXeQ6o#t=2739]()
-* [https://www.youtube.com/watch?v=PTZAmViaXKQ]()
-* [http://vimeo.com/43690647]()
-* [https://www.youtube.com/watch?v=wyWI3gLpB8o]()
-* [http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/]()
-* [http://microsvcs.io/]()
-* [https://www.youtube.com/watch?v=ZFBvvUlqQ6w]()
+* [http://www.infoq.com/presentations/Micro-Services](http://www.infoq.com/presentations/Micro-Services)
+* [http://vimeo.com/74589816](http://vimeo.com/74589816)
+* [http://vimeo.com/74452550](http://vimeo.com/74452550)
+* [https://www.youtube.com/watch?v=2ofzdPXeQ6o#t=2739](https://www.youtube.com/watch?v=2ofzdPXeQ6o#t=2739)
+* [https://www.youtube.com/watch?v=PTZAmViaXKQ](https://www.youtube.com/watch?v=PTZAmViaXKQ)
+* [http://vimeo.com/43690647](http://vimeo.com/43690647)
+* [https://www.youtube.com/watch?v=wyWI3gLpB8o](https://www.youtube.com/watch?v=wyWI3gLpB8o)
+* [http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/](http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/)
+* [http://microsvcs.io/](http://microsvcs.io/)
+* [https://www.youtube.com/watch?v=ZFBvvUlqQ6w](https://www.youtube.com/watch?v=ZFBvvUlqQ6w)
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
