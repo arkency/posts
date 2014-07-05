@@ -4,7 +4,8 @@ created_at: 2014-07-05 10:20:25 +0200
 kind: article
 publish: true
 author: Pawel Pacana
-newsletter: :microservices
+newsletter: :skip
+newsletter_inside: :microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
 ---
 
@@ -335,6 +336,8 @@ allow yourself to experiment and try.
 * [http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/]()
 * [http://microsvcs.io/]()
 * [https://www.youtube.com/watch?v=ZFBvvUlqQ6w]()
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## Summary
 
