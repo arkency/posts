@@ -1,14 +1,21 @@
 ---
-title: "The many flavours of Microservices"
-created_at: 2014-07-04 22:27:25 +0200
+title: "Microservices - 72 resources"
+created_at: 2014-07-05 10:20:25 +0200
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 newsletter: :microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
 ---
 
-Microservices - everyone talks about them nowadays. Not everyone understands them however the same way. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos.  
+<p>
+  <figure align="center">
+    <img src="/assets/images/microservices/microservices_pattern.png" width="100%">
+  </figure>
+</p>
+
+
+Microservices - everyone talks about them nowadays. There's no common understanding however what they are. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos.  
 
 <!-- more -->
 
