@@ -68,7 +68,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	Not sure if microservices but still relevant on importance of monitoring in distributed system.
 
 * http://highscalability.com/blog/2014/4/8/microservices-not-a-free-lunch.html
- and http://contino.co.uk/blog/2013/03/31/microservices-no-free-lunch.html
+ and http://contino.co.uk/microservices-not-a-free-lunch/
 
 	Good list of potential problems and fantastic response in comments:
 
