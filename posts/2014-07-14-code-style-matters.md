@@ -55,7 +55,7 @@ vs.
 
 result = some_condition ? something : something_else
 ```
-Here ternary operator is less verbose that `if`, `then`, `else`, `end`, which are used rather in complex (multiline) cases.
+Here ternary operator is less verbose than `if`, `then`, `else`, `end`, which are used rather in complex (multiline) cases.
 
 ```
 #!ruby
