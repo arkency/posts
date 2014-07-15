@@ -76,7 +76,7 @@ Much nicer and no `'` everywhere.
 
 I chose these, because I see them the most often. I hope they show that problem exists.
 
-Why I'm pointing on that? Bacuse I'm working in many projects with many devs at one time. I'm using *up to* 6 different languages every day so sometimes it's kinda overwhelming. To easily dive into one project from another, switch contexts, jump between environments and work with other people, some guidelines must be respected.
+Why I'm pointing on that? Because I'm working in many projects with many devs at one time. I'm using *up to* 6 different languages every day so sometimes it's kinda overwhelming. To easily dive into one project from another, switch contexts, jump between environments and work with other people, some guidelines must be respected.
 
 Moreover I'm developing in [JetBrains](http://www.jetbrains.com/) tools (RubyMine, IntelliJ, AppCode, AndroidStudio), which have really nice syntax check inspired by *official* guidelines like e.g. "[Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide#syntax)" and they help me to keep my code clean and coherent across files.
 
