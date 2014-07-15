@@ -15,7 +15,7 @@ tags: [ 'controllers', 'rails' ]
   </figure>
 </p>
 
-When refactoring rails controllers you can stumble upon one gottcha. It's hard to
+When [refactoring rails controllers](http://rails-refactoring.com/) you can stumble upon one gottcha. It's hard to
 easily extract code into methods when it escapes flow from the controller method (usually
 after redirecting and sometimes after rendering). Here is an example:
 
