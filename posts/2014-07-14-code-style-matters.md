@@ -70,7 +70,7 @@ They can be [really tricky](http://devblog.avdi.org/2010/08/02/using-and-and-or-
 
 vs. 
 
-w%(a b c) and %i(a b c)
+%w(a b c) and %i(a b c)
 ```
 Much nicer and no `'` everywhere.
 
