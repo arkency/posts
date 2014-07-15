@@ -15,7 +15,7 @@ tags: [ 'code', 'style', 'clean', 'syntax' ]
   </figure>
 </p>
 
-Have you ever wondered **how does your code look like?** Exactly - no *what does it do* or even *how is it organized*, but actually *how does it look like*. One may think here *"oh screw it"*, but I want to present that **it can matter** and show you my various thoughts about that topic.
+Have you ever wondered **how your code looks like??** Exactly - no *what does it do* or even *how is it organized*, but actually *how does it look like*. One may think here *"oh screw it"*, but I want to present that **it can matter** and show you my various thoughts about that topic.
 
 <!-- more -->
 
