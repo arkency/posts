@@ -23,7 +23,7 @@ Recently [Andrzej Krzywda](http://andrzejonsoftware.blogspot.com/) raised an sen
 
 ## Why does it matter?
 
-In the beginning I'll start with some examples in Ruby, that may lead to incostincency in one project. That's not a comprehensive example but an overview to introduce this problem.
+In the beginning I'll start with some examples in Ruby, that may lead to inconsistency in one project. That's not a comprehensive example but an overview to introduce this problem.
 
 
 ```
@@ -55,7 +55,7 @@ vs.
 
 result = some_condition ? something : something_else
 ```
-Here tenary operator is less verobse thatn `if`, `then`, `else`, `end`, which are used rather in complex (multiline) cases.
+Here ternary operator is less verbose that `if`, `then`, `else`, `end`, which are used rather in complex (multiline) cases.
 
 ```
 #!ruby
@@ -84,7 +84,7 @@ Moreover I'm developing in [JetBrains](http://www.jetbrains.com/) tools (RubyMin
 
 In my opinion, the most important thing about our code is **readability**. Why? Because we don't usually have time to read and parse others code. We need to use it. If we are using the same style, we can just take a look and understand everything.
 
-It's much tougher to unserstand
+It's much tougher to understand
 
 ```
 #!ruby
