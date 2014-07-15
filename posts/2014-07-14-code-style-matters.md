@@ -15,11 +15,11 @@ tags: [ 'code', 'style', 'clean', 'syntax' ]
   </figure>
 </p>
 
-Have you ever wondered **how your code looks like??** Exactly - no *what does it do* or even *how is it organized*, but actually *how does it look like*. One may think here *"oh screw it"*, but I want to present that **it can matter** and show you my various thoughts about that topic.
+Have you ever wondered **how your code looks?** Exactly - no *what it does* or even *how it is organized*, but actually *how it looks*. One may think here *"oh screw it"*, but I want to present that **it can matter** and show you my various thoughts about that topic.
 
 <!-- more -->
 
-Recently [Andrzej Krzywda](http://andrzejonsoftware.blogspot.com/) raised an sensitive issue about code refactoring in [Rails Refactoring Book](http://rails-refactoring.com/). It provides a brief understanding about existing pains, possible solutions and gives us an opportunity to discuss it more detailed here. This article is intended to be a supplement for that book to show that not only architecture is important.
+Recently [Andrzej Krzywda](http://andrzejonsoftware.blogspot.com/) raised a sensitive issue about code refactoring in [Rails Refactoring Book](http://rails-refactoring.com/). It provides a brief understanding about existing pains, possible solutions and gives us an opportunity to discuss it more detailed here. This article is intended to be a supplement for that book to show that not only architecture is important.
 
 ## Why does it matter?
 
@@ -105,9 +105,9 @@ else
 end
 ```
 
-Isn't it? So the in the first example `something` will be executed if `condition` is not `true` so if it `false`, yep? Even if _parsing_ takes only a couple milisecsonds, when we have a lot of places like that, it may casue wasting more time to refactor code inside our minds.
+Isn't it? So the in the first example `something` will be executed if `condition` is not `true` so if it `false`, yep? Even if _parsing_ takes only a couple milliseconds, when we have a lot of places like that, it may cause wasting more time to refactor code inside our minds.
 
-The other important thing is **communication** between developers which is done mostly through our code. When we don't understand what they did and have to reinterpret their code, it means that communication fails. When everyone writes code that have the same look, it's supereasy to make our work faster.  
+The other important thing is **communication** between developers which is done mostly through our code. When we don't understand what they did and have to reinterpret their code, it means that communication fails. When everyone writes code that have the same look, it's super-easy to make our work faster.  
 How may times did you have to rewrite a part of code that someone wrote and now you have to implement a new feature? How many times did you complain on others work, because you would do it better?
 
 ## Where's the problem?
@@ -115,12 +115,12 @@ The main problem is that the **taste is *sooo* subjective**. There may be pedant
 
 **Tastes differ**. That's why some writes `key: value` and some `key : value`. Some leaves empty lines (one or more) between methods, some don't do that at all. Some take care of architecture and code separation, but don't take care of their syntax. Small things, but can be annoying for those that pay attention to such issues.
 
-Of course there are developers which deal with legacy code very well. They easily understand the most tenebrous code, they have huge experience and great skills to interpret any part of existing software. If you are one of them, you may see this blogpost useless, but beware - not everyone is like you. Some learn slower and bad code may discouraged them permanently from the very beginning.
+Of course there are developers which deal with legacy code very well. They easily understand the most tenebrous code, they have huge experience and great skills to interpret any part of existing software. If you are one of them, you may see this blogpost useless, but beware — not everyone is like you. Some learn slower and bad code may discouraged them permanently from the very beginning.
 
 ## How to solve it?
-We cannot have a silver bullet here. Unfortunately **code style is really personal and usually hard to change**. It's like old behavior or routine repeated all the time so do not expect immediate switch just like that. So where to begin? A very good start can be guidelines or best practices definfed by community or language authros. That may be easy to begin with, **learn and improve your code style**. There are tons of them for nearly every language. Sometimes even [companies define their own guidelines](https://github.com/monterail/guidelines/blob/master/rails.md) to make it easier and keep concise code across many projects.
+We cannot have a silver bullet here. Unfortunately **code style is really personal and usually hard to change**. It's like old behavior or routine repeated all the time so do not expect immediate switch just like that. So where to begin? A very good start can be guidelines or best practices defined by community or language authors. That may be easy to begin with, **learn and improve your code style**. There are tons of them for nearly every language. Sometimes even [companies define their own guidelines](https://github.com/monterail/guidelines/blob/master/rails.md) to make it easier and keep concise code across many projects.
 
-How to use them? It might be hard just to remember and use this new codestyle or guidelines so let's **configure your favourite IDE**, find siutable package for Sublime, bundle for TextMate or plugin for VIM that will let you auto-reformat your code. They are usually called `YOUR_LANGUAGE-[prettyfier | beautifier | formatter]` and are available for prpably every tool you use to write the code.
+How to use them? It might be hard just to remember and use this new code style or guidelines so let's **configure your favorite IDE**, find suitable package for Sublime, bundle for TextMate or plugin for VIM that will let you auto-reformat your code. They are usually called `YOUR_LANGUAGE-[prettifier | beautifier | formatter]` and are available for probably every tool you use to write the code.
 
 **Some examples of these guidelines:**
 
@@ -136,7 +136,7 @@ How to use them? It might be hard just to remember and use this new codestyle or
 
 ## Summary
 
-If you think that it's important topic in your daily work and you are willing to improve your code style I'd recommend you to start from some usefull resources guiding you by small steps that will make your code better. **Start with small steps**, not with everything together. Make a **little changes continuously** introducing more and more new elements. You're probably using a few languages at one time so pick one you want to improve and focus on it to avoid too much changes together and decrease new things to remember. Finally, if you want to know our opinion, take the most from Rails Refactoring book.
+If you think that it's important topic in your daily work and you are willing to improve your code style I'd recommend you to start from some useful resources guiding you by small steps that will make your code better. **Start with small steps**, not with everything together. Make a **little changes continuously** introducing more and more new elements. You're probably using a few languages at one time so pick one you want to improve and focus on it to avoid too much changes together and decrease new things to remember. Finally, if you want to know our opinion, take the most from Rails Refactoring book.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
