@@ -9,7 +9,7 @@ tags: [ 'front-end', 'react.js', 'javascript' ]
 
 Programming interactive user interfaces using JavaScript might be a tough task. User calls some action and we need to update his view - manipulating DOM using tool like jQuery. It just doesn't feel *good enough* to modify document's elements by hand. It is also really hard to re-use already written parts of UI and compose them with each other.
 
-Imagine if there was one tool, that would solve all thses problems and **help you deliver your front-end much faster**. What if you didn't have to worry about this whole DOM stuff when you just want to update the view? 
+Imagine if there was one tool, that would solve all these problems and **help you deliver your front-end much faster**. What if you didn't have to worry about this whole DOM stuff when you just want to update the view? 
 
 How would you feel being as efficient as when developing your Rails backend, when it comes to user interface?
 
