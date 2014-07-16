@@ -1,5 +1,5 @@
 ---
-title: "Deliver user interface faster using React.js"
+title: "Rails developer,deliver user interface faster using React.js"
 created_at: 2014-07-16 23:51:50 +0200
 kind: article
 publish: false
@@ -24,8 +24,6 @@ In projects, where we adopted React, we noticed good things happening.
 The first and the most important, **We shipped our front-end significantly faster**. We could write really complex UI parts and easily compose with each other. 
 Second, as our apps grew, we improved our code maintainability. Spending less time on maintaining code means more time spent on delivering business value for our customers.  
 
-Let's see why some folks in our team says: **Once you go React, you never go back**.
-
 ## A little bit of theory
 React objects are called *components*. Each of them may contain data and renders view in a declarative way - based only on current data state.
 
@@ -34,7 +32,7 @@ Each React component has 2 inputs:
  * props - shortcut of *properties*, these are mean to be **immutable**
  * state - **mutable**
 
-After changing the state, React automatically re-render the component to answer a new input.
+After changing the state, React will automatically re-render the component to answer a new input.
 
 In addition, all React components must implement *render* method, which must return another React object.
 
@@ -110,6 +108,8 @@ That's all you need. After you type something into search input, React will auto
 
 ## Getting to an end
 
-Compared to another solutions, you won't spend much time learning React. You really should **give it a shot** in your project. 
+Compared to another solutions, you won't spend much time learning React. You should really **give it a shot** in your project. 
 
 If you look for more information on React, check out [official docs](http://facebook.github.io/react/docs/getting-started.html) and sign-up for our newsletter below. We are going to write more about React.js
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
