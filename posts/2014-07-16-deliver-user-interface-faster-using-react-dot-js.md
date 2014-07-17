@@ -1,10 +1,11 @@
 ---
-title: "Rails developer,deliver user interface faster using React.js"
+title: "Why we use React.js in our Rails projects"
 created_at: 2014-07-16 23:51:50 +0200
 kind: article
 publish: false
 author: Wiktor Mociun
 tags: [ 'front-end', 'react.js', 'javascript' ]
+newsletter: :arkency_form
 ---
 
 Programming interactive user interfaces using JavaScript might be a tough task. User calls some action and we need to update his view - manipulating DOM using tool like jQuery. It just doesn't feel *good enough* to modify document's elements by hand. It is also really hard to re-use already written parts of UI and compose them with each other.
@@ -39,6 +40,12 @@ In addition, all React components must implement *render* method, which must ret
 ## See it in action!
 Assume that we got to create a list of books with a dynamic search.
 
+<p>
+  <figure align="center">
+    <img src="/assets/images/react/box.png">
+  </figure>
+</p>
+
 First, we should create a simple book component that represent single book on a list.
 
 ```
@@ -65,7 +72,7 @@ BooksList = React.createClass
     ])
 ```
 
-Ok, we are able to display list of books. Now it is high time to implement search. We need to add form input and handle its changes.
+Ok, we are able to display list of books. Now it is high time to implement search. Let's modify our *BooksList* component. We need to add form input and handle its changes.
 
 ```
 #!coffeescript
@@ -86,23 +93,27 @@ BooksList = React.createClass
   render: ->
     # Wrapper that contains another components
     React.DOM.div({}, [
-      React.DOM.input({
-        name: 'search'
-        onChange: @setSearch
-        placeholder: 'Search...'
-      })
-      if @state.search 
-        React.DOM.p({
-          className: 'clear'
-        }, "Search results for: #{@state.search}")
-      React.DOM.ul({}, [
-        for book in @books()
-          BooksListItem({book: book})
-        ])
+      @searchInput()
+      @booksList()    
+    ])
+
+  searchInput: ->
+    React.DOM.input({
+      name: 'search'
+      onChange: @setSearch
+      placeholder: 'Search...'
+    })
+    
+  booksList: ->
+    React.DOM.ul({}, [
+      for book in @books()
+        BooksListItem({book: book})
       ])
 ```
 
-You can see it working live [in here](http://jsfiddle.net/LLfgP/)
+Summing it up, you can see the result in a frame below
+
+<iframe style="margin-bottom: 20px;" width="100%" height="200" src="http://jsfiddle.net/sxjvT/embedded/result" frameborder="0"></iframe>
 
 That's all you need. After you type something into search input, React will automatically re-render the book list to contain only filtered items. 
 
@@ -112,4 +123,3 @@ Compared to another solutions, you won't spend much time learning React. You sho
 
 If you look for more information on React, check out [official docs](http://facebook.github.io/react/docs/getting-started.html) and sign-up for our newsletter below. We are going to write more about React.js
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
