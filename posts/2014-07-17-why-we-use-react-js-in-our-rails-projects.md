@@ -44,7 +44,7 @@ Each React component has 2 inputs:
 
 After changing the state, React will automatically re-render the component to answer a new input.
 
-In addition, all React components must implement *render* method, which must return another React object.
+In addition, all React components must implement *render* method, which must return another React object or null (from version 0.11).
 
 ## See it in action!
 Assume that we got to create a list of books with a dynamic search.
