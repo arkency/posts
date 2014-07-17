@@ -113,7 +113,7 @@ BooksList = React.createClass
 
 Summing it up, you can see the result in a frame below
 
-<iframe style="margin-bottom: 20px;" width="100%" height="200" src="http://jsfiddle.net/sxjvT/embedded/result" frameborder="0"></iframe>
+<iframe style="margin-bottom: 20px;" width="100%" height="190" src="http://jsfiddle.net/E62BD/embedded/result,js,html" frameborder="0"></iframe>
 
 That's all you need. After you type something into search input, React will automatically re-render the book list to contain only filtered items. 
 
