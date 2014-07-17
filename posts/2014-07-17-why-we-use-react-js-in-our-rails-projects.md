@@ -1,8 +1,8 @@
 ---
 title: "Why we use React.js in our Rails projects"
-created_at: 2014-07-16 23:51:50 +0200
+created_at: 2014-07-17 12:01:00 +0200
 kind: article
-publish: false
+publish: true
 author: Wiktor Mociun
 tags: [ 'front-end', 'react.js', 'javascript' ]
 newsletter: :arkency_form
