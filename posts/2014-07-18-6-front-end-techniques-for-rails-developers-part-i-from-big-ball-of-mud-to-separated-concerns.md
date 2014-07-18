@@ -136,6 +136,7 @@ You can argue that responsibility of backend is not to encapsulate JSON in a dom
 ## Make it visible
 
 The last step is to create a `Gui` class, which is responsible for rendering and binding events to the DOM objects. There are different approaches here - in Arkency we're using Handlebars for templating or React.js for creating the whole `Gui` part. You can use whatever technology you want - but be careful to not extend responsibilities. The rules of thumb are: 
+
 * When the change hits DOM, it's Gui (or another objects that Gui is composed of) responsibility to handle DOM manipulation.
 * When an event from UI invokes domain action, Gui should only delegate it to the domain object, not perform it by itself.
 
