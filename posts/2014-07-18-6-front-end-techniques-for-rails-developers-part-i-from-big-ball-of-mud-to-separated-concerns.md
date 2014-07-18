@@ -215,12 +215,6 @@ You can see the end result [here](https://gist.github.com/Killavus/13676d46afab1
 
 Creating a stand-alone application is a first step to create robust and rich front-end code. Testing it is way easier since responsibilities are segregated and maintainability of this code is increased - when you want to make changes in backend fetching rules you need to focus only on a backend class. It's only a starting point of course. But it's a good start for further improvements.
 
-## Resources:
-
-* [Hexagonal architecture](http://hexagonaljs.com) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
-* [Sugar.js](http://sugarjs.com) - a library which provides us great stdlib extensions to work with domain code within our stand-alone apps. We're heavily using it in Arkency.
-* [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - little library which introduces aspect-oriented programming to JavaScript - a great way to provide communication between application objects without specifying dependencies at all. You create a glue class to 'stitch' all your adapters and a use case / domain objects together. Neat!
-
 ## Want more?
 
 This post is a part of the 6-day course we want to prepare for you. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
@@ -232,4 +226,10 @@ This post is a part of the 6-day course we want to prepare for you. It's **absol
 * Easily make actions on reaction for a domain change, in a **dependency-free way** using **reactive programming** with RxJS.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
+
+## Resources:
+
+* [Hexagonal architecture](http://hexagonaljs.com) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
+* [Sugar.js](http://sugarjs.com) - a library which provides us great stdlib extensions to work with domain code within our stand-alone apps. We're heavily using it in Arkency.
+* [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - little library which introduces aspect-oriented programming to JavaScript - a great way to provide communication between application objects without specifying dependencies at all. You create a glue class to 'stitch' all your adapters and a use case / domain objects together. Neat!
 
