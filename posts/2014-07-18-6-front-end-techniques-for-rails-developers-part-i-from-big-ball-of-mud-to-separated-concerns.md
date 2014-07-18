@@ -5,7 +5,8 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'front-end', 'javascript', 'refactoring' ]
-newsletter: :frontend_course 
+newsletter: :skip
+newsletter_inside: :frontend_course 
 ---
 
 <p>
@@ -28,7 +29,7 @@ In the part one, I want to present you a simple case of refactoring of a badly w
 
 <!-- more -->
 
-It's quite common to see CoffeeScript code which is an imperative chain of DOM transformations and event handlers mixed with AJAX calls. It is a complete disaster when it comes to maintaining and adding new features to it. In addition, all responsibilities in such 'spaghetti code' are entangled. Luckily it's quite easy to segregate dependencies and create an Application class, which responsibility is to create and configure all objects you've separated during refactoring.
+It's quite common to see CoffeeScript code which is an imperative chain of DOM transformations and event handlers mixed with AJAX calls. It is a complete disaster when it comes to maintaining and adding new features to it. In addition, all responsibilities in such *spaghetti code* are entangled. Luckily it's quite easy to segregate dependencies and create an Application class, which responsibility is to create and configure all objects you've separated during refactoring.
 
 Let's see an example code that you may find in (bad written) front-end codebase. It's responsible for loading photos data (via an AJAX call) and displaying it on the screen. After clicking on a photo it should be grayed out:
 
@@ -79,7 +80,7 @@ As I've mentioned before, this code has several responsibilities:
 * Logic of creating grayscaled photo URL
 * Binding handlers to DOM events
 
-Your first step should be to create classes with its responsibilities. In our projects it's quite usual that we have `Gui` class (often it is composed of a few smaller classes), `Backend` class (which fetches data from Rails backend and pre-processes them) and `UseCase` class (which contains business logic within, operating on domain objects). Since this example does not contain much business logic at all, you can stick with only `Backend` and `Gui` classes. 
+**Your first step should be to create classes with its responsibilities**. In our projects it's quite usual that we have `Gui` class (often it is composed of a few smaller classes), `Backend` class (which fetches data from Rails backend and pre-processes them) and `UseCase` class (which contains business logic within, operating on domain objects). Since this example does not contain much business logic at all, you can stick with only `Backend` and `Gui` classes. 
 
 Since there is a business rule that is worth to be contained in an intention revealing interface, it's a good decision to create a `Photo` domain object.
 
@@ -220,10 +221,11 @@ Creating a stand-alone application is a first step to create robust and rich fro
 
 This post is a part of the 6-day course we want to prepare for you. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
 
-* Using React.js to make your Gui code in a composable manner.
-* Techniques we use to prototype front-end without backend and why does it matter.
-* Segregating apps by it's purpose, not placement - and how to achieve it in an easy way.
-* Designing your front-end as a many small apps, not a big one - and why you should do it.
-* Easily make actions on reaction for a domain change, in a dependency-free way using reactive programming with RxJS.
+* Using React.js to **ship your Gui faster** code and **make it easily composable**.
+* Techniques we use to prototype front-end without backend to **make your clients happier** and **tighten the feedback loop**. 
+* Why you should segregating apps by its purpose, not its placement - and **how to achieve it in an easy way**.
+* Designing your front-end as a **many small apps** rather than a big one to **improve maintainability** of your code.
+* Easily make actions on reaction for a domain change, in a **dependency-free way** using reactive programming with RxJS.
 
-The course starts at 23th of July.
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
