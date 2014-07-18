@@ -29,7 +29,7 @@ In the part one, I want to present you a simple case of refactoring of a badly w
 
 <!-- more -->
 
-It's quite common to see CoffeeScript code which is an imperative chain of DOM transformations and event handlers mixed with AJAX calls. It is a complete disaster when it comes to maintaining and adding new features to it. In addition, all responsibilities in such *spaghetti code* are entangled. Luckily it's quite easy to segregate dependencies and create an Application class, which responsibility is to create and configure all objects you've separated during refactoring.
+It's **quite common to see CoffeeScript code which is an imperative chain of DOM transformations and event handlers mixed with AJAX calls**. It is a complete disaster when it comes to maintaining and adding new features to it. In addition, all responsibilities in such *spaghetti code* are entangled. Luckily **it's quite easy to segregate dependencies** and create an Application class, which responsibility is to create and configure all objects you've separated during refactoring.
 
 Let's see an example code that you may find in (bad written) front-end codebase. It's responsible for loading photos data (via an AJAX call) and displaying it on the screen. After clicking on a photo it should be grayed out:
 
@@ -66,16 +66,16 @@ $(document).ready ->
 
 There are several problems with this code:
 
-* There is a callback within a callback - and it's an anti-pattern in JS. It leads to a callback hell - which is unmaintainable in the long term.
-* Initialization is not separated from definition of this code. That means if we don't want to always run this code we need to create conditionals (like `if $("#photos-list").length > 0`).
-* SRP is cleanly violated. You have data fetching, DOM manipulation and domain logic (creating grayscaled photo's URL), event binding - all in one place. There are too many reasons to edit this code at all.
+* There is a callback within a callback - and it's an anti-pattern in JS. It leads to a **callback hell** - which is **unmaintainable in the long term**.
+* Initialization is not separated from definition of this code. That means **if we don't want to always run this code we need to create conditionals** (like `if $("#photos-list").length > 0`).
+* **SRP is cleanly violated**. You have data fetching, DOM manipulation and domain logic (creating grayscaled photo's URL), event binding - all in one place. There are too many reasons to edit this code at all.
 * Code is not revealing intentions. It's not a problem now. But think about further features that can be introduced. It can be a real problem when you expand this code to about 50-100 lines.
 
 Fortunately, you can easily refactor this code. 
 
 ## Let's do this!
 
-As I've mentioned before, this code has several responsibilities:
+As I've mentioned before, **this code has several responsibilities**:
 
 * Fetching data via an AJAX call
 * Manipulating DOM
@@ -91,7 +91,7 @@ Since there is a business rule that is worth to be contained in an intention rev
 
 When I work in a Sprockets-based stack I usually create a module definition within application.js to make my new classes accessible globally and namespaced. It's quite simple - you can put `Photos = {}` in the body of your `application.js` file. Then you can require your new classes. They'll be available in a web inspector and in a code in a `Photos` namespace.
 
-There is a rule of thumb to always start with domain (or use case) first. In our case it's a tiny part of code that encapsulates grayscale photo URL transformation logic:
+There is a rule of thumb to **always start with domain (or use case)**. In our case it's a tiny part of code that encapsulates grayscale photo URL transformation logic:
 
 ```
 #!coffeescript
@@ -105,13 +105,13 @@ class Photos.Photo
     new Photos.Photo(json.id, json.url, json.alt)
 ```
 
-You can easily transform existing code to accommodate this change. That means you can stop this refactoring now and jump into next task.
+You can **easily transform existing code** to accommodate this change. That means you **take this as a series of small steps** - feel free to stop this refactoring now and jump into next task.
 
 ## Talking with Rails
 
 Let's proceed with further decomposition of this code. Right now your can create our Backend class to accommodate AJAX fetching behavior.
 
-I mostly extracted existing implementation here to a method. Here is how I could create such a class:
+I mostly **extracted existing implementation here to a method**. Here is how I could create such a class:
 
 ```
 #!coffeescript
@@ -131,11 +131,11 @@ class Photos.Backend
 
 I've removed `onSuccess` and `onFailure` callbacks here and replaced it with a [Promise object](http://api.jquery.com/category/deferred-object/). That allows me to expose 'status' of AJAX call to anyone interested in a result - exactly what I want if I want to pass control to another object. I've also used a neat trick with [`#then`](http://api.jquery.com/deferred.then/) - data for a caller of this method will come encapsulated in your new `Photos.Photo` object, not raw JSON data.
 
-You can argue that responsibility of backend is not to encapsulate JSON in a domain object. For me Backend is for 'separating' world from the heart of your application - which should operate only on a domain objects. In a puristic implementation of a backend, you should create an object which is reponsible for mapping from JSON to domain object - and transform raw JSON data returned by a backend using this object as an intermediate step.
+You can argue that responsibility of backend is not to encapsulate JSON in a domain object. For me **Backend is for 'separating' world from the heart of your application** - which should operate only on a domain objects. In a puristic implementation of a backend, you should create an object which is reponsible for mapping from JSON to domain object - and transform raw JSON data returned by a backend using this object as an intermediate step.
 
 ## Make it visible
 
-The last step is to create a `Gui` class, which is responsible for rendering and binding events to the DOM objects. There are different approaches here - in Arkency we're using Handlebars for templating or React.js for creating the whole `Gui` part. You can use whatever technology you want - but be careful to not extend responsibilities. The rules of thumb are: 
+The last step is to create a `Gui` class, which is responsible for rendering and binding events to the DOM objects. There are different approaches here - in Arkency we're using Handlebars for templating or React.js for creating the whole `Gui` part. You can use whatever technology you want - but **be careful to not extend responsibilities**. The rules of thumb are: 
 
 * When the change hits DOM, it's Gui (or another objects that Gui is composed of) responsibility to handle DOM manipulation.
 * When an event from UI invokes domain action, Gui should only delegate it to the domain object, not perform it by itself.
@@ -174,7 +174,7 @@ That's it. These components contain all the logic we've implemented in the previ
 
 ## Putting it all together
 
-Classes that you've created cannot do their work alone - they need some kind of coordination between each other. On backend, coordination like that is contained within a service object. If you don't have service objects, you usually put this responsibility in a controller, [which can be done better](http://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/). That's why you should create an Application class to initialize and coordinate all newly created objects.
+Classes that you've created cannot do their work alone - they need some kind of coordination between each other. On backend, coordination like that is contained within a service object. If you don't have service objects, you usually put this responsibility in a controller, [which can be done better](http://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/). That's why you should **create an Application class to initialize and coordinate all newly created objects**.
 
 It's a really simple code. When you perform this refactoring step-by-step, you'll notice that the end effect of your changes is quite similar to this code. The biggest difference is that you generally want to separate definition of your classes from a real work.
 
@@ -197,7 +197,7 @@ class Photos.App
       .fail(@gui.fetchPhotosFailed)
 ```
 
-This makes the complete, stand-alone app. You'll notice that you do not run this code yet. That's because it's advisable to separate initialization of our app from its definition.
+This makes the complete, stand-alone app. You'll notice that you do not run this code yet. That's because **it's advisable to separate initialization of our app from its definition**.
 
 Creating such initializer is easy:
 
@@ -213,11 +213,11 @@ You can see the end result [here](https://gist.github.com/Killavus/13676d46afab1
 
 ## Summary:
 
-Creating a stand-alone application is a first step to create robust and rich front-end code. Testing it is way easier since responsibilities are segregated and maintainability of this code is increased - when you want to make changes in backend fetching rules you need to focus only on a backend class. It's only a starting point of course. But it's a good start for further improvements.
+Creating a stand-alone application is a **first step to create robust and rich front-end code**. Testing it is way easier since responsibilities are segregated and maintainability of this code is increased - when you want to make changes in backend fetching rules you need to focus only on a backend class. It's only a starting point of course. But it's a **good start for further improvements**.
 
 ## Want more?
 
-This post is a part of the 6-day course we want to prepare for you. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
+This post is a part of the 6-day course about front-end techniques for Rails developers. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
 
 * Using **React.js** to **ship your Gui faster** code and **make it easily composable**.
 * Techniques we use to **prototype front-end without backend** to **make your clients happier** and **tighten the feedback loop**. 
@@ -227,7 +227,7 @@ This post is a part of the 6-day course we want to prepare for you. It's **absol
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
-## Resources:
+## Resources
 
 * [Hexagonal architecture](http://hexagonaljs.com) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
 * [Sugar.js](http://sugarjs.com) - a library which provides us great stdlib extensions to work with domain code within our stand-alone apps. We're heavily using it in Arkency.
