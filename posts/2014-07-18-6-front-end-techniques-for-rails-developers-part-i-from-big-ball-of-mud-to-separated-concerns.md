@@ -53,10 +53,13 @@ $(document).ready ->
  
         node.on('click', (e) =>
           e.preventDefault()
-          node.find('img').prop('src', photo.url + '.grayscaled.jpg')
+          node.find('img').prop('src', 
+            photo.url + '.grayscaled.jpg')
         )
     onFailure: =>
-      $("#photo-list").append("<li>Failed to fetch photos.</li>")
+      $("#photo-list").append("<li>
+                                 Failed to fetch photos.
+                               </li>")
 ```
 
 ## Why we should bother?
@@ -115,15 +118,15 @@ I mostly extracted existing implementation here to a method. Here is how I could
 class Photos.Backend
   fetchPhotos: =>
     request = $.ajax(
-                url: '/photos'
-                type: 'GET'
-                contentType: 'application/json'
-               )
-               .then (response) =>
-                 photos = []
-                 for photo in response.photos
-                   photos.append(Photos.Photo.fromJSON(photo))
-                 photos
+      url: '/photos'
+      type: 'GET'
+      contentType: 'application/json'
+    )
+    .then (response) =>
+      photos = []
+      for photo in response.photos
+        photos.append(Photos.Photo.fromJSON(photo))
+      photos
 ```
 
 I've removed `onSuccess` and `onFailure` callbacks here and replaced it with a [Promise object](http://api.jquery.com/category/deferred-object/). That allows me to expose 'status' of AJAX call to anyone interested in a result - exactly what I want if I want to pass control to another object. I've also used a neat trick with [`#then`](http://api.jquery.com/deferred.then/) - data for a caller of this method will come encapsulated in your new `Photos.Photo` object, not raw JSON data.
@@ -221,11 +224,11 @@ Creating a stand-alone application is a first step to create robust and rich fro
 
 This post is a part of the 6-day course we want to prepare for you. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
 
-* Using React.js to **ship your Gui faster** code and **make it easily composable**.
-* Techniques we use to prototype front-end without backend to **make your clients happier** and **tighten the feedback loop**. 
-* Why you should segregating apps by its purpose, not its placement - and **how to achieve it in an easy way**.
+* Using **React.js** to **ship your Gui faster** code and **make it easily composable**.
+* Techniques we use to **prototype front-end without backend** to **make your clients happier** and **tighten the feedback loop**. 
+* Why you should **segregating apps by its purpose, not its placement** - and how to achieve it in an easy way.
 * Designing your front-end as a **many small apps** rather than a big one to **improve maintainability** of your code.
-* Easily make actions on reaction for a domain change, in a **dependency-free way** using reactive programming with RxJS.
+* Easily make actions on reaction for a domain change, in a **dependency-free way** using **reactive programming** with RxJS.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
