@@ -227,11 +227,7 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 5
 => 1..5
 
-def show(x)
-  puts x
-end
-
-[33] pry(main)> (1..5).each &method(:show)
+[33] pry(main)> (1..5).each &method(:puts)
 1
 2
 3
