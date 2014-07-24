@@ -151,6 +151,15 @@ Of course you can use other non-alpha-numeric character delimiters:
 
 [Source and examples](http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#The_.25_Notation)
 
+## 'Better' errors
+```
+#!ruby
+class MyCustomBadError < StandardError; end
+
+MyCustomGoodError = Class.new(StandardError)
+```
+Not only cleaner syntax but also saving garbage collector work by storing error in a constant rather than creating object every time when raised.
+
 ## Symbol to proc
 
 ```
