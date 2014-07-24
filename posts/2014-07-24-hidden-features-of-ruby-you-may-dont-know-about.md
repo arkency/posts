@@ -158,7 +158,6 @@ class MyCustomBadError < StandardError; end
 
 MyCustomGoodError = Class.new(StandardError)
 ```
-Not only cleaner syntax but also saving garbage collector work by storing error in a constant rather than creating object every time when raised.
 
 ## Symbol to proc
 
