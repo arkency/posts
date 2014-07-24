@@ -459,3 +459,6 @@ rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good too, because you learned something new today and I hope you find this useful.
 
 If you have your favourite tricks, you can share them in the comments below.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
