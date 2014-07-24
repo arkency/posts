@@ -427,6 +427,8 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 
 ```
 #!ruby
+require 'active_support/core_ext/object/to_query'
+
 [57] pry(main)> 
 "http://www.arkency.com?" + { language: "ruby", status: "professional" }.to_query
 => "http://www.arkency.com?language=ruby&status=professional"
@@ -440,7 +442,8 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 
 ```
 #!ruby
-# may require 'active_support/core_ext/hash/indifferent_access'
+require 'active_support/core_ext/hash/indifferent_access'
+
 [59] pry(main)> 
 rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 => {"black"=>"#000000", "white"=>"#FFFFFF"}
