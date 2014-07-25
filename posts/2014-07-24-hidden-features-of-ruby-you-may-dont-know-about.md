@@ -71,6 +71,7 @@ and
 ## Get some random date
 ```
 #!ruby
+require 'active_support/core_ext'
 def random_birth_date_with_age_between_20_and_30
   rand(30.years.ago..20.years.ago).to_date
 end
@@ -83,25 +84,32 @@ end
 
 ```
 #!ruby
-def introduce
+def introduce1
   __method__
 end
 
-[10] pry(main)> introduce
-=> :introduce
+def introduce2
+  __callee__
+end
+
+[10] pry(main)> introduce1
+=> :introduce1
+
+[11] pry(main)> introduce2
+=> :introduce2
 ```
 
 ## Hash from array(s)
 
 ```
 #!ruby
-[11] pry(main)> ("a".."c").zip(1..3)
+[12] pry(main)> ("a".."c").zip(1..3)
 => [["a", 1], ["b", 2], ["c", 3]]
-[12] pry(main)> _.to_h
+[13] pry(main)> _.to_h
 => {"a"=>1, "b"=>2, "c"=>3}
 
-[13] pry(main)> colors = ["cyan", "magenta", "yellow", "white"];
-[14] pry(main)> Hash[*colors]
+[14] pry(main)> colors = ["cyan", "magenta", "yellow", "white"];
+[15] pry(main)> Hash[*colors]
 => {"cyan"=>"magenta", "yellow"=>"white"}
 ```
 
@@ -109,7 +117,7 @@ Note that:
 
 ```
 #!ruby
-[15] pry(main)> arr.count.even?
+[16] pry(main)> arr.count.even?
 => true
 ```
 
@@ -117,7 +125,7 @@ In the other case:
 
 ```
 #!ruby
-[16] pry(main)> Hash[*['one', 'two', 'three']]
+[17] pry(main)> Hash[*['one', 'two', 'three']]
 ArgumentError: odd number of arguments for Hash
 ```
 
@@ -163,25 +171,25 @@ MyCustomGoodError = Class.new(StandardError)
 
 ```
 #!ruby
-[17] pry(main)> (1..100).inject(:+)
+[18] pry(main)> (1..100).inject(:+)
 => 5050
 
-[18] pry(main)> ("a".."e").map(&:upcase)
+[19] pry(main)> ("a".."e").map(&:upcase)
 => ["A", "B", "C", "D", "E"]
 ```
 
 ## Enumerators
 ```
 #!ruby
-[19] pry(main)> enum = [1, 2, 3].each
+[20] pry(main)> enum = [1, 2, 3].each
 => #<Enumerator: ...>
-[20] pry(main)> enum.next
-=> 1
 [21] pry(main)> enum.next
-=> 2
+=> 1
 [22] pry(main)> enum.next
-=> 3
+=> 2
 [23] pry(main)> enum.next
+=> 3
+[24] pry(main)> enum.next
 StopIteration: iteration reached an end
 from (pry):17:in `next'
 ```
@@ -190,28 +198,28 @@ however
 
 ```
 #!ruby
-[24] pry(main)> enum = [1, 2, 3].cycle
+[25] pry(main)> enum = [1, 2, 3].cycle
 => #<Enumerator: ...>
-[25] pry(main)> enum.next
-=> 1
 [26] pry(main)> enum.next
-=> 2
+=> 1
 [27] pry(main)> enum.next
-=> 3
+=> 2
 [28] pry(main)> enum.next
+=> 3
+[29] pry(main)> enum.next
 => 1
 ```
 
 ## Let's be lazy!
 ```
 #!ruby
-[29] pry(main)> range = 1..Float::INFINITY
+[30] pry(main)> range = 1..Float::INFINITY
 => 1..Infinity
-[30] pry(main)> range.map { |x| x+x }.first(10)
+[31] pry(main)> range.map { |x| x+x }.first(10)
 # infinite loop
 
-[31] pry(main)> range.lazy.map { |x| x+x }.first(10)
-=> [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+[32] pry(main)> range.lazy.map { |x| x+x }.first(10)
+=> [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 ```
 
 ## Send a method
@@ -219,7 +227,7 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 
 ```
 #!ruby
-[32] pry(main)> (1..5).each { |x| puts x }
+[33] pry(main)> (1..5).each { |x| puts x }
 1
 2
 3
@@ -227,7 +235,7 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 5
 => 1..5
 
-[33] pry(main)> (1..5).each &method(:puts)
+[34] pry(main)> (1..5).each &method(:puts)
 1
 2
 3
@@ -239,11 +247,11 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 ## Join my array
 ```
 #!ruby
-[34] pry(main)> array = %w(this is an array)
+[35] pry(main)> array = %w(this is an array)
 => ["this", "is", "an", "array"]
-[35] pry(main)> array.join ', '
+[36] pry(main)> array.join ', '
 => "this, is, an, array"
-[36] pry(main)> array * ', '
+[37] pry(main)> array * ', '
 => "this, is, an, array"
 ```
 
@@ -254,25 +262,25 @@ def odd?(x)
   x % 2 == 0 ? 'NO' : 'YES'
 end
 
-[37] pry(main)> odd? 3
+[38] pry(main)> odd? 3
 => "YES"
-[38] pry(main)> odd? 2
+[39] pry(main)> odd? 2
 => "NO"
 ```
 
 ## Rescue to the defaults
 ```
 #!ruby
-[39] pry(main)> value = 1 / 0 rescue 0
+[40] pry(main)> value = 1 / 0 rescue 0
 => 0
 ```
 
 ## Interpolate easier
 ```
 #!ruby
-[40] pry(main)> @instance, @@class, $global = [ 'instance', 'class', 'global' ]
+[41] pry(main)> @instance, @@class, $global = [ 'instance', 'class', 'global' ]
 => ["instance", "class", "global"]
-[41] pry(main)> p "#@instance, #@@class, #$global";
+[42] pry(main)> p "#@instance, #@@class, #$global";
 instance, class, global
 ```
 
@@ -287,13 +295,13 @@ def foo
   p 'foo'
 end
 
-[42] pry(main)> caller lambda { foo }
+[43] pry(main)> caller lambda { foo }
 "foo"
 => "foo"
-[43] pry(main)> caller -> { foo }
+[44] pry(main)> caller -> { foo }
 "foo"
 => "foo"
-[44] pry(main)> caller method(:foo)
+[45] pry(main)> caller method(:foo)
 "foo"
 => "foo"
 ```
@@ -305,7 +313,7 @@ fibbonacci = Hash.new do |accumulator, index|
   accumulator[index] = fibbonacci[index - 2] + fibbonacci[index - 1]
 end.update(0 => 0, 1 => 1)
 
-[45] pry(main)> fibbonacci[100]
+[46] pry(main)> fibbonacci[100]
 => 354224848179261915075
 ```
 
@@ -332,12 +340,12 @@ end
 ## Nest some stuff
 ```
 #!ruby
-[45] pry(main)> 
+[47] pry(main)> 
 nested_hash = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 => {}
-[46] pry(main)> nested_hash[:x][:y][:z] = :xyz
+[48] pry(main)> nested_hash[:x][:y][:z] = :xyz
 => :xyz
-[47] pry(main)> nested_hash
+[49] pry(main)> nested_hash
 => {:x=>{:y=>{:z=>:xyz}}}
 ```
 
@@ -386,22 +394,22 @@ Struct.new('Tuple', :first, :second) do
   end
 end
 
-[48] pry(main)> struct = Struct::Tuple.new('left', 'right')
+[50] pry(main)> struct = Struct::Tuple.new('left', 'right')
 => #<struct Struct::Tuple first="left", second="right">
-[49] pry(main)> struct.pair
+[51] pry(main)> struct.pair
 => "(left, right)"
 ```
 
 ## Have some defaults
 ```
 #!ruby
-[50] pry(main)> zoo = Hash.new { |hash, key| hash[key] = 0 }
+[52] pry(main)> zoo = Hash.new { |hash, key| hash[key] = 0 }
 => {}
-[51] pry(main)> zoo.fetch :gorillas, 0
+[53] pry(main)> zoo.fetch :gorillas, 0
 => 0
-[52] pry(main)> zoo.fetch :gorillas
+[54] pry(main)> zoo.fetch :gorillas
 => 0
-[53] pry(main)> zoo[:gorillas]
+[55] pry(main)> zoo[:gorillas]
 => 0
 ```
 
@@ -411,15 +419,15 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 ```
 #!ruby
 # array of size 3 containing only 0s
-[54] pry(main)> Array.new(3, 0)
+[56] pry(main)> Array.new(3, 0)
 => [0, 0, 0]
 
 # choose random number and "replicate" it 3 times
-[55] pry(main)> Array.new(3, rand(10))
+[57] pry(main)> Array.new(3, rand(10))
 => [8, 8, 8]
 
 # build array of size 3 with random number on each index
-[56] pry(main)> Array.new(3) { rand(100) }
+[58] pry(main)> Array.new(3) { rand(100) }
 => [17, 99, 72]
 ```
 
@@ -429,12 +437,12 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 #!ruby
 require 'active_support/core_ext/object/to_query'
 
-[57] pry(main)> 
+[59] pry(main)> 
 "http://www.arkency.com?" + { language: "ruby", status: "professional" }.to_query
 => "http://www.arkency.com?language=ruby&status=professional"
 
 # may require 'cgi'
-[58] pry(main)> CGI::parse "language=ruby&status=awesome"
+[60] pry(main)> CGI::parse "language=ruby&status=awesome"
 => {"language"=>["ruby"], "status"=>["awesome"]}
 ```
 
@@ -444,12 +452,12 @@ require 'active_support/core_ext/object/to_query'
 #!ruby
 require 'active_support/core_ext/hash/indifferent_access'
 
-[59] pry(main)> 
+[61] pry(main)> 
 rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 => {"black"=>"#000000", "white"=>"#FFFFFF"}
-[60] pry(main)> rgb[:black]
+[62] pry(main)> rgb[:black]
 => "#000000"
-[61] pry(main)> rgb['black']
+[63] pry(main)> rgb['black']
 => "#000000"
 ```
 
@@ -459,4 +467,3 @@ Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good
 If you have your favourite tricks, you can share them in the comments below.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
-
