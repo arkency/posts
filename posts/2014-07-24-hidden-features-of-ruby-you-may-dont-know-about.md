@@ -435,14 +435,19 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 
 ```
 #!ruby
+require 'uri'
+
+[59] pry(main)> URI::HTTP.build(['kamil', 'arkency.com', 8080, '/path', 'query', 'fragment'])
+=> #<URI::HTTP:0x007f8efd43a150 URL:http://kamil@arkency.com:8080/path?query#fragment>
+
 require 'active_support/core_ext/object/to_query'
 
-[59] pry(main)> 
+[60] pry(main)> 
 "http://www.arkency.com?" + { language: "ruby", status: "professional" }.to_query
 => "http://www.arkency.com?language=ruby&status=professional"
 
-# may require 'cgi'
-[60] pry(main)> CGI::parse "language=ruby&status=awesome"
+require 'cgi'
+[61] pry(main)> CGI::parse "language=ruby&status=awesome"
 => {"language"=>["ruby"], "status"=>["awesome"]}
 ```
 
@@ -452,13 +457,32 @@ require 'active_support/core_ext/object/to_query'
 #!ruby
 require 'active_support/core_ext/hash/indifferent_access'
 
-[61] pry(main)> 
+[62] pry(main)> 
 rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 => {"black"=>"#000000", "white"=>"#FFFFFF"}
-[62] pry(main)> rgb[:black]
+[63] pry(main)> rgb[:black]
 => "#000000"
-[63] pry(main)> rgb['black']
+[64] pry(main)> rgb['black']
 => "#000000"
+```
+
+## Expand range
+
+```
+#!ruby
+[65] pry(main)> p *(1..5)
+1
+2
+3
+4
+5
+=> [1, 2, 3, 4, 5]
+
+[66] pry(main)> [*('a'..'e')]
+ => ["a", "b", "c", "d", "e"]
+
+[67] pry(main)> numbers = *('00'..'10')
+ => ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
 ```
 
 # Summary
