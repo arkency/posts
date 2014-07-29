@@ -1,5 +1,5 @@
 ---
-title: "Ruby background processes with upstart revisited"
+title: "Ruby background processes with upstart user jobs"
 created_at: 2014-07-29 12:43:28 +0200
 kind: article
 publish: false
@@ -14,7 +14,7 @@ tags: [ 'upstart', 'background', 'process' ]
   </figure>
 </p>
 
-Recently one of our developers [Paweł Pacana](https://twitter.com/pawelpacana) wanted to manage upstart service during deployment process in our application. He started with [my previous article about upstart](http://blog.arkency.com/2014/06/create-run-and-manage-your-background-processes-with-upstart/) and finished with robust deployment configuration with reliable setup using... runit. He summarised upstart briefly: *"so sudo"* so I decided to extend my latest blogpost with some information about **upstart user jobs**.
+Recently, my colleague at Arkency [Paweł Pacana](https://twitter.com/pawelpacana) wanted to manage application process with upstart. He started with [the previous article about upstart](http://blog.arkency.com/2014/06/create-run-and-manage-your-background-processes-with-upstart/) and finished with robust deployment configuration with reliable setup using... runit. He summarised upstart briefly: *"so sudo"* so I decided to extend my latest blogpost with some information about **upstart user jobs**.
 
 <!-- more -->
 
@@ -75,7 +75,6 @@ So there is a few changes we need to add to get `my_program.conf` working right:
 env PATH=/var/www/myprogram.com/current/bin:
 
 setuid deployer
-setgid sudo
 
 chdir /var/www/myprogram.com
 
@@ -84,7 +83,13 @@ pre-start script
 end script
 ```
 
-Remember to update your `$PATH` from `my_program.conf`, forward output to `.log` file and set user name with groupname before process run.
+Remember to update your `$PATH` from `my_program.conf`, forward output to `.log` file and set user name before process run.
+
+**Note**
+
+If you have user belonging to some group, you'll have to define this group in `my_program.conf` too as `setgid GROUP_NAME`. See more about that:
+- http://bit.ly/upstart-need-setgid
+- http://bit.ly/upstart-set-user-and-group
 
 ## That's all!
 
