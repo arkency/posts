@@ -6,6 +6,8 @@ publish: false
 author: Kamil Lelonek
 newsletter: :arkency_form
 tags: [ 'upstart', 'background', 'process' ]
+newsletter: :skip
+newsletter_inside: :frontend_course
 ---
 
 <p>
@@ -18,17 +20,17 @@ Recently, my colleague at Arkency [Paweł Pacana](https://twitter.com/pawelpacan
 
 <!-- more -->
 
-Although I am glad that my article was inspiring, on the other hand it occurred not comprehensive. I decided to extend it, so that anyone can use `upstart` in every environment.
+Although I am glad that my article was inspiring, it turned out not to comprehensive enough. I decided to extend it, so that anyone can use `upstart` in every environment.
 
 ## Where's the problem?
 
-In the previous article we managed to run our job in a way that the deployer user required `sudo` privileges to manage the application. However he should be able to do all that without the root permissions. The whole reason for having the deployer user is to manage his own application without any additional requirements.
+Last time we managed to run our job in a way that the deployer required `sudo` privileges to manage the application. However he should be able to do all that without the root permissions. The whole reason for having the deployer user is to manage his own application without any additional requirements.
 
 ## Services directory
 
-Do you remember where we kept our `.conf` file recently? Yep, that was in `/etc/init/`.
+In regular way upstart keeps all of the `.conf` files in `/etc/init/`.
 
-So let's move it now to user own (home) directory
+We need to change it now to user own (home) directory,
 
 ```
 mkdir ~/.init
@@ -90,6 +92,8 @@ Remember to update your `$PATH` from `my_program.conf`, forward output to `.log`
 If you have user belonging to some group, you'll have to define this group in `my_program.conf` too as `setgid GROUP_NAME`. See more about that:
 - http://bit.ly/upstart-need-setgid
 - http://bit.ly/upstart-set-user-and-group
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## That's all!
 
