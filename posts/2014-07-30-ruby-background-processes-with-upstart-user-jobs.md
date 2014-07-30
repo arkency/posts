@@ -1,13 +1,11 @@
 ---
 title: "Ruby background processes with upstart user jobs"
-created_at: 2014-07-29 12:43:28 +0200
+created_at: 2014-07-30 12:43:28 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :arkency_form
 tags: [ 'upstart', 'background', 'process' ]
-newsletter: :skip
-newsletter_inside: :frontend_course
 ---
 
 <p>
@@ -20,11 +18,11 @@ Recently, my colleague at Arkency [Paweł Pacana](https://twitter.com/pawelpacan
 
 <!-- more -->
 
-Although I am glad that my article was inspiring, it turned out not to comprehensive enough. I decided to extend it, so that anyone can use `upstart` in every environment.
+Although I am glad that my article was inspiring, it turned out not to be comprehensive enough. I decided to extend it, so that anyone can use `upstart` in every environment.
 
 ## Where's the problem?
 
-Last time we managed to run our job in a way that the deployer required `sudo` privileges to manage the application. However he should be able to do all that without the root permissions. The whole reason for having the deployer user is to manage his own application without any additional requirements.
+Last time we managed to run our job in a way that the `deployer` required `sudo` privileges to manage the application. However the user should be able to do all that without the root permissions. The whole reason for having the deployer user is to manage his own application without any additional requirements.
 
 ## Services directory
 
@@ -68,13 +66,13 @@ sudo service dbus restart
 
 When we move `my_program.conf` into `~/.init`, upstart will no longer log its output, so you won't be able to see any errors, we need to modify `my_program.conf` now.
 
-So there is a few changes we need to add to get `my_program.conf` working right:
+So there are a few changes we need to add to get `my_program.conf` working right:
 
 ```
 #~/.init/my_program.conf
 
 # append path to your other executables:
-env PATH=/var/www/myprogram.com/current/bin:
+env PATH=/var/www/myprogram.com/current/bin:/usr/local/rvm/wrappers/my_program/
 
 setuid deployer
 
@@ -92,8 +90,6 @@ Remember to update your `$PATH` from `my_program.conf`, forward output to `.log`
 If you have user belonging to some group, you'll have to define this group in `my_program.conf` too as `setgid GROUP_NAME`. See more about that:
 - http://bit.ly/upstart-need-setgid
 - http://bit.ly/upstart-set-user-and-group
-
-<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## That's all!
 
