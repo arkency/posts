@@ -2,7 +2,7 @@
 title: "Ruby background processes with upstart user jobs"
 created_at: 2014-07-30 12:43:28 +0200
 kind: article
-publish: true
+publish: false
 author: Kamil Lelonek
 newsletter: :arkency_form
 tags: [ 'upstart', 'background', 'process' ]
