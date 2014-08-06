@@ -2,9 +2,11 @@
 title: "Using ruby Range with custom classes"
 created_at: 2014-08-03 12:04:03 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+newsletter: :skip
+newsletter_inside: :mastering_rails_validations
+tags: [ 'ruby', 'Range', 'custom class', 'time' ]
 ---
 
 <p>
@@ -13,9 +15,9 @@ tags: [ 'foo', 'bar', 'baz' ]
   </figure>
 </p>
 
-I am a hugh fan of Ruby classes, their API and overall design. It's still sometimes that
+I am a huge fan of Ruby classes, their API and overall design. It's still sometimes that
 something surprises me a little bit. I raise my eyebrow and need to find answers.
-This time it was `Range` class that surprised me. But let's start from the beginning (even though it is
+What surprised me this time was `Range` class. But let's start from the beginning (even though it is
 a long digression from the main topic).
 
 <!-- more -->
@@ -41,7 +43,7 @@ sophisticated. Maybe because _English as second language_... Anyway...
 
 ## `YearMonth` and what not...
 
-I the domain of _Reporting_ we are often thinking in terms of periods of Time. Our customers often would like to have
+I the domain of _Reporting_ we often think in terms of Time periods. Our customers often would like to have
 reporting per days, weeks, months, quarters etc. When someone tells me to create a report from _January 2014_ to
 _May 2014_ with the accuracy of month, well... I would like to say in my code
 `YearMonth.new(2014, 1)..YearMonth.new(2014, 5)`. That's how my OOP part of the brain thinks about the problem.
@@ -65,8 +67,8 @@ vs
 #!ruby
 # Imaginary
 january2014 = YearMonth.new(2014, 1)
-january2014.days_in_month
-january2014.end_of_month
+january2014.number_of_days
+january2014.end_of
 ```
 
 ### Year
@@ -85,34 +87,37 @@ vs
 #!ruby
 year2000 = Year.new(2000)
 year.leap?
-year.beginning_of_year
+year.beginning_of
 ```
 
 ### Week
 
 ```
 #!ruby
-
+Date.new(2001, 2, 3).cweek
+Date.new(2001, 2, 3).cwyear
 ```
 
 vs
 
 ```
 #!ruby
-# TODO: here
+week = Week.from_date(2001, 2, 3)
+week.year
+week.number
 ```
 
 
 ### The pattern
 
-Here is the pattern that I see. Whenever we want to do something related to the **period** of time such as
+Here is the pattern that I see. Whenever we want to do something related to a **period** of time such as
 _Year_, _Quarter_, _Month_, _Week_ we create an instance of **moment** (`Time`, `Date`) in time that
 happens to belong to this period (such as first day or first second of year). Then we use this object to query it
 about the attributes of the time period it belongs with methods such as `#beginning_of_year`, `#beginning_of_quarter`,
 `#beginning_of_month`, `#beginning_of_week`.
 
 So I think we are often missing the abstraction of time periods that we think about and that we work with. I understand
-that these methods are very useful when what are doing depends on current time or current day or selected moment provided
+that these methods are very useful when what we are doing depends on current time or current day or selected moment provided
 by the user. However in my case, when the users gives me an integer representing Year (_2014_) I would really like to
 create an instance of Year and operate on it. Operating on bunch of static methods or creating
 a Date (_January 1st, 2014_) to deal with Years **does not taste me**.
@@ -122,11 +127,11 @@ a Date (_January 1st, 2014_) to deal with Years **does not taste me**.
 What does my boss say? 😉He says that knowing about things such as next and previous month is not the responsibility
 of `YearMonth` class but rather something above (conceptually higher) like a `Calendar`. It's not that `May 2014` knows
 that the next month in a year is `June 2014` but rather the calendar knows about it. I find it an interesting point
-of view. What do you think?
+of view. What do you think? 
 
-## TODO: Title
+## `YearMonth`
 
-So because I always miss this proper abstraction I created my own
+Ok, enough with the digressions. The main topic was using custom class with `Range`. Let's have an exemplary class.
 
 ```
 #!ruby
@@ -167,8 +172,13 @@ This was used as a Value Object attribute in my AR class:
 ```
 #!ruby
 class ReportingConfiguration < ActiveRecord::Base
-  composed_of :start, class_name: YearMonth.name, mapping: [ %w(start_year year), %w(start_month month) ]
-  composed_of :end,   class_name: YearMonth.name, mapping: [ %w(end_year year), %w(end_month month) ]
+  composed_of :start,
+    class_name: YearMonth.name, 
+    mapping: [ %w(start_year year), %w(start_month month) ]
+    
+  composed_of :end,
+    class_name: YearMonth.name, 
+    mapping: [ %w(end_year year), %w(end_month month) ]
 
   def each_month
     (self.start..self.end)
@@ -337,15 +347,21 @@ All this can be summarized in a few examples:
 So `Range` will give always you the ability to check if something is in the range, but it only **might** give you the
 ability to iterate.
 
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
 ## Resources
 
-* [`Time.days_in_month`](https://github.com/rails/rails/blob/b775987e72260233c66080483b3c964f9549d094/activesupport/lib/active_support/core_ext/time/calculations.rb#L18)
 * [Range documentation](http://www.ruby-doc.org/core-2.1.2/Range.html)
 * [`#nonzero?`](http://www.ruby-doc.org/core-2.1.2/Numeric.html#method-i-nonzero-3F)
+* [Back to basics: the mess we've made of our fundamental data types](https://www.youtube.com/watch?v=l3nPJ-yK-LU) - not
+Ruby related but FYI, dates are more complicated then what usually like to think about them.
+* [Falsehoods programmers believe about time](http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time)
+* [More falsehoods programmers believe about time; “wisdom of the crowd” edition](http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time-wisdom)
+* [`Time.days_in_month`](https://github.com/rails/rails/blob/b775987e72260233c66080483b3c964f9549d094/activesupport/lib/active_support/core_ext/time/calculations.rb#L18)
+* [`composed_of` removed from Rails 4](http://blog.plataformatec.com.br/2012/06/about-the-composed_of-removal/)
+* [Value objects and Aggregates in Rails](http://pankowecki.pl/ddd/index.html#/)
 
 ## Simple `YearMonth` implementation
-
-Be aware that there is [no Year 0](http://en.wikipedia.org/wiki/0_\(year\)) if you need to support time B.C. ☻
 
 ```
 #!ruby
