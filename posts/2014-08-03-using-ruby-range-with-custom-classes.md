@@ -15,7 +15,7 @@ tags: [ 'ruby', 'Range', 'custom class', 'time' ]
   </figure>
 </p>
 
-I am a huge fan of Ruby classes, their API and overall design. It's still sometimes that
+**I am a huge fan of Ruby classes, their API and overall design**. It's still sometimes that
 something surprises me a little bit. I raise my eyebrow and need to find answers.
 What surprised me this time was `Range` class. But let's start from the beginning (even though it is
 a long digression from the main topic).
@@ -25,8 +25,8 @@ a long digression from the main topic).
 ## Ruby, gimme my `Month` please. Would you? Kindly?
 
 Every time I implement any kind of reporting functionality for our clients I wonder why
-is there no `Month` class. I mean, there is such concept as month. Why not make it a
-class? I wondered how other languages deal with it and it turns out Java recently added
+is there no `Month` class. I mean, **there is such concept as month. Why not make it a
+class?** I wondered how other languages deal with it and it turns out Java recently added
 [`Month` class](http://docs.oracle.com/javase/8/docs/api/java/time/Month.html) to its API.
 I looked at its implementation, its methods and no... That's not what I want.
 
@@ -38,13 +38,13 @@ that I need.
 what you have in the Java API.
 
 So to avoid confusion I decided to think about my little object that I have in mind (_January 2014_) as `YearMonth`. If
-you come up with a better name for it, leave me a comment. I honestly couldn't come up with anything different and more
+you **come up with a better name for it, leave me a comment**. I honestly couldn't come up with anything different and more
 sophisticated. Maybe because _English as second language_... Anyway...
 
 ## `YearMonth` and what not...
 
 I the domain of _Reporting_ we often think in terms of Time periods. Our customers often would like to have
-reporting per days, weeks, months, quarters etc. When someone tells me to create a report from _January 2014_ to
+**reporting per days, weeks, months, quarters etc.** When someone tells me to create a report from _January 2014_ to
 _May 2014_ with the accuracy of month, well... I would like to say in my code
 `YearMonth.new(2014, 1)..YearMonth.new(2014, 5)`. That's how my OOP part of the brain thinks about the problem.
 
@@ -116,7 +116,7 @@ happens to belong to this period (such as first day or first second of year). Th
 about the attributes of the time period it belongs with methods such as `#beginning_of_year`, `#beginning_of_quarter`,
 `#beginning_of_month`, `#beginning_of_week`.
 
-So I think we are often missing the abstraction of time periods that we think about and that we work with. I understand
+So I think we are **often missing the abstraction of time periods** that we think about and that we work with. I understand
 that these methods are very useful when what we are doing depends on current time or current day or selected moment provided
 by the user. However in my case, when the users gives me an integer representing Year (_2014_) I would really like to
 create an instance of Year and operate on it. Operating on bunch of static methods or creating
@@ -124,7 +124,7 @@ a Date (_January 1st, 2014_) to deal with Years **does not taste me**.
 
 ### Even deeper digression
 
-What does my boss say? 😉He says that knowing about things such as next and previous month is not the responsibility
+**What does my boss say? 😉**He says that knowing about things such as next and previous month is not the responsibility
 of `YearMonth` class but rather something above (conceptually higher) like a `Calendar`. It's not that `May 2014` knows
 that the next month in a year is `June 2014` but rather the calendar knows about it. I find it an interesting point
 of view. What do you think? 
@@ -167,7 +167,7 @@ class YearMonth < Struct.new(:year, :month)
 end
 ```
 
-This was used as a Value Object attribute in my AR class:
+This was used as a **Value Object attribute** in my AR class:
 
 ```
 #!ruby
@@ -202,8 +202,8 @@ That certainly wasn't something that I was expecting.
 
 Let's think a moment about it. What do we actually use the `Range` class for? There are at least two usecases:
 
-* iterating over the collection (without the need to create all its elements)
-* checking whether another object is part of the `Range` (again, without the need to create all its elements)
+* **iterating over the collection** (without the need to create all its elements)
+* checking whether another **object is part of the `Range`** (again, without the need to create all its elements)
 
 For both of the usecases we need to add different methods to our custom (`YearMonth`) class for it to be
 compatible with `Range`.
@@ -221,7 +221,7 @@ range.each {|ym| puts ym.inspect }
 # #<struct YearMonth year=2014, month=3>
 ```
 
-Iterating requires you to implement `#succ` method.
+**Iterating requires you to implement `#succ` method.**
 
 ```
 #!ruby
@@ -244,7 +244,7 @@ Well that's when the next usecase comes handy.
 
 ### Inclusion
 
-Checking the inclusion of values in Range require you to implement the `<=>` operator. In other
+**Checking the inclusion of values in Range require you to implement the `<=>` operator**. In other
 words your class should be [`Comparable`](http://www.ruby-doc.org/core-2.1.2/Comparable.html). And that's the thing I forgot about. And it actually makes sense because how
 else would the `Range` know when to stop without the ability to compare last generated element with the upper bound of
 your Range?
