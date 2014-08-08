@@ -103,7 +103,7 @@ In `app/controllers/main_controller.rb` in `vievDidLoad` method add the followin
 
 It tells RMQ to add Facebook login button instance as a subview and apply `fb_login_button` style to it. What is more, it registers itself as a delegate to handle all login methods.
 
-We have to create our style yet. For that open `app/controllers/main_stylesheet.rb` and add the following code:
+We have to create our style yet. For that open `app/stylesheets/main_stylesheet.rb` and add the following code:
 
 ```
 #!ruby
