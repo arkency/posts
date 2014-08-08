@@ -1,5 +1,5 @@
 ---
-title: "Can RubyMotion and Facebook SDK play well together?"
+title: "RubyMotion app with Facebook SDK"
 created_at: 2014-08-09 22:16:53 +0200
 kind: article
 publish: false
