@@ -19,13 +19,13 @@ This will be short, simple, but painless and useful. We'll show you **how to int
 
 <!-- more -->
 
-[Recently  we encouraged you to start using RubyMotion](http://blog.arkency.com/2014/07/one-ruby-to-rule-them-all/) and we presented some useful gems to start developing with RM.
+[Recently  we encouraged you to start using RubyMotion](http://blog.arkency.com/2014/07/one-ruby-to-rule-them-all/) and we presented some useful gems to start developing with.
 
-Now, we'd like to show you how to integrate Facebook iOS SDK with RubyMotion from scratch.
+Now, we'd like to show you how to integrate Facebook iOS SDK with RubyMotion and create sample application from scratch.
 
 ## Boilerplate
 
-Firstly, we have to create RubyMotion application. We will use awesome [RMQ gem](http://rubymotionquery.com/) for building this app.
+Firstly, we have to generate RubyMotion application. We will use awesome [RMQ gem](http://rubymotionquery.com/) for building initial skeleton.
 
     gem install ruby_motion_query
     rmq create ruby-motion-facebook
@@ -33,7 +33,7 @@ Firstly, we have to create RubyMotion application. We will use awesome [RMQ gem]
     bundle
     rake
     
-Our application is set up and running.
+Our application is up and running.
 
 ## Integrate Facebook SDK
 
@@ -58,18 +58,18 @@ After all that let's install all dependencies:
     pod setup           # to setup pods repository
     rake pod:install    # to fetch FB SDK
     
-That installed Facebook SDK for iOS into our RubyMotion project. We can now build all logic as we want.
+That installs Facebook SDK for iOS in our RubyMotion project. We can now build all logic as we want.
 
 ## Prerequisites
 
 Let's build some kind of login feature. The use case may be as follows:
 
-1. When user opens our app, there's login screen with Facebook button
-2. After user clicks on login button, safari opens webpage asking user to authorize our application
+1. When user opens our app, there's a login screen with Facebook button
+2. After user clicks on it, safari opens webpage asking user to authorize our application
 3. As soon as user confirms permission, web page redirects us back to our application
 4. Now the main screen with user basic data is displayed.
 
-In case to use FB application, we should create it on [Facebook developers portal](https://developers.facebook.com/apps/) first. However, if you don't want to follow [simple tutorial](https://developers.facebook.com/docs/ios/getting-started#appid) how to do that, use sample FB app ID provided by Facebook itself `211631258997995`.
+In order to use FB application, we should create it on [Facebook developers portal](https://developers.facebook.com/apps/) first. However, if you don't want to follow [simple tutorial](https://developers.facebook.com/docs/ios/getting-started#appid) how to do that, you still can use sample FB app ID provided by Facebook itself `211631258997995`.
 
 To be able to be redirected back to our application from Safari, we should register appropriate `URL Scheme` for `URL types` in `Info.plist`, which [stores meta information](https://developer.apple.com/library/iOs/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html) in each iOS app.
 
@@ -135,7 +135,7 @@ Now, run application with `rake`. You should be able to see `login` or `logout` 
 
 ## Login logic
 
-We have to handle login state now. For the very beginning we can just change navbar title for our application to change when user logs in and out. Let's make it simple in `MainController` class:
+We have to handle login state now. On the very beginning we can just set navbar title for our application to be changed when user logs in and out. Let's do it in `MainController` class:
 
 ```
 #!ruby
@@ -188,7 +188,7 @@ end
 
 ## Summary
 
-And that's it. I'm happy that you followed this article. In case you need ready code, I created [repository with example application](). Enjoy!
+And that's it. I'm happy that you went through this article. In case you need ready code, I created [repository with example application](https://github.com/KamilLelonek/ruby-motion-facebook). Enjoy!
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
