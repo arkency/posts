@@ -2,7 +2,7 @@
 title: "RubyMotion app with Facebook SDK"
 created_at: 2014-08-09 22:16:53 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
