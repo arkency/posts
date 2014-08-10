@@ -1,5 +1,5 @@
 ---
-title: "Truncating UTF8 Input For Push Notifications"
+title: "Truncating UTF8 Input For Apple Push Notifications (APNS) in Ruby"
 created_at: 2014-08-10 12:20:33 +0200
 kind: article
 publish: false
@@ -8,6 +8,12 @@ newsletter: :skip
 newsletter_inside: :mobile
 tags: [ 'apns', 'push', 'notifications', 'apple', 'utf8', 'truncate' ]
 ---
+
+<p>
+  <figure align="center">
+    <img src="/assets/images/apns-ruby/phones.png">
+  </figure>
+</p>
 
 When sending push notifications ([APNS](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html))
 to apple devices such iPhone or iPad there is a constraint that makes implementing it a bit challenging:
@@ -81,7 +87,7 @@ Even when we don't substitute data into our payload we are out of 73 bytes. That
 ... 183 bytes for user input
 
 If your payload (required for the app to properly behave when the notification is clicked) is bigger or your
-message is longer you are left with even fewer bytes.
+message is longer you are left with even fewer bytes of user input.
 
 ## Not everything can be truncated
 
@@ -327,11 +333,11 @@ TruncateMultipleStrings.new(["short", "medium medium", "long "*30], 60).call
 TruncateMultipleStrings.new(["long "*30, "medium medium", "long "*30], 60).call
 #  => ["long long long long lon", "medium medium", "long long long long long"]
   
-#TruncateMultipleStrings.new(["long "*30, "long "*30, "long "*30], 60).call
+TruncateMultipleStrings.new(["long "*30, "long "*30, "long "*30], 60).call
 # => ["long long long long ", "long long long long ", "long long long long "]
 ```
 
-Here is an example of using it
+Here is an example of class that could be using it
 
 ```
 #!ruby
@@ -383,10 +389,10 @@ notif.payload
 
 * [JSON UTF-8 numeric escape sequences, should I use it?](http://stackoverflow.com/questions/583562/json-character-encoding-is-utf-8-well-supported-by-browsers-or-should-i-use-nu)
 * I can recommend using [grocer gem for APNS push notifications](https://github.com/grocer/grocer)
+* [ios7 features](https://www.apple.com/ios/features/)
 
 Notes:
 
 * UA i o tym, że on swój payload dodaje
 * CTA
 * Newsletter
-* image
