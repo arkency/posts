@@ -2,7 +2,7 @@
 title: "4 ways of authentication you should be familiar with"
 created_at: 2014-08-10 13:00:20 +0200
 kind: article
-publish: true
+publish: false
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mastering_rails_validations
