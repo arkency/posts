@@ -1,5 +1,5 @@
 ---
-title: "4 ways of authentication you should be familiar with"
+title: "SSH authentication in 4 flavors"
 created_at: 2014-08-10 13:00:20 +0200
 kind: article
 publish: false
@@ -15,7 +15,7 @@ tags: [ 'authentication', 'ssh', 'security' ]
   </figure>
 </p>
 
-We are connecting with remote servers every day. Sometimes we explicitly provide passwords, sometimes it just happens without it. We usually don't care how it works internally, we just get access, so why to bother at all. **There are a couple ways of authentication, which are worth to know** and I'd like to present you them briefly.
+We are connecting with remote servers every day. Sometimes we explicitly provide passwords, sometimes it just happens without it. A lot of developers don't care how it works internally, they just get access, so why to bother at all. **There are a couple ways of authentication, which are worth to know** and I'd like to present you them briefly.
 
 <!-- more -->
 
@@ -60,7 +60,7 @@ Connection itself:
 
 **Pros:**
 
-- Using passphrase instead of password, which is the same for multiple servers using the same key
+- Using passphrase instead of password, which is identical for multiple servers with your public key in  `authorized_keys`
 - Public keys cannot be easily brute-forced
 
 **Cons:**
@@ -143,7 +143,7 @@ ssh -q $1 "mkdir ~/.ssh 2>/dev/null; \
 echo "done!"
 ```
 
-Once it's done, server can construct some challenge based on your public key. Because RSA algorithm is symmetric, message encrypted using public key can be decrypted using private key and opposite.
+Once it's done, server can construct some challenge based on your public key. Because RSA algorithm is asymmetric, message encrypted using public key can be decrypted using private key and opposite.
 
 Key negotiaton may be as follows: client receives a message encrypted by your public key and can decrypt it using your private key. Next, it encrypts this message with server public key and sends back to server, which uses its own private key to decrypt and validates if message matches this sent one initially.
 
@@ -157,7 +157,7 @@ Note that **private key belongs only to you** and is **never** shared anywhere.
 
 ## Possible threats
 
-As I described before, the basic benefit of using SSH agents is to protect your private key without need to expose it anywhere. The weakest link is SSH agent itself. Any kind of implementation must provide some way that allows to make request from client, some kind of interface to interact with. It's usually done with UNIX socket file stored somewhere on your disk. Although it is heavily protected by the system, nothing can really prevent from `root` access, so if a `root` user change key agent, it has immediately granted necessary permissions. There's no method preventing `root` user from hijacking SSH agent socket, because he has a full access, so it may not be the best solution when system cannot be entirely trusted.
+As I described before, the basic benefit of using SSH agents is to protect your private key without need to expose it anywhere. The weakest link is SSH agent itself. Any kind of implementation must provide some way that allows to make request from client, some kind of interface to interact with. It's usually done with UNIX socket accessible via file API. Although this socket is heavily protected by the system, nothing can really prevent from accessing it by `root`. Any key agent set by `root` has immediately granted necessary permissions so there's no method preventing `root` user from hijacking SSH agent socket. It may not be the best solution to connect with *Bar* server when *Foo* cannot be entirely trusted.
 
 ## Summary
 
@@ -166,10 +166,7 @@ Now you see how authentication works and what are the ways to set it up. You may
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## Resources
+- http://www.unixwiz.net/techtips/ssh-agent-forwarding.html
 - https://help.ubuntu.com/14.04/serverguide/openssh-server.html
 - https://help.ubuntu.com/community/SSH/OpenSSH/Configuring
 - http://tools.ietf.org/html/rfc4252
-
-## Acknowledgments
-
-This post wast highly inspired by [similar article](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html) and [Paweł Pacana](https://twitter.com/pawelpacana) who recommended me to learn about this stuff and is expert in that domain.
