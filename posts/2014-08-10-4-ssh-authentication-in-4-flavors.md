@@ -2,10 +2,10 @@
 title: "SSH authentication in 4 flavors"
 created_at: 2014-08-10 13:00:20 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
-newsletter_inside: :mastering_rails_validations
+newsletter_inside: :fearless_refactoring_1
 tags: [ 'authentication', 'ssh', 'security' ]
 ---
 
@@ -115,7 +115,8 @@ For better understanding and real-life example, let's imagine that this second c
 
 In order to connect with SSH server and authenticate using your public/private keypair, you have to first share your public key with the server. As we described before, that can be done using [`ssh-copy-id`](https://github.com/beautifulcode/ssh-copy-id-for-OSX) or some script
 
-```bash
+```
+#!bash
 #!/bin/sh
 
 KEY="$HOME/.ssh/id_rsa.pub"
