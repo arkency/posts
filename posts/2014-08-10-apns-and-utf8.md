@@ -44,7 +44,7 @@ following. The things that are going to vary are user name (_User X_ in our exam
 
 ## Payload template
 
-So let's extract the template of the payload into a method. This will be come handy later:
+So let's extract the template of the payload into a method. This will come handy later:
 
 ```
 #!ruby
@@ -60,7 +60,7 @@ So let's extract the template of the payload into a method. This will be come ha
 
 ## Bytes, bytes everywhere
 
-Remember when I said that we have 256 bytes? We do, but # of useful bytes for our case is even smaller.
+Remember when I said that we have 256 bytes? We do, but number of useful bytes for our case is even smaller.
 
 ```
 #!ruby
@@ -93,9 +93,7 @@ message is longer you are left with even fewer bytes of user input.
 ## Not everything can be truncated
 
 But wait... We can't truncate user id. If we did we could be misleading about who actually started following
-the recipient of the notification. So even though it is _kind-of_ external
-(_kind-of_ because its not truly external it doesn't come from user or 3rd party app, but still it will vary
-and notifications don't have control over its length) data we can't truncate it.
+the recipient of the notification. So even though its length vary, we can't truncate it.
 
 We can see that the logic for this is slowly getting more and more complicated. That's why for every push notification
 we have a class that encapsulates the logic of formatting it properly according to APNS rules.
