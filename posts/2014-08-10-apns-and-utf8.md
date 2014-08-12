@@ -1,8 +1,8 @@
 ---
 title: "Truncating UTF8 Input For Apple Push Notifications (APNS) in Ruby"
-created_at: 2014-08-10 12:20:33 +0200
+created_at: 2014-08-13 12:20:33 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :mobile
@@ -22,7 +22,8 @@ _The maximum size allowed for a notification payload is 256 bytes; Apple Push No
 
 This wouldn't be a problem itself unless you want to put user input into the notification.
 This also wouldn't be that hard unless the input can be international and contain non-ascii character. Which still would
-not so hard, but the payload is in JSON and things get a little more complicated.
+not be so hard, but the payload is in JSON and things get a little more complicated sometimes. Who said that formatting
+push notification is easy?
 
 <!-- more -->
 
@@ -92,7 +93,9 @@ message is longer you are left with even fewer bytes of user input.
 ## Not everything can be truncated
 
 But wait... We can't truncate user id. If we did we could be misleading about who actually started following
-the recipient of the notification. So even though it _kind-of_ external data we can't truncate it.
+the recipient of the notification. So even though it is _kind-of_ external
+(_kind-of_ because its not truly external it doesn't come from user or 3rd party app, but still it will vary
+and notifications don't have control over its length) data we can't truncate it.
 
 We can see that the logic for this is slowly getting more and more complicated. That's why for every push notification
 we have a class that encapsulates the logic of formatting it properly according to APNS rules.
@@ -182,7 +185,9 @@ class StartedFollowing < Struct.new(:user_name, :user_id)
 
     payload_template(truncated_user_name).tap do |hash|
       size = hash.to_json.bytesize
-      size <= MAX_APS_BYTES or raise InvalidPayloadGenerated.new("Payload size was: #{size}")
+      size <= MAX_APS_BYTES or raise(
+        InvalidPayloadGenerated.new("Payload size was: #{size}")
+      )
     end
   end
   
@@ -214,7 +219,9 @@ end
 
 notif = StartedFollowing.new("łøü"*100, 12345)
 notif.payload
-# => {:aps=>{:alert=>"'łøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłø' started following you"}, :path=>"appnameios://users/12345"}
+# => {:aps=>{:alert=>"'łøüłøüłøüłøüłøüłøüłøüłøüłøüłø
+# üłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüłøüł
+# øüłøüłøüłø' started following you"}, :path=>"appnameios://users/12345"}
 
 notif.payload.to_json.bytesize
 # => 256
@@ -272,7 +279,9 @@ class TruncateStringWithMbChars
       each_char.
       map{|c| c.to_json.bytesize }.
       each_with_index.
-      inject(maxbytes){|bytesum, (bytes, i)| bytesum -= (bytes-2) ; return i-1 if bytesum < 0; bytesum }
+      inject(maxbytes) do |bytesum, (bytes, i)|
+        bytesum -= (bytes-2) ; return i-1 if bytesum < 0; bytesum
+      end
     return string_with_mb_chars.size
   end
 end
@@ -302,14 +311,22 @@ class TruncateMultipleStrings
   end
 
   def call
-    hash = @strings.inject({}){|memo, string| memo[string.object_id] = string; memo }
-    maxjsonbytes = @maxjsonbytes
-    hash.values.sort_by{|s| string_json_bytesize(s) }.each_with_index do |string, index|
-      maxjsonbytes_for_string = maxjsonbytes / (@strings.size - index)
-      shortened = TruncateStringWithMbChars.new(string, maxjsonbytes_for_string).call
-      maxjsonbytes -= string_json_bytesize(shortened)
-      hash[string.object_id] = shortened
+    hash = @strings.inject({}) do |memo, string|
+      memo[string.object_id] = string; memo
     end
+    maxjsonbytes = @maxjsonbytes
+    hash.
+      values.
+      sort_by{|s| string_json_bytesize(s) }.
+      each_with_index do |string, index|
+        maxjsonbytes_for_string = maxjsonbytes / (@strings.size - index)
+        shortened = TruncateStringWithMbChars.new(
+          string, 
+          maxjsonbytes_for_string
+        ).call
+        maxjsonbytes -= string_json_bytesize(shortened)
+        hash[string.object_id] = shortened
+      end
     hash.values
   end
 
@@ -327,14 +344,32 @@ the other strings.
 
 ```
 #!ruby
-TruncateMultipleStrings.new(["short", "medium medium", "long "*30], 60).call
-# => ["short", "medium medium", "long long long long long long long long lo"]
+TruncateMultipleStrings.new(
+  ["short", "medium medium", "long "*30], 60
+).call
+# => [
+# "short", 
+# "medium medium", 
+# "long long long long long long long long lo"
+# ]
  
-TruncateMultipleStrings.new(["long "*30, "medium medium", "long "*30], 60).call
-#  => ["long long long long lon", "medium medium", "long long long long long"]
+TruncateMultipleStrings.new(
+  ["long "*30, "medium medium", "long "*30], 60
+).call
+#  => [
+# "long long long long lon", 
+# "medium medium", 
+# "long long long long long"
+# ]
   
-TruncateMultipleStrings.new(["long "*30, "long "*30, "long "*30], 60).call
-# => ["long long long long ", "long long long long ", "long long long long "]
+TruncateMultipleStrings.new(
+  ["long "*30, "long "*30, "long "*30], 60
+).call
+# => [
+# "long long long long ",
+# "long long long long ", 
+# "long long long long "
+# ]
 ```
 
 Here is an example of class that could be using it
@@ -349,7 +384,9 @@ class GameInvited < Struct.new(:user1, :user2, :game_name, :game_id)
 
     payload_template(*truncated_names).tap do |hash|
       size = hash.to_json.bytesize
-      size <= MAX_APS_BYTES or raise InvalidPayloadGenerated.new("Payload size was: #{size}")
+      size <= MAX_APS_BYTES or raise(
+        InvalidPayloadGenerated.new("Payload size was: #{size}"
+      )
     end
   end
   
@@ -374,25 +411,54 @@ class GameInvited < Struct.new(:user1, :user2, :game_name, :game_id)
   end
 
   def truncated_names
-    TruncateMultipleStrings.new([user1, user2, game_name], payload_arg_max_size).call
+    TruncateMultipleStrings.new(
+      [user1, user2, game_name], 
+      payload_arg_max_size
+     ).call
   end
 end
 
 
-notif = GameInvited.new("User1 "*100, "User2 "*100, "Game "*100, 123457890123)
+notif = GameInvited.new(
+  "User1 "*100, 
+  "User2 "*100, 
+  "Game "*100, 
+  123457890123
+)
 notif.payload
 
-# => {:aps=>{:alert=>"User1 User1 User1 User1 User1 User1 User1 User1 User1 Use and User2 User2 User2 User2 User2 User2 User2 User2 User2 Use invite you to game Game Game Game Game Game Game Game Game Game Game Game G"}, :path=>"appnameios://games/123457890123"}
+# => {:aps=>{:alert=>"User1 User1 User1 User1 User1 User1
+# User1 User1 User1 Use and User2 User2 User2 User2 User2
+# User2 User2 User2 User2 Use invite you to game Game Game
+# Game Game Game Game Game Game Game Game Game G"},
+# :path=>"appnameios://games/123457890123"}
 ```
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
+## Urban Airship
+
+Remember that if you are using Urban Airship you should be in total using even less than 256 bytes so they can provide
+you with tracking ability.
+
+[Quote from their documentation](http://docs.urbanairship.com/connect/ios_push.html)
+
+_The maximum message size is 256 bytes. This includes the alert, badge, sound, and any extra key/value pairs in the notification section of the payload. We also recommend leaving as much extra space as possible if you are using our reporting tools, as a portion will be used to help with response tracking if it is available._
+
+Unfortunately I couldn't find out exactly how many bytes they need for this functionality to work properly. If any of you
+have the knowledge, please let me know.
+
+## Storing notification templates on the phone
+
+If your messages are particularly long (at least in some locales) you can spare some bytes by
+storing the template in the app and sending only the data.
+
+[Quote from APNS documentation](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW21)
+
+_You can display localized alert messages in two ways. The server originating the notification can localize the text; to do this, it must discover the current language preference selected for the device (see “Passing the Provider the Current Language Preference (Remote Notifications)”). Or the client application can store in its bundle the alert-message strings translated for each localization it supports. The provider specifies the loc-key and loc-args properties in the aps dictionary of the notification payload. When the device receives the notification (assuming the application isn’t running), it uses these aps-dictionary properties to find and format the string localized for the current language, which it then displays to the user._
 
 ## Resources
 
 * [JSON UTF-8 numeric escape sequences, should I use it?](http://stackoverflow.com/questions/583562/json-character-encoding-is-utf-8-well-supported-by-browsers-or-should-i-use-nu)
 * I can recommend using [grocer gem for APNS push notifications](https://github.com/grocer/grocer)
 * [ios7 features](https://www.apple.com/ios/features/)
-
-Notes:
-
-* UA i o tym, że on swój payload dodaje
-* CTA
-* Newsletter
