@@ -39,15 +39,15 @@ $('[data-app=appFromAppDirectory]').each ->
   window.app.start()
 ```
 
-**app**        - starting point of application. Here we initialize every component of application
+* **app**        - starting point of application. Here we initialize every component of application
 
-**backend**    - here we fetch and send data to backend. It is also a place, where we create domain objects
+* **backend**    - here we fetch and send data to backend. It is also a place, where we create domain objects
 
-**components** - our React.js components, we use to render an application.
+* **components** - our React.js components, we use to render an application.
 
-**domain**     - definitions of domain objects used in view. Example: immutable list of single entries (which are domain objects too).
+* **domain**     - definitions of domain objects used in view. Example: immutable list of single entries (which are domain objects too).
 
-**glue**       - hexagonal.js glue
+* **glue**       - hexagonal.js glue
 
 Further reading for hexagonal.js - http://hexagonaljs.com/
 Also, we use data streams from RxJS: https://github.com/Reactive-Extensions/RxJS
