@@ -1,6 +1,6 @@
 ---
 title: "Concurrency patterns in RubyMotion"
-created_at: 2014-08-16 20:23:34 +0200
+created_at: 2014-08-18 08:23:34 +0200
 kind: article
 publish: false
 author: Kamil Lelonek
@@ -24,6 +24,8 @@ From the very beginning, it's worth to quote [RM documentation](http://www.rubym
 
 > Unlike the mainstream Ruby implementation, [race conditions](http://en.wikipedia.org/wiki/Race_condition#Computing) are possible in RubyMotion, since there is no [Global Interpreter Lock](http://en.wikipedia.org/wiki/Global_Interpreter_Lock) (GIL) to prohibit threads from running concurrently. You must be careful to secure concurrent access to shared resources.
 
+Although it's a quotation from official documentation, we experienced that despite of using GIL, we still can fall into race condition.
+
 So before any work with concurrency in RubyMotion, beware of accessing shared resources without preventing them from race condition.
 
 ## GCD
@@ -39,7 +41,7 @@ Here are some facts about GDC:
 ## Queue
 A `Dispatch::Queue` is the fundamental mechanism for **scheduling blocks** for execution, either **synchronously or asychronously**. 
 
-Here is the basic matrix of `Dispatch::Queue` methods. Rows represent whether to run in blocking or non-blocking mode, columns represent where to execute the code - in UI or background thread.
+Here is the basic matrix of `Dispatch::Queue` [methods](https://developer.apple.com/library/mac/DOCUMENTATION/Darwin/Reference/ManPages/man3/dispatch_async.3.html). Rows represent whether to run in blocking or non-blocking mode, columns represent where to execute the code - in UI or background thread.
 
 |       | Main                       | Background                                 |
 |-------|----------------------------|--------------------------------------------|
@@ -58,10 +60,6 @@ This may be a result of calling to UIKit from a secondary thread.
 Crashing now..
 ```
 
-**`.new('arkency_queue').async`** - operations in background thread ideal for processing lots of data or handling HTTP requests.
-
-**`.new('arkency_queue').sync`** - synchronous operation in background thread.
-
 To update UI from background thread:
 
 ```
@@ -76,6 +74,14 @@ Dispatch::Queue.new('arkency').async do
   # background tasks that wait for updating UI
 end
 ```
+
+**`.new('arkency_queue').async`** - operations in background thread ideal for processing lots of data or handling HTTP requests.
+
+**`.new('arkency_queue').sync`** - may be use for synchronization critical sections when the result of the block is not needed locally. In addition to providing a more concise expression of synchronization, this approach is less error prone as the critical section cannot be accidentally left without restoring the queue to a reentrant state.
+
+> Conceptually, `dispatch_sync()` is a convenient wrapper around `dispatch_async()` with the addition of a semaphore to wait for completion of the block, and a wrapper around the block to signal its completion.
+ 
+These functions support efficient temporal synchronization, background concurrency and data-level concurrency. These same functions can also be used for efficient notification of the completion of asynchronous blocks (a.k.a. callbacks).
 
 This time, some facts about queues:
 
