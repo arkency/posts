@@ -2,7 +2,7 @@
 title: "Concurrency patterns in RubyMotion"
 created_at: 2014-08-19 08:23:34 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
@@ -151,10 +151,7 @@ It's also worth to take a look at [BubbleWrap Deferable module](https://github.c
 - http://www.raywenderlich.com/4295/multithreading-and-grand-central-dispatch-on-ios-for-beginners-tutorial
 - http://www.raywenderlich.com/60749/grand-central-dispatch-in-depth-part-1
 - http://www.raywenderlich.com/63338/grand-central-dispatch-in-depth-part-2
-<<<<<<< HEAD:content/posts/2014-08-19-concurrent-patterns-in-rubymotion.md
 - http://jeffreysambells.com/2013/03/01/asynchronous-operations-in-ios-with-grand-central-dispatch
-=======
-<<<<<<< HEAD:content/posts/2014-08-18-concurrent-patterns-in-rubymotion.md
 
 #### Posts:
 - http://jeffreysambells.com/2013/03/01/asynchronous-operations-in-ios-with-grand-central-dispatch
@@ -170,7 +167,4 @@ It's also worth to take a look at [BubbleWrap Deferable module](https://github.c
 - https://github.com/macfanatic/motion-launchpad
 - https://github.com/MohawkApps/motion-takeoff
 - https://github.com/opyh/motion-state-machine
-=======
 - http://jeffreysambells.com/2013/03/01/asynchronous-operations-in-ios-with-grand-central-dispatch
->>>>>>> Change Kamil's post date to make it the freshest one:content/posts/2014-08-19-concurrent-patterns-in-rubymotion.md
->>>>>>> Change Kamil's post date to make it the freshest one:content/posts/2014-08-19-concurrent-patterns-in-rubymotion.md
