@@ -8,14 +8,14 @@ tags: [ 'front-end', 'react.js', 'javascript' ]
 newsletter: :arkency_form
 ---
 
-We've tried almost everything for our Rails frontends - typical Rails views, Backbone, Angular and others. What we settled with is React.js. In this post we're showing you, how we structure a typical React.js when it comes to the files/directories structure.
+We've tried almost everything for our Rails frontends - typical Rails views, Backbone, Angular and others. What we settled with is React.js. In this post we're showing you, how we structure a typical React.js app when it comes to the files structure.
 
 <!-- more -->
 
 Our file structure per a single mini-application: 
 
 ```
-app_starter.js.coffee
+app_init.js.coffee
 --- app_directory
     --- app.module.js.coffee
     --- backend.module.js.coffee
@@ -26,7 +26,7 @@ app_starter.js.coffee
     --- glue.module.js.coffee
 ```    
 
-app_starter - we got one per each application. It is a code like this:
+app_init - we got one per each application. We always keep it simple:
 
 ```
 #!coffeescript
@@ -39,15 +39,19 @@ $('[data-app=appFromAppDirectory]').each ->
   window.app.start()
 ```
 
-* **app**        - starting point of application. Here we initialize every component of application
+* **app**        - starting point of application. Here we initialize and start every component of application
 
 * **backend**    - here we fetch and send data to backend. It is also a place, where we create domain objects
 
-* **components** - our React.js components, we use to render an application.
+* **components** - our React.js components we use to render an application.
 
 * **domain**     - definitions of domain objects used in view. Example: immutable list of single entries (which are domain objects too).
 
-* **glue**       - hexagonal.js glue
+* **glue**       - [hexagonal.js](http://hexagonaljs.com/) glue
 
-Further reading for hexagonal.js - http://hexagonaljs.com/
-Also, we use data streams from RxJS: https://github.com/Reactive-Extensions/RxJS
+Further reading
+==
+
+**Hexagonal.js** - implementation of clean hexagonal architecture - http://hexagonaljs.com/
+
+**RxJS** - we use reactive data streams to communicate between apps - https://github.com/Reactive-Extensions/RxJS
