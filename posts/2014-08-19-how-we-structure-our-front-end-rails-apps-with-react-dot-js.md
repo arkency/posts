@@ -8,6 +8,12 @@ tags: [ 'front-end', 'react.js', 'javascript' ]
 newsletter: :arkency_form
 ---
 
+<p>
+  <figure>
+    <img src="/assets/images/react-file-structure/image-fit.jpg" width="100%">
+  </figure>
+</p>
+
 We've tried almost everything for our Rails frontends - typical Rails views, Backbone, Angular and others. What we settled with is React.js. In this post we're showing you, how we structure a typical React.js app when it comes to the files structure.
 
 <!-- more -->
