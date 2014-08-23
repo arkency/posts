@@ -7,6 +7,7 @@ author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
 tags: [ 'facebook', 'sdk', 'ruby', 'rubymotion', 'ios', 'mobile' ]
+stories: ['rubymotion']
 ---
 
 <p>

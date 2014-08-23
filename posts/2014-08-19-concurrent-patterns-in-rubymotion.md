@@ -7,6 +7,7 @@ author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
 tags: [ 'concurrency', 'parallelism', 'gdc', 'ruby', 'rubymotion', 'ios', 'mobile' ]
+stories: ['rubymotion']
 ---
 
 <p>
