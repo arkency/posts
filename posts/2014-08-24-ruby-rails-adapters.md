@@ -29,7 +29,7 @@ That's the interface that every one of our adapters will have to follow. So let'
 write our first implementation using the `apns` gem.
 
 ```
-module APNSAdapters
+module ApnsAdapters
   class Sync
     def notify(device_token, text)
       APNS.send_notification(device_token, 'Hello iPhone!' )
@@ -64,7 +64,7 @@ adapter is handy.
 
 ```
 #!ruby
-module APNSAdapters
+module ApnsAdapters
   class Fake
     attr_reader :delivered
 
@@ -90,7 +90,7 @@ instead of the real one.
 #!ruby
 describe LikingService do
   subject(:liking)   { described_class.new(apns_adapter) }
-  let(:apns_adapter) { APNSAdapters::Fake.new }
+  let(:apns_adapter) { ApnsAdapters::Fake.new }
 
   before{ apns_adapter.clear }
   specify "delivers push notifications to friends" do
@@ -135,16 +135,16 @@ any remote service) so quickly we decided to do it asynchronously.
 ```
 #!ruby
 
-module APNSAdapters
+module ApnsAdapters
   class Async
     def notify(device_token, text)
-      Resque.enqueue(APNSJob, device_token, text)
+      Resque.enqueue(ApnsJob, device_token, text)
     end
   end
 end
 ```
 
-And the `APNSJob` is going to use our sync adapter.
+And the `ApnsJob` is going to use our sync adapter.
 
 ```
 #!ruby
@@ -169,9 +169,9 @@ end
 
 ## Changing underlying gem
 
-In reality I no longer use APNS gem because of its global configuration. I
-prefer Grocer way more because I can more easily and safely use to send push
-notifications to 2 separate mobile apps or even same iOS app but builded with
+In reality I no longer use `apns` gem because of its global configuration. I
+prefer Grocer way more because I can more easily and safely use it to send push
+notifications to 2 separate mobile apps or even same iOS app but built with
 either production or development APNS certificate.
 
 So let's say that our project evolved and now we need to be able to send push
@@ -189,7 +189,7 @@ instead. In simplest version it can be:
 
 ```
 #!ruby
-module APNSAdapters
+module ApnsAdapters
   class Sync
     def notify(device_token, text, app_name)
       notification = Grocer::Notification.new(
@@ -264,7 +264,7 @@ And our adapter:
 
 ```
 #!ruby
-module APNSAdapters
+module ApnsAdapters
   class Sync
     def notify(device_token, text, app_name)
       notification = Grocer::Notification.new(
