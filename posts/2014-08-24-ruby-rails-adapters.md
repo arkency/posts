@@ -29,6 +29,7 @@ That's the interface that every one of our adapters will have to follow. So let'
 write our first implementation using the `apns` gem.
 
 ```
+#!ruby
 module ApnsAdapters
   class Sync
     def notify(device_token, text)
@@ -196,7 +197,7 @@ module ApnsAdapters
         device_token: device_token,
         alert:        text,
       )
-      grocer(app_name).push()
+      grocer(app_name).push(notification)
     end
 
     private
@@ -206,10 +207,10 @@ module ApnsAdapters
       @grocer[app_name] ||= begin
         config = APNS_CONFIG[app_name]
         Grocer.pusher(
-          certificate: config['pem'],
-          passphrase:  config['password'],
-          gateway:     config['gateway_host'],
-          port:        config['gateway_port'],
+          certificate: config.fetch('pem']),
+          passphrase:  config.fetch('password']),
+          gateway:     config.fetch('gateway_host'),
+          port:        config.fetch('gateway_port'),
           retries:     2
         )
       end
@@ -245,10 +246,10 @@ class GrocerFactory
   def create_pusher(app_name)
     config = APNS_CONFIG[app_name]
     pusher = Grocer.pusher(
-      certificate: config['pem'],
-      passphrase:  config['password'],
-      gateway:     config['gateway_host'],
-      port:        config['gateway_port'],
+      certificate: config.fetch('pem']),
+      passphrase:  config.fetch('password']),
+      gateway:     config.fetch('gateway_host'),
+      port:        config.fetch('gateway_port'),
       retries:     2
     )
   end
@@ -256,9 +257,9 @@ end
 ```
 
 In this implementation we kill the grocer instance when exception happens (might happen
-because of problems with deliver, connection that was unused for a long time, etc).
+because of problems with delivery, connection that was unused for a long time, etc).
 We also reraise the exception so that higher layer (probably sidekiq or resque) know
-that the task failed.
+that the task failed (and can schedule it again).
 
 And our adapter:
 
