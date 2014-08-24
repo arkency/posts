@@ -70,7 +70,7 @@ Wow, that was simple, wasn't it? Ok, what did we achieve?
 Part of your app (probably a service) that we call _client_ 
 is relaying on some kind of interface for its proper behavior.
 Of course ruby does not have explicit interfaces so what I mean is a
-compatibility in a duck-typing way :). Implicity interface defined by how we
+compatibility in a duck-typing way :). Implicit interface defined by how we
 call our methods (what parameters they take and what they return). There is
 a solution, an already existing component (_adaptee_) that can do the job but
 does not expose the interface that we would like to use. The mediator between
@@ -432,7 +432,123 @@ end
 In many cases I don't think you should test `Fake` adapter because this is what we use for
 testing. And testing the code intended for testing might be too much.
 
-Images
+## Dealing with exceptions
+
+Because we don't want our app to be bothered with adapter implementation
+(our clients don't care about anything except for the interface) our
+adapters need to throw same exceptions. Because what exceptions are raised
+is part of the interface. This example does not suite us well to discuss it
+here because we use our adapters in _fire and forget_ mode. So we will have
+to switch for a moment to something else.
+
+Imagine that we are using some kind of geolocation service which based on
+user provided address (not a specific format, just String from one text input)
+can tell us the longitude and latitude coordinates of the location. We are in
+the middle of switching to another provided which seems to provide better data
+for the places that our customers talk about. Or is simply cheaper. So we have
+two adapters. Both of them communicate via HTTP with APIs exposed by our
+providers. But both of them use separate gems for that. As you can easily imagine
+when anything goes wrong, gems are throwing their own custom exceptions. We need
+to catch them and throw exceptions which our clients/services except to catch.
+
+```
+#!ruby
+require 'hipothetical_gooogle_geolocation_gem'
+require 'new_cheaper_more_accurate_provider_gem'
+
+module GeolocationAdapters
+  ProblemOccured = Class.new(StandardError)
+
+  class Google
+    def geocode(address_line)
+      HipotheticalGoogleGeolocationGem.new.find_by_address(address_line)
+    rescue HipotheticalGoogleGeolocationGem::QuotaExceeded
+      raise ProblemOccured
+    end
+  end
+
+  class NewCheaperMoreAccurateProvider
+    def geocode(address_line)
+      NewCheaperMoreAccurateProviderGem.geocoding(address_line)
+    rescue NewCheaperMoreAccurateProviderGem::ServiceUnavailable
+      raise ProblemOccured
+    end
+  end
+end
+```
+
+This is something people often overlook which in many cases leads to
+leaky abstraction. Your services should only be concerned with exceptions
+defined by the interface.
+
+```
+#!ruby
+class UpdatePartyLocationService
+  def call(party_id, address)
+    party = party_db.find_by_id(party_id)
+    party.coordinates = geolocation_adapter.geocode(address)
+    db.save(party)
+  rescue GeolocationAdapters::ProblemOccured
+    scheduler.schedule(UpdatePartyLocationService, :call, party_id, address, 5.minutes.from_now)
+  end
+end
+```
+
+Although some developers experiment with exposing exceptions that should be caught
+as part of the interface (via methods), I don't like this approach:
+
+```
+#!ruby
+require 'hipothetical_gooogle_geolocation_gem'
+require 'new_cheaper_more_accurate_provider_gem'
+
+module GeolocationAdapters
+  ProblemOccured = Class.new(StandardError)
+
+  class Google
+    def geocode(address_line)
+      HipotheticalGoogleGeolocationGem.new.find_by_address(address_line)
+    end
+
+    def problem_occured
+      HipotheticalGoogleGeolocationGem::QuotaExceeded
+    end
+  end
+
+  class NewCheaperMoreAccurateProvider
+    def geocode(address_line)
+      NewCheaperMoreAccurateProviderGem.geocoding(address_line)
+    end
+
+    def problem_occured
+      NewCheaperMoreAccurateProviderGem::ServiceUnavailable
+    end
+  end
+end
+```
+
+And the service
+
+```
+#!ruby
+class UpdatePartyLocationService
+  def call(party_id, address)
+    party = party_db.find_by_id(party_id)
+    party.coordinates = geolocation_adapter.geocode(address)
+    db.save(party)
+  rescue geolocation_adapter.problem_occured
+    scheduler.schedule(UpdatePartyLocationService, :call, party_id, address, 5.minutes.from_now)
+  end
+end
+```
+
+But as I said I don't like this approach. The problem is that if you want to
+communicate something domain specific via the exception you can't relay on 3rd
+party exceptions. If it was adapter responsibility to provide in exception
+information whether service should retry later or give up, then you need custom
+exception to communicate it.
+
+## Images
 
 * https://www.flickr.com/photos/elwillo/5210663993
 * https://www.flickr.com/photos/uscpsc/14640846183
