@@ -99,6 +99,8 @@ end
 => :introduce2
 ```
 
+<small>Thanks for <a href="http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/#comment-1502741048">Thiago A.</a></small>
+
 ## Hash from array(s)
 
 ```
@@ -484,6 +486,69 @@ rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 [67] pry(main)> numbers = *('00'..'10')
  => ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
 ```
+
+## Less verbose with ;
+
+Did you know that placing a semicolon at the very end of line hides its output? It may be helpful when some expression produces a lot of data, which we want to just assign to variable instead of directly printing in output.
+
+```
+#!ruby
+"a"..."z"
+[68] pry(main)> alphabet = *('a'...'z')
+[
+  [ 0] "a",
+  [ 1] "b",
+  [ 2] "c",
+  [ 3] "d",
+  [ 4] "e",
+  [ 5] "f",
+  [ 6] "g",
+  [ 7] "h",
+  [ 8] "i",
+  [ 9] "j",
+  [10] "k",
+  [11] "l",
+  [12] "m",
+  [13] "n",
+  [14] "o",
+  [15] "p",
+  [16] "q",
+  [17] "r",
+  [18] "s",
+  [19] "t",
+  [20] "u",
+  [21] "v",
+  [22] "w",
+  [23] "x",
+  [24] "y"
+]
+[69] pry(main)> alphabet = *('a'...'z');
+[70] pry(main)>
+```
+
+<small>Inspired by <a href="http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/#comment-1555213512">1jgjgjg</a></small>
+
+## Call a proc
+
+In how many ways can we call a proc? Actually in a few:
+
+```
+#!ruby
+[71] pry(main)> my_proc = -> argument { puts argument }
+#<Proc:0x007fb1ebe9c1a0@(pry):7 (lambda)>
+[72] pry(main)> my_proc.call('hello')
+hello
+nil
+[73] pry(main)> my_proc.('hello')
+hello
+nil
+[74] pry(main)> my_proc['hello']
+hello
+nil
+```
+
+<small>Thanks for <a href="http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/#comment-1554676190">Jordan Running</a></small>
+
 
 # Summary
 Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good too, because you learned something new today and I hope you find this useful.
