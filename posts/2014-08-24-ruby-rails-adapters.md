@@ -1,5 +1,5 @@
 ---
-title: "ruby rails adapters"
+title: "Adapters 101"
 created_at: 2014-08-24 09:50:10 +0200
 kind: article
 publish: false
@@ -54,6 +54,32 @@ Wow, that was simple, wasn't it? Ok, what did we achieve?
   It's way easier process when the cooperation can be easily seen in one place
   (adapter). Evaluating and estimating such task is faster when you know exactly
   what features you are using and what not.
+
+## Adapters in real life
+
+<a href="/assets/images/rails-ruby-adapter/ac_power_ruby-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/ac_power_ruby-thumbnail.jpg" /></a>
+<a href="/assets/images/rails-ruby-adapter/camera-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/camera-thumbnail.jpg" /></a>
+<a href="/assets/images/rails-ruby-adapter/sim-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/sim-thumbnail.jpg" /></a>
+<a href="/assets/images/rails-ruby-adapter/speaker-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/speaker-thumbnail.jpg" /></a>
+<a href="/assets/images/rails-ruby-adapter/usb-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/usb-thumbnail.jpg" /></a>
+
+## Adapters and architecture
+
+![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter.png)
+
+Part of your app (probably a service) that we call _client_ 
+is relaying on some kind of interface for its proper behavior.
+Of course ruby does not have explicit interfaces so what I mean is a
+compatibility in a duck-typing way :). Implicity interface defined by how we
+call our methods (what parameters they take and what they return). There is
+a solution, an already existing component (_adaptee_) that can do the job but
+does not expose the interface that we would like to use. The mediator between
+these two is our _adapter_.
+
+The interface can be fulfilled by possibily many adapters. They might be wrapping
+another API or gem which we don't want our app to interact directly with.
+
+## Multiple Adapters
 
 Let's move further with our task.
 
@@ -168,10 +194,12 @@ class ApnsJob
 end
 ```
 
+![](/assets/images/rails-ruby-adapter/apns_ruby_adapter.png)
+
 ## Changing underlying gem
 
 In reality I no longer use `apns` gem because of its global configuration. I
-prefer Grocer way more because I can more easily and safely use it to send push
+prefer `grocer` way more because I can more easily and safely use it to send push
 notifications to 2 separate mobile apps or even same iOS app but built with
 either production or development APNS certificate.
 
@@ -283,3 +311,131 @@ end
 The process of sharing instances of `grocer` between threads could be
 probably simplified with some kind of threadpool library.
 
+## Adapters configuration
+
+I already showed you one way of configuring the adapter by using `Rails.config`.
+
+```
+#!ruby
+YourApp::Application.configure do
+  config.apns_adapter = ApnsAdapters::Async.new
+end
+```
+
+The downside of that is that the instance of adapter is global. Which you might
+need to take care of it being thread-safe (if you use threads). And you must
+take great care of its state. So calling it multiple times between requests is
+ok. The alternative is to use proc as factory for creating instances of your adapter.
+
+```
+#!ruby
+
+YourApp::Application.configure do
+  config.apns_adapter = proc { ApnsAdapters::Async.new }
+end
+```
+
+If your adapter itself needs some dependencies consider using factories or injectors
+for fully building it. From my experience adapters usually can be constructed quite
+simply. And they are building blocks for other, more complicated structures like
+service objects.
+
+## Testing adapters
+
+I like to verify the interface of my adapters using shared examples in rspec.
+
+```
+#!ruby
+shared_examples_for :apns_adapter do
+  specify "#notify" do
+    expect(adapter.method(:notify).arity).to eq(2)
+  end
+
+  # another way without even constructing instance
+  specify "#notify" do
+    expect(described_class.instance_method(:notify).arity).to eq(2)
+  end
+end
+```
+
+Of course this will only give you very basic protection.
+
+```
+#!ruby
+
+describe ApnsAdapter::Sync do
+  it_behaves_like :apns_adapter
+end
+
+describe ApnsAdapter::Async do
+  it_behaves_like :apns_adapter
+end
+
+describe ApnsAdapter::Fake do
+  it_behaves_like :apns_adapter
+end
+```
+
+Another way of testing is to consider one implementation as leading and
+correct (in terms of interface, not in terms of behavior) and another
+implementation as something that must stay identical.
+
+```
+#!ruby
+describe ApnsAdapters::Async do
+  subject(:async_adapter) { described_class.new }
+
+  specify "can easily substitute" do
+    example = ApnsAdapters::Sync
+    example.public_instance_methods.each do |method_name|
+      method = example.instance_method(method_name)
+      copy   = subject.public_method(method_name)
+
+      expect(copy).to be_present
+      expect([-1, method.arity]).to include(copy.arity)
+    end
+  end
+end
+```
+
+This gives you some very basic protection as well.
+
+For the rest of the test you must write something specific to the adapter.
+Adapters doing http request can either stub http communication
+with [webmock](https://github.com/bblimke/webmock)
+or [vcr](vcr). Alternatively, you can just use mocks and expecations to check,
+whether the gem that you use for communication is being use correctly. However,
+if the logic is not complicated the test are quickly starting to look like _typo test_,
+so they might even not be worth writing. If the communication is not using HTTP, testing
+it might be even more complicated.
+
+Test specify for one adapter:
+
+```
+#!ruby
+describe ApnsAdapter::Async do
+  it_behaves_like :apns_adapter
+
+  specify "schedules" do
+    described_class.new.notify("device", "about something")
+    ApnsJob.should have_queued("device", "about something")
+  end
+
+  specify "job forwards to sync" do
+    expect(ApnsAdapters::Sync).to receive(:new).with.and_return(apns = double(:apns))
+    expect(apns).to receive(:notify).with("device", "about something")
+    ApnsJob.perform("device", "about something")
+  end
+end
+```
+
+In many cases I don't think you should test `Fake` adapter because this is what we use for
+testing. And testing the code intended for testing might be too much.
+
+Images
+
+* https://www.flickr.com/photos/elwillo/5210663993
+* https://www.flickr.com/photos/uscpsc/14640846183
+* https://www.flickr.com/photos/smaedli/3581980712
+* https://www.flickr.com/photos/groovenite/4738347028
+* https://www.flickr.com/photos/mightyohm/2979795890
