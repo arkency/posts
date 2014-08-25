@@ -7,6 +7,12 @@ author: Robert Pankowecki
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
+<p>
+  <figure>
+    <img src="/assets/images/rails-ruby-adapter/raspberry-fit.jpg" width="100%">
+  </figure>
+</p>
+
 Sometimes people get confused as to what is the roles of adapters, how to use them,
 how to test them and how to configure them. Misunderstanging often comes from lack
 of examples so let's see some of them.
@@ -581,6 +587,8 @@ unique for the app, such adapter will be.
 Adapters are puzzles that we put between our domain and existing solutions such
 as gems, libraries, APIs. Use them wisely to decouple yourself from them for
 whatever reason you have. Speed, Readability, Testability, ...
+
+![](/assets/images/rails-ruby-adapter/adapter_client_adaptee.png)
 
 ## Images
 
