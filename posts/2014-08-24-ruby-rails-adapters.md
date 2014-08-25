@@ -83,7 +83,7 @@ another API or gem which we don't want our app to interact directly with.
 
 Let's move further with our task.
 
-We don't wanna by sending any push notifications from our development environment and
+We don't wanna be sending any push notifications from our development environment and
 from our test environment. What are our options? I don't like putting code such as
 `if Rails.env.test? || Rails.env.production?` into my codebase. It makes testing harder
 as well as playing with the application in development mode. For such usecases new
@@ -322,7 +322,7 @@ YourApp::Application.configure do
 end
 ```
 
-The downside of that is that the instance of adapter is global. Which you might
+The downside of that is that the instance of adapter is global. Which means you might
 need to take care of it being thread-safe (if you use threads). And you must
 take great care of its state. So calling it multiple times between requests is
 ok. The alternative is to use proc as factory for creating instances of your adapter.
@@ -409,7 +409,7 @@ if the logic is not complicated the test are quickly starting to look like _typo
 so they might even not be worth writing. If the communication is not using HTTP, testing
 it might be even more complicated.
 
-Test specify for one adapter:
+Test specific for one adapter:
 
 ```
 #!ruby
@@ -422,7 +422,7 @@ describe ApnsAdapter::Async do
   end
 
   specify "job forwards to sync" do
-    expect(ApnsAdapters::Sync).to receive(:new).with.and_return(apns = double(:apns))
+    expect(ApnsAdapters::Sync).to receive(:new).and_return(apns = double(:apns))
     expect(apns).to receive(:notify).with("device", "about something")
     ApnsJob.perform("device", "about something")
   end
@@ -547,6 +547,40 @@ communicate something domain specific via the exception you can't relay on 3rd
 party exceptions. If it was adapter responsibility to provide in exception
 information whether service should retry later or give up, then you need custom
 exception to communicate it.
+
+## Adapters ain't easy
+
+There are few problems with adapters. Their interface tends to be
+lowest common denominator between features supported by the implementations.
+That was the reason which sparkled big discussion about queue interface for
+Rails which at that time was removed from it. If one technology limits you so
+you schedule background job only with JSON compatibile attributes you are
+limited to just that. If another technology let's you use Hashes with every
+Ruby primitive and yet another would even allow you to pass whatever ruby object
+you wish then the interface is still whatever JSON allows you to do. No only
+won't be able to easily pass instance of your custom class as paramter for
+scheduled job. You won't even be able to use `Date` class because there is no
+such type in JSON. Lowest Common Denominator...
+
+You won't easily extract Async adapter if you care about the result. I think that's
+obvious. You can't easily substitute adapter which can return result with such
+that cannot. Async is architectural decision here. And rest of the code must be
+written in a way that reflects it. Thus expecting to get the result somehow later.
+
+Getting the right level of abstraction for adapter might not be easy. When you cover
+api or a gem, it's not that hard. But once you start doing thinks like
+`NotificationAdapter` which will let you send notification user without carying
+whether it is push for iOS, Android, Email or SMS, you might find yourself in
+trouble. The closer the adapter is to the domain of adaptee, the easier it is to
+write it. The closer it is to the comain of the client, of your app, the harder it
+is, the more it will know about your usecases. And the more complicated and
+unique for the app, such adapter will be.
+
+## Summary
+
+Adapters are puzzles that we put between our domain and existing solutions such
+as gems, libraries, APIs. Use them wisely to decouple yourself from them for
+whatever reason you have. Speed, Readability, Testability, ...
 
 ## Images
 
