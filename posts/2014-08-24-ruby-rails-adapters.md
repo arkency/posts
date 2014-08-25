@@ -574,9 +574,9 @@ that cannot. Async is architectural decision here. And rest of the code must be
 written in a way that reflects it. Thus expecting to get the result somehow later.
 
 Getting the right level of abstraction for adapter might not be easy. When you cover
-api or a gem, it's not that hard. But once you start doing thinks like
-`NotificationAdapter` which will let you send notification user without carying
-whether it is push for iOS, Android, Email or SMS, you might find yourself in
+api or a gem, it's not that hard. But once you start doing things like
+`NotificationAdapter` which will let you send notification to user without bothering
+the client whether it is a push for iOS, Android, Email or SMS, you might find yourself in
 trouble. The closer the adapter is to the domain of adaptee, the easier it is to
 write it. The closer it is to the comain of the client, of your app, the harder it
 is, the more it will know about your usecases. And the more complicated and
