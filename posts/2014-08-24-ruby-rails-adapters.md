@@ -2,9 +2,10 @@
 title: "Adapters 101"
 created_at: 2014-08-24 09:50:10 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+newsletter: :skip
+tags: [ 'ruby', 'rails', 'adapters' ]
 ---
 
 <p>
@@ -13,8 +14,8 @@ tags: [ 'foo', 'bar', 'baz' ]
   </figure>
 </p>
 
-Sometimes people get confused as to what is the roles of adapters, how to use them,
-how to test them and how to configure them. Misunderstanging often comes from lack
+Sometimes people get confused as to **what is the roles of adapters, how to use them,
+how to test them and how to configure** them. Misunderstanging often comes from lack
 of examples so let's see some of them.
 
 <!-- more -->
@@ -22,8 +23,8 @@ of examples so let's see some of them.
 Our example will be about sending apple push notifications (APNS). Let's say in our
 system we are sending push notifications with text (alert) only
 (no sound, no badge, etc). Very simple and basic usecase. One more thing that we
-obviously need as well is device token. Let's have a simple interface for sending
-push notifications.
+obviously need as well is device token. Let's **have a simple interface for sending
+push notifications**.
 
 ```
 #!ruby
@@ -48,16 +49,16 @@ end
 Wow, that was simple, wasn't it? Ok, what did we achieve?
 
 * We've protected ourselves from the dependency on `apns` gem. We are still using it
-  but no part of our code is calling it directly. We are free to change it later
+  but **no part of our code is calling it directly. We are free to change it later**
   (which we will do)
-* We've isolated our interface from the implementation as Clean Code architecture
+* We've **isolated our interface from the implementation** as **Clean Code** architecture
   teaches us. Of course in Ruby we don't have interfaces so it is kind-of _virtual_
   but we can make it a bit more explicit, which I will show you how, later.
-* We designed API that we like, which is suitable for our app. Gems and 3rd party
+* We designed **API that we like and which is suitable for our app**. Gems and 3rd party
   services often offer your a lot of features which you might not be even using.
-  So here we explicitly state that we only use device_token and text. If it ever
+  So here we explicitly state that we only use `device_token` and `text`. If it ever
   comes to dropping the old library or migrating to new solution, you are coverd.
-  It's way easier process when the cooperation can be easily seen in one place
+  It's simpler process when the cooperation can be easily seen in one place
   (adapter). Evaluating and estimating such task is faster when you know exactly
   what features you are using and what not.
 
@@ -69,31 +70,34 @@ Wow, that was simple, wasn't it? Ok, what did we achieve?
 <a href="/assets/images/rails-ruby-adapter/speaker-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/speaker-thumbnail.jpg" /></a>
 <a href="/assets/images/rails-ruby-adapter/usb-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/usb-thumbnail.jpg" /></a>
 
+As you can imagine looking at the images, the situation is always the same. We've got to parts with
+incompatible interfaces and adapter mediating between them.
+
 ## Adapters and architecture
 
 ![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter.png)
 
 Part of your app (probably a service) that we call _client_ 
 is relaying on some kind of interface for its proper behavior.
-Of course ruby does not have explicit interfaces so what I mean is a
-compatibility in a duck-typing way :). Implicit interface defined by how we
+Of course **ruby does not have explicit interfaces so what I mean is a
+compatibility in a _duck-typing_ way**. Implicit interface defined by how we
 call our methods (what parameters they take and what they return). There is
-a solution, an already existing component (_adaptee_) that can do the job but
-does not expose the interface that we would like to use. The mediator between
-these two is our _adapter_.
+a component, an already existing one (**_adaptee_**) that can do the job our client wants but
+**does not expose the interface that we would like to use**. The **mediator** between
+these two is our **_adapter_**.
 
 The interface can be fulfilled by possibily many adapters. They might be wrapping
-another API or gem which we don't want our app to interact directly with.
+another API or gem which **we don't want our app to interact directly with**.
 
 ## Multiple Adapters
 
 Let's move further with our task.
 
-We don't wanna be sending any push notifications from our development environment and
+**We don't wanna be sending any push notifications from our development environment** and
 from our test environment. What are our options? I don't like putting code such as
-`if Rails.env.test? || Rails.env.production?` into my codebase. It makes testing harder
-as well as playing with the application in development mode. For such usecases new
-adapter is handy.
+`if Rails.env.test? || Rails.env.production?` into my codebase. It makes testing
+as well as playing with the application in development mode harder. **For such usecases new
+adapter is handy**.
 
 ```
 #!ruby
@@ -116,7 +120,7 @@ module ApnsAdapters
 end
 ```
 
-Now whenever your services are taking `apns_adapter` as dependency you can use this one
+Now whenever your [service objects](http://rails-refactoring.com) are taking `apns_adapter` as dependency you can use this one
 instead of the real one.
 
 ```
@@ -128,20 +132,26 @@ describe LikingService do
   before{ apns_adapter.clear }
   specify "delivers push notifications to friends" do
     liking.painting_liked_by(user_id, painting_id)
-    expect(apns_adapter.delivered).to include([user_device_token, "Your friend 'Robert' liked 'The Kiss' "])
+
+    expect(apns_adapter.delivered).to include(
+     [user_device_token, "Your friend 'Robert' liked 'The Kiss' "]
+    )
   end
 end
 ```
 
-I like this more then using doubles and expectations because of its simplicity.
+I like this more then using doubles and expectations because of its **simplicity**.
 But using mocking techniques here would be apropriate as well. In that case
 however I would recommend using [Verifying doubles](https://relishapp.com/rspec/rspec-mocks/v/3-0/docs/verifying-doubles)
 from Rspec or to go with [bogus](https://github.com/psyho/bogus). I recommend watching great video about
 possible problems that mocks and doubles introduce from the author of bogus and
 solutions for them. [Integration tests are bogus](https://www.youtube.com/watch?v=7XI3H_rKmRU).
 
-Ok, so we have two adapters, how do we provide them? Well, I'm gonna show you an example
-and not talk much about it because it's going to be a topic of another blogpos.
+## Injecting and configuring adapters
+
+Ok, so we have two adapters, **how do we provide them to those who need these adapters to work?** 
+Well, I'm gonna show you an example and not talk much about it because it's going to be a topic
+of another blogpos.
 
 ```
 #!ruby
@@ -161,6 +171,8 @@ config.apns_adapter = ApnsAdapter::Fake.new
 #config/environments/test.rb
 config.apns_adapter = ApnsAdapter::Fake.new
 ```
+
+## One more implementation
 
 Sending push notification takes some time (just like sending email or communicating with
 any remote service) so quickly we decided to do it asynchronously.
@@ -200,17 +212,39 @@ class ApnsJob
 end
 ```
 
+Did you notice that HoneyBadger is not hidden behind adapter? Bad code, bad code... ;)
+
+What do we have now?
+
+## The result
+
+We separated our interface from the implementations. Of course our interface is
+not defined (again, Ruby) but we can describe it later using tests. App with the
+interface it dependend is one component. Every implementation can be a separate
+component.
+
 ![](/assets/images/rails-ruby-adapter/apns_ruby_adapter.png)
+
+Our goal here was to get closer to
+[Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) .
+**Use Cases (_Interactors, Service Objects_) are no longer bothered with implementation details. Instead they relay
+on the interface and accept any implementation that is consistent with it.**
+
+![](/assets/images/rails-ruby-adapter/CleanArchitecture-fit.jpg)
+
+The part of application which responsibility is to put everything in motion is called
+**_Main_** by Uncle Bob. **We put all the puzzles together by using Injectors and
+Rails configuration**. They define how to construct the working objects.
 
 ## Changing underlying gem
 
 In reality I no longer use `apns` gem because of its global configuration. I
-prefer `grocer` way more because I can more easily and safely use it to send push
+prefer `grocer` because I can more easily and safely use it to send push
 notifications to 2 separate mobile apps or even same iOS app but built with
 either production or development APNS certificate.
 
-So let's say that our project evolved and now we need to be able to send push
-notifications to 2 separate mobile apps. First we can refactor the interface of
+So let's say that our project evolved and now **we need to be able to send push
+notifications to 2 separate mobile apps**. First we can **refactor the interface** of
 our adapter to:
 
 ```
@@ -220,7 +254,8 @@ end
 ```
 
 Then we can change the implementation of our `Sync` adapter to use `grocer` gem
-instead. In simplest version it can be:
+instead (we need some tweeks to the other implementations as well).
+In simplest version it can be:
 
 ```
 #!ruby
@@ -266,12 +301,12 @@ require 'singleton'
 class GrocerFactory
   include Singleton
 
-  def pusher_for(app_name)
-    Thread.current[:grocer_factory_pushers] ||= {}
-    pusher = Thread.current[:grocer_factory_pushers][app_name] ||= create_pusher(app_name)
+  def pusher_for(app)
+    Thread.current[:pushers] ||= {}
+    pusher = Thread.current[:pushers][app] ||= create_pusher(app)
     yield pusher
   rescue
-    Thread.current[:grocer_factory_pushers][app_name] = nil
+    Thread.current[:pushers][app] = nil
     raise
   end
 
@@ -328,7 +363,7 @@ YourApp::Application.configure do
 end
 ```
 
-The downside of that is that the instance of adapter is global. Which means you might
+The downside of that is that **the instance of adapter is global**. Which means you might
 need to take care of it being thread-safe (if you use threads). And you must
 take great care of its state. So calling it multiple times between requests is
 ok. The alternative is to use proc as factory for creating instances of your adapter.
@@ -382,8 +417,8 @@ describe ApnsAdapter::Fake do
 end
 ```
 
-Another way of testing is to consider one implementation as leading and
-correct (in terms of interface, not in terms of behavior) and another
+Another way of testing is to **consider one implementation as leading and
+correct** (in terms of interface, not in terms of behavior) and another
 implementation as something that must stay identical.
 
 ```
@@ -406,14 +441,13 @@ end
 
 This gives you some very basic protection as well.
 
-For the rest of the test you must write something specific to the adapter.
+**For the rest of the test you must write something specific to the adapter implementation**.
 Adapters doing http request can either stub http communication
 with [webmock](https://github.com/bblimke/webmock)
 or [vcr](vcr). Alternatively, you can just use mocks and expecations to check,
 whether the gem that you use for communication is being use correctly. However,
-if the logic is not complicated the test are quickly starting to look like _typo test_,
-so they might even not be worth writing. If the communication is not using HTTP, testing
-it might be even more complicated.
+if the logic is not complicated the test are quickly becoming _typo test_,
+so they might even not be worth writing.
 
 Test specific for one adapter:
 
@@ -441,8 +475,8 @@ testing. And testing the code intended for testing might be too much.
 ## Dealing with exceptions
 
 Because we don't want our app to be bothered with adapter implementation
-(our clients don't care about anything except for the interface) our
-adapters need to throw same exceptions. Because what exceptions are raised
+(our clients don't care about anything except for the interface) **our
+adapters need to throw the same exceptions**. Because what exceptions are raised
 is part of the interface. This example does not suite us well to discuss it
 here because we use our adapters in _fire and forget_ mode. So we will have
 to switch for a moment to something else.
@@ -454,8 +488,8 @@ the middle of switching to another provided which seems to provide better data
 for the places that our customers talk about. Or is simply cheaper. So we have
 two adapters. Both of them communicate via HTTP with APIs exposed by our
 providers. But both of them use separate gems for that. As you can easily imagine
-when anything goes wrong, gems are throwing their own custom exceptions. We need
-to catch them and throw exceptions which our clients/services except to catch.
+when anything goes wrong, **gems are throwing their own custom exceptions. We need
+to catch them and throw exceptions which our clients/services except to catch**.
 
 ```
 #!ruby
@@ -483,8 +517,8 @@ module GeolocationAdapters
 end
 ```
 
-This is something people often overlook which in many cases leads to
-leaky abstraction. Your services should only be concerned with exceptions
+**This is something people often overlook which in many cases leads to
+leaky abstraction**. Your services should only be concerned with exceptions
 defined by the interface.
 
 ```
@@ -548,49 +582,54 @@ class UpdatePartyLocationService
 end
 ```
 
-But as I said I don't like this approach. The problem is that if you want to
+But as I said I don't like this approach. The problem is that **if you want to
 communicate something domain specific via the exception you can't relay on 3rd
-party exceptions. If it was adapter responsibility to provide in exception
+party exceptions**. If it was adapter responsibility to provide in exception
 information whether service should retry later or give up, then you need custom
 exception to communicate it.
 
 ## Adapters ain't easy
 
-There are few problems with adapters. Their interface tends to be
-lowest common denominator between features supported by the implementations.
+There are few problems with adapters. **Their interface tends to be
+lowest common denominator between features supported by implementations**.
 That was the reason which sparkled big discussion about queue interface for
 Rails which at that time was removed from it. If one technology limits you so
 you schedule background job only with JSON compatibile attributes you are
 limited to just that. If another technology let's you use Hashes with every
 Ruby primitive and yet another would even allow you to pass whatever ruby object
 you wish then the interface is still whatever JSON allows you to do. No only
-won't be able to easily pass instance of your custom class as paramter for
+you won't be able to easily pass instance of your custom class as paramter for
 scheduled job. You won't even be able to use `Date` class because there is no
 such type in JSON. Lowest Common Denominator...
 
-You won't easily extract Async adapter if you care about the result. I think that's
+**You won't easily extract Async adapter if you care about the result**. I think that's
 obvious. You can't easily substitute adapter which can return result with such
-that cannot. Async is architectural decision here. And rest of the code must be
+that cannot. **Async is architectural decision here**. And rest of the code must be
 written in a way that reflects it. Thus expecting to get the result somehow later.
 
-Getting the right level of abstraction for adapter might not be easy. When you cover
+Getting the **right level of abstraction for adapter might not be easy**. When you cover
 api or a gem, it's not that hard. But once you start doing things like
 `NotificationAdapter` which will let you send notification to user without bothering
 the client whether it is a push for iOS, Android, Email or SMS, you might find yourself in
 trouble. The closer the adapter is to the domain of adaptee, the easier it is to
 write it. The closer it is to the comain of the client, of your app, the harder it
 is, the more it will know about your usecases. And the more complicated and
-unique for the app, such adapter will be.
+unique for the app, such adapter will be. You will often stop for a moment to **reflect
+whether given funcionality is the responsibility of the client, adapter or maybe
+yet another object**.
 
 ## Summary
 
 Adapters are puzzles that we put between our domain and existing solutions such
-as gems, libraries, APIs. Use them wisely to decouple yourself from them for
-whatever reason you have. Speed, Readability, Testability, ...
+as gems, libraries, APIs. Use them wisely to decouple core of your app from 3rd party code
+for whatever reason you have. **Speed, Readability, Testability, Isolation,
+Interchangeability**.
 
 ![](/assets/images/rails-ruby-adapter/adapter_client_adaptee.png)
 
-## Images
+#### Adapters are often used with Service Objects. Learn how to extract such objects from tangled code with our [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com/) ebook
+
+##### Images with CC license
 
 * https://www.flickr.com/photos/elwillo/5210663993
 * https://www.flickr.com/photos/uscpsc/14640846183
