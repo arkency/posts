@@ -8,8 +8,6 @@ tags: [ 'rails', 'refactoring']
 newsletter: :rails_refactoring
 ---
 
-
-
 Have you ever been stuck with some code? Looking at it for minutes, hours, feeling the code smells, but not being able to fix it?
 
 <!-- more -->
@@ -35,7 +33,7 @@ Sometimes the 'aha' moments are very small, but they help you with a specific mo
 
 I was just working with this code. It's not mine (it's Redmine). As part of the research for my ['Rails Refactoring' book](http://rails-refactoring.com/), I was transforming this code into many possible structures.
 
-When I started, I didn't know much about it. Before I played with it, I started some manual mutant testing to see if the tests cover most of the cases (they did).
+When I started, I didn't know much about it. Before I played with it, I started some manual mutation testing to see if the tests cover most of the cases (they did).
 
 I learnt a lot, by moving some pieces of this code into different forms. I knew this code has code smells. It does a lot of things and some better structure is possible.
 
@@ -45,10 +43,18 @@ I knew it's responsible for creating time entries, but not much more than that.
 #!ruby
 
   def create
-    @time_entry ||= TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => User.current.today)
+    @time_entry ||= TimeEntry.new(
+      :project => @project, 
+      :issue => @issue, 
+      :user => User.current, 
+      :spent_on => User.current.today
+    )
     @time_entry.safe_attributes = params[:time_entry]
 
-    call_hook(:controller_timelog_edit_before_save, { :params => params, :time_entry => @time_entry })
+    call_hook(:controller_timelog_edit_before_save, {
+      :params => params,
+      :time_entry => @time_entry }
+    )
 
     if @time_entry.save
       respond_to do |format|
@@ -57,26 +63,46 @@ I knew it's responsible for creating time entries, but not much more than that.
           if params[:continue]
             if params[:project_id]
               options = {
-                :time_entry => {:issue_id => @time_entry.issue_id, :activity_id => @time_entry.activity_id},
+                :time_entry => {
+                  :issue_id => @time_entry.issue_id, 
+                  :activity_id => @time_entry.activity_id
+                },
                 :back_url => params[:back_url]
               }
               if @time_entry.issue
-                redirect_to new_project_issue_time_entry_path(@time_entry.project, @time_entry.issue, options)
+                redirect_to new_project_issue_time_entry_path(
+                  @time_entry.project,
+                  @time_entry.issue,
+                  options
+                )
               else
-                redirect_to new_project_time_entry_path(@time_entry.project, options)
+                redirect_to new_project_time_entry_path(
+                  @time_entry.project,
+                  options
+                )
               end
             else
               options = {
-                :time_entry => {:project_id => @time_entry.project_id, :issue_id => @time_entry.issue_id, :activity_id => @time_entry.activity_id},
+                :time_entry => {
+                  :project_id => @time_entry.project_id,
+                  :issue_id => @time_entry.issue_id,
+                  :activity_id => @time_entry.activity_id
+                },
                 :back_url => params[:back_url]
               }
               redirect_to new_time_entry_path(options)
             end
           else
-            redirect_back_or_default project_time_entries_path(@time_entry.project)
+            redirect_back_or_default project_time_entries_path(
+              @time_entry.project
+            )
           end
         }
-        format.api  { render :action => 'show', :status => :created, :location => time_entry_url(@time_entry) }
+        format.api  {
+          render :action => 'show', 
+                 :status => :created, 
+                 :location => time_entry_url(@time_entry)
+        }
       end
     else
       respond_to do |format|
@@ -101,90 +127,130 @@ This turned the code into this:
 
 ```
 #!ruby
+def create
+  CreateTimeEntryService.new(self).call()
+end
 
-  def create
-    CreateTimeEntryService.new(self).call()
+class CreateTimeEntryService < SimpleDelegator
+  def initialize(parent)
+    super(parent)
   end
 
-  class CreateTimeEntryService < SimpleDelegator
-    def initialize(parent)
-      super(parent)
+  def call
+    project = nil
+    begin
+      project_id = (params[:project_id] || 
+                    params[:time_entry] && 
+                    params[:time_entry][:project_id]
+      )
+      if project_id.present?
+        project = Project.find(project_id)
+      end
+      issue_id = (params[:issue_id] || 
+                  params[:time_entry] &&
+                  params[:time_entry][:issue_id]
+      )
+      if issue_id.present?
+        issue = Issue.find(issue_id)
+        project ||= issue.project
+      end
+    rescue ActiveRecord::RecordNotFound
+      render_404 and return
+    end
+    if project.nil?
+      render_404
+      return
     end
 
-    def call
-      project = nil
-      begin
-        project_id = (params[:project_id] || params[:time_entry] && params[:time_entry][:project_id])
-        if project_id.present?
-          project = Project.find(project_id)
-        end
-        issue_id = (params[:issue_id] || params[:time_entry] && params[:time_entry][:issue_id])
-        if issue_id.present?
-          issue = Issue.find(issue_id)
-          project ||= issue.project
-        end
-      rescue ActiveRecord::RecordNotFound
-        render_404 and return
+    allowed = User.current.allowed_to?({
+      :controller => params[:controller], 
+      :action => params[:action]}, project, :global => false
+    )
+
+    if ! allowed
+      if project.archived?
+        render_403 :message => :notice_not_authorized_archived_project
+        return false
+      else
+        deny_access
+        return false
       end
-      if project.nil?
-        render_404
-        return
-      end
-
-      allowed = User.current.allowed_to?({:controller => params[:controller], :action => params[:action]}, project, :global => false)
-      if ! allowed
-        if project.archived?
-          render_403 :message => :notice_not_authorized_archived_project
-          return false
-        else
-          deny_access
-          return false
-        end
-      end
+    end
 
 
-      time_entry ||= TimeEntry.new(:project => project, :issue => issue, :user => User.current, :spent_on => User.current.today)
-      time_entry.safe_attributes = params[:time_entry]
+    time_entry ||= TimeEntry.new(
+      :project => project, 
+      :issue => issue, 
+      :user => User.current, 
+      :spent_on => User.current.today
+    )
+    time_entry.safe_attributes = params[:time_entry]
 
-      call_hook(:controller_timelog_edit_before_save, { :params => params, :time_entry => time_entry })
+    call_hook(:controller_timelog_edit_before_save, {
+      :params => params,
+      :time_entry => time_entry }
+    )
 
-      if time_entry.save
-        respond_to do |format|
-          format.html {
-            flash[:notice] = l(:notice_successful_create)
-            if params[:continue]
-              if params[:project_id]
-                options = {
-                    :time_entry => {:issue_id => time_entry.issue_id, :activity_id => time_entry.activity_id},
-                    :back_url => params[:back_url]
-                }
-                if time_entry.issue
-                  redirect_to new_project_issue_time_entry_path(time_entry.project, time_entry.issue, options)
-                else
-                  redirect_to new_project_time_entry_path(time_entry.project, options)
-                end
+    if time_entry.save
+      respond_to do |format|
+        format.html {
+          flash[:notice] = l(:notice_successful_create)
+          if params[:continue]
+            if params[:project_id]
+              options = {
+                  :time_entry => {
+                    :issue_id => time_entry.issue_id,
+                    :activity_id => time_entry.activity_id
+                  },
+                  :back_url => params[:back_url]
+              }
+              if time_entry.issue
+                redirect_to new_project_issue_time_entry_path(
+                  time_entry.project,
+                  time_entry.issue, options
+                )
               else
-                options = {
-                    :time_entry => {:project_id => time_entry.project_id, :issue_id => time_entry.issue_id, :activity_id => time_entry.activity_id},
-                    :back_url => params[:back_url]
-                }
-                redirect_to new_time_entry_path(options)
+                redirect_to new_project_time_entry_path(
+                  time_entry.project, 
+                  options
+                )
               end
             else
-              redirect_back_or_default project_time_entries_path(time_entry.project)
+              options = {
+                  :time_entry => {
+                    :project_id => time_entry.project_id, 
+                    :issue_id => time_entry.issue_id, 
+                    :activity_id => time_entry.activity_id
+                   },
+                  :back_url => params[:back_url]
+              }
+              redirect_to new_time_entry_path(options)
             end
-          }
-          format.api  { render 'show', :status => :created, :location => time_entry_url(time_entry), :locals => {:time_entry => time_entry} }
-        end
-      else
-        respond_to do |format|
-          format.html { render :new, :locals => {:time_entry => time_entry, :project => project} }
-          format.api  { render_validation_errors(time_entry) }
-        end
+          else
+            redirect_back_or_default project_time_entries_path(
+              time_entry.project
+            )
+          end
+        }
+        format.api  { render 'show', 
+          :status => :created,
+          :location => time_entry_url(time_entry), 
+          :locals => {:time_entry => time_entry}
+        }
+      end
+    else
+      respond_to do |format|
+        format.html { 
+          render :new, 
+                 :locals => {
+                   :time_entry => time_entry, 
+                   :project => project}
+        }
+        format.api  { render_validation_errors(time_entry) }
       end
     end
   end
-
+end  
 ```
 
 As you see the 40-lines block turned into 80 lines, temporarily.
@@ -220,91 +286,95 @@ After some more typical transformations, I ended with:
 
 ```
 #!ruby
-
-  def create
-    if issue_id.present?
-      log_time_on_issue
-    else
-      log_time_on_project
-    end
+def create
+  if issue_id.present?
+    log_time_on_issue
+  else
+    log_time_on_project
   end
+end
 
-  def log_time_on_project
-    log_time(nil, project_id) { do_log_time_on_project }
+def log_time_on_project
+  log_time(nil, project_id) { do_log_time_on_project }
+end
+
+def log_time_on_issue
+  log_time(issue_id, project_id) { do_log_time_on_issue }
+end
+
+def do_log_time_on_project
+  time_entry = LogTime.new(self).on_project(project_id)
+  respond_to do |format|
+    format.html { redirect_success_for_project_time_entry(time_entry) }
+    format.api { render_show_status_created }
   end
+end
 
-  def log_time_on_issue
-    log_time(issue_id, project_id) { do_log_time_on_issue }
+def do_log_time_on_issue
+  time_entry = LogTime.new(self).on_issue(project_id, issue_id)
+  respond_to do |format|
+    format.html { redirect_success_for_issue_time_entry(time_entry) }
+    format.api { render_show_status_created(time_entry) }
   end
+end
 
-  def do_log_time_on_project
-    time_entry = LogTime.new(self).on_project(project_id)
+def log_time(issue_id, project_id)
+  begin
+    yield
+  rescue LogTime::DataNotFound
+    render_404
+  rescue LogTime::NotAuthorizedArchivedProject
+    render_403 :message => :notice_not_authorized_archived_project
+  rescue LogTime::AuthorizationError
+    deny_access
+  rescue LogTime::ValidationError => e
     respond_to do |format|
-      format.html { redirect_success_for_project_time_entry(time_entry) }
-      format.api { render_show_status_created }
+      format.html { render_new(e.time_entry, e.project) }
+      format.api  { render_validation_errors(e.time_entry) }
+    end
+  end
+end
+```
+
+And the service object
+
+```
+#!ruby
+class LogTime < SimpleDelegator
+  class AuthorizationError           < StandardError; end
+  class NotAuthorizedArchivedProject < StandardError; end
+  class DataNotFound                 < StandardError; end
+  class ValidationError              < StandardError
+    attr_accessor :time_entry, :project
+    def initialize(time_entry, project)
+      @time_entry = time_entry
+      @project = project
     end
   end
 
-  def do_log_time_on_issue
-    time_entry = LogTime.new(self).on_issue(project_id, issue_id)
-    respond_to do |format|
-      format.html { redirect_success_for_issue_time_entry(time_entry) }
-      format.api { render_show_status_created(time_entry) }
-    end
+
+  def initialize(parent)
+    super(parent)
   end
 
-  def log_time(issue_id, project_id)
-    begin
-      yield
-    rescue LogTime::DataNotFound
-      render_404
-    rescue LogTime::NotAuthorizedArchivedProject
-      render_403 :message => :notice_not_authorized_archived_project
-    rescue LogTime::AuthorizationError
-      deny_access
-    rescue LogTime::ValidationError => e
-      respond_to do |format|
-        format.html { render_new(e.time_entry, e.project) }
-        format.api  { render_validation_errors(e.time_entry) }
-      end
-    end
+  def on_issue(project_id, issue_id)
+    project, issue = find_project_and_issue(project_id, issue_id)
+    authorize(User.current, project)
+    time_entry = new_time_entry_for_issue(issue, project)
+    notify_hook(time_entry)
+    save(time_entry, project)
+    return time_entry
   end
 
-  class LogTime < SimpleDelegator
-    class AuthorizationError           < StandardError; end
-    class NotAuthorizedArchivedProject < StandardError; end
-    class DataNotFound                 < StandardError; end
-    class ValidationError              < StandardError
-      attr_accessor :time_entry, :project
-      def initialize(time_entry, project)
-        @time_entry = time_entry
-        @project = project
-      end
-    end
-
-
-    def initialize(parent)
-      super(parent)
-    end
-
-    def on_issue(project_id, issue_id)
-      project, issue = find_project_and_issue(project_id, issue_id)
-      authorize(User.current, project)
-      time_entry = new_time_entry_for_issue(issue, project)
-      notify_hook(time_entry)
-      save(time_entry, project)
-      return time_entry
-    end
-
-    def on_project(project_id)
-      project = find_project(project_id)
-      authorize(User.current, project)
-      time_entry = new_time_entry_for_project(project)
-      notify_hook(time_entry)
-      save(time_entry, project)
-      return time_entry
-    end
+  def on_project(project_id)
+    project = find_project(project_id)
+    authorize(User.current, project)
+    time_entry = new_time_entry_for_project(project)
+    notify_hook(time_entry)
+    save(time_entry, project)
+    return time_entry
   end
+end
 
 ```
 
