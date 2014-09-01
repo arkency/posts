@@ -4,7 +4,7 @@ created_at: 2014-06-16 19:04:36 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :aar_newsletter
 tags: [ 'remote', 'async', 'communication', 'standups' ]
 stories: ['async-remote']
 ---

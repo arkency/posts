@@ -4,7 +4,7 @@ created_at: 2013-02-01 16:45:58 +0100
 kind: article
 publish: true
 author: 'Jan Filipowski'
-newsletter: :chillout
+newsletter: :arkency_form
 tags: [ 'ATDD', 'testing', 'ruby' ]
 ---
 

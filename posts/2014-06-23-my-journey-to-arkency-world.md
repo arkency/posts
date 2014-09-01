@@ -4,7 +4,7 @@ created_at: 2014-06-23 20:28:00 +0200
 kind: article
 publish: true
 author: Tomasz Rybczyński
-newsletter: :arkency_form
+newsletter: :aar_newsletter
 tags: [ 'work-style']
 stories: ['async-remote']
 ---

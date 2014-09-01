@@ -4,7 +4,7 @@ created_at: 2013-07-26 10:41:20 +0200
 kind: article
 publish: true
 author: Jan Filipowski
-newsletter: :cs_testing
+newsletter: :arkency_form
 tags: [ 'TDD', 'CS', 'Rails' ]
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :skip
-newsletter_inside: :mobile
+newsletter_inside: :aar_newsletter
 tags: [ '' ]
 stories: ['async-remote']
 ---

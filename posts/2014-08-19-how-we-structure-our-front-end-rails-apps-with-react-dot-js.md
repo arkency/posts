@@ -5,7 +5,7 @@ kind: article
 publish: true 
 author: Wiktor Mociun
 tags: [ 'front-end', 'react.js', 'javascript' ]
-newsletter: :arkency_form
+newsletter: :frontend_course
 ---
 
 <p>

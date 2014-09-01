@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'refactoring', 'factory', 'dependency' ]
-newsletter: :aar
+newsletter: :arkency_form
 ---
 
 Yesterday day I presented a small code snippet to my dear coworkers

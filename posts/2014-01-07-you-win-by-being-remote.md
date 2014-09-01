@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: ['identity', 'team']
-newsletter: :arkency_form
+newsletter: :aar_newsletter
 stories: ['async-remote']
 ---
 

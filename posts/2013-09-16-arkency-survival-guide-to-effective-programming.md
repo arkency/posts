@@ -4,7 +4,7 @@ created_at: 2013-09-16 18:25:12 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :effective_guide
+newsletter: :aar_newsletter
 tags: [ 'ebook', 'pdf', 'guide', 'effective', 'programming' ]
 ---
 

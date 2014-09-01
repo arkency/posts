@@ -4,7 +4,7 @@ created_at: 2013-12-23 15:00:00 +0200
 kind: article
 publish: true
 author: Jan Filipowski
-newsletter: :cs_testing
+newsletter: :arkency_form
 tags: [ 'TDD', 'ATDD', 'CoffeeScript' ]
 ---
 

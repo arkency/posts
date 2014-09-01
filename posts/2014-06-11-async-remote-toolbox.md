@@ -4,7 +4,7 @@ created_at: 2014-06-11 20:16:56 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :aar_newsletter
 tags: [ 'foo', 'bar', 'baz' ]
 stories: ['async-remote']
 ---

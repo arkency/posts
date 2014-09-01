@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :skip
-newsletter_inside: :mastering_active_record1
+newsletter_inside: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 

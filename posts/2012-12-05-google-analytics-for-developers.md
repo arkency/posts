@@ -4,7 +4,7 @@ created_at: 2012-12-05 12:22:32 +0100
 kind: article
 publish: true
 author: 'Jan Filipowski'
-newsletter: :chillout
+newsletter: :arkency_form
 tags: [ 'google analytics', 'business metrics', 'marketing' ]
 ---
 

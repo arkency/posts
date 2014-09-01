@@ -4,7 +4,7 @@ created_at: 2012-11-11 08:58:16 +0200
 kind: article
 publish: true
 author: "Robert Pankowecki"
-newsletter: :aar
+newsletter: :arkency_form
 tags: [ 'async', 'rails', 'exceptions', 'business metrics', 'thin', 'eventmachine', 'threads']
 ---
 

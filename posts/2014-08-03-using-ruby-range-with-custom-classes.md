@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :skip
-newsletter_inside: :mastering_rails_validations
+newsletter_inside: :arkency_form
 tags: [ 'ruby', 'Range', 'custom class', 'time' ]
 ---
 

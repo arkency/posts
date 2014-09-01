@@ -4,7 +4,7 @@ created_at: 2014-06-13 18:39:02 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: :aar_newsletter
 tags: [ 'remote', 'async', 'communication' ]
 stories: ['async-remote']
 ---
