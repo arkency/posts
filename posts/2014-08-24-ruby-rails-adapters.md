@@ -40,7 +40,7 @@ write our first implementation using the `apns` gem.
 module ApnsAdapters
   class Sync
     def notify(device_token, text)
-      APNS.send_notification(device_token, 'Hello iPhone!' )
+      APNS.send_notification(device_token, text)
     end
   end
 end
@@ -78,7 +78,7 @@ incompatible interfaces and adapter mediating between them.
 ![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter.png)
 
 Part of your app (probably a service) that we call _client_ 
-is relaying on some kind of interface for its proper behavior.
+is relying on some kind of interface for its proper behavior.
 Of course **ruby does not have explicit interfaces so what I mean is a
 compatibility in a _duck-typing_ way**. Implicit interface defined by how we
 call our methods (what parameters they take and what they return). There is
@@ -129,7 +129,7 @@ describe LikingService do
   subject(:liking)   { described_class.new(apns_adapter) }
   let(:apns_adapter) { ApnsAdapters::Fake.new }
 
-  before{ apns_adapter.clear }
+  before { apns_adapter.clear }
   specify "delivers push notifications to friends" do
     liking.painting_liked_by(user_id, painting_id)
 
@@ -444,7 +444,7 @@ This gives you some very basic protection as well.
 **For the rest of the test you must write something specific to the adapter implementation**.
 Adapters doing http request can either stub http communication
 with [webmock](https://github.com/bblimke/webmock)
-or [vcr](vcr). Alternatively, you can just use mocks and expecations to check,
+or [vcr](vcr). Alternatively, you can just use mocks and expectations to check,
 whether the gem that you use for communication is being use correctly. However,
 if the logic is not complicated the test are quickly becoming _typo test_,
 so they might even not be worth writing.
@@ -612,10 +612,10 @@ api or a gem, it's not that hard. But once you start doing things like
 `NotificationAdapter` which will let you send notification to user without bothering
 the client whether it is a push for iOS, Android, Email or SMS, you might find yourself in
 trouble. The closer the adapter is to the domain of adaptee, the easier it is to
-write it. The closer it is to the comain of the client, of your app, the harder it
+write it. The closer it is to the domain of the client, of your app, the harder it
 is, the more it will know about your usecases. And the more complicated and
 unique for the app, such adapter will be. You will often stop for a moment to **reflect
-whether given funcionality is the responsibility of the client, adapter or maybe
+whether given functionality is the responsibility of the client, adapter or maybe
 yet another object**.
 
 ## Summary
