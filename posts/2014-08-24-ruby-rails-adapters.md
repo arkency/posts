@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :skip
+newsletter_inside: :fearless_refactoring_course
 tags: [ 'ruby', 'rails', 'adapters' ]
 ---
 
@@ -627,7 +628,7 @@ Interchangeability**.
 
 ![](/assets/images/rails-ruby-adapter/adapter_client_adaptee.png)
 
-#### Adapters are often used with Service Objects. Learn how to extract such objects from tangled code with our [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com/) ebook
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ##### Images with CC license
 
