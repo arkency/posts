@@ -31,7 +31,7 @@ So before any work with concurrency in RubyMotion, beware of accessing shared re
 
 ## GCD
 RubyMotion wraps the [Grand Central Dispatch](https://developer.apple.com/Library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html) (GCD) concurrency library under the Dispatch module. **It is possible to execute both synchronously and asynchronously blocks of code under concurrent or serial queues**.
-Although it is more complicated than implementing regular threads, sometimes GCD offers a more **elegant way to run code concurrently**. 
+Although it is more complicated than implementing regular threads, sometimes GCD offers a more **elegant way to run code concurrently**.
 
 Here are some facts about GDC:
 
@@ -40,7 +40,7 @@ Here are some facts about GDC:
 - GCD automatically creates three concurrent dispatch queues that are global to your application and are differentiated only by their priority level.
 
 ## Queue
-A `Dispatch::Queue` is the fundamental mechanism for **scheduling blocks** for execution, either **synchronously or asychronously**. 
+A `Dispatch::Queue` is the fundamental mechanism for **scheduling blocks** for execution, either **synchronously or asychronously**.
 
 Here is the basic matrix of `Dispatch::Queue` [methods](https://developer.apple.com/library/mac/DOCUMENTATION/Darwin/Reference/ManPages/man3/dispatch_async.3.html). Rows represent whether to run in blocking or non-blocking mode, columns represent where to execute the code - in UI or background thread.
 
@@ -51,11 +51,12 @@ Here is the basic matrix of `Dispatch::Queue` [methods](https://developer.apple.
 
 **`.main.sync`** - it's actually equivalent to regular execution. May be helpful to run from inside of background queue.
 
-**`.main.async`** - schedule block to run as soon as possible in UI thred and go on immediately to the next lines.
+**`.main.async`** - schedule block to run as soon as possible in UI thread and go on immediately to the next lines.
 
 When can this be helpful? All view changes have to be done in the main thread. In the other case you may receive something like:
 
 ```
+#!bash
 Tried to obtain the web lock from a thread other than the main thread or the web thread.
 This may be a result of calling to UIKit from a secondary thread.
 Crashing now..
@@ -81,13 +82,13 @@ end
 **`.new('arkency_queue').sync`** - may be use for synchronization critical sections when the result of the block is not needed locally. In addition to providing a more concise expression of synchronization, this approach is less error prone as the critical section cannot be accidentally left without restoring the queue to a reentrant state.
 
 > Conceptually, `dispatch_sync()` is a convenient wrapper around `dispatch_async()` with the addition of a semaphore to wait for completion of the block, and a wrapper around the block to signal its completion.
- 
+
 These functions support efficient temporal synchronization, background concurrency and data-level concurrency. These same functions can also be used for efficient notification of the completion of asynchronous blocks (a.k.a. callbacks).
 
 This time, some facts about queues:
 
-- All blocks submitted to dispatch queues begin executing in the order they were received. 
-- The system-defined queues can execute multiple blocks in parallel, depending on the number of threads in the pool. 
+- All blocks submitted to dispatch queues begin executing in the order they were received.
+- The system-defined queues can execute multiple blocks in parallel, depending on the number of threads in the pool.
 - The main and user queues wait for the prior block to complete before executing the next block.
 
 Queues are not bound to any specific thread of execution and blocks submitted to independent queues may execute concurrently.

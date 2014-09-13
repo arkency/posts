@@ -2,7 +2,7 @@
 title: "How we structure our front-end Rails apps with React.js"
 created_at: 2014-08-19 02:28:05 +0200
 kind: article
-publish: true 
+publish: true
 author: Wiktor Mociun
 tags: [ 'front-end', 'react.js', 'javascript' ]
 newsletter: :frontend_course
@@ -18,9 +18,10 @@ We've tried almost everything for our Rails frontends - typical Rails views, Bac
 
 <!-- more -->
 
-Our file structure per a single mini-application: 
+Our file structure per a single mini-application:
 
 ```
+#!bash
 app_init.js.coffee
 --- app_directory
     --- app.module.js.coffee
@@ -30,7 +31,7 @@ app_init.js.coffee
         ...
     --- domain.module.js.coffee
     --- glue.module.js.coffee
-```    
+```
 
 app_init - we got one per each application. We always keep it simple:
 

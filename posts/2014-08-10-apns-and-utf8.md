@@ -30,6 +30,7 @@ push notification is easy?
 ## Desired payload
 
 ```
+#!bash
       {
         aps: {
           alert: "'User X' started following you",
@@ -69,18 +70,18 @@ payload_template("", "").to_json.bytesize
 ```
 
 Even when we don't substitute data into our payload we are out of 73 bytes. That means we have only...
- 
+
 ```
 #!ruby
   MAX_APS_BYTES = 256
   def payload_arg_max_size
     MAX_APS_BYTES - payload_without_args_size
   end
-  
+
   def payload_without_args_size
     payload_template("", "").to_json.bytesize
   end
-  
+
   payload_arg_max_size
   # => 183
 ```
@@ -104,9 +105,9 @@ class StartedFollowing < Struct.new(:user_name, :user_id)
   def payload
     # ...
   end
-  
+
   private
-  
+
   def payload_template(user_name)
     {
       aps: {
@@ -115,12 +116,12 @@ class StartedFollowing < Struct.new(:user_name, :user_id)
       path: "appnameios://users/#{user_id}",
     }
   end
-  
+
   MAX_APS_BYTES = 256
   def payload_arg_max_size
     MAX_APS_BYTES - payload_without_args_size
   end
-    
+
   def payload_without_args_size
     payload_template("").to_json.bytesize
   end
@@ -133,7 +134,7 @@ Ok, we know how many bytes we have so let's truncate our international string. B
 up to N chars, we are truncating up to N bytes! We can
 use [`String#byteslice`](http://www.ruby-doc.org/core-2.1.2/String.html#method-i-byteslice) for that.
 
-It's all nice and handy if we happen to truncate exactly between characters. 
+It's all nice and handy if we happen to truncate exactly between characters.
 
 ```
 #!ruby
@@ -188,9 +189,9 @@ class StartedFollowing < Struct.new(:user_name, :user_id)
       )
     end
   end
-  
+
   private
-  
+
   def payload_template(name)
     {
       aps: {
@@ -199,12 +200,12 @@ class StartedFollowing < Struct.new(:user_name, :user_id)
       path: "appnameios://users/#{user_id}",
     }
   end
-  
+
   MAX_APS_BYTES = 256
   def payload_arg_max_size
     MAX_APS_BYTES - payload_without_args_size
   end
-    
+
   def payload_without_args_size
     payload_template("").to_json.bytesize
   end
@@ -255,7 +256,7 @@ irb(main):059:0> puts "łøü".to_json
 ```
 
 So I extracted the code responsible to truncating one string into a class
- 
+
 ```
 #!ruby
 class TruncateStringWithMbChars
@@ -290,7 +291,7 @@ and stops when we don't have more space for our text. I am not proud of this cod
 do it? What's they right way to check how many bytes a char will take if encoded as numeric escape character? I am
 sure there must be an easier way to do it.
 
-_Warning_: It has a bug when `maxbytes` is not enough for even one character to be left. 
+_Warning_: It has a bug when `maxbytes` is not enough for even one character to be left.
 
 ## Multiple strings to substitute in notifications
 
@@ -319,7 +320,7 @@ class TruncateMultipleStrings
       each_with_index do |string, index|
         maxjsonbytes_for_string = maxjsonbytes / (@strings.size - index)
         shortened = TruncateStringWithMbChars.new(
-          string, 
+          string,
           maxjsonbytes_for_string
         ).call
         maxjsonbytes -= string_json_bytesize(shortened)
@@ -346,26 +347,26 @@ TruncateMultipleStrings.new(
   ["short", "medium medium", "long "*30], 60
 ).call
 # => [
-# "short", 
-# "medium medium", 
+# "short",
+# "medium medium",
 # "long long long long long long long long lo"
 # ]
- 
+
 TruncateMultipleStrings.new(
   ["long "*30, "medium medium", "long "*30], 60
 ).call
 #  => [
-# "long long long long lon", 
-# "medium medium", 
+# "long long long long lon",
+# "medium medium",
 # "long long long long long"
 # ]
-  
+
 TruncateMultipleStrings.new(
   ["long "*30, "long "*30, "long "*30], 60
 ).call
 # => [
 # "long long long long ",
-# "long long long long ", 
+# "long long long long ",
 # "long long long long "
 # ]
 ```
@@ -387,9 +388,9 @@ class GameInvited < Struct.new(:user1, :user2, :game_name, :game_id)
       )
     end
   end
-  
+
   private
-  
+
   def payload_template(u1, u2, g)
     {
       aps: {
@@ -398,19 +399,19 @@ class GameInvited < Struct.new(:user1, :user2, :game_name, :game_id)
       path: "appnameios://games/#{game_id}",
     }
   end
-  
+
   MAX_APS_BYTES = 256
   def payload_arg_max_size
     MAX_APS_BYTES - payload_without_args_size
   end
-    
+
   def payload_without_args_size
     payload_template("", "", "").to_json.bytesize
   end
 
   def truncated_names
     TruncateMultipleStrings.new(
-      [user1, user2, game_name], 
+      [user1, user2, game_name],
       payload_arg_max_size
      ).call
   end
@@ -418,9 +419,9 @@ end
 
 
 notif = GameInvited.new(
-  "User1 "*100, 
-  "User2 "*100, 
-  "Game "*100, 
+  "User1 "*100,
+  "User2 "*100,
+  "Game "*100,
   123457890123
 )
 notif.payload
