@@ -494,7 +494,7 @@ to catch them and throw exceptions which our clients/services except to catch**.
 
 ```
 #!ruby
-require 'hipothetical_gooogle_geolocation_gem'
+require 'hypothetical_gooogle_geolocation_gem'
 require 'new_cheaper_more_accurate_provider_gem'
 
 module GeolocationAdapters
@@ -502,8 +502,8 @@ module GeolocationAdapters
 
   class Google
     def geocode(address_line)
-      HipotheticalGoogleGeolocationGem.new.find_by_address(address_line)
-    rescue HipotheticalGoogleGeolocationGem::QuotaExceeded
+      HypotheticalGoogleGeolocationGem.new.find_by_address(address_line)
+    rescue HypotheticalGoogleGeolocationGem::QuotaExceeded
       raise ProblemOccured
     end
   end
@@ -540,7 +540,7 @@ as part of the interface (via methods), I don't like this approach:
 
 ```
 #!ruby
-require 'hipothetical_gooogle_geolocation_gem'
+require 'hypothetical_gooogle_geolocation_gem'
 require 'new_cheaper_more_accurate_provider_gem'
 
 module GeolocationAdapters
@@ -548,11 +548,11 @@ module GeolocationAdapters
 
   class Google
     def geocode(address_line)
-      HipotheticalGoogleGeolocationGem.new.find_by_address(address_line)
+      HypotheticalGoogleGeolocationGem.new.find_by_address(address_line)
     end
 
     def problem_occured
-      HipotheticalGoogleGeolocationGem::QuotaExceeded
+      HypotheticalGoogleGeolocationGem::QuotaExceeded
     end
   end
 
