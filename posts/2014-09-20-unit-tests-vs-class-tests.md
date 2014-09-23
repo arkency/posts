@@ -114,17 +114,17 @@ The test would look something like this:
 describe FriendPresenter do
   context 'without date' do
     let(:date) { nil }
-    its(:as_json) { is_expected.to include({ birth_date: nil }) }
+    its(:to_hash) { is_expected.to include({ birth_date: nil }) }
   end
 
   context 'with partial date' do
     let(:date) { '09/14' }
-    its(:as_json) { is_expected.to include({ birth_date: "09/14" }) }
+    its(: to_hash) { is_expected.to include({ birth_date: "09/14" }) }
   end
 
   context 'with full date' do
     let(:date) { '09/14/1989' }
-    its(:as_json) { is_expected.to include({ birth_date: "09/14" }) }
+    its(: to_hash) { is_expected.to include({ birth_date: "09/14" }) }
   end
 ```
 
@@ -159,10 +159,10 @@ Developers are in the constant decision-making process. We need to balance, what
 
 How would the example look like, if we didn't do class-tests, but build a unit test for that?
 
-First, what can help us is a facade object around the internal classes. Let’s say it’s called FriendsQuery. It uses the FBAdapter and the FriendPresenter under the hood. However, we test it only through the facade object.
+First, what can help us is a facade object around the internal classes. Let’s say it’s called Social. It uses the FBAdapter and the FriendPresenter under the hood. However, we test it only through the facade object.
 
 ```ruby
-class FriendsQuery
+class Social
   def initialize(fb_adapter)
     @fb_adapter = fb_adapter
   end
@@ -170,13 +170,19 @@ class FriendsQuery
   def all_friends(user_uuid, fb_access_token)
     …
   end
+
+  def mark_as_friends(friend_1_uuid, friend_2_uuid)
+    ..
+  end
 end
 
 ```
 
 Now, having this facade doesn’t magically improve our codebase, but it gives us a wrapper around this module.
 
-The reason it takes the fb_adapter as a parameter is to highlight is as a dependency. In the tests we don’t want to call the real Facebook servers. We want to pass the in_memory_facebook_adapter which has some prepared responses that fit the real ones.
+The reason it takes the fb_adapter as a parameter is to highlight it as a dependency. In the tests we don’t want to call the real Facebook servers. We want to pass the in_memory_facebook_adapter which has some prepared responses that fit the real ones.
+
+
 
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
