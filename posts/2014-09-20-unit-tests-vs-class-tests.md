@@ -10,7 +10,7 @@ tags: []
 ---
 <p>
   <figure>
-		<img src="/assets/images/unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG" width="100%">
+		<img src="/assets/images/unit_tests_vs_class_tests/GULLIVERS-TRAVELS-fit.JPG" width="100%">
   </figure>
 </p>
 
@@ -145,11 +145,11 @@ It's trivial, we've got test coverage and all is good, right?
 
 Not entirely. 
 
-What if someone comes and says "hey, it's the job of the FBAdapter to adapt their dates format into our world, that's what adapters do, they adapt."?
+What if someone comes and says "hey, it's the job of the `FBAdapter` to adapt their dates format into our world, that's what adapters do, they adapt."?
 
 It's obviously a #firstworldproblem, however you can say that **ugly codebases consist of thousands of such #firstworldproblems** and it may be a good idea not to introduce new ones.
 
-What happens, if we want to move the date adapting code to FBAdapter? We need to move part of the tests to the FBAdapter. We can't move it as a whole, as the FriendPresenter still has some work to do, so it deserves some tests. So we need to carefully split those tests so that they live in 2 places now. Then, we need to change both classes to reflect it.
+What happens, if we want to move the date adapting code to `FBAdapter`? We need to move part of the tests to the `FBAdapter`. We can't move it as a whole, as the FriendPresenter still has some work to do, so it deserves some tests. So we need to carefully split those tests so that they live in 2 places now. Then, we need to change both classes to reflect it.
 
 Doing the work above is not a matter of seconds anymore. 
 
@@ -159,20 +159,21 @@ Developers are in the constant decision-making process. We need to balance, what
 
 How would the example look like, if we didn't do class-tests, but build a unit test for that?
 
-First, what can help us is a facade object around the internal classes. Let’s say it’s called Social. It uses the FBAdapter and the FriendPresenter under the hood. However, we test it only through the facade object.
+First, what can help us is a facade object around the internal classes. Let’s say it’s called `Social`. It uses the `FBAdapter` and the `FriendPresenter` under the hood. However, we test it only through the facade object.
 
-```ruby
+```
+#!ruby
 class Social
   def initialize(fb_adapter)
     @fb_adapter = fb_adapter
   end
 
   def all_friends(user_uuid, fb_access_token)
-    …
+    # ...
   end
 
   def mark_as_friends(friend_1_uuid, friend_2_uuid)
-    ..
+    # ...
   end
 end
 
@@ -180,11 +181,7 @@ end
 
 Now, having this facade doesn’t magically improve our codebase, but it gives us a wrapper around this module.
 
-The reason it takes the fb_adapter as a parameter is to highlight it as a dependency. In the tests we don’t want to call the real Facebook servers. We want to pass the in_memory_facebook_adapter which has some prepared responses that fit the real ones.
-
-
-
+The reason it takes the `fb_adapter` as a parameter is to highlight it as a dependency. In the tests we don’t want to call the real Facebook servers.
+We want to pass the `InMemoryFacebookAdapter` instance which has some prepared responses that fit the real ones.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
-
-
