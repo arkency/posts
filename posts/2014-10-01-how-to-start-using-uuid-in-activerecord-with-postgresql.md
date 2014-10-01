@@ -1,11 +1,11 @@
 ---
-title: "What you should know about using UUID in ActiveRecord with PostgreSQL"
+title: "How to start using UUID in ActiveRecord with PostgreSQL"
 created_at: 2014-10-02 23:58:11 +0200
 kind: article
 publish: false
 author: Kamil Lelonek
 newsletter: :skip
-newsletter_inside: :fearless_refactoring_course_instantiating
+newsletter_inside: :arkency_form
 tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'UUID' ]
 ---
 
@@ -18,7 +18,7 @@ tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'UUID' ]
   </figure>
 </p>
 
-Although it may be obvious for many of us, there are still some developers that are not aware of **great features that PostgreSQL allows us to use with ActiveRecord**. This tutorial is intended to reveal UUID type, which we can use **in our Rails applications, especially in migrations and then in models**.
+Although it may be obvious for many developers, there are still some that are not aware of **great features that PostgreSQL allows to use with ActiveRecord**. This tutorial is intended to reveal UUID type, which we can use **in our Rails applications, especially as models' attributes**.
 
 <!-- more -->
 
@@ -50,7 +50,7 @@ This is 16-octet / 128 bit type compatible with most common GUID and UUID genera
 
 ### Versions
 
-Although UUID might appear in different versions (MAC address, DCE security, MD5 or SHA-1 hash), the most generators relies on random numbers and produces UUID version 4.
+Although UUID might appear in different versions (MAC address, DCE security, MD5 or SHA-1 hash), [the most generators](http://en.wikipedia.org/wiki/Universally_unique_identifier#Implementations) relies on random numbers and produces UUID version 4.
 
 > Version 4 UUIDs have the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where x is any hexadecimal digit and y is one of 8, 9, A, or B.
  
@@ -69,6 +69,7 @@ How can we produce it in Ruby?
 #!ruby
 [1] (pry) main: 0> require 'securerandom'
 true
+
 [2] (pry) main: 0> SecureRandom.uuid
 "624f6dd0-91f2-4026-a684-01924da4be84"
 ```
@@ -82,6 +83,7 @@ How to use it in SQL code?
 ```
 #!bash
 postgres=# CREATE EXTENSION "uuid-ossp";
+
 CREATE EXTENSION
 postgres=# SELECT uuid_generate_v4();
            uuid_generate_v4
