@@ -11,7 +11,7 @@ tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'UUID' ]
 
 <p>
   <figure>
-    <img src="/assets/images/postgres/elephant.jpg" width="100%">
+    <img src="/assets/images/postgres/elephant-fit.jpg" width="100%">
     <details>
         Author of photo: <a href="https://www.flickr.com/photos/christianhaugen/">Christian Haugen</a>.
     </details>
