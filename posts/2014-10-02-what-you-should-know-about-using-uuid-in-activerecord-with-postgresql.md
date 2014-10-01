@@ -1,6 +1,6 @@
 ---
-title: "What you should know about using ActiveRecord with PostgreSQL: #1 - UUID"
-created_at: 2014-09-30 23:58:11 +0200
+title: "What you should know about using UUID in ActiveRecord with PostgreSQL"
+created_at: 2014-10-02 23:58:11 +0200
 kind: article
 publish: false
 author: Kamil Lelonek
@@ -18,11 +18,11 @@ tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'UUID' ]
   </figure>
 </p>
 
-Although it may be obvious for many of us, there are still some developers that are not aware of **great features that PostgreSQL allows us to use with ActiveRecord**. This tutorial series is intended to reveal some of these elements, which we can use **in our Rails applications, especially in migrations and then in models**. Some of these components are: `uuid`, `hstore`, `json` and `array`, and in this part I'd like to briefly describe UUID type.
+Although it may be obvious for many of us, there are still some developers that are not aware of **great features that PostgreSQL allows us to use with ActiveRecord**. This tutorial is intended to reveal UUID type, which we can use **in our Rails applications, especially in migrations and then in models**.
 
 <!-- more -->
 
-These Postgre's data types are available by enabling so called *extensions*. According to the [documentation](http://www.postgresql.org/docs/9.4/static/extend-how.html):
+Special Postgre's data types are available in our databases by enabling so called *extensions*. According to the [documentation](http://www.postgresql.org/docs/9.4/static/extend-how.html):
 
 - PostgreSQL is extensible because its operation is catalog-driven.
 - The catalogs appear to the user as tables like any other.
@@ -30,7 +30,7 @@ These Postgre's data types are available by enabling so called *extensions*. Acc
 - These tables can be extended by the user.
 - Traditional database systems can only be extended by changing source code or by loading modules written by the DBMS vendor.
 
-So not only we get a possibility to create our own extensions, but we get a bunch of useful features out of the box as well. Let's see some of them in action right now.
+So not only we get a possibility to create our own extensions, but we get a bunch of useful features out of the box as well. Let's see one of them in action right now.
 
 ## Setup
 
@@ -311,8 +311,7 @@ PostgreSQL offers many more extensions and types out of the box, that [are compa
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
-
-The rest will be covered in next parts of this tutorial.
+The rest will be covered in further blogposts very soon.
 
 ## References
 
@@ -320,7 +319,3 @@ The rest will be covered in next parts of this tutorial.
 - http://www.postgresql.org/docs/9.4/static/extend-extensions.html
 - http://www.postgresql.org/docs/9.4/static/sql-createextension.html
 - http://decomplecting.org/rails4-postgres/
-
-## What next?
-
-In the very next part of this tutorial you'll see `hstore` and `json` types in PostgreSQL with Rails applications. So stay tuned and happy coding!
