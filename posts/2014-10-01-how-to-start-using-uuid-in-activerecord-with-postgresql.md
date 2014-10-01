@@ -2,7 +2,7 @@
 title: "How to start using UUID in ActiveRecord with PostgreSQL"
 created_at: 2014-10-02 23:58:11 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :arkency_form
@@ -307,6 +307,7 @@ While the UUIDs **are not guaranteed to be unique**, the probability of a duplic
 ## Conclusion
 
 PostgreSQL offers many more extensions and types out of the box, that [are compatible with Rails](http://edgeguides.rubyonrails.org/active_record_postgresql.html) in easy way. What might be worth to check out are:
+
 - [Binary](http://www.postgresql.org/docs/9.4/static/datatype-binary.html)
 - [Range](http://www.postgresql.org/docs/9.4/static/rangetypes.html)
 - [Network](http://www.postgresql.org/docs/9.4/static/datatype-net-types.html)
