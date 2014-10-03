@@ -230,7 +230,7 @@ requirement. And react doesn't care. Because it was the same component
 
 ## New component on the same level as old one? Would you kindly change a key?
 
-The fix is easy. Change the component key and react will know that it is a
+**The fix is easy**. Change the component key and react will know that it is a
 different component and not the same one. You can try it below. When you
 select a new country, the city is always the first one.
 
@@ -366,14 +366,14 @@ problem few more things makes sense...
 
     This is what my coworkers said to me when I described my problem to them.
 
-    It appears that it often easier and wiser to move the state higher in component hierarchy.
+    It appears that **it is often easier and wiser to move the state higher in component hierarchy**.
     Maybe the list itself does not need to keep the state itself. Why? Because the
     parent component is interested that the list element was clicked. Something new was
     selected and not only the list must change and rerender but also another parts
     of parent component must change. If parent component knows about list status, then it
     can render the list with new status, new currently select item.
 
-    Notice that in my example I only need to change the key of cities list when country
+    Notice that in my example I only need to change the `key` of cities list when country
     is changed because I keep state in that list. If I didn't I wouldn't have to and I
     wouldn't care.
 
@@ -381,9 +381,9 @@ problem few more things makes sense...
 
 * give keys to your children
 * keep the state in one place
-* remember: dynamic stateless components are easier and can live fine without key
+* remember: **dynamic stateless components are easier and can live fine without key
 (althought it is best practice to provide them and react will warn you when you don't); 
-for stateful components proper key is a must have!
+for stateful components proper key is a must have!**
 
 ## One more thing
 
