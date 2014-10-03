@@ -2,7 +2,7 @@
 title: "Behind the scenes"
 created_at: 2014-10-03 09:34:23 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :aar_newsletter
