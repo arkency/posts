@@ -69,7 +69,7 @@ To update UI from background thread:
 Dispatch::Queue.new('arkency').async do
   # background task
 
-  Dispatch::Queue.main.sync
+  Dispatch::Queue.main.sync do
     # UI updates
   end
 
