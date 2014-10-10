@@ -10,7 +10,7 @@ tags: [ 'upstart', 'background', 'process' ]
 
 <p>
   <figure align="center">
-    <img src="http://upstart.ubuntu.com/img/upstart80.png" width="50%">
+    <img src="/assets/images/upstart/upstart-logo-fit.png" width="100%" alt="" />
   </figure>
 </p>
 
