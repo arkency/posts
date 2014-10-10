@@ -124,8 +124,6 @@ And that's it. Now you only have to push your build to TestFlight. That can be d
 rake testflight notes='your release message for users'
 ```
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
-
 In these shorts steps we walked through beta-release process of your RubyMotion application to TestFlight from where can be download directly on your users' devices.
 
 Now you can download [TestFlight](https://itunes.apple.com/us/app/testflight/id899247664) on your and your clients' devices. Uploaded application will be available immediately.
@@ -144,6 +142,8 @@ Yes, there are some:
     - [Appaloosa](https://www.appaloosa-store.com/)
 2. Free
     - [HockeyKit](http://hockeykit.net/)
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## Links
 
