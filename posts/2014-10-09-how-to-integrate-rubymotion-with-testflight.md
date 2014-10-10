@@ -2,7 +2,7 @@
 title: "How to integrate RubyMotion with TestFlight"
 created_at: 2014-10-09 10:11:40 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
@@ -84,7 +84,7 @@ Motion::Project::App.setup do |app|
 
   app.release do
     app.provisioning_profile = ENV['APPLE_PROVISIONING_PROFILE_PATH']
-    app.codesign_certificate = 'iPhone Distribution: ENV['APPLE_COMPANY_NAME']'
+    app.codesign_certificate = "iPhone Distribution: #{ENV['APPLE_COMPANY_NAME']}"
   end
 end
 ```
