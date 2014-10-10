@@ -2,7 +2,7 @@
 title: "How to integrate RubyMotion with TestFlight"
 created_at: 2014-10-09 10:11:40 +0200
 kind: article
-publish: true
+publish: false
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :mobile
