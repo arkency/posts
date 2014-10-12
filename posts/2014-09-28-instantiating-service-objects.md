@@ -27,7 +27,7 @@ into instantiating Adapters & Service Objects. So here we go.
 class ProductsController
   def create
     metrics = MetricsAdapter.new(METRICS_CONFIG.fetch(Rails.env))
-    service = CreateProductService.new(facebook_adapter)
+    service = CreateProductService.new(metrics)
     product = service.call(params[:product])
     redirect_to product_path(product), notice: "Product created"
   rescue CreateProductService::Failed => failure
@@ -126,7 +126,181 @@ end
 
 ## Modules
 
-## Dependor
+When instantiating becomes more complicated I extract the process of creating
+the full object into an `injector`. The purpose is to make it easy to create
+new instance everywhere and to make it trivial for people to overwrite the
+dependencies by overwriting methods.
 
+```
+#!ruby
+module CreateProductServiceInjector
+  def metrics_adapter
+    @metrics_adapter ||= MetricsAdapter.new( METRICS_CONFIG.fetch(Rails.env) )
+  end
+
+  def create_product_service
+    @create_product_service ||= CreateProductService.new(metrics_adapter)
+  end
+end
+```
+
+```
+#!ruby
+class ProductsController
+  include CreateProductServiceInjector
+
+  def create
+    product = create_product_service.call(params[:product])
+    redirect_to product_path(product), notice: "Product created"
+  rescue CreateProductService::Failed => failure
+    # ... probably render ...
+  end
+end
+```
+
+### Testing
+
+The nice thing is you can test the instantiating process itself easily with injector
+(or skip it completely if you consider it to be typo-testing that provides very little
+value) and don't bother much with it anymore.
+
+#### Injector
+
+Here we only test that we can inject the objects and change the dependencies.
+
+```
+#!ruby
+describe CreateProductServiceInjector do
+  subject(:injected) do
+    Object.new.extend(described_class)
+  end
+
+  specify "#metrics_adapter" do
+    expect(MetricsAdapter).to receive(:new).with("testApiKey").and_return(
+      metrics = double(:metrics)
+    )
+    expect(injected.metrics_adapter).to eq(metrics)
+  end
+
+  specify "#create_product_service" do
+    expect(injected).to receive(:metrics_adapter).and_return(
+      metrics = double(:metrics)
+    )
+    expect(CreateProductService).to receive(:new).with(metrics).and_return(
+      service = double(:register_user_service)
+    )
+
+    expect(injected.create_product_service).to eq(service)
+  end
+end
+```
+
+Is it worth it? Well, it depends how complicated setting your object is.
+
+#### Controller
+
+Our controller is only interested in cooperating with `create_product_service`.
+It doesn't care what needs to be done to fully set it up. It's the job of `Injector`.
+We can throw away the code for creating the service.
+
+```
+#!ruby
+
+describe ProductsController do
+  specify "#create" do
+    product_attributes = {
+      "name" =>"Product Name",
+      "price"=>"123.45",
+    }
+
+    expect(controller.create_product_service).to receive(:call).
+      with(product_attributes).
+      and_return( Product.new.tap{|p| p.id = 10 } )
+
+    post :create, {"product"=> product_attributes}
+
+    expect(flash[:notice]).to be_present
+    expect(subject).to redirect_to("/products/10")
+  end
+end
+```
+
+#### Service Object
+
+You can use the injector in your tests as well. Just include it.
+Rspec is a DSL that is just creating classes and method for you.
+You can overwrite the `metrics_adapter` dependency using Rspec DSL
+with `let` or just by defining `metrics_adapter` method yourself.
+
+Just remember that `let` is adding memoization for you automatically.
+If you use your own method definition make sure to memoize as well
+(in some cases it is not necessary, but when you start stubbing/mocking
+it is).
+
+```
+#!ruby
+describe CreateProductService do
+  include CreateProductServiceInjector
+
+  specify "something something" do
+    create_product_service.call(..)
+    expect(..)
+  end
+
+  let(:metrics_adapter) do
+    FakeMetricsAdapter.new
+  end
+  
+  #or
+
+  def metrics_adapter
+    @adapter ||= FakeMetricsAdapter.new
+  end
+end
+```
+
+There is nothing preventing you from mixing classic ruby OOP
+with Rspec DSL. You can use it to your advantage.
+
+The downside that I see is that you can't easily say from reading
+the code that `metrics_adapter` is a dependency of our
+class under test (`CreateProductService`). As I said in simplest
+case it might not be worthy, in more complicated ones it might be however.
+
+### Example
+
+Here is a more complicated example from one of our project.
+
+```
+#!ruby
+require 'notifications_center/db/active_record_sagas_db'
+require "notifications_center/schedulers/resque_scheduler"
+require "notifications_center/clocks/real"
+
+module NotificationsCenterInjector
+  def notifications_center
+    @notifications_center ||= begin
+      apns_adapter     = Rails.configuration.apns_adapter
+      policy           = Rails.configuration.apns_push_notifications_policy
+      mixpanel_adapter = Rails.configuration.mixpanel_adapter
+      url_helpers      = Rails.application.routes_url_helpers
+
+      db               = NotificationsCenter::DB::ActiveRecordSagasDb.new
+      scheduler        = NotificationsCenter::Schedulers::ResqueScheduler.new
+      clock            = NotificationsCenter::Clocks::Real.new
+
+      push = PushNotificationService.new(
+        url_helpers, 
+        apns_adapter,
+        policy, 
+        mixpanel_adapter
+      )
+      NotificationsCenter.new(db, push, scheduler, clock)
+    end
+  end
+end
+```
+
+## Dependor
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
