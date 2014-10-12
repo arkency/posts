@@ -403,7 +403,7 @@ end
 
 ## That's it
 
-Thanks for reading. If liked it and you wanna find our more subscribe
+Thanks for reading. If you liked it and you wanna find out more subscribe
 to course below.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
