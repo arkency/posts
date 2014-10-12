@@ -2,7 +2,7 @@
 title: "Instantiating Service Objects"
 created_at: 2014-09-28 11:14:39 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_course_instantiating

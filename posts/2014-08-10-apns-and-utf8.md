@@ -11,7 +11,7 @@ tags: [ 'apns', 'push', 'notifications', 'apple', 'utf8', 'truncate' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/apns-ruby/phones.png">
+    <img src="/assets/images/apns-ruby/phones-fit.png">
   </figure>
 </p>
 
