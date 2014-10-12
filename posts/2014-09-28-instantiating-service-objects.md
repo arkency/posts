@@ -195,7 +195,22 @@ describe CreateProductServiceInjector do
 end
 ```
 
-Is it worth it? Well, it depends how complicated setting your object is.
+Is it worth it? Well, it depends how complicated setting your object is. Some of my
+colleagues just test that the object can be constructed (hopefully this has no
+side effects in your codebase):
+
+```
+#!ruby
+describe CreateProductServiceInjector do
+  subject(:injected) do
+    Object.new.extend(described_class)
+  end
+
+  specify "can instantiate service" do
+    expect{ injected.create_product_service }.not_to raise_error
+  end
+end
+```
 
 #### Controller
 
@@ -302,5 +317,93 @@ end
 ```
 
 ## Dependor
+
+You might also consider using [dependor gem](https://github.com/psyho/dependor) for
+this.
+
+```
+#!ruby
+class Injector
+  extend Dependor::Let
+
+  let(:metrics_adapter) do
+    MetricsAdapter.new( METRICS_CONFIG.fetch(Rails.env) )
+  end
+
+  let(:create_product_service)
+    CreateProductService.new(metrics_adapter)
+  end
+end
+```
+
+```
+#!ruby
+class ProductsController
+  extend Dependor::Injectable
+  inject_from Injector
+ 
+  inject :create_product_service
+  def create
+    product = create_product_service.call(params[:product])
+    redirect_to product_path(product), notice: "Product created"
+  rescue CreateProductService::Failed => failure
+    # ... probably render ...
+  end
+end
+```
+
+The nice thing about dependor is that it provides a lot of small APIs
+and doesn't force you to use any of them. Some of them do more magic
+(I am looking at you [`Dependor::AutoInject`](https://github.com/psyho/dependor#dependorautoinject))
+and some of medium level ([`Dependor::Injectable`](https://github.com/psyho/dependor#dependorinjectable))
+and some almost none magic whatsoever([`Dependor::Shorty`](https://github.com/psyho/dependor#dependorshorty)).
+You can use only the parts that you like and are comfortable with.
+
+### Testing
+
+#### Injector
+
+The simple way that just checks if things don't crash and nothing more.
+
+```
+#!ruby
+require 'dependor/rspec'
+
+describe Injector do
+  let(:injector) { described_class.new }
+ 
+  specify do 
+    expect{injector.create_product_service}.to_not raise_error
+  end
+end
+```
+
+#### Service
+
+For testing the service you go whatever way you want.
+Create new instance manually or use
+[`Dependor::Isolate`](https://github.com/psyho/dependor#dependorisolate).
+
+```
+#!ruby
+require 'dependor/rspec'
+
+describe CreateProductService do
+  let(:metrics_adapter) do
+    FakeMetricsAdapter.new
+  end
+  subject(:create_product_service) { isolate(CreateProductService) }
+
+  specify "something something" do
+    create_product_service.call(..)
+    expect(..)
+  end
+end
+```
+
+## That's it
+
+Thanks for reading. If liked it and you wanna find our more subscribe
+to course below.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
