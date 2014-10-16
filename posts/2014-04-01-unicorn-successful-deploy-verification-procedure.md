@@ -10,7 +10,7 @@ tags: [ 'rails', 'ruby', 'unicorn', 'deploy', 'verification' ]
 
 <p>
   <figure>
-    <img src="/assets/images/unicorn-restart/unicorn-kill-restart-verify-deploy-2-small.jpg" width="100%">
+    <img src="/assets/images/unicorn-restart/unicorn-kill-restart-verify-deploy-2-small-fit.jpg" width="100%">
     <details>
       <a href="http://www.flickr.com/photos/robboudon/6035265163/sizes/z/">Photo</a>
       remix available thanks to the courtesy of

@@ -10,7 +10,7 @@ tags: [ 'custom', 'validation', 'context', 'rails', 'activemodel', 'activerecord
 
 <p>
   <figure>
-    <img src="/assets/images/custom-validation-contexts/context_validation.jpg" width="100%">
+    <img src="/assets/images/custom-validation-contexts/context_validation-fit.jpg" width="100%">
   </figure>
 </p>
 

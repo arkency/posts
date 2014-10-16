@@ -10,7 +10,7 @@ tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
 
 <p>
   <figure>
-    <img src="/assets/images/short-urls/bench.jpg" width="100%">
+    <img src="/assets/images/short-urls/bench-fit.jpg" width="100%">
     <details>
       <a href="http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/">Photo</a> 
       remix available thanks to the courtesy of

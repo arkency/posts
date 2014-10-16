@@ -11,7 +11,7 @@ tags: [ 'code', 'style', 'clean', 'syntax' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/clean-code/clean-code.jpg" width="100%">
+    <img src="/assets/images/clean-code/clean-code-fit.jpg" width="100%">
   </figure>
 </p>
 

@@ -10,7 +10,7 @@ tags: [ 'agile', 'developers', 'oriented', 'project', 'management' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/developer-matters/buzzwords.png" width="100%">
+    <img src="/assets/images/developer-matters/buzzwords-fit.png" width="100%">
   </figure>
 </p>
 

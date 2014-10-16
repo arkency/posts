@@ -9,7 +9,7 @@ newsletter: :aar_newsletter
 stories: ['async-remote']
 ---
 
-<img src="/assets/images/fidelski/samojebka.jpg" width="100%">
+<img src="/assets/images/fidelski/samojebka-fit.jpg" width="100%">
 
 There is such moment in developer's life when you start looking for a new job, sooner or later. You can observe that even in Poland, there are plenty of Ruby on Rails job offers, often in very perspective companies. I probably could find interesting job in Poznań, where I live, but there were some presumptions which pushed me to apply to Arkency.
 

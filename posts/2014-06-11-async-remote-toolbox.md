@@ -11,7 +11,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/remote-toolbox/toolbox-title.jpg" width="100%">
+    <img src="/assets/images/remote-toolbox/toolbox-title-fit.jpg" width="100%">
   </figure>
 </p>
 

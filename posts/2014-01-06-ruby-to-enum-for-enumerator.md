@@ -8,7 +8,7 @@ tags: [ 'ruby', 'to_enum', 'enumerator', 'enumerable' ]
 newsletter: :arkency_form
 ---
 
-<img src="/assets/images/enumerator/each.png" width="100%">
+<img src="/assets/images/enumerator/each-fit.png" width="100%">
 
 Many times I have seen people including `Enumerable` module into their
 classes. But I cannot stop thinking that in many cases having methods

@@ -10,7 +10,7 @@ tags: [ 'seo', 'rails', 'sitemap', 'actioncontroller::metal' ]
 
 <p>
   <figure>
-    <img src="/assets/images/sitemaps/ironpour.jpg" width="100%">
+    <img src="/assets/images/sitemaps/ironpour-fit.jpg" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/tinkerszone/3948664111/sizes/z/">Photo</a>
       remix available thanks to the courtesy of

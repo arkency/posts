@@ -11,7 +11,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/continuous-deployment/continuous.jpg" width="100%">
+    <img src="/assets/images/continuous-deployment/continuous-fit.jpg" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/93751689@N04/9557470061/sizes/c/">Photo</a>
       remix available thanks to the courtesy of

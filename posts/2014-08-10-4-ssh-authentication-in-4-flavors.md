@@ -11,7 +11,7 @@ tags: [ 'authentication', 'ssh', 'security' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/ssh-authentication/ssh-authentication.jpg" width="100%">
+    <img src="/assets/images/ssh-authentication/ssh-authentication-fit.jpg" width="100%">
   </figure>
 </p>
 

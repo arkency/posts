@@ -10,7 +10,7 @@ tags: [ 'objectify', 'validation', 'context', 'rails', 'activemodel', 'activerec
 
 <p>
   <figure>
-    <img src="/assets/images/rails-validations-objectify/objectify.jpg" width="100%">
+    <img src="/assets/images/rails-validations-objectify/objectify-fit.jpg" width="100%">
   </figure>
 </p>
 

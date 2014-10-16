@@ -12,7 +12,7 @@ stories: ['rubymotion']
 
 <p>
   <figure align="center">
-    <img src="/assets/images/mobile/go-mobile.jpg" width="100%">
+    <img src="/assets/images/mobile/go-mobile-fit.jpg" width="100%">
   </figure>
 </p>
 

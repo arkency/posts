@@ -9,7 +9,7 @@ newsletter_inside: :arkency_form
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
-<img src="/assets/images/preloading/header.png" width="100%">
+<img src="/assets/images/preloading/header-fit.png" width="100%">
 
 You are probably already familiar with the method `#includes` for eager loading
 data from database if you are using Rails and ActiveRecord. 
