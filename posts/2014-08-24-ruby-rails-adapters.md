@@ -76,9 +76,9 @@ incompatible interfaces and adapter mediating between them.
 
 ## Adapters and architecture
 
-![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter.png)
+![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter-fit.png)
 
-Part of your app (probably a service) that we call _client_ 
+Part of your app (probably a service) that we call _client_
 is relying on some kind of interface for its proper behavior.
 Of course **ruby does not have explicit interfaces so what I mean is a
 compatibility in a _duck-typing_ way**. Implicit interface defined by how we
@@ -150,7 +150,7 @@ solutions for them. [Integration tests are bogus](https://www.youtube.com/watch?
 
 ## Injecting and configuring adapters
 
-Ok, so we have two adapters, **how do we provide them to those who need these adapters to work?** 
+Ok, so we have two adapters, **how do we provide them to those who need these adapters to work?**
 Well, I'm gonna show you an example and not talk much about it because it's going to be a topic
 of another blogpos.
 
@@ -224,7 +224,7 @@ not defined (again, Ruby) but we can describe it later using tests. App with the
 interface it dependend is one component. Every implementation can be a separate
 component.
 
-![](/assets/images/rails-ruby-adapter/apns_ruby_adapter.png)
+![](/assets/images/rails-ruby-adapter/apns_ruby_adapter-fit.png)
 
 Our goal here was to get closer to
 [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) .
@@ -626,7 +626,7 @@ as gems, libraries, APIs. Use them wisely to decouple core of your app from 3rd 
 for whatever reason you have. **Speed, Readability, Testability, Isolation,
 Interchangeability**.
 
-![](/assets/images/rails-ruby-adapter/adapter_client_adaptee.png)
+![](/assets/images/rails-ruby-adapter/adapter_client_adaptee-fit.png)
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 

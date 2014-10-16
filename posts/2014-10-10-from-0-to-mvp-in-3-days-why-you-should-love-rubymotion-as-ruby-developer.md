@@ -12,7 +12,7 @@ stories: ['rubymotion']
 
 <p>
   <figure align="center">
-    <img src="/assets/images/from-0-to-mvp-rubymotion/header-image-fit.jpg" alt="" />
+    <img src="/assets/images/from-0-to-mvp-rubymotion/header-image-fit.jpg" />
   </figure>
 </p>
 

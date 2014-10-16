@@ -51,7 +51,7 @@ vs.
 
 result = if some_condition then something else something_else end
 
-vs. 
+vs.
 
 result = some_condition ? something : something_else
 ```
@@ -68,7 +68,7 @@ They can be [really tricky](http://devblog.avdi.org/2010/08/02/using-and-and-or-
 #!ruby
 ['a', 'b', 'c'] and [:a, :b, :c]
 
-vs. 
+vs.
 
 %w(a b c) and %i(a b c)
 ```
@@ -107,7 +107,7 @@ end
 
 Isn't it? So the in the first example `something` will be executed if `condition` is not `true` so if it `false`, yep? Even if _parsing_ takes only a couple milliseconds, when we have a lot of places like that, it may cause wasting more time to refactor code inside our minds.
 
-The other important thing is **communication** between developers which is done mostly through our code. When we don't understand what they did and have to reinterpret their code, it means that communication fails. When everyone writes code that have the same look, it's super-easy to make our work faster.  
+The other important thing is **communication** between developers which is done mostly through our code. When we don't understand what they did and have to reinterpret their code, it means that communication fails. When everyone writes code that have the same look, it's super-easy to make our work faster.
 How may times did you have to rewrite a part of code that someone wrote and now you have to implement a new feature? How many times did you complain on others work, because you would do it better?
 
 ## Where's the problem?
@@ -150,6 +150,6 @@ If you think that it's important topic in your daily work and you are willing to
 
 <p>
   <figure align="center">
-    <img src="/assets/images/clean-code/keep-calm-and-code-clean.png" width="100%">
+    <img src="/assets/images/clean-code/keep-calm-and-code-clean-fit.png" width="100%">
   </figure>
 </p>
