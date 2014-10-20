@@ -124,7 +124,10 @@ Now is the time to add some subjects for books and then query them. Please keep 
   SQL (0.5ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", "{education}"], ["updated_at", "2014-10-17 08:23:35.657137"]]
    (1.0ms)  COMMIT
  => true
+```
 
+```
+#!ruby
 2.1.2 :005 > Book.first.subjects
   Book Load (0.9ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education"]
@@ -137,7 +140,10 @@ Now is the time to add some subjects for books and then query them. Please keep 
   SQL (0.4ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", "{education,business}"], ["updated_at", "2014-10-17 08:24:25.883010"]]
    (0.9ms)  COMMIT
  => true
+```
 
+```
+#!ruby
 2.1.2 :008 > Book.first.subjects
   Book Load (0.5ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business"]
@@ -150,7 +156,10 @@ Now is the time to add some subjects for books and then query them. Please keep 
   SQL (0.4ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", "{education,business,history}"], ["updated_at", "2014-10-17 18:53:12.755711"]]
    (0.9ms)  COMMIT
  => true
+```
 
+```
+#!ruby
 2.1.2 :011 > Book.first.subjects
   Book Load (0.4ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business", "history"]
@@ -194,7 +203,10 @@ What happened here? Why subjects array wasn't updated?
   SQL (2.8ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", ["education", "business", "history", "art"]], ["updated_at", Fri, 17 Oct 2014 19:14:52 UTC +00:00]]
    (1.0ms)  COMMIT
  => true
+```
 
+```
+#!ruby
 2.1.2 :018 > Book.first.subjects
   Book Load (0.6ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business", "history", "art"]
@@ -238,7 +250,10 @@ PostgreSQL have a bunch of useful [array methods](http://www.postgresql.org/docs
 2.1.2 :026 > Book.where("'history' = ANY (subjects)")
   Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE ('history' = ANY (subjects))
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>
- 
+```
+
+```
+#!ruby
 2.1.2 :027 > Book.where("subjects @> ?", '{history}')
   Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE (subjects @> '{finances}')
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>
