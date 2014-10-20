@@ -69,45 +69,6 @@ postgres=# SELECT name FROM arrays_example WHERE values[1] = 1;
 (1 row)
 ```
 
-We can use our own types:
-
-```
-#!sql
-postgres=# CREATE TYPE multi AS(
-               b bool,
-               i integer,
-               t text
-           );
-CREATE TYPE
-
-postgres=# CREATE TABLE arrays_extended(
-               name   text,
-               values multi[]
-           );
-CREATE TABLE 
-```
-
-And then fill with custom values:
-
-
-```
-#!sql
-postgres=# INSERT INTO arrays_extended VALUES(
-               'multiple', ARRAY[(true, 2, 'string')::multi]
-           );
-```
-
-And list all of them:
-
-```
-#!sql
-postgres=# SELECT values[1].b, values[1].i, values[1].t FROM arrays_extended;
-   b    | i | t
---------+---+---
-   t    | 2 | string
-(1 row)
-```
-
 [Official Postgres documentation](http://www.postgresql.org/docs/9.4/static/arrays.html) provides a lot of useful examples to start working on SQL level with database.
 
 # Rails
