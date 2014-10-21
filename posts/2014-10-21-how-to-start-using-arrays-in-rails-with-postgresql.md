@@ -254,7 +254,7 @@ PostgreSQL have a bunch of useful [array methods](http://www.postgresql.org/docs
 
 ```
 #!ruby
-2.1.2 :027 > Book.where("subjects @> ?", '{history}')
+2.1.2 :027 > Book.where("subjects @> ?", '{finances}')
   Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE (subjects @> '{finances}')
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>
 ```
