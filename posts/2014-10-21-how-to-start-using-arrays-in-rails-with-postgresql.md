@@ -2,7 +2,7 @@
 title: "How to start using Arrays in Rails with PostgreSQL"
 created_at: 2014-10-21 21:05:52 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 newsletter: :skip
 newsletter_inside: :arkency_form
@@ -150,7 +150,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
 
 2.1.2 :009 > b.subjects += ['history']
  => ["education", "business", "history"]
- 
+
 2.1.2 :010 > b.save!
    (0.2ms)  BEGIN
   SQL (0.4ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", "{education,business,history}"], ["updated_at", "2014-10-17 18:53:12.755711"]]
@@ -164,7 +164,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
   Book Load (0.4ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business", "history"]
  ```
- 
+
 ### Caveats
 
 In previous versions of Rails we may encounter some weird behavior:
@@ -185,11 +185,11 @@ In previous versions of Rails we may encounter some weird behavior:
 ```
 
 What happened here? Why subjects array wasn't updated?
- 
+
 ### Dirty tracking
- 
+
 [`ActiveModel::Dirty` module](http://api.rubyonrails.org/classes/ActiveModel/Dirty.html) provides a way to track changes in your objects. Sometimes our record does not know that underlying object properties have been changed and that's why we have to point this explicitly.
- 
+
 ```
 #!ruby
 2.1.2 :015 > b.subjects_will_change!
@@ -221,7 +221,7 @@ And everything went as we wanted. So if you have any problem with updating prope
 
 2.1.2 :020 > b.changed?
  => false
- 
+
 2.1.2 :021 > b.subjects_will_change!
  => ["education", "business", "history", "finances"]
 
@@ -233,7 +233,7 @@ And everything went as we wanted. So if you have any problem with updating prope
 
 2.1.2 :024 > b.changes
  => {"subjects"=>[["education", "business", "history"], ["education", "business", "history", "finances"]]}
- 
+
 2.1.2 :025 > b.save!
    (0.2ms)  BEGIN
   SQL (3.1ms)  UPDATE "books" SET "subjects" = $1, "updated_at" = $2 WHERE "books"."id" = '39abef75-56af-4ad5-8065-6b4d58729ee0'  [["subjects", ["education", "business", "history", "finances"]], ["updated_at", Fri, 17 Oct 2014 19:21:25 UTC +00:00]]
