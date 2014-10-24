@@ -20,7 +20,7 @@ Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.c
 
 # What won't be about
 
-Before I start, I'd like to precise what won't be mentioned in this article. That will help you to avoid disappointment and make decision about further reading. This blogpost doesn't include:
+Before I start, I'd like to precise what won't be mentioned in this article. So let's summarize briefly what won't be covered to give you a general overview about the overall content.
 
 - Nginx setup and performance setting
 - Caching
