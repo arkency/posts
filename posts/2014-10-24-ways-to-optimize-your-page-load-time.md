@@ -2,7 +2,7 @@
 title: "Ways to optimize your page load time"
 created_at: 2014-10-24 15:05:26 +0200
 kind: article
-publish: true
+publish: false
 author: Kamil Lelonek
 tags: [ 'optimization', 'optimisation', 'speed', 'load', 'frontend', 'css', 'html', 'js', 'javascript' ]
 newsletter: :frontend_course
