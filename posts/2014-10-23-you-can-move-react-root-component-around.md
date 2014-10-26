@@ -441,7 +441,7 @@ blogpostJQuery(function() {
 </script>
 
 Here is completely oversimplified version of my problem.
-You can press "Button inside popup" to change state.
+You can press "Button inside popup" (playground below) to change state.
 When you press "Show popup" the Magnificent Popup
 library however will move the popup content into different
 DOM element. When you try change the state one more time
@@ -452,6 +452,7 @@ means the DOM was unexpectedly mutated`. Go ahead. Try
 for yourself. Open Developer Console to see the error.
 
 <div id="reactExampleGoesHere"></div>
+<br />
 
 Here is the code for this example:
 
@@ -459,15 +460,10 @@ Here is the code for this example:
 #!js
 var clicked = function(){
   var node = mountedComponent.refs.popup.getDOMNode();
-  blogpostJQuery.magnificPopup.open({
+  $.magnificPopup.open({
     items: {
       src: node,
       type: 'inline'
-    },
-    removalDelay: 30,
-    callbacks: {
-      close: function() {
-      }
     }
   });
 }
@@ -508,22 +504,22 @@ mountedComponent = React.renderComponent(
 ```
 
 So I did some research and found this interesting
-[React JS > What if the dom changes?](https://groups.google.com/forum/#!msg/reactjs/mHfBGI3Qwz4/6s-eHGEpccwJ)
+[React JS - What if the dom changes](https://groups.google.com/forum/#!msg/reactjs/mHfBGI3Qwz4/6s-eHGEpccwJ)
 thread that included some really nice hint: _I think React won't get confused if
 jQuery moves the root around_.
 
 ## Moving React component
 
-So I decoupled in my little application the Popup
-component from my top-level Component and started
+So I decoupled in my little application the `Popup`
+component from my top-level `Component` and started
 rendering them separately.
 
-If you show popup and click inside it you will change
+If you show popup and click inside it, you will change
 state of both components. But even though the component
 rendered insided popup (handled by magnificPopup library)
 was moved around in DOM, we no longer expierience our
-problem. Because moving top-level react component around
-DOM works fine (here I am actually moving one elemnt
+problem. **Because moving top-level react component around
+DOM works fine** (here I am actually moving the element
 above the react root node but the concept stays the same).
 
 <script type="text/javascript">
@@ -597,10 +593,288 @@ blogpostJQuery(function() {
   <div class="mfp-hide"></div>
 </div>
 
+<br>
 Here is the code for this example...
+
+```
+#!js
+var clicked = function(){
+  var node = mountedPopup.getDOMNode().parentNode;
+  $.magnificPopup.open({
+    items: {
+      src: node,
+      type: 'inline'
+    }
+  });
+}
+
+var popupClicked = function(){
+  mountedComponent.setState({pretendStateChanged: Date.now() }) ;
+  mountedPopup.setState({pretendStateChanged: Date.now() });
+};
+
+var Component = React.createClass({
+  getInitialState: function() {
+    return {pretendStateChanged: Date.now() };
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({onClick: clicked, href: "javascript:void(0);"}, "Show popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var Popup = React.createClass({
+  getInitialState: function() {
+    return {pretendStateChanged: Date.now() };
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({
+        onClick: this.props.onClickHandler,
+        href: "javascript:void(0);"
+      }, "Button inside popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var mountedComponent = React.renderComponent(
+  Component(),
+  document.getElementById("reactExampleGoesHere").childNodes[1]
+);
+
+var mountedPopup = React.renderComponent(
+  Popup({onClickHandler: popupClicked}),
+  document.getElementById("reactExampleGoesHere").childNodes[3]
+);
+```
+
+```
+#!html
+<div id="reactExampleGoesHere">
+  <div></div>
+  <div class="mfp-hide"></div>
+</div>
+```
+
+The forum thread that I mentioned show a really nice demo for integrating
+react with [jQuery UI Sortable](http://jqueryui.com/sortable/). You can
+move the elements around thanks to sortable. But their content is
+rendered with react. **It's all possible because every element is rendered
+as separate react root.**
+
+<iframe width="100%" height="250" src="http://jsfiddle.net/LQxy7/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ## Avoide imperative coding
 
-TODO: Move the component behavior of popup
-inside popup. And let it decide when to show
-and hide.
+While working with this code I had one more _"Aha moment"_. I was looking at
+my code and thinking _Why am I calling show()/hide() on popup library in my
+handlers?_ I didn't come to React to keep doing that. The idea was to have
+props and state and transform it into HTML view. Not to call `show()` or
+`hide()` manually. I should be setting state and the component should know
+whether to use 3rd party library to show or hide itself. After all, if I
+ever want change to popup library (most likely) then such change should be
+localized to the popup component. I should not change my handlers because
+I changed my popup library.
+
+So... Move the component behavior of popup inside `Popup`. And let it decide
+when to show and hide. That's what it would be doing if it were pure React
+component. That's what is should be doing when it is not so pure, but
+coupled with external library.
+
+<script type="text/javascript">
+var clicked3 = function(){
+  mountedPopup3.setState({visible: true, pretendStateChanged: Date.now() });
+  mountedComponent3.setState({pretendStateChanged: Date.now() }) ;
+}
+
+var popupClicked3 = function(){
+  mountedPopup3.setState({visible: false, pretendStateChanged: Date.now() });
+  mountedComponent3.setState({pretendStateChanged: Date.now() }) ;
+};
+
+var Component3 = React.createClass({
+  getInitialState: function() {
+    return {pretendStateChanged: Date.now() };
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({onClick: clicked3, href: "javascript:void(0);"}, "Show popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var Popup3 = React.createClass({
+  getInitialState: function() {
+    return {visible: false, pretendStateChanged: Date.now()};
+  },
+  componentWillUpdate: function(nextProps, nextState){
+    if (!this.state.visible && nextState.visible) {
+      this.popUp();
+    }
+
+    /* closed by application setting state*/
+    if (this.state.visible && !nextState.visible) {
+      this.closePopUp();
+    }
+  },
+  popUp: function(){
+    var self  = this;
+    var parent = this.getDOMNode().parentNode;
+    blogpostJQuery.magnificPopup.open({
+      items: {
+        src: parent,
+        type: 'inline'
+      },
+      removalDelay: 30,
+      callbacks: {
+        afterClose: function() {
+          if (self.state.visible){
+            /* closed by user pressing ESC */
+            self.setState({visible: false});
+          }
+        }
+      }
+    });
+  },
+  closePopUp: function(){
+    blogpostJQuery.magnificPopup.close();
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({
+        onClick: this.props.onClickHandler,
+        href: "javascript:void(0);"
+      }, "Button inside popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var mountedComponent3;
+var mountedPopup3;
+
+blogpostJQuery(function() {
+  mountedComponent3 = React.renderComponent(
+    Component3(),
+    document.getElementById("reactExampleGoesHere3").childNodes[1]
+  );
+
+  mountedPopup3 = React.renderComponent(
+    Popup3({onClickHandler: popupClicked3}),
+    document.getElementById("reactExampleGoesHere3").childNodes[3]
+  );
+});
+</script>
+
+<div id="reactExampleGoesHere3">
+  <div></div>
+  <div class="mfp-hide"></div>
+</div>
+
+<br>
+Here is the code for this example...
+
+```
+#!js
+var clicked = function(){
+  mountedPopup.setState({visible: true, pretendStateChanged: Date.now() });
+  mountedComponent.setState({pretendStateChanged: Date.now() }) ;
+}
+
+var popupClicked = function(){
+  mountedPopup.setState({visible: false, pretendStateChanged: Date.now() });
+  mountedComponent.setState({pretendStateChanged: Date.now() }) ;
+};
+
+var Component = React.createClass({
+  getInitialState: function() {
+    return {pretendStateChanged: Date.now() };
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({onClick: clicked, href: "javascript:void(0);"}, "Show popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var Popup = React.createClass({
+  getInitialState: function() {
+    return {visible: false, pretendStateChanged: Date.now()};
+  },
+  componentWillUpdate: function(nextProps, nextState){
+    if (!this.state.visible && nextState.visible) {
+      this.popUp();
+    }
+
+    /* closed by application */
+    if (this.state.visible && !nextState.visible) {
+      this.closePopUp();
+    }
+  },
+  popUp: function(){
+    var self  = this;
+    var parent = this.getDOMNode().parentNode;
+    blogpostJQuery.magnificPopup.open({
+      items: {
+        src: parent,
+        type: 'inline'
+      },
+      removalDelay: 30,
+      callbacks: {
+        afterClose: function() {
+          if (self.state.visible){
+            /* closed by user pressing ESC */
+            self.setState({visible: false});
+          }
+        }
+      }
+    });
+  },
+  closePopUp: function(){
+    blogpostJQuery.magnificPopup.close();
+  },
+  render: function(){
+    return React.DOM.div(null,
+      React.DOM.a({
+        onClick: this.props.onClickHandler,
+        href: "javascript:void(0);"
+      }, "Button inside popup"),
+      React.DOM.br(null),
+      React.DOM.span(null, "State: " + this.state.pretendStateChanged)
+    );
+  }
+});
+
+var mountedComponent;
+var mountedPopup;
+
+blogpostJQuery(function() {
+  mountedComponent = React.renderComponent(
+    Component(),
+    document.getElementById("reactExampleGoesHere").childNodes[1]
+  );
+
+  mountedPopup = React.renderComponent(
+    Popup({onClickHandler: popupClicked}),
+    document.getElementById("reactExampleGoesHere").childNodes[]
+  );
+});
+```
+
+```
+#!html
+<div id="reactExampleGoesHere">
+  <div></div>
+  <div class="mfp-hide"></div>
+</div>
+```
