@@ -1,14 +1,21 @@
 ---
-title: "You can move React root component around"
+title: "You can move React.js root component around"
 created_at: 2014-10-23 21:59:29 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
 newsletter: :skip
+newsletter_inside: :frontend_course
 ---
 
-My recent challeng with react was to integrate it
+<p>
+  <figure>
+    <img src="/assets/images/react-root-move/root-fit.jpg" width="100%">
+  </figure>
+</p>
+
+My recent challenge with react was to integrate it
 with [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
 library. I knew there was going to be a problem because the library
 is moving DOM elements around. But I had two interesting insights
