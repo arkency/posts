@@ -14,7 +14,7 @@ newsletter: :frontend_course
   </figure>
 </p>
 
-Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.com/watch?v=75Ju0eM5T2c) said that *premature optimization is the root of all evil*. Performance is something that always causes emotions in Rails community. When we need it, we tune up our applications, try different and [new servers](http://www.rubyraptor.org/), use load balancers, speed up our applications by playing with threads and processes, but sometimes we forget about frontend at all. Server side is important too, but if we need to provide fast, responsive webstes we have to optimize them in our browsers too. **In this article I'd like to focus on client side and how to efficiently deliver content to user.**
+Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.com/watch?v=75Ju0eM5T2c) said that *premature optimization is the root of all evil*. Performance is something that always causes emotions in Rails community. When we need it, we tune up our applications, try different and [new servers](http://www.rubyraptor.org/), use load balancers, speed up our applications by playing with threads and processes, but sometimes we forget about frontend at all. Server side is important too, but if we need to provide fast, responsive websites we have to optimize them in our browsers too. **In this article I'd like to focus on client side and how to efficiently deliver content to user.**
 
 <!-- more -->
 
@@ -50,6 +50,72 @@ In this blogpost I'll focus on the following things:
 - `preload`
 
 # JS
+
+I'd like to focus on how we're loading scripts in our html pages. It's usually something like:
+
+```
+#!html
+<!-- HTML4 and (x)HTML -->
+<script type="text/javascript" src="javascript.js">
+
+<!-- HTML5 -->
+<script src="javascript.js"></script>
+```
+
+It's so called *normal execution*, which is **the default behavior** that pauses HTML parsing until script is executed. It means that when we have heavy-logic scripts, displaying page content will be significantly delayed. Hence it would be so obvious to mention that all scripts should be included in the bottom of `<body>`, just above the closing tag.
+
+## `defer`
+
+```
+#!html
+<script defer src="javascript.js" onload="init()"></script>
+```
+
+Originally, this is nothing more than a hint to the browser that the script does not modify the DOM. Therefore the browser does not need to wait for the script to be evaluated, it can immediately go on parsing the HTML. On older systems this might save some parsing time.
+
+However, IE has slightly changed the meaning of defer. Any code inside deferred script tags is only executed when the page has been parsed entirely.
+
+`defer` downloads the file during HTML parsing and will only execute it after the parser has completed. **`defer` scripts are also guaranteed to be executed in the order they are declared in the document.** 
+
+A positive effect of this attribute is that the **DOM will be available for your script**.
+
+## `async`
+
+```
+#!html
+<script async src="javascript.js" onload="init()"></script>
+```
+
+`async` downloads the file during HTML parsing and will pause the HTML parser to execute it when it has finished downloading.
+
+Don’t care when the script will be available? Asynchronous is the best of both worlds: HTML parsing may continue and the script will be executed as soon as it’s ready. I’d recommend this for scripts such as Google Analytics.
+
+## When should I use what?
+
+**Typically you want to use async where possible**, then defer then no attribute. Here are some general rules to follow:
+
+- If the script is modular and does not rely on any scripts then use async.
+- If the script relies upon or is relied upon by another script then use defer.
+- If the script is small and is relied upon by an async script then use an inline script with no attributes placed above the async scripts.
+
+Both `async` and `defer` scripts begin to download immediately without pausing the parser and both support an optional `onload` handler to address the common need to perform initialization which depends on the script. 
+
+The difference between `async` and `defer` centers around when the script is executed. Each `async` script executes at the first opportunity after it is finished downloading and before the window’s load event. This means it’s possible (and likely) that `async` scripts are not executed in the order in which they occur in the page. The `defer` scripts, on the other hand, are guaranteed to be executed in the order they occur in the page. That execution starts after parsing is completely finished, but before the document’s `DOMContentLoaded` event.
+
+**The truth is that if you write your JavaScript effectively, you'll use the `async` attribute to 90% of your `script` elements.**
+
+## Browser compatibility
+
+> In older browsers that don't support the `async` attribute, parser-inserted scripts block the parser; script-inserted scripts execute asynchronously in IE and WebKit, but synchronously in Opera and pre-4.0 Firefox. In Firefox 4.0, the async DOM property defaults to true for script-created scripts, so the default behavior matches the behavior of IE and WebKit. To request script-inserted external scripts be executed in the insertion order in browsers where the document.createElement("script").async evaluates to true (such as Firefox 4.0), set .async=false on the scripts you want to maintain order. Never call document.write() from an async script. In Gecko 1.9.2, calling document.write() has an unpredictable effect. In Gecko 2.0, calling document.write() from an async script has no effect (other than printing a warning to the error console).
+
+| **Feature** | **Chrome** | **Firefox** | **IE** | **Opera** | **Safari** | **Android** | **IE mobile** |
+|-------------|------------|-------------|--------|-----------|------------|-------------|---------------|
+| `defer`     | Yes        | 3.6+        | 10+    | No        | Yes        | Yes         | No            |
+| `async`     | Yes        | 3.5+        | 10+    | No        | Yes        | Yes         | No            |
+
+**Documentation:**
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+- http://www.quirksmode.org/js/placejs.html
 
 # CSS
 
