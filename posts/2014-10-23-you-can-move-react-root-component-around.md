@@ -2,9 +2,10 @@
 title: "You can move React root component around"
 created_at: 2014-10-23 21:59:29 +0200
 kind: article
-publish: false
-author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+publish: true
+author: Robert Pankowecki
+tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
+newsletter: :skip
 ---
 
 My recent challeng with react was to integrate it
@@ -16,7 +17,6 @@ while solving this problem that I think are worth sharing.
 <!-- more -->
 
 ## Confirming the problem
-
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.11.2/react.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -385,6 +385,13 @@ img.mfp-img {
   top: 0;
   right: 0;
   padding-top: 0; }
+
+.react-popup-example {
+  height: 100px;
+  width: 300px;
+  background-color: white;
+  text-align: center;
+}
 </style>
 
 <script type="text/javascript">
@@ -422,7 +429,7 @@ var Component = React.createClass({
 
 var Popup = React.createClass({
   render: function(){
-    return React.DOM.div(null,
+    return React.DOM.div({className: "react-popup-example"},
       React.DOM.a({
         onClick: this.props.onClickHandler,
         href: "javascript:void(0);"
@@ -452,7 +459,6 @@ means the DOM was unexpectedly mutated`. Go ahead. Try
 for yourself. Open Developer Console to see the error.
 
 <div id="reactExampleGoesHere"></div>
-<br />
 
 Here is the code for this example:
 
@@ -502,6 +508,15 @@ mountedComponent = React.renderComponent(
   document.getElementById("reactExampleGoesHere")
 );
 ```
+
+Here is how the component looks like rendered in DOM before
+becoming popup.
+
+<img src="/assets/images/react-root-move/popup1-fit.png" width="100%">
+
+And after magnificPopup moves it to a different place.
+
+<img src="/assets/images/react-root-move/popup2-fit.png" width="100%">
 
 So I did some research and found this interesting
 [React JS - What if the dom changes](https://groups.google.com/forum/#!msg/reactjs/mHfBGI3Qwz4/6s-eHGEpccwJ)
@@ -561,7 +576,7 @@ var Popup2 = React.createClass({
     return {pretendStateChanged: Date.now() };
   },
   render: function(){
-    return React.DOM.div(null,
+    return React.DOM.div({className: "react-popup-example"},
       React.DOM.a({
         onClick: this.props.onClickHandler,
         href: "javascript:void(0);"
@@ -669,20 +684,24 @@ as separate react root.**
 
 <iframe width="100%" height="250" src="http://jsfiddle.net/LQxy7/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+So this is a useful trick to know.
+
 ## Avoide imperative coding
 
 While working with this code I had one more _"Aha moment"_. I was looking at
 my code and thinking _Why am I calling show()/hide() on popup library in my
-handlers?_ I didn't come to React to keep doing that. The idea was to have
-props and state and transform it into HTML view. Not to call `show()` or
-`hide()` manually. I should be setting state and the component should know
-whether to use 3rd party library to show or hide itself. After all, if I
-ever want change to popup library (most likely) then such change should be
-localized to the popup component. I should not change my handlers because
-I changed my popup library.
+handlers?_ **I didn't come to React to keep doing that. The idea was to have
+props and state and transform it into HTML view**. Not to call `show()` or
+`hide()` manually.
 
-So... Move the component behavior of popup inside `Popup`. And let it decide
-when to show and hide. That's what it would be doing if it were pure React
+I should be setting state and the component should know
+whether to use 3rd party library to show or hide itself. After all, if I
+ever want change the popup library (most likely) then such change should be
+localized to the popup component. **I should not change my handlers because
+I changed my popup library**.
+
+So... **Move the component behavior of popup inside `Popup`. And let it decide
+when to show and hide**. That's what it would be doing if it were pure React
 component. That's what is should be doing when it is not so pure, but
 coupled with external library.
 
@@ -747,7 +766,7 @@ var Popup3 = React.createClass({
     blogpostJQuery.magnificPopup.close();
   },
   render: function(){
-    return React.DOM.div(null,
+    return React.DOM.div({className: "react-popup-example"},
       React.DOM.a({
         onClick: this.props.onClickHandler,
         href: "javascript:void(0);"
@@ -824,7 +843,7 @@ var Popup = React.createClass({
   popUp: function(){
     var self  = this;
     var parent = this.getDOMNode().parentNode;
-    blogpostJQuery.magnificPopup.open({
+    $.magnificPopup.open({
       items: {
         src: parent,
         type: 'inline'
@@ -841,7 +860,7 @@ var Popup = React.createClass({
     });
   },
   closePopUp: function(){
-    blogpostJQuery.magnificPopup.close();
+    $.magnificPopup.close();
   },
   render: function(){
     return React.DOM.div(null,
@@ -855,20 +874,15 @@ var Popup = React.createClass({
   }
 });
 
-var mountedComponent;
-var mountedPopup;
+var mountedComponent = React.renderComponent(
+  Component(),
+  document.getElementById("reactExampleGoesHere").childNodes[1]
+);
 
-blogpostJQuery(function() {
-  mountedComponent = React.renderComponent(
-    Component(),
-    document.getElementById("reactExampleGoesHere").childNodes[1]
-  );
-
-  mountedPopup = React.renderComponent(
-    Popup({onClickHandler: popupClicked}),
-    document.getElementById("reactExampleGoesHere").childNodes[]
-  );
-});
+var mountedPopup = React.renderComponent(
+  Popup({onClickHandler: popupClicked}),
+  document.getElementById("reactExampleGoesHere").childNodes[]
+);
 ```
 
 ```
@@ -878,3 +892,15 @@ blogpostJQuery(function() {
   <div class="mfp-hide"></div>
 </div>
 ```
+
+## Summary
+
+* For the purpose of integrating with other libraries that don't play
+nicely with React remember that you can isolate react component.
+And libraries move it around DOM however they want as long as they don't
+ingerate inside it.
+* Integrate with the external libraries inside a component, not outside them.
+If you ever want to change your solution to pure react or something else, it
+will be localized to that one component.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
