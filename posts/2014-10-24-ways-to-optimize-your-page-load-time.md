@@ -10,7 +10,7 @@ newsletter: :frontend_course
 
 <p>
   <figure>
-    <img src="/assets/images/frontend-performance/performance-fit.jpg" width="100%">
+    <img src="/assets/images/frontend-performance/performance-fit.png" width="100%">
   </figure>
 </p>
 
