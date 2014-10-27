@@ -119,6 +119,79 @@ The difference between `async` and `defer` centers around when the script is exe
 
 # CSS
 
+## `dns-prefetch`
+
+```
+#!html
+<link rel="dns-prefetch" href="https://api.twitter.com" />
+```
+
+`dns-prefetch` technique is very useful when your website links to related host names.
+
+Browsers do not execute DNS lookups on those domains before visiting or starting fetching the content so adding `rel="dns-prefetch"` indicates that particular hostnames should be resolved to their IP addresses.
+
+This is a feature by which browser proactively performs domain name resolution on both links that the user may choose to follow as well as URLs for items referenced by the document, including images, CSS, JavaScript, and so forth.
+
+Prefetching is performed in the background, so that the DNS is likely to already have been resolved by the time the referenced items are actually needed.  This reduces latency when, for example, the user actually clicks a link.
+
+## `preconnect`
+
+`preconnect` is used to indicate origins from which resources will be fetched.
+
+```
+#!html
+<link rel="preconnect" href="//www.example.com">
+```
+
+Initiating an early connection, which includes the DNS lookup, TCP handshake, and optional TLS negotiation, allows the user agent to mask the high costs of connection establishment latency.
+
+## `prefetch`
+
+```
+#!html
+<link rel=prefetch href="URL of top search result">
+```
+
+According to [w3.org](http://www.w3.org/TR/html5/links.html#link-type-prefetch), `rel=prefetch`:
+
+> indicates that preemptively fetching and caching the specified resource is likely to be beneficial, as it is highly likely that the user will require this resource.
+> There is no default type for resources given by the `prefetch` keyword.
+
+## `preload`, `prerender`
+
+`preconnect` is used to indicate origins from which resources will be fetched.
+
+```
+#!html
+<link rel=prefetch href="URL of top search result">
+```
+
+## `subresource`
+
+```
+#!html
+<link rel=prefetch href="URL of top search result">
+```
+
+## Browser support
+
+- Using prefetching is possible in both Firefox and Chrome, and other browsers will probably implement it very soon.
+- If you use prefetching on your website and the visitor browser do not support prefetching, nothing will happen. It is safe to use prefetching as browsers will either implement it, or completely ignore it.
+- Google Chrome do not use the prefetch attribute and use prerender instead. This means that you have to implement both prefetch and prerender, as shown in the example below:
+
+```
+#!html
+<link rel="prefetch" href="http://www.example.com/">  <!-- Firefox -->
+<link rel="prerender" href="http://www.example.com/"> <!-- Chrome  -->
+```
+
+**Documentation:**
+- http://msdn.microsoft.com/en-us/library/ie/dn265039(v=vs.85).aspx
+- http://blogs.msdn.com/b/ie/archive/2013/12/04/getting-to-the-content-you-want-faster-in-ie11.aspx
+- https://docs.google.com/presentation/d/18zlAdKAxnc51y_kj-6sWLmnjl6TLnaru_WH0LJTjP-o/present
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Controlling_DNS_prefetching
+- http://w3c.github.io/resource-hints/
+
 # Bonus
 
 ## GA
