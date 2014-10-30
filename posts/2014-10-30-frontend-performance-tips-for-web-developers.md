@@ -1,8 +1,8 @@
 ---
-title: "Ways to optimize your page load time"
-created_at: 2014-10-30 10:00:00 +0200
+title: "Frontend performance tips for web developers"
+created_at: 2014-10-30 22:25:00 +0200
 kind: article
-publish: false
+publish: true
 author: Kamil Lelonek
 tags: [ 'optimization', 'optimization', 'speed', 'load', 'frontend', 'css', 'html', 'js', 'javascript' ]
 newsletter: :frontend_course
@@ -14,7 +14,7 @@ newsletter: :frontend_course
   </figure>
 </p>
 
-Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.com/watch?v=75Ju0eM5T2c) said that *premature optimization is the root of all evil*. Performance is something that always causes emotions in Rails community. When we need it, we tune up our applications, try different and [new servers](http://www.rubyraptor.org/), use load balancers, speed up our applications by playing with threads and processes, but sometimes we forget about frontend at all. Server side is important too, how if we need to provide fast-responding websites, we have to optimize them in our browsers as well. **In this article I'd like to focus on client side and how to efficiently deliver content to end user.**
+Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.com/watch?v=75Ju0eM5T2c) said that *premature optimization is the root of all evil*. Performance is something that always causes emotions in web community. When we need it, we tune up our applications, try different and [new servers](http://www.rubyraptor.org/), use load balancers, speed up our applications by playing with threads and processes, but sometimes we forget about frontend at all. Server side is important too, how if we need to provide fast-responding websites, we have to optimize them in our browsers as well. **In this article I'd like to focus on client side and how to efficiently deliver content to end user.**
 
 <!-- more -->
 
@@ -32,7 +32,7 @@ Before I start, I'd like to precise what **won't** be mentioned in this article 
 
 # Rationale
 
-When I was preparing to this article I was thinking about something unique, what is not *mostly obvious*, especially for Rails developers. We all know the server side quite well, but sometimes we don't have an opportunity to take care of client side - maybe because we have frontend developers in our team, maybe because we just don't want or like to do frontend at all, maybe because we only maintain server stuff and don't have any use cases on client side or for any other reason when we actually have some fear for touching a code that we are not experts in. A lot of us know how to configure workers, set proper HTTP headers, gzip and cache content and distribute it by CDN, but very few know about improving load processes for client side content, especially styles and scripts.
+When I was preparing to this article I was thinking about something unique, what is not *mostly obvious*, especially for backend developers. We all know the server side quite well, but sometimes we don't have an opportunity to take care of client side - maybe because we have frontend developers in our team, maybe because we just don't want or like to do frontend at all, maybe because we only maintain server stuff and don't have any use cases on client side or for any other reason when we actually have some fear for touching a code that we are not experts in. A lot of us know how to configure workers, set proper HTTP headers, gzip and cache content and distribute it by CDN, but very few know about improving load processes for client side content, especially styles and scripts.
 
 # So what is this about?
 
@@ -157,7 +157,7 @@ You can use `preconnect` to pre-open a new TCP connection so the browser can do 
 ```
 #!html
 <!-- full page -->
-<link rel="prefetch" href="blog.arkency.com/2014/07/why-we-use-react-js-in-our-rails-projects/" />
+<link rel="prefetch" href="http://blog.arkency.com/2014/09/react-dot-js-and-google-charts/" />
 
 <!-- just an image -->
 <link rel="prefetch" href=http://blog.arkency.com/assets/images/react-js-google-charts/react-js-logo-fit.png" />
