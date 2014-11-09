@@ -199,7 +199,7 @@ config.eager_load_paths += %W( #{config.root}/extras )
 
 ## Autoloading is using eager loading paths as well
 
-I doesn't seem so.
+It doesn't seem so. You don't need to write two lines.
 
 If you just use
 
