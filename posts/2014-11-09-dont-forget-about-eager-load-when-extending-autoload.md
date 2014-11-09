@@ -136,7 +136,7 @@ amount. They processes don't know they share the memory. They can't interact wit
 It does not work like threads. It just the operating systems knows that for now instead of copying
 entire memory of master process to fork process, it can omit doing it. At least until they all just
 read from this memory. Check out more [how passenger describes it](https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#spawning_methods_explained)
-or this [digital ocean blgopost](https://www.digitalocean.com/community/tutorials/how-to-optimize-unicorn-workers-in-a-ruby-on-rails-app).
+or this [digital ocean blogpost](https://www.digitalocean.com/community/tutorials/how-to-optimize-unicorn-workers-in-a-ruby-on-rails-app).
 
 But what I want you to focus on is not that `Blog` constant is defined and eagerly loaded (that's nothing
 new since many Rails versions ago). **I want you to notice that `Foo` constant is not loaded in production
