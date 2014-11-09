@@ -124,11 +124,11 @@ is known. Why is that so? Because of eager loading.**
 
 In production **to make things faster Rails is using a slightly different strategy**. Before running our
 app it is requiring `*.rb` files to load as much of our code as possible. This way, when the app
-starts running and serving requests it doesn't spend time looking where are classes are on the file
+starts running and serving requests it doesn't spend time looking where classes are on the file
 system based on the convention but can server the request immediately.
 
 There is also one more reason.
-When the webserver (unciron, passenger, whatever) is using forking model to spawn workers it can leverage
+When the webserver (unicorn, passenger, whatever) is using forking model to spawn workers it can leverage
 [Copy-On-Write](http://en.wikipedia.org/wiki/Copy-on-write) technique for memory managment. Master has
 all the code loaded, workers are created by forking master. **Workers share some of the memory with master**
 as long as it is not changed. It means that workers don't take as much memory as they would be but a lower
@@ -138,7 +138,7 @@ entire memory of master process to fork process, it can omit doing it. At least 
 read from this memory. Check out more [how passenger describes it](https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#spawning_methods_explained)
 or this [digital ocean blgopost](https://www.digitalocean.com/community/tutorials/how-to-optimize-unicorn-workers-in-a-ruby-on-rails-app).
 
-But what I want you to focus on not that `Blog` constant is defined and eagerly loaded (that's nothing
+But what I want you to focus on is not that `Blog` constant is defined and eagerly loaded (that's nothing
 new since many Rails versions ago). **I want you to notice that `Foo` constant is not loaded in production
 environment**.
 
@@ -153,6 +153,7 @@ defined?(Foo)
 
 Why is that a problem? For the opposite reasons why eager loading is a good thing. When `Foo` is
 not eager loaded it means that:
+
 * when there is HTTP request hitting your app which needs to know about `Foo` to get finished, it
 will be **served a bit slower**. Not much for a one class, but still. Slower. It needs to find `foo.rb`
 in the directoriess and load this class.
@@ -161,11 +162,11 @@ won't be used here.
 
 If all that was for one class, that wouldn't be much problem. But with some legacy rails applications
 I've seen them adding lot more directories to `config.autoload_paths`. And **not a single class from
-that directories is eager loaded on production**. That can hurt the performance of few initial requests
-after deploy that will need to dynamicaly load some of the classes. **This can be especially painful
+those directories is eager loaded on production**. That can hurt the performance of few initial requests
+after deploy that will need to dynamicaly load some of these classes. **This can be especially painful
 when you practice continuous deployment. We don't want our customers to be affected by our deploys.**
 
-## How can we fix it
+## How can we fix it?
 
 There is another, less known rails configuration called
 `config.eager_load_paths` that we can use to achieve our goals.
@@ -175,7 +176,7 @@ There is another, less known rails configuration called
 config.eager_load_paths += %W( #{config.root}/extras )
 ```
 
-How will that work on prodction? Let's see.
+How will that work on production? Let's see.
 
 ```
 #!ruby
@@ -285,6 +286,7 @@ explains subdirectories of `app` working.
 You can always verify your settings in the console with
 
 ```
+#!ruby
 Rails.configuration.autoload_paths
 Rails.configuration.eager_load_paths
 ```
@@ -311,7 +313,7 @@ def autoload_paths
 end
 ```
 
-They all delegate to `paths` which is `Rails.config.paths`.
+They all delegate first call to `paths` which is `Rails.config.paths`.
 **Which leads us to a conclusion that we could configure our `extras` directory
 the same way Rails does it.**
 
