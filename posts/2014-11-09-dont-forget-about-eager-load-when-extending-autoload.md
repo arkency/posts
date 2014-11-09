@@ -4,8 +4,16 @@ created_at: 2014-11-09 11:39:06 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'rails', 'eager_load_paths', 'autoload_paths', 'code', 'production', 'development', 'defined' ]
+newsletter: :skip
+newsletter_inside: :arkency_form
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/eager_load_autoload_paths/rails_path-fit.jpg" width="100%">
+  </figure>
+</p>
 
 I am sure you know about [`config.autoload_paths`](http://api.rubyonrails.org/v4.1.7/classes/Rails/Engine/Configuration.html#method-i-autoload_paths).
 A setting which allows you to add aditional directories (besides `app/*` which works out of box) that can be used for placing your `.rb` files.
@@ -28,7 +36,7 @@ or
 config.autoload_paths += %W( #{config.root}/notification_center/lib )
 ```
 
-And it is all cool **except for one thing they might have forget to mention to you.
+And it is all cool **except for one thing they might have forgotten to mention to you.
 How it all works in production and what you can do to make it work better.**
 
 <!-- more -->
@@ -283,7 +291,7 @@ Rails.configuration.eager_load_paths
 
 to be sure.
 
-## `config.paths`
+## `config.paths` and a conclusion
 
 If you look at [`Rails::Engine::Configuration`](https://github.com/rails/rails/blob/v4.1.7/railties/lib/rails/engine/configuration.rb#L78-88)
 a litle bit down the lines, you will see how these methods are defined:
@@ -319,3 +327,5 @@ Isn't that nice?
 Don't confuse _eager loading of code_ with _eager loding of active record objects_
 which [we also happen to have an article about](blog.arkency.com/2013/12/rails4-preloading/).
 The numenclature they use is similar but they mean completely different things.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
