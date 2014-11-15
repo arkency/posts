@@ -132,7 +132,7 @@ When the webserver (unicorn, passenger, whatever) is using forking model to spaw
 [Copy-On-Write](http://en.wikipedia.org/wiki/Copy-on-write) technique for memory managment. Master has
 all the code loaded, workers are created by forking master. **Workers share some of the memory with master**
 as long as it is not changed. It means that workers don't take as much memory as they would be but a lower
-amount. They processes don't know they share the memory. They can't interact with each other that way.
+amount. Their processes don't know they share the memory. They can't interact with each other that way.
 It does not work like threads. It just the operating systems knows that for now instead of copying
 entire memory of master process to fork process, it can omit doing it. At least until they all just
 read from this memory. Check out more [how passenger describes it](https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#spawning_methods_explained)
