@@ -12,7 +12,7 @@ enclosure:
 ---
 
 Andrzej Krzywda & Robert Pankowecki in first episode of
-rails-refactoring.com podcast. We are talking about migrating
+[rails-refactoring.com](http://rails-refactoring.com) podcast. We are talking about migrating
 applications from ruby 1.9 to 2.1 and using gems for form
 and service objects.
 
@@ -22,6 +22,7 @@ and service objects.
 
 ## Links
 
+* [Download episode](<%= url_for(items.find{|i| i.identifier == item.attributes[:enclosure][:identifier] }) %>)
 * [YAML: Syck vs Psych](http://devblog.arnebrasseur.net/2014-02-yaml-syck-vs-psych)
 * [Ruby 2.0 in Detail](http://globaldev.co.uk/2013/03/ruby-2-0-0-in-detail/)
 * [Ruby 2.1 in Detail](http://globaldev.co.uk/2014/05/ruby-2-1-in-detail/)
