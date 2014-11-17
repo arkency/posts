@@ -313,7 +313,7 @@ def autoload_paths
 end
 ```
 
-They all delegate first call to `paths` which is `Rails.config.paths`.
+They all delegate first call to `paths` which is `Rails.configuration.paths`.
 **Which leads us to a conclusion that we could configure our `extras` directory
 the same way Rails does it.**
 
