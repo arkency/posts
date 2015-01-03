@@ -4,6 +4,7 @@ created_at: 2014-12-19 16:40:03 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
+newsletter: :skip
 tags: ['refactoring']
 ---
 
