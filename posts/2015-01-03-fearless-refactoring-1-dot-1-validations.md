@@ -38,7 +38,7 @@ categories (probably more).
     * _"is this Order without empty OrderLines"_
     * _"does the order transaction amount equal amount from sum of order lines"_
 
-So it's not uncommon to have half a dozen unrelated validations in an active record class. And they sometimes lack cohesion when you look at them together. To achieve better clarity and modularity in the application it might be good to start moving them to separate places.
+So it's not uncommon to have half a dozen unrelated validations in an active record class. And they **sometimes lack cohesion** when you look at them together. To achieve better clarity and modularity in the application it might be good to start moving them to separate places.
 
 Maybe the trivial validations are better suited in form objects in your case? Maybe domain checks should be moved into Service objects because our `Order` class shouldn't know and access the `Inventory` related data? Maybe **security validations don't need to be validations at all**? If security constraint is violated raising an exception could be better. Polite users won't see this validation ever anyway. Why be nice to hackers and display them a nice validation message?
 
