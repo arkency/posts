@@ -117,7 +117,6 @@ So when I think about location neighbors I start to wonder:
 
 * should `Location` know about its neighbors, or
 * should something else know what other locations are neighbors of a given location?
-
 That something would be probably be a `Map` for me.
 
 What is the better dependency direction here?
