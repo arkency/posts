@@ -1,11 +1,11 @@
 ---
-title: "Did you miss a higher level concept?"
+title: "It's easy to miss a higher level concept in an app"
 created_at: 2015-01-04 15:28:14 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'foo', 'bar', 'baz' ]
-newsletter: :skip
+newsletter: :arkency_form
 ---
 
 Just yesterday, I finished reading [Understanding the Four Rules of Simple Design](https://leanpub.com/4rulesofsimpledesign)
@@ -184,6 +184,3 @@ system. It was a multi-tenant application.
 Employees don't live in a vacuum either. There are parts of a company hiring them. I was writing
 software for helping companies manage holidays for their employees and there was no concept
 of the `Company` anywhere in the code. That was the higher-level concept I was missing.
-
-
-## Summary?
