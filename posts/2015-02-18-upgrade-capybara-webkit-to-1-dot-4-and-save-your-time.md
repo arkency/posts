@@ -23,7 +23,9 @@ locally just fine for every developer. So I had to dig deeper.
 After initial investigation it turned out that tests which were timing out on CI with
 3 minutes limit of inactivity were passing given enough time (around 15 minutes).
 I used SSH to log into Circle CI instance and tried executing them myself to see that.
-So suddenly, one day, subset of our tests become really slow. How would that happen?
+So...
+
+**Suddenly, one day, subset of our tests become really slow. How would that happen?**
 
 I was stuck trying to figure out the reason when my coworker suggested that
 it might be related to problems with javascript files. At the same time I was
@@ -32,8 +34,8 @@ suggested it might be related to Mixpanel because other customers who used
 Mixpanel experienced problems as well.
 
 So I disabled Mixpanel Javascript, tested it out and everything was working
-correctly. We were already using `capybara-webkit` version `1.3.1` with blacklisting
-feature to prevent exactly such kind of problems:
+correctly. We were already using `capybara-webkit` version `1.3.1` with **blacklisting
+feature** to prevent exactly such kind of problems:
 
 ```
 #!ruby
@@ -51,13 +53,13 @@ Capybara.javascript_driver = :webkit_with_blacklist
 ```
 
 However mixpanel tracking was added later compared to this code.
-So it was never put on the blacklist because we simply forgot.
+So it was never put on the blacklist because _we simply forgot_.
 What a shame.
 
 ## capybara 1.4
 
 But this is where new version of `capybara-webkit` comes into the story. It has a
-really nice feature which allows you to disable any external JS by calling
+really nice feature which allows you to **disable any external JS** by calling
 
 ```
 #!ruby
@@ -65,14 +67,14 @@ page.driver.block_unknown_urls
 ```
 
 That way you don't need to remember in the future to blacklist any
-external dependencies in your project. They make your test much slower
-and unreliable because of possible networking issue. So blacklisting
-as much as possible will save your time when running CI and on debugging
+external dependencies in your project. They make your test much **slower
+and unreliable** because of possible networking issue. So blacklisting
+as much as possible will save you time on executing tests and on debugging
 such issues as mine.
 
 It turned out that we couldn't reproduce the problem
-locally because our developers work from Europe and the mixpanel networking
-issue occured in US. Guess where Circle CI node is located :)
+locally because our developers work from **Europe and the mixpanel networking
+issue occured in US** only. Guess where Circle CI node is located :)
 
 You can put the blocking snippet of code in `before/setup` part of your
 acceptance test, or in `spec_helper` or in a constructor of class that
