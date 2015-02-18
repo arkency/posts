@@ -8,6 +8,12 @@ newsletter: :coaching
 tags: [ 'rails', 'capybara', 'webkit', 'bbq' ]
 ---
 
+<p>
+  <figure>
+    <img src="/assets/images/capybara-webkit/page_driver_block_unknown_urls-fit.jpg" width="100%">
+  </figure>
+</p>
+
 I spent quite some time on Monday debugging an interesting issue. Our full
 stack acceptance tests stopped working on CI. Just CI. Everything was passing
 locally just fine for every developer. So I had to dig deeper.
