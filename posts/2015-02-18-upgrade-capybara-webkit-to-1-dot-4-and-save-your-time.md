@@ -69,7 +69,7 @@ page.driver.block_unknown_urls
 
 That way you don't need to remember in the future to blacklist any
 external dependencies in your project. They make your test much **slower
-and unreliable** because of possible networking issue. So blacklisting
+and unreliable** because of possible networking issues. So blacklisting
 as much as possible will save you time on executing tests and on debugging
 such issues as mine.
 
