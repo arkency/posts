@@ -4,7 +4,7 @@ created_at: 2012-09-21 13:10:02 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: :react_book
 tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas', 'coffeescript', 'rails' ]
 ---
 

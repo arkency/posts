@@ -4,7 +4,7 @@ created_at: 2013-01-02 10:11:52 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: :react_book
 tags: [ 'blog', 'nanoc']
 ---
 

@@ -4,7 +4,7 @@ created_at: 2013-02-18 12:10:11 +0100
 kind: article
 publish: true
 author: Jan Filipowski
-newsletter: :arkency_form
+newsletter: :react_book
 tags: [ 'javascript', 'hexagonal', 'architecture', 'coffeescript', 'hexagonal.js' ]
 ---
 
