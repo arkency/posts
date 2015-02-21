@@ -1,12 +1,19 @@
 ---
-title: "Adding info about videos embedded in a page to a sitemap"
+title: "Adding videos embedded in a page to a sitemap"
 created_at: 2015-02-21 21:50:58 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sitemap', 'video', 'ruby' ]
 newsletter: :coaching
+img: "/assets/images/sitemap-video-ruby-rails/sitemap-fit.jpeg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/sitemap-video-ruby-rails/sitemap-fit.jpeg" width="100%">
+  </figure>
+</p>
 
 One of our customer has a solution that allows them to quickly
 create landing pages that are then used
