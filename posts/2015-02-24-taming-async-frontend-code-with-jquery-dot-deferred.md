@@ -15,7 +15,7 @@ Working with asynchronous code is the bread and butter for frontend developers. 
 
 ## Problem (in the domain way)
 
-I working with fairly big project which have frontend composed of microapps. Such microapp is providing services to build our front-end - it's often a package of React components to build a view, commands which you invoke to perform an action on backend, and the storage - a class which encapsulates our data and reacts if this data is changed (it is similar to Store in Flux terminology). The whole thing is 'glued' together in a dispatcher - you may think of it as a telephone central when we 'route' events from our pieces to another piece.
+I'm working on fairly big project which have frontend composed of microapps. Such microapp is providing services to build our frontend - it's often a package of React components to build a view, commands which you invoke to perform an action on backend, and the storage - a class which encapsulates our data and reacts if this data is changed (it is similar to Store in Flux terminology). The whole thing is 'glued' together in a dispatcher - you may think of it as a telephone central when we 'route' events from our pieces to another piece.
 
 In our app we are making some kind of surveys (called assessments) to rate "assets" in a certain way. There are two roles in the process - an user which is the owner of a given asset (it's often a piece of hardware). Owner can go to a view and perform as many surveys as he want to provide rating of his owned assets. An analyst defines what assets are and who owns them - he also defines criteria of surveys.
 
