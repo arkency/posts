@@ -7,12 +7,12 @@ author: Tomasz Rybczyński
 newsletter: :skip
 newsletter_inside: :react_book
 tags: [ 'rails', 'routes' ]
-img: "/assets/images/routes/splitting-routes.jpg"
+img: "/assets/images/routes/splitting-routes-fit.jpg"
 ---
 
 <p>
   <figure>
-    <img src="/assets/images/routes/splitting-routes.jpg" width="100%">
+    <img src="/assets/images/routes/splitting-routes-fit.jpg" width="100%">
   </figure>
 </p>
 
