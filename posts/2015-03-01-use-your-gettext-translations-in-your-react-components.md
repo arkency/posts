@@ -6,6 +6,7 @@ publish: false
 author: Jakub Kosiński
 tags: [ 'i18n', 'i18next', 'translations', 'react', 'rails', 'gettext' ]
 img: "/assets/images/use-your-gettext-translations-in-your-react-components/flags-fit.jpg"
+newsletter: :react_book
 ---
 
 <p>
