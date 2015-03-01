@@ -40,7 +40,7 @@ Sundays).
 
 _Do i have the skills to do this task? Will I have to use the library of framework
 I am not yet fully comfortable with? How long will it take? Will I end up writing
-code that I am not found of? Maybe even ashamed? Will my coworkers like it? Will it
+code that I am not fond of? Maybe even ashamed? Will my coworkers like it? Will it
 work? Will it deploy without any problems?_
 
 **When we worry we tend to avoid** the job and _procrastinate_. We don't want to be
@@ -60,7 +60,7 @@ _aka_ [*stack the bricks*](https://unicornfree.com/stacking-the-bricks). Your su
 failure don't depend on one big thing. Your success or failure is compound of thousands
 (if not millions) of micro-failures and micro-successes.
 
-It doesn't matter what's your job is. Even if you are working at your dream company
+It doesn't matter what your job is. Even if you are working at your dream company
 (what is it nowdays? Tesla, Apple, Google, Airbnb ...?) your job will still consist of
 some amount of _repetitive tasks_. Can you learn to love it? Could it be **enjoyable** like
 in [games](http://en.wikipedia.org/wiki/Grinding_%28video_gaming%29) ?
@@ -96,7 +96,7 @@ remind myself about it.
 You might even start to believe that you are not helping anyone according to some random
 internet comments.
 But then one year after a not-much-noticed blogpost, someone writes you an email to say
-_thank you_ and asks a very good question regarding the topic.
+_thank you_ and ask a very good question regarding the topic.
 
 Remember, **most of posts that were helpful to your
 readers won't get a retweet, comment or upvote**. I don't jump quickly myself into saying
@@ -115,4 +115,4 @@ I don't want to wait till cancer to get myself
 into doing something meaningful. This wristband actually changed something in me for the
 better. I do more. Now.
 
-That's it, going back to writing [a book](/beginners-guide-to-starting-with-react-in-rails/) .
+That's it, going back to writing [a book](/beginners-guide-to-starting-with-react-in-rails/).
