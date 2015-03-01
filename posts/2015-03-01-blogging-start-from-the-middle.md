@@ -2,7 +2,7 @@
 title: "Blogging - start from the middle"
 created_at: 2015-03-01 13:10:34 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 ---
 
