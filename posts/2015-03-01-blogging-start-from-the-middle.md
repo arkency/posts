@@ -12,6 +12,8 @@ Today, I’d like to teach you a technique which reverses the situation - the bl
 
 <!-- more -->
 
+**Start from the middle**
+
 I call this technique - “**start from the middle**”. The point is to start your post with the main message. Find the MVP of your blog post. 
 
 What’s the minimal content to write and still get the message through? 
@@ -58,7 +60,7 @@ Keep your TODO list for the blog post. Prioritise the TODO items. Start from the
 * screenshots of a blog post in progress
 * blog post header picture
 
-As you see, I’ve managed to do almost all of them. I didn’t finish the last one - dealing with screenshots takes more minutes and I put it at the end - no time available for that.
+As you see, I’ve managed to do almost all of them. I didn’t finish the last ones - dealing with screenshots and pictures takes more minutes and I put it at the end - no time available for that.
 
 BTW, It’s an interesting situation. Now, when I present you the list of points, you see that this post is unfinished. What if I didn’t present the list to you? The thing is, as authors we know more than our readers. It’s only our mind that makes us think it’s unfinished - because we started with some bigger vision. Our readers usually don’t know the vision.
 
