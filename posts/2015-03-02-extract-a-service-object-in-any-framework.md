@@ -4,13 +4,14 @@ created_at: 2015-03-02 15:10:14 +0100
 kind: article
 publish: false
 author: Andrzej Krzywda
+newsletter: :skip
 ---
 
 Extracting a service object is a natural step in any kind of framework-dependent application. In this blog post, I’m showing you an example from Nanoc, a blogging framework.
 
 <!-- more -->
 
-#### Framework calls you
+#### The framework calls you
 
 The difference between a library and a framework is that you call the library, while the framework calls you.
 
@@ -18,7 +19,7 @@ This slight difference may cause problems in applications being too dependent on
 
 The ideal situation seems to be when your code is separated from the framework code.
 
-The “Extract a service object” refactoring is a way of dealing with the situation. In short, you want to separate your code from the framework code. 
+The “Extract a service object” refactoring is a way of dealing with the situation. In short, you want to **separate your code from the framework code**. 
 
 A typical example is a Rails controller action. An action is a typical framework building block. It’s responsible for several things, including all the HTTP-related features like rendering html/json or redirecting.
 Everything else is probably your application code and there are gains in extracting it into a new class.
@@ -153,7 +154,9 @@ I've created a new class and passed the arguments into it. While doing it, I've 
 
 There's more we could do at some point, like isolating from the file system. However, for this refactoring exercise, this effect is enough. It took me about 10 minutes to do this refactoring. I don't need to further changes now, it's OK to do it in small steps.
 
-If you're interested in such refactoring, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com). This book consists of 3 parts: 
+It's worth to consider this techniqe whenever you use any framework, be it Rails, Sinatra, nanoc or anything else that calls you. **Isolate early**.
+
+If you're interested in such refactorings, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com). This book consists of 3 parts: 
 
 * the refactoring recipes, 
 * the bigger examples,  
