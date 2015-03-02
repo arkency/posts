@@ -14,9 +14,11 @@ Extracting a service object is a natural step in any kind of framework-dependent
 
 The difference between a library and a framework is that you call the library, while the framework calls you.
 
-This slight difference may cause problems in applications being too dependent on the framework. 
+This slight difference may cause problems in applications being too dependent on the framework. Another potential problem is when your app lives inside the framework code.
 
-The “Extract a service object” refactoring is a way of dealing with the situation. In short, you want to extract everything that is not framework-related to a new class. At the same time, you keep all the framework-related code in the previous place.
+The ideal situation seems to be when your code is separated from the framework code.
+
+The “Extract a service object” refactoring is a way of dealing with the situation. In short, you want to separate your code from the framework code. 
 
 A typical example is a Rails controller action. An action is a typical framework building block. It’s responsible for several things, including all the HTTP-related features like rendering html/json or redirecting.
 Everything else is probably your application code and there are gains in extracting it into a new class.
@@ -147,9 +149,15 @@ end
 ````
 
 
-I've created a new class and passed the arguments into it. The new class is not aware of nanoc in any way. While doing it, I've also extracted some small method to hide implementation details. Thanks to that the main algorith is a bit more clear.
+I've created a new class and passed the arguments into it. While doing it, I've also extracted some small methods to hide implementation details. Thanks to that the main algorith is a bit more clear.
 
-There's more we could do at some point, like isolating from the file system. However, for this exercise, this effect is enough.
+There's more we could do at some point, like isolating from the file system. However, for this refactoring exercise, this effect is enough. It took me about 10 minutes to do this refactoring. I don't need to further changes now, it's OK to do it in small steps.
 
-If you're interested in such refactoring, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com). This book consists of 3 parts - the refactoring recipes, the bigger examples and the "theory" chapter. Thanks to that you not only learn how to apply a refactoring but also know what are the future building blocks, like service objects, repositories, form objects and adapters.
+If you're interested in such refactoring, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com). This book consists of 3 parts: 
+
+* the refactoring recipes, 
+* the bigger examples,  
+* the "theory" chapter
+
+Thanks to that you not only learn how to apply a refactoring but also know what are the future building blocks. The building blocks include service objects, repositories, form objects and adapters.
 
