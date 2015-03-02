@@ -29,8 +29,8 @@ The command is called “create-post” and it’s just a convenience function t
 
 Here is the code:
 
-#!html
-<pre><code>#!ruby
+```
+#!ruby
 require 'stringex'
 
 usage       'create-post [options] title'
@@ -60,9 +60,6 @@ publish: false
 author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]
 ---
-FIXME: Place post lead here.
-<!-- more -->
-FIXME: Place post body here.
 TEMPLATE
 
   unless File.exist?(path)
@@ -75,14 +72,14 @@ TEMPLATE
 
   puts "URL: http://blog.arkency.com/#{date.year}/#{date.month}/#{title.to_url}"
 end
-</code></pre>
+````
 
 It was serving us well for over 3 years without any change. I'm extracting it to a service object, mostly as an example to show how it would work. 
 
 #### After
 
-#!html
-<pre><code>#!ruby
+````
+#!ruby
 require 'stringex'
 
 usage       'create-post [options] title'
@@ -144,17 +141,10 @@ author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]
 ---
 
-FIXME: Place post lead here.
-
-<!-- more -->
-
-FIXME: Place post body here.
-
 TEMPLATE
   end
 end
-
-</code></pre>
+````
 
 
 I've created a new class and passed the arguments into it. The new class is not aware of nanoc in any way. While doing it, I've also extracted some small method to hide implementation details. Thanks to that the main algorith is a bit more clear.
