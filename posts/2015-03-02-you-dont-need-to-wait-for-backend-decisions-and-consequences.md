@@ -1,11 +1,25 @@
 ---
-title: "Handling user action effects on dynamic frontends"
+title: "You don't need to wait for your backend: Decisions and Consequences"
 created_at: 2015-03-02 17:15:52 +0100
 kind: article
 publish: false
 author: Marcin Grzywaczewski
 tags: [ 'frontend', 'architecture' ]
+img: "/assets/images/you-dont-need-to-wait-for-backend-decisions-and-consequences/img-fit.jpg"
+newsletter: :react_book
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/you-dont-need-to-wait-for-backend-decisions-and-consequences/img-fit.jpg" width="100%">
+    <details>
+      <a href="https://www.flickr.com/photos/56218409@N03/15071173824">Photo</a> 
+      remix available thanks to the courtesy of
+      <a href="https://www.flickr.com/photos/56218409@N03">mripp</a>.
+      <a href="http://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+    </details>
+  </figure>
+</p>
 
 **As front-end developer your part is often to provide the best possible experience for your application’s end-users**. In standard Rails application everything is rather easy - user clicks on the submit button and waits for an update. User then sees fully updated data. **Due to async nature of dynamic front-ends it is often missed what happens in the ‘mid-time’ of your user’s transaction** - button is clicked and user waits for some kind of notification that his task is completed. What should be displayed? What if a failure occurs? There are at least two decisions you can take to answer those questions.
 
@@ -73,20 +87,20 @@ Here you wait for your `addTask` command to finish - it basically makes a POST r
     ```
     #!coffeescript
 
-    TRANSFORM_TYPES = ['PUT', 'POST', 'DELETE']
+    UPDATE_TYPES = ['PUT', 'POST', 'DELETE']
     $.activeTransforms = 0
 
     $(document).ajaxSend (e, xhr, settings) ->
-        return unless settings.type?.toUpperCase() in TRANSFORM_TYPES
+        return unless settings.type?.toUpperCase() in UPDATE_TYPES
         $.activeTransforms += 1
 
     $(document).ajaxComplete (e, xhr, settings) ->
-        return unless settings.type?.toUpperCase() in TRANSFORM_TYPES
+        return unless settings.type?.toUpperCase() in UPDATE_TYPES
         $.activeTransforms -= 1
     ```
 
     We bind to `ajaxSend` and `ajaxComplete` “events” to keep track of number of active AJAX transactions. You can then query this variable to provide some kind of visual feedback. One of the simplest is to provide an alert when the user wants to leave a page:
-    <div style="font-size: 10px">
+
     ```
     #!coffeescript
       $(window).on 'beforeunload', ->
@@ -94,7 +108,6 @@ Here you wait for your `addTask` command to finish - it basically makes a POST r
           '''There are some pending network requests which
              means closing the page may lose unsaved data.'''
     ```
-    </div>
 
 ## Decision #2: Update, then wait for backend.
 
