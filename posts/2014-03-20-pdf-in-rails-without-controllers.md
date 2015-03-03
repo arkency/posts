@@ -143,3 +143,22 @@ controller methods that are not used to deal with HTTP requests-response loop,
 think about extracting them into a separate object and giving a proper name. Even if
 they relay on Rails controllers features, taking from Rails what you just need,
 might be easier than you think.
+
+## Update for Rails 4.1
+
+The list of modules to include is a little different:
+
+```
+#!ruby
+class PdfRenderer < ActionController::Metal
+  include ActionView::ViewPaths
+  include AbstractController::Rendering
+  include AbstractController::Helpers
+  include ActionController::Helpers
+  include ActionView::Rendering
+  include ActionView::Layouts
+  include ActionController::Rendering
+  include ActionController::Renderers
+  include ActionController::Renderers::All
+end
+```
