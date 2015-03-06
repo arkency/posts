@@ -2,7 +2,7 @@
 title: "You get feature toggle for free in event-driven systems"
 created_at: 2015-03-06 15:01:01 +0100
 kind: article
-publish: false
+publish: true
 author: Jakub Rozmiarek
 newsletter: :arkency_form
 tags: [ 'events', 'eventstore', 'event-driven' ]
