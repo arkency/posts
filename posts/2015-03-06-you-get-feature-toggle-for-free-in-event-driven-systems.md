@@ -4,6 +4,7 @@ created_at: 2015-03-06 15:01:01 +0100
 kind: article
 publish: false
 author: Jakub Rozmiarek
+newsletter: :arkency_form
 tags: [ 'events', 'eventstore', 'event-driven' ]
 ---
 Event-driven programming has many advantages. One of my favourite ones is a fact that by design it provides feature toggle functionality.
@@ -11,7 +12,7 @@ In one of projects we've been working on we introduced an event store. This allo
 
 <!-- more -->
 
-Below you can see an example OrderEvents::OrderCompleted event that is published after an order has been completed:
+Below you can see an example of `OrderEvents::OrderCompleted` event that is published after an order has been completed:
 
 ```
 #!ruby
