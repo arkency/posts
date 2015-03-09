@@ -2,7 +2,7 @@
 title: "Configurable dependencies in Angular.js"
 created_at: 2015-03-09 15:09:17 +0100
 kind: article
-publish: false
+publish: true 
 author: Marcin Grzywaczewski
 tags: [ 'angularjs', 'frontend' ]
 img: '/assets/images/angular-configurable-di/img-fit.jpg'
