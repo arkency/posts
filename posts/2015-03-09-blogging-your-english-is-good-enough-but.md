@@ -2,7 +2,7 @@
 title: "Blogging: your English is good enough, but"
 created_at: 2015-03-09 15:21:13 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
