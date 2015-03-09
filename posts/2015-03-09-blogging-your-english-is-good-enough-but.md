@@ -4,7 +4,7 @@ created_at: 2015-03-09 15:21:13 +0100
 kind: article
 publish: false
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :skip
 ---
 
 English may be one of the reasons you’re not blogging. Here are some tips to change this thinking. TLDR: You English is good enough, don’t worry.
