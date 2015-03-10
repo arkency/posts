@@ -2,7 +2,7 @@
 title: "Fast introduction to Event Sourcing for Ruby programmers"
 created_at: 2015-03-09 23:41:01 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 newsletter: :arkency_form
 tags: [ 'domain', 'event' ]
@@ -25,8 +25,8 @@ These events represent modifications of our model. If we want to recreate curren
 
 ## Domain Events
 
-Domain Events are the essence of whole ES concept. We use them to capture changes on model’s state. Events are something that has had already happened. Each event represent one step  of our model’s life. 
-The most important feature is that every Domain Event is immutable. Events are immutable because they represent domain actions that took place in the past. We should not modify persisted event.
+Domain Events are the essence of whole ES concept. We use them to capture changes on model’s state. Events are something that has had already happened. Each event represent one step of our model’s life. 
+The most important feature is that every Domain Event is immutable. This is because they represent domain actions that took place in the past. We should not modify persisted event.
 Every change has to be reflected in model's state.
 
 Events should be named as verb in past tense. The name should represent `Ubiquitous Language` used in project. For example `CustomerCreated`, `OrderAccepted` and so on. 
