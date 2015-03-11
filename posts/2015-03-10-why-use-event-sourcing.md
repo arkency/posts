@@ -34,12 +34,16 @@ There is a lot of reasons to use Event Sourcing. When you browse through Greg Yo
 
 > Every database on a planet sucks. And they all suck it their own unique original ways.
 
-Greg Young, Polyglot Data talk
+<p class="quote-by">Greg Young, Polyglot Data talk</p>
 
 For me the biggest advantage is that I could have different data models generated based on domain events stored in Event Store. Having an event log allows us to define new models, appropriate for the new business requirements. That could be not only tables in relational database. That could be anything. That could be a graph data model to store relations between contractors in your system with easy way to find how the are connected to each other. That could be a document database. That could
 be a static HTML page if you are building newest and fastest (or of course most popular) blogging platform :)
 
-As the events represent every action the system has undertaken any possible model describing the system can be built from the events.
+> As the events represent every action the system has undertaken any possible model describing the system can be built from the events.
+
+<p class="quote-by">
+  <a href="http://docs.geteventstore.com/introduction/event-sourcing-basics">Event Sourcing Basics</a> at Event Store documentation
+</p>
 
 You might not know future requirements for your application but having an event log you could build a new model that hopefully will satisfy emerging business requirements. And one more thing… that won’t be that hard, no long migrations, no trying to guess when something has changed. Just replay all your events and build new model based on the data stored in them.
 
