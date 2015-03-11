@@ -2,7 +2,7 @@
 title: "Why use Event Sourcing"
 created_at: 2015-03-10 21:35:01 +0100
 kind: article
-publish: false
+publish: true
 author: Mirosław Pragłowski
 tags: [ 'domain', 'event', 'eventsourcing' ]
 newsletter: :skip
@@ -25,9 +25,9 @@ There is a lot of reasons to use Event Sourcing. When you browse through Greg Yo
 * It is not a new concept, a lot of domains in real word works like that. Check out your bank statement. It’s not the current state - it is log of domain events. Or if you are not still convinced talk to your accountant ;)
 * By replaying an event we could get a state of an object (or let’s use correct term here: aggregate) for any moment in time. That could greatly help us to understand our domain, why things changed and debug really nasty errors.
 * There is no coupling between the representation of current state in the domain and in storage.
-* Append-only model storing events is a far easier model to scale. And by having a read model (please see articles about CQRS, will not explain it here) we could have best of both worlds. Read side optimised for fast queries and write side highly optimised for writes (and since there is no delete here, it could really be fast writes).
+* Append-only model storing events is a far easier model to scale. And by having a read model we could have best of both worlds. Read side optimised for fast queries and write side highly optimised for writes (and since there is no delete here, it could really be fast writes).
 * Beside the “hard” data we also store user’s intentions. The order of events stored could be used to analyse what user was really doing.
-* We are avoiding impedance mismatch between object oriented and relational world (unless you still have your domain in Active Record - if yes sorry, go learn why it is not the best idea)
+* We are avoiding impedance mismatch between object oriented and relational world.
 * Audit log for free. And this time the audit log really has all the changes (remember there is no change of state if there is an event for that).
 
 <!-- more -->
