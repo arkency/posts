@@ -26,7 +26,7 @@ I decided to create this two-part tutorial to bring the idea closer to you. I wi
 All you have to do is download the latest release from here and run one command. That is all. The Event Store runs as a server and you can connect to it over HTTP or using one of the client APIs.  
 If It run you can access to the dashboard on http://127.0.0.1:2113 (default credentials login: admin, pass: changeit). You will find a lot of useful informations there but it is material for another post ;).
 
-<img src="/assets/images/events/eventstore-dashboard-fit.png" width="45%">
+<img src="/assets/images/events/eventstore-dashboard-fit.png">
 
 ## Communication with ES
  

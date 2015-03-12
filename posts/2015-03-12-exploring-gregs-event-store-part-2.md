@@ -153,8 +153,8 @@ curl 'http://127.0.0.1:2113/streams/helloworld' -H 'Accept: application/json'
 } 
 ```
 
-You can notice here couple interesting things. You get here all basic information about stream like id, author, update date and unique uri. The stream is also pageable. You get links to pages. You also don’t get information about events, only links to each event. 
-If you want to get events details you have to go over each entry and follow link. In my case It will be:
+You can notice here couple interesting things. You get here all basic information about the stream like id, author, update date and unique uri. The stream is also pageable. You get links to pages. You also don’t get information about events, only links to each event. 
+If you want to get event's details you have to go over each entry and follow link. In my case It will be:
 
 ```
 curl 'http://127.0.0.1:2113/streams/helloworld/1' -H 'Accept: application/json'
@@ -166,8 +166,8 @@ curl 'http://127.0.0.1:2113/streams/helloworld/1' -H 'Accept: application/json'
 
 ## Using projections
 
-Projections allow us to run functions over streams. It is interesting method to collect data from different streams to build datamodels for our app. There is Web UI to manage projection available at `127.0.0.1:2113/projections`. There you can create projection with specific name and source code. After all you can call it using unique URL. Lets check following examples.
-A the beginning we have to prepare some sample events. I’ve following events to stream:
+Projections allow us to run functions over streams. It is interesting method to collect data from different streams to build data models for our app. There is Web UI to manage projection available at `127.0.0.1:2113/projections`. You can create there projection with specific name and source code. After all you can call it using unique URL. Lets check following examples.
+At the beginning we have to prepare some sample events. I’ve added following events to stream:
 
 ```
 [{
