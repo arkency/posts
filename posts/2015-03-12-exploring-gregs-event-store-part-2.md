@@ -193,7 +193,7 @@ At the beginning we have to prepare some sample events. I’ve added following e
 }]
 ```
 
-I created also simple projection to count every type of event in my stream. I called it `$counter`. It is important to start name of projection from $. If you don’t do that projection won’t start.
+I also created simple projection to count every type of event in my stream. I called it `$counter`. It is important to start name of projection from $. If you don’t do that projection won’t start.
 
 ```
 fromStream("orders")
@@ -266,7 +266,7 @@ curl 'http://127.0.0.1:2113/projection/$counter/state' -H 'Accept: application/j
 
 ## Conclusion
 
-That was great experience to work with Greg's Event Store. Although using cURL isn't the best method to experience the ES. We have to create own ruby tool to work with Greg's Event Store. After all we are rubyists, right?
+It was great experience to work with Greg's Event Store. Although using cURL isn't the best method to experience the ES. We have to create own ruby tool to work with Greg's Event Store. After all we are rubyists, right?
 
 
 

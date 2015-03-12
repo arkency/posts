@@ -16,7 +16,7 @@ img: "/assets/images/events/store-fit.jpg"
 </p>
 
 Event Store is a domain specific database for people who use the Event Sourcing pattern in their apps. It is a functional database which based on a publish-subscribe messages pattern. Why functional? 
-It uses a functional language as its query language. In ES It is the Javascript. I will say something more about this later. The lead architect and designer of Event Stare is Greg Young who provides commercial support for the database.
+It uses a functional language as its query language. In ES It is the Javascript. I will say something more about this later. The lead architect and designer of Event Store is Greg Young who provides commercial support for the database.
 I decided to create this two-part tutorial to bring the idea closer to you. I will describe issues related to Event Store in the first part and I will present some simple examples of the ES usage in the second one.
 
 <!-- more -->
@@ -24,13 +24,13 @@ I decided to create this two-part tutorial to bring the idea closer to you. I wi
 ## How to get it?
 
 All you have to do is download the latest release from here and run one command. That is all. The Event Store runs as a server and you can connect to it over HTTP or using one of the client APIs.  
-If It run you can access to the dashboard on http://127.0.0.1:2113 (default credentials login: admin, pass: changeit). You will find a lot of useful informations there but it is material for another post ;).
+If It run you can access to the dashboard on http://127.0.0.1:2113 (default credentials login: admin, pass: changeit). You will find a lot of useful information there but it is material for another post ;).
 
 <img src="/assets/images/events/eventstore-dashboard-fit.png">
 
 ## Communication with ES
  
-You can connect to an Event Store over TCP or HTTP. Which one is better? Of course It depends on your needs. TCP is strongly recommended for a high-performance environment. There is also a latency increase when using HTTP. We will push events to the subscribers in TCP variant. 
+You can connect to an Event Store over TCP or HTTP. Which one is better? Of course it depends on your needs. TCP is strongly recommended for a high-performance environment. There is also a latency increase when using HTTP. We will push events to the subscribers in TCP variant. 
 Using HTTP subscribers will pool to check events availability what is less effective. Additionally the number of supported writes is higher in case of TCP. In Event Store documentation we can find following comparison:
 
 `„At the time of writing, standard Event Store appliances can service around 2000 writes/second over HTTP compared to 15,000-20,000/second over TCP!”`
