@@ -9,6 +9,12 @@ newsletter: :arkency_form
 img: "/assets/images/events/warehouse-fit.jpg"
 ---
 
+<p>
+  <figure>
+    <img src="/assets/images/events/warehouse-fit.jpg" width="100%">
+  </figure>
+</p>
+
 In this part I will show you basic operations on the Event Store. 
 
 <!-- more -->
