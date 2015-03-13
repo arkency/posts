@@ -1,8 +1,8 @@
 ---
-title: "Exploring Greg's Event Store. Part 1"
+title: "Explaining Greg's Event Store"
 created_at: 2015-03-12 13:58:01 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore', 'greg' ]
 newsletter: :arkency_form
@@ -15,7 +15,7 @@ img: "/assets/images/events/store-fit.jpg"
   </figure>
 </p>
 
-Event Store is a domain specific database for people who use the Event Sourcing pattern in their apps. It is a functional database which based on a publish-subscribe messages pattern. Why functional? 
+Event Store is a domain specific database for people who use the [Event Sourcing](/2015/03/fast-introduction-to-event-sourcing-for-ruby-programmers/) pattern in their apps. It is a functional database which based on a publish-subscribe messages pattern. Why functional? 
 It uses a functional language as its query language. In ES It is the Javascript. I will say something more about this later. The lead architect and designer of Event Store is Greg Young who provides commercial support for the database.
 I decided to create this two-part tutorial to bring the idea closer to you. I will describe issues related to Event Store in the first part and I will present some simple examples of the ES usage in the second one.
 
@@ -23,7 +23,7 @@ I decided to create this two-part tutorial to bring the idea closer to you. I wi
 
 ## How to get it?
 
-All you have to do is download the latest release from here and run one command. That is all. The Event Store runs as a server and you can connect to it over HTTP or using one of the client APIs.  
+All you have to do is download the latest release from [here](https://geteventstore.com/downloads/) and run one command. That is all. The Event Store runs as a server and you can connect to it over HTTP or using one of the client APIs.  
 If It run you can access to the dashboard on http://127.0.0.1:2113 (default credentials login: admin, pass: changeit). You will find a lot of useful information there but it is material for another post ;).
 
 <img src="/assets/images/events/eventstore-dashboard-fit.png">

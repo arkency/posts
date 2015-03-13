@@ -1,8 +1,8 @@
 ---
-title: "Exploring Greg's Event Store. Part 2"
+title: "Your solid tool for event sourcing - EventStore examples"
 created_at: 2015-03-12 14:01:17 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore', 'greg' ]
 newsletter: :arkency_form
@@ -30,7 +30,8 @@ curl -i -d @/Users/tomek/test.txt "http://127.0.0.1:2113/streams/helloworld" -H 
 ```
 HTTP/1.1 201 Created
 Access-Control-Allow-Methods: POST, DELETE, GET, OPTIONS
-Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-PINGOTHER, Authorization, ES-LongPoll, ES-ExpectedVersion, ES-EventId, ES-EventType, ES-RequiresMaster, ES-HardDelete, ES-ResolveLinkTo, ES-ExpectedVersion
+Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-PINGOTHER, Authorization, ES-LongPoll, ES-ExpectedVersion, ES-EventId, ES-EventType, 
+ES-RequiresMaster, ES-HardDelete, ES-ResolveLinkTo, ES-ExpectedVersion
 Access-Control-Allow-Origin: *
 Access-Control-Expose-Headers: Location, ES-Position
 Location: http://127.0.0.1:2113/streams/helloworld/0
@@ -64,7 +65,8 @@ curl -i -d @/Users/tomek/test.txt "http://127.0.0.1:2113/streams/hello" -H „Co
 ```
 HTTP/1.1 201 Created
 Access-Control-Allow-Methods: POST, DELETE, GET, OPTIONS
-Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-PINGOTHER, Authorization, ES-LongPoll, ES-ExpectedVersion, ES-EventId, ES-EventType, ES-RequiresMaster, ES-HardDelete, ES-ResolveLinkTo, ES-ExpectedVersion
+Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-PINGOTHER, Authorization, ES-LongPoll, ES-ExpectedVersion, ES-EventId, 
+ES-EventType, ES-RequiresMaster, ES-HardDelete, ES-ResolveLinkTo, ES-ExpectedVersion
 Access-Control-Allow-Origin: *
 Access-Control-Expose-Headers: Location, ES-Position
 Location: http://127.0.0.1:2113/streams/helloworld/1
