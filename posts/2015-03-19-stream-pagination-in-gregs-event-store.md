@@ -98,18 +98,18 @@ There are twenty entries on each page by default. You can modify the number of e
 I think about feed paging as a pagination on a website. It is more intuitive for me and It allows to understand the whole concept easier. 
 In the case of my example iterating **backward** it will looks following:
 
-<img src="/assets/images/events/backward-fit.png">
+<img src="/assets/images/events/backward-fit.png"  width="100%">
 
 The situation where we walk **forward** over whole stream:
 
-<img src="/assets/images/events/forward-fit.png">
+<img src="/assets/images/events/forward-fit.png"  width="100%">
 
 ## Summary
 
 Important things to remember:
 
 1. Events are always sorted descending on a page.
-2. You can specify the number of events on a page modifying appropriate url.
+2. You can specify the number of events on a page modifying appropriate url. There is twenty events per page by default.
 3. Event is always added to the beginning (head) of the stream.
 
 
