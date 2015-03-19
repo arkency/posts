@@ -15,7 +15,7 @@ img: "/assets/images/tracking-down-unused-templates/countryside-fence-field-fit.
   </figure>
 </p>
 
-Few days ago, my colleague raised _#sci-fi_ idea. **Maybe we could somehow track templates rendered in application to track down which ones aren't used?** Maybe we could have **metrics** how often they're used? Metrics? That sounds like gathering data using Chillout.io. In other project at which I work we already have Chillout gem installed and used.
+Few days ago, my colleague raised _#sci-fi_ idea. **Maybe we could somehow track templates rendered in application to track down which ones aren't used?** Maybe we could have **metrics** how often they're used? Metrics? That sounds like gathering data using Chillout.io. We have already installed Chillout gem in other project I work at.
 
 <!-- more -->
 
@@ -153,4 +153,4 @@ end
 
 That's how we are tracking unused templates in our app. Obviously we can't be 100% sure that templates which have counter equal to 0 aren't used anywhere. Maybe this template is just very rarely used? But it's also very useful information. Now we can discuss that with client. Maybe maintenance of the feature using that template is not worth it? Maybe we could drop it?
 
-**Note that you could make this not only by using chillout. One of my colleagues did this using plain redis hash. Take a look on Active Support Instrumentation and use your creativity.**
+**Note that you could make this not only by using chillout. One of my colleagues did this using plain redis hash. Take a look on Active Support Instrumentation and use it creativly.**
