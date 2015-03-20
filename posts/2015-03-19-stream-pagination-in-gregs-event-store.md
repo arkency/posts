@@ -69,19 +69,61 @@ curl 'http://127.0.0.1:2113/streams/paginationtest' -H 'Accept: application/json
     {
       "title": "42@paginationtest",
       "id": "http://127.0.0.1:2113/streams/paginationtest/42",
-      #OTHER ATTRIBUTES
+      "updated": "2015-03-15T12:00:00.056484Z",
+      "author": {
+        "name": "EventStore"
+      },
+      "summary": "rybex",
+      "links": [
+        {
+          "uri": "http://127.0.0.1:2113/streams/paginationtest/42",
+          "relation": "edit"
+        },
+        {
+          "uri": "http://127.0.0.1:2113/streams/paginationtest/42",
+          "relation": "alternate"
+        }
+      ]
     },
     {
       "title": "41@paginationtest",
       "id": "http://127.0.0.1:2113/streams/paginationtest/41",
-      #OTHER ATTRIBUTES
+      "updated": "2015-03-15T11:49:02.709696Z",
+      "author": {
+        "name": "EventStore"
+      },
+      "summary": "rybex",
+      "links": [
+        {
+          "uri": "http://127.0.0.1:2113/streams/paginationtest/41",
+          "relation": "edit"
+        },
+        {
+          "uri": "http://127.0.0.1:2113/streams/paginationtest/41",
+          "relation": "alternate"
+        }
+      ]
     },
     (…) #OTHER EVENTS
    {
-      "title": "23@paginationtest",
-      "id": "http://127.0.0.1:2113/streams/paginationtest/23",
-      #OTHER ATTRIBUTES
-    }
+     "title": "23@paginationtest",
+     "id": "http://127.0.0.1:2113/streams/paginationtest/23",
+     "updated": "2015-03-15T11:41:17.481024Z",
+     "author": {
+       "name": "EventStore"
+     },
+     "summary": "rybex",
+     "links": [
+       {
+         "uri": "http://127.0.0.1:2113/streams/paginationtest/23",
+         "relation": "edit"
+       },
+       {
+         "uri": "http://127.0.0.1:2113/streams/paginationtest/23",
+         "relation": "alternate"
+       }
+     ]
+   }
 ]
 }
 ```
