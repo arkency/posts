@@ -22,7 +22,7 @@ You can find some information about this feature in main Event Store’s [docume
 
 ## How It works
 
-When you get stream data you receive information about links. Each link leads to different a feed page which contains specified number of events. For the purposes of this post I created `paginationtest' stream with 43 events inside. 
+When you get stream data you receive information about links. Each link leads to different a feed page which contains specified number of events. For the purposes of this post I created `paginationtest` stream with 43 events inside.
 (Creation of events I described in this [post](/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/)). Lets make a fast request to get some data:
 
 ```
@@ -86,7 +86,7 @@ curl 'http://127.0.0.1:2113/streams/paginationtest' -H 'Accept: application/json
 }
 ```
 
-Ok what we have here? I called here the stream’s **head**. Head page contains the latest stream's events. As you can see events (aka entries) are sorted **descending**. It is very important information that entries are always sorted desc on an every page. 
+Ok what we have here? I called here the stream’s **head**. Head page contains the latest stream's events. As you can see events (aka entries) are sorted **descending**. It is very important information that entries are always sorted desc on an every page.
 There are twenty entries on each page by default. You can modify the number of events per page changing specified link. We do have also the above-mentioned links. I will try to describe them al little bit:
 
 1. `self` and `first` - both links point the head of stream. The difference between them is that in the second version you are able to define the number of entries per page.
@@ -95,7 +95,7 @@ There are twenty entries on each page by default. You can modify the number of e
 4. `previous` - leads to a next page with newer events
 5. `metadata` - this url allows us to read the metadata associated to stream
 
-I think about feed paging as a pagination on a website. It is more intuitive for me and It allows to understand the whole concept easier. 
+I think about feed paging as a pagination on a website. It is more intuitive for me and allows to understand the whole concept easier.
 In the case of my example iterating **backward** it will looks following:
 
 <img src="/assets/images/events/backward-fit.png"  width="100%">
