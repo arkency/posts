@@ -137,21 +137,57 @@ There are twenty entries on each page by default. You can modify the number of e
 4. `previous` - leads to a next page with newer events
 5. `metadata` - this url allows us to read the metadata associated to stream
 
-I think about feed paging as a pagination on a website. It is more intuitive for me and allows to understand the whole concept easier.
-In the case of my example iterating **backward** it will looks following:
+I think about feed paging as a pagination on a website. It is more intuitive for me and it allows to understand the whole concept easier.
+If we would like to get all entries from newest we have to iterate **backward** over the stream. In the case of my example iterating will looks following:
 
-<img src="/assets/images/events/backward-fit.png"  width="100%">
+First step:
 
-The situation where we walk **forward** over whole stream:
+<a href="/assets/images/events/backward_first.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/backward_first-fit.png" />
+</a>
 
-<img src="/assets/images/events/forward-fit.png"  width="100%">
+Second step:
+
+<a href="/assets/images/events/backward_second.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/backward_second-fit.png" />
+</a>
+
+Third step:
+
+<a href="/assets/images/events/backward_third.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/backward_third-fit.png" />
+</a>
+
+To get all events starting from the begin we have to walk **forward** over whole stream:
+
+First step:
+
+<a href="/assets/images/events/forward_first.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/forward_first-fit.png" />
+</a>
+
+Second step:
+
+<a href="/assets/images/events/forward_second.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/forward_second-fit.png" />
+</a>
+
+Third step:
+
+<a href="/assets/images/events/forward_third.png" rel="lightbox[picker]">
+  <img src="/assets/images/events/forward_third-fit.png" />
+</a>
+
+This is only a simple example of iteration over whole stream. But using ES's streams is more flexible. You can easily modify url parameters to get more entries per page or you can start from different place in your stream.
+If you modify the number of events on a page that Event Store will calculate for you links in response. This solution is very useful in case of parallel pagination. For example
+if various users start paginate in different places on stream that the structure of pages is different. Despite the move through the same stream. This is very useful to easier cache user's events.
 
 ## Summary
 
 Important things to remember:
 
 1. Events are always sorted descending on a page.
-2. You can specify the number of events on a page modifying appropriate url. There is twenty events per page by default.
+2. You can specify the number of events on a page by modifying appropriate url. There are twenty events per page by default.
 3. Event is always added to the beginning (head) of the stream.
 
 
