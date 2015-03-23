@@ -1,6 +1,6 @@
 ---
 title: "Why saving data using MongoHQ takes so long?"
-created_at: 2015-03-20 10:18:59 +0100
+created_at: 2015-03-23 17:16:31 +0100
 kind: article
 publish: false
 author: Robert Krzysztoforski
