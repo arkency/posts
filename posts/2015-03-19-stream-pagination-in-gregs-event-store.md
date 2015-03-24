@@ -1,8 +1,8 @@
 ---
 title: "Stream pagination in Greg's Event Store"
-created_at: 2015-03-19 22:35:05 +0100
+created_at: 2015-03-24 19:28:05 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore', 'greg' ]
 newsletter: :arkency_form
