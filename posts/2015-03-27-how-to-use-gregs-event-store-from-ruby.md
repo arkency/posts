@@ -63,10 +63,9 @@ You can pass event's data as a **Hash** or **Struct**. As you can see in above e
 ```
 #!ruby
 stream_name = "order_1"
-event_type = "OrderCreated"
-event_data = { data: "sample" }
+event_data = { event_type: "OrderCreated", data: { data: "sample" }}
 expected_version = 1
-client.append_to_stream(stream_name, event_type, event_data, expected_version)
+client.append_to_stream(stream_name, event_data, expected_version)
 ```
 
 ### Deleting stream
