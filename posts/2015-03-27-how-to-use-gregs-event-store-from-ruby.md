@@ -15,7 +15,7 @@ img: "/assets/images/events/stream-fit.jpg"
   </figure>
 </p>
 
-I one of a previous blog's [post](/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/) I mentioned that we have to create a some tool to communicate with Greg's ES. We did it. We created [HttpEventstore](https://github.com/arkency/http_eventstor) gem which is a HTTP connector to the Greg's Event Store. The reason of creating such tool was that in our projects we already use Event Sourcing and we experiment with Greg's tool.
+I one of a previous blog's [post](/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/) I mentioned that we have to create a some tool to communicate with Greg's ES. We did it. We created [HttpEventstore](https://github.com/arkency/http_eventstore) gem which is a HTTP connector to the Greg's Event Store. The reason of creating such tool was that in our projects we already use Event Sourcing and we experiment with Greg's tool.
 
 <!-- more -->
 
