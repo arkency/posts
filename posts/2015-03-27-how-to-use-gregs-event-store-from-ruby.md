@@ -147,3 +147,7 @@ client.read_all_events_backward(stream_name)
 ```
 
 This method allows us to load all stream's events descending.
+
+## Example
+
+One of my teammates has created sample application which uses Greg's Event Store and our gem. You can find out it [here](https://github.com/mpraglowski/cqrses-sample). This project represents example of rails app based on CQRS/ES architecture.
