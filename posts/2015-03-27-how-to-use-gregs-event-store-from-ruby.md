@@ -42,7 +42,9 @@ end
 ```
 #!ruby
 stream_name = "order_1"
-event_data = { event_type: "OrderCreated", data: { data: "sample" }, event_id: "b2d506fd-409d-4ec7-b02f-c6d2295c7edd"}
+event_data = { event_type: "OrderCreated",
+               data: { data: "sample" },
+               event_id: "b2d506fd-409d-4ec7-b02f-c6d2295c7edd" }
 client.append_to_stream(stream_name, event_data)
 ```
 
