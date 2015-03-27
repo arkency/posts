@@ -15,7 +15,7 @@ img: "/assets/images/events/stream-fit.jpg"
   </figure>
 </p>
 
-I one of a previous blog's [post](/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/) I mentioned that we have to create a some tool to communicate with Greg's ES. We did it. We created [HttpEventstore](https://github.com/arkency/http_eventstor) gem which is a HTTP connector to the Greg's Event Store. The reason of creating such tool was that in our projects we already use Event Sourcing and we experiment with GES.
+I one of a previous blog's [post](/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/) I mentioned that we have to create a some tool to communicate with Greg's ES. We did it. We created [HttpEventstore](https://github.com/arkency/http_eventstor) gem which is a HTTP connector to the Greg's Event Store. The reason of creating such tool was that in our projects we already use Event Sourcing and we experiment with Greg's tool.
 
 <!-- more -->
 
@@ -37,7 +37,7 @@ end
 
 ### Creating new event
 
-1. Creating a single event:
+* Creating a single event:
 
 ```
 #!ruby
@@ -56,9 +56,9 @@ event_data = EventData.new({ data: "sample" }, "OrderCreated")
 client.append_to_stream(stream_name, event_data)
 ```
 
-You can pass event's data as a **Hash** or **Struct**. As you can see in above example `event_id` is optional parameter. If you don't set it we will generate if for you.
+You can pass event's data as a **Hash** or **Struct**. As you can see in above example `event_id` is optional parameter. If you don't set it we will generate it for you.
 
-2. Creating a single event with optimistic locking:
+* Creating a single event with optimistic locking:
 
 ```
 #!ruby
@@ -70,7 +70,7 @@ client.append_to_stream(stream_name, event_data, expected_version)
 
 ### Deleting stream
 
-1. The soft delete of single stream:
+* The soft delete of single stream:
 
 ```
 #!ruby
@@ -78,7 +78,7 @@ stream_name = "order_1"
 client.delete_stream("stream_name")
 ```
 
-2. The hard delete of single stream:
+* The hard delete of single stream:
 
 ```
 #!ruby
@@ -91,7 +91,7 @@ The soft delete cause that you will be allowed to recreate the stream by creatin
 
 ### Reading stream's event forward
 
-1. Reading stream forward without Long Pooling
+* Reading stream forward without Long Pooling
 
 ```
 #!ruby
@@ -101,7 +101,7 @@ count = 40
 client.read_events_forward(stream_name, start, count)
 ```
 
-2. Reading stream forward using Long Pooling
+* Reading stream forward using Long Pooling
 
 ```
 #!ruby
@@ -126,20 +126,20 @@ client.read_events_backward(stream_name, start, count)
 
 ### Reading all stream's event forward
 
-This method allows us to load all stream's events ascending.
-
 ```
 #!ruby
 stream_name = "order_1"
 client.read_all_events_forward(stream_name)
 ```
 
-### Reading all stream's event backward
+This method allows us to load all stream's events ascending.
 
-This method allows us to load all stream's events descending.
+### Reading all stream's event backward
 
 ```
 #!ruby
 stream_name = "order_1"
 client.read_all_events_backward(stream_name)
 ```
+
+This method allows us to load all stream's events descending.
