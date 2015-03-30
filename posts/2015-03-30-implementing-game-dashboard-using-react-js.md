@@ -6,7 +6,17 @@ publish: false
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
 newsletter: :arkency_form
+img: "/assets/images/game-dashboard-react/front-fit.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/game-dashboard-react/front-fit.jpg" width="100%">
+    <details>
+      Source: <a href="https://www.flickr.com/photos/36877266@N08/">412 digital</a>
+    </details>
+  </figure>
+</p>
 
 Many developers starting their adventure with React.js asks me about one thing: how to mount multiple independent React.js components on single page? I'll show you my approach to handle this problem.
 
@@ -22,7 +32,14 @@ We have applications, but now we need to put them all together on screen.
 
 Some time ago I was working on simple game inspired by [CivClicker](http://dhmholley.co.uk/civclicker.html). I wanted to have *one big screen where I could see primary information about my virtual city*. I have developed applications responsible for game control and city management: resources, society and infrastructure.
 
-<!-- IMG -->
+<p>
+  <figure align="center">
+    <img src="/assets/images/game-dashboard-react/dashboard-fit.png">
+    <figcaption>
+      Each rectangle represents separate app
+    </figcaption>
+  </figure>
+</p>
 
 I knew I could do it much simpler, but I will need to add some logic here soon.
 
