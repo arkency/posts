@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
-newsletter: :arkency_form
+newsletter: :react_book
 img: "/assets/images/game-dashboard-react/front-fit.jpg"
 ---
 
