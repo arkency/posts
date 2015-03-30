@@ -2,7 +2,7 @@
 title: "How to use Greg's Event Store from ruby"
 created_at: 2015-03-27 15:23:03 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore', 'greg' ]
 newsletter: :arkency_form
