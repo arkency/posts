@@ -93,9 +93,9 @@ Example: we want to show `City Infrastructure` widget after player reached level
         <div data-app="citySociety"></div>
     </div>    
     <div class="right-column">
-        <%% if @player.level > 1 %>
+        <%% if @player.level > 1 %%>
           <div data-app="cityInfrastructure"></div>        
-        <&% end %>
+        <%% end %%>
     </div>
 </div>
 ```
