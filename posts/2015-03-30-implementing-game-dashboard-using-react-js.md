@@ -2,7 +2,7 @@
 title: "Implementing Game Dashboard With React.js"
 created_at: 2015-03-30 20:00:00 +0100
 kind: article
-publish: false
+publish: true
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
 newsletter: :skip
