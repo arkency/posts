@@ -41,8 +41,6 @@ Some time ago I was working on a simple game inspired by [CivClicker](http://dhm
   </figure>
 </p>
 
-I knew I could do it much simpler, but I will need to add some logic here soon.
-
 ## Getting stuff done
 
 ### 1. Let backend handle that - quick and easy approach
