@@ -19,7 +19,7 @@ img: "/assets/images/gulp-replacement-sprockets/gulp.png"
 
 **While being very useful, Sprockets has its age**. There is a rapid growth of technologies around JavaScript. A growth which often cannot be used in an easy way by Rails developers. There are good technologies for code modularization, languages transpiled to JS, CSS preprocessors and  much, much more. Those technologies are easy to use in Node.js-based stacks, but not in Rails.
 
-**Rails asset pipeline have a big advantage of being painless to use**. We do not need to configure anything to have our assets served or precompiled. There is a built-in file require system to help us split our code into files. **In bigger frontend codebases we’d live happier with more sophisticated solutions - and we cannot throw away a legacy that Sprockets have.** How to live with both CommonJS and Sprockets require system? How to optimize our compilation steps? **Sprockets is implicitly doing its job - and that’s great until you want to have something more**.
+**Rails asset pipeline has a big advantage of being painless to use**. We do not need to configure anything to have our assets served or precompiled. There is a built-in file require system to help us split our code into files. **In bigger frontend codebases we’d live happier with more sophisticated solutions - and we cannot throw away a legacy that Sprockets have.** How to live with both CommonJS and Sprockets require system? How to optimize our compilation steps? **Sprockets is implicitly doing its job - and that’s great until you want to have something more**.
 
 **Fortunately, asset serving is a low-hanging fruit when it comes to decoupling parts from Rails**. You can easily remove all asset serving responsibilities from Rails and use a modern build system like [Gulp](http://gulpjs.com) to compile your assets. 
 
@@ -35,11 +35,11 @@ There are many Node.js-based build systems we can use to replace Sprockets. But 
 * **It’s fast**. Thanks to Gulp design there are no intermediate writes to disk (tempfiles) which could slow down the whole process. Node.js created streams to improve performance of this kind of workflow - so it’s a right tool for a right job.
 * **You have the full control.** You write tasks - and you can choose what do you want and how do you structurize it. This way you can open your `Gulpfile` and see how your assets are treated - and change whatever you want.
 * **You can easily write your asset compilation steps by yourself.** With a little knowledge of JavaScript you can easily create your new transformation. It is basically a stream which takes files as the input and returns them as the output. There are many supportive technologies for it - like [vinyl-transform](https://www.npmjs.com/package/vinyl-transform), [vinyl-buffer](https://www.npmjs.com/package/vinyl-buffer), [gulp-streamify](https://github.com/nfroidure/gulp-streamify) and so on.
-* **You can use npm**. A common practice in Rails’ world is to install gems for providing front-end libraries - like `react-rails` or most gems from [Rails-Assets](https://rails-assets.org). It is good when there are Rails-specific features like server-side rendering - but it is an overkill when it only provides minified-or-not version of JS files! The other problem is that you are dependent on the maintainer of a gem AND the creator of a library you want to use. With Gulp you can download your libraries straight from NPM.
+* **You can use npm**. A common practice in Rails world is to install gems for providing front-end libraries - like `react-rails` or most gems from [Rails-Assets](https://rails-assets.org). It is good when there are Rails-specific features like server-side rendering - but it is an overkill when it only provides minified-or-not version of JS files! The other problem is that you are dependent on the maintainer of a gem AND the creator of a library you want to use. With Gulp you can download your libraries straight from NPM.
 
 ## Let's start: CoffeeScript with Browserify and Sass
 
-CoffeeScript and Sass are two gems which ships by default with all modern versions of Rails. As a starting point it is wise to provide features of compiling CoffeeScript and Sass via Gulp. Since you won’t have Sprockets require system, a proper replacement is needed. CommonJS is a standard in Node.js world and it is easier to use than AMD. It has some nice features: it’s easy to grasp, provides a proper modularization of your code via `require`’s and looks quite similar to what we had with `#= require` syntax before. **We’ve used CommonJS recently to make a painless upgrade from React 0.11 to 0.13 in our projects - this process is covered in details [in our book](http://blog.arkency.com/beginners-guide-to-starting-with-react-in-rails/)**.
+CoffeeScript and Sass are two gems which ship by default with all modern versions of Rails. As a starting point it is wise to provide features of compiling CoffeeScript and Sass via Gulp. Since you won’t have Sprockets require system, a proper replacement is needed. CommonJS is a standard in Node.js world and it is easier to use than AMD. It has some nice features: it’s easy to grasp, provides a proper modularization of your code via `require`’s and looks quite similar to what we had with `#= require` syntax before. **We’ve used CommonJS recently to make a painless upgrade from React 0.11 to 0.13 in our projects - this process is covered in details [in our book](http://blog.arkency.com/beginners-guide-to-starting-with-react-in-rails/)**.
 
 To provide CommonJS, [Browserify](http://browserify.org) will be used.
 
@@ -443,7 +443,7 @@ Now you can run `gulp watch` and watch for changes of your Sass and CoffeeScript
 
 ## More?
 
-In this 82 line JS code snippet we actually rewritten a major part of default Rails Sprockets configuration. But of course you can provide more features:
+In this 82 line JS code snippet we have actually rewritten a major part of default Rails Sprockets configuration. But of course you can provide more features:
 
 * [gulp-rev](https://github.com/sindresorhus/gulp-rev) - for appending hashes to your compiled assets like sprockets does.
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) - for minifying assets
