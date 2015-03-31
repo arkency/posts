@@ -17,9 +17,9 @@ img: "/assets/images/gulp-replacement-sprockets/gulp.png"
 
 **Rails asset pipeline is one of things that makes Rails great for creating simple applications fast**. It solves a big problem of serving our assets efficiently in both development and production environment.
 
-**While being very useful, Sprockets has its age**. There is a rapid growth of technologies around JavaScript. A growth which often cannot be used in an easy way by Rails’ developers. There are good technologies for code modularization, languages transpiled to JS, CSS preprocessors and  much, much more. Those technologies are easy to use in Node.js-based stacks, but not in Rails.
+**While being very useful, Sprockets has its age**. There is a rapid growth of technologies around JavaScript. A growth which often cannot be used in an easy way by Rails developers. There are good technologies for code modularization, languages transpiled to JS, CSS preprocessors and  much, much more. Those technologies are easy to use in Node.js-based stacks, but not in Rails.
 
-**Rails’ asset pipeline have a big advantage of being painless to use**. We do not need to configure anything to have our assets served or precompiled. There is a built-in file require system to help us split our code into files. **In bigger frontend codebases we’d live happier with more sophisticated solutions - and we cannot throw away a legacy that Sprockets have.** How to live with both CommonJS and Sprockets’ require system? How to optimize our compilation steps? **Sprockets is implicitly doing its job - and that’s great until you want to have something more**.
+**Rails asset pipeline have a big advantage of being painless to use**. We do not need to configure anything to have our assets served or precompiled. There is a built-in file require system to help us split our code into files. **In bigger frontend codebases we’d live happier with more sophisticated solutions - and we cannot throw away a legacy that Sprockets have.** How to live with both CommonJS and Sprockets require system? How to optimize our compilation steps? **Sprockets is implicitly doing its job - and that’s great until you want to have something more**.
 
 **Fortunately, asset serving is a low-hanging fruit when it comes to decoupling parts from Rails**. You can easily remove all asset serving responsibilities from Rails and use a modern build system like [Gulp](http://gulpjs.com) to compile your assets. 
 
@@ -443,7 +443,7 @@ Now you can run `gulp watch` and watch for changes of your Sass and CoffeeScript
 
 ## More?
 
-In this 82 line JS code snippet we actually rewritten a major part of default Rails’ Sprockets configuration. But of course you can provide more features:
+In this 82 line JS code snippet we actually rewritten a major part of default Rails Sprockets configuration. But of course you can provide more features:
 
 * [gulp-rev](https://github.com/sindresorhus/gulp-rev) - for appending hashes to your compiled assets like sprockets does.
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) - for minifying assets
