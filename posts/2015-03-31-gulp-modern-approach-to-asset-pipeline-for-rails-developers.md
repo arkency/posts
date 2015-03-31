@@ -15,7 +15,7 @@ img: "/assets/images/gulp-replacement-sprockets/gulp.png"
   </figure>
 </p>
 
-**Rails’ asset pipeline is one of things that makes Rails great for creating simple applications fast**. It solves a big problem of serving our assets efficiently in both development and production environment.
+**Rails asset pipeline is one of things that makes Rails great for creating simple applications fast**. It solves a big problem of serving our assets efficiently in both development and production environment.
 
 **While being very useful, Sprockets has its age**. There is a rapid growth of technologies around JavaScript. A growth which often cannot be used in an easy way by Rails’ developers. There are good technologies for code modularization, languages transpiled to JS, CSS preprocessors and  much, much more. Those technologies are easy to use in Node.js-based stacks, but not in Rails.
 
