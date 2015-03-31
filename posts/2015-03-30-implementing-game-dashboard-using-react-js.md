@@ -18,19 +18,19 @@ img: "/assets/images/game-dashboard-react/front-fit.jpg"
   </figure>
 </p>
 
-Many developers starting their adventure with React.js ask me about one thing. How to mount many independent React.js components on single page? I'll show you my approach to handle this problem.
+Many developers starting their adventure with React.js ask me about one thing. How to mount many independent React.js components on a single page? I'll show you my approach to handle this problem.
 
 <!-- more -->
 
 ## What's the problem?
 
-We have some JavaScript applications showing user information using React.js components. We are good developers, so each one of them handles separate responsibility.
+We have some JavaScript applications showing user information using React.js components. We are good developers, so each one of them handles a separate responsibility.
 
-We have applications, but now we need to put them all together on screen.
+We have applications, but now we need to put them all together on a screen.
 
 ## Case Study - game dashboard
 
-Some time ago I was working on simple game inspired by [CivClicker](http://dhmholley.co.uk/civclicker.html). I wanted to have *one big screen with primary information about my virtual city*. I developed applications responsible for game control and city management: resources, society and infrastructure.
+Some time ago I was working on a simple game inspired by [CivClicker](http://dhmholley.co.uk/civclicker.html). I wanted to have *one big screen with primary information about my virtual city*. I developed applications responsible for game control and city management: resources, society and infrastructure.
 
 <p>
   <figure align="center">
@@ -80,7 +80,7 @@ $(document).ready ->
 
 We got basic HTML structure covered and empty divs for React to plug-in. It works great, but what if we would want to add some logic here?
 
-Example: we want to show `City Infrastructure` widget after player reached level 2. We can change our code.
+Example: we want to show the `City Infrastructure` widget after the player reached the level 2. We can change our code.
 
 ```
 #!html
@@ -100,15 +100,15 @@ Example: we want to show `City Infrastructure` widget after player reached level
 </div>
 ```
 
-Our view isn't dead simple anymore. Controller responsible for rendering this view needs to pass `player` object to template engine. Our code just got more complex. In future development it may get worse as it grows.
+Our view isn't dead simple anymore. The controller responsible for rendering this view needs to pass the `player` object to the template engine. Our code just got more complex. In future development it may get worse as it grows.
 
-It's a good solution for start. Let's move on. We will use React.js and some event bus to help us with this issue.
+It's a good solution for a start. Let's move on. We will use React.js and some event bus to help us with this issue.
 
 ### 2. JavaScript app - more dynamic and elastic approach
 
-Let's make simple JavaScript application that will render empty HTML elements for other applications.
+Let's make a simple JavaScript application that will render empty HTML elements for other applications.
 
-Here's the main idea. When all elements get rendered, global event bus tells all applications about this fact. We will use `componentDidMount` method from React component's API to achieve this.
+Here's the main idea. When all elements get rendered, the global event bus tells all applications about this fact. We will use the `componentDidMount` method from React component's API to achieve this.
 
 ```
 #!coffeescript
@@ -120,7 +120,7 @@ CurrentPlayer = require('modules/current_player')
 DashboardSkeleton = React.createClass
   displayName: 'DashboardSkeleton'
   
-  # It is launched after React view is rendered
+  # It is launched after the React view is rendered
   componentDidMount: ->
     @props.eventBus.publish 'cityHeaderDivRendered'
     @props.eventBus.publish 'cityResourcesDivRendered'
@@ -174,6 +174,6 @@ class CityInfrastructureApp
       React.render(node, @gui)
 ```
  
-This simple solution gives us flexibility for further changes. We can use all benefits of dynamic front-end without introducing new libraries. Moreover, using this approach we gained new feature for free. We can render any app anytime during application life cycle. We just need to publish an event.
+This simple solution gives us flexibility for further changes. We can use all benefits of a dynamic front-end without introducing new libraries. Moreover, using this approach we gained new feature for free. We can render any app anytime during application life cycle. We just need to publish an event.
 
-Often, first solution is good enough. Yet, it gets problematic when we need to add some logic to the application. We can move this logic to front-end and simplify our Rails backend.
+Often, the first solution is good enough. Yet, it gets problematic when we need to add some logic to the application. We can move this logic to the front-end and simplify our Rails backend.
