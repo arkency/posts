@@ -18,7 +18,7 @@ img: "/assets/images/game-dashboard-react/front-fit.jpg"
   </figure>
 </p>
 
-Many developers starting their adventure with React.js asks me about one thing. How to mount many independent React.js components on single page? I'll show you my approach to handle this problem.
+Many developers starting their adventure with React.js ask me about one thing. How to mount many independent React.js components on single page? I'll show you my approach to handle this problem.
 
 <!-- more -->
 
@@ -108,7 +108,7 @@ It's a good solution for start. Let's move on. We will use React.js and some eve
 
 Let's make simple JavaScript application that will render empty HTML elements for other applications.
 
-Here's the main idea. When all elements gets rendered, global event bus tell all applications about this fact. We will use `componentDidMount` method from React component's API to achieve this.
+Here's the main idea. When all elements get rendered, global event bus tells all applications about this fact. We will use `componentDidMount` method from React component's API to achieve this.
 
 ```
 #!coffeescript
@@ -174,6 +174,6 @@ class CityInfrastructureApp
       React.render(node, @gui)
 ```
  
-This simple solution give us flexibility for further changes. We can use all benefits of dynamic front-end without introducing new libraries. Moreover, using this approach we gained new feature for free. We can render any app anytime during application life cycle. We just need to publish an event.
+This simple solution gives us flexibility for further changes. We can use all benefits of dynamic front-end without introducing new libraries. Moreover, using this approach we gained new feature for free. We can render any app anytime during application life cycle. We just need to publish an event.
 
 Often, first solution is good enough. Yet, it gets problematic when we need to add some logic to the application. We can move this logic to front-end and simplify our Rails backend.
