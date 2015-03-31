@@ -1,5 +1,5 @@
 ---
-title: "Gulp - modern approach to asset pipeline for Rails developers"
+title: "Gulp - a modern approach to asset pipeline for Rails developers"
 created_at: 2015-03-31 16:20:02 +0200
 kind: article
 publish: false
@@ -455,4 +455,6 @@ There is a lot to do beyond standard workflow of Rails. Now, when you have full 
 ## Summary
 
 Using Gulp as a replacement of Sprockets seems to be a natural way to easily grasp all modern JavaScript techniques and technologies. Explicit asset pipeline is a thing that can be beneficial both in terms of debugging and easily adding new parts to your frontend.
+
+
 
