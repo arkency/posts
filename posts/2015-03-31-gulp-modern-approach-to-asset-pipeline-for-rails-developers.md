@@ -11,7 +11,7 @@ img: "/assets/images/gulp-replacement-sprockets/gulp.png"
 
 <p>
   <figure>
-    <img src="/assets/images/gulp-replacement-sprockets/gulp.png" width="100%" />
+    <img src="/assets/images/gulp-replacement-sprockets/gulp-fit.png" width="100%" />
   </figure>
 </p>
 
