@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
-newsletter: :react_book
+newsletter: :skip
 img: "/assets/images/game-dashboard-react/front-fit.jpg"
 ---
 
@@ -177,3 +177,5 @@ class CityInfrastructureApp
 This simple solution gives us flexibility for further changes. We can use all benefits of a dynamic front-end without introducing new libraries. Moreover, using this approach we gained new feature for free. We can render any app anytime during application life cycle. We just need to publish an event.
 
 Often, the first solution is good enough. Yet, it gets problematic when we need to add some logic to the application. We can move this logic to the front-end and simplify our Rails backend.
+
+You could apply this technique to any JavaScript code. However, “the React.js Way” feels very natural here. React.js enables us to split the front-end into smaller components. It also handles the rendering of those components, for us. Understanding the concept of a React.js component is crucial here. If you’d like to learn more on this topic, we are about to release the first version of our (“Beginners guide to starting with React in Rails” book)[http://blog.arkency.com/beginners-guide-to-starting-with-react-in-rails/]. In the book, we not only explain how to start with React, but also how to transform your Rails views into React. 
