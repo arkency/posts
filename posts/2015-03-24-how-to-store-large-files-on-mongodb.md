@@ -86,4 +86,5 @@ In the second solution we are storing the original file. We can do anything what
 
 ##References:
 - https://github.com/ahoward/mongoid-grid_fs
+- http://docs.mongodb.org/manual/faq/developers/#faq-developers-when-to-use-gridfs
 
