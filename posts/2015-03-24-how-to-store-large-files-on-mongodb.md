@@ -82,7 +82,7 @@ FileContainer.new.tap do |file_container|
 end
 ```
 
-In the second solution we are storing the original file. We can do anything what we want with it. GridFS is useful not only for storing files that exceed 16MB but also for storing any files for which you want access without having to load the entire file into memory.
+In the second solution we are storing the original file. We can do anything what we want with it. **GridFS is useful not only for storing files that exceed 16MB but also for storing any files for which you want access without having to load the entire file into memory.**
 
 ##References:
 - https://github.com/ahoward/mongoid-grid_fs
