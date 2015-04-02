@@ -1,10 +1,10 @@
 ---
 title: "How to store large files on MongoDB?"
-created_at: 2015-03-24 17:24:29 +0100
+created_at: 2015-04-02 11:58:03 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Krzysztoforski
-tags: [ 'mongodb', 'gridfs' ]
+tags: [ 'mongodb', 'gridfs', 'sidekiq' ]
 newsletter: :arkency_form
 img: "/assets/images/how-to-store-large-files-on-mongodb/img-fit.jpg"
 ---
@@ -19,6 +19,9 @@ The common problem we deal with is importing files containing a large amount of 
 I've presented how to [speed up saving data in MongoDB](http://blog.arkency.com/2015/03/why-saving-data-using-mongohq-takes-so-long/). In this article i will focus on how we can store these files.
 
 <!-- more -->
+
+Sometimes we want to store file first and parse it later. This is the case when you use async workers like Sidekiq.
+To workaround this problem you need to store the file somewhere.
 
 ##First solution:
 
@@ -45,11 +48,11 @@ end
 ```
 
 The code above may work well if you upload files smaller than 16MB, but sometimes users want to import (or store) files even larger.
-**Be aware that here we are losing information about the original file.** It is problematic if you want to work with files using different encodings. If you ever worked with encodings then you should known that converting between encodings isn’t easy. It’s better to have the original file.
+The bad thing in presented code is that **we are losing information about the original file**. That thing may be very helpful when you need to open the file in a different encoding. **It's always good to have the original file.**
 
 ##Second solution:
 
-In this case we’ll use a concept called **GridFS**. To enable this feature in Rails we need to import a library called
+In this case we’ll use a concept called **GridFS**. This is MongoDB module for storing files. To enable this feature in Rails we need to import a library called
 _mongoid-grid\_fs_. The lib gives us access to methods such as:
 
 - grid\_fs.put(file_path) - to put file in GridFS
