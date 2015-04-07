@@ -82,7 +82,7 @@ the book even if remote working is not your highest priority right now.
 
 ## Developers oriented project management
 
-You can find out more in the upcoming beta version of our
+You can find out more in our book: 
 **<%= landing_link("Developers oriented project management") %> ebook**
 or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you can read in our previous blog posts:

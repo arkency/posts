@@ -50,7 +50,7 @@ That is our recipe to make those moments of time uniqe and worthwhile to you as 
 developer. To be sure that we actually did someting in that time, instead of just
 letting it pass.
 
-Read more about improving your current project in our upcoming
+Read more about improving your current project in our book: 
 **<%= landing_link("Developers oriented project management") %> ebook**
 
 ##### Links
