@@ -92,7 +92,6 @@ prorities which you do for everything anyway.
 
 There is more beyond what we wrote in this article. Find out in our
 _<%= landing_link() %>_ ebook
-that we will be releasing soon
 or by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 The newsletter will also containt exclusive content from the book that is
