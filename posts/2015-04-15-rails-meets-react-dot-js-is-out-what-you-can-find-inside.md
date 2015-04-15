@@ -2,7 +2,7 @@
 title: "Rails meets React.js is out: What you can find inside?"
 created_at: 2015-04-15 19:00:44 +0200
 kind: article
-publish: false
+publish: true
 author: Marcin Grzywaczewski 
 tags: [ 'book', 'react', 'frontend', 'rails' ]
 newsletter: :react_book
