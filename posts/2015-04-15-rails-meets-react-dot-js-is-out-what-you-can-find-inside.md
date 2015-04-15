@@ -6,7 +6,14 @@ publish: false
 author: Marcin Grzywaczewski 
 tags: [ 'book', 'react', 'frontend', 'rails' ]
 newsletter: :react_book
+img: "/assets/images/react-for-rails/cover-fit.png"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/react-for-rails/cover-fit.png" width="100%" />
+  </figure>
+</p>
 
 **Dealing with frontends can be a tedious task for Rails developers.** In Arkency, we blogged the about frontend development a lot, searching for the best solutions and practices. React.js is one of the most successful findings for us. It brought solid solution to a problem of building modern, dynamic interfaces to web applications we were working on. **React.js is one of jewels in our toolbox now.**
 
@@ -53,15 +60,21 @@ React.js comes with a solid declarative approach to workflow. **There is an inte
 
 ## Testing
 
+> Inside `React.addons.TestUtils` we have special module called `Simulate`. We can simulate all kind of events that can originate from the browser.
+
 Testability is very important for us in Arkency. Testing is a part of our culture and a technology without a way to proper testing has a little value for us. 
 
 Fortunately React components are easily testable. **In our book common testing approaches are shown - through mutating state, using simulated events and through references.**
 
 ## Bonus content
 
+> React.js is a technology which does have really smooth learning curve. You can easily transform your simpler views to React components even without knowing what’s going on inside the components. I want to show you an example.
+
 Apart from the 'main' content of a book, there are a lot materials we wanted to share with you. **We included around 50 pages of content from our blogs and dropped chapter of the book (transforming a Rails view into a React component) as bonus chapters.** It is a great source of inspiration if you want to improve your front-end skills further.
 
 ## Upgrade tips
+
+> Recently React.js got an update which is a step forward towards making your components less “magic”. There are some breaking changes, especially if you are not using JSX. Fortunately, upgrade process is rather straightforward.
 
 If you had an occasion to work with React before, there is a chapter about upgrading old React code to be ready for a 0.13 version of this library. This version introduced major changes, both in code and terminology, decoupling some concepts even more.
 
