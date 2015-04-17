@@ -44,7 +44,7 @@ After grasping basic concepts of React, there is a bigger hands-on example const
 
 ## Code included
 
-**You get a code repository with all examples from the book, absolutely for free.** We tried to split our work into commits which shows our workflow with React. You can also read a book and make steps from it by yourself.
+**You get a code repository with all examples from the book, absolutely for free.** We tried to split our work into commits which shows our workflow with React. You can also read a book and make steps from it by yourself. The code is in Coffeescript and Rails.
 
 ## Best practices
 
