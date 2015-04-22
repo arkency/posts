@@ -18,13 +18,13 @@ img: "/assets/images/events/city-people-fit.jpg"
 We have experimented for some time with an Event Sourcing in our projects.
 This is why we released free HTTP [connector](https://github.com/arkency/http_eventstore) to the Greg’s Event Store written in Ruby.
 On the basis of an earlier experiences from the one of our projects we decided to create own implementation of an Event Store.
-Ladies and gentlemen, I would like to announce the first release of [rails_event_store](https://rubygems.org/gems/rails_event_store) gem.
+Ladies and gentlemen, I would like to announce the first release of [Rails Event Store](https://rubygems.org/gems/rails_event_store) gem.
 
 <!-- more -->
 
 ## Usage
 
-If you already have `rails_event_store gem` in your Gemfile then you have to create table in your database. To do this you have to run the provided task. This will generate an activerecord migration.
+If you already have `rails_event_store' gem in your Gemfile then you have to create table in your database. To do this you have to run the provided task. This will generate an activerecord migration.
 
 ```
 #!ruby
@@ -58,10 +58,8 @@ event_data = { 
 }
 
  event = ProductAdded.new(event_data)  
-#publishing event for specific stream
- client.publish_event(event, stream_name)  
-#publishing global event with stream_name == ‚all’
- client.publish_event(event)
+ client.publish_event(event, stream_name)   (publishing event for specific stream)
+ client.publish_event(event) (publishing global event with stream_name == 'all’)
  ```
 
 We use the concept of streams like in Greg’s Event Store but (as you can see in above example) you are able to create global event. The `event_id` is also optional value. If you leave it blank then application generate UUID for you.
