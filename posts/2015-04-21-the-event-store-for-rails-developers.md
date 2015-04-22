@@ -18,7 +18,7 @@ img: "/assets/images/events/city-people-fit.jpg"
 We have experimented for some time with an Event Sourcing in our projects.
 This is why we released free HTTP [connector](https://github.com/arkency/http_eventstore) to the Greg’s Event Store written in Ruby.
 On the basis of an earlier experiences from the one of our projects we decided to create own implementation of an Event Store.
-Ladies and gentlemen, I would like to announce the first release of [Rails Event Store](https://rubygems.org/gems/rails_event_store) gem.
+I would like to announce the first release of [Rails Event Store](https://rubygems.org/gems/rails_event_store) gem.
 
 <!-- more -->
 
