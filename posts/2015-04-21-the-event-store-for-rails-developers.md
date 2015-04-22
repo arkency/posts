@@ -16,15 +16,15 @@ img: "/assets/images/events/city-people-fit.jpg"
 </p>
 
 We have experimented for some time with an Event Sourcing in our projects.
-This is why we released free HTTP [connector](https://github.com/arkency/http_eventstore) to the Greg’s Event Store written in Ruby.
-On the basis of an earlier experiences from the one of our projects we decided to create own implementation of an Event Store.
-I would like to announce the first release of [Rails Event Store](https://rubygems.org/gems/rails_event_store) gem.
+This is why we released a free HTTP [connector](https://github.com/arkency/http_eventstore) to the Greg’s Event Store written in Ruby.
+On the basis of earlier experiences from the one of our projects we decided to create own implementation of an Event Store.
+I would like to announce the first release of the [Rails Event Store](https://rubygems.org/gems/rails_event_store) gem.
 
 <!-- more -->
 
 ## Usage
 
-If you already have `rails_event_store` gem in your Gemfile then you have to create table in your database. To do this you have to run the provided task. This will generate an activerecord migration.
+If you already have the `rails_event_store` gem in your Gemfile then you have to create a table in your database. To do this you have to run the provided task. This will generate an activerecord migration.
 
 ```
 #!ruby
@@ -32,7 +32,7 @@ rails generate rails_event_store:migrate
 rake db:migrate
 ```
 
-To use our gem’s functionality you have to create instance of `RailsEventStore::Client` class. 
+To use our gem’s functionality you have to create an instance of `RailsEventStore::Client` class. 
 ```
 #!ruby
  client = RailsEventStore::Client.new
@@ -40,14 +40,14 @@ To use our gem’s functionality you have to create instance of `RailsEventStore
 
 #### Creating events
 
-Creating events is very simple. At the beginning you have to define own event model extending `RailsEventStore::Event` class.
+Creating events is very simple. At the beginning you have to define your own event model extending `RailsEventStore::Event` class.
 
 ```
 class ProductAdded < RailsEventStore::Event
 end
  ```
 
-Now you are prepared to create event's instance and save to a database.
+Now you are prepared to create event's instance and save it to a database.
 
 ```
  stream_name = "product_1"
@@ -57,8 +57,8 @@ client.publish_event(event, stream_name) 
 client.publish_event(event)
 ``` 
 
-We use the concept of streams like in Greg’s Event Store but (as you can see in above example) you are able to create global event. The `event_id` is also optional value. If you leave it blank then application generate UUID for you.
-The `rails_event_store` provide also optimistic concurrency control. You can define expected version of stream during creating event. In this case the last event identifier.
+We use the concept of streams like in Greg’s Event Store but (as you can see in the above example) you are able to create a global event. The `event_id` is also an optional value. If you leave it blank then the application generate UUID for you.
+The `rails_event_store` provide also optimistic concurrency control. You can define an expected version of stream during creating event. In this case the last event identifier.
 
 ```
 #!ruby stream_name = "product_1"
@@ -98,7 +98,7 @@ client.read_all_events(stream_name)
 
 #### Deleting stream
 
-You can permanently delete all events from specific stream. Use this wisely.
+You can permanently delete all events from a specific stream. Use this wisely.
 
 ```
 #!ruby
@@ -108,7 +108,7 @@ client.delete_stream(stream_name)
 
 #### Subscription mechanism
 
-Using our library you can synchronously listen on specific events. The only requirement is that subscriber class has to implement the 'handle_event(event)' method. Check out following example.
+Using our library you can synchronously listen on specific events. The only requirement is that the subscriber class has to implement the 'handle_event(event)' method. Check out the following example.
 
 ```
 #!ruby
