@@ -33,6 +33,7 @@ rake db:migrate
 ```
 
 To use our gem’s functionality you have to create an instance of `RailsEventStore::Client` class. 
+
 ```
 #!ruby
  client = RailsEventStore::Client.new
@@ -43,32 +44,37 @@ To use our gem’s functionality you have to create an instance of `RailsEventSt
 Creating events is very simple. At the beginning you have to define your own event model extending `RailsEventStore::Event` class.
 
 ```
-class ProductAdded < RailsEventStore::Event
+#!ruby
+class ProductAdded < RailsEventStore::Event 
 end
- ```
+```
 
 Now you are prepared to create event's instance and save it to a database.
 
 ```
- stream_name = "product_1"
-event_data = {data: { name: "Test Product" }} 
-event = ProductAdded.new(event_data) 
-client.publish_event(event, stream_name) 
+#!ruby
+stream_name = "product_1" 
+event_data = {data: { name: "Test Product" }}
+event = ProductAdded.new(event_data)
+#publishing event for specific stream
+client.publish_event(event, stream_name)
+#publishing global event with stream_name == 'all'
 client.publish_event(event)
-``` 
+```
 
 We use the concept of streams like in Greg’s Event Store but (as you can see in the above example) you are able to create a global event. The `event_id` is also an optional value. If you leave it blank then the application generate UUID for you.
 The `rails_event_store` provide also optimistic concurrency control. You can define an expected version of stream during creating event. In this case the last event identifier.
 
 ```
-#!ruby stream_name = "product_1"
-event_data = {
-    data: { name: „Test Product” },
-    event_id: "b2d506fd-409d-4ec7-b02f-c6d2295c7edd"
+#!ruby
+stream_name = "product_1" 
+event_data = { 
+    data: { name: "Test Product" }, 
+    event_id: "b2d506fd-409d-4ec7-b02f-c6d2295c7edd" 
 }
-event = ProductAdded.new(event_data)
+ event = ProductAdded.new(event_data) 
 expected_version = "850c347f-423a-4158-a5ce-b885396c5b73"
-client.publish_event(event, stream_name, expected_version)
+ client.publish_event(event, stream_name, expected_version)
 ```
 
 #### Reading events
@@ -76,24 +82,27 @@ client.publish_event(event, stream_name, expected_version)
 You can fetch events from database in a several ways. In any case, loaded events are sorted ascending.
 
 * Reading event’s batch:
- ```
+
+```
 #!ruby
-stream_name = "product_1"
+stream_name = "product_1" 
 start_event = "b2d506fd-409d-4ec7-b02f-c6d2295c7edd"
-count = 40 client.read_all_events(stream_name, start_event, count)
-``` 
+client.read_all_events(stream_name, start_event, count)
+```
 
 * Reading all stream’s events:
 
 ```
-#!ruby stream_name = "product_1"
+#!ruby
+stream_name = "product_1" 
 client.read_all_events(stream_name)
 ```
- 
+
 * Reading all events:
 
 ```
-#!ruby client.read_all_streams
+#!ruby
+client.read_all_streams
 ```
 
 #### Deleting stream
@@ -114,10 +123,10 @@ Using our library you can synchronously listen on specific events. The only requ
 #!ruby
 class InvoiceReadModel
     def handle_event(event)
-        if event.event_type == 'ProductAdded’
+        if event.event_type == 'ProductAdded'
 		    create_new_product(event.data)
 		end
-		if event.event_type == 'ProductUpdated’
+		if event.event_type == 'ProductUpdated'
 			update_product(event.data)
 		end
     end
@@ -131,5 +140,5 @@ class InvoiceReadModel
 end
  
 invoice = InvoiceReadModel.new
-client.subscribe(invoice, ['ProductUpdated, 'ProductAdded']) 
+client.subscribe(invoice, ['ProductUpdated', 'ProductAdded']) 
 ```
