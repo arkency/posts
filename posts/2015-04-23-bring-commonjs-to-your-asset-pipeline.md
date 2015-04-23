@@ -90,7 +90,7 @@ Now you should just restart your server and write your assets in CoffeeScript fl
 
 # Deployment
 
-In order to deploy your assets to production server, you don't need anything but running `rake assets:compile` task. If you're running that task on your production server during deployment (e.g. when using `capistrano`), you also need to make sure you have `node` & `npm` installed on your production. You should also install all npm dependencies before compiling your assets. You may use rake tasks provided by `browserify-rails` gem to do so:
+In order to deploy your assets to production server, you don't need anything but running `rake assets:precompile` task. If you're running that task on your production server during deployment (e.g. when using `capistrano`), you also need to make sure you have `node` & `npm` installed on your production. You should also install all npm dependencies before compiling your assets. You may use rake tasks provided by `browserify-rails` gem to do so:
 
 * `rake npm:clean` - this task would clean all installed node modules (it performs `rm -rf ./node_modules`)
 * `rake npm:install` - this installs all dependencies by running `npm install`
