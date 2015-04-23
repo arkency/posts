@@ -2,7 +2,7 @@
 title: "The Event Store for Rails developers"
 created_at: 2015-04-21 18:15:55 +0200
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore' ]
 newsletter: :arkency_form
@@ -87,6 +87,7 @@ You can fetch events from database in a several ways. In any case, loaded events
 #!ruby
 stream_name = "product_1" 
 start_event = "b2d506fd-409d-4ec7-b02f-c6d2295c7edd"
+count = 40
 client.read_all_events(stream_name, start_event, count)
 ```
 
