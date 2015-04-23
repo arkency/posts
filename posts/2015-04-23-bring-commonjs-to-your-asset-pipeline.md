@@ -53,6 +53,8 @@ You can also install more node modules and require them in your assets:
     var React = require('react');
     React.render(React.DOM.h1(null, 'Hello world!'), document.body);
 
+BTW, in our [Rails meets React](http://blog.arkency.com/rails-react/) book, we're also using asset pipeline to use React components in Rails.
+
 Using `browserify-rails` does not force you to use only CommonJS-compatible libraries. You can still use `//= require` directive to load arbitrary JavaScript assets.
 
 # Configuration options
@@ -88,7 +90,7 @@ Now you should just restart your server and write your assets in CoffeeScript fl
 
 # Deployment
 
-In order to deploy your assets to production server, you don't need anything but running `rake assets:compile` task. But this task would fail unless you have `node` & `npm` installed on your production server. You should also install all npm dependencies before compiling your assets on production. You may use rake tasks provided by `browserify-rails` gem:
+In order to deploy your assets to production server, you don't need anything but running `rake assets:compile` task. If you're running that task on your production server during deployment (e.g. when using `capistrano`), you also need to make sure you have `node` & `npm` installed on your production. You should also install all npm dependencies before compiling your assets. You may use rake tasks provided by `browserify-rails` gem to do so:
 
 * `rake npm:clean` - this task would clean all installed node modules (it performs `rm -rf ./node_modules`)
 * `rake npm:install` - this installs all dependencies by running `npm install`
