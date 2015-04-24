@@ -8,7 +8,7 @@ tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]
 newsletter: :react_book
 ---
 
-When designing your web application, you would like the user to confirm some actions sometimes. For example, you may want the user to confirm deletion of his data. There is `window.confirm` JavaScript method that might be useful in this case but it could not be styled and just displays native browser's dialog window. In this article I would like to show you how to create [React](http://facebook.github.io/react/) component as a replacement for `window.confirm` that can have similar behaviour and your application's look & feel.
+When designing your web application, you would like the user to confirm some actions sometimes. For example, you may want the user to confirm deletion of his data. There is `window.confirm` JavaScript method that might be useful in this case but it could not be styled and just displays native browser's dialog window. In this article I would like to show you how to create [React](http://facebook.github.io/react/) component as a replacement for `window.confirm` that can have similar behaviour and your application's look & feel. It has similar API to `window.confirm` so migration should be really easy.
 
 <!-- more -->
 
@@ -72,17 +72,10 @@ Confirm = React.createClass
 
   abort: ->
     @promise.reject()
-    @destroy()
 
   confirm: ->
     @promise.resolve()
-    @destroy()
     
-  destroy: ->
-    parentNode = React.findDOMNode(@).parentNode
-    React.unmountComponentAtNode(parentNode)
-    setTimeout -> parentNode.remove()
-
   componentDidMount: ->
     @promise = new Promise()
     React.findDOMNode(@refs.confirm).focus()
@@ -116,18 +109,6 @@ Confirm = React.createClass
             @props.confirmLabel
 ```
 
-There are some things that might need more detailed explanation. Take a look at `destroy` method of `Confirm` component:
-
-```
-#!coffeescript
-destroy: ->
-  parentNode = React.findDOMNode(@).parentNode
-  React.unmountComponentAtNode(parentNode)
-  setTimeout -> parentNode.remove()
-```
-
-We are unmounting the whole `Confirm` component here to cleanup DOM (I prefer removing nodes from DOM than just hiding them via CSS). Since React require us to pass the DOM node that contains rendered component in `unmountComponentAtNode` method, we're retrieving it by calling `parentNode` method on DOM node that represents our React component in DOM tree. We are also removing that parent node since it's not needed anymore after dialog is closed (I am going to create a new wrapper node each time we request confirm dialog to be displayed, but you may also create a confirm target node upfront - then you would only need to unmount component).
-
 We are using promises in `confirm` and `abort` methods. If you are not familiar with the concept of promises, I recommend you read our [beginners guide to jQuery Deferred and Promises](/2015/02/the-beginners-guide-to-jquery-deferred-and-promises-for-ruby-programmers/). In short, using promises would allow us to asynchronously decide what code should be called after clicking confirm or abort button in our dialog window.
 
 You can also notice we are using `componentDidMount` lifecycle method. This method is called right after the component was mounted (its representation was added to the DOM tree). We are creating a promise object in that method - you may not be familiar with using instance variables instead of state in react components. Since that promise has no effect on the rendering of our component, it should not be placed in state, because adding it to state would cause unnecessary calls of `render` method. 
@@ -145,8 +126,13 @@ confirm = (message, options = {}) ->
   props = $.extend({message: message}, options)
   wrapper = document.body.appendChild(document.createElement('div'))
   component = React.render(React.createElement(Confirm, props), wrapper)
-  component.promise.promise()
+  cleanup = ->
+    React.unmountComponentAtNode(wrapper)
+    setTimeout -> wrapper.remove()
+  component.promise.always(cleanup).promise()
 ```
+
+When resolving or rejecting a promise, we are unmounting the whole `Confirm` component to cleanup the DOM (I prefer removing nodes from DOM than just hiding them via CSS). We are also removing the wrapper node since it's not needed anymore after the dialog is closed - each time we call the `confirm` method, new wrapper node would be created and added to DOM (you may also create a confirm target node upfront - then you would only need to mount and unmount the component in `confirm`).
 
 OK, we have now all parts of our `window.confirm` replacement. How to use it in your code? Very simple, you should only change your conditional:
 
