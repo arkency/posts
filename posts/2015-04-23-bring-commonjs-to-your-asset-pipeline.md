@@ -19,7 +19,7 @@ A few weeks ago, [Marcin](https://twitter.com/killavus) recommended [Gulp as the
 
 <!-- more -->
 
-You don't have to disable asset pipeline in your Rails application in order to use CommonJS module loading in your JavaScripts. One of tools that allows you to do so is [Browserify](http://browserify.org/) and a nice gem called [`browserify-rails`](https://github.com/browserify-rails/browserify-rails). It lets you mix and match `//= require` directives from Sprockets with `require()` calls in your JavaScript (CoffeeScript) assets. You can manage your JS modules with `npm`, so you can use a wide variety of existing node modules, including [React](https://facebook.github.io/react/) directly in your Rails assets.
+You don't have to disable asset pipeline in your Rails application in order to use CommonJS module loading in your JavaScripts. One of tools that allows you to do so is [Browserify](http://browserify.org/) and a nice gem called [`browserify-rails`](https://github.com/browserify-rails/browserify-rails). It lets you mix and match `//= require` directives from Sprockets with `require()` calls in your JavaScript (CoffeeScript) assets. You can **manage your JS modules with `npm`**, so you can use a wide variety of existing node modules, including [React](https://facebook.github.io/react/) directly in your Rails assets.
 
 # Getting started
 
@@ -36,7 +36,7 @@ in your's application root directory and add the following packages to your depe
     $ npm install --save 'browserify@~>6.3'
     $ npm install --save 'browserify-incremental@^1.4.0'
 
-That's all! You can now start writing your CommonJS modules and use it in your Rails application.
+That's all! **You can now start writing your CommonJS modules** and use them in your Rails application.
 
     // add.js
     module.exports = function (a, b) { return a + b }
@@ -45,7 +45,7 @@ That's all! You can now start writing your CommonJS modules and use it in your R
     var add = require('add');
     console.log(add(1, 2)); # => 3
 
-You can also install more node modules and require them in your assets:
+**You can also install more node modules** and require them in your assets:
 
     $ npm install --save react
 
@@ -55,7 +55,7 @@ You can also install more node modules and require them in your assets:
 
 BTW, in our [Rails meets React](http://blog.arkency.com/rails-react/) book, we're also using asset pipeline to use React components in Rails.
 
-Using `browserify-rails` does not force you to use only CommonJS-compatible libraries. You can still use `//= require` directive to load arbitrary JavaScript assets.
+Using `browserify-rails` does not force you to use only CommonJS-compatible libraries. **You can still use `//= require` directive** to load arbitrary JavaScript assets.
 
 # Configuration options
 
@@ -104,6 +104,7 @@ Using `browserify-rails` can significantly increase modularity of your JavaScrip
 
 * you can use almost any node package directly in your Rails application through your asset pipeline
 * you don't have to stop using `//= require` directive for non-modularized assets
+* you have support for generating source maps
 * you can have [multiple bundles](https://github.com/browserify-rails/browserify-rails#multiple-bundles) and mark some libraries shared between bundles with `--require` or `--external` - this helps you to reduce size of the bundle, because you don't need to include the same library more than once
 
 **Cons:**
