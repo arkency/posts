@@ -56,7 +56,7 @@ The division with `modal-backdrop` will be used to cover and lock everything on 
 
 # Confirm modal
 
-Not it's time to implement confirm dialog component. It would use `Modal` component created in previous step. We will add title, two buttons (confirm and abort) and optional descriptive text.
+Now it's time to implement the confirm dialog component. It will use `Modal` component created in previous step. We will add title, two buttons (confirm and abort) and optional descriptive text.
 
 ```
 #!coffeescript
