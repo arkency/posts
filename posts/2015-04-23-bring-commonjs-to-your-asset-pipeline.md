@@ -2,7 +2,7 @@
 title: "Bring CommonJS to your asset pipeline"
 created_at: 2015-04-23 10:15:12 +0200
 kind: article
-publish: false
+publish: true
 author: Jakub Kosiński
 tags: [ 'rails', 'browserify', 'commonjs', 'browserify-rails', 'sprockets', 'assets', 'javascript' ]
 newsletter: :react_book
@@ -40,7 +40,7 @@ That's all! **You can now start writing your CommonJS modules** and use them in 
 
     // add.js
     module.exports = function (a, b) { return a + b }
-    
+
     // application.js
     var add = require('add');
     console.log(add(1, 2)); # => 3
@@ -127,5 +127,3 @@ Then you should create special file `.buildpacks` in your application's root dir
     $ cat .buildpacks
     https://github.com/heroku/heroku-buildpack-nodejs
     https://github.com/heroku/heroku-buildpack-ruby
-
-
