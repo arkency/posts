@@ -6,7 +6,14 @@ publish: true
 author: Jakub Kosiński
 tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]
 newsletter: :react_book
+img: "/assets/images/beautiful-confirm-window-with-react/confirm-with-description.png"
 ---
+
+<p>
+  <figure align="center">
+    <img src="/assets/images/beautiful-confirm-window-with-react/confirm-with-description.png">
+  </figure>
+</p>
 
 When designing your web application, you would like the user to confirm some actions sometimes. For example, you may want the user to confirm deletion of his data. There is `window.confirm` JavaScript method that might be useful in this case but it could not be styled and just displays native browser's dialog window. In this article I would like to show you how to create [React](http://facebook.github.io/react/) component as a replacement for `window.confirm` that can have similar behaviour and your application's look & feel. It has similar API to `window.confirm` so migration should be really easy.
 
