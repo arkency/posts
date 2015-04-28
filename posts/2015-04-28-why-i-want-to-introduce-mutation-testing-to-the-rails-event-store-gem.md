@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: :arkency_form
 ---
 
-We have recently released the rails_event_store gem. Its goal is to make it easier for Rails developers to introduce events into their applications.
+We have recently released the [RailsEventStore](https://travis-ci.org/arkency/rails_event_store) project. Its goal is to make it easier for Rails developers to introduce events into their applications.
 
 During the development we try to do TDD and have a good test coverage. The traditional test coverage tools have some limitations, though. Mutation testing is a different approach. In this post I’d like to highlight why using mutation testing may be a good choice.
 
@@ -46,7 +46,7 @@ Let’s turn this line into this:
 if !subscriber.methods.include? :handle_event
 	raise MethodNotDefined
 end
-``
+```
 
 With this code, the simple coverage tools are able to detect that the `if` block is never executed.
 
