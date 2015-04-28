@@ -25,7 +25,7 @@ You don't have to disable asset pipeline in your Rails application in order to u
 
 To get started, you need to have `node` and `npm` installed on your development machine and include `browserify-rails` gem in your `Gemfile`.
 
-    gem 'browserify-rails'
+    gem 'browserify-rails', '~> 0.9.1'
 
 Then you should initialize your `package.json` file using
 
