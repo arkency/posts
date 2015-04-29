@@ -96,6 +96,7 @@ My goal is to setup Travis to run the mutation tests on every push. Also, I’d 
 This is an [example output](https://travis-ci.org/arkency/rails_event_store/builds/60342041) of the mutant run on a Travis machine. It’s worth looking at, as you can see the full output. Mutant shows us every mutation it does and what’s the result. One example:
 
 ```
+#!ruby
  def version_incorrect?(stream_name, expected_version)
    unless expected_version.nil?
 -    find_last_event_version(stream_name) != expected_version
