@@ -54,8 +54,62 @@ As you see, the coverage metric is now depending on the fact how you format the 
 
 If we run the first piece of code with mutant, it does detect that there is a lacking coverage.
 
+**Mutant output**
+
+When I run mutant on RES, I use the following:
+
+```
+bundle exec mutant —include lib —require rails_event_store —use rspec “RailsEventStore*”
+```
+
+which results in the following summary:
+
+```
+Mutant configuration:
+Matcher:         #<Mutant::Matcher::Config match_expressions=[<Mutant::Expression: RailsEventStore*>] subject_ignores=[] subject_selects=[]>
+Integration:     rspec
+Expect Coverage: 100.00%
+Jobs:            4
+Includes:        [“lib”]
+Requires:        [“rails_event_store”]
+Subjects:        47
+Mutations:       1238
+Kills:           888
+Alive:           350
+Runtime:         108.15s
+Killtime:        159.60s
+Overhead:        -32.24%
+Coverage:        71.73%
+Expected:        100.00%
+```
+
+It’s worth noting that mutation testing is very time-consuming. In our case, the time spent was the following:
+
+```
+real	1m52.906s
+user	3m56.833s
+sys	2m34.144s
+```
+
+My goal is to setup Travis to run the mutation tests on every push. Also, I’d like to set up a 100% expected mutation coverage in the future.
+
+This is an [example output](https://travis-ci.org/arkency/rails_event_store/builds/60342041) of the mutant run on a Travis machine. It’s worth looking at, as you can see the full output. Mutant shows us every mutation it does and what’s the result. One example:
+
+```
+ def version_incorrect?(stream_name, expected_version)
+   unless expected_version.nil?
+-    find_last_event_version(stream_name) != expected_version
++    find_last_event_version(stream_name) != nil
+   end
+ end
+```
+
+This output means, that our coverage here was not perfect. Simply replacing the `expected_version` with `nil` is still passing all tests. That’s not good. We can’t really rely on our tests if we want to refactor this code. 
+
 **What’s wrong with the lack of coverage?**
 
 The problem with lacking test/mutation coverage is that it’s easy to break things when you do any code transformations. The RailsEventStore is at the moment changing very often. We try to apply it to different Rails applications. This way we see, what can be improved. The code changes to reflect that. If we have features without some tests, then we may break them without knowing it.
 
 My goal here is to have every important feature to be well-covered. This way, the users of RES can rely on our code.
+
+Feel free to start using RailsEventStore in your Rails apps. We already plugged it into several of our applications and it works correctly. In case of any question, please jump to our [gitter channel](https://gitter.im/arkency/rails_event_store), we’ll be happy to help.
