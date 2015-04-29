@@ -93,7 +93,7 @@ sys	2m34.144s
 
 My goal is to setup Travis to run the mutation tests on every push. Also, I’d like to set up a 100% expected mutation coverage in the future.
 
-This is an [example output](https://travis-ci.org/arkency/rails_event_store/builds/60342041) of the mutant run on a Travis machine. It’s worth looking at, as you can see the full output. Mutant shows us every mutation it does and what’s the result. One example:
+This is an [example output](https://travis-ci.org/arkency/rails_event_store/builds/60342041) of the mutant run on a Travis machine. It’s worth looking at, as you can see the full output. Mutant shows us every alive mutation (the one that breaks test)  it does and what’s the result. One example:
 
 ```
 #!ruby
