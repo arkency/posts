@@ -13,7 +13,7 @@ During the development we try to do TDD and have a good test coverage. The tradi
 
 <!-- more -->
 
-Let me start with one example. In this example, mutant discovers  uncovered code. Other tools think this code is well-covered.
+Let me start with one example. In this example, [mutant](https://github.com/mbj/mutant) discovers  uncovered code. Other tools think this code is well-covered.
 
 In the RailsEventStore (RES) implementation, we use the concept of a Broker. The broker allows subscribing to certain kinds of events. As part of the subscription we pass the subscriber object. In the current implementation, we expect that such a subscriber has a `handle_event` method.
 
