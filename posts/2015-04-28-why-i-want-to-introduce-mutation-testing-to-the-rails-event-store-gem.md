@@ -2,7 +2,7 @@
 title: "Why I want to introduce mutation testing to the rails_event_store gem"
 created_at: 2015-04-28 12:08:56 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :arkency_form
 ---
