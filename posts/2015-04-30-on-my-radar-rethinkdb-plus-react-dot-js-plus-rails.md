@@ -23,7 +23,7 @@ together to see what comes out of it.
 
 For me recently it was [RethinkDB](http://www.rethinkdb.com/) .
 Its slogan says **The open-source database for the realtime web**.
-Interesting enough to get me courious. _RethinkDB
+Interesting enough to get me curious. _RethinkDB
 pushes JSON to your apps in realtime_ also sounded good.
 
 I was sick one week ago so I had a moment to give it a try.
@@ -134,7 +134,7 @@ changes. Let's dive into it.
 So we've got the first render covered. But we need to make this component auto updates
 when the data changes. We are going to use [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
 for that. It's a browser API for one way, server to browser communication over
-HTTP connection. It even has automatic reconnections built-in.
+HTTP connection. It even has automatic re-connections built-in.
 
 ```
 #!coffeescript
@@ -182,7 +182,7 @@ end
 ```
 
 For SSE streaming in Rails I used `ActionController::Live`. You can read
-a great blogpost by [Aaron Patterson where he introduced Live Streaming in 2012](http://tenderlovemaking.com/2012/07/30/is-it-live.html)
+a great blog-post by [Aaron Patterson where he introduced Live Streaming in 2012](http://tenderlovemaking.com/2012/07/30/is-it-live.html)
 to get familiar with it.
 Yep, it was that long time ago. And [Rails documentation for `ActionController::Live`](http://api.rubyonrails.org/v4.2.1/classes/ActionController/Live.html)
 
@@ -216,7 +216,7 @@ end
 
 Here we use the feature of [changefeeds](http://rethinkdb.com/docs/changefeeds/ruby/) from RethinkDB.
 You can subscribe to changes from a table, a single document or even a query and be notified every time
-something changed. In our example we subscribe to `changes` from one document, the last Artcile:
+something changed. In our example we subscribe to `changes` from one document, the last Article:
 
 ```
 #!ruby
@@ -226,7 +226,7 @@ RethinkDB::RQL.new.table( Article.table_name ).get(Article.last.id)
 This syntax mixes higher-level API (Nobrainer ORM) with low-level API (RethinkDB official driver)
 but that's how I managed to get it work.
 
-You can do much more with changefeeds but that's what I needed for our basic usecase.
+You can do much more with changefeeds but that's what I needed for our basic use-case.
 
 ## Final effect
 
@@ -247,7 +247,7 @@ use puma, a multi-threaded web server.
 I have a feeling that `react_component()` with `prerender: true` is not very
 performant but I haven't benchmarked yet. It might highly depend on the JS engine
 and the ruby version that you build your app with. But that's my gut feeling for now.
-I want to trully benchmark one day.
+I want to truly benchmark one day.
 
 The RethinkDB query from our Live Controller is blocking and taking one thread
 out of the puma's pool. This can lead to thread pool exhaustion if too many people are
