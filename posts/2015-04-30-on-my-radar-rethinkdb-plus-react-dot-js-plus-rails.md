@@ -24,7 +24,7 @@ I was sick one week ago so I had a moment to give it a try.
 <!-- more -->
 
 If RethinkDB pushes changes and React can automatically re-render
-page effectively it would seems that merging these two technologies
+a page effectively it would seem that merging these two technologies
 together could give us nice real time page updates. We just need a
 glue technology that would connect the DB to the browser and
 authorize the request. Let's go with Rails.
@@ -49,7 +49,7 @@ way to start using react in rails environment.
 
 ### Starting point
 
-If we go with `rails g scaffold Article title:string text:string` we will have basic
+If we go with `rails g scaffold Article title:string text:string` we will have a basic
 structure generated. But it will use `NoBrainer` instead of `ActiveRecord`. Our
 document looks like that:
 
@@ -70,7 +70,7 @@ fiddle with the read part. How we display the document.
 
 ### React component
 
-Instead of using `html & erb` to display an article, we will play with React component.
+Instead of using `html & erb` to display an article, we will play with a React component.
 When written with CoffeeScript it looks similar to HAML. Of course you could go with
 [JSX](https://facebook.github.io/react/docs/displaying-data.html) if that's your flavor.
 
@@ -94,8 +94,8 @@ window.ShowArticle = React.createClass
 
 ### First render
 
-We are going to use `react_component` helper that comes from `react-rails` gem.
-It makes easier to start react components that will run when browser fetches
+We are going to use `react_component` helper that comes from the `react-rails` gem.
+It makes easier to start react components that will run when a browser fetches
 the page.
 
 And with `prerender: true` they even render the component server-side
@@ -125,7 +125,7 @@ changes. Let's dive into it.
 ### SSE in Browser
 
 So we've got the first render covered. But we need to make this component auto updates
-when data changes. We are going to use [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
+when the data changes. We are going to use [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
 for that. It's a browser API for one way, server to browser communication over
 HTTP connection. It even has automatic reconnections built-in.
 
@@ -147,7 +147,7 @@ $ ->
 ```
 
 We look for `data-reactive` elements and make a connection
-to the URL. On event we ask react to re-render new version of the
+to the URL. On event we ask react to re-render a new version of the
 component in the same place.
 
 ### SSE in Rails
@@ -175,7 +175,7 @@ end
 ```
 
 For SSE streaming in Rails I used `ActionController::Live`. You can read
-great blogpost by [Aaron Patterson where he introduced Live Streaming in 2012](http://tenderlovemaking.com/2012/07/30/is-it-live.html)
+a great blogpost by [Aaron Patterson where he introduced Live Streaming in 2012](http://tenderlovemaking.com/2012/07/30/is-it-live.html)
 to get familiar with it.
 Yep, it was that long time ago. And [Rails documentation for `ActionController::Live`](http://api.rubyonrails.org/v4.2.1/classes/ActionController/Live.html)
 
@@ -208,7 +208,7 @@ end
 ```
 
 Here we use the feature of [changefeeds](http://rethinkdb.com/docs/changefeeds/ruby/) from RethinkDB.
-You can subscribe to changes from a table, single document or even a query and be notified every time
+You can subscribe to changes from a table, a single document or even a query and be notified every time
 something changed. In our example we subscribe to `changes` from one document, the last Artcile:
 
 ```
@@ -234,26 +234,26 @@ You can see the whole code on github [arkency/rethinkdb-reactjs](https://github.
 I had to use `config.cache_classes = true` and `config.eager_load = true` to get
 [SSE working in development mode](http://stackoverflow.com/a/18662297/1924951).
 
-I set `config.per_thread_connection = true` config option for `NoBrainer` as we
+I set the `config.per_thread_connection = true` config option for `NoBrainer` as we
 use puma, a multi-threaded web server.
 
 I have a feeling that `react_component()` with `prerender: true` is not very
-performant but I haven't benchmarked yet. It might hughly depend on the JS engine
-and ruby version that you build your app with. But that's my gut feeling for now.
+performant but I haven't benchmarked yet. It might highly depend on the JS engine
+and the ruby version that you build your app with. But that's my gut feeling for now.
 I want to trully benchmark one day.
 
 The RethinkDB query from our Live Controller is blocking and taking one thread
-out of puma's pool. This can lead to thread pool exhaustion if too many people are
+out of the puma's pool. This can lead to thread pool exhaustion if too many people are
 connected and the pool size is too small. But one of the next things I want to investigate
 is sending the stream of changes with EventMachine and/or Thin instead of Puma. This should be possible as
-the official driver comes with [`em_run` ](http://www.rethinkdb.com/api/ruby/#em_run)
+the official driver comes with the [`em_run` ](http://www.rethinkdb.com/api/ruby/#em_run)
 method which can be used in EventMachine single-threaded non-blocking environment
 and should scale much better.
 
-Also the thread used by SSE is not stopped if user navigates away and browser disconnects.
+Also the thread used by SSE is not stopped if the user navigates away and the browser disconnects.
 That is because as I said we are waiting (and blocking) for changes from RethinkDB.
 If those changes occur the attempt to write to the disconnected browser will fail, and
-proper exception will be raised (that we catch) so we can end this thread.
+a proper exception will be raised (that we catch) so we can end this thread.
 
 People using [redis pub-sub experienced](http://stackoverflow.com/questions/18970458/redis-actioncontrollerlive-threads-not-dying)
 similar problem and as a workaround they publish ping every now and then. You could
