@@ -2,12 +2,19 @@
 title: "On my radar: RethinkDB + React.js + Rails"
 created_at: 2015-04-30 09:50:31 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'rethinkdb', 'react.js', 'rails' ]
 newsletter: :skip
 newsletter_inside: :react_book
+img: "/assets/images/rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails-fit.png"
 ---
+
+<p>
+  <figure align="center">
+    <img src="/assets/images/rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails-fit.png">
+  </figure>
+</p>
 
 Sometimes you hear positive things about a technology and
 you put it on your radar. To explore it when you have some time.
