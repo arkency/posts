@@ -45,3 +45,24 @@ Options:
     -h, —help                       Show this message
 ```
 
+I didn’t read this output carefully, at first. I assumed that the score option is there to check if my coverage is equal or higher than the expected coverage. When I run the tests and checked the exit code (`echo $?`) afterwards I saw the result being 1 (a failure).
+
+I assumed that something was broken and went to the mutant sources to find this [here](https://github.com/mbj/mutant/blob/7529b724c4409fdeb73c9a0fe6390ec7b5e4946c/lib/mutant/result.rb#L95):
+
+```
+#!ruby
+
+      # Test if run is successful
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      #
+      def success?
+        coverage.eql?(env.config.expected_coverage)
+      end
+```
+
+**Raising the coverage bar**
+
+This must have been a mistake, I thought. Why would you ever want to assume that the coverage is equal to expected coverage. Being higher than the expected coverage is a good thing, right? Actually, it’s not a good thing. As I learnt from Markus (the author of mutant), this setting is intentional. The reason for that is that you want to fail in both cases - when the current coverage is lower than expected - that’s clear. You also want the build to fail, when it’s higher. Why? Because otherwise you may miss the point of time when you improved the coverage. Later on, you may have reduced again. You never noticed that the expected coverage should be raise. If I got it correctly, this technique is called “raising the bar”. After this explanation it made a perfect sense to me.
