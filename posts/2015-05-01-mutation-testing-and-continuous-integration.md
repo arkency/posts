@@ -63,6 +63,18 @@ I assumed that something was broken and went to the mutant sources to find this 
       end
 ```
 
+BTW, if you want see a pretty Ruby codebase - you should look at the mutant code.
+
 **Raising the coverage bar**
 
 This must have been a mistake, I thought. Why would you ever want to assume that the coverage is equal to expected coverage. Being higher than the expected coverage is a good thing, right? Actually, it’s not a good thing. As I learnt from Markus (the author of mutant), this setting is intentional. The reason for that is that you want to fail in both cases - when the current coverage is lower than expected - that’s clear. You also want the build to fail, when it’s higher. Why? Because otherwise you may miss the point of time when you improved the coverage. Later on, you may have reduced again. You never noticed that the expected coverage should be raise. If I got it correctly, this technique is called “raising the bar”. After this explanation it made a perfect sense to me.
+
+Unfortunately, at the moment, there’s a small problem with using this technique. Due to the [rounding precision problems](https://github.com/mbj/mutant/issues/323), we can’t pass the “right” number to mutant. Very often your coverage is like `74.333333333%` and you can’t pass such precision easily.
+
+**Whitelisting/blacklisting uncovered classes**
+
+Another technique that I learned from Markus was to whitelist or blacklist certain classes which don’t pass the 100% coverage. The idea is to never break the coverage of the perfectly covered units. 
+This motivated us to get all the “almost” covered units to the 100% mark, which we did.
+
+BTW, it’s worth mentioning that we only test our code through the public API. In our case, it’s the `Client` facade and the `Event` class. We avoid grabbing an internal class and testing it directly. [I wrote more about this topic in the past](http://blog.arkency.com/2014/09/unit-tests-vs-class-tests/).
+
