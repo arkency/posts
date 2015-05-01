@@ -2,16 +2,16 @@
 title: Mutation testing and continuous integration
 created_at: 2015-05-01 11:56:02 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :arkency_form
 ---
 
-Mutation testing is another form of checking the test coverage. As such it makes sense to put it as part of our Continuous Delivery process. In this blog post I’ll show you how we started using mutant together with TravisCI in the RailsEventStore project.
+Mutation testing is another form of checking the test coverage. As such it makes sense to put it as part of our Continuous Delivery process. In this blog post I’ll show you how we started using mutant together with TravisCI in the [RailsEventStore](https://github.com/arkency/rails_event_store) project.
 
 <!-- more -->
 
-In the last blogpost I explained why I want to introduce mutant to the RailsEventStore project. It comes down to the fact, that RailsEventStory, despite being a simple tool, may become a very important part of a Rails application. 
+In the last blogpost I explained [why I want to introduce mutant to the RailsEventStore project](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/). It comes down to the fact, that RailsEventStore, despite being a simple tool, may become a very important part of a Rails application. 
 
 RailsEventStore is meant to store events, publish them and help building the state from events (Event Sourcing). As such, it must be super-reliable. We can’t afford introducing breaking changes. Regressions are out of question here. It’s a difficult challenge and there’s no silver bullet to achieve this.
 
@@ -63,13 +63,13 @@ I assumed that something was broken and went to the mutant sources to find this 
       end
 ```
 
-BTW, if you want see a pretty Ruby codebase - you should look at the mutant code.
+BTW, if you want see a pretty Ruby codebase - you should look at the [mutant code](https://github.com/mbj/mutant).
 
 **Raising the coverage bar**
 
-This must have been a mistake, I thought. Why would you ever want to assume that the coverage is equal to expected coverage. Being higher than the expected coverage is a good thing, right? Actually, it’s not a good thing. As I learnt from Markus (the author of mutant), this setting is intentional. The reason for that is that you want to fail in both cases - when the current coverage is lower than expected - that’s clear. You also want the build to fail, when it’s higher. Why? Because otherwise you may miss the point of time when you improved the coverage. Later on, you may have reduced again. You never noticed that the expected coverage should be raise. If I got it correctly, this technique is called “raising the bar”. After this explanation it made a perfect sense to me.
+This must have been a mistake, I thought. Why would you ever want to assume that the coverage is equal to expected coverage. Being higher than the expected coverage is a good thing, right? Actually, it’s not a good thing. As I learnt from Markus (the author of mutant), this setting is intentional. The reason for that is that you want to fail in both cases - when the current coverage is lower than expected - that’s clear. You also want the build to fail, when it’s higher. Why? Because otherwise you may miss the point of time when you improved the coverage. Later on, you may have reduced again. You never noticed that the expected coverage should be raised. If I got it correctly, this technique is called “raising the bar”. After this explanation it made a perfect sense to me.
 
-Unfortunately, at the moment, there’s a small problem with using this technique. Due to the [rounding precision problems](https://github.com/mbj/mutant/issues/323), we can’t pass the “right” number to mutant. Very often your coverage is like `74.333333333%` and you can’t pass such precision easily.
+Unfortunately, at the moment, there’s a small problem with using this technique. Due to the [rounding precision problems](https://github.com/mbj/mutant/issues/323), we can’t pass the “right” number to mutant. Very often your coverage is like `74.333333333%` and you can’t pass such precision easily. This is not a big problem, though. There's a better way of using mutant - whitelisting/blacklisting.
 
 **Whitelisting/blacklisting uncovered classes**
 
