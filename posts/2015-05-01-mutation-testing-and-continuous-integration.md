@@ -90,7 +90,7 @@ module RailsEventStore
     source_root File.expand_path(File.join(File.dirname(__FILE__), ‘../generators/templates’))
 
     def create_migration
-      template “migration_template.rb”, “db/migrate/#{timestamp}_create_events_table.rb”
+      template ‘migration_template.rb’, ‘db/migrate/#{timestamp}_create_events_table.rb’
     end
 
     private
@@ -112,7 +112,7 @@ At the moment this class is blacklisted from the mutant coverage. How would you 
 The second case is `EventRepository`:
 
 ```
-#! ruby
+#!ruby
 
 module RailsEventStore
   module Repositories
@@ -176,7 +176,7 @@ We use the repository pattern to encapsulate and hide the storage part of our to
 In tests, we use an InMemoryRepository:
 
 ```
-#! ruby
+#!ruby
 
 require ‘ostruct’
 
