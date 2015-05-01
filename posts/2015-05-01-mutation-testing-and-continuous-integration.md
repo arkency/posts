@@ -83,20 +83,20 @@ We were only left with 2 (private) classes that were left uncovered: MigrateGene
 ```
 #!ruby
 
-require ‘rails/generators’
+require 'rails/generators'
 
 module RailsEventStore
   class MigrateGenerator < Rails::Generators::Base
-    source_root File.expand_path(File.join(File.dirname(__FILE__), ‘../generators/templates’))
+    source_root File.expand_path(File.join(File.dirname(__FILE__), '../generators/templates'))
 
     def create_migration
-      template ‘migration_template.rb’, ‘db/migrate/#{timestamp}_create_events_table.rb’
+      template 'migration_template.rb', 'db/migrate/#{timestamp}_create_events_table.rb'
     end
 
     private
 
     def timestamp
-      Time.now.strftime(“%Y%m%d%H%M%S”)
+      Time.now.strftime("%Y%m%d%H%M%S")
     end
 
   end
@@ -138,7 +138,7 @@ module RailsEventStore
       end
 
       def get_all_events
-        adapter.find(:all, order: ‘stream’).map &method(:map_record)
+        adapter.find(:all, order: 'stream').map &method(:map_record)
       end
 
       def last_stream_event(stream_name)
@@ -146,11 +146,11 @@ module RailsEventStore
       end
 
       def load_all_events_forward(stream_name)
-        adapter.where(stream: stream_name).order(‘id ASC’).map &method(:map_record)
+        adapter.where(stream: stream_name).order('id ASC').map &method(:map_record)
       end
 
       def load_events_batch(stream_name, start_point, count)
-        adapter.where(‘id >= ? AND stream = ?’, start_point, stream_name).limit(count).map &method(:map_record)
+        adapter.where('id >= ? AND stream = ?', start_point, stream_name).limit(count).map &method(:map_record)
       end
 
       private
@@ -178,7 +178,7 @@ In tests, we use an InMemoryRepository:
 ```
 #!ruby
 
-require ‘ostruct’
+require 'ostruct'
 
 module RailsEventStore
   class EventInMemoryRepository
@@ -250,7 +250,7 @@ rvm:
 - 2.1.5
 before_install: gem install bundler
 gemfile: Gemfile
-script: bundle exec mutant —include lib —require rails_event_store —use rspec “RailsEventStore*” —ignore-subject “RailsEventStore::MigrateGenerator*” —ignore-subject “RailsEventStore::Repositories::EventRepository*”
+script: bundle exec mutant —include lib —require rails_event_store —use rspec "RailsEventStore*" —ignore-subject "RailsEventStore::MigrateGenerator*" —ignore-subject "RailsEventStore::Repositories::EventRepository*"
 ```
 
 Thanks to that, the CI will check the coverage every time the code is pushed. It may influence the way we work in some interesting ways - we need to ensure that the coverage is always the same. That’s an interesting challenge!
