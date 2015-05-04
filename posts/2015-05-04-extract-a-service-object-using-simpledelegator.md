@@ -5,12 +5,12 @@ kind: article
 publish: false
 author: Andrzej Krzywda
 newsletter: :skip
-img: "/assets/images/fearless-refactoring-fit.png"
+img: "/assets/images/service_object_with_simple_delegate-fit.png"
 ---
 
 <p>
 	<figure align="center">
-		<img src="/assets/images/fearless-refactoring-fit.png">
+		<img src="/assets/images/service_object_with_simple_delegate-fit.png">
 	</figure>
 </p>
 
