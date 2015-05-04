@@ -166,7 +166,6 @@ For start you can even keep the class inside the controller.
 ```
 #!ruby
 class PaymentGatewayController < ApplicationController
-  # leanpub-start-insert
   # New service inheriting from SimpleDelegator
   class ServiceObject < SimpleDelegator
     # copy-pasted method
@@ -188,16 +187,13 @@ class PaymentGatewayController < ApplicationController
       redirect_to failed_order_path(order.id), alert: t("order.problems")
     end
   end
-  # leanpub-end-insert
 
   ALLOWED_IPS = ["127.0.0.1"]
   before_filter :whitelist_ip
 
   def callback
-    # leanpub-start-insert
     # Create the instance and call the method
     ServiceObject.new(self).callback
-    # leanpub-end-insert
   end
 
   private
@@ -258,18 +254,14 @@ class ServiceObject < SimpleDelegator
   rescue => e
     Honeybadger.notify(e)
     AdminOrderMailer.order_problem(order.id).deliver
-    # leanpub-start-insert
     raise # re-raise instead of redirect
-    # leanpub-end-insert
   end
 end
 
 def callback
   ServiceObject.new(self).callback
-  # leanpub-start-insert
 rescue # we added this clause here
   redirect_to failed_order_path(params[:order_id]), alert: t("order.problems")
-  # leanpub-end-insert
 end
 ```
 
@@ -289,9 +281,7 @@ class ServiceObject < SimpleDelegator
       redirect_to retry_order_path(order.id)
     end
   rescue ActiveRecord::RecordNotFound => e
-    # leanpub-start-insert
     raise # Simply re-raise
-    # leanpub-end-insert
   rescue => e
     Honeybadger.notify(e)
     AdminOrderMailer.order_problem(order.id).deliver
@@ -301,10 +291,8 @@ end
 
 def callback
   ServiceObject.new(self).callback
-# leanpub-start-insert
 rescue ActiveRecord::RecordNotFound => e # One more rescue clause
   redirect_to missing_order_path(params[:order_id])
-# leanpub-end-insert
 rescue
   redirect_to failed_order_path(params[:order_id]), alert: t("order.problems")
 end
@@ -321,11 +309,9 @@ class ServiceObject < SimpleDelegator
     if transaction.successful?
       order.paid!
       OrderMailer.order_paid(order.id).deliver
-      # leanpub-start-insert
       return true # returning status
     else
       return false # returning status
-      # leanpub-end-insert
     end
   rescue ActiveRecord::RecordNotFound => e
     raise
@@ -337,7 +323,6 @@ class ServiceObject < SimpleDelegator
 end
 
 def callback
-  # leanpub-start-insert
   if ServiceObject.new(self).callback
     # redirect moved here
     redirect_to successful_order_path(params[:order_id])
@@ -345,7 +330,6 @@ def callback
     # and here
     redirect_to retry_order_path(params[:order_id])
   end
-  # leanpub-end-insert
 rescue ActiveRecord::RecordNotFound => e
   redirect_to missing_order_path(params[:order_id])
 rescue
@@ -358,11 +342,9 @@ Now we need to take care of `params` method. Starting with `params[:order_id]`. 
 ```
 #!ruby
 class ServiceObject < SimpleDelegator
-  # leanpub-start-insert
   # We introduce new order_id method argument
   def callback(order_id)
     order = Order.find(order_id)
-    # leanpub-end-insert
     transaction = order.order_transactions.create(callback: params.slice(:status, :error_message, :merchant_error_message, :shop_orderid, :transaction_id, :type, :payment_status, :masked_credit_card, :nature, :require_capture, :amount, :currency))
     if transaction.successful?
       order.paid!
@@ -381,10 +363,8 @@ class ServiceObject < SimpleDelegator
 end
 
 def callback
-  # leanpub-start-insert
   # Provide the argument for method call
   if ServiceObject.new(self).callback(params[:order_id])
-    # leanpub-end-insert
     redirect_to successful_order_path(params[:order_id])
   else
     redirect_to retry_order_path(params[:order_id])
@@ -401,7 +381,6 @@ The rest of `params` is going to be be provided as second method argument.
 ```
 #!ruby
 class ServiceObject < SimpleDelegator
-  # leanpub-start-insert
   # One more argument
   def callback(order_id, gateway_transaction_attributes)
     order = Order.find(order_id)
@@ -409,7 +388,6 @@ class ServiceObject < SimpleDelegator
       # that we use here
       callback: gateway_transaction_attributes
     )
-    # leanpub-end-insert
     if transaction.successful?
       order.paid!
       OrderMailer.order_paid(order.id).deliver
@@ -427,13 +405,11 @@ class ServiceObject < SimpleDelegator
 end
 
 def callback
-  # leanpub-start-insert
   # Providing second argument
   if ServiceObject.new(self).callback(
       params[:order_id],
       gateway_transaction_attributes
     )
-    # leanpub-end-insert
     redirect_to successful_order_path(params[:order_id])
   else
     redirect_to retry_order_path(params[:order_id])
@@ -446,7 +422,6 @@ end
 
 private
 
-# leanpub-start-insert
 # Extracted to small helper method
 def gateway_transaction_attributes
   params.slice(:status, :error_message, :merchant_error_message, 
@@ -454,7 +429,6 @@ def gateway_transaction_attributes
     :masked_credit_card, :nature, :require_capture, :amount, :currency
   )
 end
-# leanpub-end-insert
 ```
 
 ### Remove inheriting from `SimpleDelegator`
@@ -463,10 +437,8 @@ When you no longer use any of the controller methods in the Service you can remo
 
 ```
 #!ruby
-# leanpub-start-insert
 # Removed inheritance
 class ServiceObject
-  # leanpub-end-insert
   def callback(order_id, gateway_transaction_attributes)
     order = Order.find(order_id)
     transaction = order.order_transactions.create(callback: gateway_transaction_attributes)
@@ -487,14 +459,12 @@ class ServiceObject
 end
 
 def callback
-  # leanpub-start-insert
   # ServiceObject constructor doesn't need
   # controller instance as argument anymore
   if ServiceObject.new.callback(
        params[:order_id],
        gateway_transaction_attributes
     )
-    # leanpub-end-insert
     redirect_to successful_order_path(params[:order_id])
   else
     redirect_to retry_order_path(params[:order_id])
@@ -515,18 +485,14 @@ You can see that code must deal with exceptions in a nice way (as this is critic
 ```
 #!ruby
 class PaymentGatewayCallbackService
-  # leanpub-start-insert
   # New custom exception
   TransactionFailed = Class.new(StandardError)
-  # leanpub-end-insert
 
   def callback(order_id, gateway_transaction_attributes)
     order = Order.find(order_id)
     transaction = order.order_transactions.create(callback: gateway_transaction_attributes)
-    # leanpub-start-insert
     # raise the exception when things went wrong
     transaction.successful? or raise TransactionFailed
-    # leanpub-end-insert
     order.paid!
     OrderMailer.order_paid(order.id).deliver
   rescue ActiveRecord::RecordNotFound, TransactionFailed => e
@@ -544,12 +510,10 @@ class PaymentGatewayController < ApplicationController
 
   def callback
     PaymentGatewayCallbackService.new.callback(params[:order_id], gateway_transaction_attributes)
-    redirect_to successful_order_path(params[:order_id])
-  # leanpub-start-insert    
+    redirect_to successful_order_path(params[:order_id]) 
   # Rescue and redirect
   rescue PaymentGatewayCallbackService::TransactionFailed => f
     redirect_to retry_order_path(params[:order_id])
-    # leanpub-end-insert    
   rescue ActiveRecord::RecordNotFound => e
     redirect_to missing_order_path(params[:order_id])
   rescue
