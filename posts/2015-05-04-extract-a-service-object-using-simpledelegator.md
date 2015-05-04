@@ -20,7 +20,7 @@ This technique has also been very popular in our Arkency team. It gives you a ni
 
 <!-- more -->
 
-# Extract a service object using the SimpleDelegator {#extract-service-with-delegator-recipe}
+# Extract a service object using the SimpleDelegator
 
 New projects have a tendency to keep adding things into controllers. There are things
 which don't quite fit any model and developers still haven't figured out the domain exactly. So these features land in controllers. In later phases of the project we usually have better insight into the domain. We would like to restructure domain logic and business objects. But the unclean state of controllers, burdened with too many responsibilities is stopping us from doing it.
@@ -37,7 +37,9 @@ As of Ruby 2.0, Delegator does not delegate `protected` methods any more. You mi
 
     Change
 
-    ```ruby
+    ```
+#!ruby
+
     class A
       def method_is_public
       end
@@ -51,7 +53,8 @@ As of Ruby 2.0, Delegator does not delegate `protected` methods any more. You mi
 
     into
     
-    ```ruby
+    ```
+#!ruby
     class A
       def method_is_public
       end
@@ -68,7 +71,8 @@ As of Ruby 2.0, Delegator does not delegate `protected` methods any more. You mi
 
     Change
 
-    ```ruby
+    ```
+#!ruby
     class A
       def method_is_public
       end
@@ -82,7 +86,8 @@ As of Ruby 2.0, Delegator does not delegate `protected` methods any more. You mi
 
     into
     
-    ```ruby
+    ```
+#!ruby
     class A
       def method_is_public
       end
@@ -118,7 +123,8 @@ controllers out there responsible for doing something more or less similar. Beca
 Let's say our customer would like to see even more features added here, but before proceeding we decided to refactor first. I can see that Active Record models would deserve some touch here as well, let's only focus on controller right now.
 
 
-```ruby
+```
+#!ruby
 class PaymentGatewayController < ApplicationController
   ALLOWED_IPS = ["127.0.0.1"]
   before_filter :whitelist_ip
@@ -157,7 +163,8 @@ In this example I decided not to move the verification done by the `whitlist_ip`
 
 For start you can even keep the class inside the controller.
 
-```ruby
+```
+#!ruby
 class PaymentGatewayController < ApplicationController
   # leanpub-start-insert
   # New service inheriting from SimpleDelegator
@@ -203,7 +210,8 @@ end
 
 We created new class `ServiceObject` which inherits from `SimpleDelegator`. That means that every method which is not defined will delegate to an object. When creating an instance of `SimpleDelegator` the first argument is the object that methods will be delegated to.
 
-```ruby
+```
+#!ruby
 def callback
   ServiceObject.new(self).callback
 end
@@ -215,7 +223,8 @@ We provide `self` as this first method argument, which is the controller instanc
 
 First, we are going to extract the `redirect_to` that is part of last `rescue` clause.
 
-```ruby
+```
+#!ruby
 rescue => e
   Honeybadger.notify(e)
   AdminOrderMailer.order_problem(order.id).deliver
@@ -231,7 +240,8 @@ To do that we could re-raise the exception and catch it in controller. But in ou
 
 Here, we are going to use the first, simplest way. The third way will be shown as well later in this chapter.
 
-```ruby
+```
+#!ruby
 class ServiceObject < SimpleDelegator
   def callback
     order = Order.find(params[:order_id])
@@ -265,7 +275,8 @@ end
 
 Next, we are going to do very similar thing with the `redirect_to` from `ActiveRecord::RecordNotFound` exception.
 
-```ruby
+```
+#!ruby
 class ServiceObject < SimpleDelegator
   def callback
     order = Order.find(params[:order_id])
@@ -301,7 +312,8 @@ end
 
 We are left with two `redirect_to` statements. To eliminte them we need to return the status of the operation to the controller. For now, we will just use `Boolean` for that. We will also need to again use `params[:order_id]` instead of `order.id`.
 
-```ruby
+```
+#!ruby
 class ServiceObject < SimpleDelegator
   def callback
     order = Order.find(params[:order_id])
@@ -343,7 +355,8 @@ end
 
 Now we need to take care of `params` method. Starting with `params[:order_id]`. This change is really small.
 
-```ruby
+```
+#!ruby
 class ServiceObject < SimpleDelegator
   # leanpub-start-insert
   # We introduce new order_id method argument
@@ -385,7 +398,8 @@ end
 
 The rest of `params` is going to be be provided as second method argument.
 
-```ruby
+```
+#!ruby
 class ServiceObject < SimpleDelegator
   # leanpub-start-insert
   # One more argument
@@ -447,7 +461,8 @@ end
 
 When you no longer use any of the controller methods in the Service you can remove the inheritance from `SimpleDelegator`. You just no longer need it. It is a temporary hack that makes the transition to service object easier.
 
-```ruby
+```
+#!ruby
 # leanpub-start-insert
 # Removed inheritance
 class ServiceObject
@@ -497,7 +512,8 @@ This would be a good time to also give a meaningful name (such as  `PaymentGatew
 
 You can see that code must deal with exceptions in a nice way (as this is critical path in the system). But for communicating the state of transaction it is using `Boolean` values. We can simplify it by always using exceptions for any unhappy path.
 
-```ruby
+```
+#!ruby
 class PaymentGatewayCallbackService
   # leanpub-start-insert
   # New custom exception
