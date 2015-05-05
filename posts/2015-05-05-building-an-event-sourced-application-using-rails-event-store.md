@@ -16,9 +16,7 @@ img: "/assets/images/events/eventstore-fit.jpg"
   </figure>
 </p>
 
-
-## Fed up with your database?
-So you are fed up with you relational database? Or you've just read my previous post [Why use EventSourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store](https://github.com/arkency/rails_event_store).
+Still not sure what is Event Sourcing and CQRS? Looking for a practical example? You've just read my previous post [Why use EventSourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store](https://github.com/arkency/rails_event_store).
 
 <!-- more -->
 
@@ -65,7 +63,7 @@ module Events
 end
 ```
 
-I usually create a helper methods to access event's attributes witch are stored in @data hash attribute of RailsEventStore::Event. And I like also to add class method `create` to build new event with explicitly given parameters, but a RailsEventStore::Event is also a good way of creating a domain event.
+I usually create a helper methods to access event's attributes witch are stored in `@data` hash attribute of `RailsEventStore::Event`. And I like also to add class method `create` to build new event with explicitly given parameters, but a RailsEventStore::Event is also a good way of creating a domain event.
 
 Ok, now when we have domain events defined let's apply them to our domain object.
 
@@ -245,6 +243,6 @@ def event_store
 end
 ```
 
-The `es.subscribe(Denormalizers::Router.new)` will create a subscription for all events to event handler `Denormalizers::Router` where events will be routed to appropriate denormalisers that will create/update read model defined as simple ActiveRecord classes.
+The `es.subscribe(Denormalizers::Router.new)` will create a subscription for all events to event handler `Denormalizers::Router` where events will be routed to appropriate denormalisers that will create/update read model defined as a simple ActiveRecord classes.
 
 Currently all this works synchronously - stay tuned for next post when some async features will be introduced.
