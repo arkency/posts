@@ -17,29 +17,30 @@ img: "/assets/images/events/eventstore-fit.jpg"
 </p>
 
 
-## Feed up with your database?
-So you are feed up with you relational database? Or you've just read my previous post [Why use EventSourcing] and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store].
+## Fed up with your database?
+So you are fed up with you relational database? Or you've just read my previous post [Why use EventSourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store](https://github.com/arkency/rails_event_store).
 
 <!-- more -->
 
 ## CQRS
 But first you need to learn what CQRS is.
 
-CQRS stands for Command and Query Responsibility Segregation. It's a term coined by [Greg Young] and later polished in discussion with others (naming only a few [Udi Dahan], [Martin Fowler]). It is based on CQS (Command Query Separation) devised by Bertrand Meyer:
+CQRS stands for Command and Query Responsibility Segregation. It's a term coined by [Greg Young](http://twitter.com/gregyoung) and later polished in discussion with others (naming only a few [Udi Dahan](http://twitter.com/udidahan), [Martin Fowler](https://twitter.com/martinfowler)). It is based on CQS (Command Query Separation) devised by [Bertrand Meyer](https://twitter.com/Bertrand_Meyer):
 
 > Every method should either be a command that performs an action, or a query that returns data to the caller, but not both. In other words, asking a question should not change the answer.
-<p class=“quote-by”>Bertrand Meyer</p>
+<p class="quote-by">Bertrand Meyer</p>
 
-CQRS is a way of building your application. It is not a pattern, not an architecture, not a framework. The best description here will be “architectural style”.
+CQRS is a way of building your application. It is not a pattern, not an architecture, not a framework. The best description here will be _"architectural style"_.
 
 It's just about separating reads and writes and building a separate stack (layers) for each of them:
+
 * writes - it could be complex, could be modelled in separate layers like: application service, domain model (maybe using domain services also), with transactions required and complex stuff happening. We care here about consistency of our data more than about performance (usually we write data in a row of magnitude less often than we read them).
 * reads - dead simple!, tailor made for your views, no abstraction over data model - here is the part where Active Record shines - just define model and use it - but read only!
 
-You may say "Ok, but I wanted to learn about Event Sourcing and you writing here about some CQRS architecture style." There is a good reason for that:
+You may say _"Ok, but I wanted to learn about Event Sourcing and you writing here about some CQRS architecture style."_ There is a good reason for that:
 
 > You can use CQRS without Event Sourcing, but with Event Sourcing you must use CQRS.
-<p class=“quote-by”>Greg Young</p>
+<p class="quote-by">Greg Young</p>
 
 ## Crunching your Domain
 
@@ -50,17 +51,17 @@ Also aggregate is a source of new domain events. Every call of a method for an a
 ```
 #!ruby
 module Events
-	class OrderCreated < RailsEventStore::Event
-		def order_number
-  		@data.fetch(:order_number)
-		end
+  class OrderCreated < RailsEventStore::Event
+    def order_number
+      @data.fetch(:order_number)
+    end
 
-		#... some more stuff here
+    #... some more stuff here
 
-		def self.create(order_id, order_number, customer_id)
-  		new(data: {order_id: order_id, order_number: order_number, customer_id: customer_id})
-		end
-	end
+    def self.create(order_id, order_number, customer_id)
+      new(data: {order_id: order_id, order_number: order_number, customer_id: customer_id})
+    end
+  end
 end
 ```
 
@@ -88,7 +89,7 @@ module Domain
       apply Events::OrderCreated.create(@id, order_number, customer_id)
     end
 
-		#... some more stuff here
+    #... some more stuff here
 
     def apply_order_created(event)
       @customer_id = event.customer_id
@@ -99,7 +100,7 @@ module Domain
     private
     attr_accessor :id, :customer_id, :order_number, :state
 
-		#... some more stuff here
+    #... some more stuff here
   end
 end
 ```
@@ -112,7 +113,7 @@ Then we have `create` method. It should be used by other objects to invoke aggre
 #!ruby
 module AggregateRoot
   def apply(event, new = true)
-		send(“apply_#{event.class.name.demodulize.tableize.singularize}”, event)
+    send("apply_#{event.class.name.demodulize.tableize.singularize}", event)
     changes << event if new
   end
 
@@ -180,9 +181,9 @@ end
 
 ## Handling a command
 
-Command handler is a entry point to your domain. It should handle all “plumbing”, orchestrate domain objects and domain services and execute domain object's methods with parameters given in a handled command. There could be several sources of commands send to our application: users, external systems or sagas (process managers).
+Command handler is a entry point to your domain. It should handle all "plumbing", orchestrate domain objects and domain services and execute domain object's methods with parameters given in a handled command. There could be several sources of commands send to our application: users, external systems or sagas (process managers).
 
-Here is how I've defined “plumbing” for my sample Event Sourced application: [https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb](https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb)
+Here is how I've defined "plumbing" for my sample Event Sourced application: [https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb](https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb)
 
 This is the only module where I use core features of Rails Event Store. It loads events from RES in `load_events` using aggregate id as a stream name. It publishes events in `publish` method. The publish in RES will store the published event in a given stream (again aggregate id) and then send it to all subscribers. This is an important assumption! **What is not stored is never published**.
 
@@ -217,7 +218,7 @@ The command is send from any controller using method from `ApplicationController
 #!ruby
 def execute(command)
   command.validate!
-  handler = “CommandHandlers::#{command.class.name.demodulize}”
+  handler = "CommandHandlers::#{command.class.name.demodulize}"
   handler.constantize.new.call(command)
 end
 ```
@@ -225,6 +226,7 @@ end
 ## Building a read model
 
 Till now we have implemented:
+
 * user sends command
 * command is handled and domain logic is executed
 * domain events are stored and published by RES
