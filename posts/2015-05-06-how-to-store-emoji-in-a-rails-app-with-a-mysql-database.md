@@ -19,7 +19,7 @@ Suppose you have a Rails app and you are storing your data in a MySQL database. 
 
 > Oh, that's simple, it's just unicode, isn't it?
 
-The answer is: **no**. Unfortunately, MySQL's `utf8` character set allows to store only a subset of Unicode characters - only those characters that consist of one to three bytes. All characters that require 4 bytes would result in corrupted data in your database.
+The answer is: **no**. Unfortunately, MySQL's `utf8` character set allows to store only a subset of Unicode characters - only those characters that consist of one to three bytes. Inserting characters that require 4 bytes would result in corrupted data in your database.
 
 <!-- more -->
 
