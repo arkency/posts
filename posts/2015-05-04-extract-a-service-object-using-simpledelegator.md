@@ -39,71 +39,71 @@ As of Ruby 2.0, Delegator does not delegate `protected` methods any more. You mi
 
 * by moving the method definition into `public` scope.
 
-    Change
+Change
 
-    ```
+```
 #!ruby
 
-    class A
-      def method_is_public
-      end
+class A
+  def method_is_public
+  end
     
-      protected
+  protected
     
-      def method_is_protected
-      end
-    end
-    ```
+  def method_is_protected
+  end
+end
+```
 
-    into
+into
     
-    ```
+```
 #!ruby
-    class A
-      def method_is_public
-      end
+class A
+  def method_is_public
+  end
       
-      def method_is_protected
-      end
+  def method_is_protected
+  end
           
-      protected
+  protected
     
-    end
-    ```
+end
+```
 
 * by overwriting method access level after its definition
 
-    Change
+Change
 
-    ```
+```
 #!ruby
-    class A
-      def method_is_public
-      end
+class A
+  def method_is_public
+  end
     
-      protected
+  protected
     
-      def method_is_protected
-      end
-    end
-    ```
+  def method_is_protected
+  end
+end
+```
 
-    into
+into
     
-    ```
+```
 #!ruby
-    class A
-      def method_is_public
-      end
+class A
+  def method_is_public
+  end
     
-      protected
+  protected
     
-      def method_is_protected
-      end
+  def method_is_protected
+  end
       
-      public :method_is_protected
-    end
-    ```
+  public :method_is_protected
+end
+```
 
 I would recommend using the second way. It is simpler to add and simpler to remove later. The second way is possible because [`#public`](http://ruby-doc.org/core-2.1.5/Module.html#method-i-public) is not a language syntax feature but just a normal method call executed on current class.
 
