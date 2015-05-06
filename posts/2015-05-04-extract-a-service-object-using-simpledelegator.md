@@ -541,7 +541,7 @@ In other words, exceptions may hurt performance when used inside a "hot loop" in
 
 This is a great way to decouple flow and business logic from HTTP concerns. It makes the code cleaner and easier to reason about. If you want to keep refactoring the code you can easily focus on controller-service communication or service-model. You just introduced a nice boundary.
 
-From now on you can also [use Service Objects for setting proper state in your tests](#service-objects-for-testing).
+From now on you can also use Service Objects for setting a proper state in your tests.
 
 ## Resources
 
