@@ -109,7 +109,7 @@ I would recommend using the second way. It is simpler to add and simpler to remo
 
 ### Inlined filters
 
-Although not strictly necessary for this technique to work, it is however recommended to [inline filters](#inline-filters-recipe). It might be that those filters contain logic that should be actually moved into the service objects. It will be easier for you to spot it after doing so.
+Although not strictly necessary for this technique to work, it is however recommended to inline filters. It might be that those filters contain logic that should be actually moved into the service objects. It will be easier for you to spot it after doing so.
 
 ## Algorithm
 
@@ -161,7 +161,7 @@ end
 
 ### About filters
 
-In this example I decided not to move the verification done by the `whitlist_ip` before filter into the service object. This IP address check of issuer's request actually fits into controller responsibilities quite well.
+In this example I decided not to move the verification done by the `whitelist_ip` before filter into the service object. This IP address check of issuer's request actually fits into controller responsibilities quite well.
 
 ### Move the action definition into new class and inherit from `SimpleDelegator`
 
