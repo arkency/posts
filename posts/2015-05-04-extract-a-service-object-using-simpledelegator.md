@@ -553,3 +553,19 @@ From now on you can also use Service Objects for setting a proper state in your 
 * [Don't forget about `eager_load` when extending autoload paths](http://blog.arkency.com/2014/11/dont-forget-about-eager-load-when-extending-autoload/)
 * [Cost of using exceptions for control flow compared to one SQL statement](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e). [Retweet here](https://twitter.com/pankowecki/status/535818231194615810)
 
+## About the book
+
+What I showed you here is one chapter of the "Fearless Refactoring: Rails Controllers" book. The whole book is divided into 3 parts:
+
+* Recipes
+* Big code examples
+* Theory with examples
+
+The chapter above was one of the recipes. The book is much more than that. The third part of the book is explaining in a very detailed way what are:
+
+* service objects
+* repositories
+* form objects
+* adapters
+
+If you think that your Rails application can benefit from those patterns, consider [buying the book](https://arkency.dpdcart.com).
