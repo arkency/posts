@@ -33,18 +33,18 @@ CQRS is a way of building your application. It is not a pattern, not an architec
 It's just about separating reads and writes and building a separate stack (layers) for each of them:
 
 * writes - it could be complex, could be modelled in separate layers like: application service, domain model (maybe using domain services also), with transactions required and complex stuff happening. We care here about consistency of our data more than about performance (usually we write data in a row of magnitude less often than we read them).
-* reads - dead simple!, tailor made for your views, no abstraction over data model - here is the part where Active Record shines - just define model and use it - but read only!
+* reads - dead simple!, tailor made for your views, no abstraction over a data model - here is the part where Active Record shines - just define a model and use it - but read only!
 
-You may say _"Ok, but I wanted to learn about Event Sourcing and you writing here about some CQRS architecture style."_ There is a good reason for that:
+You may say _"Ok, but I wanted to learn about Event Sourcing and you're writing here about some CQRS architecture style."_ There is a good reason for that:
 
 > You can use CQRS without Event Sourcing, but with Event Sourcing you must use CQRS.
 <p class="quote-by">Greg Young</p>
 
 ## Crunching your Domain
 
-Let's start building our Event Sourced application with defining a domain model. When using Event Sourcing your domain model (your aggregates) are build based on domain events. Its underlying data model is not storing current state but series of domain events that have been applied to that aggregate since beginning of its life. This allows you to build your aggregate that will not expose its state and will be able to protects its invariants.
+Let's start building our Event Sourced application with defining a domain model. When using Event Sourcing your domain model (your aggregates) are build based on domain events. Its underlying data model is not storing current state but series of domain events that have been applied to that aggregate since the beginning of its life. This allows you to build your aggregate that will not expose its state and will be able to protects its invariants.
 
-Also aggregate is a source of new domain events. Every call of a method for an aggregate might result in publishing new domain events. Every change in internal state of an aggregate must be done by publishing and applying new domain event. No state change in other way! Only then we could ensure that our aggregate will be rebuild to the same state from events.
+Also an aggregate is a source of new domain events. Every call of a method for an aggregate might result in publishing new domain events. Every change in internal state of an aggregate must be done by publishing and applying a new domain event. No state change in other way! Only then we could ensure that our aggregate will be rebuild to the same state from events.
 
 ```
 #!ruby
@@ -63,7 +63,7 @@ module Events
 end
 ```
 
-I usually create a helper methods to access event's attributes witch are stored in `@data` hash attribute of `RailsEventStore::Event`. And I like also to add class method `create` to build new event with explicitly given parameters, but a RailsEventStore::Event is also a good way of creating a domain event.
+I usually create a helper method to access event's attributes witch are stored the in `@data` hash attribute of `RailsEventStore::Event`. And I like also to add a class method `create` to build a new event with explicitly given parameters, but a RailsEventStore::Event is also a good way of creating a domain event.
 
 Ok, now when we have domain events defined let's apply them to our domain object.
 
@@ -104,8 +104,8 @@ end
 ```
 
 Let's see what is going on in our `Domain::Order` class.
-First the `initialize` method. It builds initial state of an aggregate, a state where all begins :)
-Then we have `create` method. It should be used by other objects to invoke aggregate features. Here we should protect our invariants, check business rules do validations etc. From CQRS we know it should not return a value - it should just execute or fail (by raising error). In `create` method we never change state of an aggregate. Instead we build and apply new domain event. The `apply` method is defined in `AggregateRoot` module:
+First the `initialize` method. It builds the initial state of an aggregate, a state where all begins :)
+Then we have the `create` method. It should be used by other objects to invoke aggregate features. Here we should protect our invariants, check business rules do validations etc. From CQRS we know it should not return a value - it should just execute or fail (by raising error). In the `create` method we never change the state of an aggregate. Instead we build and apply a new domain event. The `apply` method is defined in `AggregateRoot` module:
 
 ```
 #!ruby
@@ -125,15 +125,15 @@ module AggregateRoot
 end
 ```
 
-By calling `apply Events::OrderCreated.create(@id, order_number, customer_id)` we are creating new `OrderCreated` domain event, applying it to out aggregate - what results in change of state, and storing it in `changes` collection. It stores all domain events created by the aggregate during its method execution.
+By calling `apply Events::OrderCreated.create(@id, order_number, customer_id)` we are creating a new `OrderCreated` domain event, applying it to our aggregate - what results in a change of state, and storing it in the `changes` collection. It stores all domain events created by the aggregate during its method execution.
 
-The last thing to take a look here is the `apply_order_created` method. This method updates aggregate state based on domain event. It does not matter if the event was published by aggregate itself or it was read from Event Store and applied when rebuilding aggregate state. There must not be any business rules check or validations here. What has happened has happened. It is already done. We just reflect those changes in aggregate state.
+The last thing to take a look here is the `apply_order_created` method. This method updates the aggregate state based on domain event. It does not matter if the event was published by the aggregate itself or it was read from Event Store and applied when rebuilding the aggregate state. There must not be any business rules check or validations here. What has happened has happened. It is already done. We just reflect those changes in aggregate state.
 
 And one more thing: notice that all state of an aggregate object is private. Not available outside aggregate itself - even for reads.
 
 ## Commands
 
-Command is a simple object that encapsulates parameters for an action to be executed. Should be named in business language (Ubiquitous Language) and express user's intention. Before command is executed it should be validated. Those validations should be simple, out of full context, just based on command data and read model data. Should not check business rules (that will be handled later by domain object).
+A command is a simple object that encapsulates parameters for an action to be executed. Should be named in a business language (Ubiquitous Language) and express the user's intention. Before a command is executed it should be validated. Those validations should be simple, out of full context, just based on command data and read model data. Should not check business rules (that will be handled later by domain object).
 
 ```
 #!ruby
@@ -179,13 +179,13 @@ end
 
 ## Handling a command
 
-Command handler is a entry point to your domain. It should handle all "plumbing", orchestrate domain objects and domain services and execute domain object's methods with parameters given in a handled command. There could be several sources of commands send to our application: users, external systems or sagas (process managers).
+A command handler is a entry point to your domain. It should handle all "plumbing", orchestrate domain objects and domain services and execute domain object's methods with parameters given in a handled command. There could be several sources of commands send to our application: users, external systems or sagas (process managers).
 
 Here is how I've defined "plumbing" for my sample Event Sourced application: [https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb](https://github.com/mpraglowski/cqrs-es-sample-with-res/blob/master/lib/command_handler.rb)
 
-This is the only module where I use core features of Rails Event Store. It loads events from RES in `load_events` using aggregate id as a stream name. It publishes events in `publish` method. The publish in RES will store the published event in a given stream (again aggregate id) and then send it to all subscribers. This is an important assumption! **What is not stored is never published**.
+This is the only module where I use core features of Rails Event Store. It loads events from RES in `load_events` using aggregate id as a stream name. It publishes events in the `publish` method. The publish in RES will store the published event in a given stream (again aggregate id) and then send it to all subscribers. This is an important assumption! **What is not stored is never published**.
 
-So with use the `CommandHandler` module `CreateOrder` command is handled by:
+So with the use of the `CommandHandler` module the `CreateOrder` command is handled by:
 
 ```
 #!ruby
@@ -208,7 +208,7 @@ module CommandHandlers
 end
 ```
 
-The `with_aggregate(command.aggregate_id)` method will return `Domain::Order` object recreated from events read from RES. On an Order command handler executes a `create` method using parameters from given command.
+The `with_aggregate(command.aggregate_id)` method will return a `Domain::Order` object recreated from events read from RES. On an Order command handler executes a `create` method using parameters from given command.
 
 The command is send from any controller using method from `ApplicationController` (notice it is validated before execution):
 
@@ -229,7 +229,7 @@ Till now we have implemented:
 * command is handled and domain logic is executed
 * domain events are stored and published by RES
 
-But when domain objects are not exposing it's state we need another way to build data for views - the read model. The model is a model as your application needs. It is denormalized - no costly joins, no lazy load, just select data and present them as is. It is tailor-made!
+But when domain objects are not exposing their state we need another way to build the data for views - the read model. The model is a model as your application needs. It is denormalized - no costly joins, no lazy load, just select data and present them as is. It is tailor-made!
 And one more thing: it could be anything - relational DB, NoSQL store, graph database (i.e. [RethinkDB](http://blog.arkency.com/2015/04/on-my-radar-rethinkdb-plus-react-dot-js-plus-rails/)).
 
 Here we go with build in Rails Event Store pub/sub feature. If you took a look at source of `CommandHandler` module you might have noticed
