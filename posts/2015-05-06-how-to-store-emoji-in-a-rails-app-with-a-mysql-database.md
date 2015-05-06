@@ -6,7 +6,7 @@ publish: false
 author: Jakub Kosiński
 tags: [ 'mysql', 'unicode', 'emoji', 'rails', 'utf8mb4' ]
 newsletter: :arkency_form
-img: '/assets/images/how-to-store-emoji-in-rails-app-with-mysql-database/emoji-fit.png'
+img: '/assets/images/how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emoji-fit.png'
 ---
 
 <p>
