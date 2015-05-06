@@ -11,7 +11,7 @@ img: '/assets/images/how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emo
 
 <p>
   <figure align="center">
-    <img src="/assets/images/how-to-store-emoji-in-rails-app-with-mysql-database/emoji-fit.png">
+    <img src="/assets/images/how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emoji-fit.png">
   </figure>
 </p>
 
