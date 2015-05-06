@@ -1,5 +1,5 @@
 ---
-title: "How to store emoji in Rails app with MySQL database"
+title: "How to store emoji in a Rails app with a MySQL database"
 created_at: 2015-05-06 14:34:08 +0200
 kind: article
 publish: false
@@ -15,7 +15,7 @@ img: '/assets/images/how-to-store-emoji-in-rails-app-with-mysql-database/emoji-f
   </figure>
 </p>
 
-Suppose you have a Rails app and you are storing your data in MySQL database. You were requested to add emoji support to your application. Probably you are thinking: 
+Suppose you have a Rails app and you are storing your data in a MySQL database. You were requested to add emoji support to your application. Probably you are thinking: 
 
 > Oh, that's simple, it's just unicode, isn't it?
 
