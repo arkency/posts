@@ -14,11 +14,15 @@ img: "/assets/images/service_object_with_simple_delegate-fit.png"
 	</figure>
 </p>
 
-It's now more than 1 year since I released the first beta release (the final release was ready in December 2014) of the "Fearless Refactoring: Rails controllers" book. Many of the readers were pointing to the one technique which was especially useful to them - extracting a service object using SimpleDelegator.
+It's now more than 1 year since I released the first beta release (the final release was ready in December 2014) of the ["Fearless Refactoring: Rails controllers" book](http://rails-refactoring.com). Many of the readers were pointing to the one technique which was especially useful to them - extracting a service object using SimpleDelegator.
 
-This technique has also been very popular in our Arkency team. It gives you a nice way of extracting a service object immediately, within minutes. It is based on a bit of a hack. The idea is to treat this hack as a temporary solution to make the transition to the service object more easy.
+This technique has also been very popular in our Arkency team. It gives you a nice way of extracting a service object immediately, within minutes. It is based on a bit of a hack, though. The idea is to treat this hack as a temporary solution to make the transition to the service object more easy.
 
 <!-- more -->
+
+Before going into the chapter, let me quickly explain the structure of such [a Rails Refactoring recipe](http://rails-refactoring.com/recipes/extract-service-object-using-simpledelegator/). We start with a short **introduction** to the problem. Then we list the **prerequisites** - things that are needed to be done before this refactoring. After that we present a short **algorithm** and we jump into the **examples**. At the end we explain the **benefits** and we list the **resources**.
+
+OK, now it's time for the killer technique:
 
 # Extract a service object using the SimpleDelegator
 
@@ -541,8 +545,8 @@ From now on you can also [use Service Objects for setting proper state in your t
 
 ## Resources
 
-* In the book - [Inline controller filters](#inline-filters-recipe)
-* In the book - [Service objects as a way of testing Rails apps](#service-objects-for-testing)
+* In the book - Inline controller filters
+* In the book - Service objects as a way of testing Rails apps
 * [Delegator does not delegate protected methods](https://bugs.ruby-lang.org/issues/9542)
 * [`Module#public` documentation](http://ruby-doc.org/core-2.1.5/Module.html#method-i-public)
 * [`SimpleDelegator` documentation](http://www.ruby-doc.org/stdlib-2.1.5/libdoc/delegate/rdoc/SimpleDelegator.html)
