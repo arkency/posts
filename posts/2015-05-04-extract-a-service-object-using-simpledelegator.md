@@ -2,7 +2,7 @@
 title: "Extract a service object using SimpleDelegator"
 created_at: 2015-05-04 14:57:53 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 img: "/assets/images/service_object_with_simple_delegate-fit.png"
