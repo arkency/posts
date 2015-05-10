@@ -68,7 +68,7 @@ Now we got React in many projects. In many states - some apps have the UI fully 
 
 We write blogposts about React and other front-end technologies we started to love. **More and more people in Arkency that used to dislike frontend tasks became happy with them. You can be too!**
 
-Since React was so successful for us we decided to write a book about it. You can [buy beta version now for $49](https://arkency.dpdcart.com/cart/view?referer=http%3A%2F%2Fblog.arkency.com%2Frails-react%2F&product_id=106660-rails-meets-react-js&_ga=1.119508879.764295944.1430244356&__dpd_cart=b33e1b79-0c92-4882-a3e1-f37aa18ab989). We took an effort to make it friendly for Rails developers. It consists of:
+Since React was so successful for us we decided to write a book about it. You can [buy beta version now for $49](/rails-react/). We took an effort to make it friendly for Rails developers. It consists of:
 
 * Practical tutorial showing form with a few dynamic features that you can do step by step to learn react
 * Theoretical chapters about react API and best practices
