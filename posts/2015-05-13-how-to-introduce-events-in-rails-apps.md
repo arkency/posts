@@ -291,3 +291,14 @@ define (require) ->
 The above example shows how simple is to introduce events in you app. For now it is only simple events log. We started to collect events related to `User` model.
 We don't build state from this events. Although you can use them in some `Read models`.
 In next step you can collect all events related to User. Then you will be able to treat User as a `Aggregate` and build state from events.
+
+## Our other posts related to ES topic:
+
+- http://blog.arkency.com/2015/05/building-an-event-sourced-application-using-rails-event-store/
+- http://blog.arkency.com/2015/04/the-event-store-for-rails-developers/
+- http://blog.arkency.com/2015/03/how-to-use-gregs-event-store-from-ruby/
+- http://blog.arkency.com/2015/03/stream-pagination-in-gregs-event-store/
+- http://blog.arkency.com/2015/03/your-solid-tool-for-event-sourcing-eventstore-examples/
+- http://blog.arkency.com/2015/03/explaining-gregs-event-store/
+- http://blog.arkency.com/2015/03/why-use-event-sourcing/
+- http://blog.arkency.com/2015/03/fast-introduction-to-event-sourcing-for-ruby-programmers/
