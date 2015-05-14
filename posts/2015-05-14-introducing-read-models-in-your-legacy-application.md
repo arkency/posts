@@ -37,6 +37,7 @@ Now, we are ready to write an event handler, which will update a read model each
 Firstly, we will start from having records for each product, so we want to handle `AdminAddedProduct` event.
 
 ```
+#!ruby
 class UpdateProductRankingReadModel
   def handle_event(event)
     case event.event_type
@@ -54,6 +55,7 @@ end
 In our `ProductsController` or wherever we're creating our products, we subscribe this event handler to an event:
 
 ```
+#!ruby
 product_ranking_updater = UpdateProductRankingReadModel.new
 event_store.subscribe(product_ranking_updater, ['Events::AdminAddedProduct']
 ```
@@ -64,7 +66,9 @@ Remember, that this is legacy application. So we have many products and many lik
 We are going to create a snapshot event. Such event have a lot of data inside, because basically it contains all of the data we need for our read model.
 
 Firstly, I created `RankingHadState` event. 
+
 ```
+#!ruby
 module Events
   class RankingHadState < RailsEventStore::Event
   end
@@ -74,6 +78,7 @@ end
 Now we should create a class, which we could use for publishing this snapshot event (for example, using rails console). It should fetch all products and its' likes count and then publish it as one big event.
 
 ```
+#!ruby
 class CopyCurrentRankingToReadModel
   def initialize(event_store = default_event_store)
     @event_store = event_store
@@ -108,6 +113,7 @@ In your case, maybe you have too many products to call `Product.all`. Remember t
 Now we only need to add handling method for this event to our event handler.
 
 ```
+#!ruby
 class UpdateProductRankingReadModel
   def handle_event(event)
     ...
@@ -129,6 +135,7 @@ end
 After this deployment, we can log into our rails console and type:
 
 ```
+#!ruby
 copy_object = CopyCurrentRankingToReadModel.new
 event_store = copy_object.event_store
 ranking_updater = UpdateProductRankingReadModel.new
@@ -146,6 +153,7 @@ As I previously said, I'm assuming that these events are already being published
 Obviously, we need handling of like/unlike events in the event handler:
 
 ```
+#!ruby
 class UpdateProductRankingReadModel
   def handle_event(event)
     ...
