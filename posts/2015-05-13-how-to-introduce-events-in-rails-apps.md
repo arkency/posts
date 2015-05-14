@@ -1,5 +1,5 @@
 ---
-title: "How to introduce the Event Sourcing in Rails apps"
+title: "How to introduce events in Rails apps"
 created_at: 2015-05-13 17:57:16 +0200
 kind: article
 publish: false
@@ -18,7 +18,7 @@ img: "/assets/images/events/blue-bricks-fit.jpg"
 Recently I talked with some awesome Rails developers about the Event Sourcing.
 We talked about introducing ES concept in a legacy Rails applications.
 That conversation inspired me to write a post about our experiences with the Event Sourcing.
-The most important think to remember is that we don’t have to implement all blocks related to ES at the beginning (Aggregates, Read models, Denormalizers and so on).
+The most important thing to remember is that we don’t have to implement all blocks related to ES at the beginning (Aggregates, Read models, Denormalizers and so on).
 You can implement only one pattern and improve it slowly to full an Event Sourcing implementation.
 This strategy will involve small steps down a long road. This is how we work in the Arkency.
 
@@ -35,7 +35,7 @@ Events will be saved to streams, each stream per user. This way we will create a
 ## Backend part
 
 We start by adding a `rails_event_store` gem to our Gemfile ([installation instructions](https://github.com/arkency/rails_event_store/blob/master/README.md)).
-Next think is that we need some events to collect. We have to create an event class representing a single web request.
+Next thing is that we need some events to collect. We have to create an event class representing a single web request.
 To do this we will use the class provided by our gem.
 
 ```
