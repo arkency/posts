@@ -29,27 +29,31 @@ This strategy will involve small steps down a long road. This is how we work in 
 We have experimented with the Event Sourcing in couple client’s projects.
 Some time ago we launched our vision of an Event Store (we call it [RES](https://github.com/arkency/rails_event_store)) which we use in customer’s applications.
 It help as a lot to start Event-think during implementation. This example will show you how to simply introduce an ES in a Rails app.
-We will create a simple events browser. We will collect events describing user’s requests.
+We will create a simple events browser. We will collect events describing user’s registration.
 Events will be saved to streams, each stream per user. This way we will create a simple log.
 
 ## Backend part
 
 We start by adding a `rails_event_store` gem to our Gemfile ([installation instructions](https://github.com/arkency/rails_event_store/blob/master/README.md)).
-Next thing is that we need some events to collect. We have to create an event class representing a single web request.
+Next thing is that we need some events to collect. We have to create an event class representing a user creation.
 To do this we will use the class provided by our gem.
 
 ```
 #!ruby
-class UserRequestedWeb < RailsEventStore::Event; end
+class UserCreated < RailsEventStore::Event; end
 ```
 
-Now we need to find place to track this event. I thing that `ApplicationController` will be the best place.
-As `event_data` we save information about user and some additional data like action name or IP address.
+Now we need to find place to track this event. I thing that `UsersController` will be the best place. In the `create` method we build new User's model.
+As `event_data` we save information about user and some additional data like controller name or IP address.
 
 ```
 #!ruby
-class ApplicationController < ActionController::Base
-  before_filter :track_web_request
+class UsersController < ActionController::Base
+  after_filter :user_created_event, only: :create
+
+  def create
+    #user registration
+  end
 
   def event_store
     @rails_event_store_client ||= RailsEventStore::Client.new
@@ -57,22 +61,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def track_web_request
-    if logged_in?
-      stream_name = "user_#{current_user.id}"
-      event_data = {
-        data: {
-          user: {
-            id: current_user.id,
-            login: current_user.login
-          },
-          remote_ip: request.remote_ip,
-          controller: controller_name,
-          action: action_name
-        }
+  def user_created_event
+    stream_name = "user_#{current_user.id}"
+    event_data = {
+      data: {
+        user: {
+          login: current_user.login
+        },
+        remote_ip: request.remote_ip,
+        controller: controller_name,
       }
-      event_store.publish_event(UserRequestedWeb.new(event_data), stream_name)
-    end
+    }
+    event_store.publish_event(UserCreated.new(event_data), stream_name)
   end
 end
 ```
