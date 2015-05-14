@@ -1,5 +1,5 @@
 ---
-title: "Building a React.js event log in a a Rails admin panel"
+title: "Building a React.js event log in a Rails admin panel"
 created_at: 2015-05-13 17:57:16 +0200
 kind: article
 publish: true
