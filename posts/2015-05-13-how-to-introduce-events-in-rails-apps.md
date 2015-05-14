@@ -106,7 +106,7 @@ Instead of using Rails views we will use React's components. I created four comp
 </p>
 
 I use coffeescript to build components. As you can see on following example I use `requirejs` to manage them.
-Recently we launched a great book about React where you can read more about our experiences with React and coffeescript.
+Recently we launched a great [book](http://blog.arkency.com/rails-react/) about React where you can read more about our experiences with React and coffeescript.
 Of course you could go with JSX as well.
 
 ```
