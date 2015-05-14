@@ -32,6 +32,8 @@ It help as a lot to start Event-think during implementation. This example will s
 We will create a simple events browser. We will collect events describing user’s registration.
 Events will be saved to streams, each stream per user. This way we will create a simple log.
 
+The idea is to display events to the admin of the Rails app. We treat it as a "monitoring" tool and it is also first step to use events in a Rails application.
+
 ## Backend part
 
 We start by adding a `rails_event_store` gem to our Gemfile ([installation instructions](https://github.com/arkency/rails_event_store/blob/master/README.md)).
