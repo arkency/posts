@@ -1,5 +1,5 @@
 ---
-title: "How to introduce events in Rails apps"
+title: "Building a React.js event log in a a Rails admin panel"
 created_at: 2015-05-13 17:57:16 +0200
 kind: article
 publish: false
