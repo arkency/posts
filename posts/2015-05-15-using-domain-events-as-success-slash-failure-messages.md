@@ -16,7 +16,7 @@ img: "/assets/images/events/failure_domain_event-fit.jpg"
   </figure>
 </p>
 
-## When you publish event when some code succeeded make sure you publish one also on it's failure
+## When you publish an event on success make sure you publish one failure also
 
 We had an issue recently with one of our internal gems used to handle all communication with external payment gateway. We are using gems to abstract bounded context (payments here) and to have abstract anti-corruption layer on top of external system's API.
 
@@ -138,6 +138,6 @@ end
 
 ## But wait, why not just change error handling?
 
-Of course we could do it without use of domain events that are persisted in [Rails Event Store](https://github.com/arkency/rails_event_store) but possibly of going back in the history of the aggregate is priceless. Just realise that a stream of domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
+Of course we could do it without use of domain events that are persisted in [Rails Event Store](https://github.com/arkency/rails_event_store) but possibility of going back in the history of the aggregate is priceless. Just realise that a stream of domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
 
 And one more thing: you want to have a monthly report of failed refunds of transactions? Just implement handler for TransactionRefundFailed event and do you grouping, summing & counting and store the results. And by replaying all past TransactionRefundFailed events with use of your report building handler you will get report for the past months too!
