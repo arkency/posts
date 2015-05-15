@@ -90,12 +90,7 @@ class TransactionRefunded < RailsEventStore::Event
 class TransactionRefundFailed < RailsEventStore::Event
 
 class PaymentGateway
-  RefundFailed = Class.new(StandardError)
-
-  def initialize(event_store = RailsEventStore::Client.new, api = SomePaymentGateway::Client.new)
-    @api = api
-    @event_store = event_store
-  end
+  #... not changed code omitted
 
   def refund(transaction)
     api.refund(transaction.id, transaction.order_id, transaction.amount)
@@ -103,10 +98,6 @@ class PaymentGateway
   rescue => error
     transaction_refund_failed(transaction, error)
   end
-  # there are more but let's focus only on refunds now
-
-  private
-  attr_accessor :event_store, :api
 
   def transaction_refunded(transaction)
     publish(TransactionRefunded, transaction)
@@ -118,6 +109,7 @@ class PaymentGateway
     end
   end
 
+  # helper method to publish both kind of events with similar data
   def publish(event_type, transaction)
     event_data = { data: {
       transaction_id: transaction.id,
