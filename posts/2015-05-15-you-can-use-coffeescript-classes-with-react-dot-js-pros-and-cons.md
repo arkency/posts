@@ -26,7 +26,7 @@ As I said before, previously `React.createClass` made a lot of things. It made y
 
 Now all this functionality is gone. `React.createClass` now just adds some utility functions to your object, autobinds your functions to `this` and checks invariants - like whether you defined `render` function or not.
 
-That means your components are not renderable as-is. That's why React developers introduced the *element* concept. The constructor that `React.createClass` created for you now needs to be called by you explicitly. That's what you do when you call `React.createElement` function.
+That means your components are not renderable as they are. That's why React developers introduced the *element* concept. The constructor created by `React.createClass` now needs to be called by you explicitly. You can do it calling `React.createElement` function.
 
 ```
 #!coffeescript
@@ -67,7 +67,7 @@ A *node* can be:
 
 > Node is just a new fancy name for arguments for `children` you know from previous versions of React. 
 
-This is a bit verbose way to create elements from your components. It also prevents you from an easy upgrade to 0.13 if you are not using JSX (we got this process covered [in our book](http://blog.arkency.com/rails-react/). Fortunately, with a little trick you can use your old `Component(props, children)` style of creating elements.
+This is a bit verbose way to create elements from your components. It also prevents you from an easy upgrade to 0.13 if you are not using JSX (we got this process covered [in our book](http://blog.arkency.com/rails-react/)). Fortunately, with a little trick you can use your old `Component(props, children)` style of creating elements.
 
 React provides us `React.createFactory` function which returns a factory for creating elements from a given component. It basically allows you to use the 'old' syntax of passing `props` and `children` to your components:
 
@@ -136,28 +136,27 @@ class ExampleComponent extends React.Component
 Notice that `getInitialState` and `getDefaultProps` functions are gone. Now you set initial state directly in a constructor and pass default props as the class method of the component class. There are more subtle differences like that in class approach:
 
 * `getDOMNode` is no more - if you're using `getDOMNode` in your component's code it's no longer available with component classes. You need to use new `React.findDOMNode` function. `getDOMNode` is deprecated, so you shouldn't use it regardless of using the class syntax or not.
-* There is no way to pass mixins to component classes - this is a huge deal. Since there is no idiomatic way to work with mixins in classes (both ES6 and CoffeeScript ones), React developers decided to not support mixins at all. There are interesting alternatives to mixins in ECMAScript 7 - like [decorators](https://github.com/wycats/javascript-decorators), but they are not used so far.
+* There is no way to pass mixins to component classes - this is a huge drawback. Since there is no idiomatic way to work with mixins in classes (both ES6 and CoffeeScript ones), React developers decided to not support mixins at all. There are interesting alternatives to mixins in ECMAScript 7 - like [decorators](https://github.com/wycats/javascript-decorators), but they are not used so far.
 * it handles `propTypes` and `getDefaultProps` differently - `propTypes` and `getDefaultProps` are passed as a class methods of your component class (as in the example above).
-* component functions are not auto-binded - in `createClass` React performs auto-binding for all component's functions. Since now we're working with a plain CoffeeScript, you got a full control over `this` binding. You can use fat arrows (`=>`) to auto-bind to `this`, for example.
+* component functions are not auto-binded - in `createClass` React performs auto-binding for all component's functions. Since now we're working with a plain CoffeeScript, you got a full control over `this` binding. You can use fat arrows (`=>`) to auto-bind to `this`.
 
-As you can see, this approach is more 'CoffeeScript'-y than `React.createClass` approach used before. First of all, there is an explicit constructor you write by yourself. This is a real plain CoffeeScript class. You can bind your methods by yourself. Syntax is less custom and aligns well with a style of typical CoffeeScript codebase.
+As you can see, this approach is more 'CoffeeScript'-y than `React.createClass`. First of all, there is an explicit constructor you write by yourself. This is a real plain CoffeeScript class. You can bind your methods by yourself. Syntax aligns well with a style of typical CoffeeScript codebase.
 
 Notice that you are not constructing these objects by yourself - you always pass a component class to `createElement` function.
 
 ## Pros:
 
-* It's a plain CoffeeScript class - it is a clear indication that your components are not 'special' in any means - they are objects like the rest of your application.
-* It uses common idioms of CoffeeScript
+* It's a plain CoffeeScript class - it is a clear indication that your components are not 'special' in any means.
+* It uses common idioms of CoffeeScript.
 * You got more control - you control binding of your methods and you are not relying on auto-biding React performs with the `createClass` approach.
-* Interesting idioms are getting created - CoffeeScript in React is not as common as we'd like, but ECMAScript 6 enthusiasts are creating new interesting idioms. For example things like [higher-order components](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) are interesting directions.
-* It leverages built-in language features - `React.createClass` seems to be duplicating semantics that CoffeeScript already has. Thanks to ES6 getting more and more popular the class semantics CoffeeScript already has can be used with React as well.
+* Interesting idioms are getting created - CoffeeScript in React is not as common as we'd like, but ECMAScript 6 enthusiasts are creating new interesting idioms. For example things like [higher-order components](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775).
 
 ## Cons:
 
 * Some features are not available now - React developers priority with 0.13 version was to allow common language idioms be used in creating React components. They dropped mixins support since they can't see a suitable idiomatic solution. You can expect they will be reintroduced somehow in later versions of React.
-* Developer needs to know more about JS/Coffee - since React does not auto-bind methods in a class approach, you need to be more careful with it. A good understanding of how JavaScript/CoffeeScript works can be necessary to avoid hard to track bugs in your components.
-* No `getDOMNode` can be a surprise - I believe it'll be an exception, but you need to be careful about an available API. Now in `React.createClass` you can use `getDOMNode`, but not in a component class. I believe APIs will get aligned in next versions of React. Right now you need to be careful about it.
+* Developer needs to know more about JS/Coffee - since React does not auto-bind methods in a class approach, you need to be more careful with it. A good understanding of how JavaScript/CoffeeScript works can be necessary to avoid bugs in your components.
+* No `getDOMNode` can be a surprise - I believe it'll be an exception, but you need to be careful using available API. Now in `React.createClass` you can use `getDOMNode`, but not in a component class. I believe APIs will get aligned in next versions of React.
 
 ## Summary:
 
-Component classes approach brings React closer to the world of idiomatic Coffee and JavaScript. It is an indication that React developers does not want to do 'magic' with React components. I'm a big fan of this approach - I favor this kind of explicitness in my tools. The best part is that you can try it out without changing your current code - and see whether you like it or not. It opens a way for new idioms being introduced - idioms that can benefit your React codebase.
+Pure classes approach brings React closer to the world of idiomatic Coffee and JavaScript. It is an indication that React developers does not want to do 'magic' with React components. I'm a big fan of this approach - I favor this kind of explicitness in my tools. The best part is that you can try it out without changing your current code - and see whether you like it or not. It opens a way for new idioms being introduced - idioms that can benefit your React codebase.
