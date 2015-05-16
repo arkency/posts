@@ -16,7 +16,7 @@ img: "/assets/images/events/failure_domain_event-fit.jpg"
   </figure>
 </p>
 
-## When you publish an event on success make sure you publish one failure too
+## When you publish an event on success make sure you publish on failure too
 
 We had an issue recently with one of our internal gems used to handle all communication with external payment gateway. We are using gems to abstract bounded context (payments here) and to have abstract anti-corruption layer on top of external system's API.
 
