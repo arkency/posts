@@ -43,6 +43,16 @@ On babel website we can find link to `sprockets-es6` gem, which enables ES6 tran
 
 You can try using other gem to get JavaScript packaging like [requirejs-rails gem](https://rubygems.org/gems/requirejs-rails/versions/0.9.5). Remember to register ES6 transformer with valid option in Sprockets. See this [test file](https://github.com/josh/sprockets-es6/blob/master/test/test_es6.rb) for example usage.
 
+If you decide to go with this method, you just need to put these two files in Gemfile.
+
+```
+#!ruby
+gem 'sprockets', '~>3.0.0.beta'
+gem 'sprockets-es6'
+```
+
+And now run `bundle install`. After installation you can write your ES6 code in files with `.es6` extension.
+
 ### Using Node.JS with Gulp
 Marcin [wrote](http://blog.arkency.com/2015/03/gulp-modern-approach-to-asset-pipeline-for-rails-developers/) some time ago about unusual approach for asset serving in Rails applications. We can completely remove sprockets and do it on our own with simple Node.js application. 
 
