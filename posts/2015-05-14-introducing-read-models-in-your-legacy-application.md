@@ -2,7 +2,7 @@
 title: "Introducing Read Models in your legacy application"
 created_at: 2015-05-14 18:20:44 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'rails_event_store', 'read model', 'event', 'event sourcing' ]
 newsletter: :arkency_form
