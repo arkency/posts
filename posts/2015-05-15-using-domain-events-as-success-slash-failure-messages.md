@@ -93,7 +93,7 @@ class PaymentGateway
   #... not changed code omitted
 
   def refund(transaction)
-    api.refund(transaction.id, transaction.order_id, transaction.amount)
+    # ...
     transaction_refunded(transaction)
   rescue => error
     transaction_refund_failed(transaction, error)
@@ -114,16 +114,12 @@ class PaymentGateway
     event_data = { data: {
       transaction_id: transaction.id,
       order_id:       transaction.order_id,
-      amount:transaction.amount
+      amount:         transaction.amount
     }}.tap do |data|
       yield data if block_given?
     end
     event = event_type.new(data)
     event_store.publish(event, order_stream(transaction.order_id)
-  end
-
-  def order_stream(order_id)
-    "order$#{order_id}"
   end
 end
 ```
