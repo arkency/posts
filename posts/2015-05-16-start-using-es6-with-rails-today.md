@@ -24,14 +24,13 @@ The thing that made me fond of writing front-end code was CoffeeScript. It didn'
 
 Fortunately the TC39 committee is working hard on sixth version of ECMAScript. You can think about it as an improved JavaScript. It added many features, many of which you may have already seen on CoffeeScript. You can read about some goodies added to ES6 in [this blogpost](http://tech.namshi.com/blog/2014/10/19/welcome-es6-javascript-is-not-fancy-anymore/).
 
-The best part of ES6 is that **you can use it, despite the fact it hasn't been finished yet**. See how you can bring ES6 to Rails.
+The best part of ES6 is that **you can use it, despite the fact it hasn't been finished yet**.
 
 # How can I use ES6 in my web browser?
 
 New features of ES6 can be emulated in JavaScript (used in our web browsers) using [Babel](https://babeljs.io/). It provides full compatibility. However one of the features may require some extra work.
 
-One of most exciting features of ES6 are built-in modules. Before ES6 we used solutions like CommonJS or RequireJS. By default Babel uses CommonJS modules as a fallback. If you didn't use any type of packaging and want to use one, you would need to setup one.
-
+One of most exciting features of ES6 are built-in modules. Before ES6 we used solutions like CommonJS or RequireJS. By default Babel uses CommonJS modules as a fallback. If you didn't use any type of packaging and want to use one, you will need to setup one.
 
 # Bringing ES6 to Rails
 
@@ -39,9 +38,9 @@ Sprockets 4.x promise to bring ES6 transpiling out of the box. This release does
 
 ### Using Sprockets with `sprockets-es6` gem
 
-On babel website we can find link to `sprockets-es6` gem, which enables ES6 transpiling for sprockets. Unfortunately it does not come without problems - the gem requires `sprockets` in version `>= 3.0.0`. By default babel converts ES6 modules to CommonJS modules. Two gems providing CommonJS (`browserify-rails` and `sprockets-commonjs`) requires `sprockets` to be in version lower than 3.0.0.
+On babel website we can find link to `sprockets-es6` gem, which enables ES6 transpiling for sprockets. Unfortunately it does not come without problems - the gem requires `sprockets` in version `~3.0.0.beta`. By default babel converts ES6 modules to CommonJS modules. Two gems providing CommonJS (`browserify-rails` and `sprockets-commonjs`) requires `sprockets` to be in version lower than 3.0.0.
 
-You can try using other gem to get JavaScript packaging like [requirejs-rails gem](https://rubygems.org/gems/requirejs-rails/versions/0.9.5). Remember to register ES6 transformer with valid option in Sprockets. See this [test file](https://github.com/josh/sprockets-es6/blob/master/test/test_es6.rb) for example usage.
+You can try using other gem to get JavaScript packaging like [requirejs-rails gem](https://rubygems.org/gems/requirejs-rails/versions/0.9.5). Remember to register ES6 module transformer with valid option in Sprockets. See this [test file](https://github.com/josh/sprockets-es6/blob/master/test/test_es6.rb) for example usage.
 
 If you decide to go with this method, you just need to put these two files in Gemfile.
 
@@ -56,12 +55,13 @@ And now run `bundle install`. After installation you can write your ES6 code in 
 ### Using Node.JS with Gulp
 Marcin [wrote](http://blog.arkency.com/2015/03/gulp-modern-approach-to-asset-pipeline-for-rails-developers/) some time ago about unusual approach for asset serving in Rails applications. We can completely remove sprockets and do it on our own with simple Node.js application. 
 
-We want to remove any dependencies on Sprockets or any other Ruby gem, when it comes to asset serving. Moreover, using this method, we get the **faster overall asset compiling** than with Sprockets.
+We want to remove any dependencies on Sprockets or any other Ruby gem, when it comes to asset serving. Moreover, using this method, we get **faster overall asset compiling** than with Sprockets.
 
 With Gulp, we can use `babelify` and `browserify` node packages in our asset processing process. It let us to use all ES6 features without any inconvenience. You can see example Gulpfile.js with ES6 transpiling and SASS compiling on gist: [Gulpfile.js](https://gist.github.com/voter101/9c824a30f712e7724cad)
 
 # Conclusions
 
-There are many more workarounds to get ES6 in Rails environment that doesn't require discarding Sprockets. Unfortunately none of them are good enough to mention. I strongly recommend going with Gulp. It's simple, powerful and provides native environment to work with assets. If you don't want to switch from Sprockets, you can try-out `sprockets-es6` gem.
+There are many more workarounds to get ES6 in Rails environment that doesn't require discarding Sprockets. Unfortunately none of them are good enough to mention as production-ready. I strongly recommend going with Gulp. It's simple, powerful and provides native environment to work with assets. 
+If you don't want to switch from Sprockets, you can try-out `sprockets-es6` gem.
 
 If you want to receive more articles about Rails and front-end, sign-up for our newsletter below.
