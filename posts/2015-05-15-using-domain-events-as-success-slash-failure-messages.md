@@ -22,13 +22,13 @@ We had an issue recently with one of our internal gems used to handle all commun
 
 <!-- more -->
 
-When our code is triggered (no matter how in scope of this blog post) we are using our gem's method to handle payments.
+When our code is triggered (no matter how in scope of this blog post) we are using our gem's methods to handle payments.
 
 ```
 #!ruby
-...
+# ...
 payment_gateway.refund(transaction)
-...
+# ...
 ```
 
 There are different payment gateways - some of them responds synchronously some of them prefer asynchronous communication. To  avoid coupling we publish an event when payment gateway responds.
@@ -123,6 +123,8 @@ class PaymentGateway
   end
 end
 ```
+
+The raise of an error here was replaced by use of domain event. If you think about it what is raising an error? It is a domain event ... when domain is the code. By publishing our own domain event we give it a business meaning.
 
 ## But wait, why not just change error handling?
 
