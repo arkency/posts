@@ -6,64 +6,69 @@ publish: false
 author: Rafał Łasocha
 tags: [ 'rails_event_store', 'read model', 'event', 'event sourcing' ]
 newsletter: :arkency_form
+img: "/assets/images/introducing-read-models-in-your-legacy-application/books-fit.jpg"
 ---
 
-Recently on our blog you could read many posts about Event Sourcing. There're a lot of new buzzwords aroung it - event, event handlers, read models... In his recent blogpost Tomek said that you can introduct these concepts into your app gradually. Now I'll show you how to start using Read Models in your application.
+<p>
+  <figure align="center">
+    <img src="/assets/images/introducing-read-models-in-your-legacy-application/books-fit.jpg">
+  </figure>
+</p>
+
+Recently on our blog you could read many posts about Event Sourcing. There're a lot of new concepts around it - event, event handlers, read models... In his [recent blogpost](http://blog.arkency.com/2015/05/building-a-react-dot-js-event-log-in-a-a-rails-admin-panel/) Tomek said that you can introduct these concepts into your app gradually. Now I'll show you how to start using Read Models in your application.
 
 <!-- more -->
 
-## Read Model
-
-What is the read model anyway? For simplicity, we can think that this is just a table in the database which have data ready to display on your webpage. No costly joins and other things you usually do to display data on your webpage. This of course means, that the data you keep in your read model tables is redundant.
-For example, you want to display the list of articles and author names associated to it. How would you do this usually? You probably have `Article` and `Author` classes, and you do have `author_id` field in your `Article` class.
-When you want to display it, you just use SQL's join to fetch all the articles with author's names merged with article data.
-
-There's another road. Apart from `Article` and `Author` classes, you may have an `ListArticle` read model, which is similar to the `Article` model, but it has columns for all the data you need from the `Author` class - `login`, `name`, `email` etc.
-
-But why would you like to use read models in your application anyway? First of all, because it'll make reasoning about your application easier. Thanks to the event sourcing, writes and reads are decoupled - that's nice! Your event handlers are handling writes: they update the read models. After that, reading data from database is simple, because you just need to fetch the data and display them.
-
 ## Our legacy application
 
-In our case, our application is very legacy. However, we already started publishing events there because adding a line of code which publishes an event really cost you nothing. In our app there's a ranking of products. On the products' pages users have "Like it" button. One of the columns in products' ranking is "Liked count". We want to introduce a read model into whole ranking, but we prefer to refactor slowly. Thus, we'll start with introducing our read model into only this one column - expanding it will be simple.
+<p>
+  <figure align="center">
+    <img src="/assets/images/introducing-read-models-in-your-legacy-application/ranking-fit.png">
+  </figure>
+</p>
 
-The events which will be interesting for us (and are already being published in application) are `AdminAddedProduct`, `UserLikedProduct` and `UserUnlikedProduct`. I think that all of them are pretty self-explanatory.
+In our case, the application is very legacy. **However, we already started publishing events there because adding a line of code which publishes an event really cost you nothing.** Our app is a website for board games' lovers. On the games' pages users have "Like it" button. There's a ranking of games and one of the columns in games' ranking is "Liked count". We want to introduce a read model into whole ranking, but we prefer to refactor slowly. Thus, we'll start with introducing our read model into only this one column - expanding it will be simple. We'll use just a database's table to make our read model.
 
-The first thing we should do is introducing `ProductRanking` class inherited from `ActiveRecord::Base` which will represent a read model. It should have at least columns `product_id` and `liked_count`.
+The events which will be interesting for us (and are already being published in application) are `AdminAddedGame`, `UserLikedGame` and `UserUnlikedGame`. I think that all of them are pretty self-explanatory.
+
+But why would you like to use read models in your application anyway? First of all, because it'll make reasoning about your application easier. Your event handlers are handling writes: they update the read models. After that, reading data from database is simple, because you just need to fetch the data and display them.
+
+The first thing we should do is introducing `GameRanking` class inherited from `ActiveRecord::Base` which will represent a read model. It should have at least columns `game_id` and `liked_count`.
 
 Now, we are ready to write an event handler, which will update a read model each time when an interesting event occurs.
 
 ## Creating an event handler
 
-Firstly, we will start from having records for each product, so we want to handle `AdminAddedProduct` event.
+Firstly, we will start from having records for each game, so we want to handle `AdminAddedGame` event.
 
 ```
 #!ruby
-class UpdateProductRankingReadModel
+class UpdateGameRankingReadModel
   def handle_event(event)
     case event.event_type
-    when "Events::AdminAddedProduct" then handle_admin_added_product(event)
+    when "Events::AdminAddedGame" then handle_admin_added_game(event)
     end
   end
 
-  def handle_admin_added_product(event)
-    ProductRanking.create!(product_id: event.data[:product][:id],
-                       product_name: event.data[:product][:name])
+  def handle_admin_added_game(event)
+    GameRanking.create!(game_id: event.data[:game][:id],
+                       game_name: event.data[:game][:name])
   end
 end
 ```
 
-In our `ProductsController` or wherever we're creating our products, we subscribe this event handler to an event:
+In our `GamesController` or wherever we're creating our games, we subscribe this event handler to an event:
 
 ```
 #!ruby
-product_ranking_updater = UpdateProductRankingReadModel.new
-event_store.subscribe(product_ranking_updater, ['Events::AdminAddedProduct']
+game_ranking_updater = UpdateGameRankingReadModel.new
+event_store.subscribe(game_ranking_updater, ['Events::AdminAddedGame']
 ```
 
-Remember, that this is legacy application. So we have many products and many likes, which doesn't have corresponding `AdminAddedProduct` event, because it was before we started gathering events in our app. Some of you may think - "Let's just create the ProductRanking records for all of your products!". And we'll! But we'll use events for this : ).
+Remember, that this is legacy application. **So we have many games and many likes, which doesn't have corresponding `AdminAddedGame` event, because it was before we started gathering events in our app.** Some of you may think - "Let's just create the GameRanking records for all of your games!". And we'll! But we'll use events for this : ). However, there's also another road - publishing all of the events "back in time". We could fetch all likes already present in the application and for each of them create `UserLikedGame` event.
 
 ## Snapshot event
-We are going to create a snapshot event. Such event have a lot of data inside, because basically it contains all of the data we need for our read model.
+So, as I said, we are going to create a snapshot event. **Such event have a lot of data inside, because basically it contains all of the data we need for our read model.**
 
 Firstly, I created `RankingHadState` event. 
 
@@ -75,7 +80,7 @@ module Events
 end
 ```
 
-Now we should create a class, which we could use for publishing this snapshot event (for example, using rails console). It should fetch all products and its' likes count and then publish it as one big event.
+Now we should create a class, which we could use for publishing this snapshot event (for example, using rails console). It should fetch all games and its' likes count and then publish it as one big event.
 
 ```
 #!ruby
@@ -91,30 +96,28 @@ class CopyCurrentRankingToReadModel
   end
 
   def call
-    product_rankings = []
+    game_rankings = []
 
-    Product.all.each do |product|
-      product_rankings << {
-        product_id: product.id,
-        liked_count: product.likes.count
+    Game.find_each do |game|
+      game_rankings << {
+        game_id: game.id,
+        liked_count: game.likes.count
       }
     end
 
     event = Events::RankingHadState.new({
-      data: product_rankings
+      data: game_rankings
     })
     event_store.publish_event(event)
   end
 end
 ```
 
-In your case, maybe you have too many products to call `Product.all`. Remember that in these cases you should use batching to retrieve data. In our case, we have a little bit more than 1000 products, so this is working just fine.
-
 Now we only need to add handling method for this event to our event handler.
 
 ```
 #!ruby
-class UpdateProductRankingReadModel
+class UpdateGameRankingReadModel
   def handle_event(event)
     ...
     when "Events::RankingHadState" then handle_ranking_had_state(event)
@@ -124,9 +127,9 @@ class UpdateProductRankingReadModel
   ...
 
   def handle_ranking_had_state(event)
-    ProductRanking.delete_all
-    event.data.each do |product|
-      ProductRanking.create!(product)
+    GameRanking.delete_all
+    event.data.each do |game|
+      GameRanking.create!(game)
     end
   end
 end
@@ -138,12 +141,12 @@ After this deployment, we can log into our rails console and type:
 #!ruby
 copy_object = CopyCurrentRankingToReadModel.new
 event_store = copy_object.event_store
-ranking_updater = UpdateProductRankingReadModel.new
+ranking_updater = UpdateGameRankingReadModel.new
 event_store.subscribe(ranking_updater, ['Events::RankingHadState'])
 copy_object.call
 ```
 
-Now we have our ProductRanking read model with records for all of the products. And all new ones are appearing in ProductRanking, because of handling `AdminAddedProduct` event.
+Now we have our GameRanking read model with records for all of the games. **And all new ones are appearing in GameRanking, because of handling `AdminAddedGame` event.**
 
 ## Polishing the details
 
@@ -154,38 +157,32 @@ Obviously, we need handling of like/unlike events in the event handler:
 
 ```
 #!ruby
-class UpdateProductRankingReadModel
+class UpdateGameRankingReadModel
   def handle_event(event)
     ...
-    when "Events::UserLikedProduct" then handle_user_liked_product(event)
-    when "Events::UserUnlikedProduct" then handle_user_unliked_product(event)
+    when "Events::UserLikedGame" then handle_user_liked_game(event)
+    when "Events::UserUnlikedGame" then handle_user_unliked_game(event)
     ...
   end
 
   ...
 
-  def handle_user_liked_product(event)
-    product = ProductRanking.where(product_id: event.data[:product_id]).first
-    product.with_lock do
-      product.liked_count += 1
-      product.save
-    end
+  def handle_user_liked_game(event)
+    game = GameRanking.where(game_id: event.data[:game_id]).first
+    game.increment!(:liked_count)
   end
 
-  def handle_user_unliked_product(event)
-    product = ProductRanking.where(product_id: event.data[:product_id]).first
-    product.with_lock do
-      product.liked_count -= 1
-      product.save
-    end
+  def handle_user_unliked_game(event)
+    game = GameRanking.where(game_id: event.data[:game_id]).first
+    game.decrement!(:liked_count)
   end
 end
 ```
 
-After that you should subscribe this event handler to `UserLikedProduct` and `UserUnlikedProduct` events, in the same way we did it with `AdminAddedProduct` in the beginning of this blogpost.
+After that you should subscribe this event handler to `UserLikedGame` and `UserUnlikedGame` events, in the same way we did it with `AdminAddedGame` in the beginning of this blogpost.
 
 ## Keeping data consistent
 
-Now we're almost done, truly! Notice that it took some time to write & deploy code above it. Thus, between running `CopyCurrentRankingToReadModel` on production and deploying this code there could be some `UserLikedProduct` events which weren't handled. And if they weren't handled, they didn't update `liked_count` field in our read model. 
+Now we're almost done, truly! Notice that it took some time to write & deploy code above it. **Thus, between running `CopyCurrentRankingToReadModel` on production and deploying this code there could be some `UserLikedGame` events which weren't handled.** And if they weren't handled, they didn't update `liked_count` field in our read model. 
 
-But the fix for this is very simple - we just need to run our `CopyCurrentRankingToTheReadModel` in the production again, in the same way we did it before. Our data will be now consistent and we can just write code which will display data on the frontend - but I believe you can handle this by yourself.
+But the fix for this is very simple - we just need to run our `CopyCurrentRankingToTheReadModel` in the production again, in the same way we did it before. Our data will be now consistent and we can just write code which will display data on the frontend - but I believe you can handle this by yourself. Note that in this blog post I didn't take care about race conditions. They may occur for example between fetching data for `HadRankingState` event and handling this event.
