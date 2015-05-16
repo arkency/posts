@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Wiktor Mociun
 tags: [ 'es6', 'frontend', 'javascript' ]
-newsletter: :react_book
+newsletter: :arkency_form
 img: "/assets/images/start-using-es6/lead-fit.jpg"
 ---
 
@@ -63,3 +63,5 @@ With Gulp, we can use `babelify` and `browserify` node packages in our asset pro
 # Conclusions
 
 There are many more workarounds to get ES6 in Rails environment that doesn't require discarding Sprockets. Unfortunately none of them are good enough to mention. I strongly recommend going with Gulp. It's simple, powerful and provides native environment to work with assets. If you don't want to switch from Sprockets, you can try-out `sprockets-es6` gem.
+
+If you want to receive more articles about Rails and front-end, sign-up for our newsletter below.
