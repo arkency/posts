@@ -46,7 +46,7 @@ If you decide to go with this method, you just need to put these two files in Ge
 
 ```
 #!ruby
-gem 'sprockets', '~>3.0.0.beta'
+gem 'sprockets', '>=3.0.0.beta'
 gem 'sprockets-es6'
 ```
 
