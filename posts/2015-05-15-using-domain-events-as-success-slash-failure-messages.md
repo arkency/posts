@@ -2,7 +2,7 @@
 title: "Using domain events as success/failure messages"
 created_at: 2015-05-15 12:59:51 +0200
 kind: article
-publish: false
+publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :skip
@@ -18,7 +18,7 @@ img: "/assets/images/events/failure_domain_event-fit.jpg"
 
 ## When you publish an event on success make sure you publish on failure too
 
-We had an issue recently with one of our internal gems used to handle all communication with external payment gateway. We are using gems to abstract bounded context (payments here) and to have abstract anti-corruption layer on top of external system's API.
+We had an issue recently with one of our internal gems used to handle all communication with a external payment gateway. We are using gems to abstract a bounded context (payments here) and to have an abstract anti-corruption layer on top of external system's API.
 
 <!-- more -->
 
@@ -31,7 +31,7 @@ payment_gateway.refund(transaction)
 # ...
 ```
 
-There are different payment gateways - some of them responds synchronously some of them prefer asynchronous communication. To  avoid coupling we publish an event when payment gateway responds.
+There are different payment gateways - some of them respond synchronously some of them prefer asynchronous communication. To avoid coupling we publish an event when the payment gateway responds.
 
 ```
 #!ruby
@@ -69,20 +69,20 @@ class PaymentGateway
   end
 end
 ```
-(very simplified version - payments are much more complex)
+(a very simplified version - payments are much more complex)
 
 
-You might have noticed that when our API call fails we rescue an error and raise our one. It is a way to avoid errors from 3rd party client leak to our application code. Usually that's enough and our domain code will cope well with failures.
+You might have noticed that when our API call fails we rescue an error and raise our one. It is a way to avoid errors from the 3rd party client leak to our application code. Usually that's enough and our domain code will cope well with failures.
 
-But recently we got a problem. Business requirements were: _When refunding a batch of transactions gather all the errors and send them by email to support team to handle them manually_.
+But recently we got a problem. The business requirements are: _When refunding a batch of transactions gather all the errors and send them by email to support team to handle them manually_.
 
-That we have succeeded to implement correctly. But some day we have received a request to explain why there were no refunds for  a few transactions.
+That we have succeeded to implement correctly. One day we have received a request to explain why there were no refunds for  a few transactions.
 
 ## And then it was trouble
 
-First we've done was to check history of events for the aggregate performing the action (Order in this case). We have found entry that refund of order was requested (it is done asynchronously) but there were no records of any transaction refunds.
+The first thing we did was to check history of events for the aggregate performing the action (Order in this case). We have found an entry that refund of order was requested (it is done asynchronously) but there were no records of any transaction refunds.
 
-It could not be any. Because we did not published them :( This is how this code should look like:
+It could not be any. Because we did not publish them :( This is how this code should look like:
 
 ```
 #!ruby
@@ -124,10 +124,10 @@ class PaymentGateway
 end
 ```
 
-The raise of an error here was replaced by use of domain event. If you think about it what is raising an error? It is a domain event ... when domain is the code. By publishing our own domain event we give it a business meaning.
+The raise of an error here was replaced by the use of domain event. What is raising an error? It is a domain event ... when domain is the code. By publishing our own domain event we give it a business meaning. Check the Andrzej's blog post [Custom exceptions or domain events?](http://andrzejonsoftware.blogspot.com/2014/06/custom-exceptions-or-domain-events.html) for more details.
 
-## But wait, why not just change error handling?
+## But wait, why not just change the error handling?
 
-Of course we could do it without use of domain events that are persisted in [Rails Event Store](https://github.com/arkency/rails_event_store) but possibility of going back in the history of the aggregate is priceless. Just realise that a stream of domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
+Of course we could do it without the use of domain events that are persisted in [Rails Event Store](https://github.com/arkency/rails_event_store) but the possibility of going back in the history of the aggregate is priceless. Just realise that a stream of the domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
 
-And one more thing: you want to have a monthly report of failed refunds of transactions? Just implement handler for TransactionRefundFailed event and do you grouping, summing & counting and store the results. And by replaying all past TransactionRefundFailed events with use of your report building handler you will get report for the past months too!
+And one more thing: you want to have a monthly report of failed refunds of transactions? Just implement a handler for TransactionRefundFailed the event and do your grouping, summing & counting and store the results. And by replaying all past TransactionRefundFailed events with use of your report building handler you will get a report for the past months too!
