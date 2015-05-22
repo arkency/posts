@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :react_book
+img: "/assets/images/preloading/header-fit.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
