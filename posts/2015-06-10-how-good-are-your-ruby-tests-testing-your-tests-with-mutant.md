@@ -58,9 +58,9 @@ Again, mutant is not a silver bullet. However, it greatly increases the chance o
 
 Suggested actions for you:
 
-1. If you're not using any kind of test coverage tools, try [simplecov](https://github.com/colszowka/simplecov) or [rcov](https://github.com/relevance/rcov). That's a good first step. Just check the coverage of the class you have recently changed.
+* If you're not using any kind of test coverage tools, try [simplecov](https://github.com/colszowka/simplecov) or [rcov](https://github.com/relevance/rcov). That's a good first step. Just check the coverage of the class you have recently changed.
 
-2. Watch this short video that I recorded to show you the mutant effect in a Rails controller
+* Watch this short video that I recorded to show you the mutant effect in a Rails controller
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/G7c0_FlR-R4" frameborder="0" allowfullscreen></iframe>
 
@@ -68,13 +68,13 @@ and this video which shows visually how mutant changes the code runtime:
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/awVUqUxhx8M" frameborder="0" allowfullscreen></iframe>
 
-3. Read those blogposts we wrote where I explain why mutant was introduced to RailsEventStore gem
+* Read those blogposts we wrote where I explain why mutant was introduced to RailsEventStore gem
 
 [Why I want to introduce mutation testing to the rails_event_store gem](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/)
 
 [Mutation testing and continuous integration](http://blog.arkency.com/2015/05/mutation-testing-and-continuous-integration/)
 
-4. Listen to the third episode of the [Rails Refactoring Podcast](http://rails-refactoring.com/podcast/), where I talked to Markus, the author of mutant. Markus is a super-smart Ruby developer, so that's especially recommended.
+* Listen to the third episode of the [Rails Refactoring Podcast](http://rails-refactoring.com/podcast/), where I talked to Markus, the author of mutant. Markus is a super-smart Ruby developer, so that's especially recommended.
 
-5. Subscribe to the [Arkency YouTube channel](https://www.youtube.com/channel/UCL8YpXFH1-y3AaELb0H7c3Q) - we are now regularly publishing new, short videos.
+* Subscribe to the [Arkency YouTube channel](https://www.youtube.com/channel/UCL8YpXFH1-y3AaELb0H7c3Q) - we are now regularly publishing new, short videos.
 
