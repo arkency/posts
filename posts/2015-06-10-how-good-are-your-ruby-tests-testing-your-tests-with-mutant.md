@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: :arkency_form
 ---
 
-# New-feature-bugs vs regression-bugs
+## New-feature-bugs vs regression-bugs
 
 There are many kinds of bugs. For the sake of simplicity let me divide them into new-feature-bugs and regression-bugs.
 
@@ -27,7 +27,7 @@ It's so close to the famous "If it works, don't touch it".
 
 From my experience, the second scenario is much harder to deal with. It breaks trust. Please note, that I used a not-so important feature, over all. It could be part of the cart feature in the ecommerce system and people not being able to buy things for several hours could be thousands dollars loss for the company.
 
-# Writing tests to avoid regressions
+## Writing tests to avoid regressions
 
 How can we avoid such situations? How can we avoid regression bugs?
 
@@ -46,7 +46,7 @@ What does it mean in practice?
 In practice, those tools can give you the false feeling of confidence. You see 100% coverage, you refactor, the tests are passing. However, some feature is now broken. Why is that?
 Those tools only check if the line was executed during the tests, they don't check if the semantics of this line is important. They don't check if replacing this line with another one changes anything in the tests result.
 
-# Mutation testing to the rescue
+## Mutation testing to the rescue
 
 This is where mutation testing comes in. This is also where Ruby parsing (I promised!) helps.
 
