@@ -48,7 +48,7 @@ Those tools only check if the line was executed during the tests, they don't che
 
 ## Mutation testing to the rescue
 
-This is where mutation testing comes in. This is also where Ruby parsing (I promised!) helps.
+This is where mutation testing comes in. 
 
 Mutation testing takes your code and your tests. It parses the code to the Abstract Syntax Tree. It changes the nodes of the tree (mutates). It does it in memory. As a result we now have a mutant - a mutated version of your code. The change could be for example removing a method call, changing true to false, etc. There's a big number of such mutations. For each such change, we now run the tests for this class/unit. The idea here is that the tests should kill the mutant.
 
