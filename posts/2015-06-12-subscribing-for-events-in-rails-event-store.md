@@ -20,13 +20,14 @@ img: "/assets/images/events/hitbythebus-fit.jpg"
 ## Sample CQRS / ES application gone wrong
 In my last post [Building an Event Sourced application] I've included sample code to setup read model denormalizers (event handlers) that will build a read model:
 
-````ruby
+```
+#!ruby
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|
     es.subscribe(Denormalizers::Router.new)
   end
 end
-````
+```
 
 <!-- more -->
 
@@ -35,7 +36,8 @@ Because that is only a sample application showing how easy is to build an Event 
 
 The router was defined as:
 
-````ruby
+```
+#!ruby
 module Denormalizers
   class Router
     def handle_event(event)
@@ -48,11 +50,12 @@ module Denormalizers
     end
   end
 end
-````
+```
 
 And denormalisers was implemented as:
 
-````ruby
+```
+#!ruby
 module Denormalizers
   class Order
     def order_created(event)
@@ -64,13 +67,14 @@ module Denormalizers
     end
   end
 end
-````
+```
 
 But we could remove it completely and we do not need that `case` at all!
 
 All this code could be rewritten using rails_event_store subscriptions as follows:
 
-````ruby
+```
+#!ruby
 # the command handler (or anywhere you want to initialise rails_event_store
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|
@@ -89,18 +93,19 @@ module Denormalizers
     end
   end
 end
-````
+```
 
-You see? No Router at all! It's event store who "knows" where to send messages (events) based on subscriptions defined.
+You see? No Router at all! It's event store who _"knows"_ where to send messages (events) based on subscriptions defined.
 
 ## Implicit assumptions a.k.a conventions
 
-Sometimes when you have a simple application like this it is tempting to define "convention" and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do "the magic" for us.
+Sometimes when you have a simple application like this it is tempting to define _"convention"_ and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do _"the magic"_ for us.
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">I wonder what would happen if we called it &quot;Implicit Assumptions&quot; instead of &quot;Convention over Configuration&quot;.</p>&mdash; Andrzej Krzywda (@andrzejkrzywda) <a href="https://twitter.com/andrzejkrzywda/status/607519026944872448">June 7, 2015</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Naming is important! If we do not use _convention_ but instead _implicit assumption_ we will realise that it is not that simple and elegant at it looks like. Even worse, project tent do grow. And I could ensure you - when you will start using domain events you will want to have them more and more. You could even want to have several handles for a single event ;) And maybe your handlers will need some dependencies? ... Here is the moment when your simple convention breaks!
+
+Naming is important! If we do not use _convention_ but instead _implicit assumption_ we will realise that it is not that simple and elegant at it looks like. Even worse, project tent do grow. When you will start using domain events you will want more and more of them. You could even want to have several handles for a single event ;) And maybe your handlers will need some dependencies? ... Here is the moment when your simple convention breaks!
 
 ## Make implicit explicit!
 
-By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less "magic" and it should be easier to reason about how things work.
+By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less _"magic"_ and it should be easier to reason about how things work.
