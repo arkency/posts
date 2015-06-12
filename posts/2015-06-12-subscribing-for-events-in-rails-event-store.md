@@ -1,14 +1,14 @@
---
-  title: "Subscribing for events in rails_event_store"
-  created_at: 2015-05-05 09:19:01 +0200
-  kind: article
-  publish: false
-  author: Mirosław Pragłowski
-  tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
-  newsletter: :skip
-  newsletter: :arkency_form
-  img: "/assets/images/events/hitbythebus-fit.jpg"
---
+---
+title: "Subscribing for events in rails_event_store"
+created_at: 2015-05-05 09:19:01 +0200
+kind: article
+publish: false
+author: Mirosław Pragłowski
+tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
+newsletter: :skip
+newsletter: :arkency_form
+img: "/assets/images/events/hitbythebus-fit.jpg"
+---
 
 <p>
   <figure>
