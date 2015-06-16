@@ -6,7 +6,7 @@ publish: false
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :skip
-newsletter: :arkency_form
+newsletter_inside: :rails_event_store
 img: "/assets/images/events/hitbythebus-fit.jpg"
 ---
 
@@ -71,7 +71,7 @@ end
 
 But we could remove it completely and we do not need that `case` at all!
 
-All this code could be rewritten using `rails_event_store` subscriptions as follows:
+All this code could be rewritten using [`rails_event_store`](https://github.com/arkency/rails_event_store) subscriptions as follows:
 
 ```
 #!ruby
@@ -96,11 +96,6 @@ end
 ```
 
 You see? No Router at all! It's event store who _"knows"_ where to send messages (events) based on subscriptions defined.
-
-#### Try Rails Event Store &amp; get involved in development
-Want to learn how more about Event Sourcing &amp; Rails Event Store? Want to be involved in development? It's open source!
-Check the [code on Github](https://github.com/arkency/rails_event_store) and join the [discussions on Gitter](https://gitter.im/arkency/rails_event_store).
-
 
 ## Implicit assumptions a.k.a conventions
 Sometimes when you have a simple application like this it is tempting to define _"convention"_ and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do _"the magic"_ for us.
@@ -129,8 +124,6 @@ def handlers_for(event_class)
 end
 ```
 
-
-
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">I wonder what would happen if we called it &quot;Implicit Assumptions&quot; instead of &quot;Convention over Configuration&quot;.</p>&mdash; Andrzej Krzywda (@andrzejkrzywda) <a href="https://twitter.com/andrzejkrzywda/status/607519026944872448">June 7, 2015</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
@@ -138,3 +131,6 @@ Naming is important! If we do not use _convention_ but instead _implicit assumpt
 
 ## Make implicit explicit!
 By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less _"magic"_ and it should be easier to reason how things work.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
