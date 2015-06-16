@@ -97,6 +97,11 @@ end
 
 You see? No Router at all! It's event store who _"knows"_ where to send messages (events) based on subscriptions defined.
 
+## Try Rails Event Store &amp; get involved in development
+Want to learn how more about Event Sourcing &amp Rails Event Store? Want to be involved in development? It's open source!
+Check the [code on Github](https://github.com/arkency/rails_event_store) and join the [discussions on Gitter](https://gitter.im/arkency/rails_event_store).
+
+
 ## Implicit assumptions a.k.a conventions
 Sometimes when you have a simple application like this it is tempting to define _"convention"_ and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do _"the magic"_ for us.
 
