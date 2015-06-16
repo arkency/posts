@@ -52,7 +52,7 @@ module Denormalizers
 end
 ```
 
-And denormalisers was implemented as:
+And denormalisers were implemented as:
 
 ```
 #!ruby
@@ -99,6 +99,32 @@ You see? No Router at all! It's event store who _"knows"_ where to send messages
 
 ## Implicit assumptions a.k.a conventions
 Sometimes when you have a simple application like this it is tempting to define _"convention"_ and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do _"the magic"_ for us.
+
+```
+#!ruby
+# WARNING: not recommended code ahead ;)
+def event_store
+  @event_store ||= RailsEventStore::Client.new.tap do |es|
+    get_all_events_defined.each |event_class|
+      handlers_for(event_class).each |handler|
+        es.subscribe(handler, [event_class.to_s])
+      end
+    end
+  end
+end
+
+def get_all_events_defined
+  [ Events::OrderCreate, Events::OrderExpired, Events::ItemAddedToBasket, Events::ItemRemovedFromBasket ]
+  # or implement some more sophisticated way of getting all event's classes ;)
+end
+
+def handlers_for(event_class)
+  handler_class = "Denormalizers::#{event_class.name.demodulize}".constantize
+  handler_class.new
+end
+```
+
+
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">I wonder what would happen if we called it &quot;Implicit Assumptions&quot; instead of &quot;Convention over Configuration&quot;.</p>&mdash; Andrzej Krzywda (@andrzejkrzywda) <a href="https://twitter.com/andrzejkrzywda/status/607519026944872448">June 7, 2015</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
