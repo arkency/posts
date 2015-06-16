@@ -2,7 +2,7 @@
 title: "Subscribing for events in rails_event_store"
 created_at: 2015-05-05 09:19:01 +0200
 kind: article
-publish: false
+publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :skip
