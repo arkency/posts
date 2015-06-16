@@ -97,8 +97,8 @@ end
 
 You see? No Router at all! It's event store who _"knows"_ where to send messages (events) based on subscriptions defined.
 
-## Try Rails Event Store &amp; get involved in development
-Want to learn how more about Event Sourcing &amp Rails Event Store? Want to be involved in development? It's open source!
+#### Try Rails Event Store &amp; get involved in development
+Want to learn how more about Event Sourcing &amp; Rails Event Store? Want to be involved in development? It's open source!
 Check the [code on Github](https://github.com/arkency/rails_event_store) and join the [discussions on Gitter](https://gitter.im/arkency/rails_event_store).
 
 
