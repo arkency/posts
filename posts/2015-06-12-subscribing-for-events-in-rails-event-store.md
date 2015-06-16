@@ -18,7 +18,7 @@ img: "/assets/images/events/hitbythebus-fit.jpg"
 
 
 ## Sample CQRS / ES application gone wrong
-In my post [http://blog.arkency.com/2015/05/building-an-event-sourced-application-using-rails-event-store/](Building an Event Sourced application) I've included sample code to setup denormalizers (event handlers) that will build a read model:
+In my post [Building an Event Sourced application](http://blog.arkency.com/2015/05/building-an-event-sourced-application-using-rails-event-store/) I've included sample code to setup denormalizers (event handlers) that will build a read model:
 
 ```
 #!ruby
