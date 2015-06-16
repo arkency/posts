@@ -32,7 +32,7 @@ end
 <!-- more -->
 
 ## One router to rule them all
-Because that is only a sample application showing how easy is to build an Event Sourced application using Ruby/Rails and Rails Event Store there were some shortcuts. Shortcuts that should have never been there. Shortcuts that have made some doubts for others who trying to build their own solution.
+Because that is only a sample application showing how easy is to build an Event Sourced application using Ruby/Rails and Rails Event Store there were some shortcuts. Shortcuts that should have never been there. Shortcuts that have made some doubts for others who try to build their own solution.
 
 The router was defined as:
 
@@ -127,7 +127,7 @@ end
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">I wonder what would happen if we called it &quot;Implicit Assumptions&quot; instead of &quot;Convention over Configuration&quot;.</p>&mdash; Andrzej Krzywda (@andrzejkrzywda) <a href="https://twitter.com/andrzejkrzywda/status/607519026944872448">June 7, 2015</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-Naming is important! If we do not use _convention_ but instead _implicit assumption_ we will realise that it is not that simple and elegant at it looks like. Even worse, project tent do grow. When you will start using domain events you will want more and more of them. You could even want to have several handles for a single event ;) And maybe your handlers will need some dependencies? ... Here is the moment when your simple convention breaks!
+Naming is important! If we do not use _convention_ but instead _implicit assumption_ we will realise that it is not that simple and elegant at it looks like. Even worse, project tent to grow. When you will start using domain events you will want more and more of them. You could even want to have several handles for a single event ;) And maybe your handlers will need some dependencies? ... Here is the moment when your simple convention breaks!
 
 ## Make implicit explicit!
 By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less _"magic"_ and it should be easier to reason how things work.
