@@ -522,5 +522,5 @@ Also you might wanna check out our
 
 
 <div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15343339-kill-the-mutants?always_show=true"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
+  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15297769-ruby-ruby-ruby"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
 </div>
