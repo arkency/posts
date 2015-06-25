@@ -394,3 +394,7 @@ I believe after that article you see the benefits of using `store` and `json` ty
 - http://jes.al/2013/11/using-postgres-hstore-rails4/
 - https://blog.engineyard.com/2013/using-postgresql-hstore-in-a-rails-application-on-engine-yard-cloud
 - http://edgeguides.rubyonrails.org/active_record_postgresql.html#json
+
+<div class="fashion">
+  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15299724-do-you-even-tdd"><img src="/assets/images/fashion/do-you-even-tdd-ruby.jpg"></a>
+</div>

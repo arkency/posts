@@ -282,3 +282,8 @@ While I was researching arrays in Postgres I found an interesting thing, that I 
 # Resources
 
 - http://postgresguide.com/sexy/arrays.html
+
+
+<div class="fashion">
+  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15299724-do-you-even-tdd"><img src="/assets/images/fashion/do-you-even-tdd-ruby.jpg"></a>
+</div>
