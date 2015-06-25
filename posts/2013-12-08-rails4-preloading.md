@@ -519,3 +519,8 @@ or subscribe to our [newsletter](http://arkency.us5.list-manage1.com/subscribe?u
 
 Also you might wanna check out our
 [_Fearless refactoring: Rails controllers_ book](http://rails-refactoring.com/).
+
+
+<div class="fashion">
+  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15343339-kill-the-mutants?always_show=true"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
+</div>
