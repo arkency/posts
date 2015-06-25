@@ -324,3 +324,7 @@ The rest will be covered in further blogposts very soon.
 - http://www.postgresql.org/docs/9.4/static/extend-extensions.html
 - http://www.postgresql.org/docs/9.4/static/sql-createextension.html
 - http://decomplecting.org/rails4-postgres/
+
+<div class="fashion">
+  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15297769-ruby-ruby-ruby"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
+</div>
