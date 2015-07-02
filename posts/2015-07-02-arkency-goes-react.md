@@ -5,6 +5,7 @@ kind: article
 publish: false
 author: Andrzej Krzywda
 newsletter: :skip
+newsletter_inside: :kung_fu
 ---
 
 From its beginnings in 2007, Arkency was connected to Ruby and Rails. We’re still most active in those technologies. 
@@ -49,5 +50,4 @@ Open this new chapter with us - subscribe to the new mailing list and stay up to
 
 Thanks for being with us!
 
-
-
+<%= inner_newsletter(item[:newsletter_inside]) %>
