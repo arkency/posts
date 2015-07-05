@@ -27,6 +27,8 @@ React is a small library. It doesn’t offer that many features. That’s why it
 
 We started sharing our React.js knowledge with our Ruby community, with which we feel strongly connected. We wrote many blog posts. At some point, we also started writing [a React.js book for Rails developers](http://blog.arkency.com/rails-react/). That’s where we felt the best - switching to React views from the Rails perspective.
 
+If you want to read the whole story (and more reasons) why we switched to React.js, then go here: [http://blog.arkency.com/2015/05/one-year-of-react-dot-js-in-arkency/](1 year of React.js in Arkency)
+
 Over time, we started to do more. More blog posts, more chapters in the book. We added a Rails repo which goes with the book. 
 
 At the same time, [we were contacted](http://arkency.com) by more and more clients who were mostly interested in our React.js experience and needed help with rebuilding their frontends. 
