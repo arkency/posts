@@ -2,7 +2,7 @@
 title: "Am I ignored in my async team?"
 created_at: 2015-07-06 09:19:01 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :aar_newsletter
 ---
