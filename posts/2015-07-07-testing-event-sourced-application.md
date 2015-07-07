@@ -1,5 +1,5 @@
 ---
-title: "Testing Event Sourced application"
+title: "Testing an Event Sourced application"
 created_at: 2015-07-07 13:32:09 +0200
 kind: article
 publish: true
