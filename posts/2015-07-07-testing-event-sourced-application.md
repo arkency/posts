@@ -2,7 +2,7 @@
 title: "Testing Event Sourced application"
 created_at: 2015-07-07 13:32:09 +0200
 kind: article
-publish: false
+publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: :skip
@@ -173,3 +173,5 @@ And because all state is a result of events checking what have been produced has
 Remember that any command may end up with an error. There could be various reasons, technical ones (oh no! regression again?), or error could be just a result of some business rules validations.
 
 Complete code sample for blog post could be found [here](https://github.com/mpraglowski/cqrs-es-sample-with-res).
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
