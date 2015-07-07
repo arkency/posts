@@ -23,14 +23,15 @@ My sample uses CQRS approach to handle all operations. That means the control fl
 <!-- more -->
 
 s is a basic pattern how a good test should be created. There are 3 parts: **Arrange** - when you setup initial state for a test, **Act** - where you perform actual operation you want to test and **Assert** - when you check results.
-
 And the AAA pattern should be preserved for Event Sources application.
 
 ## Given a series of events
 How to build an initial state when you don’t have a state?
+
 This should be quite easy. Any state is a derivative of domain events. You could build any state by applying domain events.
 
 To build a state you just need some events:
+
 ```
 #!ruby
 test 'order is created' do
