@@ -45,6 +45,8 @@ To build a state you just need some events:
 
 ```
 #!ruby
+include CommandHandlers::TestCase
+
 test 'order is created' do
   event_store = FakeEventStore.new
   aggregate_id = SecureRandom.uuid
@@ -54,39 +56,39 @@ test 'order is created' do
   # ...
 end
 
-# test_helper.rb
-class FakeEventStore
-  def initialize
-    @events = []
-    @published = []
+# ./test/lib/command_handlers/test_case.rb
+module CommandHandlers
+  class FakeEventStore
+    def initialize
+      @events = []
+      @published = []
+    end
+
+    attr_reader :events, :published
+
+    def publish_event(event, aggregate_id)
+      events << event
+      published << event
+    end
+
+    def read_all_events(aggregate_id)
+      events
+    end
   end
 
-  attr_reader :events, :published
-
-  def publish_event(event, aggregate_id)
-    events << event
-    published << event
+  class FakeNumberGenerator
+    def call
+      "123/08/2015"
+    end
   end
 
-  def read_all_events(aggregate_id)
-    events
+  module TestCase
+    # ...
+    def arrange(event_store, events)
+      event_store.events.concat(Array.wrap(events))
+    end
+    # ...
   end
-end
-
-class FakeNumberGenerator
-  def call
-    "123/08/2015"
-  end
-end
-
-class ActiveSupport::TestCase
-  fixtures :all
-  # ...
-
-  def arrange(event_store, events)
-    event_store.events.concat(Array.wrap(events))
-  end
-  # ...
 end
 ```
 
@@ -104,23 +106,25 @@ test 'order is created' do
   # ...
 end
 
-# test_helper.rb
-class ActiveSupport::TestCase
+# ./test/lib/command_handlers/test_case.rb
+module CommandHandlers
   # ...
-  include Command::Execute
+  module TestCase
+    include Command::Execute
 
-  # ...
-  def act(event_store, command)
-    execute(command, **dependencies(event_store))
-  end
+    # ...
+    def act(event_store, command)
+      execute(command, **dependencies(event_store))
+    end
 
-  # ...
-  private
-  def dependencies(event_store)
-    {
-      repository:       RailsEventStore::Repositories::AggregateRepository.new(event_store),
-      number_generator: FakeNumberGenerator.new
-    }
+    # ...
+    private
+    def dependencies(event_store)
+      {
+        repository:       RailsEventStore::Repositories::AggregateRepository.new(event_store),
+        number_generator: FakeNumberGenerator.new
+      }
+    end
   end
 end
 ```
@@ -138,19 +142,21 @@ test 'order is created' do
   assert_changes(event_store, Events::OrderCreated.create(aggregate_id, order_number, customer_id))
 end
 
-
-# test_helper.rb
-class ActiveSupport::TestCase
+# ./test/lib/command_handlers/test_case.rb
+module CommandHandlers
   # ...
+  module TestCase
+    # ...
 
-  def assert_changes(event_store, expected)
-    actuals = event_store.published.map(&:data)
-    expects = Array.wrap(expected).map(&:data)
-    assert_equal(actuals, expects)
-  end
+    def assert_changes(event_store, expected)
+      actuals = event_store.published.map(&:data)
+      expects = Array.wrap(expected).map(&:data)
+      assert_equal(actuals, expects)
+    end
 
-  def assert_no_changes(event_store)
-    assert_empty(event_store.published)
+    def assert_no_changes(event_store)
+      assert_empty(event_store.published)
+    end
   end
 end
 ```
