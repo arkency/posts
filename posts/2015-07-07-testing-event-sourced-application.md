@@ -18,11 +18,22 @@ img: "/assets/images/events/car-vehicle-motion-power-fit.jpg"
 
 Some time ago I’ve published a sample application showing how to build a simple event sourced application using Rails &amp; RES. But there was a big part missing there - the tests.
 
-My sample uses CQRS approach to handle all operations. That means the control flow is as follow:
+My sample uses CQRS approach to handle all operations.
 
 <!-- more -->
 
-s is a basic pattern how a good test should be created. There are 3 parts: **Arrange** - when you setup initial state for a test, **Act** - where you perform actual operation you want to test and **Assert** - when you check results.
+That means the control flow is as follow:
+
+* A command is created based on params from UI
+* Command is handled by a command handler:
+  * based on command’s aggregate id all events for an aggregate are loaded from RES and aggregate state is recreated
+  * a domain object method is called that will produce new domain events
+  * domain event are applied to the aggregate
+  * domain events are stored in RES & published to event handlers
+
+## AAA
+This is a basic pattern how good test should be created. There are 3 parts: **Arrange** - when you setup initial state for a test, **Act** - where you perform actual operation you want to test and **Assert** - when you check results.
+
 And the AAA pattern should be preserved for Event Sources application.
 
 ## Given a series of events
