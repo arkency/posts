@@ -52,7 +52,8 @@ test 'order is created' do
   aggregate_id = SecureRandom.uuid
   customer_id = 1
   order_number = "123/08/2015"
-  arrange(event_store, Events::ItemAddedToBasket.create(aggregate_id, customer_id))
+  arrange(event_store,
+    [Events::ItemAddedToBasket.create(aggregate_id, customer_id)])
   # ...
 end
 
@@ -85,7 +86,7 @@ module CommandHandlers
   module TestCase
     # ...
     def arrange(event_store, events)
-      event_store.events.concat(Array.wrap(events))
+      event_store.events.concat(events)
     end
     # ...
   end
@@ -102,7 +103,8 @@ In Event Sourced application act (operation we want to test) is usually handling
 #!ruby
 test 'order is created' do
   # ...
-  act(event_store, Command::CreateOrder.new(order_id: aggregate_id, customer_id: customer_id))
+  act(event_store,
+    Command::CreateOrder.new(order_id: aggregate_id, customer_id: customer_id))
   # ...
 end
 
@@ -121,8 +123,10 @@ module CommandHandlers
     private
     def dependencies(event_store)
       {
-        repository:       RailsEventStore::Repositories::AggregateRepository.new(event_store),
-        number_generator: FakeNumberGenerator.new
+        repository:
+          RailsEventStore::Repositories::AggregateRepository.new(event_store),
+        number_generator:
+          FakeNumberGenerator.new
       }
     end
   end
@@ -139,7 +143,8 @@ You should not assert on the current state, actually you should not rely on a st
 #!ruby
 test 'order is created' do
   # ...
-  assert_changes(event_store, Events::OrderCreated.create(aggregate_id, order_number, customer_id))
+  assert_changes(event_store,
+    [Events::OrderCreated.create(aggregate_id, order_number, customer_id)])
 end
 
 # ./test/lib/command_handlers/test_case.rb
@@ -150,7 +155,7 @@ module CommandHandlers
 
     def assert_changes(event_store, expected)
       actuals = event_store.published.map(&:data)
-      expects = Array.wrap(expected).map(&:data)
+      expects = expected.map(&:data)
       assert_equal(actuals, expects)
     end
 
