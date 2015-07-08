@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
 newsletter: :skip
-newsletter_inside: :react_book
+newsletter_inside: :kung_fu
 ---
 
 <p>
@@ -482,7 +482,7 @@ var clicked = function(){
 }
 
 var popupClicked = function(){
-  mountedComponent.setState({pretendStateChanged: Date.now() }) 
+  mountedComponent.setState({pretendStateChanged: Date.now() })
 };
 
 var Component = React.createClass({

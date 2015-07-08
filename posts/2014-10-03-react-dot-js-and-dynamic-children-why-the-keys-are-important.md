@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 newsletter: :skip
-newsletter_inside: :react_book
+newsletter_inside: :kung_fu
 ---
 
 <p>
@@ -382,7 +382,7 @@ problem few more things makes sense...
 * give keys to your children
 * keep the state in one place
 * remember: **dynamic stateless components are easier and can live fine without key
-(althought it is best practice to provide them and react will warn you when you don't); 
+(althought it is best practice to provide them and react will warn you when you don't);
 for stateful components proper key is a must have!**
 
 ## One more thing

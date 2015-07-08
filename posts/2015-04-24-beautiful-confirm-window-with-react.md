@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]
-newsletter: :react_book
+newsletter: :kung_fu
 img: "/assets/images/beautiful-confirm-window-with-react/confirm-with-description.png"
 ---
 
@@ -33,11 +33,11 @@ Let's start with creating React component for Bootstrap-styled modal window. We 
 
 Modal = React.createClass
   displayName: 'Modal'
-  
+
   backdrop: ->
     div
       className: 'modal-backdrop in'
-  
+
   modal: ->
     div
       className: 'modal in'
@@ -52,7 +52,7 @@ Modal = React.createClass
         div
           className: 'modal-content'
           @props.children
-  
+
   render: ->
     div null,
       @backdrop()
@@ -82,7 +82,7 @@ Confirm = React.createClass
 
   confirm: ->
     @promise.resolve()
-    
+
   componentDidMount: ->
     @promise = new Promise()
     React.findDOMNode(@refs.confirm).focus()
@@ -118,7 +118,7 @@ Confirm = React.createClass
 
 We are using promises in `confirm` and `abort` methods. If you are not familiar with the concept of promises, I recommend you read our [beginners guide to jQuery Deferred and Promises](/2015/02/the-beginners-guide-to-jquery-deferred-and-promises-for-ruby-programmers/). In short, using promises would allow us to asynchronously decide what code should be called after clicking confirm or abort button in our dialog window.
 
-You can also notice we are using `componentDidMount` lifecycle method. This method is called right after the component was mounted (its representation was added to the DOM tree). We are creating a promise object in that method - you may not be familiar with using instance variables instead of state in react components. Since that promise has no effect on the rendering of our component, it should not be placed in state, because adding it to state would cause unnecessary calls of `render` method. 
+You can also notice we are using `componentDidMount` lifecycle method. This method is called right after the component was mounted (its representation was added to the DOM tree). We are creating a promise object in that method - you may not be familiar with using instance variables instead of state in react components. Since that promise has no effect on the rendering of our component, it should not be placed in state, because adding it to state would cause unnecessary calls of `render` method.
 There is also one more line in `componentDidMount` - `React.findDOMNode(@refs.confirm).focus()`. We are using it for better UX, similar to the native `window.confirm` behaviour, so you can just press Enter when confirm dialog appears. You can also easily extend this component to enable aborting dialog when pressing Escape.
 
 If you would like to know more about using React especially in your Rails application, take a look at [React meets Rails](http://blog.arkency.com/rails-react/) book we have written.
@@ -182,9 +182,9 @@ But since we have a React component, you can add more descriptive information to
 ```
 #!coffeescript
 confirm(
-  'Are you sure?', 
-  description: 'Would you like to remove this item from the list?', 
-  confirmLabel: 'Yes', 
+  'Are you sure?',
+  description: 'Would you like to remove this item from the list?',
+  confirmLabel: 'Yes',
   abortLabel: 'No'
 )
   .then -> handleConfirmed()

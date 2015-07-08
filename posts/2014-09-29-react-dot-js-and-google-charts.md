@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :skip
-newsletter_inside: :react_book
+newsletter_inside: :kung_fu
 ---
 
 <p>
