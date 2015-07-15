@@ -4,7 +4,7 @@ created_at: 2014-09-29 21:40:19 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'react.js', 'google charts' ]
 newsletter: :skip
 newsletter_inside: :kung_fu
 ---
