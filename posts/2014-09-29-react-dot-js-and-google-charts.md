@@ -142,6 +142,6 @@ These are the things that I learnt today while integrating our code with Google 
 In my next blogpost I would like to share how we dealt with a similar problem when using
 Twitter Bloodhound library for autocomplete.
 
-If you liked this blogpost you might consider signing up to our frontend course.
+If you liked this blogpost you might consider signing up to our React.js newsletter.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
