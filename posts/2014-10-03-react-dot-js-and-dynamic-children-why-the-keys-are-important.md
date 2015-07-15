@@ -387,6 +387,6 @@ for stateful components proper key is a must have!**
 
 ## One more thing
 
-If you liked this blogpost you might consider signing up to our frontend course.
+If you liked this blogpost you might consider signing up to our newsletter about React.js.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
