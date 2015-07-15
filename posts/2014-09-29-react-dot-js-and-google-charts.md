@@ -1,5 +1,5 @@
 ---
-title: "react.js and google charts"
+title: "React.js and Google Charts"
 created_at: 2014-09-29 21:40:19 +0200
 kind: article
 publish: true
