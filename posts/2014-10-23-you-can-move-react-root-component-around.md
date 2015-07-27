@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
 newsletter: :skip
-newsletter_inside: :kung_fu
+newsletter_inside: :react_books
 ---
 
 <p>

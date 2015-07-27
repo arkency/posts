@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
-newsletter: :kung_fu
+newsletter: :react_books
 img: "/assets/images/game-dashboard-react/front-fit.jpg"
 ---
 

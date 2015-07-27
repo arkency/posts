@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski 
 tags: [ 'react', 'frontend', 'book' ]
-newsletter: :react_book
+newsletter: :react_books
 img: "/assets/images/one-year-of-react/head-fit.png"
 ---
 

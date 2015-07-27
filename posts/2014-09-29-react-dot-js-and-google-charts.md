@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'google charts' ]
 newsletter: :skip
-newsletter_inside: :kung_fu
+newsletter_inside: :react_books
 ---
 
 <p>
@@ -142,6 +142,6 @@ These are the things that I learnt today while integrating our code with Google 
 In my next blogpost I would like to share how we dealt with a similar problem when using
 Twitter Bloodhound library for autocomplete.
 
-If you liked this blogpost you might consider signing up to our React.js newsletter.
+If you liked this blogpost you might like our React.js books.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>

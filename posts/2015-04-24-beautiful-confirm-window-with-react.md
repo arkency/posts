@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]
-newsletter: :kung_fu
+newsletter: :react_books
 img: "/assets/images/beautiful-confirm-window-with-react/confirm-with-description.png"
 ---
 

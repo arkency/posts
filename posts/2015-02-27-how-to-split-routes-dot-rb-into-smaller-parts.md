@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Rybczyński
 newsletter: :skip
-newsletter_inside: :react_book
+newsletter_inside: :react_books
 tags: [ 'rails', 'routes' ]
 img: "/assets/images/routes/splitting-routes-fit.jpg"
 ---

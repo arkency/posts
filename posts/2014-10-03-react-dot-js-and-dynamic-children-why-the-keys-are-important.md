@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 newsletter: :skip
-newsletter_inside: :kung_fu
+newsletter_inside: :react_books
 ---
 
 <p>
@@ -387,6 +387,6 @@ for stateful components proper key is a must have!**
 
 ## One more thing
 
-If you liked this blogpost you might consider signing up to our newsletter about React.js.
+If you liked this blogpost you might enjoy our books about React.js .
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
