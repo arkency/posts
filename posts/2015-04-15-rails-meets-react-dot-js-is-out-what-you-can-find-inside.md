@@ -19,7 +19,7 @@ img: "/assets/images/react-for-rails/cover-fit.png"
 
 There is a common practice in our company to propagate knowledge within and outside of the team with blogposts and books. **After a few months of work, we're happy to present you a book with our knowledge about React.js.**
 
-We had a great fun writing it. We filled it with our best practices, theory behind React and tons of examples. You can [buy it right now](https://arkency.dpdcart.com/cart/view?referer=http%3A%2F%2Fblog.arkency.com%2Frails-react%2F&product_id=106660-rails-meets-react-js&_ga=1.69634073.844445697.1423746562&__dpd_cart=60218c78-dc6f-440b-8988-ad00ab7f9135) - with all future updates for free.
+We had a great fun writing it. We filled it with our best practices, theory behind React and tons of examples. You can [buy it right now](https://arkency.dpdcart.com/cart/add?product_id=106660-rails-meets-react-js) - with all future updates for free.
 
 Interested? Let me tell you more about what you can find inside.
 
@@ -84,6 +84,6 @@ For now there are **10 chapters - 146 pages of the main content**. There is also
 
 ## Interested?
 
-Our book is already available for purchase. **You can [buy it](http://blog.arkency.com/rails-react/) from [our DPD](https://arkency.dpdcart.com/cart/view?referer=http%3A%2F%2Fblog.arkency.com%2Frails-react%2F&product_id=106660-rails-meets-react-js&_ga=1.193186287.394352525.1422222608&__dpd_cart=66107326-b5d5-4ba0-ba8d-a5e6a7dd1def) for a great price of $49** - with a repository access and bonus materials included.
+Our book is already available for purchase. **You can [buy it](http://blog.arkency.com/rails-react/) from [our DPD](https://arkency.dpdcart.com/cart/add?product_id=106660-rails-meets-react-js) for a great price of $49** - with a repository access and bonus materials included.
 
 As one of authors (we wrote this book with [Robert Pankowecki](https://twitter.com/pankowecki)) I hope you will have as much fun of reading this book as I had writing it. **React.js brings joy to a complicated task of building frontend UIs.** I hope this book will help you to be a great frontend developer. Which is a role which more and more often demanded from our clients nowadays. 
