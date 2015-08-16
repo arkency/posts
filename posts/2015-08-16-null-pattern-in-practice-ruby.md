@@ -44,8 +44,8 @@ There are slight differences however so one additional variable
 (`is_preview`) is **passed down through number of partials that
 the page is consisted of**.
  
-We have a class called `EventPool` that is responsible
-to gather and keep data to quickly anwers one question. Whether
+We have a class called `EventPool` which is responsible
+for gathering and keeping data to quickly answer the one question - whether
 a given ticket type is available to buy or not. In other words, it checks
 its inventory status. Naturally when organizers are in the process
 of adding tickets and haven't saved them yet, they are still
