@@ -7,7 +7,14 @@ author: Robert Pankowecki
 tags: [ 'null', 'object', 'pattern', 'ruby' ]
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_1
+img: "/assets/images/null/null-object-ruby-pattern-fowler-fit.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/null/null-object-ruby-pattern-fowler-fit.jpg" width="100%">
+  </figure>
+</p>
 
 Wikipedia describes [Null Object](https://en.wikipedia.org/wiki/Null_Object_pattern) as _an object with defined neutral behavior_.
 
