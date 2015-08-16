@@ -1,59 +1,65 @@
 ---
-title: "Null pattern in practice - ruby and react example"
+title: "Null Object pattern in practice"
 created_at: 2015-07-05 20:02:24 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
 tags: [ 'foo', 'bar', 'baz' ]
-newsletter: :arkency_form
+newsletter: :skip
+newsletter_inside: :fearless_refactoring_1
 ---
 
-Wikipedia/Fowler describes Null Object Pattern as ...
+Wikipedia describes [Null Object](https://en.wikipedia.org/wiki/Null_Object_pattern) as _an object with defined neutral behavior_.
 
-
-<!-- more -->
+[Martin Fowler says](http://martinfowler.com/eaaCatalog/specialCase.html) _Instead of returning null, or some odd value,
+return a Special Case that has the same interface as what the caller expects._
 
 But null object pattern can also be seen as
-a way to simplify some parts of your code by reducing _if_-statements
+a way to **simplify some parts of your code** by reducing _if_-statements
 and introducing interface that is identical in both situations,
 when something is missing and when something is present.
 
-Also it gives you a chance to properly name the situation
-in which you want to do nothing (_is it always nothing?_).
+<!-- more -->
+
+Also it gives you a chance to **properly name the situation
+in which you want to do nothing** (_is it always nothing?_).
 By just adding `Null` prefix instead of using a more precise word,
 you are missing an opportunity.
 
-There is a great Sandi Metz speech when she talks
+There is [a great Sandi Metz talk "Nothing is something"](https://www.youtube.com/watch?v=OMPfEXIlTVE) when she talks
 about it.
 
-## Ruby
+<iframe width="640" height="360" src="https://www.youtube.com/embed/OMPfEXIlTVE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+## Rails View example
 
 I have a view that is displaying an event data, as well as
-a collection of tickets available to display those events. It's
-quite complicated. It is reused in one different place. When the
+a collection of tickets available. It's
+quite complicated view. It is **reused in one different place**. When the
 event organizer is editing event and tickets properties we
-display preview of the same page. So naturally we use the same
-view that is used for rendering event page for preview page.
+display **preview of the same page**. So naturally we use the same
+view template that is used for rendering an event page for a preview page.
 
 There are slight differences however so one additional variable
-(`is_preview`) is passed down through number of partials that
-the page is consisted of.
+(`is_preview`) is **passed down through number of partials that
+the page is consisted of**.
  
 We have a class called `EventPool` that is responsible
-for data responsible to quickly anwers one question. Whether
-given ticke type is available or not. In other words, it checks
+to gather and keep data to quickly anwers one question. Whether
+given ticke type is available to buy or not. In other words, it checks
 its inventory status. Naturally when organizers are in the process
 of adding tickets and haven't saved them yet, they are still
 interested in seeing preview of how they would be displayed on
-event page. There is no point of checking inventory status of
+event page. **There is no point of checking inventory status of
 unexisting tickets (remember they are not saved yet). Also even
 for existing tickets we want to pretend they are not sold out
-when displaying the preview.
+when displaying the preview**.
 
 The code responsible for the situation (greatly oversimplified)
 looked like this:
 
 ```
+#!html+erb
 # show.html.haml
 = render 'events/tickets', {
     tickets: event.tickets,
@@ -63,6 +69,7 @@ looked like this:
 ```
 
 ```
+#!html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
   = render 'events/ticket', { 
@@ -73,6 +80,7 @@ looked like this:
 ```
 
 ```
+#!html+erb
 # events/_ticket.html.haml
 if !is_preview && ticket_pool.sold_out?
   = "Sold out"
@@ -80,12 +88,13 @@ if !is_preview && ticket_pool.sold_out?
 
 But for the entire tree of partials to work correctly
 we still need to pass down `event_pool` which needs to have `#pool_for_ticket_id`
-method, even if at the end we decide not check
+method, even if at the end we decide not to check
 the availability status of returned `ticket_pool`.
   
 For me it looked like a great case for applying Null Object Pattern.
 
 ```
+#!ruby
 class PreviewEventPool
   class PreviewTicketPool
     def sold_out?
@@ -99,6 +108,7 @@ end
 ```
 
 ```
+#!ruby
 class Controller
   def preview
     event = current_user.events.find( params[:id] )
@@ -116,6 +126,7 @@ class Controller
 ```
 
 ```
+#!html+erb
 # show.html.haml
 = render 'events/tickets', {
     tickets: event.tickets,
@@ -124,6 +135,7 @@ class Controller
 ```
 
 ```
+#!html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
   = render 'events/ticket', { 
@@ -133,20 +145,26 @@ class Controller
 ```
 
 ```
+#!html+erb
 # events/_ticket.html.haml
 if ticket_pool.sold_out?
   = "Sold out"
 ```
 
-If all the places that care whether we are in real mode
+If all the places which care whether we are in a real mode
 or preview mode adopted this approach, bunch of if-statements
 could be removed in favor of using properly named classes
-with identical interfaces. Some would be used only when real
-event is displayed, some only when preview is shown. The code
-using them wouldn't care and wouldn't know if this is preview
-or not. The logic for preview behavior would be localized in those
-classes.
+with identical interfaces. Some would be used only when a real
+event is displayed, some only when the preview is shown. 
 
-## React.js
+**The code
+using dedicated Null-* classes (in our case the view) wouldn't care and wouldn't know
+if this is preview or not. The logic for preview behavior would
+be localized in those classes.**
 
- 
+We could also completely eliminate the `is_preview` variable in the end. In this case
+we only eliminated it for the related part of code.
+
+Did you like the blogpost? Join our newsletter to receive more goodies.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
