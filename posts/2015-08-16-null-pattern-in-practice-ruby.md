@@ -46,7 +46,7 @@ the page is consisted of**.
  
 We have a class called `EventPool` that is responsible
 to gather and keep data to quickly anwers one question. Whether
-given ticke type is available to buy or not. In other words, it checks
+a given ticket type is available to buy or not. In other words, it checks
 its inventory status. Naturally when organizers are in the process
 of adding tickets and haven't saved them yet, they are still
 interested in seeing preview of how they would be displayed on
