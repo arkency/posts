@@ -1,10 +1,10 @@
 ---
 title: "Null Object pattern in practice"
-created_at: 2015-07-05 20:02:24 +0200
+created_at: 2015-08-16 15:02:24 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'null', 'object', 'pattern', 'ruby' ]
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_1
 ---
