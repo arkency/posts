@@ -20,7 +20,7 @@ When working in a consultancy agency the ability to work with legacy application
 
 But the truth is that this skill is very important for every Rails developer. Even if you're working on your own projects or creating the Rails-based startup from scratch after some time your code will grow. Tests are very likely to become slower. There will be more and more implicitness within your code. You accept that because you are within the context for a long time. You know tradeoffs, assumptions and decisions - often you made them by yourself. It's good to have skills to measure the situation and have some kind of guidelines to protect yourself from mistakes while refactoring.
 
-In this blog post, I want to show you two simple techniques we use to get ourselves a solid starting point for working with legacy Rails apps. You will be able to apply it to projects you're working on and improve your planning and refactoring thanks to it.
+In this blog post, I want to show you three simple techniques we use to get ourselves a solid starting point for working with legacy Rails apps. You will be able to apply it to projects you're working on and improve your planning and refactoring thanks to it.
 
 <!-- more -->
 
