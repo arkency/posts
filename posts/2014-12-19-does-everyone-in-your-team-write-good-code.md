@@ -110,7 +110,7 @@ Second, if you know that your team would benefit from knowing of a recipe that i
 
 Additionally, if you think the whole team would benefit from reading the full book, I've added a special deal - you can now buy 5 copies in the price of 4, if you use the link:
 
-[Fearless Refactoring: Rails Controllers x 5 reader license](https://arkency.dpdcart.com/cart/add?product_id=99310&method_id=104395)
+[Fearless Refactoring: Rails Controllers x 5 reader license](http://bit.ly/buy-rails-refactoring-5x)
 
 The REFACTORING discount code will make it another 20% off!
 

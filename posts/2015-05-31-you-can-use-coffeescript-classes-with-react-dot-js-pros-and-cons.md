@@ -177,6 +177,6 @@ Pure classes approach brings React closer to the world of idiomatic Coffee and J
 * 50~ pages of bonus content - examples of React in action, more advanced topics and interesting worldviews about creating rich frontends;
 * a **FREE repository of code examples** bundled with the book, so you can take examples from the book and fiddle with them;
 
-Interested? Grab [a free chapter](http://blog.arkency.com/assets/misc/rails-meets-react/rails-meets-react-sample.pdf) or [watch a quick, 3-minute overview of it](https://www.youtube.com/watch?v=bFt-7P6ZiYo) now. You can [buy the book](https://arkency.dpdcart.com/cart/add?product_id=106660-rails-meets-react-js) here. Use **V13UPDATE** code to **get a 25% discount**!
+Interested? Grab [a free chapter](http://blog.arkency.com/assets/misc/rails-meets-react/rails-meets-react-sample.pdf) or [watch a quick, 3-minute overview of it](https://www.youtube.com/watch?v=bFt-7P6ZiYo) now. You can [buy the book](http://bit.ly/buy-rails-meets-reactjs) here. Use **V13UPDATE** code to **get a 25% discount**!
 
 Join the group of 350+ happy customers who learned how to build dynamic user interfaces with React and Rails!

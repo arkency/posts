@@ -568,4 +568,4 @@ The chapter above was one of the recipes. The book is much more than that. The t
 * form objects
 * adapters
 
-If you think that your Rails application can benefit from those patterns, consider [buying the book](https://arkency.dpdcart.com).
+If you think that your Rails application can benefit from those patterns, consider [buying the book](http://rails-refactoring.com).
