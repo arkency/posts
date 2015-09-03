@@ -33,6 +33,8 @@ The book was released as 1.0 in December 2014. The techniques which are included
 
 If you ever heart about Domain Driven Design (DDD), then this book is a great introduction to DDD in the context of Rails applications. It presents almost all of the DDD building blocks. It prepares you to think in more domain terms.
 
+<a href="https://bit.ly/buy-rails-refactoring">Buy Fearless Refactoring: Rails Controllers</a>
+
 # JavaScript frontends for Rails apps
 
 As Rails developers, we were happy writing just Ruby code, for many years. Nowadays, just Ruby is not enough. We need to build rich user interfaces, which are possible only in JavaScript.
@@ -62,6 +64,8 @@ The book will teach you:
 
 Animations with React.js is such a great topic that we decided to record and include 2 videos on this topic.
 
+<a href="https://bit.ly/buy-rails-meets-reactjs">Buy Rails meets React.js</a>
+
 ## React.js by Example
 
 We love working with React.js so much, that we also published another book on this topic - "React.js by Example".
@@ -77,6 +81,8 @@ What's more - you receive all the repositories for this book! You can browse the
 After reading this book, you will be fully ready to approach a typical React.js component.
 
 The examples are written in EcmaScript2015 and use webpack.
+
+<a href="https://bit.ly/buy-reactjs-by-example">Buy React.js by Example</a>
 
 ## Which of our React.js books to choose?
 
@@ -105,6 +111,8 @@ This book explains all the above topics. We teach what are the requirements for 
 
 We also explain the tools, which are helpful in async collaboration.
 
+<a href="https://bit.ly/buy-dopm">Buy Developers Oriented Project Management</a>
+
 
 # Would you like to start blogging more about programming, Ruby, Rails?
 
@@ -130,4 +138,4 @@ What we found out was that blogging is a great tool for recruitment, for attract
 
 The book is still in the beta phase (35 pages), but it already addresses all the above blocking points.
 
-
+<a href="https://bit.ly/buy-blogging-for-busy-programmers">Buy Blogging for busy programmers</a>
