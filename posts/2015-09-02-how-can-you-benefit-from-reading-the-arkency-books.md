@@ -78,6 +78,16 @@ After reading this book, you will be fully ready to approach a typical React.js 
 
 The examples are written in EcmaScript2015 and use webpack.
 
+## Which of our React.js books to choose?
+
+Those books are very different. They teach you React.js in different ways. While the "Rails meets React.js" book is more Rails focused, it focuses on developing one component from a small one to a very complex widget.
+
+The "React.js by Example" is focused on the starting point. It shows 12 examples, which are typical things you will **start with**.
+
+Many of our readers bought both of the books and are happy with that.
+
+If you need to choose just one - if you want to use React.js within an existing Rails ecosystem, then go for "Rails meets React.js". If you are allowed to develop the frontend separately to Rails, then choose "React.js by Example".
+
 # Working in a team, being remote/async, communicating with the customer
 
 Many of us want to be happy in their Rails projects. We usually want less meetings, less bureaucracy, less stress. We want more freedom and we want to be working on features that are important.
