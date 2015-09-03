@@ -72,11 +72,14 @@ Many of us want to work remotely - not to waste time in commuting, have the free
 
 Many of us are scared to talk directly to the customers.
 
+That's why we wrote the "Developers Oriented Project Management" book. We want to share what we learnt and how we're able to work remotely and asynchronously. 
+
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="40%" /></a>
+
 This book explains all the above topics. We teach what are the requirements for the team to work remotely and asynchronously. We teach how to communicate with the customers in ways which are win-win. We teach how to deliver value to the project even in situation when there's not enough time to finish everything.
 
 We also explain the tools, which are helpful in async collaboration.
 
-<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="40%" /></a>
 
 # Blogging for busy programmers
 
