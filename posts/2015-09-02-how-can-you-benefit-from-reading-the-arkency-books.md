@@ -1,5 +1,5 @@
 ---
-title: "How can you benefit from reading the Arkency books?"
+title: "How can Rails developers benefit from reading the Arkency books?"
 created_at: 2015-09-02 17:57:46 +0200
 kind: article
 publish: false
