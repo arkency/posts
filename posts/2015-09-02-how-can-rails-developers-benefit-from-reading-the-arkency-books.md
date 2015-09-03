@@ -5,13 +5,20 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :skip
+img: "/assets/images/books-benefits/books-fit.jpg"
 ---
 
-As a Ruby/Rails developer, you have so many books to learn from. The choice is sometimes too big which can lead to choice paralysis. 
+<p>
+  <figure>
+    <img src="/assets/images/books-benefits/books-fit.jpg" width="100%" />
+  </figure>
+</p>
+
+As a Ruby/Rails developer, you have so many books to learn from. The choice is sometimes too big which can lead to choice paralysis.
 
 In this blogpost I'd like to focus on the different aspects of your developer life. There are so many skills to improve. The Rails skills are the obvious ones. But there's much more than that. Working in a team, safe refactoring, well-structured frontend applications, communicating with other people, even blogging.
 
-I'd like to explain how we're helping with improving those skills with our Arkency books. 
+I'd like to explain how we're helping with improving those skills with our Arkency books.
 
 <!-- more -->
 
@@ -41,12 +48,12 @@ As Rails developers, we were happy writing just Ruby code, for many years. Nowad
 
 A big part of the Ruby community went with CoffeeScript, while some stayed with JavaScript.
 
-The community was also split between many different frameworks. Some of us went with Angular, some went with jQuery, some went with Ember. 
+The community was also split between many different frameworks. Some of us went with Angular, some went with jQuery, some went with Ember.
 React.js is the new approach to building JavaScript components. Backed by Facebook, it's trending now, for good reasons.
 
 After many (sometimes unsuccessful) journeys with other frameworks, we felt in love with React.js. As Arkency, we were probably one of the first companies to adopt React.js fully (thanks Marcin!). Very quickly, all the Arkency developers noticed the clean structure which React provides and it was adopted in almost all of our projects.
 
-We learnt a lot about how to combine React.js with a typical Rails application. As a result, we shared the experiences in the "Rails meets React.js" book. 
+We learnt a lot about how to combine React.js with a typical Rails application. As a result, we shared the experiences in the "Rails meets React.js" book.
 
 
 <a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
@@ -76,7 +83,7 @@ This book doesn't focus on the Rails integration. We wanted to share with you ho
 
 This book is directed to people who are total React.js newbies. There are 12 typical examples implemented in React.js. Each of the examples is another chapter. Each example contains a narration on how one of us (from Arkency) approaches the development of a React.js component.
 
-What's more - you receive all the repositories for this book! You can browse the code, you can run the examples, you can tweak them. 
+What's more - you receive all the repositories for this book! You can browse the code, you can run the examples, you can tweak them.
 
 After reading this book, you will be fully ready to approach a typical React.js component.
 
@@ -103,7 +110,7 @@ Many of us want to work remotely - not to waste time in commuting, have the free
 
 Many of us are scared to talk directly to the customers.
 
-That's why we wrote the "Developers Oriented Project Management" book. We want to share what we learnt and how we're able to work remotely and asynchronously. 
+That's why we wrote the "Developers Oriented Project Management" book. We want to share what we learnt and how we're able to work remotely and asynchronously.
 
 <a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="40%" /></a>
 
@@ -132,7 +139,7 @@ That's what the "Blogging for busy programmers" is about.
 
 <a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="40%" /></a>
 
-Thanks to blogging you'll learn more (learning by teaching is the best way!), you will build your (or your company) brand. 
+Thanks to blogging you'll learn more (learning by teaching is the best way!), you will build your (or your company) brand.
 
 What we found out was that blogging is a great tool for recruitment, for attracting new clients.
 
@@ -142,7 +149,7 @@ The book is still in the beta phase (35 pages), but it already addresses all the
 
 # Refunds
 
-We strongly believe in the value of all our books. We have over 1200 unique, happy customers of our books. 
+We strongly believe in the value of all our books. We have over 1200 unique, happy customers of our books.
 
 We have a 100% refund policy - if you feel that the book didn't deliver you the value you expected, send us an email to dev@arkency.com and we issue a refund without asking any question.
 
