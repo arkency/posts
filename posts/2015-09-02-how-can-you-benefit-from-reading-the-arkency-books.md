@@ -31,6 +31,8 @@ Thanks to this book, you will know where all kinds of Rails code belong to. You 
 
 The book was released as 1.0 in December 2014. The techniques which are included are not related to any specific Rails version - they can be applied to all Rails apps. They will work with Rails 2, Rails 3, Rails 4 and Rails 5 versions just fine.
 
+If you ever heart about Domain Driven Design (DDD), then this book is a great introduction to DDD in the context of Rails applications. It presents almost all of the DDD building blocks. It prepares you to think in more domain terms.
+
 # JavaScript frontends for Rails apps
 
 As Rails developers, we were happy writing just Ruby code, for many years. Nowadays, just Ruby is not enough. We need to build rich user interfaces, which are possible only in JavaScript.
@@ -52,14 +54,27 @@ The book will teach you:
 * What you can use React.js for in your projects and how.
 * Detailed knowledge about how to use it and best practices to work with React.js, with examples.
 * How to test React components.
-* You will also get Ruby and Coffeescript code for the examples.
+* You will also get Ruby and CoffeeScript code for the examples.
 * And it begins with a tutorial so that you start with practical skills.
+
+Animations with React.js is such a great topic that we decided to record and include 2 videos on this topic.
 
 <a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
 
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="40%" /></a>
 
 # Working in a team, being remote/async, communicating with the customer
+
+Many of us want to be happy in their Rails projects. We usually want less meetings, less bureaucracy, less stress. We want more freedom and we want to be working on features that are important.
+
+Many of us want to work asynchronously - we know the times of the day when we are most effective.
+Many of us want to work remotely - not to waste time in commuting, have the freedom of traveling and have more time to spend with our families.
+
+Many of us are scared to talk directly to the customers.
+
+This book explains all the above topics. We teach what are the requirements for the team to work remotely and asynchronously. We teach how to communicate with the customers in ways which are win-win. We teach how to deliver value to the project even in situation when there's not enough time to finish everything.
+
+We also explain the tools, which are helpful in async collaboration.
 
 <a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="40%" /></a>
 
