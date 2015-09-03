@@ -96,9 +96,28 @@ This book explains all the above topics. We teach what are the requirements for 
 We also explain the tools, which are helpful in async collaboration.
 
 
-# Blogging for busy programmers
+# Would you like to start blogging more about programming, Ruby, Rails?
+
+If you follow our Arkency blog, you may have noticed that we're quite active in blogging. Several people from our team share knowledge using this medium.
+
+It wasn't always like that. Before 2012 we didn't even have a company blog and almost no people blogged frequently.
+
+How did we change that? How can you start blogging?
+
+Over time, I developed a blogging therapy. I used it internally to encourage people to blog more.
+
+I have identified what are the biggest blocking points for developers to stop them from blogging - no time, perfectionism, the impostor syndrome, not having anything interesting to write about.
+
+I took those blocking points and addressed them in a way that helped many developers unblock themselves and share more of their knowledge.
+
+That's what the "Blogging for busy programmers" is about.
 
 <a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="40%" /></a>
 
+Thanks to blogging you'll learn more (learning by teaching is the best way!), you will build your (or your company) brand. 
+
+What we found out was that blogging is a great tool for recruitment, for attracting new clients.
+
+The book is still in the beta phase (35 pages), but it already addresses all the above blocking points.
 
 
