@@ -46,6 +46,9 @@ After many (sometimes unsuccessful) journeys with other frameworks, we felt in l
 
 We learnt a lot about how to combine React.js with a typical Rails application. As a result, we shared the experiences in the "Rails meets React.js" book. 
 
+
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
+
 The book will teach you:
 
 * How to install and configure React.js in your Rails project.
@@ -59,9 +62,21 @@ The book will teach you:
 
 Animations with React.js is such a great topic that we decided to record and include 2 videos on this topic.
 
-<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
+## React.js by Example
+
+We love working with React.js so much, that we also published another book on this topic - "React.js by Example".
 
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="40%" /></a>
+
+This book doesn't focus on the Rails integration. We wanted to share with you how to setup a separated (from Rails) React.js-based frontend.
+
+This book is directed to people who are total React.js newbies. There are 12 typical examples implemented in React.js. Each of the examples is another chapter. Each example contains a narration on how one of us (from Arkency) approaches the development of a React.js component.
+
+What's more - you receive all the repositories for this book! You can browse the code, you can run the examples, you can tweak them. 
+
+After reading this book, you will be fully ready to approach a typical React.js component.
+
+The examples are written in EcmaScript2015 and use webpack.
 
 # Working in a team, being remote/async, communicating with the customer
 
