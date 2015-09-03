@@ -136,6 +136,16 @@ Thanks to blogging you'll learn more (learning by teaching is the best way!), yo
 
 What we found out was that blogging is a great tool for recruitment, for attracting new clients.
 
-The book is still in the beta phase (35 pages), but it already addresses all the above blocking points.
+The book is still in the beta phase (35 pages), but it already addresses all the above blocking points. Buying it now gives you all future updates for free.
 
 <a href="https://bit.ly/buy-blogging-for-busy-programmers">Buy Blogging for busy programmers</a>
+
+# Refunds
+
+We strongly believe in the value of all our books. We have over 1200 unique, happy customers of our books. 
+
+We have a 100% refund policy - if you feel that the book didn't deliver you the value you expected, send us an email to dev@arkency.com and we issue a refund without asking any question.
+
+# The future offer
+
+If you're interested in learning something specific from us - let us know! We plan to write more and such feedback will help us decide which topics are most interesting to you.
