@@ -182,6 +182,12 @@ go through _red, green, refactor_ cycle. Without the race condition preventing m
 that you choose to implement the test should fail. **If it doesn't fail it means the
 contention you created is not big enough**.
 
+One more thing. This test has `self.use_transactional_fixtures = false` which means it will
+not run in a transaction (otherwise other the connection from other threads would not see
+the records created by setup in the main testing thread). Your test is responsible for
+cleaning the database after running itself. I use `database_cleaner` with `deletion` strategy
+for that.
+
 Did you like this article? You might find [our Rails books interesting as well](/products) .
 
 <a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="18%" /></a>
