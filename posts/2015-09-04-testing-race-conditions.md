@@ -36,11 +36,7 @@ the problem**.
 #!ruby
 specify do
   begin
-    # default connection pool size is 5
-    # we rely on it
     expect(ActiveRecord::Base.connection.pool.size).to eq(5)
-
-    # one is used for test thread
     concurrency_level = 4
 
     merchant  = TestMerchant.new
