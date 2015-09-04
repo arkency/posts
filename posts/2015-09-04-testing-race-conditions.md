@@ -183,7 +183,7 @@ that you choose to implement the test should fail. **If it doesn't fail it means
 contention you created is not big enough**.
 
 One more thing. This test has `self.use_transactional_fixtures = false` which means it will
-not run in a transaction (otherwise other the connection from other threads would not see
+not run in a transaction (otherwise other DB connections from other threads would not see
 the records created by setup in the main testing thread). Your test is responsible for
 cleaning the database after running itself. I use `database_cleaner` with `deletion` strategy
 for that.
