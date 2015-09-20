@@ -325,6 +325,11 @@ The rest will be covered in further blogposts very soon.
 - http://www.postgresql.org/docs/9.4/static/sql-createextension.html
 - http://decomplecting.org/rails4-postgres/
 
-<div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15297769-ruby-ruby-ruby"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
-</div>
+Did you like this article? You might find [our Rails books interesting as well](/products) .
+
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

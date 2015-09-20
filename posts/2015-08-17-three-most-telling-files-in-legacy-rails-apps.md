@@ -74,3 +74,14 @@ Routes file is another great source of knowledge when it comes to legacy Rails a
 As you can see there is a lot that can be read without even touching the logic of a legacy app. Examining those three files helped us in a lot of situations - we got first points to discuss with clients and an overview what we can expect from an app itself.
 
 Applying such analysis to your app can bring you many ideas and knowledge about what can be done to improve maintainability of it. I greatly encourage you to try it out - it can save you a lot of work later.
+
+## More
+
+Did you like this article? You might find [our Rails books interesting as well](/products) .
+
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

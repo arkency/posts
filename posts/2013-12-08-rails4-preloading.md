@@ -510,17 +510,13 @@ table.
 In Rails 4 you should use `#references` combined with `#includes` if you
 have the additional condition for one of the eager loaded table.
 
-## Don't miss our next blog post
+## More
 
-If you enjoyed the article, 
-[follow us on Twitter](https://twitter.com/arkency)
-[and Facebook](https://www.facebook.com/pages/Arkency/107636559305814), 
-or subscribe to our [newsletter](http://arkency.us5.list-manage1.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=1)
+Did you like this article? You might find [our Rails books interesting as well](/products) .
 
-Also you might wanna check out our
-[_Fearless refactoring: Rails controllers_ book](http://rails-refactoring.com/).
-
-
-<div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15297769-ruby-ruby-ruby"><img src="/assets/images/fashion/eager-loading-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/preloading-ruby-rails-pillow.jpg"><img src="/assets/images/fashion/ruby-scarf.jpg"></a>
-</div>
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

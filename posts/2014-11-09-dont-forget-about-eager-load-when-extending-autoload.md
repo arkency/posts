@@ -332,3 +332,12 @@ which [we also happen to have an article about](/2013/12/rails4-preloading/).
 The numenclature they use is similar but they mean completely different things.
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
+
+Did you like this article? You might find [our Rails books interesting as well](/products) .
+
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

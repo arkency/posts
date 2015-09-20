@@ -283,7 +283,11 @@ While I was researching arrays in Postgres I found an interesting thing, that I 
 
 - http://postgresguide.com/sexy/arrays.html
 
+Did you like this article? You might find [our Rails books interesting as well](/products) .
 
-<div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15299724-do-you-even-tdd"><img src="/assets/images/fashion/do-you-even-tdd-ruby.jpg"></a>
-</div>
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

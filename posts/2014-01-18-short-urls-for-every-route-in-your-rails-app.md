@@ -287,7 +287,7 @@ or HTTP level (redirect) ?
 Subscribe to our newsletter below so that you are always
 the first one to get the knowledge that you might find useful in your
 everyday programmer job. Content is mostly focused on (but not limited to)
-Rails, Webdevelopment and Agile. 700 readers are already enjoying great content
+Rails, Webdevelopment and Agile. 2200 readers are already enjoying great content
 and we are regularly included in [Ruby Weekly](http://rubyweekly.com) issues.
 
 You can also
@@ -295,4 +295,13 @@ You can also
 [Facebook](https://www.facebook.com/pages/Arkency/107636559305814), or
 [Google Plus](https://plus.google.com/+Arkency)
 
-P.S We are releasing soon a new product that you might be interested in: <%= service_landing_link %> .
+## More
+
+Did you like this article? You might find [our Rails books interesting as well](/products) .
+
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>

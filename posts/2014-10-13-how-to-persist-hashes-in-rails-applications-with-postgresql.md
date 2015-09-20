@@ -395,6 +395,11 @@ I believe after that article you see the benefits of using `store` and `json` ty
 - https://blog.engineyard.com/2013/using-postgresql-hstore-in-a-rails-application-on-engine-yard-cloud
 - http://edgeguides.rubyonrails.org/active_record_postgresql.html#json
 
-<div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15299724-do-you-even-tdd"><img src="/assets/images/fashion/do-you-even-tdd-ruby.jpg"></a>
-</div>
+Did you like this article? You might find [our Rails books interesting as well](/products) .
+
+<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
+<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
+<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>
