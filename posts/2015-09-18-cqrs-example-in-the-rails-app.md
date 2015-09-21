@@ -15,16 +15,16 @@ img: "/assets/images/cqrs-example/photo.jpeg"
   </figure>
 </p>
 
-Recently I have worked in a new project for some time. We implement an application where the one functionality is to show an organization’s structure.
+Recently I have worked in a new project for some time. We implement an application where one functionality is to show an organization’s (tree-like) structure.
 The structure contains information about relations between employees. I have been thinking how to build this feature.
-I was wondering if I should go typical way implementing all CRUD actions. In this case I would have to generate structure for each call.
+I was wondering if I should go typical way implementing all CRUD actions. In this case I would have to generate the structure for each call.
 I thought It will be faster. It is a startup. So until the project is young performance is not a problem.
 Although after few syncs we decided to go an another way.
 
 <!-- more -->
 
-I am fascinated by the DDD and CQRS approaches. In the Arkency we are used to saying that every time we return to IDDD we realize that this book has answers to all the questions and doubts.
-So going back to feature we decided to implement the structure as a Read Model. Did I draw you in?
+I am fascinated by the DDD and CQRS approaches. In Arkency we are used to saying that every time we return to the "Implementing DDD" book we realize that it has answers to all the questions and doubts.
+So going back to the feature we decided to implement the structure as a Read Model.
 
 
 ## Example
