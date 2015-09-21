@@ -2,7 +2,7 @@
 title: "CQRS example in the Rails app"
 created_at: 2015-09-18 14:08:20 +0200
 kind: article
-publish: false
+publish: true
 author: Tomasz Rybczyński
 tags: [ 'cqrs', 'ddd', 'read_model' ]
 newsletter: :arkency_form
