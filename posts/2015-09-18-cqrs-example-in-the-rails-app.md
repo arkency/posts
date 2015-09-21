@@ -15,25 +15,25 @@ img: "/assets/images/cqrs-example/photo.jpeg"
   </figure>
 </p>
 
-Recently I have worked in a new project. We implement an application where the one functionality is to show an organization’s structure.
-All employees are aggregated in teams showed on a tree structure. I was thinking how to start this feature. It is a startup.
-I was wondering if I should go typical way implementing all CRUD actions and then build structure for each request.
-I thought It will be faster and until the project is young performance will not be a problem.
+Recently I have worked in a new project for some time. We implement an application where the one functionality is to show an organization’s structure.
+The structure contains information about relations between employees. I have been thinking how to build this feature.
+I was wondering if I should go typical way implementing all CRUD actions. In this case I would have to generate structure for each call.
+I thought It will be faster. It is a startup. So until the project is young performance is not a problem.
 Although after few syncs we decided to go an another way.
 
 <!-- more -->
 
-I am fascinated DDD and CQRS. In the Arkency we are used to saying that every time we return to IDDD we realize that this book has answers to all the questions and doubts.
+I am fascinated by the DDD and CQRS approaches. In the Arkency we are used to saying that every time we return to IDDD we realize that this book has answers to all the questions and doubts.
 So going back to feature we decided to implement the structure as a Read Model. Did I draw you in?
 
 
 ## Example
 
-I love examples so I will not leave you hanging. Our app is split into two parts. We have frontend implemented in React and a Rails backend.
+I love examples so I will not leave you hanging. Our app is split into two parts. We have a frontend implemented in React and a Rails backend.
 I will focus only on the backend part. If you are interested in how we deal with React you can read some of ours [books](http://blog.arkency.com/products/).
-In next steps I will show you how we implemented simple CQRS (without ES) with updating Read Model using events.
+In next steps I will show you how we implemented simple CQRS. I will focus on building a Read Model using events.
 
-Starting from the top. Here we have the controller with basic actions. As you can see we simply call **Application services** where each one has separate responsibility.
+Starting from the top. The following example shows the controller with basic actions. As you can see we simply call **Application services** where each one has a separate responsibility.
 In clean CQRS we should use **Commands**. We will refactor it in a next step.
 
 ```
@@ -65,7 +65,7 @@ class TeamsController < ApplicationController
 end
 ```
 
-Here you have one of app services. It is used to create new a Team.
+The following example shows one app service. We use this service to create new a Team.
 
 ```
 #!ruby
@@ -140,10 +140,10 @@ module OrganizationBc
 end
 ```
 
-I have chosen a simple service to focus on most important parts. As you can see we call a **domain service** to create Team model and save it in a DB.
-Team is an aggregate root in relation Team <-> Members. After that we publish event to the Event Store. We use our own Event Store called **RailsEventStore**.
-You can check out the [github repository](https://github.com/arkency/rails_event_store). Publishing event should be placed in the domain service but It was a first step to put in an app service.
-As I said before we have not used the Event Sourcing yet. We wanted to cut scope and we decided to save a „current” state for now.
+I have chosen a simple service to focus on most important parts. As you can see we call a **domain service** to create Team model and save it into the Database.
+Team is an aggregate root in relation Team <-> Members. After creating a Team we publish event to the Event Store. We use our own Event Store called **RailsEventStore**.
+You can check out the [github repository](https://github.com/arkency/rails_event_store). Publishing event should be placed in aggregate but It was a first step to put in an app service.
+We don't use the Event Sourcing. We decided to save a „current” state for now. Event Sourcing is a completely orthogonal concept to CQRS. Doing CQRS does not require event sourcing.
 But we save all events so It will be very ease to build an aggregate's state using events.
 
 We inject the EventStore instance using a custom injector. The whole setup you can see bellow.
@@ -202,7 +202,7 @@ module EventStore
 end
 ```
 
-So a **Write** part is almost done. In the `SetupEventStore` class we define event handler called `OrganizationBc::ReadModels::Structure` for our Read Model.
+So the **Write** part is almost done. In the `SetupEventStore` class we define event handler called `OrganizationBc::ReadModels::Structure` for our Read Model.
 We subscribe it to handle set of events.
 
 ```
@@ -332,9 +332,9 @@ module OrganizationBc
 end
 ```
 
-The organization's structure has a tree structure ;). Each **Team** has relation to a parent member (we can call it chef) and collection of child notes.
-These nodes are team’s members. In each action we modify the structure's model and save in DB. We save model in JSON representation. We use the Postgres Database.
-We save a new record in each update to keep whole change history. This is how the repository looks like.
+The organization's structure is a tree structure. Each **Team** has relation to a parent member and collection of child notes.
+These nodes are team’s members. We modify the structure's model and save in Postgres Database for each handled event. We save model in JSON representation.
+We save a new record in each update to keep whole change history. The following example shows how the repository looks like.
 
 ```
 #!ruby
@@ -373,7 +373,7 @@ module OrganizationBc
 end
 ```
 
-When we have build Read Model the last step is to create query and fetch it. We have separate module called `AppQueries` where we keep all queries.
+When we have build Read Model the last step is to create query for fetching model. We have separate module called `AppQueries` where we keep all queries.
 So the **Read** part is only one class. That's all.
 
 ```
@@ -398,9 +398,8 @@ end
 
 ## Conclusion
 
-I can only say that was great decision to start that way. If you are able to cut scope It does not take much effort
-to start this way. Now I now that we save a lot of time on investigation performance problems in the future. Off course
-the most important thing is to choose if CQRS is a good start point. If you have simple CRUD feature it will be unnecessary.
+I can only say that was great decision to start this way. Now I now that we save a lot of time on investigation performance problems in the future. Off course
+the most important thing is to choose if CQRS is a good starting point. If you have simple CRUD feature it will be unnecessary.
 
 I didn't focus on test part. I think It is a great subject for a separate post. If you are interested in testing event sourced app you can check this [post](http://blog.arkency.com/2015/07/testing-event-sourced-application/).
 
