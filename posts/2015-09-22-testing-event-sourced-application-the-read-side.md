@@ -55,9 +55,12 @@ module Denormalizers
       order_id = SecureRandom.uuid
       order_number = "123/08/2015"
       # arrange
-      event_store.publish_event(Events::OrderCreated.create(order_id, order_number, customer.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
+      event_store.publish_event(Events::OrderCreated.create(
+                                order_id, order_number, customer.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
 
       # act ...
 
@@ -85,12 +88,16 @@ module Denormalizers
     test 'remove item when quantity > 1' do
       # ...
       # arrange
-      event_store.publish_event(Events::OrderCreated.create(order_id, order_number, customer.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
+      event_store.publish_event(Events::OrderCreated.create(
+                                order_id, order_number, customer.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
 
       # act
-      event_store.publish_event(Events::ItemRemovedFromBasket.create(order_id, product.id))
+      event_store.publish_event(Events::ItemRemovedFromBasket.create(
+                                order_id, product.id))
 
       # assert ...
     end
@@ -116,12 +123,16 @@ module Denormalizers
       order_id = SecureRandom.uuid
       order_number = "123/08/2015"
       # arrange
-      event_store.publish_event(Events::OrderCreated.create(order_id, order_number, customer.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
-      event_store.publish_event(Events::ItemAddedToBasket.create(order_id, product.id))
+      event_store.publish_event(Events::OrderCreated.create(
+                                order_id, order_number, customer.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
+      event_store.publish_event(Events::ItemAddedToBasket.create(
+                                order_id, product.id))
 
       # act
-      event_store.publish_event(Events::ItemRemovedFromBasket.create(order_id, product.id))
+      event_store.publish_event(Events::ItemRemovedFromBasket.create(
+                                order_id, product.id))
 
       # assert
       assert_equal(::OrderLine.count, 1)
