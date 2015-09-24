@@ -2,7 +2,7 @@
 title: "Testing Event Sourced application - the read side"
 created_at: 2015-09-22 09:19:36 +0200
 kind: article
-publish: false
+publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: :skip
@@ -151,7 +151,7 @@ No errors here - what has happened it has happened - you could not change the pa
 
 ## ... or an event published
 
-Some might ask: But what is we could not execute our event handler? No exceptions? Then what?
+Some might ask: But what if we fail to execute our event handler? No exceptions? Then what?
 The answer is: more domain events ;)
 The domain event is just a message. If you use queues, you might know how to deal with messages that could not be processed. There are several patterns: retry it, skip it, … and finally if you really could not do anything you will send that message to dead letter queue.
 Similar actions could be applied here, retry later if the previous message has not been processed yet, skip it if it has been already processed or publish a compensation message if your domain model should take some actions.
