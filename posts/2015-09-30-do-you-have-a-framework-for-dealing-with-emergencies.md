@@ -25,7 +25,7 @@ It had to happen. One day, **by accident, I ran some kind of a DB-clean-up scrip
 
 My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunately, I had never found time before to analyse the script line-by-line. How about unit tests? I have never seen them, so most likely they didn't exist.
 
-So I had no idea how much damage I caused. Maybe the script had a protection from such accidental usage as mine - it should have, right?
+**So I had no idea how much damage I caused.** Maybe the script had a protection from such accidental usage as mine - it should have, right?
 
 I took a look at the frontend to see if everything is ok - it wasn't. Literally no data for today. It was present a minute ago but disappeared. Cool. They will fire me.
 
@@ -37,7 +37,7 @@ I already realized that I had to call an ex-coworker of mine (he was currently o
 
 > I don't know. In the worst case scenario, when he is back, so next week [4 days].
 
-The end of the story was pretty lucky, though. I immediately got an instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
+**The end of the story was pretty lucky, though.** I immediately got an instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
 
 A half-hour of preparation, with an extra pair of eyes and triple-checking if this time everything is ok - and voilà! The records are back! Only a few of them were lost forever (those inserted after the backup), but come on! You can insert them again! We saved the day!
 
@@ -52,13 +52,13 @@ What should I have done better?
 
 Of course, easiest to say: _You should simply don't make such stupid things_, but I'm afarid it's impossible. We, in Arkency, are agreed - everyone makes mistakes. Smaller, larger, more or less foolish ones - but everyone does them. The professionalism doesn't mean _no mistakes_, but rather _as little mistakes as possible, asymptotically to zero; zero is unreachable_.
 
-Speaking of the art of professionalism - the true value of the developer is not how many mistakes they do, but how they recover.
+Speaking of the art of professionalism - **the true value of the developer is not how many mistakes they do, but how they recover.**
 
 What is a shame today?
 
 ## Communication
 
-It was my duty to tell the managers what happened. They shouldn't have needed to visit me and inquire about the accident. I should have told them immediately:
+**It was my duty to tell the managers what happened.** They shouldn't have needed to visit me and inquire about the accident. I should have told them immediately:
 
 * What happened (_all the data is lost because of my inattention_)
 * I'm working on it
@@ -70,7 +70,7 @@ An apology is nice here, but useless without all above.
 
 If necessary, I should keep them informed about the progress. Luckily, the recovery was so quick that the next message was, at the same time, the last one: _Hey, it's ok now, we only lost today's records_.
 
-But staying quiet is never a good option.
+**But staying quiet is never a good option.**
 
 ## Estimation
 
@@ -92,13 +92,13 @@ So I should have told:
 
 All I did was telling only the third value. This was not the end of the world, if treated as a commitment (what the management often does). But the other two values were much less frightening, what should have been spoken.
 
-Surprisingly, this time the most optimistic estimation was true. This happens very rarely, I consider this as a luck. Surely, next time my coworker won't break his sunbathe.
+Surprisingly, this time the most optimistic estimation was true. **This happens very rarely**, I consider this as a luck. Surely, next time my coworker won't break his sunbathe.
 
 ## A framework
 
-That would be a dream. You have a list of things, step-by-step, what to do (and what not to do) in hard times. The list is very specific, but at the time it has to give you some level of freedom in designated areas. Because handling emergencies is an individual matter.
+That would be a dream. You have a list of things, step-by-step, what to do (and what not to do) in hard times. The list is very specific, but at the time it gives you some level of freedom in designated areas. Because handling emergencies is an individual matter.
 
-In depends very much on you as a programmer and as a developer, your habits, your team and your project. There are some hard rules here, like _be verbose_ or _estimate better_. However, it's not exhaustive. There's always a whole lot of unknowns.
+In depends very much on you as a programmer and as a developer, your habits, your team and your project. There are some hard rules here, like _be verbose_ or _give 3 values in estimations_. However, it's not exhaustive. There's always a whole lot of unknowns.
 
 You should have your own _framework_ for such cases. Otherwise you are exposed to cases like this one above.
 
