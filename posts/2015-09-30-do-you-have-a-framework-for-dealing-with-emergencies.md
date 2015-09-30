@@ -19,40 +19,42 @@ In my pre-Arkency life, I worked for a corp.
 
 Keep in mind that it was my _very beginning_ of the commercial-IT world. I sometimes felt lost inside this huge DevOps machine. Lost and alone - as usually, when something breaks, there was nobody to ask for help.
 
-It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _today's records_. And accidentaly ran the script.
+It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with the wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _today's records_. And accidentally ran the script.
 
 <!-- more -->
 
-My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunatelly, I had never found time before to analise the script line-by-line. How about unit tests? I have never seen them, so most likely they didn't exist.
+My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunately, I had never found time before to analyse the script line-by-line. How about unit tests? I have never seen them, so most likely they didn't exist.
 
 So I had no idea how much damage I caused. Maybe the script had a protection from such accidental usage as mine - it should have, right?
 
-I took a look at the frontend to see if everything is ok - it wasn't. Literally no data for today. It was present a minute ago, but disappeared. Cool. They will fire me.
+I took a look at the frontend to see if everything is ok - it wasn't. Literally no data for today. It was present a minute ago but disappeared. Cool. They will fire me.
 
 One of the managers visited me quickly and brought to book: 
 
 > Where are my data? I need it NOW for my work. When will you restore it?
 
-I already realised that I had to call an ex-coworker of mine (he was currently on vacation, but I had no choice...) to get all needed information. So my answer was:
+I already realized that I had to call an ex-coworker of mine (he was currently on vacation, but I had no choice...) to get all needed information. So my answer was:
 
 > I don't know. In the worst case scenario, when he is back, so next week [4 days].
 
 The end of the story was pretty lucky, though. I immediately got an instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
 
-A half-hour of preparation, with an extra pair of eyes and tripple-checking if this time everthing is ok - and voilà! The records are back! Only a few of them were lost forever (those inserted after the backup), but come on! You can insert them again! We saved the day!
+A half-hour of preparation, with an extra pair of eyes and triple-checking if this time everything is ok - and voilà! The records are back! Only a few of them were lost forever (those inserted after the backup), but come on! You can insert them again! We saved the day!
 
 ## Sounds familiar?
 
-Today, I'm not very proud of this situation. There was a couple of good reactions, though:
+Today, I'm not very proud of this situation. There were two good reactions, though:
 
 * The paralysis that mastered me after my _fuckup_. When you don't really know how to fix things, it's better to do nothing than to do _anything_ with a panic and, most likely, only cause more damage. For instance, read [the story about Unix recovery in 1986](https://news.ycombinator.com/item?id=10160417) and the comments.
-* Pair-fixing the issue. 
+* Pair-fixing the issue.
 
 What should I have done better?
 
-Of course, easiest to say: _You should simply don't make such stupid things_, but its impossible. We, in Arkency, are agreed - everyone makes mistakes. Smaller, larger, more or less foolish ones - but everyone does them. The professionalism doesn't mean _no mistakes_, but rather _as little mistakes as possible, asymptotically to zero; zero is unreachable_.
+Of course, easiest to say: _You should simply don't make such stupid things_, but I'm afarid it's impossible. We, in Arkency, are agreed - everyone makes mistakes. Smaller, larger, more or less foolish ones - but everyone does them. The professionalism doesn't mean _no mistakes_, but rather _as little mistakes as possible, asymptotically to zero; zero is unreachable_.
 
-Speaking of the art of professionalism - the true value of the developer is not how many mistakes they does, but how they recovers.
+Speaking of the art of professionalism - the true value of the developer is not how many mistakes they do, but how they recover.
+
+What is a shame today?
 
 ## Communication
 
@@ -66,9 +68,9 @@ It was my duty to tell the managers what happened. They shouldn't have needed to
 
 An apology is nice here, but useless without all above.
 
-If necessary, I should keep them informed about the progress. Luckily, the rocovery was so quick that the next message was, at the same time, the last one: _Hey, it's ok now, we only lost today's records_.
+If necessary, I should keep them informed about the progress. Luckily, the recovery was so quick that the next message was, at the same time, the last one: _Hey, it's ok now, we only lost today's records_.
 
-But staying quiet is never a good option. The essence of teamwork is knowing _who does what_. 
+But staying quiet is never a good option.
 
 ## Estimation
 
