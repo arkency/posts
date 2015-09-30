@@ -8,30 +8,96 @@ tags: [ '' ]
 newsletter: :skip
 ---
 
-In my pre-Arkency life, I worked for a corporation.
+In my pre-Arkency life, I worked for a corp.
 
-Keep in mind that it was my _very beginning_ of the commercial-IT world. I sometimes felt lost inside this huge DevOps machine. Lost and alone - as usually when something breaks, there was nobody to ask for help.
+Keep in mind that it was my _very beginning_ of the commercial-IT world. I sometimes felt lost inside this huge DevOps machine. Lost and alone - as usually, when something breaks, there was nobody to ask for help.
 
-It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _every record_. And accidentaly ran the script.
+It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _today's records_. And accidentaly ran the script.
 
-My reaction - paralysis. I wasn't even sure what the script exactly did. Unfortunatelly, I had never found time before to analise the script line-by-line. Did the script have unit tests? Pfff. Forget about it. Unit tests in a corporation?
+<!-- more -->
 
-As mention before, I knew it was _some kind of a DB-clean-up script_, but maybe it had a protection from such accidental usage as mine? It should have, right?
+My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunatelly, I had never found time before to analise the script line-by-line. How about unit tests? I have never seen them, so most likely they didn't exist.
 
-I better stay quiet. If something terrible just happened - maybe nobody noticed... 
+So I had no idea how much damage I caused. Maybe the script had a protection from such accidental usage as mine - it should have, right?
 
-But someone did. One of the managers visited me quickly and brought to book: 
+I took a look at the frontend to see if everything is ok - it wasn't. Literally no data for today. It was present a minute ago, but disappeared. Cool. They will fire me.
+
+One of the managers visited me quickly and brought to book: 
 
 > Where are my data? I need it NOW for my work. When will you restore it?
 
-I already realised that I had to call an old co-worker of mine (he was currently on vacation, but I had no choice...) to get all needed information. So my answer was:
+I already realised that I had to call an ex-coworker of mine (he was currently on vacation, but I had no choice...) to get all needed information. So my answer was:
 
-> I don't know. In worst-case-scenario, when he is back, so next week.
+> I don't know. In the worst case scenario, when he is back, so next week [4 days].
 
-TODO:
+The end of the story was pretty lucky, though. I immediately got an instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
 
-* no communication :(
-* O/N/P estimation
-* paralysis > panic
-* do what you really trust while emergency
-* framework
+A half-hour of preparation, with an extra pair of eyes and tripple-checking if this time everthing is ok - and voilà! The records are back! Only a few of them were lost forever (those inserted after the backup), but come on! You can insert them again! We saved the day!
+
+## Sounds familiar?
+
+Today, I'm not very proud of this situation. There was a couple of good reactions, though:
+
+* The paralysis that mastered me after my _fuckup_. When you don't really know how to fix things, it's better to do nothing than to do _anything_ with a panic and, most likely, only cause more damage. For instance, read [the story about Unix recovery in 1986](https://news.ycombinator.com/item?id=10160417) and the comments.
+* Pair-fixing the issue. 
+
+What should I have done better?
+
+Of course, easiest to say: _You should simply don't make such stupid things_, but its impossible. We, in Arkency, are agreed - everyone makes mistakes. Smaller, larger, more or less foolish ones - but everyone does them. The professionalism doesn't mean _no mistakes_, but rather _as little mistakes as possible, asymptotically to zero; zero is unreachable_.
+
+Speaking of the art of professionalism - the true value of the developer is not how many mistakes they does, but how they recovers.
+
+## Communication
+
+It was my duty to tell the managers what happened. They shouldn't have needed to visit me and inquire about the accident. I should have told them immediately:
+
+* What happened (_all the data is lost because of my inattention_)
+* I'm working on it
+* That's my top-prio
+* However, I need help
+* I'm sorry (it was clearly my fault)
+
+An apology is nice here, but useless without all above.
+
+If necessary, I should keep them informed about the progress. Luckily, the rocovery was so quick that the next message was, at the same time, the last one: _Hey, it's ok now, we only lost today's records_.
+
+But staying quiet is never a good option. The essence of teamwork is knowing _who does what_. 
+
+## Estimation
+
+> I don't know. In the worst case scenario, when he is back, so next week [4 days].
+
+I didn't lie. The problem is - such an information doesn't tell very much. At the end of the day, the incident was solved after less than an hour! Why were the numbers so different?
+
+Much better approach is to estimate with 3 values:
+
+* Optimistic - if literally everything goes without complications
+* Expected
+* Pessimistic - if literally everything goes wrong
+
+So I should have told:
+
+* Optimistically, half an hour.
+* Realistically, 3 hours (_The ex-coworker is on vacation, why should he bother?_)
+* Pessimistically, 4 days (_I can never catch him on the phone, never find a solution by myself, and solve it only after he comes back to work._)
+
+All I did was telling only the third value. This was not the end of the world, if treated as a commitment (what the management often does). But the other two values were much less frightening, what should have been spoken.
+
+Surprisingly, this time the most optimistic estimation was true. This happens very rarely, I consider this as a luck. Surely, next time my coworker won't break his sunbathe.
+
+## A framework
+
+The best thing you
+
+* What to do
+* What not to do
+
+## Summary
+
+There are some hard rules how to deal with the accidents, like _be verbose_ or _estimate well_. However, it's not exhaustive. Handling emergencies is an individual matter. Sometimes you can observe that you change the habits during emergency - maybe it's time to reconsider your believing?
+
+* If you usually TDD, but drop it in emergency times - you don't really trust TDD.
+
+* If you need a partner to fix an issue - well, maybe _pair programming_ is a good idea also in the quiet times?
+
+* If you turn the music off to gain the maximum mana - why don't you do it all the time?
