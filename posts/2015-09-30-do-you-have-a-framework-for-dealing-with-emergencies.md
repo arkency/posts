@@ -106,7 +106,7 @@ We have ours in our newest book, _Responsible Rails_.
 
 ## Summary
 
-Sometimes you can observe that you change the habits during emergency - maybe it's time to reconsider your believing?
+Sometimes you can observe that you change the habits during emergency - maybe it's time to reconsider your beliefs?
 
 * If you usually TDD, but drop it in emergency times - you don't really trust TDD.
 
