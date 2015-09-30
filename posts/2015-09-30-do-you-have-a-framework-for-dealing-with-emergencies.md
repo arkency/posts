@@ -6,7 +6,14 @@ publish: false
 author: Bartosz Krajka
 tags: [ '' ]
 newsletter: :skip
+img: "/assets/images/framework-for-handling-emergencies/header.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/framework-for-handling-emergencies/header.jpg" width="100%">
+  </figure>
+</p>
 
 In my pre-Arkency life, I worked for a corp.
 
@@ -87,14 +94,17 @@ Surprisingly, this time the most optimistic estimation was true. This happens ve
 
 ## A framework
 
-The best thing you
+That would be a dream. You have a list of things, step-by-step, what to do (and what not to do) in hard times. The list is very specific, but at the time it has to give you some level of freedom in designated areas. Because handling emergencies is an individual matter.
 
-* What to do
-* What not to do
+In depends very much on you as a programmer and as a developer, your habits, your team and your project. There are some hard rules here, like _be verbose_ or _estimate better_. However, it's not exhaustive. There's always a whole lot of unknowns.
+
+You should have your own _framework_ for such cases. Otherwise you are exposed to cases like this one above.
+
+We have ours in our newest book, _Responsible Rails_.
 
 ## Summary
 
-There are some hard rules how to deal with the accidents, like _be verbose_ or _estimate well_. However, it's not exhaustive. Handling emergencies is an individual matter. Sometimes you can observe that you change the habits during emergency - maybe it's time to reconsider your believing?
+Sometimes you can observe that you change the habits during emergency - maybe it's time to reconsider your believing?
 
 * If you usually TDD, but drop it in emergency times - you don't really trust TDD.
 
