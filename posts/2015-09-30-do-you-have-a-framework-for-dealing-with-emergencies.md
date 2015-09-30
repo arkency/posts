@@ -12,13 +12,13 @@ In my pre-Arkency life, I worked for a corporation.
 
 Keep in mind that it was my _very beginning_ of the commercial-IT world. I sometimes felt lost inside this huge DevOps machine. Lost and alone - as usually when something breaks, there was nobody to ask for help.
 
-It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddeling with the script, I changed the definition of _old enough_ to _every_, and accidentaly ran it.
+It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _every record_. And accidentaly ran the script.
 
 My reaction - paralysis. I wasn't even sure what the script exactly did. Unfortunatelly, I had never found time before to analise the script line-by-line. Did the script have unit tests? Pfff. Forget about it. Unit tests in a corporation?
 
 As mention before, I knew it was _some kind of a DB-clean-up script_, but maybe it had a protection from such accidental usage as mine? It should have, right?
 
-And if something terrible just happened - maybe nobody noticed... I better stay quiet.
+I better stay quiet. If something terrible just happened - maybe nobody noticed... 
 
 But someone did. One of the managers visited me quickly and brought to book: 
 
@@ -29,6 +29,7 @@ I already realised that I had to call an old co-worker of mine (he was currently
 > I don't know. In worst-case-scenario, when he is back, so next week.
 
 TODO:
+
 * no communication :(
 * O/N/P estimation
 * paralysis > panic
