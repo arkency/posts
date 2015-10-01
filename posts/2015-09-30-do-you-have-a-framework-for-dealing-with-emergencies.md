@@ -1,8 +1,8 @@
 ---
 title: "Do you have a framework for dealing with emergencies?"
-created_at: 2015-09-30 09:19:36 +0200
+created_at: 2015-10-01 10:00:00 +0200
 kind: article
-publish: false
+publish: true
 author: Bartosz Krajka
 tags: [ 'framewrok', 'emergency', 'fuckup', 'responsible rails' ]
 newsletter: :skip
