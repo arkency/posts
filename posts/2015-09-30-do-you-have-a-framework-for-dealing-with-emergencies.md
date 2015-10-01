@@ -4,8 +4,9 @@ created_at: 2015-09-30 09:19:36 +0200
 kind: article
 publish: false
 author: Bartosz Krajka
-tags: [ '' ]
+tags: [ 'framewrok', 'emergency', 'fuckup', 'responsible rails' ]
 newsletter: :skip
+newsletter_inside: :responsible_rails
 img: "/assets/images/framework-for-handling-emergencies/header.jpg"
 ---
 
@@ -19,13 +20,13 @@ In my pre-Arkency life, I worked for a corp.
 
 Keep in mind that it was my _very beginning_ of the commercial-IT world. I sometimes felt lost inside this huge DevOps machine. Lost and alone - as usually, when something breaks, there was nobody to ask for help.
 
-It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with the wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _record old enough_ to _today's records_. And accidentally ran the script.
+It had to happen. One day, **by accident, I ran some kind of a DB-clean-up script, with the wrong date, on production**. The script's job was to delete records that are _old enough_. While fiddling with the script, I changed the definition of _records old enough_ to _records visible today (not closed)_. And accidentally ran the script.
 
 <!-- more -->
 
-My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunately, I had never found time before to analyse the script line-by-line. How about unit tests? I have never seen them, so most likely they didn't exist.
+My reaction - a complete paralysis. I wasn't even sure what the script exactly did. Unfortunately, I had never found time before to analyse the script line-by-line. Also, I have never seen unit tests, so most likely they didn't exist.
 
-**So I had no idea how much damage I caused.** Maybe the script had a protection from such accidental usage as mine - it should have, right?
+**So I had no idea how much damage I caused.** Maybe the script had a protection from so accidental usage as mine? It should have, right?
 
 I took a look at the frontend to see if everything is ok - it wasn't. Literally no data for today. It was present a minute ago but disappeared. Cool. They will fire me.
 
@@ -37,7 +38,7 @@ I already realized that I had to call an ex-coworker of mine (he was currently o
 
 > I don't know. In the worst case scenario, when he is back, so next week [4 days].
 
-**The end of the story was pretty lucky, though.** I immediately got an instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
+**The end of the story was pretty lucky, though.** I immediately got an accurate instruction from my coworker-on-leave - there was a daily backup of the data, so _probably_ all we need is a casual restore from `/a_directory`.
 
 A half-hour of preparation, with an extra pair of eyes and triple-checking if this time everything is ok - and voilà! The records are back! Only a few of them were lost forever (those inserted after the backup), but come on! You can insert them again! We saved the day!
 
@@ -64,9 +65,9 @@ What is a shame today?
 * I'm working on it
 * That's my top-prio
 * However, I need help
-* I'm sorry (it was clearly my fault)
+* I'm sorry 
 
-An apology is nice here, but useless without all above.
+An apology is nice here (it was clearly my fault), but useless without all above.
 
 If necessary, I should keep them informed about the progress. Luckily, the recovery was so quick that the next message was, at the same time, the last one: _Hey, it's ok now, we only lost today's records_.
 
@@ -90,19 +91,21 @@ So I should have told:
 * Realistically, 3 hours (_The ex-coworker is on vacation, why should he bother?_)
 * Pessimistically, 4 days (_I can never catch him on the phone, never find a solution by myself, and solve it only after he comes back to work._)
 
-All I did was telling only the third value. This was not the end of the world, if treated as a commitment (what the management often does). But the other two values were much less frightening, what should have been spoken.
+All I did was telling only the third value. This was not the end of the world, if treated as an obligation (what the management often does). But the other two values were much less frightening, what should have been spoken.
 
 Surprisingly, this time the most optimistic estimation was true. **This happens very rarely**, I consider this as a luck. Surely, next time my coworker won't break his sunbathe.
 
 ## A framework
 
-That would be a dream. You have a list of things, step-by-step, what to do (and what not to do) in hard times. The list is very specific, but at the time it gives you some level of freedom in designated areas. Because handling emergencies is an individual matter.
+That would be a dream. You have a list of things, step-by-step, what to do (and what not to do) in hard times. The list is very specific, but at the time it gives you some level of freedom in designated areas.
 
-In depends very much on you as a programmer and as a developer, your habits, your team and your project. There are some hard rules here, like _be verbose_ or _give 3 values in estimations_. However, it's not exhaustive. There's always a whole lot of unknowns.
+Handling emergencies is an individual matter. In depends very much on you as a programmer and as a developer, your habits, your team and your project. There are some hard rules here, like _be verbose_ or _give 3 values in estimations_. However, it's not exhaustive. There's always a whole lot of unknowns.
 
 You should have your own _framework_ for such cases. Otherwise you are exposed to cases like this one above.
 
-We have ours in our newest book, _Responsible Rails_.
+We described ours in _Responsible Rails_ book.
+
+<%= inner_newsletter(:responsible_rails) %>
 
 ## Summary
 
@@ -113,3 +116,5 @@ Sometimes you can observe that you change the habits during emergency - maybe it
 * If you need a partner to fix an issue - well, maybe _pair programming_ is a good idea also in the quiet times?
 
 * If you turn the music off to gain the maximum mana - why don't you do it all the time?
+
+* If an acident shows that you can delay all the needless things (casual talks, facebook checkings, etc.) - take a look at (Pomodoro Technique)[https://en.wikipedia.org/wiki/Pomodoro_Technique].
