@@ -117,4 +117,4 @@ Sometimes you can observe that you change the habits during emergency - maybe it
 
 * If you turn the music off to gain the maximum mana - why don't you do it all the time?
 
-* If an acident shows that you can delay all the needless things (casual talks, facebook checkings, etc.) - take a look at (Pomodoro Technique)[https://en.wikipedia.org/wiki/Pomodoro_Technique].
+* If an acident shows that you can delay all the needless things (casual talks, facebook checkings, etc.) - take a look at [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).
