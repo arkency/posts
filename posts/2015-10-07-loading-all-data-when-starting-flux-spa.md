@@ -106,7 +106,7 @@ class InitialStateStore {
   // ...
 
   checkIfDataLoaded() {
-    let loadedDataAllTrue = this.loadedData.valueSeq().every(_.identity)
+    let loadedDataAllTrue = this.loadedData.valueSeq().every((v) => { return v; })
     if (loadedDataAllTrue) {
       setTimeout(() => {
         InitialStateActions.finishedLoading()
