@@ -180,4 +180,8 @@ class LoaderStore {
 }
 ```
 
+## Summary
+
 Now, it's pretty much it. As I said above, only things you need to customize is when you call the `InitialStateActions.startLoading()` action in your application and how you display the loading spinner.
+
+As you can see, this solution is pretty generic. It doesn't interfere with other stores, which makes our application easier to reason about. It follows flux-way of doing things, introducing `InitialStateStore` allowed us to remove all `fetchFoo` methods scattered around our React components. This in the end lead to the simpler design of the overall app.
