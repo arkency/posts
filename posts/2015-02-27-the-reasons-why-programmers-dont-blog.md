@@ -4,7 +4,7 @@ created_at: 2015-02-27 10:05:53 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :blogging_book
 ---
 
 I was wondering why only few programmers actively blog, so I asked for reasons on Twitter. Here are the responses.
