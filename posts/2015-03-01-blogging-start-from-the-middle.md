@@ -4,7 +4,7 @@ created_at: 2015-03-01 13:10:34 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :coaching
+newsletter: :blogging_book
 ---
 
 Time constraints seems to be the main reason for not blogging more often. 
