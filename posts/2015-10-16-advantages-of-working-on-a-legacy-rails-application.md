@@ -4,7 +4,7 @@ created_at: 2015-10-20 11:17:21 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'legcy', 'rails' ]
+tags: [ 'legacy', 'rails' ]
 newsletter: :fearless_refactoring_1
 ---
 
@@ -41,7 +41,7 @@ You might think that after such experience my answer to the question, I asked
 at the beginning would be very negative. But on the contrary. I've learnt
 a lot since that time.
 
-## The advantages of working on a legcy app
+## The advantages of working on a legacy app
 
 ### Humble programmer
 
