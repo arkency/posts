@@ -1,14 +1,14 @@
 ---
 title: "Advantages of working on a legacy application"
-created_at: 2015-10-16 11:17:21 +0200
+created_at: 2015-10-20 11:17:21 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'legcy', 'rails' ]
-newsletter: :arkency_form
+newsletter: :fearless_refactoring_1
 ---
 
-Are there any advantages to working on such an application?
+Are there any advantages of working on such an application?
 Would you rather prefer working on a greenfield?
 Here is my stance on this topic and my personal story.
 
@@ -27,7 +27,7 @@ exciting.
 On my first day I sit down, pulled the repository, installed dependencies and
 run the tests. Almost everything failing. I looked at the code and it was
 terrible. So much business logic in controllers and views. **I wanted to cry**.
-My contract obligated my to work there for 12 months and I wanted to run
+My contract obligated me to work there for 12 months and I wanted to run
 away on day one.
 
 **My dreams were crashed**. I read so many blogposts, articles and books about
@@ -35,7 +35,7 @@ Rails, about testing in Rails, doing TDD. I wanted to work in Rails because
 I wanted to work with **codebase covered by tests**. Just like Ruby is, just like
 Rails is. But the reality was radically different. Big codebase (>100 models
 and controllers). Complicated business domain. And useless, failing, obsolete
-**tests which don't give you much confidence in refactoring**.
+**tests which didn't give you much confidence in refactoring**.
 
 You might think that after such experience my answer to the question, I asked
 at the beginning would be very negative. But on the contrary. I've learnt
@@ -122,7 +122,7 @@ will keep using. One day later we more-or-less knew the conversion rate. Multipl
 it by their number of daily transactions, take average value of order into consideration
 and you **have a pretty good guess as to how much money this brings to the table in the next
 year**. Next time when you negotiate your salary or your rate you can **use those numbers**.
-Yes, we cost you $ XYZ but the features we do for you give you $ ABC.
+Yes, we cost you $X but the features we do for you give you $Z.
 
 When you work on new projects you usually don't have such a comfort. There is not much
 traffic, not so many customers and the startup might be still burning money. In such
@@ -154,4 +154,4 @@ immediate feedback is a tremendous benefit**.
 * The customers can quickly provide a feedback and let you a/b test the solutions
 * The company behind the project needs you and should pay without problems
 
-**I wish you good luck in your legacy project and lot of learning opportunities.** 
+**I wish you good luck in your legacy project and lot of [learning opportunities](http://rails-refactoring.com/).** 
