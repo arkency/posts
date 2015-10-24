@@ -26,7 +26,7 @@ You might know that your ActiveRecord class have `after_commit` callback that ca
 triggered when the transaction is commited. However, I didn't want to couple enqueuing
 with an existing ActiveRecord class. I think that
 **integrations with such 3rd party systems as for example background queues are more the responsibility
-of Service Objects** rather then ActiveRecord models.
+of Service Objects** rather than ActiveRecord models.
 And I didn't want to introduce a new AR class just for the sake
 of using `after_commit` callback. **I wanted the callback without ActiveRecord class**.
 
