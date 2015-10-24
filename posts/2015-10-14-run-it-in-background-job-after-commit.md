@@ -1,6 +1,6 @@
 ---
 title: "Run it in background job, after commit, from Service Object"
-created_at: 2015-10-14 21:05:24 +0200
+created_at: 2015-10-24 21:05:24 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
