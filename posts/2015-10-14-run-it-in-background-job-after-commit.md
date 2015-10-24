@@ -1,5 +1,5 @@
 ---
-title: "Run it in background job, after commit"
+title: "Run it in background job, after commit, from Service Object"
 created_at: 2015-10-14 21:05:24 +0200
 kind: article
 publish: true
@@ -35,7 +35,7 @@ Here is how it can be achieved and how I figured it out.
 ## `after_commit` - where are you.
 
 Let's see [`after_commit`](http://api.rubyonrails.org/v4.1.0/classes/ActiveRecord/Transactions/ClassMethods.html#method-i-after_commit)
-documentation and implementation in Rails.
+implementation in Rails.
 
 ```
 #!ruby
