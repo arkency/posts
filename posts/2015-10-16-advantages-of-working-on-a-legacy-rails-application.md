@@ -81,7 +81,7 @@ the decision you make and others made before you play in the long term**.
 As my client once said to me: _The only reward that we get for being successful (as a business) is more complexity_.
 The bigger the organization, the more processes, features and use cases, the more complexity
 needs to be handled by the code. That is our **curse** (because we try to fight the complexity
-everywhere and there is alway accidental complexity added as well) **and our reward**. Because the
+everywhere and there is always accidental complexity added as well) **and our reward**. Because the
 feeling that you can handle all that complexity for your client and keep things
 working and profitable is nice.
 
@@ -130,7 +130,7 @@ case it is much harder to use the value that you bring to the customer as a star
 point for a salary negotiation.
 
 Bigger, older, **legacy business are already verified** in some way. Either they are at least
-very good at convincing investors. Or they are onto something and they are doing something
+very good at convincing investors or they are onto something and they are doing something
 good for the customers. Otherwise, **why would they keep coming?**
 
 Also, we found that it is much easier to handle billing with such mature organizations.

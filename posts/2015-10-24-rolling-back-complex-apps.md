@@ -35,7 +35,7 @@ Let's see some specifics.
 ## Don't use _not null_ initially
 
 Say you want to add a _not null_ column. Lovely. I hate _nulls_ in db. But if you add
-_not null_ column without a default in revision B, and then you have to go to quickly go back
+_not null_ column without a default in revision B, and then you must quickly go back
 to revision A, then you are in trouble. Old code has no knowledge of the new column.
 It doesn't know what to enter there. You can of course reverse the migration but that means
 additional work in stressful circumstances. And chances are, you are doing it so rarely that
@@ -155,7 +155,7 @@ Have you ever deployed a new feature that was living on a separate branch after
 two or three weeks of developing? Despite all the tests I never feel
 comfortable doing that.
 
-So instead **I try to deply once per day or two**. If you are adding new features
+So instead **I try to deploy once per day or two**. If you are adding new features
 you can usually continue to add classes and methods and deploy them safely.
 Often this path in code won't be reachable unless you display it on the UI.
 And you can make it only available in development environment, staging or for admins. Which
@@ -168,8 +168,8 @@ with [feature toggles](http://martinfowler.com/bliki/FeatureToggle.html) .
 Often those toggles are not for entire system but rather they work per tenant or
 per country. That means when the time comes and the feature is ready **you can
 enable it in the biggest (if you feel brave) or the smallest (if not so brave)
-market**. Or just in the market that is the targeted recipient of given feature
-or integration. The bigger the project the more often you need to adjust it
+market**. Or just in the market that is the targeted recipient of given feature.
+The bigger the project the more often you need to adjust it
 for local regulations, customers' habits and API providers.
 
 When we add new payment gateway integration we usually try it first on certain
@@ -201,10 +201,10 @@ end
 ```
 
 **Feature toggles make the easiest rollbacks**. Something is not right after enabling a feature?
-Disable it, investigate, fix and re-enable.
+No problem, just disable it, investigate, fix and re-enable.
 
 You can read more about [programmer friendly workflow environment in our
-Developers Oriented Project Managment ebook](/developers-oriented-project-management) .
+Developers Oriented Project Management ebook](/developers-oriented-project-management) .
 We describe there for example how to work on `master` branch without Pull Requests
 and quote Google Chrome team which works the same way.
 
@@ -216,7 +216,7 @@ of the platform that must just work, for example, the checkout process in a shop
 And there are a lot of secondary features which are not as critical.
 
 Going safer way means **deploying smaller chunks, deploying more often
-and hiding features which are not yet ready**. So it is obvious that the cost
+and hiding features which are not ready yet**. So it is obvious that the cost
 of shipping new features
 is a little higher because of overhead. But if you already have Continuous Deployment
 then it is not much bigger. **It's mostly your habits that need to change.**
