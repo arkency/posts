@@ -1,5 +1,5 @@
 ---
-title: "Run it in background job, after commit, from Service Object"
+title: "Run it in a background job, after a commit, from a service object"
 created_at: 2015-10-24 21:05:24 +0200
 kind: article
 publish: true
