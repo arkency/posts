@@ -16,7 +16,7 @@ Here is my stance on this topic and my personal story.
 
 ## My first (legacy) Rails job
 
-When I finished my Master's Degree about Ruby on Rails, **I had one dream.
+When I finished my Master's thesis about Ruby on Rails, **I had one dream.
 To work with Ruby on Rails on daily basis**. I have already quit my first
 job in a corporation a few months earlier to focus on studies. I was free
 to start any job, anywhere. I couldn't find Rails job at my current city,
