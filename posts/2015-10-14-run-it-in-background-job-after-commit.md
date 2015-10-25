@@ -10,7 +10,7 @@ newsletter_inside: :clean
 ---
 
 There is this problem that when you schedule a background job from inside of a running
-database transaction, the background job can kick in before the transaction is commited.
+database transaction, the background job can kick in before the transaction is committed.
 **Then the job can't find the data that it expects to already be there, in database**.
 How do we solve this issue? Let's schedule a job after db commit.
 
