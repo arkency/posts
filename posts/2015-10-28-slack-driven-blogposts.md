@@ -14,10 +14,6 @@ You may have explained something to your team on the Slack channel. You already 
 
 <!-- more -->
 
-Slack (or any other team communication tool) may be a good source for your blogposts. 
-
-You may have explained something to your team on the Slack channel. You already verbalised your thoughts in a written manner. That's the biggest part of writing a blog post! Use it to your benefit now. Turn it into a blogpost.
-
 As developers we often share this feeling that what we just wrote or explained is not really that useful to anybody. 
 
 Here are some techniques which may help you in turning the Slack conversations into a blog post:
