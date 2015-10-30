@@ -445,7 +445,7 @@ This gives you some very basic protection as well.
 **For the rest of the test you must write something specific to the adapter implementation**.
 Adapters doing http request can either stub http communication
 with [webmock](https://github.com/bblimke/webmock)
-or [vcr](vcr). Alternatively, you can just use mocks and expectations to check,
+or [vcr](https://github.com/vcr/vcr). Alternatively, you can just use mocks and expectations to check,
 whether the gem that you use for communication is being use correctly. However,
 if the logic is not complicated the test are quickly becoming _typo test_,
 so they might even not be worth writing.
