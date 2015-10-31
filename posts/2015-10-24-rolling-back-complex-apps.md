@@ -17,8 +17,8 @@ few small protips on this topic.
 ## Keep backward-forward compatibility
 
 If you are afraid that your code might break something and you will have to
-go back to previous version, then it is best to make your **data structures
-compatibile with the previous version** of code.
+go back to the previous version, then it is best to make your **data structures
+compatible with the previous version** of the code.
 
 You need to ask yourself what will happen if you:
 
@@ -37,7 +37,7 @@ Let's see some specifics.
 Say you want to add a _not null_ column. Lovely. I hate _nulls_ in db. But if you add
 _not null_ column without a default in revision B, and then you must quickly go back
 to revision A, then you are in trouble. Old code has no knowledge of the new column.
-It doesn't know what to enter there. You can of course reverse the migration but that means
+It doesn't know what to enter there. You can, of course, reverse the migration but that means
 additional work in stressful circumstances. And chances are, you are doing it so rarely that
 **you won't be able to just run the proper command without hesitation**. Hosting providers
 usually don't come with good UI for rarely executed tasks as well. So nothing is on your side.
@@ -50,9 +50,9 @@ Solution? Break it into more steps:
     If you do roll back, then
     no problem. Old code can still insert new records and they will have _null_ in the newly added
     column. You don't have to revert the migration. The new column can be kept. Once you fix your
-    code and deploy it again, it will start using the new column. Of course you will have to fill
+    code and deploy it again, it will start using the new column. Of course, you will have to fill
     the value of the column for the records created when revision A was deployed for the second time.
-    But that's managable.
+    But that's manageable.
 * add _not null_ constraint
 
 Adding a database default is another way to circumvent the problem. But that's only posible if the
@@ -117,7 +117,7 @@ end
 Job.enqueue(1)
 ```
 
-And then in second step change the method so it depends on the additional argument
+And then in a second step change the method so it depends on the additional argument
 and the code that enqueues to pass that argument:
 
 
