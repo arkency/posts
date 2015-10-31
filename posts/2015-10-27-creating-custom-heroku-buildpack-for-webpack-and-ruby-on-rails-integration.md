@@ -2,7 +2,7 @@
 title: "Creating custom Heroku buildpack for Webpack and Ruby on Rails integration"
 created_at: 2015-10-27 19:01:22 +0100
 kind: article
-publish: false
+publish: true
 author: Marcin Grzywaczewski
 tags: [ 'frontend', 'assets', 'sprockets' ]
 newsletter: :react_books
