@@ -18,7 +18,7 @@ img: "/assets/images/events/events-fit.jpg"
 Many applications store a current state in these days. Although there are situations where we want to see something more than a current information about our domain model. 
 If you feel that need Event Sourcing will help you here.
 
-The Event Sourcing is an architectural pattern which allows as to keep information about object’s state as a collection of events. 
+The Event Sourcing is an architectural pattern which allows us to keep information about object’s state as a collection of events. 
 These events represent modifications of our model. If we want to recreate current state we have to apply events on our „clean” object.
 
 <!-- more -->
