@@ -61,7 +61,7 @@ This blogpost is an attempt to put all the resources in one place.
 - [RethinkDB + ReactJS + Rails Live - Proof of concept](https://www.youtube.com/watch?v=P9Upn194b9M)
 - [React.js koans](https://www.youtube.com/watch?v=i6iVyLhMFco)
 - [Anatomy of the React.js component - FREE chapter of the book](https://www.youtube.com/watch?v=bFt-7P6ZiYo)
-- [Introduction to React.js Koans - installation}(https://www.youtube.com/watch?v=Csf909B5_Qg)
+- [Introduction to React.js Koans - installation](https://www.youtube.com/watch?v=Csf909B5_Qg)
 - [React Flux Todo List - Basic use case](https://www.youtube.com/watch?v=gJCx1jcexxM)
 - [React.js koans - solving the 1st exercise, the basics of React components](https://www.youtube.com/watch?v=wSC2Jqy3xLU)
 - [React.js koans - solving the 2nd exercise, the list of parties!](https://www.youtube.com/watch?v=2iuVq17YQxM)
