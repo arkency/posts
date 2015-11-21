@@ -15,6 +15,7 @@ So far we've released:
 - React.js koans
 - 7 YT videos
 - 2 books (with repos)
+- dozens of emails to our [React Kung Fu mailing list](http://arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&id=71db9e1b5a)
 
 This blogpost is an attempt to put all the resources in one place.
 
@@ -22,34 +23,34 @@ This blogpost is an attempt to put all the resources in one place.
 
 # Blogposts
 
-- Integrating jQuery Chosen with Webpack using imports-loader
-- Upgrading to React 0.14 in practice
-- The difference between Virtual DOM and DOM
-- Common React.js mistakes: Unneeded state
-- React.js loses input focus on typing
-- How to improve the data flow in your React app? Introduction to Baobab
-- Pros and Cons of using immutability with React.js
-- Beautiful confirm window with React
-- The Hitchhiker's Guide to Modern JavaScript Tooling
-- Why and how to bind methods in your React component classes?
-- Big names using React.js
-- Learning React.js by practice - why React Koans turned out to be a great success
-- What React component class syntax should I use?
-- Why are we using React.js in our projects?
-- Approaches to testing React components - an overview
-- Going mobile with React Native
-- React with Flux by example - a simple Todo List dissected
-- Arkency goes React
-- You can use CoffeeScript classes with React - pros and cons
-- Building a React.js event log in a Rails admin panel
-- One year of React.js in Arkency
-- On my radar: RethinkDB + React.js + Rails
-- Implementing Game Dashboard With React.js
-- Use your gettext translations in your React components
-- You can move React.js root component around
-- React.js and Dynamic Children - Why the Keys are Important
-- React.js and Google Charts
-- How we structure our front-end Rails apps with React.js
+- [Integrating jQuery Chosen with Webpack using imports-loader](http://reactkungfu.com/2015/10/integrating-jquery-chosen-with-webpack-using-imports-loader/)
+- [Upgrading to React 0.14 in practice](http://reactkungfu.com/2015/10/upgrading-to-react-014/)
+- [The difference between Virtual DOM and DOM](http://reactkungfu.com/2015/10/the-difference-between-virtual-dom-and-dom/)
+- [Common React.js mistakes: Unneeded state](http://reactkungfu.com/2015/09/common-react-dot-js-mistakes-unneeded-state/)
+- [React.js loses input focus on typing](http://reactkungfu.com/2015/09/react-js-loses-input-focus-on-typing/)
+- [How to improve the data flow in your React app? Introduction to Baobab](http://reactkungfu.com/2015/08/how-to-improve-the-data-flow-in-your-react-app-introduction-to-baobab/)
+- [Pros and Cons of using immutability with React.js](http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/)
+- [Beautiful confirm window with React](http://reactkungfu.com/2015/08/beautiful-confirm-window-with-react/)
+- [The Hitchhiker's Guide to Modern JavaScript Tooling](http://reactkungfu.com/2015/07/the-hitchhikers-guide-to-modern-javascript-tooling/)
+- [Why and how to bind methods in your React component classes?](http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/)
+- [Big names using React.js](http://reactkungfu.com/2015/07/big-names-using-react-js/)
+- [Learning React.js by practice - why React Koans turned out to be a great success](http://reactkungfu.com/2015/07/learning-react-by-practice-why-react-koans-turned-out-to-be-a-great-success/)
+- [What React component class syntax should I use?](http://reactkungfu.com/2015/07/what-react-component-class-syntax-should-i-use/)
+- [Why are we using React.js in our projects?](http://reactkungfu.com/2015/07/why-are-we-using-react-js-in-our-projects/)
+- [Approaches to testing React components - an overview](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
+- [Going mobile with React Native](http://reactkungfu.com/2015/07/going-mobile-with-react-native/)
+- [React with Flux by example - a simple Todo List dissected](http://reactkungfu.com/2015/07/react-with-flux-by-example-simple-todo-list-dissected/)
+- [Arkency goes React](http://blog.arkency.com/2015/07/arkency-goes-react/)
+- [You can use CoffeeScript classes with React - pros and cons](http://blog.arkency.com/2015/05/you-can-use-coffeescript-classes-with-react-dot-js-pros-and-cons/)
+- [Building a React.js event log in a Rails admin panel](http://blog.arkency.com/2015/05/building-a-react-dot-js-event-log-in-a-a-rails-admin-panel/)
+- [One year of React.js in Arkency](http://blog.arkency.com/2015/05/one-year-of-react-dot-js-in-arkency/)
+- [On my radar: RethinkDB + React.js + Rails](http://blog.arkency.com/2015/04/on-my-radar-rethinkdb-plus-react-dot-js-plus-rails/)
+- [Implementing Game Dashboard With React.js](http://blog.arkency.com/2015/03/implementing-game-dashboard-using-react-js/)
+- [Use your gettext translations in your React components](http://blog.arkency.com/2015/03/use-your-gettext-translations-in-your-react-components/)
+- [You can move React.js root component around](http://blog.arkency.com/2014/10/you-can-move-react-root-component-around/)
+- [React.js and Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
+- [React.js and Google Charts](http://blog.arkency.com/2014/09/react-dot-js-and-google-charts/)
+- [How we structure our front-end Rails apps with React.js](http://blog.arkency.com/2014/08/how-we-structure-our-front-end-rails-apps-with-react-dot-js/)
 
 # React.js koans
 
