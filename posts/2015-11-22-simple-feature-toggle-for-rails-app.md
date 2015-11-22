@@ -6,7 +6,19 @@ publish: false
 author: Szymon Fiedler
 tags: [ 'rails', 'feature toggle' ]
 newsletter: :fearless_refactoring_1
+img: "/assets/images/simple-feature-toggle-for-rails-app/header.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/simple-feature-toggle-for-rails-app/header-fit.jpg" width="100%">
+    <details>
+      <a href="https://flic.kr/p/7zHjDq">Photo</a> available thanks to the courtesy of
+      <a href="https://www.flickr.com/photos/33852688@N08/">Chris Costes</a>.
+      <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+    </details>
+  </figure>
+</p>
 
 You've probably heard before about [feature toggle](http://martinfowler.com/bliki/FeatureToggle.html). Theory looks fine on the paper, but you're probably wondering how to implement such feature in your Rails app.
 
