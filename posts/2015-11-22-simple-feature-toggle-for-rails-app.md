@@ -89,7 +89,7 @@ Let's use it for example in controller action to render different, redesigned vi
 
 class UserProfilesController < ApplicationController
   def show
-    FT.with(:new_user_profile) do |user_id: current_user.id|
+    FT.with(:new_user_profile, user_id: current_user.id) do
       return render :new_user_profile, locals: { user: NewUserProfilePresenter.new(current_user) }
     end
 
