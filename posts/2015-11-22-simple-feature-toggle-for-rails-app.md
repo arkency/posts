@@ -1,5 +1,5 @@
 ---
-title: "Simple feature toggle for Rails app"
+title: "A Simple feature toggle for a Rails app"
 created_at: 2015-11-22 22:58:31 +0100
 kind: article
 publish: true
