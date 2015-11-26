@@ -2,7 +2,7 @@
 title: "Rolling back complex apps"
 created_at: 2015-10-24 22:25:15 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'rollback', 'deployment' ]
 newsletter: :arkency_form
