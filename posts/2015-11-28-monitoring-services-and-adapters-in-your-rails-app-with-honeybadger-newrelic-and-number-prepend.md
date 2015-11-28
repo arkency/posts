@@ -62,16 +62,16 @@ mechanism such as [`ActiveSupport::Notifications`](http://api.rubyonrails.org/v4
 ```
 #!ruby
 class Service
-  PreparationError = Class.new(StandardError)
+  Error = Class.new(StandardError)
 
   def call
     db.query
     adapter.do_something
     ActiveSupport::Notifications.instrument("Service::Ok")
     return whatever
-  rescue Adapter::Error => e
+  rescue Adapter::Error, OtherKindsOfErrors => e
     ActiveSupport::Notifications.instrument("Service::Error", error: e)
-    raise PreparationError
+    raise Error
   end
 end
 ```
