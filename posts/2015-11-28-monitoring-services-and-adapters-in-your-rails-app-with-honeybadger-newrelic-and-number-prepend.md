@@ -11,7 +11,7 @@ newsletter_inside: :clean
 
 The bigger your app gets the higher chance that it will need to integrate with multiple of external
 services, providers and APIs. Sometimes they work, sometimes they don't. Sometimes it doesn't matter
-when they are down or behaving problematicly. Sometimes it costs your clients money.
+when they are down or behaving problematically. Sometimes it costs your clients money.
 
 Like when a payment gateway is having problems on Black Friday.
 
@@ -19,17 +19,17 @@ Like when a payment gateway is having problems on Black Friday.
 
 Can you imagine?
 
-But the first step to know about the problem and the urgency of a situation is to monitor it.
+But the first step to knowing about the problem and the urgency of a situation is to monitor it.
 So we will start with that.
 
 <!-- more -->
 
 Let's imagine a simple Service Object that is doing _something_ in your app. Something probably
 important. Perhaps it communicates with a payment gateway to create a new payment. Sounds important
-enough. The code is probably doing some db queries maybe even updates. It might use a gem or
+enough. The code is probably doing some DB queries, maybe even updates. It might use a gem or
 [an adapter](/2014/08/ruby-rails-adapters/) to communicate with an external service. It probably
 needs to catch some exceptions (especially networking related) in case anything goes wrong and
-ancapsule them into something expected by the controller.
+convert them into something expected by the controller.
 
 ```
 #!ruby
@@ -49,7 +49,7 @@ end
 Now because this is a crucial part of our shopping application we would like
 to monitor it in production and respond to troubles.
 
-We could add the monitoring directly to this class but it would make
+We could add the monitoring directly to this class, but it would make
 it less readable. I experimented with two different approaches and
 both work.
 
@@ -94,7 +94,7 @@ N.subscribe("Service::Ok") do |_name, _start, _finish, _id, _payload|
 end
 ```
 
-This almost works but I noticed that for New Relic to actually handle those metrics
+This almost works, but I noticed that for New Relic to actually handle those metrics
 I had to made sure `#increment_metric` it is called from the inside of a directly 
 traced code:
 
@@ -114,7 +114,7 @@ end
 
 Since Ruby 2.0 we have the ability to use [`#prepend`](http://dev.af83.com/2012/10/19/ruby-2-0-module-prepend.html) as a way to enrich the
 behavior of our classes with mixins that can original method definition
-with super. It's not as powerful as aspect oriented programming but it will suffice in our case.
+with super. It's not as powerful as aspect-oriented programming, but it will suffice in our case.
 
 The module that you prepend can be an anonymous one.
 
@@ -141,24 +141,24 @@ Service.class_eval do
 end
 ```
 
-In this case the whole instrumentation and `NewRelic` / `Honeybadger` instrumentation is kept
+In this case, the whole instrumentation and `NewRelic` / `Honeybadger` instrumentation is kept
 inside the anonymous module.
 
 ### Safety precautions
 
 I like to use `Service.class_eval` instead of `class Service` because the former
 won't work if `Service` class is not defined in your codebase. Whereas the latter
-experssion would quitely just define the class for your.
+expression would quietly just define the class for you.
 
 I also check if the method `#call` is defined in the class with `instance_method(:call)`
 just to make sure we are not instrumenting unexisting method anymore.
 
-We don't have the benefit of compiler to check for it in Ruby unfortunatelly and
+We don't have the benefit of a compiler to check for it in Ruby unfortunately and
 `add_method_tracer` does not verify it either.
 
 ## Decorator
 
-I will leave this as an excercise to the reader ;)
+I will leave this as an exercise to the reader ;)
 
 ## Why bother?
 
@@ -168,7 +168,7 @@ things are going. The next step is after monitoring is to have alerts and team
 how can fix the problems.
 
 In case of the problems that we detected with our payment gateway we were capable
-to switch it to a different one using the Feature Toggle implementation that I 
+of switching it to a different one using the Feature Toggle implementation that I 
 showed you in [_Rolling back complex apps_](http://blog.arkency.com/2015/10/rolling-back-complex-apps/#use_feature_toggles)
 
 ```
