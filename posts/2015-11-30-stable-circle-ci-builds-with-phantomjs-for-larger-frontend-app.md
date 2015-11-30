@@ -1,0 +1,94 @@
+---
+title: "Stable Circle CI builds with PhantomJS for larger frontend app"
+created_at: 2015-11-30 11:51:18 +0100
+kind: article
+publish: false
+author: anonymous
+tags: [ 'foo', 'bar', 'baz' ]
+newsletter: :arkency_form
+---
+
+One of the projects we work on is a rather large frontend app, built with React and backed by Rails. The app has quite a few tests and obviosuly we want them to run as fast as possible. We have tried a few drivers along the way but eventually we have chosen PhantomJS. So far we are pretty much happy about the choice, but it wasn't always like that. Especially when it comes to our CI server where the tests would quite often fail randomly and the prevent app from being deployed. The __random__ failures have been the biggest pain so far and so here are a few tricks that have helped us keep the build green.
+
+<!-- more -->
+
+# 1. Make sure you wait for ajax
+
+Our app is a typical frontend application, which means there are AJAX requestes sent all over the place. Even the simplest edit and save operation sends one and then shows a flash message when it's done. Now to have a tes that checks if the proper flash message is visible, we need to wait for AJAX, it's not enough to simply do:
+
+```
+#!ruby
+expect(actor).to see "Success messaage"
+```
+
+even though in some cases this may just work because the message is shown immediately. More often however, it takes a while for the message to be visible and so our tests fail. To have it working, we wait like this:
+
+```
+#!ruby
+
+# wait method
+def wait_for_ajax
+  wait_until do
+    page.evaluate_script('jQuery.active').zero?
+  end
+end
+
+# test snippet
+```
+
+
+# 2. Consider switching parallel builds off 
+
+In our case, this one seems to be the main cause for our random failures. Switching it off has brought the build back to its green color and random failures are a very rare thing now. The downside is that the tests take much longer to run but it's pretty much guaranteed that the app will be built and deplyed right away without the needed of rebuilding the whole thing again and again. In our worst cases, we had to do it quite a few times and already started to hate the Rebuild option, knowing that it might not help and that we still have a problem somehwere else.
+
+# 3. Use Puma instead of Webrick
+
+Here is a trick that may also make your build more stable. We have noticed that Webrick, which is the default server, hangs from time to time and gives us weird timeouts during the test runs. So we searched for alternatives and ended up using Puma instead. It seems to be much more stable and here is how you can plug it in:
+
+```
+#!ruby
+
+Capybara.server do |app, port|
+  require 'rack/handler/puma'
+  Rack::Handler::Puma.run(app, Port: port)
+end
+```
+
+# 4. Disable animations
+
+Our frontend uses different animations, like fading out and in. This all looks nice but obviously also makes some functions slower, and as it turns out, causes some tests to fail randomly. For tests, however, the animations are totally unnecessary, so why not turn them off? Here is how we do it.
+
+First, we add a custom CSS class to our `<body>` tag, for the test env only:
+
+```
+#!erb
+
+<body<%%= Rails.env.test? ? ' class="disable-animations"'.html_safe : '' %>>
+```
+
+Then we use the following styles:
+
+```
+#!sass
+
+.disable-animations *,
+.disable-animations *:after,
+.disable-animations *:before
+  transition-property: none !important
+  -o-transition-property: none !important
+  -moz-transition-property: none !important
+  -ms-transition-property: none !important
+  -webkit-transition-property: none !important
+  transform: none !important
+  -o-transform: none !important
+  -moz-transform: none !important
+  -ms-transform: none !important
+  -webkit-transform: none !important
+  animation: none !important
+  -o-animation: none !important
+  -moz-animation: none !important
+  -ms-animation: none !important
+  -webkit-animation: none !important
+```
+
+It's one of the things that won't hurt but may help eliminate the random test failuers.
