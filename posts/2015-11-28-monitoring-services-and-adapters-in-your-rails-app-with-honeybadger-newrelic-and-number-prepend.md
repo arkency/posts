@@ -2,12 +2,19 @@
 title: "Monitoring services and adapters in your Rails app with Honeybadger, NewRelic and #prepend"
 created_at: 2015-11-28 21:06:10 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'monitoring', 'instrumentation', 'rails', 'apps', 'new relic', 'honeybadger', 'prepend' ]
 newsletter: :skip
 newsletter_inside: :clean
+img: "/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app-fit.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app-fit.jpg" width="100%" />
+  </figure>
+</p>
 
 The bigger your app gets the higher chance that it will need to integrate with multiple of external
 services, providers and APIs. Sometimes they work, sometimes they don't. Sometimes it doesn't matter
