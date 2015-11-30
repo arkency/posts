@@ -12,7 +12,7 @@ One of the projects we work on is a rather large frontend app, built with React 
 
 <!-- more -->
 
-# 1. Make sure you wait for ajax
+## 1. Make sure you wait for ajax
 
 Our app is a typical frontend application, which means there are AJAX requests sent all over the place. Even the simplest edit and save operation sends one and then shows a flash message when it's done. Now to have a test that checks if the proper flash message is visible, we need to wait for AJAX, it's not enough to simply do:
 
@@ -43,13 +43,13 @@ def set_reward_attribute(actor, reward)
 end
 ```
 
-# 2. Consider switching parallel builds off
+## 2. Consider switching parallel builds off
 
 In our case, this one seems to be the main cause for our random failures. Switching it off has brought the build back to its green color and random failures are a very rare thing now. The downside is that the tests take much longer to run but it's pretty much guaranteed that the app will be built and deployed right away without the needed of rebuilding the whole thing again and again. In our worst cases, we had to do it quite a few times and already started to hate the rebuild option, knowing that it might not help and that we still have a problem somewhere else.
 
-# 3. PhantomJS 2
+## 3. PhantomJS 2.0
 
-# 4. Use Puma instead of WEBrick
+## 4. Use Puma instead of WEBrick
 
 Here is a trick that may also make your build more stable. We have noticed that WEBrick, which is the default server, hangs from time to time and gives us weird timeouts during the test runs. So we searched for alternatives and ended up using Puma instead. It seems to be much more stable and here is how you can plug it in:
 
@@ -63,7 +63,7 @@ Capybara.server do |app, port|
 end
 ```
 
-# 5. Disable animations
+## 5. Disable animations
 
 Our frontend uses different animations, like fading out and in. This all looks nice but obviously also makes some functions slower, and as it turns out, causes some tests to fail randomly. For tests, however, the animations are totally unnecessary, so why not turn them off? Here is how we do it.
 
