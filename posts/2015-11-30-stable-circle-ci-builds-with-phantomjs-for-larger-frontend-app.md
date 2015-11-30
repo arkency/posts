@@ -1,5 +1,5 @@
 ---
-title: "Stable Circle CI builds with PhantomJS for larger frontend app"
+title: "Stable Circle CI builds with PhantomJS for larger Rails-backed frontend apps"
 created_at: 2015-11-30 11:51:18 +0100
 kind: article
 publish: false
