@@ -6,7 +6,17 @@ publish: false
 author: Marcin Domański
 tags: [ 'circleci', 'react', 'phantomjs', 'rails' ]
 newsletter: :arkency_form
+img: "/assets/images/stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header-fit.jpg" width="100%">
+    <details>
+      The original photo is available on <a href="https://stocksnap.io/photo/ABMMJRIYZF">stocksnap</a>. Author: Stephen Radford.
+    </details>
+  </figure>
+</p>
 
 One of the projects we work on is a rather large frontend app, built with React and backed by Rails. The app has quite a few tests and obviously we want them to run as fast as possible. We have tried a few drivers along the way but eventually we have chosen PhantomJS. So far we are pretty much happy about the choice, but it wasn't always like that. Especially when it comes to our CI server where the tests would quite often fail randomly and prevent the app from being deployed. The __random__ failures have been the biggest pain so far and so here are a few tricks that have helped us keep the build green.
 
