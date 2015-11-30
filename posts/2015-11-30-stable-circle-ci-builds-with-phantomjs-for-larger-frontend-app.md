@@ -8,7 +8,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :arkency_form
 ---
 
-One of the projects we work on is a rather large frontend app, built with React and backed by Rails. The app has quite a few tests and obviosuly we want them to run as fast as possible. We have tried a few drivers along the way but eventually we have chosen PhantomJS. So far we are pretty much happy about the choice, but it wasn't always like that. Especially when it comes to our CI server where the tests would quite often fail randomly and the prevent app from being deployed. The __random__ failures have been the biggest pain so far and so here are a few tricks that have helped us keep the build green.
+One of the projects we work on is a rather large frontend app, built with React and backed by Rails. The app has quite a few tests and obviosuly we want them to run as fast as possible. We have tried a few drivers along the way but eventually we have chosen PhantomJS. So far we are pretty much happy about the choice, but it wasn't always like that. Especially when it comes to our CI server where the tests would quite often fail randomly and prevent the app from being deployed. The __random__ failures have been the biggest pain so far and so here are a few tricks that have helped us keep the build green.
 
 <!-- more -->
 
