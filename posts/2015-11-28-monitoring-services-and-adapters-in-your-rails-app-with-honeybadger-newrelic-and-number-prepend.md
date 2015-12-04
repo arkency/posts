@@ -92,12 +92,12 @@ and you subscribe to them:
 N = ActiveSupport::Notifications
 
 N.subscribe("Service::Error") do |_name, _start, _finish, _id, payload|
-  ::NewRelic::Agent.increment_metric('Custom/Service/Error')
+  NewRelic::Agent.increment_metric('Custom/Service/Error')
   Honeybadger.notify(payload.fetch(:error))
 end
 
 N.subscribe("Service::Ok") do |_name, _start, _finish, _id, _payload|
-  ::NewRelic::Agent.increment_metric('Custom/Service/Ok')
+  NewRelic::Agent.increment_metric('Custom/Service/Ok')
 end
 ```
 
@@ -111,7 +111,7 @@ traced code:
 require 'new_relic/agent/method_tracer'
 
 Service.class_eval do
-  include ::NewRelic::Agent::MethodTracer
+  include NewRelic::Agent::MethodTracer
   instance_method(:call) or raise "Instrumentation broken for #call"
   add_method_tracer :call, 'Custom/Service/call'
 end
@@ -131,14 +131,14 @@ Service.class_eval do
   instance_method(:call) or raise "Instrumentation broken for #call"
 
   prepend(Module.new do
-    include ::NewRelic::Agent::MethodTracer
+    include NewRelic::Agent::MethodTracer
 
     def call
       super.tap do
-        ::NewRelic::Agent.increment_metric('Custom/Service/Ok')
+        NewRelic::Agent.increment_metric('Custom/Service/Ok')
       end
     rescue => error
-      ::NewRelic::Agent.increment_metric('Custom/Service/Error')
+      NewRelic::Agent.increment_metric('Custom/Service/Error')
       Honeybadger.notify(error)
       raise
     end
