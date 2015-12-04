@@ -120,7 +120,7 @@ end
 ## Using `#prepend` (AOP style)
 
 Since Ruby 2.0 we have the ability to use [`#prepend`](http://dev.af83.com/2012/10/19/ruby-2-0-module-prepend.html) as a way to enrich the
-behavior of our classes with mixins that can original method definition
+behavior of our classes with mixins that can call the original method definition
 with super. It's not as powerful as aspect-oriented programming, but it will suffice in our case.
 
 The module that you prepend can be an anonymous one.
