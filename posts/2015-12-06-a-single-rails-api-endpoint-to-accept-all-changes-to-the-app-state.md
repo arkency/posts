@@ -2,9 +2,9 @@
 title: "A single Rails API endpoint to accept all changes to the app state"
 created_at: 2015-12-06 02:45:55 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :skip
 ---
 
 This idea is heavily influenced by CQRS and its way of applying changes to the app via commands objects. In this blogpost we're showing how it could work with Rails.
@@ -96,4 +96,10 @@ run Rails.application
 # http POST localhost:9292/commands command=foo_bar foo=foo bar=bar
 ```
 
-I really like this concept. I think it has the potential of removing a lot of controller code. If this could work in some cases, this idea would become the most radical one in [my book on dealing with Rails controllers](http://rails-refactoring.com). In fact, this approach removes a big part of the controller layer. Knowing Paweł, there will be updates and improvements to this approach, so stay tuned :)
+I really like this concept. I think it has the potential of removing a lot of controller code. 
+
+If this can work in some cases, this idea would become the most radical one in [my book on dealing with Rails controllers](http://rails-refactoring.com). In the current version of the book, we talk a lot about the concept of form objects as a data structure which is initialized in the controller and passed to the service object. 
+
+The approach with a generic controller handling commands removes a big part of the controller layer. 
+
+Knowing Paweł, there will be updates and improvements to this approach, so stay tuned :)
