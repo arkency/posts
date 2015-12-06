@@ -4,14 +4,24 @@ created_at: 2015-12-06 02:45:55 +0100
 kind: article
 publish: false
 author: Andrzej Krzywda
-newsletter: :arkency_form
 ---
 
 This idea is heavily influenced by CQRS and its way of applying changes to the app via commands objects. In this blogpost we're showing how it could work with Rails.
 
 <!-- more -->
 
+Commands are data structures which represent the intention of the user. In the Rails community, we sometimes use the name of "a form object" to represent the same meaning.
+
+In some of our projects, we started moving to a command-driven approach. A command is handled by a command handler (often it's a service object). As a result of handling the command we publish domain events.
+
+When you switch to commands, you'll notice that many controllers look alike and they're becoming a boiler-plate code which you repeat over and over.
+
+This is what led to a conversation between me and [Paweł](https://twitter.com/pawelpacana). We discussed whether it makes sense to have just one controller, being represented by just one API endpoint.
+
+Paweł decided to experiment with this idea and wrote the code below. This code is also a nice example of how concise can be a one-file-Rails application. 
+
 ``` #!ruby
+
 require 'action_controller/railtie'
 require 'securerandom'
 
@@ -84,3 +94,4 @@ run Rails.application
 # http POST localhost:9292/commands command=foo_bar foo=foo bar=bar
 ```
 
+I really like this concept. I think it has the potential of removing a lot of controller code. If this could work in some cases, this idea would become the most radical one in [my book on dealing with Rails controllers](http://rails-refactoring.com). In fact, this approach removes a big part of the controller layer. Knowing Paweł, there will be updates and improvements to this approach, so stay tuned :)
