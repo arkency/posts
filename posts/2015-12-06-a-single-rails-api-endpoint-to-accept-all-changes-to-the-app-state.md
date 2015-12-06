@@ -4,6 +4,7 @@ created_at: 2015-12-06 02:45:55 +0100
 kind: article
 publish: false
 author: Andrzej Krzywda
+newsletter: :arkency_form
 ---
 
 This idea is heavily influenced by CQRS and its way of applying changes to the app via commands objects. In this blogpost we're showing how it could work with Rails.
@@ -20,7 +21,8 @@ This is what led to a conversation between me and [Paweł](https://twitter.com/p
 
 Paweł decided to experiment with this idea and wrote the code below. This code is also a nice example of how concise can be a one-file-Rails application. 
 
-``` #!ruby
+```
+#!ruby
 
 require 'action_controller/railtie'
 require 'securerandom'
