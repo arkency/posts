@@ -2,11 +2,19 @@
 title: "In-Memory Fake Adapters"
 created_at: 2015-12-04 12:30:32 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
-newsletter: :arkency_form
+tags: [ 'adapters', 'in-memory', 'rails' ]
+newsletter: :skip
+newsletter_inside: :clean
+img: "/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters-fit.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters-fit.jpg" width="100%" />
+  </figure>
+</p>
 
 There are two common techniques for specifying in a test the behavior of a 3rd party system that we
 integrate with:
@@ -73,8 +81,16 @@ it has 20 standing places but more than 17 were already sold so there is not eno
 seats_adapter.add_event(event_key: "concert")
 seats_adapter.add_general_admission(event_key: "concert", section_name: "Sector 1", quantity: 2)
 
-organizer.import_season_pass(name: "John Doe",  pass_type: :standing, section_name: "Sector 1")
-organizer.import_season_pass(name: "Mark Twain", pass_type: :standing, section_name: "Sector 1")
+organizer.import_season_pass(
+  name: "John Doe",  
+  pass_type: :standing,
+  section_name: "Sector 1"
+)
+organizer.import_season_pass(
+  name: "Mark Twain",
+  pass_type: :standing,
+  section_name: "Sector 1"
+)
 
 expect do
   customer.buy_ticket(ticket_type: :standing, section_name: "Sector 1")
@@ -175,7 +191,10 @@ class FakeClient
   end
 
   def add_general_admission(event_key:, section_name:, quantity:)
-    @events[event_key].add_general_admission(section_name: section_name, quantity: quantity)
+    @events[event_key].add_general_admission(
+      section_name: section_name, 
+      quantity: quantity
+    )
   end
 
   def add_seat(event_key:, label:)
@@ -185,7 +204,10 @@ class FakeClient
   # Real API
 
   def book_entrance(event_key:, seats: [], places: [])
-    @events[event_key].book_entrance(seats: seats, places: places)
+    @events[event_key].book_entrance(
+      seats: seats,
+      places: places
+    )
   end
 end
 ```
@@ -197,31 +219,84 @@ areas we lower their capacity `@places[place_name] -= quantity`. That's it.
 In-memory adapters are often used as a step in the process of building [_a walking skeleton_](http://alistair.cockburn.us/Walking+skeleton).
 Where your system don't integrate yet with a real 3rd party dependency but with something that pretends to be it.
 
-# TODO: ...
+## How to keep fake adapter and real one in sync?
 
-## How to keep fake client and real one in sync?
+Through the same scenarios but you stub HTTP API responses (based on what you observed while playing with the API)
+for the sake of real adapter. The fake one doesn't care. Oversimplified example below.
 
-Through the same scenarios but you stub HTTP API responses in real test (based on what you observed while playing with the API), but not in the fake adapter test.
+```
+#!ruby
 
-## When to use them?
+RSpec.shared_examples "TweeterAdapters" do |twitter_db_class|
+  specify do
+    twitter = twitter_db_class.new("@pankowecki")
 
-* The more the state of external API depends on your calls
-* The more your API calls and business logic depend on previous API calls. So don't want to just check that we called a 3rd party API.
-But that the whole sequence of calls made sense together and led to a desired state.
+    stub_request(
+      :post,
+      'https://api.twitter.com/1.1/statuses/update.json?status=Hello%20world',
+      body: '{status: "status"}'
+    ).to_return(
+      status: 200, body: "[{text:"Hello world"}]"
+    )
+    twitter.tweet("Hello world")
+    
+    stub_request(
+      :get, 
+      'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=pankowecki&count=1'
+    ).to_return(
+      status: 200, body: '[{text:"Hello world"}]'
+    )
+    expect(twitter.last_tweet).to include?("Hello world")
+  end
+end
 
-## Notes
 
-Better when multiple calls.
+RSpec.describe FakeTwitterAdapter do
+  include_examples "TweeterAdapters", FakeTwitterAdapter
+end
 
-You can stub the responses only on real adapter tests and in all other places rely on the fact that fake client
-has the same implementation
+RSpec.describe RealTwitterAdapter do
+  include_examples "TweeterAdapters", RealTwitterAdapter
+end
+```
 
-Sometimes the API is simple, and every call is detached and the backend is very complicated.
-Sometimes the core logic of 3rd party service is simple but there are multiple API calls.
+You know how to stub the HTTP queries because you played the sequence
+and watched the results. So hopefully you are stubbing with the truth.
 
-If your state and business logic don't depend at all on those API calls then you can go with Dummy.
+What if the external service changes their API in a breaking way? Well,
+that's [more of a case for monitoring](/2015/11/monitoring-services-and-adapters-in-your-rails-app-with-honeybadger-newrelic-and-number-prepend/)
+than testing in my opinion.
+
+The effect is that you can stub the responses only on real adapter tests
+and in all other places (services or acceptance tests) rely on the fact that
+fake client has the same behavior and interact with it.
+
+## When to use Fake Adapters?
+
+The more your API calls and business logic depend on previous API calls and the state of the external system.
+So we don't want to just check that we called a 3rd party API. But that a whole sequence of calls made sense
+together and led to a desired state and result in both systems.
+
+There are many cases in which implementing Fake adapter would not be valuable
+and beneficial in your project. Stubbing/Mocking (on whatever level) might be
+the right way to go. But this is useful technique to remember when your needs
+are different and you can benefit from it.
+
+## Worth watching
+
+If your state and business logic don't depend at all on those API calls then you
+can go with Dummy. What's Dummy? You can find out more about different kinds of
+these objects by watching [Episode 23 of Clean Code by Uncle Bob](https://cleancoders.com/episode/clean-code-episode-23-p1/show).
 
 <img src="/assets/images/fake-in-memory-adapters/fakes-mock-objects-uncle-bob-ontology-fit.jpg" width="100%">
 
-Recommend uncle bob video: CleanCode-E23-P1-1080p
+## Stay tuned
+
+This blog-post was inspired by [Fearless Refactoring](http://rails-refactoring.com/). A book in which we
+show you useful techniques for handling larger Rails codebases.
+
+If you liked reading this you can subscribe to our newsletter below and keep getting more
+useful tips.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
