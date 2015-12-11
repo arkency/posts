@@ -165,7 +165,9 @@ We don't have the benefit of a compiler to check for it in Ruby unfortunately an
 
 ## Decorator
 
-I will leave this as an exercise to the reader ;)
+There is a great [keynote _8 Lines of Code_ by Greg Young](http://www.infoq.com/presentations/8-lines-code-refactoring)
+worth watching. The examples are not in Ruby but there are only 8 lines of code
+so you will be able to understand everything without a problem most likely.
 
 ## Why bother?
 
