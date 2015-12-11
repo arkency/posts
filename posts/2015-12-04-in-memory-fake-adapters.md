@@ -49,7 +49,7 @@ On the other hand a lot of those things are UI/Networking related and it does no
 which is pretty simply: _Don't let 2 people to buy the same seat, and buy too many standing places in General Admission
 area_. In other words: _Don't oversell_. That's their job. To help us not oversell. Which is pretty important.
 
-To have that feature working we need to communicate with them via API and they need to their job.
+To have that feature working we need to communicate with them via API and they need to do their job.
 
 Let's see a simple exemplary test.
 
