@@ -30,23 +30,23 @@ I would like to present you a third option — **In-Memory Fake Adapters** and s
 
 I find _In-Memory Fake Adapters_ to be well suited into telling a full story. You can use them to describe actions
 that might only be available on a 3rd party system via UI. But such actions often configure the system that
-we cooperate with to be in a certain state, state that we depend on. State that we would like to present in
+we cooperate with to be in a certain state, state that we depend on. State that we would like to be present in
 a test case showing how our System Under Test interacts with the 3rd party external system.
 
 Let's take as an example an integration with seats.io that I am working with recently. They provide us with
 multiple features:
 
-* building a venue map including sections, rows and seats
+* building a venue map including sections, rows, and seats
 * labeling the seats
 * general admission areas with unnumbered (but limited in amount) seats
 * a seat picker for customers to select a place
-* realtime updates for selected seats during purchase process
+* real-time updates for selected seats during the purchase process
 * atomic booking of selected seats when they are available
 
 So as a service provider they do a lot for us that we don't need to do ourselves.
 
-On the other hand a lot of those things are UI/Networking related and it does not affect the core business logic
-which is pretty simply: _Don't let 2 people to buy the same seat, and buy too many standing places in General Admission
+On the other hand, a lot of those things are UI/Networking related and it does not affect the core business logic
+which is pretty simple: _Don't let 2 people to buy the same seat, and buy too many standing places, in a General Admission
 area_. In other words: _Don't oversell_. That's their job. To help us not oversell. Which is pretty important.
 
 To have that feature working we need to communicate with them via API and they need to do their job.
@@ -69,12 +69,12 @@ end.to raise_error(BookingService::NotAllowed)
 ```
 
 When seats.io returns with HTTP 400 and the adapter raises `SeatsIo::Error` then the tested service knows that
-the customer can't book those seats. It's ok code for a single class test.
+the customer can't book those seats. It's OK code for a single class test.
 
 But I don't find this approach useful when
 writing more story-driven acceptance tests. Because this test does not say a story why the booking could not
 be finished. Is that because seats.io was configured via UI so that _Sector 1_ has only 2 places? Was it because
-it has 20 standing places but more than 17 were already sold so there is not enough left for 3 people?
+it has 20 standing places, but more than 17 were already sold so there is not enough left for 3 people?
 
 ```
 #!ruby
@@ -110,7 +110,7 @@ calls it might be easier for you to plug in a fake adapter and let the tests int
 
 ## Example
 
-Here is an example of a fake adapter for our _seats.io_ integration . There are 3 categories of methods:
+Here is an example of a fake adapter for our _seats.io_ integration. There are 3 categories of methods:
 
 * Real adapter interface implemented: `book_entrance`. These can be called from the [services](http://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/) that use
 our real Adapter in production and fake adapter in tests.
@@ -217,12 +217,12 @@ core booking logic is pretty simple. For seats we mark them as booked `@seats[se
 areas we lower their capacity `@places[place_name] -= quantity`. That's it.
 
 In-memory adapters are often used as a step in the process of building [_a walking skeleton_](http://alistair.cockburn.us/Walking+skeleton).
-Where your system don't integrate yet with a real 3rd party dependency but with something that pretends to be it.
+Where your system does not integrate yet with a real 3rd party dependency but with something that pretends to be it.
 
-## How to keep fake adapter and real one in sync?
+## How to keep the fake adapter and the real one in sync?
 
 Through the same scenarios but you stub HTTP API responses (based on what you observed while playing with the API)
-for the sake of real adapter. The fake one doesn't care. Oversimplified example below.
+for the sake of real adapter. The fake one doesn't care. An oversimplified example below.
 
 ```
 #!ruby
@@ -261,7 +261,7 @@ end
 ```
 
 You know how to stub the HTTP queries because you played the sequence
-and watched the results. So hopefully you are stubbing with the truth.
+and watched the results. So hopefully, you are stubbing with the truth.
 
 What if the external service changes their API in a breaking way? Well,
 that's [more of a case for monitoring](/2015/11/monitoring-services-and-adapters-in-your-rails-app-with-honeybadger-newrelic-and-number-prepend/)
@@ -275,11 +275,11 @@ fake client has the same behavior and interact with it.
 
 The more your API calls and business logic depend on previous API calls and the state of the external system.
 So we don't want to just check that we called a 3rd party API. But that a whole sequence of calls made sense
-together and led to a desired state and result in both systems.
+together and led to the desired state and result in both systems.
 
 There are many cases in which implementing Fake adapter would not be valuable
 and beneficial in your project. Stubbing/Mocking (on whatever level) might be
-the right way to go. But this is useful technique to remember when your needs
+the right way to go. But this is a useful technique to remember when your needs
 are different and you can benefit from it.
 
 ## Worth watching
