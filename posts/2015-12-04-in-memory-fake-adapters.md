@@ -16,8 +16,7 @@ img: "/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-ad
   </figure>
 </p>
 
-There are two common techniques for specifying in a test the behavior of a 3rd party system that we
-integrate with:
+There are two common techniques for specifying in a test the behavior of a 3rd party system:
 
 * stubbing of an adapter/gem methods.
 * stubbing the HTTP requests triggered by those adapters/gems.
@@ -30,24 +29,28 @@ I would like to present you a third option — **In-Memory Fake Adapters** and s
 
 I find _In-Memory Fake Adapters_ to be well suited into telling a full story. You can use them to describe actions
 that might only be available on a 3rd party system via UI. But such actions often configure the system that
-we cooperate with to be in a certain state, state that we depend on. State that we would like to be present in
-a test case showing how our System Under Test interacts with the 3rd party external system.
+we cooperate with to be in a certain state. State that we depend on. State that we would like to be present in
+a test case — showing how our System Under Test interacts with the 3rd party external system.
 
 Let's take as an example an integration with seats.io that I am working with recently. They provide us with
-multiple features:
+many features:
 
 * building a venue map including sections, rows, and seats
 * labeling the seats
 * general admission areas with unnumbered (but limited in amount) seats
 * a seat picker for customers to select a place
-* real-time updates for selected seats during the purchase process
+* real-time updates for selected seats during the sale process
 * atomic booking of selected seats when they are available
 
 So as a service provider they do a lot for us that we don't need to do ourselves.
 
-On the other hand, a lot of those things are UI/Networking related and it does not affect the core business logic
-which is pretty simple: _Don't let 2 people to buy the same seat, and buy too many standing places, in a General Admission
-area_. In other words: _Don't oversell_. That's their job. To help us not oversell. Which is pretty important.
+On the other hand, a lot of those things are UI/Networking related. And it does not affect the core business logic
+which is pretty simple: 
+
+* _Don't let two people to buy the same seat_
+* _Don't let customers to buy too many standing places, in a General Admission area_.
+
+In other words: _Don't oversell_. That's their job. To help us not oversell. Which is pretty important.
 
 To have that feature working we need to communicate with them via API and they need to do their job.
 
@@ -68,7 +71,7 @@ expect do
 end.to raise_error(BookingService::NotAllowed)
 ```
 
-When seats.io returns with HTTP 400 and the adapter raises `SeatsIo::Error` then the tested service knows that
+When seats.io returns with HTTP 400, the adapter raises `SeatsIo::Error`. The tested service knows that
 the customer can't book those seats. It's OK code for a single class test.
 
 But I don't find this approach useful when
@@ -97,16 +100,16 @@ expect do
 end.to raise_error(BookingService::NotAllowed)
 ```
 
-Now, this tells a bigger story. We know what was configured in seats.io using the GUI. We can see that when season
-passes are imported by the organizer then those guest took all the standing places in _Sector 1_ so if a customer
-tries to buy a ticket there, it won't be possible because there is no more space available.
+Now, this tells a bigger story. We know what was configured in seats.io using their GUI. When season
+passes are imported by the organizer, they took all the standing places in _Sector 1_. If a customer
+tries to buy a ticket there, it won't be possible, because there is no more space available.
 
 ### No need to stub every call
 
 When using In-Memory Fake Adapters you don't need to stub every call to the adapter (on method or HTTP level)
-separately. This is especially useful if the [Unit that you tests is bigger than one class](http://blog.arkency.com/2014/09/unit-tests-vs-class-tests/)
-and it communicates with the adapter in multiple places. To properly test a scenario that invokes multiple API
-calls it might be easier for you to plug in a fake adapter and let the tests interact with it.
+separately. This is especially useful if the [Unit that you tests is bigger than one class](http://blog.arkency.com/2014/09/unit-tests-vs-class-tests/).
+And when it communicates with the adapter in multiple places. To properly test a scenario that invokes multiple API
+calls it might be easier for you to plug in a fake adapter. Let the tests interact with it.
 
 ## Example
 
@@ -212,16 +215,17 @@ class FakeClient
 end
 ```
 
-You can see that despite the fact that seats.io has a lot of useful feature the in-memory implementation of their
-core booking logic is pretty simple. For seats we mark them as booked `@seats[seat] = :booked` and for general admission
-areas we lower their capacity `@places[place_name] -= quantity`. That's it.
+Seats.io has a lot of useful features for us. Despite it, the in-memory implementation of their
+core booking logic is pretty simple. For seats we mark them as booked: `@seats[seat] = :booked`. For general admission
+areas we lower their capacity: `@places[place_name] -= quantity`. That's it.
 
-In-memory adapters are often used as a step in the process of building [_a walking skeleton_](http://alistair.cockburn.us/Walking+skeleton).
-Where your system does not integrate yet with a real 3rd party dependency but with something that pretends to be it.
+In-memory adapters are often used as a step of building [_a walking skeleton_](http://alistair.cockburn.us/Walking+skeleton).
+Where your system does not integrate yet with a real 3rd party dependency. It integrates with something that pretends
+to be the dependency.
 
 ## How to keep the fake adapter and the real one in sync?
 
-Through the same scenarios but you stub HTTP API responses (based on what you observed while playing with the API)
+Use the same test scenarios. Stub HTTP API responses (based on what you observed while playing with the API)
 for the sake of real adapter. The fake one doesn't care. An oversimplified example below.
 
 ```
@@ -267,9 +271,10 @@ What if the external service changes their API in a breaking way? Well,
 that's [more of a case for monitoring](/2015/11/monitoring-services-and-adapters-in-your-rails-app-with-honeybadger-newrelic-and-number-prepend/)
 than testing in my opinion.
 
-The effect is that you can stub the responses only on real adapter tests
-and in all other places (services or acceptance tests) rely on the fact that
-fake client has the same behavior and interact with it.
+The effect is that you can stub the responses only on real adapter tests.
+In all other places rely on the fact that
+fake client has the same behavior. Interact with it directly in services
+or acceptance tests.
 
 ## When to use Fake Adapters?
 
