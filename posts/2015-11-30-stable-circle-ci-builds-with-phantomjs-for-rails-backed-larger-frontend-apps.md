@@ -130,3 +130,5 @@ Then we use the following styles:
 It's one of the things that won't hurt but may help eliminate the random test failures.
 
 ## Summary
+
+Random test failure is one of the thing that we'd like to avoid. It makes you irritated and people may see you as an unprofessional developer as well. We hope that described tips would be useful to you.
