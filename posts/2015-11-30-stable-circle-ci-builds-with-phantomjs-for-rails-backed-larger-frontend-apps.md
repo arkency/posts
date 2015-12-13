@@ -1,11 +1,11 @@
 ---
 title: "Stable Circle CI builds with PhantomJS for larger Rails-backed frontend apps"
-created_at: 2015-11-30 11:51:18 +0100
+created_at: 2015-12-13 14:50:00 +0100
 kind: article
 publish: false
 author: Marcin Domański
 tags: [ 'circleci', 'react', 'phantomjs', 'rails' ]
-newsletter: :arkency_form
+newsletter: :skip
 img: "/assets/images/stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header.jpg"
 ---
 
@@ -58,6 +58,23 @@ end
 In our case, this one seems to be the main cause for our random failures. Switching it off has brought the build back to its green color and random failures are a very rare thing now. The downside is that the tests take much longer to run but it's pretty much guaranteed that the app will be built and deployed right away without the needed of rebuilding the whole thing again and again. In our worst cases, we had to do it quite a few times and already started to hate the rebuild option, knowing that it might not help and that we still have a problem somewhere else.
 
 ## 3. PhantomJS 2.0
+
+Initially, we were using PhantomJS 1.9.8, however it hasn't `bind` method (you have to add it by yourself) needed to support React and it has some others issues. The most of issues have beed already eliminated in PhantomJS 2.0, that's why we use it. We've noticed better performance as well.
+
+The problem is why to use PhantomJS 2.0 on CircleCI? Here is the fix for that:
+
+```
+#!ruby
+
+# fragment of: circleci.yml
+
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install libicu52
+    - curl --output /home/ubuntu/bin/phantomjs-2.0.1-linux-x86_64-dynamic https://s3.amazonaws.com/circle-support-bucket/phantomjs/phantomjs-2.0.1-linux-x86_64-dynamic
+    - chmod a+x /home/ubuntu/bin/phantomjs-2.0.1-linux-x86_64-dynamic
+    - sudo ln -s --force /home/ubuntu/bin/phantomjs-2.0.1-linux-x86_64-dynamic /usr/local/bin/phantomjs
+```
 
 ## 4. Use Puma instead of WEBrick
 
