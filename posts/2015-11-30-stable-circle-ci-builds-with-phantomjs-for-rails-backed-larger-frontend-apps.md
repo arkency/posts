@@ -1,6 +1,6 @@
 ---
 title: "Stable Circle CI builds with PhantomJS for larger Rails-backed frontend apps"
-created_at: 2015-12-13 14:50:00 +0100
+created_at: 2015-12-14 10:50:00 +0100
 kind: article
 publish: false
 author: Marcin Domański
@@ -60,7 +60,7 @@ In our case, this one seems to be __the main cause__ of our random failures. Swi
 
 ## PhantomJS 2.0
 
-Initially, we were using PhantomJS 1.9.8, but it didn't have the `bind` method needed to support React (we had to add it ourtselves). It also had some other issues, like clicking other elemens than buttons or inputs. Eventually, we decided to upgrade to version 2.0 where most of the issues were eliminated. So far it has been the most stable version. Oh, and it's slightly faster, too!
+Initially, we were using PhantomJS 1.9.8, but it didn't have the `bind` method needed to support React (we had to add it ourselves). It also had some other issues, like clicking other elements than buttons or inputs. Eventually, we decided to upgrade to version 2.0 where most of the issues were eliminated. So far it has been the most stable version. Oh, and it's slightly faster, too!
 
 Now, to actually use PhantomJS 2.0 on CircleCI, you need to have this in your circleci.yml:
 
@@ -104,6 +104,7 @@ First, we add a custom CSS class to our `<body>` tag, for the test environment o
 ```
 
 Then we use the following styles:
+
 ```
 #!sass
 
@@ -131,4 +132,4 @@ It's one of the things that won't hurt but may help eliminate the random test fa
 
 ## Summary
 
-Those few tricks have helped us eliminate most the random failures and are saving us long minutes, if not hours, of rebuiling the app over and over again. We hope the can also work for you.
+Those few tricks have helped us eliminate most the random failures and are saving us long minutes, if not hours, of rebuiling the app over and over again. We hope they can also work for you.
