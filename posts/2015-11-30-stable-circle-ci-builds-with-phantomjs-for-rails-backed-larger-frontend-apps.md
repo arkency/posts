@@ -22,12 +22,13 @@ One of the projects we work on is a rather large frontend app, built with React 
 
 <!-- more -->
 
-## 1. Make sure you wait for ajax
+## Make sure you wait for ajax
 
 Our app is a typical frontend application, which means there are AJAX requests sent all over the place. Even the simplest edit and save operation sends one and then shows a flash message when it's done. Now to have a test that checks if the proper flash message is visible, we need to wait for AJAX, it's not enough to simply do:
 
 ```
 #!ruby
+
 expect(actor).to see "Success messaage"
 ```
 
@@ -36,14 +37,14 @@ even though in some cases this may just work because the message is shown immedi
 ```
 #!ruby
 
-# fragment of: spec/support/helpers.rb
+# snippet of spec/support/helpers.rb
 def wait_for_ajax
   wait_until do
     page.evaluate_script('jQuery.active').zero?
   end
 end
 
-# fragment of acceptance test
+# snippet of an acceptance test
 def set_reward_attribute(actor, reward)
   actor.fill_in "reward", with: reward
   actor.click_on 'Save'
@@ -53,20 +54,20 @@ def set_reward_attribute(actor, reward)
 end
 ```
 
-## 2. Consider switching parallel builds off
+## Consider switching parallel builds off
 
-In our case, this one seems to be the main cause for our random failures. Switching it off has brought the build back to its green color and random failures are a very rare thing now. The downside is that the tests take much longer to run but it's pretty much guaranteed that the app will be built and deployed right away without the needed of rebuilding the whole thing again and again. In our worst cases, we had to do it quite a few times and already started to hate the rebuild option, knowing that it might not help and that we still have a problem somewhere else.
+In our case, this one seems to be __the main cause__ of our random failures. Switching it off has brought the build back to its green color and random failures are a very rare thing now. The downside is that the tests take much longer to run but it's pretty much guaranteed that the app will be built and deployed right away without the need of rebuilding the whole thing again and again. In our worst cases, we had to do it quite a few times and already started to hate the rebuild option, knowing that it might not help and that we still have a problem somewhere else.
 
-## 3. PhantomJS 2.0
+## PhantomJS 2.0
 
-Initially, we were using PhantomJS 1.9.8, however it hasn't `bind` method (you have to add it by yourself) needed to support React and it has some others issues. The most of issues have beed already eliminated in PhantomJS 2.0, that's why we use it. We've noticed better performance as well.
+Initially, we were using PhantomJS 1.9.8, but it didn't have the `bind` method needed to support React (we had to add it ourtselves). It also had some other issues, like clicking other elemens than buttons or inputs. Eventually, we decided to upgrade to version 2.0 where most of the issues were eliminated. So far it has been the most stable version. Oh, and it's slightly faster, too!
 
-The problem is why to use PhantomJS 2.0 on CircleCI? Here is the fix for that:
+Now, to actually use PhantomJS 2.0 on CircleCI, you need to have this in your circleci.yml:
 
 ```
 #!ruby
 
-# fragment of: circleci.yml
+# snippet of: circleci.yml
 
 dependencies:
   pre:
@@ -76,7 +77,7 @@ dependencies:
     - sudo ln -s --force /home/ubuntu/bin/phantomjs-2.0.1-linux-x86_64-dynamic /usr/local/bin/phantomjs
 ```
 
-## 4. Use Puma instead of WEBrick
+## Use Puma instead of WEBrick
 
 Here is a trick that may also make your build more stable. We have noticed that WEBrick, which is the default server, hangs from time to time and gives us weird timeouts during the test runs. So we searched for alternatives and ended up using Puma instead. It seems to be much more stable and here is how you can plug it in:
 
@@ -90,7 +91,7 @@ Capybara.server do |app, port|
 end
 ```
 
-## 5. Disable animations
+## Disable animations
 
 Our frontend uses different animations, like fading out and in. This all looks nice but obviously also makes some functions slower, and as it turns out, causes some tests to fail randomly. For tests, however, the animations are totally unnecessary, so why not turn them off? Here is how we do it.
 
@@ -103,7 +104,6 @@ First, we add a custom CSS class to our `<body>` tag, for the test environment o
 ```
 
 Then we use the following styles:
-
 ```
 #!sass
 
@@ -131,4 +131,4 @@ It's one of the things that won't hurt but may help eliminate the random test fa
 
 ## Summary
 
-Random test failure is one of the thing that we'd like to avoid. It makes you irritated and people may see you as an unprofessional developer as well. We hope that described tips would be useful to you.
+Those few tricks have helped us eliminate most the random failures and are saving us long minutes, if not hours, of rebuiling the app over and over again. We hope the can also work for you.
