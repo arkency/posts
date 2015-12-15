@@ -32,7 +32,7 @@ Our app is a typical frontend application, which means there are AJAX requests s
 expect(actor).to see "Success messaage"
 ```
 
-even though in some cases this may just work because the message is shown immediately. More often however, it takes a while for the message to be visible and so our tests fail. To have it working, we wait like this:
+even though ["Capybara is ridiculously good at waiting for content"](http://www.elabs.se/blog/53-why-wait_until-was-removed-from-capybara). In our case this fails from time to time and so we have resorted to a custom `wait_for_ajax` helper method that checks if there are any AJAX requests still running:
 
 ```
 #!ruby
@@ -43,6 +43,12 @@ def wait_for_ajax
     page.evaluate_script('jQuery.active').zero?
   end
 end
+```
+
+Then in our tests we call it after clicking a Save button:
+
+```
+#!ruby
 
 # snippet of an acceptance test
 def set_reward_attribute(actor, reward)
