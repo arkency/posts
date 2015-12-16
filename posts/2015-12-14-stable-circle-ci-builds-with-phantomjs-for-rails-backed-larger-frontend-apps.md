@@ -2,7 +2,7 @@
 title: "Stable Circle CI builds with PhantomJS for larger Rails-backed frontend apps"
 created_at: 2015-12-14 10:50:00 +0100
 kind: article
-publish: false
+publish: true
 author: Marcin Domański
 tags: [ 'circleci', 'react', 'phantomjs', 'rails' ]
 newsletter: :skip
