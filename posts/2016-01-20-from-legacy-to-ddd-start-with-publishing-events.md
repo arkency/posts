@@ -24,7 +24,7 @@ I recently work on an app called Fuckups. Its role is to allow teams to track fu
 
 It's best to focus on the events which are clearly statements of some state changes. If you escape from a CRUD app (as I did) - they will be all those CRUD operations.
 
-What I did, was I also tried not to use the CRUD verbs. Instead of FuckupCreated I called it FuckupReported. That's more true, as I'm not really creating a fuckup by filling the form. It's more that I report that fuckt to the system.
+What I did, was I also tried not to use the CRUD verbs. Instead of FuckupCreated I called it FuckupReported. That's more true, as I'm not really creating a fuckup by filling the form. It's more that I report that fuckup to the system.
 
 This is what I ended up with, in terms of events:
 
