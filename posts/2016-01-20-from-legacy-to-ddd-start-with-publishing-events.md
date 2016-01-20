@@ -14,9 +14,9 @@ This blog post shows how you can start applying DDD by publishing events.
 
 In an existing app, the biggest worry is to not break the existing functionality. This makes applying DDD even harder, as full DDD will require some refactorings.
 
-I suggest to start with publishing events. Just publishing, no handling, no subscriptions. By just publishing events, you don't change the main behaviour of your system. What you're doing is adding a new no-op (no operation).
+**I suggest to start with publishing events**. Just publishing, no handling, no subscriptions. By just publishing events, you don't change the main behaviour of your system. What you're doing is adding a new no-op (no operation).
 
-An optional step is to also store the events. I have an easy tool for both those things at once, so I publish/store at the same time.
+**An optional step is to also store the events**. I have an easy tool for both those things at once, so I publish/store at the same time.
 
 Publishing events is like a compilable/interpretable code comment. You register a fact. This is what happened at this state of code.
 
@@ -48,7 +48,7 @@ UserLoggedOut                  = Class.new(RailsEventStore::Event)
 UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 ```
 
-Using the [Rails Event Store]() gem, this is how I publish those events:
+Using the [Rails Event Store](https://github.com/arkency/rails_event_store) gem, this is how I publish those events:
 
 ```
 #!ruby
@@ -76,9 +76,9 @@ Publishing events (and storing them) is just the first step. On its own it doesn
 So what's the value?
 
 The value is in the fact that you need to come up with non-CRUD names, that's first. You start using more domain vocabulary in your code.
-The main value, though, is that those events are quickly showing you potential next steps. The events tend to group in two ways.
-They show you the aggregates. If you look at the event prefixes, it's quite clear that User and Fuckup are aggregates.
-The second grouping is by a bounded context. In my case, it's quite clear that I have a `Identity&Access` bounded context (authentication, authorization, sharing, access). The other one is just the Core - Fuckups.
+The main value, though, is that those events are quickly showing you potential next steps. **The events tend to group in two ways**.
+They show you the **aggregates**. If you look at the event prefixes, it's quite clear that User and Fuckup are aggregates.
+The second grouping is by a **bounded context**. In my case, it's quite clear that I have a `Identity&Access` bounded context (authentication, authorization, sharing, access). The other one is just the Core - Fuckups.
 
 You may notice that the aggregates split when you think in aggregates. The Fuckup can be shared. This is an Identity&Access concern, not the core Fuckups bounded context. In a way, the fuckup exists in both bounded contexts.
 
