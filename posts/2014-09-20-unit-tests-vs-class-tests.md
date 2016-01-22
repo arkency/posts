@@ -7,10 +7,11 @@ author: Andrzej Krzywda
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_course_instantiating
 tags: []
+img: "unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG"
 ---
 <p>
   <figure>
-		<img src="/assets/images/unit_tests_vs_class_tests/GULLIVERS-TRAVELS-fit.JPG" width="100%">
+		<img src="<%= src_fit("unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG") %>" width="100%">
   </figure>
 </p>
 
