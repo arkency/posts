@@ -76,7 +76,7 @@ incompatible interfaces and adapter mediating between them.
 
 ## Adapters and architecture
 
-![](/assets/images/rails-ruby-adapter/uml_rails_ruby_adapter-fit.png)
+![](<%= src_fit("rails-ruby-adapter/uml_rails_ruby_adapter.png") %>)
 
 Part of your app (probably a service) that we call _client_
 is relying on some kind of interface for its proper behavior.
@@ -224,14 +224,14 @@ not defined (again, Ruby) but we can describe it later using tests. App with the
 interface it dependend is one component. Every implementation can be a separate
 component.
 
-![](/assets/images/rails-ruby-adapter/apns_ruby_adapter-fit.png)
+![](<%= src_fit("rails-ruby-adapter/apns_ruby_adapter.png") %>)
 
 Our goal here was to get closer to
 [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) .
 **Use Cases (_Interactors, Service Objects_) are no longer bothered with implementation details. Instead they relay
 on the interface and accept any implementation that is consistent with it.**
 
-![](/assets/images/rails-ruby-adapter/CleanArchitecture-fit.jpg)
+![](<%= src_fit("rails-ruby-adapter/CleanArchitecture.jpg") %>)
 
 The part of application which responsibility is to put everything in motion is called
 **_Main_** by Uncle Bob. **We put all the puzzles together by using Injectors and
@@ -626,7 +626,7 @@ as gems, libraries, APIs. Use them wisely to decouple core of your app from 3rd 
 for whatever reason you have. **Speed, Readability, Testability, Isolation,
 Interchangeability**.
 
-![](/assets/images/rails-ruby-adapter/adapter_client_adaptee-fit.png)
+![](<%= src_fit("rails-ruby-adapter/adapter_client_adaptee.png") %>)
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
