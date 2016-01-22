@@ -6,7 +6,7 @@ publish: true
 author: Marcin Grzywaczewski
 tags: [ 'javascript', 'frontend', 'sprockets', 'assets' ]
 newsletter: :react_books
-img: "/assets/images/gulp-replacement-sprockets/gulp.png"
+img: "gulp-replacement-sprockets/gulp.png"
 ---
 
 <p>

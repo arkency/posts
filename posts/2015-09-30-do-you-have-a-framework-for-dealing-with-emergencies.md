@@ -7,12 +7,12 @@ author: Bartosz Krajka
 tags: [ 'framewrok', 'emergency', 'fuckup', 'responsible rails' ]
 newsletter: :skip
 newsletter_inside: :responsible_rails
-img: "/assets/images/framework-for-handling-emergencies/header.jpg"
+img: "framework-for-handling-emergencies/header.jpg"
 ---
 
 <p>
   <figure>
-    <img src="/assets/images/framework-for-handling-emergencies/header.jpg" width="100%">
+    <img src="<%= src_fit("framework-for-handling-emergencies/header.jpg") %>" width="100%">
   </figure>
 </p>
 

@@ -6,12 +6,12 @@ publish: true
 author: Piotr Macuk
 tags: [ 'ruby', 'rails', 'repository pattern', 'entity object', 'active record' ]
 newsletter: :arkency_form
-img: "/assets/images/thanks-to-repositories/repository.jpg"
+img: "thanks-to-repositories/repository.jpg"
 ---
 
 <p>
   <figure>
-    <img src="/assets/images/thanks-to-repositories/repository.jpg" width="100%">
+    <img src="<%= src_fit("thanks-to-repositories/repository.jpg") %>" width="100%">
     <details>
       Source: <a href="http://commons.wikimedia.org/wiki/File:Documents_stacks_in_a_repository_at_The_National_Archives.jpg">Wikimedia Commons</a>
     </details>

@@ -6,12 +6,12 @@ publish: false
 author: Rafał Łasocha
 tags: [ 'flux', 'altjs' ]
 newsletter: :react_books
-img: "/assets/images/loading-all-data-when-starting-flux-spa/header.jpg"
+img: "loading-all-data-when-starting-flux-spa/header.jpg"
 ---
 
 <p>
   <figure>
-    <img src="/assets/images/loading-all-data-when-starting-flux-spa/header.jpg" width="100%">
+    <img src="<%= src_fit("loading-all-data-when-starting-flux-spa/header.jpg") %>" width="100%">
   </figure>
 </p>
 
