@@ -5,15 +5,12 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
+img: "react-keys-getinitial-state/react_children_keys.jpg"
 newsletter: :skip
 newsletter_inside: :react_books
 ---
 
-<p>
-  <figure>
-    <img src="/assets/images/react-keys-getinitial-state/react_children_keys-fit.jpg" width="100%">
-  </figure>
-</p>
+<%= img_fit("react-keys-getinitial-state/react_children_keys.jpg") %>
 
 Recently I've been building a pretty dynamic interface based on
 google analytics data for one of our customers. There was a bug that
