@@ -10,7 +10,7 @@ img: "/assets/images/preloading/header-fit.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 ---
 
-<img src="/assets/images/preloading/header-fit.png" width="100%">
+<%= img_fit("preloading/header.png") %>
 
 You are probably already familiar with the method `#includes` for eager loading
 data from database if you are using Rails and ActiveRecord. 
