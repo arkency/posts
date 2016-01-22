@@ -72,12 +72,12 @@ After clicking the user needs to give permission for using data from a service
 or simply upload file from computer, or even take a photo using computer
 built-in camera.
 
-<a href="/assets/images/filepicker-aviary/1_picker.png"      rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/1_picker-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/2_dropbox.png"     rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/2_dropbox-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/3_dropbox.png"     rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/3_dropbox-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/4_dropbox.png"     rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/4_dropbox-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/5_bully.png"       rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/5_bully-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[picker]"><img src="/assets/images/filepicker-aviary/6_my_computer-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/1_picker.png"      rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/1_picker.png") %></a>
+<a href="/assets/images/filepicker-aviary/2_dropbox.png"     rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/2_dropbox.png") %></a>
+<a href="/assets/images/filepicker-aviary/3_dropbox.png"     rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/3_dropbox.png") %></a>
+<a href="/assets/images/filepicker-aviary/4_dropbox.png"     rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/4_dropbox.png") %></a>
+<a href="/assets/images/filepicker-aviary/5_bully.png"       rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/5_bully.png") %></a>
+<a href="/assets/images/filepicker-aviary/6_my_computer.png" rel="lightbox[picker]"><%= img_thumbnail("filepicker-aviary/6_my_computer.png") %></a>
 
 It's time now to run the photo editor when the file is picked instead of
 just using `console.log`.
@@ -108,10 +108,10 @@ filepicker.getFile images, (url, metadata) ->
     url: url
 ```
 
-<a href="/assets/images/filepicker-aviary/7_crop.png"     rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/7_crop-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/8_effect.png"   rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/8_effect-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/9_warmth.png"   rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/9_warmth-thumbnail.png" /></a>
-<a href="/assets/images/filepicker-aviary/10_toolset.png" rel="lightbox[aviary]"><img src="/assets/images/filepicker-aviary/10_toolset-thumbnail.png" /></a>
+<a href="/assets/images/filepicker-aviary/7_crop.png"     rel="lightbox[aviary]"><%= img_thumbnail("filepicker-aviary/7_crop.png") %></a>
+<a href="/assets/images/filepicker-aviary/8_effect.png"   rel="lightbox[aviary]"><%= img_thumbnail("filepicker-aviary/8_effect.png") %></a>
+<a href="/assets/images/filepicker-aviary/9_warmth.png"   rel="lightbox[aviary]"><%= img_thumbnail("filepicker-aviary/9_warmth.png") %></a>
+<a href="/assets/images/filepicker-aviary/10_toolset.png" rel="lightbox[aviary]"><%= img_thumbnail("filepicker-aviary/10_toolset.png") %></a>
 
 When user finishes editing the photo and presses "Save" button, `onSave`
 callback is executed. You can save the url value in JS variable or use it to

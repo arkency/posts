@@ -65,11 +65,11 @@ Wow, that was simple, wasn't it? Ok, what did we achieve?
 
 ## Adapters in real life
 
-<a href="/assets/images/rails-ruby-adapter/ac_power_ruby-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/ac_power_ruby-thumbnail.jpg" /></a>
-<a href="/assets/images/rails-ruby-adapter/camera-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/camera-thumbnail.jpg" /></a>
-<a href="/assets/images/rails-ruby-adapter/sim-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/sim-thumbnail.jpg" /></a>
-<a href="/assets/images/rails-ruby-adapter/speaker-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/speaker-thumbnail.jpg" /></a>
-<a href="/assets/images/rails-ruby-adapter/usb-fit.jpg" rel="lightbox[adapters]"><img src="/assets/images/rails-ruby-adapter/usb-thumbnail.jpg" /></a>
+<a href="<%= src_fit("rails-ruby-adapter/ac_power_ruby.jpg") %>" rel="lightbox[adapters]"><%= img_thumbnail("rails-ruby-adapter/ac_power_ruby.jpg") %></a>
+<a href="<%= src_fit("rails-ruby-adapter/camera.jpg") %>"        rel="lightbox[adapters]"><%= img_thumbnail("rails-ruby-adapter/camera.jpg") %></a>
+<a href="<%= src_fit("rails-ruby-adapter/sim.jpg") %>"           rel="lightbox[adapters]"><%= img_thumbnail("rails-ruby-adapter/sim.jpg") %></a>
+<a href="<%= src_fit("rails-ruby-adapter/speaker.jpg") %>"       rel="lightbox[adapters]"><%= img_thumbnail("rails-ruby-adapter/speaker.jpg") %></a>
+<a href="<%= src_fit("rails-ruby-adapter/usb.jpg") %>"           rel="lightbox[adapters]"><%= img_thumbnail("rails-ruby-adapter/usb.jpg") %></a>
 
 As you can imagine looking at the images, the situation is always the same. We've got to parts with
 incompatible interfaces and adapter mediating between them.
