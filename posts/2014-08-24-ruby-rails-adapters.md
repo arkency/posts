@@ -11,7 +11,7 @@ tags: [ 'ruby', 'rails', 'adapters' ]
 
 <p>
   <figure>
-    <img src="/assets/images/rails-ruby-adapter/raspberry-fit.jpg" width="100%">
+    <img src="<%= src_fit("rails-ruby-adapter/raspberry.jpg") %>" width="100%">
   </figure>
 </p>
 

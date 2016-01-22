@@ -11,7 +11,7 @@ img: "/assets/images/how-to-store-large-files-on-mongodb/img-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/how-to-store-large-files-on-mongodb/img-fit.jpg" width="100%">
+    <img src="<%= src_fit("how-to-store-large-files-on-mongodb/img.jpg") %>" width="100%">
   </figure>
 </p>
 

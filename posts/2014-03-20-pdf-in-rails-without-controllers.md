@@ -10,7 +10,7 @@ tags: [ 'rails', 'pdf', 'background', 'job' ]
 
 <p>
   <figure>
-    <img src="/assets/images/pdf/pdf_rails-fit.jpg" width="100%">
+    <img src="<%= src_fit("pdf/pdf_rails.jpg") %>" width="100%">
     <details>
       <a href="http://www.flickr.com/photos/mucio/2889899144/sizes/z/">Photo</a>
       remix available thanks to the courtesy of

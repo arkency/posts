@@ -12,7 +12,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/burnout-programmer-fire/programmer_burnout_fire-fit.jpg" width="100%">
+    <img src="<%= src_fit("burnout-programmer-fire/programmer_burnout_fire.jpg") %>" width="100%">
   </figure>
 </p>
 

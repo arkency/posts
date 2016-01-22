@@ -12,7 +12,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 <p>
   <a href="https://www.youtube.com/watch?v=uRh2uetV4_I">
     <figure align="center">
-      <img src="/assets/images/rubymine/navigation-features2-fit.jpg" width="100%">
+      <img src="<%= src_fit("rubymine/navigation-features2.jpg") %>" width="100%">
     </figure>
   </a>
 </p>

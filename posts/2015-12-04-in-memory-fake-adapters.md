@@ -12,7 +12,7 @@ img: "/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-ad
 
 <p>
   <figure>
-    <img src="/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters-fit.jpg" width="100%" />
+    <img src="<%= src_fit("fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters.jpg") %>" width="100%" />
   </figure>
 </p>
 
@@ -293,7 +293,7 @@ If your state and business logic don't depend at all on those API calls then you
 can go with Dummy. What's Dummy? You can find out more about different kinds of
 these objects by watching [Episode 23 of Clean Code by Uncle Bob](https://cleancoders.com/episode/clean-code-episode-23-p1/show).
 
-<img src="/assets/images/fake-in-memory-adapters/fakes-mock-objects-uncle-bob-ontology-fit.jpg" width="100%">
+<img src="<%= src_fit("fake-in-memory-adapters/fakes-mock-objects-uncle-bob-ontology.jpg") %>" width="100%">
 
 ## Stay tuned
 

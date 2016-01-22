@@ -10,7 +10,7 @@ img: "/assets/images/books-benefits/books-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/books-benefits/books-fit.jpg" width="100%" />
+    <img src="<%= src_fit("books-benefits/books.jpg") %>" width="100%" />
   </figure>
 </p>
 
@@ -29,7 +29,7 @@ Another typical problem is the tests taking ages to run (and often fail for rand
 
 This is exactly why we came up with the book called: "Fearless Refactoring: Rails Controllers".
 
-<a href="http://rails-refactoring.com"><img style="display:block; margin: 0 auto;" src="/assets/images/fearless-refactoring-fit.png" width="40%" /></a>
+<a href="http://rails-refactoring.com"><img style="display:block; margin: 0 auto;" src="<%= src_fit("fearless-refactoring.png") %>" width="40%" /></a>
 
 Thanks to this book, you'll be able to improve your Rails codebase with more confidence. You will become fluent with new abstractions, like service objects, repositories, adapters.
 Your tests will run faster, saving you and your team a lot of time (and money!).
@@ -56,7 +56,7 @@ After many (sometimes unsuccessful) journeys with other frameworks, we felt in l
 We learnt a lot about how to combine React.js with a typical Rails application. As a result, we shared the experiences in the "Rails meets React.js" book.
 
 
-<a href="/rails-react"><img style="display:block; margin: 0 auto;" src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
+<a href="/rails-react"><img style="display:block; margin: 0 auto;" src="<%= src_fit("react-for-rails/cover.png") %>" width="40%" /></a>
 
 The book will teach you:
 
@@ -112,7 +112,7 @@ Many of us are scared to talk directly to the customers.
 
 That's why we wrote the "Developers Oriented Project Management" book. We want to share what we learnt and how we're able to work remotely and asynchronously.
 
-<a href="/developers-oriented-project-management/"><img style="display:block; margin: 0 auto;" src="/assets/images/dopm-fit.jpg" width="40%" /></a>
+<a href="/developers-oriented-project-management/"><img style="display:block; margin: 0 auto;" src="<%= src_fit("dopm.jpg") %>" width="40%" /></a>
 
 This book explains all the above topics. We teach what are the requirements for the team to work remotely and asynchronously. We teach how to communicate with the customers in ways which are win-win. We teach how to deliver value to the project even in situation when there's not enough time to finish everything.
 
@@ -137,7 +137,7 @@ I took those blocking points and addressed them in a way that helped many develo
 
 That's what the "Blogging for busy programmers" is about.
 
-<a href="https://arkency.dpdcart.com"><img style="display:block; margin: 0 auto;" src="/assets/images/blogging-small-fit.png" width="40%" /></a>
+<a href="https://arkency.dpdcart.com"><img style="display:block; margin: 0 auto;" src="<%= src_fit("blogging-small.png") %>" width="40%" /></a>
 
 Thanks to blogging you'll learn more (learning by teaching is the best way!), you will build your (or your company) brand.
 

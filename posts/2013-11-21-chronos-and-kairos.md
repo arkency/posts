@@ -9,7 +9,7 @@ tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
 stories: ['async-remote']
 ---
 
-<img src="/assets/images/chronos_kairos/clock-fit.png" width="100%">
+<img src="<%= src_fit("chronos_kairos/clock.png") %>" width="100%">
 
 When working on any project (personal or professional) we are always confrontend
 with tremendous amount of tasks that bring us closer to the goal or let us

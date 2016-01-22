@@ -11,7 +11,7 @@ newsletter_inside: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/react-js-google-charts/react-js-logo-fit.png" width="100%">
+    <img src="<%= src_fit("react-js-google-charts/react-js-logo.png") %>" width="100%">
   </figure>
 </p>
 

@@ -11,7 +11,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/angular-configurable-di/img-fit.jpg" width="100%">
+    <img src="<%= src_fit("angular-configurable-di/img.jpg") %>" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/streetmatt/15495884581/in/photolist-8xScux-bFdBMV-7xvfZr-pBjsBP-oZUAFC-hpXk7C-pykxQT-qv8xjz-6kQqd1-noXoEQ-8Z2YXD-hwJ5i2-dQjT8A-qMaWhE-btg35P-4yMT82-8FCxXe-7GEZhp-9AaEKV-okZoM1-hhwHFX-imQdib-aj3xuo-5E6YDk-pt454q-h1ycPn-gUxM12-2Z9JJK-r7T7Jn-c7WFkS-aZmF5X-qN8b3D-4NGfes-AD4kM-r43EN5-3iYoUp-odsRTN-frEFs1-BVfvF-5V5iVF-h1rcth-6x8yTn-6xcCNo-4BCrGK-8vyReg-6EqDGC-6PEVDY-8cxqf4-eiSbHh-e5Pjb5">Photo</a> 
       available thanks to the courtesy of

@@ -11,7 +11,7 @@ img: "/assets/images/three-most-telling-files-in-legacy-rails-apps/header-fit.jp
 
 <p>
   <figure>
-    <img src="/assets/images/three-most-telling-files-in-legacy-rails-apps/header-fit.jpg" width="100%" />
+    <img src="<%= src_fit("three-most-telling-files-in-legacy-rails-apps/header.jpg") %>" width="100%" />
     <span style="text-align: right; font-size: 9px;"><a href="https://www.flickr.com/photos/wackybadger/8300188897/in/photolist-dDsCZ8-dDxNcY-8qq5qQ-naJzLg-dbPm6A-doWgui-doW95r-9H6Ppb-8ZSmvo-ccFCcW-4KC6oX-hrdbHV-9CgHN-9mcB8F-emeyU1-a2Gqjs-esSPb5-nnvwD8-4k5FK7-qGz5su-naLDim-9mfTvW-9mcDA6-hvWcJg-oQ8iaz-9aZQc9-hvWuxC-doWm6q-br3M1z-4k5FKb-5hLzzx-514DWr-9aWFZ2-sa4Esa-8ZPgXv-9mgfxE-9mcTo4-vq7eDN-doWgN3-a7GndJ-mT7Wso-5hQFV5-m4NnDV-6cHmvc-9mgmYy-dLiMs8-vKRsx2-7ULqa1-doWhoK-doWkjw">Photo</a> available thanks to the courtesy of <a href="https://www.flickr.com/photos/wackybadger/">wackybadger</a>. License: <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a></span>
   </figure>
 </p>
@@ -79,9 +79,9 @@ Applying such analysis to your app can bring you many ideas and knowledge about 
 
 Did you like this article? You might find [our Rails books interesting as well](/products) .
 
-<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="15%" /></a>
-<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="15%" /></a>
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
+<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="15%" /></a>
-<a href="/responsible-rails"><img src="/assets/images/responsible-rails/cover-fit.png" width="15%" /></a>
+<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
+<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

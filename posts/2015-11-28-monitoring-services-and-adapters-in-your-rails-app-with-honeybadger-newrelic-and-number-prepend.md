@@ -12,7 +12,7 @@ img: "/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-
 
 <p>
   <figure>
-    <img src="/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app-fit.jpg" width="100%" />
+    <img src="<%= src_fit("ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app.jpg") %>" width="100%" />
   </figure>
 </p>
 
@@ -22,7 +22,7 @@ when they are down or behaving problematically. Sometimes it costs your clients 
 
 Like when a payment gateway is having problems on Black Friday.
 
-<img src="/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/payment-gateway-problems-fit.jpg">
+<img src="<%= src_fit("ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/payment-gateway-problems.jpg") %>">
 
 Can you imagine?
 

@@ -11,7 +11,7 @@ img: "/assets/images/one-year-of-react/head-fit.png"
 
 <p>
   <figure align="center">
-    <img src="/assets/images/one-year-of-react/head-fit.png">
+    <img src="<%= src_fit("one-year-of-react/head.png") %>">
   </figure>
 </p>
 

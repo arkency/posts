@@ -11,7 +11,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/vision/feature_vision_to_stories-fit.jpg" width="100%">
+    <img src="<%= src_fit("vision/feature_vision_to_stories.jpg") %>" width="100%">
     <details>
       <a href="http://www.flickr.com/photos/24141546@N06/7710205034/sizes/z/">Photo</a>
       remix available thanks to the courtesy of
@@ -106,7 +106,7 @@ from it. Whatever the reasons are, make sure the strategy
 is discussed with the customer and your team and the rules
 are clear for everyone.
 
-<a href="/assets/images/floating-doc/documentation_as_floating_ticket.png" rel="lightbox[doc]"><img src="/assets/images/floating-doc/documentation_as_floating_ticket-fit.png" /></a>
+<a href="/assets/images/floating-doc/documentation_as_floating_ticket.png" rel="lightbox[doc]"><img src="<%= src_fit("floating-doc/documentation_as_floating_ticket.png") %>" /></a>
 
 So you decided to extract two task. You create them on top
 of your backlog so that you or your team mates can start

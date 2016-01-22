@@ -75,11 +75,11 @@ For every image we generate additional 2 versions.
 Thumbnail that can be used when displaying multiple
 images in a gallery box:
 
-<a href="/assets/images/blog-developers/gallery.png" rel="lightbox"><img src="/assets/images/blog-developers/gallery-fit.png" class="fit"></a>
+<a href="/assets/images/blog-developers/gallery.png" rel="lightbox"><img src="<%= src_fit("blog-developers/gallery.png") %>" class="fit"></a>
 
 And "fit" version that is as wide as it can be on a tablet in landscape position.
 
-<a href="/assets/images/blog-developers/wide.png" rel="lightbox"><img src="/assets/images/blog-developers/wide-fit.png" class="fit"></a>
+<a href="/assets/images/blog-developers/wide.png" rel="lightbox"><img src="<%= src_fit("blog-developers/wide.png") %>" class="fit"></a>
 
 The code for doing that is pretty straightforward and uses ImageMagick `convert` binary:
 
@@ -168,7 +168,7 @@ with call to action. That is in most situations invitation to one of our newslet
 manually. Instead we use a feature of nanoc which let's you include
 metadata to every post.
 
-<a href="/assets/images/blog-developers/metadata.png" rel="lightbox"><img src="/assets/images/blog-developers/metadata-fit.png" class="fit"></a>
+<a href="/assets/images/blog-developers/metadata.png" rel="lightbox"><img src="<%= src_fit("blog-developers/metadata.png") %>" class="fit"></a>
 
 At the end of post layout file we use custom `#newsletter` helper method to output proper code
 based on the metadata. If we ever decide to change it, we can do so in one place.

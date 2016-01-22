@@ -11,7 +11,7 @@ img: "/assets/images/capybara-webkit/page_driver_block_unknown_urls-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/capybara-webkit/page_driver_block_unknown_urls-fit.jpg" width="100%">
+    <img src="<%= src_fit("capybara-webkit/page_driver_block_unknown_urls.jpg") %>" width="100%">
   </figure>
 </p>
 

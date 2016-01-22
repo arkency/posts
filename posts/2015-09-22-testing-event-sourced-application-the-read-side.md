@@ -12,7 +12,7 @@ img: "/assets/images/events/black-and-white-car-vehicle-vintage-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/events/black-and-white-car-vehicle-vintage-fit.jpg" width="100%">
+    <img src="<%= src_fit("events/black-and-white-car-vehicle-vintage.jpg") %>" width="100%">
   </figure>
 </p>
 

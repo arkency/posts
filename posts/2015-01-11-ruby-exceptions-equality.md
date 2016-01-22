@@ -11,7 +11,7 @@ img: "/assets/images/ruby-exception-equality/ruby-exception-surprise-face-fit.jp
 
 <p>
   <figure>
-    <img src="/assets/images/ruby-exception-equality/ruby-exception-surprise-face-fit.jpg" width="100%">
+    <img src="<%= src_fit("ruby-exception-equality/ruby-exception-surprise-face.jpg") %>" width="100%">
   </figure>
 </p>
 

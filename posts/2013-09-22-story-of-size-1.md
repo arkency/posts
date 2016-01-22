@@ -9,7 +9,7 @@ tags: [ 'story', 'size', 'one', 'remote', 'work', 'project', 'management' ]
 stories: ['async-remote']
 ---
 
-<img src="/assets/images/story-1/full-fit.png" width="100%">
+<img src="<%= src_fit("story-1/full.png") %>" width="100%">
 
 In one of our projects we decided to try a lot of new things in the area of
 project management. One of the most beneficial change that I noticed was using very,

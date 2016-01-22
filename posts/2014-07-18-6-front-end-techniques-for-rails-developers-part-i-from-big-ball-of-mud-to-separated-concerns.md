@@ -11,7 +11,7 @@ newsletter_inside: :frontend_course
 
 <p>
   <figure>
-    <img src="/assets/images/big-ball-of-mud/cupcakes-fit.jpg" width="100%">
+    <img src="<%= src_fit("big-ball-of-mud/cupcakes.jpg") %>" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/clevercupcakes/4402962654/in/photolist-7H5kpd-7H1pMg">Photo</a>
       remix available thanks to the courtesy of

@@ -10,7 +10,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/react/cover-fit.jpg" width="100%">
+    <img src="<%= src_fit("react/cover.jpg") %>" width="100%">
     <details>
       Source: <a href="https://www.flickr.com/photos/subpra/">Subramanya Prasad</a>
     </details>

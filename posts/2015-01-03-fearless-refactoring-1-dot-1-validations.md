@@ -11,7 +11,7 @@ img: "/assets/images/validations-categories/157H-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/validations-categories/157H-fit.jpg" width="100%">
+    <img src="<%= src_fit("validations-categories/157H.jpg") %>" width="100%">
   </figure>
 </p>
 

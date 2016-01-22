@@ -11,7 +11,7 @@ img: "/assets/images/events/stream-fit.jpg"
 
 <p>
   <figure align="center">
-    <img src="/assets/images/events/stream-fit.jpg">
+    <img src="<%= src_fit("events/stream.jpg") %>">
   </figure>
 </p>
 

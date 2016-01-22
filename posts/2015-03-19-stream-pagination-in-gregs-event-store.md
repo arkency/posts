@@ -11,7 +11,7 @@ img: "/assets/images/events/pages-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/events/pages-fit.jpg" width="100%">
+    <img src="<%= src_fit("events/pages.jpg") %>" width="100%">
   </figure>
 </p>
 
@@ -143,19 +143,19 @@ If we would like to get all entries from newest we have to iterate **backward** 
 First step:
 
 <a href="/assets/images/events/backward_first.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/backward_first-fit.png" />
+  <img src="<%= src_fit("events/backward_first.png") %>" />
 </a>
 
 Second step:
 
 <a href="/assets/images/events/backward_second.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/backward_second-fit.png" />
+  <img src="<%= src_fit("events/backward_second.png") %>" />
 </a>
 
 Third step:
 
 <a href="/assets/images/events/backward_third.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/backward_third-fit.png" />
+  <img src="<%= src_fit("events/backward_third.png") %>" />
 </a>
 
 To get all events starting from the begin we have to walk **forward** over whole stream:
@@ -163,19 +163,19 @@ To get all events starting from the begin we have to walk **forward** over whole
 First step:
 
 <a href="/assets/images/events/forward_first.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/forward_first-fit.png" />
+  <img src="<%= src_fit("events/forward_first.png") %>" />
 </a>
 
 Second step:
 
 <a href="/assets/images/events/forward_second.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/forward_second-fit.png" />
+  <img src="<%= src_fit("events/forward_second.png") %>" />
 </a>
 
 Third step:
 
 <a href="/assets/images/events/forward_third.png" rel="lightbox[picker]">
-  <img src="/assets/images/events/forward_third-fit.png" />
+  <img src="<%= src_fit("events/forward_third.png") %>" />
 </a>
 
 This is only a simple example of iteration over whole stream. But using ES's streams is more flexible. You can easily modify url parameters to get more entries per page or you can start from different place in your stream.

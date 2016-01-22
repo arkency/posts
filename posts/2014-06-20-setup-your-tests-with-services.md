@@ -11,7 +11,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 
 <p>
   <figure>
-    <img src="/assets/images/services-test-setup/setup_test_services-fit.jpg" width="100%">
+    <img src="<%= src_fit("services-test-setup/setup_test_services.jpg") %>" width="100%">
   </figure>
 </p>
 

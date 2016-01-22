@@ -11,7 +11,7 @@ img: "/assets/images/why-saving-data-using-mongohq-takes-so-long/img-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/why-saving-data-using-mongohq-takes-so-long/img-fit.jpg" width="100%">
+    <img src="<%= src_fit("why-saving-data-using-mongohq-takes-so-long/img.jpg") %>" width="100%">
   </figure>
 </p>
 

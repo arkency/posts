@@ -10,7 +10,7 @@ img: "/assets/images/creating-custom-heroku-buildpack-for-webpack-and-ruby-on-ra
 ---
 
 <figure>
-  <img src="/assets/images/creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header-fit.png" width="100%" alt="" />
+  <img src="<%= src_fit("creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header.png") %>" width="100%" alt="" />
 </figure>
 
 Heroku and Rails loves each other from long time - and this combo is still widely used both by beginners and experts to build and host their web applications. It's easy and it's fast to host an app - and those two factors are very important in early stages of the project's lifecycle.

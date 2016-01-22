@@ -11,7 +11,7 @@ img: "/assets/images/react-for-rails/cover-fit.png"
 
 <p>
   <figure>
-    <img src="/assets/images/react-for-rails/cover-fit.png" width="100%" />
+    <img src="<%= src_fit("react-for-rails/cover.png") %>" width="100%" />
   </figure>
 </p>
 

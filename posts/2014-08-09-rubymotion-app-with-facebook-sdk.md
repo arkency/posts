@@ -12,7 +12,7 @@ stories: ['rubymotion']
 
 <p>
   <figure align="center">
-    <img src="/assets/images/mobile/ruby-motion-facebook-fit.png" width="100%">
+    <img src="<%= src_fit("mobile/ruby-motion-facebook.png") %>" width="100%">
   </figure>
 </p>
 

@@ -11,7 +11,7 @@ img: "/assets/images/cqrs-example/photo-fit.jpeg"
 
 <p>
   <figure>
-    <img src="/assets/images/cqrs-example/photo-fit.jpeg" width="100%" />
+    <img src="<%= src_fit("cqrs-example/photo.jpeg") %>" width="100%" />
   </figure>
 </p>
 

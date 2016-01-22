@@ -10,7 +10,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/react-file-structure/image-fit.jpg" width="100%">
+    <img src="<%= src_fit("react-file-structure/image.jpg") %>" width="100%">
   </figure>
 </p>
 

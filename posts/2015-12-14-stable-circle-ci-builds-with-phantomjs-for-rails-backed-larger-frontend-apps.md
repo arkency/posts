@@ -11,7 +11,7 @@ img: "/assets/images/stable-circle-ci-builds-with-phantomjs-for-rails-backed-lar
 
 <p>
   <figure>
-    <img src="/assets/images/stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header-fit.jpg" width="100%">
+    <img src="<%= src_fit("stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header.jpg") %>" width="100%">
     <details>
       The original photo is available on <a href="https://stocksnap.io/photo/ABMMJRIYZF">stocksnap</a>. Author: Stephen Radford.
     </details>

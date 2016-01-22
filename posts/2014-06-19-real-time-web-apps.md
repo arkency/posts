@@ -10,7 +10,7 @@ tags: [ 'real-time', 'websockets', 'eventsource', 'web apps' ]
 
 <p>
   <figure>
-    <img src="/assets/images/real-time-web/notifications-fit.jpg" width="100%">
+    <img src="<%= src_fit("real-time-web/notifications.jpg") %>" width="100%">
   </figure>
 </p>
 

@@ -11,7 +11,7 @@ img: "/assets/images/start-using-es6/lead-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/start-using-es6/lead-fit.jpg" width="100%">
+    <img src="<%= src_fit("start-using-es6/lead.jpg") %>" width="100%">
     <details>
       Source: <a href="https://www.flickr.com/photos/asif_salman/">Asif Salman</a>
     </details>

@@ -26,4 +26,4 @@ Here are some techniques which may help you in turning the Slack conversations i
 
 Would you like to blog more? Did you like this Slack blogging tip? There's more such tips in the ["Blogging for busy programmers"](https://arkency.dpdcart.com/product/106667) book.
 
-<a href="https://arkency.dpdcart.com/product/106667"><img style="display:block; margin: 0 auto;" src="/assets/images/blogging-small-fit.png" width="40%" /></a>
+<a href="https://arkency.dpdcart.com/product/106667"><img style="display:block; margin: 0 auto;" src="<%= src_fit("blogging-small.png") %>" width="40%" /></a>

@@ -99,8 +99,8 @@ Here's an explanation what really happens in scenario:
 
 As you can see all steps of this scenario are described in terms of real usage. If we'd describe how our product subcomponents cooperate to handle this use case it would look like this:
 
-<a href="/assets/images/black-box-ruby-tests/flow1.png" rel="lightbox"><img src="/assets/images/black-box-ruby-tests/flow1-fit.png" class="fit"></a>
-<a href="/assets/images/black-box-ruby-tests/flow2.png" rel="lightbox"><img src="/assets/images/black-box-ruby-tests/flow2-fit.png" class="fit"></a>
+<a href="/assets/images/black-box-ruby-tests/flow1.png" rel="lightbox"><img src="<%= src_fit("black-box-ruby-tests/flow1.png") %>" class="fit"></a>
+<a href="/assets/images/black-box-ruby-tests/flow2.png" rel="lightbox"><img src="<%= src_fit("black-box-ruby-tests/flow2.png") %>" class="fit"></a>
 
 As a side note: approach of tests with actors was introduced in [bbq](http://github.com/drugpl/bbq) gem.
 

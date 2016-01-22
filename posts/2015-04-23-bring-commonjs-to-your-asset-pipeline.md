@@ -11,7 +11,7 @@ img: "/assets/images/bring-commonjs-to-your-asset-pipeline/browserify-rails-fit.
 
 <p>
   <figure align="center">
-    <img src="/assets/images/bring-commonjs-to-your-asset-pipeline/browserify-rails-fit.png">
+    <img src="<%= src_fit("bring-commonjs-to-your-asset-pipeline/browserify-rails.png") %>">
   </figure>
 </p>
 

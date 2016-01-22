@@ -10,7 +10,7 @@ tags: ['rails way']
 
 <p>
   <figure>
-		<img src="/assets/images/beyond-the-rails-way/image-fit.jpg" width="100%">
+		<img src="<%= src_fit("beyond-the-rails-way/image.jpg") %>" width="100%">
         <details>
           Source: <a href="https://www.flickr.com/photos/philakilla/">Justin Wolfe</a>
         </details>

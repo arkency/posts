@@ -18,7 +18,7 @@ You probably use most of basic features of [Google Analytics](http://www.google.
 
 You can check what happened when you posted link to Hacker News or Reddit in Real-Time - just go "Home" and click "Real-Time".
 
-<a href="/assets/images/google-analytics-for-developers/ga-realtime.png" rel="lightbox"><img src="/assets/images/google-analytics-for-developers/ga-realtime-fit.png" class="fit"></a>
+<a href="/assets/images/google-analytics-for-developers/ga-realtime.png" rel="lightbox"><img src="<%= src_fit("google-analytics-for-developers/ga-realtime.png") %>" class="fit"></a>
 
 ## Users actions
 
@@ -47,7 +47,7 @@ As you can see it requires jQuery, but of course can be easily rewritten to not 
 
 We track events, so where can we find them?
 
-<a href="/assets/images/google-analytics-for-developers/ga-events.png" rel="lightbox"><img src="/assets/images/google-analytics-for-developers/ga-events-fit.png" class="fit"></a>
+<a href="/assets/images/google-analytics-for-developers/ga-events.png" rel="lightbox"><img src="<%= src_fit("google-analytics-for-developers/ga-events.png") %>" class="fit"></a>
 
 In this section you can choose which category, action or label is interesting for you and show only occurrences of that type. You can also see flow of your users in terms of events - below "Events overview" you can find "Events Flow".
 
@@ -55,9 +55,9 @@ In this section you can choose which category, action or label is interesting fo
 
 You now have quite good insight what's happening on your site, but that's not all. You can set goals based, for example, on events. Here's where you can define them:
 
-<a href="/assets/images/google-analytics-for-developers/ga-goals-1.png" rel="lightbox"><img src="/assets/images/google-analytics-for-developers/ga-goals-1-fit.png" class="fit"></a>
+<a href="/assets/images/google-analytics-for-developers/ga-goals-1.png" rel="lightbox"><img src="<%= src_fit("google-analytics-for-developers/ga-goals-1.png") %>" class="fit"></a>
 
-<a href="/assets/images/google-analytics-for-developers/ga-goals-2.png" rel="lightbox"><img src="/assets/images/google-analytics-for-developers/ga-goals-2-fit.png" class="fit"></a>
+<a href="/assets/images/google-analytics-for-developers/ga-goals-2.png" rel="lightbox"><img src="<%= src_fit("google-analytics-for-developers/ga-goals-2.png") %>" class="fit"></a>
 
 We set two goals - for event with label http://chillout.io/ and for newsletter sign up event.
 

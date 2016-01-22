@@ -10,7 +10,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/frontend-performance/performance-fit.png" width="100%">
+    <img src="<%= src_fit("frontend-performance/performance.png") %>" width="100%">
   </figure>
 </p>
 

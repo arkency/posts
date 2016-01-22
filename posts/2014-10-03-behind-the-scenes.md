@@ -14,13 +14,13 @@ We work from wherever we want and we ship it.
 
 ## Where did we work from this week?
 
-<img src="/assets/images/behind-the-scenes/ambona-fit.jpg" width="45%">
-<img src="/assets/images/behind-the-scenes/mirek-fit.jpg" width="45%">
-<img src="/assets/images/behind-the-scenes/approved-fit.jpg" width="45%">
-<img src="/assets/images/behind-the-scenes/fidel2-fit.jpg" width="45%">
-<img src="/assets/images/behind-the-scenes/mirek2-fit.jpg" width="45%">
-<img src="/assets/images/behind-the-scenes/mirek3-fit.jpg" width="45%">
+<img src="<%= src_fit("behind-the-scenes/ambona.jpg") %>" width="45%">
+<img src="<%= src_fit("behind-the-scenes/mirek.jpg") %>" width="45%">
+<img src="<%= src_fit("behind-the-scenes/approved.jpg") %>" width="45%">
+<img src="<%= src_fit("behind-the-scenes/fidel2.jpg") %>" width="45%">
+<img src="<%= src_fit("behind-the-scenes/mirek2.jpg") %>" width="45%">
+<img src="<%= src_fit("behind-the-scenes/mirek3.jpg") %>" width="45%">
 
 ## Andrzej preparing to his lectures at Wrocław University
 
-<img src="/assets/images/behind-the-scenes/andrzej_university-fit.jpg" width="100%">
+<img src="<%= src_fit("behind-the-scenes/andrzej_university.jpg") %>" width="100%">

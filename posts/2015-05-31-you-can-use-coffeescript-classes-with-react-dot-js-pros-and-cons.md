@@ -165,7 +165,7 @@ Pure classes approach brings React closer to the world of idiomatic Coffee and J
 
 ## "Rails meets React.js" gets an update!
 
-<img src="/assets/images/react-for-rails/cover-fit.png" width="50%" style="float: left; margin-right: 1.5em;" />
+<img src="<%= src_fit("react-for-rails/cover.png") %>" width="50%" style="float: left; margin-right: 1.5em;" />
 
 **We are going to release a "Rails meets React.js" update with all code in the book updated to React 0.13 this Friday**. All people who bought the book already will get this update (and all further updates) for free. It is aimed for Rails developers wanting to learn React.js by example. 
 

@@ -11,7 +11,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/async-communication/async-fit.jpg" width="100%">
+    <img src="<%= src_fit("async-communication/async.jpg") %>" width="100%">
   </figure>
 </p>
 

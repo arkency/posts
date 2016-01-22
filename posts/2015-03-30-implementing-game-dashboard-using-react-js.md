@@ -11,7 +11,7 @@ img: "/assets/images/game-dashboard-react/front-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/game-dashboard-react/front-fit.jpg" width="100%">
+    <img src="<%= src_fit("game-dashboard-react/front.jpg") %>" width="100%">
     <details>
       Source: <a href="https://www.flickr.com/photos/36877266@N08/">412 digital</a>
     </details>
@@ -34,7 +34,7 @@ Some time ago I was working on a simple game inspired by [CivClicker](http://dhm
 
 <p>
   <figure align="center">
-    <img src="/assets/images/game-dashboard-react/dashboard-fit.png">
+    <img src="<%= src_fit("game-dashboard-react/dashboard.png") %>">
     <figcaption>
       Each rectangle represents separate app
     </figcaption>

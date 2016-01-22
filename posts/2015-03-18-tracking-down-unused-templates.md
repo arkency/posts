@@ -11,7 +11,7 @@ img: "/assets/images/tracking-down-unused-templates/countryside-fence-field-fit.
 
 <p>
   <figure>
-    <img src="/assets/images/tracking-down-unused-templates/countryside-fence-field-fit.jpg" width="100%">
+    <img src="<%= src_fit("tracking-down-unused-templates/countryside-fence-field.jpg") %>" width="100%">
   </figure>
 </p>
 

@@ -11,7 +11,7 @@ img: "/assets/images/events/blue-bricks-fit.jpg"
 
 <p>
   <figure align="center">
-    <img src="/assets/images/events/blue-bricks-fit.jpg">
+    <img src="<%= src_fit("events/blue-bricks.jpg") %>">
   </figure>
 </p>
 
@@ -103,7 +103,7 @@ Instead of using Rails views we will use React's components. I created four comp
 
 <p>
   <figure align="center">
-    <img src="/assets/images/events/view_schema-fit.jpg">
+    <img src="<%= src_fit("events/view_schema.jpg") %>">
   </figure>
 </p>
 

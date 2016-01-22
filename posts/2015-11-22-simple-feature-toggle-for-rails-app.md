@@ -11,7 +11,7 @@ img: "/assets/images/simple-feature-toggle-for-rails-app/header.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/simple-feature-toggle-for-rails-app/header-fit.jpg" width="100%">
+    <img src="<%= src_fit("simple-feature-toggle-for-rails-app/header.jpg") %>" width="100%">
     <details>
       <a href="https://flic.kr/p/7zHjDq">Photo</a> available thanks to the courtesy of
       <a href="https://www.flickr.com/photos/33852688@N08/">Chris Costes</a>.

@@ -20,11 +20,11 @@ Here are **4 mental tips** that I use to overcome my objections.
 Don't think about finishing a project. About the end of it. You will get there.
 **Just start working**. Because this is not how things get done most of the time:
 
-<img src="/assets/images/how-to-get-anything-done/start_one_time-fit.jpg" width="100%">
+<img src="<%= src_fit("how-to-get-anything-done/start_one_time.jpg") %>" width="100%">
 
 This is:
 
-<img src="/assets/images/how-to-get-anything-done/start_enough_times-fit.jpg" width="100%">
+<img src="<%= src_fit("how-to-get-anything-done/start_enough_times.jpg") %>" width="100%">
 
 If you start enough times, and continue making progress every time, you will
 eventually finish the task. So notice how you [perceive time](http://blog.arkency.com/2013/11/chronos-and-kairos/) .
@@ -109,7 +109,7 @@ Few weeks ago in a shopping-center I got a wristband from
 [anti-cancer group](http://fundacjarosa.pl/rkbndefenders/) for filling out a survey.
 It says **best time for action is now**. 
 
-<img src="/assets/images/how-to-get-anything-done/best-time-for-action-is-now-fit.jpg" width="100%">
+<img src="<%= src_fit("how-to-get-anything-done/best-time-for-action-is-now.jpg") %>" width="100%">
 
 I don't want to wait till cancer to get myself
 into doing something meaningful. This wristband actually changed something in me for the

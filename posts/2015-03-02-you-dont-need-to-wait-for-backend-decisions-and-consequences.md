@@ -11,7 +11,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/you-dont-need-to-wait-for-backend-decisions-and-consequences/img-fit.jpg" width="100%">
+    <img src="<%= src_fit("you-dont-need-to-wait-for-backend-decisions-and-consequences/img.jpg") %>" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/56218409@N03/15071173824">Photo</a> 
       remix available thanks to the courtesy of

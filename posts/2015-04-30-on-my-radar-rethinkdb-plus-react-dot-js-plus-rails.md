@@ -12,7 +12,7 @@ img: "/assets/images/rethinkdb-react-js-rails-sse/rethink-db-release-banner-reac
 
 <p>
   <figure align="center">
-    <img src="/assets/images/rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails-fit.png">
+    <img src="<%= src_fit("rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails.png") %>">
   </figure>
 </p>
 

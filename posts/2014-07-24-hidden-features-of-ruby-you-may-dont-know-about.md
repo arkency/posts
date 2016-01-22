@@ -11,7 +11,7 @@ newsletter_inside: :frontend_course
 
 <p>
   <figure align="center">
-    <img src="/assets/images/hidden-ruby-features/cherry_on_top-fit.jpg">
+    <img src="<%= src_fit("hidden-ruby-features/cherry_on_top.jpg") %>">
   </figure>
 </p>
 

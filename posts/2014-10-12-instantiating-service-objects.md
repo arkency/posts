@@ -11,7 +11,7 @@ tags: [ 'ruby', 'rails', 'service', 'objects', 'instantiate' ]
 
 <p>
   <figure>
-    <img src="/assets/images/instantiating-service-objects-ruby-rails/board-cubes-game-2923-16-10-fit.jpg" width="100%">
+    <img src="<%= src_fit("instantiating-service-objects-ruby-rails/board-cubes-game-2923-16-10.jpg") %>" width="100%">
   </figure>
 </p>
 

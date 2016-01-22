@@ -11,7 +11,7 @@ tags: [ 'ruby', 'Range', 'custom class', 'time' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/range-custom-class/baloon-fit.jpg" width="100%">
+    <img src="<%= src_fit("range-custom-class/baloon.jpg") %>" width="100%">
   </figure>
 </p>
 

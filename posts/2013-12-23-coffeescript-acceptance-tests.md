@@ -8,7 +8,7 @@ newsletter: :react_books
 tags: [ 'TDD', 'ATDD', 'CoffeeScript' ]
 ---
 
-<img src="/assets/images/coffee-acceptance/coffeescript_acceptance_tests-fit.png" width="100%">
+<img src="<%= src_fit("coffee-acceptance/coffeescript_acceptance_tests.png") %>" width="100%">
 
 You've already learned how to implement simple [model](/2013/07/coffeescript-tests-for-rails-apps/) and [view](/2013/09/testing-client-side-views-in-rails-apps/) tests, so as I promised now I'll show you how you can introduce acceptance tests on client-side. We're not too far from this goal - you know how to write test cases, make assertions and "click through DOM". Let's apply some abstraction then - to look at our app like the end user.
 

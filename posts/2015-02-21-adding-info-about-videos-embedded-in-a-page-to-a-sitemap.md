@@ -11,7 +11,7 @@ img: "/assets/images/sitemap-video-ruby-rails/sitemap-fit.jpeg"
 
 <p>
   <figure>
-    <img src="/assets/images/sitemap-video-ruby-rails/sitemap-fit.jpeg" width="100%">
+    <img src="<%= src_fit("sitemap-video-ruby-rails/sitemap.jpeg") %>" width="100%">
   </figure>
 </p>
 

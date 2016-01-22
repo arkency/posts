@@ -12,7 +12,7 @@ stories: ['rubymotion']
 
 <p>
   <figure align="center">
-    <img src="/assets/images/mobile/line-queue-fit.jpg" width="100%">
+    <img src="<%= src_fit("mobile/line-queue.jpg") %>" width="100%">
   </figure>
 </p>
 

@@ -10,7 +10,7 @@ img: "/assets/images/service_object_with_simple_delegate-fit.png"
 
 <p>
 	<figure align="center">
-		<img src="/assets/images/service_object_with_simple_delegate-fit.png">
+		<img src="<%= src_fit("service_object_with_simple_delegate.png") %>">
 	</figure>
 </p>
 

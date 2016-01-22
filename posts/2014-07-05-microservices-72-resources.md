@@ -11,7 +11,7 @@ tags: [ 'soa', 'microservices', 'architecture' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/microservices/microservices_pattern-fit.png" width="100%">
+    <img src="<%= src_fit("microservices/microservices_pattern.png") %>" width="100%">
   </figure>
 </p>
 

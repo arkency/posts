@@ -11,7 +11,7 @@ tags: [ 'code', 'style', 'clean', 'syntax' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/clean-code/clean-code-fit.jpg" width="100%">
+    <img src="<%= src_fit("clean-code/clean-code.jpg") %>" width="100%">
   </figure>
 </p>
 
@@ -150,6 +150,6 @@ If you think that it's important topic in your daily work and you are willing to
 
 <p>
   <figure align="center">
-    <img src="/assets/images/clean-code/keep-calm-and-code-clean-fit.png" width="100%">
+    <img src="<%= src_fit("clean-code/keep-calm-and-code-clean.png") %>" width="100%">
   </figure>
 </p>

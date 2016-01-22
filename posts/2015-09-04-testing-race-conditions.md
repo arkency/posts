@@ -11,7 +11,7 @@ img: "/assets/images/race-conditions-rails-active-record/race-rails2-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/race-conditions-rails-active-record/race-rails2-fit.jpg" width="100%" />
+    <img src="<%= src_fit("race-conditions-rails-active-record/race-rails2.jpg") %>" width="100%" />
   </figure>
 </p>
 
@@ -190,8 +190,8 @@ for that.
 
 Did you like this article? You might find [our Rails books interesting as well](/products) .
 
-<a href="http://rails-refactoring.com"><img src="/assets/images/fearless-refactoring-fit.png" width="18%" /></a>
-<a href="/rails-react"><img src="/assets/images/react-for-rails/cover-fit.png" width="18%" /></a>
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="18%" /></a>
+<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="18%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="18%" /></a>
-<a href="/developers-oriented-project-management/"><img src="/assets/images/dopm-fit.jpg" width="18%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="/assets/images/blogging-small-fit.png" width="18%" /></a>
+<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="18%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="18%" /></a>

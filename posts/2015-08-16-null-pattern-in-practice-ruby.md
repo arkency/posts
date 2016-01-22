@@ -12,7 +12,7 @@ img: "/assets/images/null/null-object-ruby-pattern-fowler-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/null/null-object-ruby-pattern-fowler-fit.jpg" width="100%">
+    <img src="<%= src_fit("null/null-object-ruby-pattern-fowler.jpg") %>" width="100%">
   </figure>
 </p>
 

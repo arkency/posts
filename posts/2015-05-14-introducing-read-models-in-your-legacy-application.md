@@ -11,7 +11,7 @@ img: "/assets/images/introducing-read-models-in-your-legacy-application/books-fi
 
 <p>
   <figure align="center">
-    <img src="/assets/images/introducing-read-models-in-your-legacy-application/books-fit.jpg">
+    <img src="<%= src_fit("introducing-read-models-in-your-legacy-application/books.jpg") %>">
   </figure>
 </p>
 
@@ -23,7 +23,7 @@ Recently on our blog you could read many posts about Event Sourcing. There're a 
 
 <p>
   <figure align="center">
-    <img src="/assets/images/introducing-read-models-in-your-legacy-application/ranking-fit.png">
+    <img src="<%= src_fit("introducing-read-models-in-your-legacy-application/ranking.png") %>">
   </figure>
 </p>
 

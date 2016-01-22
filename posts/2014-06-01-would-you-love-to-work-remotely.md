@@ -11,7 +11,7 @@ stories: ['async-remote']
 
 <p>
   <figure>
-    <img src="/assets/images/love-remotely/remote-fit.jpg" width="100%">
+    <img src="<%= src_fit("love-remotely/remote.jpg") %>" width="100%">
   </figure>
 </p>
 
@@ -25,17 +25,17 @@ And when I was finally there, at the office, it was filled with people talking o
 
 So I thought to myself what if I could work somewhere where I wouldn't spend 90 minutes every day commuting to and from? What if I could work in a distraction-free environment? What if I could work... from home At first it looked impossible but first I negotiated with my boss working 2 or 3 days from home, just to give it a try. And I enjoyed it very much. Later I moved to Arkency where everyone was working remotely for full time and my dream became my everyday reality. Here is a winter picture from my current in-home office window.
 
-<img src="/assets/images/love-remotely/office-fit.jpg" width="100%">
+<img src="<%= src_fit("love-remotely/office.jpg") %>" width="100%">
 
 Don't know about you, but sometimes in the middle of the day I feel a little sleepy (thank you insulin resistance). In such case either I take a [short power nap](http://en.wikipedia.org/wiki/Power_nap) or I go for a 40 minute-long refreshing walk in a lovely forest in my neighborhood. Both options possible thanks to the fact that I can work from home. I always thought that offices should have a nap room, but somehow most office designers don't agree. If you can take a nap in your office, share your story with me. I would love to hear more about it.
 
-<img src="/assets/images/love-remotely/marta-fit.jpg" width="100%">
+<img src="<%= src_fit("love-remotely/marta.jpg") %>" width="100%">
 
 Of course you might be into remote work for your own reason like travelling. When home is no longer just quiet but rather boring, we often wish to be able change our location to something new and feel fresh again. Not necessarily take holidays just for that. But to change the environment, work, and enjoy the city or countryside after working. Is that an option for you?
 
 And then there is the most important reason for some of us. Family. If you want to spend more time with your growing kids and lovely partner, home working might be a solution for you.
 
-<img src="/assets/images/love-remotely/deploy-fit.jpg" width="100%">
+<img src="<%= src_fit("love-remotely/deploy.jpg") %>" width="100%">
 
 ## What's next?
 

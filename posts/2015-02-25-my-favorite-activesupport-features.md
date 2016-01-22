@@ -12,7 +12,7 @@ img: "/assets/images/active-support/favorite-ruby-active-support-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/active-support/favorite-ruby-active-support-fit.jpg" width="100%">
+    <img src="<%= src_fit("active-support/favorite-ruby-active-support.jpg") %>" width="100%">
   </figure>
 </p>
 

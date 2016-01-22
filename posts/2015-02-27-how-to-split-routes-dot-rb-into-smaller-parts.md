@@ -12,7 +12,7 @@ img: "/assets/images/routes/splitting-routes-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/routes/splitting-routes-fit.jpg" width="100%">
+    <img src="<%= src_fit("routes/splitting-routes.jpg") %>" width="100%">
   </figure>
 </p>
 

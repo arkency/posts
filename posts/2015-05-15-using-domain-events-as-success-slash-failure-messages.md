@@ -12,7 +12,7 @@ img: "/assets/images/events/failure_domain_event-fit.jpg"
 
 <p>
   <figure>
-    <img src="/assets/images/events/failure_domain_event-fit.jpg" width="100%">
+    <img src="<%= src_fit("events/failure_domain_event.jpg") %>" width="100%">
   </figure>
 </p>
 

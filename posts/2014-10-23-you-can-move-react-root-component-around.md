@@ -11,7 +11,7 @@ newsletter_inside: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/react-root-move/root-fit.jpg" width="100%">
+    <img src="<%= src_fit("react-root-move/root.jpg") %>" width="100%">
   </figure>
 </p>
 
@@ -519,11 +519,11 @@ mountedComponent = React.renderComponent(
 Here is how the component looks like rendered in DOM before
 becoming popup.
 
-<img src="/assets/images/react-root-move/popup1-fit.png" width="100%">
+<img src="<%= src_fit("react-root-move/popup1.png") %>" width="100%">
 
 And after magnificPopup moves it to a different place.
 
-<img src="/assets/images/react-root-move/popup2-fit.png" width="100%">
+<img src="<%= src_fit("react-root-move/popup2.png") %>" width="100%">
 
 So I did some research and found this interesting
 [React JS - What if the dom changes](https://groups.google.com/forum/#!msg/reactjs/mHfBGI3Qwz4/6s-eHGEpccwJ)

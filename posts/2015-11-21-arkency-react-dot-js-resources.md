@@ -79,7 +79,7 @@ This blogpost is an attempt to put all the resources in one place.
 
 ## Rails meets React.js
 
-<a href="/rails-react"><img style="display:block; margin: 0 auto;" src="/assets/images/react-for-rails/cover-fit.png" width="40%" /></a>
+<a href="/rails-react"><img style="display:block; margin: 0 auto;" src="<%= src_fit("react-for-rails/cover.png") %>" width="40%" /></a>
 
 The book will teach you:
 

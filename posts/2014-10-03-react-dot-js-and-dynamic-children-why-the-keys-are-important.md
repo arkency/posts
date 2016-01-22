@@ -217,7 +217,7 @@ var TabList = React.createClass({
 And when the key is not provided? Well... React will automatically use an
 increasing integer number; I suspect based on the `data-reactid` attribute in DOM.
 
-<img src="/assets/images/react-keys-getinitial-state/react_initial_state_with_bug-fit.png" width="100%">
+<img src="<%= src_fit("react-keys-getinitial-state/react_initial_state_with_bug.png") %>" width="100%">
 
 So I was thinking that I am rendering conceptually a new component and
 react was actually rendering the old one. The fact that I changed `props`
@@ -340,7 +340,7 @@ TabList({
 You can see in DOM a different `data-reactid` attribute
 value now based on the provided key.
 
-<img src="/assets/images/react-keys-getinitial-state/react_initial_state_without_bug-fit.png" width="100%">
+<img src="<%= src_fit("react-keys-getinitial-state/react_initial_state_without_bug.png") %>" width="100%">
 
 ## What did I just learn?
 

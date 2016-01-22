@@ -25,7 +25,7 @@ concepts_. What does that even mean? Especially in terms of programming?
 First, let's have a look at this example:
 
 <a href="/assets/images/higher-level-concept/four_rules_of_simple_design_page_screenshot.png" rel="lightbox[rules]">
-  <img src="/assets/images/higher-level-concept/four_rules_of_simple_design_page_screenshot-fit.png" width="100%">
+  <img src="<%= src_fit("higher-level-concept/four_rules_of_simple_design_page_screenshot.png") %>" width="100%">
 </a>
 
 Now you know a bit of the story related to the example from the book.
@@ -86,7 +86,7 @@ _Conway game of life_. But whenever you say _Game_ to me, first thing I think
 about is _Civilization 5_ and its hexagonal Map.
 
 <a href="/assets/images/higher-level-concept/civ5_map_hexes.jpg" rel="lightbox[civ5]">
-  <img src="/assets/images/higher-level-concept/civ5_map_hexes-fit.jpg" width="100%">
+  <img src="<%= src_fit("higher-level-concept/civ5_map_hexes.jpg") %>" width="100%">
 </a>
 
 When you say _Game_ to me, especially _board game_, I think _players,

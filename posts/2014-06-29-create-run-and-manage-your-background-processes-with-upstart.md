@@ -10,7 +10,7 @@ tags: [ 'upstart', 'background', 'process' ]
 
 <p>
   <figure align="center">
-    <img src="/assets/images/upstart/upstart-logo-fit.png" width="100%" />
+    <img src="<%= src_fit("upstart/upstart-logo.png") %>" width="100%" />
   </figure>
 </p>
 

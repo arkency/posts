@@ -11,7 +11,7 @@ newsletter: :react_books
 
 <p>
   <figure>
-    <img src="/assets/images/use-your-gettext-translations-in-your-react-components/flags-fit.jpg" width="100%">
+    <img src="<%= src_fit("use-your-gettext-translations-in-your-react-components/flags.jpg") %>" width="100%">
     <details>
       <a href="https://www.flickr.com/photos/mig/15964697">Photo</a> 
       remix available thanks to the courtesy of

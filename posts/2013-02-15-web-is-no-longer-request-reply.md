@@ -14,7 +14,7 @@ and sent a reply. However what we do now is no longer that easy.
 <!-- more -->
 
 
-<a href="/assets/images/req-repl/old.png" rel="lightbox"><img src="/assets/images/req-repl/old-fit.png" class="fit" /></a>
+<a href="/assets/images/req-repl/old.png" rel="lightbox"><img src="<%= src_fit("req-repl/old.png") %>" class="fit" /></a>
 
 ## Social web
 
@@ -22,7 +22,7 @@ With the rise of rich, usually social applications almost every action triggers 
 You click a "Like" button and all of your friends should know this fact. Same way with Twitter, Gmail, Hackpad, Trello
 and soon probably almost every app.
 
-<a href="/assets/images/req-repl/new.png" rel="lightbox"><img src="/assets/images/req-repl/new-fit.png" class="fit" /></a>
+<a href="/assets/images/req-repl/new.png" rel="lightbox"><img src="<%= src_fit("req-repl/new.png") %>" class="fit" /></a>
 
 ## But don't we still live in the old times ?
 

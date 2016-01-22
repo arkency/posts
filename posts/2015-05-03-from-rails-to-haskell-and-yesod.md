@@ -10,7 +10,7 @@ img: "/assets/images/haskell-helloworld-fit.png"
 
 <p>
 	<figure align="center">
-		<img src="/assets/images/haskell-helloworld-fit.png">
+		<img src="<%= src_fit("haskell-helloworld.png") %>">
 	</figure>
 </p>
 
@@ -33,7 +33,7 @@ Would you be a Ruby developer if DHH didn't have his selling skills over 10 year
 
 <p>
 	<figure align="center">
-		<img src="/assets/images/haskell-typesafe-urls-fit.png">
+		<img src="<%= src_fit("haskell-typesafe-urls.png") %>">
 	</figure>
 </p>
 
