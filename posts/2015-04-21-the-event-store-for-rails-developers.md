@@ -6,7 +6,7 @@ publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore' ]
 newsletter: :arkency_form
-img: "/assets/images/events/city-people-fit.jpg"
+img: "events/city-people.jpg"
 ---
 
 <p>

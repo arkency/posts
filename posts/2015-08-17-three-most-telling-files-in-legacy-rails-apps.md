@@ -6,7 +6,7 @@ publish: true
 author: Marcin Grzywaczewski
 tags: [ 'legacy', 'rails', 'techniques', 'ruby' ]
 newsletter: :fearless_refactoring_1
-img: "/assets/images/three-most-telling-files-in-legacy-rails-apps/header-fit.jpg"
+img: "three-most-telling-files-in-legacy-rails-apps/header.jpg"
 ---
 
 <p>

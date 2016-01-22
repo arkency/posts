@@ -6,7 +6,7 @@ publish: true
 author: Tomasz Rybczyński
 newsletter: :arkency_form
 tags: [ 'domain', 'event' ]
-img: "/assets/images/events/events-fit.jpg"
+img: "events/events.jpg"
 ---
 
 <p>

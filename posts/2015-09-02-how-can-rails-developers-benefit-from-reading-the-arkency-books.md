@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :skip
-img: "/assets/images/books-benefits/books-fit.jpg"
+img: "books-benefits/books.jpg"
 ---
 
 <p>

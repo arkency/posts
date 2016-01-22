@@ -7,7 +7,7 @@ author: Robert Pankowecki
 tags: [ 'adapters', 'in-memory', 'rails' ]
 newsletter: :skip
 newsletter_inside: :clean
-img: "/assets/images/fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters-fit.jpg"
+img: "fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters.jpg"
 ---
 
 <p>

@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'sitemap', 'video', 'ruby' ]
 newsletter: :coaching
-img: "/assets/images/sitemap-video-ruby-rails/sitemap-fit.jpeg"
+img: "sitemap-video-ruby-rails/sitemap.jpeg"
 ---
 
 <p>

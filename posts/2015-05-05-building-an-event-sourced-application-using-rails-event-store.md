@@ -7,7 +7,7 @@ author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :skip
 newsletter: :arkency_form
-img: "/assets/images/events/eventstore-fit.jpg"
+img: "events/eventstore.jpg"
 ---
 
 <p>

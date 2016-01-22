@@ -6,7 +6,7 @@ publish: true
 author: Wiktor Mociun
 tags: [ 'es6', 'frontend', 'javascript' ]
 newsletter: :arkency_form
-img: "/assets/images/start-using-es6/lead-fit.jpg"
+img: "start-using-es6/lead.jpg"
 ---
 
 <p>

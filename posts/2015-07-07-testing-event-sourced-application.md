@@ -7,7 +7,7 @@ author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: :skip
 newsletter_inside: :rails_event_store
-img: "/assets/images/events/car-vehicle-motion-power-fit.jpg"
+img: "events/car-vehicle-motion-power.jpg"
 ---
 
 <p>

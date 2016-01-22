@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle', 'coaching' ]
 newsletter: :coaching
-img: "/assets/images/how-to-get-anything-done/best-time-for-action-is-now-fit.jpg"
+img: "how-to-get-anything-done/best-time-for-action-is-now.jpg"
 ---
 
 If you have **low self-esteem and constantly worry** (like I do), your own thoughts might be the

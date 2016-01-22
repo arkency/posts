@@ -6,7 +6,7 @@ publish: true
 author: Rafał Łasocha
 tags: [ 'rails_event_store', 'read model', 'event', 'event sourcing' ]
 newsletter: :arkency_form
-img: "/assets/images/introducing-read-models-in-your-legacy-application/books-fit.jpg"
+img: "introducing-read-models-in-your-legacy-application/books.jpg"
 ---
 
 <p>

@@ -7,7 +7,7 @@ author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :skip
 newsletter_inside: :rails_event_store
-img: "/assets/images/events/hitbythebus-fit.jpg"
+img: "events/hitbythebus.jpg"
 ---
 
 <p>

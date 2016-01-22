@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Andrzej Krzywda
 newsletter: :arkency_form
-img: "/assets/images/haskell-helloworld-fit.png"
+img: "haskell-helloworld.png"
 ---
 
 <p>

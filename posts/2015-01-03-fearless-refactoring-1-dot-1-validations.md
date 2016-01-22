@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :skip
 tags: [ 'foo', 'bar', 'baz' ]
-img: "/assets/images/validations-categories/157H-fit.jpg"
+img: "validations-categories/157H.jpg"
 ---
 
 <p>

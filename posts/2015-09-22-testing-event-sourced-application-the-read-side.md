@@ -7,7 +7,7 @@ author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: :skip
 newsletter_inside: :rails_event_store
-img: "/assets/images/events/black-and-white-car-vehicle-vintage-fit.jpg"
+img: "events/black-and-white-car-vehicle-vintage.jpg"
 ---
 
 <p>

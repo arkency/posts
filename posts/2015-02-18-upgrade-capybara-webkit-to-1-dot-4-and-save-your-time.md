@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :coaching
 tags: [ 'rails', 'capybara', 'webkit', 'bbq' ]
-img: "/assets/images/capybara-webkit/page_driver_block_unknown_urls-fit.jpg"
+img: "capybara-webkit/page_driver_block_unknown_urls.jpg"
 ---
 
 <p>

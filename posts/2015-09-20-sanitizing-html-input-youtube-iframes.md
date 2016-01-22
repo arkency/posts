@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'sanitize', 'html', 'security' ]
 newsletter: :arkency_form
-img: "/assets/images/rails-sanitize-html-inpute-iframe-embed-youtube-ted/editor-problem-fit.jpg"
+img: "rails-sanitize-html-inpute-iframe-embed-youtube-ted/editor-problem.jpg"
 ---
 
 Sometimes we give users tremendous power over the content generated

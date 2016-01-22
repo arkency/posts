@@ -6,7 +6,7 @@ publish: true
 author: Robert Krzysztoforski
 tags: [ 'mongodb', 'gridfs', 'sidekiq' ]
 newsletter: :arkency_form
-img: "/assets/images/how-to-store-large-files-on-mongodb/img-fit.jpg"
+img: "how-to-store-large-files-on-mongodb/img.jpg"
 ---
 
 <p>

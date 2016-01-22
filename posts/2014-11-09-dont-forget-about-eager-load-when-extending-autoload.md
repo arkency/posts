@@ -7,7 +7,7 @@ author: Robert Pankowecki
 tags: [ 'rails', 'eager_load_paths', 'autoload_paths', 'code', 'production', 'development', 'defined' ]
 newsletter: :skip
 newsletter_inside: :arkency_form
-img: "/assets/images/eager_load_autoload_paths/rails_path-fit.jpg"
+img: "eager_load_autoload_paths/rails_path.jpg"
 ---
 
 <p>

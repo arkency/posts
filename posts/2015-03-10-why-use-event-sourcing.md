@@ -7,7 +7,7 @@ author: Mirosław Pragłowski
 tags: [ 'domain', 'event', 'eventsourcing' ]
 newsletter: :skip
 newsletter: :arkency_form
-img: "/assets/images/events/eventsourcing-fit.jpg"
+img: "events/eventsourcing.jpg"
 ---
 
 <p>

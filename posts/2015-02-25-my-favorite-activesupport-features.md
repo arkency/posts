@@ -7,7 +7,7 @@ author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :react_books
 tags: [ 'rails', 'active support' ]
-img: "/assets/images/active-support/favorite-ruby-active-support-fit.jpg"
+img: "active-support/favorite-ruby-active-support.jpg"
 ---
 
 <p>

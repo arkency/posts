@@ -7,7 +7,7 @@ author: Robert Pankowecki
 tags: [ 'null', 'object', 'pattern', 'ruby' ]
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_1
-img: "/assets/images/null/null-object-ruby-pattern-fowler-fit.jpg"
+img: "null/null-object-ruby-pattern-fowler.jpg"
 ---
 
 <p>

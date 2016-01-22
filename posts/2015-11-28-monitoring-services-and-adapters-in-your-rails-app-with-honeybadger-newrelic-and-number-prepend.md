@@ -7,7 +7,7 @@ author: Robert Pankowecki
 tags: [ 'monitoring', 'instrumentation', 'rails', 'apps', 'new relic', 'honeybadger', 'prepend' ]
 newsletter: :skip
 newsletter_inside: :clean
-img: "/assets/images/ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app-fit.jpg"
+img: "ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app.jpg"
 ---
 
 <p>

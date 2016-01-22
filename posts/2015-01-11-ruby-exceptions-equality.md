@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :arkency_form
 tags: [ 'ruby', 'exceptions' ]
-img: "/assets/images/ruby-exception-equality/ruby-exception-surprise-face-fit.jpg"
+img: "ruby-exception-equality/ruby-exception-surprise-face.jpg"
 ---
 
 <p>

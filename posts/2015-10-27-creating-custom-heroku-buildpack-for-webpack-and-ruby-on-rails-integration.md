@@ -6,7 +6,7 @@ publish: true
 author: Marcin Grzywaczewski
 tags: [ 'frontend', 'assets', 'sprockets' ]
 newsletter: :react_books
-img: "/assets/images/creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header-fit.png"
+img: "creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header.png"
 ---
 
 <figure>

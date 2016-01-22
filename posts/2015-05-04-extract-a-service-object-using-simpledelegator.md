@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :skip
-img: "/assets/images/service_object_with_simple_delegate-fit.png"
+img: "service_object_with_simple_delegate.png"
 ---
 
 <p>

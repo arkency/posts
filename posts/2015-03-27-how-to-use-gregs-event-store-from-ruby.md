@@ -6,7 +6,7 @@ publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'eventstore', 'greg' ]
 newsletter: :arkency_form
-img: "/assets/images/events/stream-fit.jpg"
+img: "events/stream.jpg"
 ---
 
 <p>
