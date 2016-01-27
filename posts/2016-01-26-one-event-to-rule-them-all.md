@@ -10,12 +10,7 @@ newsletter_inside: :rails_event_store
 img: "events/cars-traffic-street-new-york.jpg"
 ---
 
-<p>
-  <figure>
-    <img src="<%= src_fit("events/cars-traffic-street-new-york.jpg") %>" width="100%">
-  </figure>
-</p>
-
+<img src="<%= src_fit("events/cars-traffic-street-new-york.jpg") %>" width="100%">
 
 Today I was asked a question:
 
