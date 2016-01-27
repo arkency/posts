@@ -7,7 +7,15 @@ author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: :skip
 newsletter_inside: :rails_event_store
+img: "events/cars-traffic-street-new-york.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="<%= src_fit("events/cars-traffic-street-new-york.jpg") %>" width="100%">
+  </figure>
+</p>
+
 
 Today I was asked a question:
 
