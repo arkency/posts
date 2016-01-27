@@ -11,19 +11,19 @@ newsletter_inside: :rails_event_store
 
 Today I was asked a question:
 
-> How to ensure that domain event published by one of aggregates is available in another aggregate?
+> How to ensure that domain event published by one of the aggregates is available in another aggregate?
 
-The story is simple. User, who is a member of some organization, is registering a new fuckup (maybe by using Slack command).
-The fuckup is reported by just entering its title. It is reported in context of organization where user belongs.
-The rest is not important here but what we want to achive is: modify a state of an `organization` aggregate and,
-in the same time, create new `fuckup` aggregate.
+The story is simple. The user, who is a member of some organization, is registering a new fuckup (maybe by using Slack command).
+The fuckup is reported by just entering its title. It is reported in the context of the organization where the user belongs.
+The rest is not important here but what we want to achieve is: modify a state of an `organization` aggregate and,
+at the same time, create new `fuckup` aggregate.
 
 <!-- more -->
 
 This is quite simple to implement using [Rails Event Store](https://github.com/arkency/rails_event_store) gem.
 
-First let's start with definition of a command that is executed when fuckup is registered and an domain event that is published
-when fukcup is reported.
+First let's start with the definition of a command that is executed when fuckup is registered and a domain event that is published
+when fuckup is reported.
 
 ```
 #!ruby
@@ -32,7 +32,7 @@ FuckupReported      = Class.new(RailsEventStore::Event)
 ```
 
 Now we need a handler for our command. It should load an `Organization` aggregate from event store, execute domain logic responsible for reporting
-new fuckup and store all published domain events in event store.
+new fuckup and store all published domain events in the event store.
 
 ```
 #!ruby
@@ -40,24 +40,27 @@ module ApplicationServices
   class OrganizationService
     def repository
       event_store = RailsEventStore::Client.new.tap do |es|
-        es.subscribe(ApplicationServices::OnFuckupReported.new, ['FuckupReported'])
+        es.subscribe(
+          ApplicationServices::OnFuckupReported.new,
+          ['FuckupReported'])
       end
-      @repository ||= RailsEventStore::Repositories::AggregateRepository.new(event_store)
+      @repository ||= RailsEventStore::Repositories::AggregateRepository.new(
+        event_store)
     end
 
-    def report_fuckup(report_fuckup_command)
-      org = Organization.new(report_fuckup_command.organization_id).tap do |aggregate|
+    def report_fuckup(command)
+      org = Organization.new(command.organization_id).tap do |aggregate|
         repository.load(aggregate)
       end
-      org.report_fuckup(report_fuckup_command.title)
+      org.report_fuckup(command.title)
       repository.store(org)
     end
   end
 end
 ```
 
-Our command handler needs an `Organization` aggregate. It should have all logic needed by organization, does not matter now what it could be.
-One thing to notice is that `Organization` does not create new `Fuckup` aggregate. Instead it "just" publish an FuckupReported domain event.
+Our command handler needs an `Organization` aggregate. It should have all logic needed by the organization, does not matter now what it could be.
+One thing to notice is that `Organization` does not create new `Fuckup` aggregate. Instead it "just" publishes a FuckupReported domain event.
 
 ```
 #!ruby
@@ -71,7 +74,10 @@ module Domain
     end
 
     def report_fuckup(fuckup_title)
-      apply FuckupReported.new(data: { title: fuckup_title, organization_id: id, public: public_fuckups })
+      apply FuckupReported.new(data: {
+        title: fuckup_title,
+        organization_id: id,
+        public: public_fuckups })
     end
 
     attr_reader :id
@@ -85,7 +91,7 @@ module Domain
 end
 ```
 
-So, how is `Fuckup` created? The answer is: by handling an domain event. The event handler should create new `Fuckup` aggregate (because we don't have any to load it from event store) and just store it.
+So, how is `Fuckup` created? The answer is: by handling a domain event. The event handler should create new `Fuckup` aggregate (because we don't have any to load it from event store) and just store it.
 
 ```
 #!ruby
@@ -127,8 +133,8 @@ module Domain
 end
 ```
 
-With that implementation our action rsponsible for reporting a fuckup should only execute our command handler.
-Both aggretates have the domain events stored in its own stream, however as you may notice by comparing event_id
+With that implementation, our action responsible for reporting a fuckup should only execute our command handler.
+Both aggregates have the domain events stored in its own stream, however as you may notice by comparing event_id
 this is still the same domain event.
 
 ```
