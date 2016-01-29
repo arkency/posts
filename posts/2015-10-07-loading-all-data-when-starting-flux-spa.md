@@ -1,8 +1,8 @@
 ---
 title: "Loading all data when starting Flux SPA"
-created_at: 2015-10-07 13:39:27 +0200
+created_at: 2016-01-22 13:39:27 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'flux', 'altjs' ]
 newsletter: :react_books
@@ -15,7 +15,7 @@ img: "loading-all-data-when-starting-flux-spa/header.jpg"
   </figure>
 </p>
 
-Recently we've working on the application which is a typical SPA which use Flux approach.
+Recently we've been working on an application which is a typical SPA which uses the Flux approach.
 
 After some time we had a problem that besides our frontend being SPA, **each time we clicked on link leading to some "page", we're loading data again, even if this data was loaded before**. We've decided that the simplest solution would be to load all data in the beginning and display an animation when it's loading.
 
