@@ -1,6 +1,6 @@
 ---
 title: "Drop this before validation and just use a method"
-created_at: 2016-01-22 16:02:10 +0100
+created_at: 2016-01-29 10:02:10 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
