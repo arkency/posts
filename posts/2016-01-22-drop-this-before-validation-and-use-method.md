@@ -67,7 +67,7 @@ something.code = " 123 "
 something.code
 # => 123
 
-something.save(validate: false)`
+something.save(validate: false)
 ```
 
 I especially like to impose such cleaning rules on objects used for crossing boundaries such as **Command** or **Form objects**.
