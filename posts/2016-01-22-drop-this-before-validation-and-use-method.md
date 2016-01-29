@@ -48,6 +48,17 @@ class Something
 end
 ```
 
+...or...
+
+```
+#!ruby
+class Something
+  def title=(val)
+    super(val.strip)
+  end
+end
+```
+
 ...depending on the way you keep the data inside the class. Various gems use various ways.
 
 Here is why I like it that way:
