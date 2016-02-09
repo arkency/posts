@@ -80,7 +80,7 @@ Heck, you can even move to DDD from a typical Rails codebase, if that's your kin
 
 OK, so that was the first reason when to use Rails - when you want to start quickly and you know how to gradually improve the code later on.
 
-If you want to go with Roda or Sinatra, but later you actually followe the active record pattern of just using the same object from the db layer to the view, then I don't understand how this is different from just using Rails. I'd go with Rails.
+If you want to go with Roda or Sinatra, but later you actually follow the active record pattern of just using the same object from the db layer to the view, then I don't understand how this is different from just using Rails. I'd go with Rails.
 
 If I'm about to start a Rails app, the time-to-market is not a major factor, then I'd consider things like roda or sinatra. But in that case, I'd go with architecture like DDD, where I take care of the object design on my own.
 
