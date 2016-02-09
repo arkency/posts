@@ -84,6 +84,9 @@ If you want to go with Roda or Sinatra, but later you actually follow the active
 
 If I'm about to start a Rails app, the time-to-market is not a major factor, then I'd consider things like roda or sinatra. But in that case, I'd go with architecture like DDD, where I take care of the object design on my own.
 
+Rails is actually very good for the http layer - I don't see the need to replace it with other libs.
+ActiveRecord as a persistence library is also good enough. As long as the AR object don't leak to your domain, then it's cool. It is overcomplicated, but if you just use in limited ways, creating your own private API for it - then you have the persistence problem solved.
+
 ## The future of Rails
 
 I see a bright future for Rails. The Rails 5 release is controversial to many, mainly due to ActionCable. I'm not critizing it. Without going into details of the ActionCable infrastructure (there are parts worth some critique), the whole idea is making Rails even more attractive for the typical backend+frontend setups. You will be able to do cooler things faster.
