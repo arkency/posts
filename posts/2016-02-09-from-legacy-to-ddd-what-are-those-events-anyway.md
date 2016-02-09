@@ -2,7 +2,7 @@
 title: "From legacy to DDD: What are those events anyway?"
 created_at: 2016-02-09 23:48:04 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -39,6 +39,7 @@ It's like someone saying "Please do it" to our system.
 Usually handling commands in the system, causes some new events to be published.
 
 **Commands are the input**.
+
 **Events are the output**.
 
 Both commands and events are almost like only data structures. They contain some "params".
@@ -48,4 +49,5 @@ It's important to note, they're not responsible for "handling" any action.
 For now, just remember:
 
 **commands are requests**
+
 **events are facts**
