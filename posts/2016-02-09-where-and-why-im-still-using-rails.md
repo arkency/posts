@@ -13,7 +13,7 @@ I've had many interesting conversations with experienced Ruby/Rails programmers 
 
 ## Ruby conferences
 
-Some of the conversations started when we talked about Ruby conferences and when I was explaining the mission behind the [wroc_love.rb](http://www.wrocloverb.com) conference. The mission is to serve the *experienced* Ruby programmers as they often are not an attractive target for other Ruby conferences. 
+Some of the conversations started when we talked about Ruby conferences and when I was explaining the mission behind the [wroc_love.rb](http://www.wrocloverb.com) conference. The mission is to serve the *experienced* Ruby programmers.
 
 According to Uncle Bob [estimates](http://www.infoq.com/presentations/history-future-programming-languages), we double the number of programmers in the world every 5 years. It means that at any point of time, we have half of the programmers having less than 5 years of experience. That's a lot of people. 
 
