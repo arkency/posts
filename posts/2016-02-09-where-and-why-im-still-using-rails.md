@@ -2,12 +2,12 @@
 title: "Where and why I'm still using Rails"
 created_at: 2016-02-09 11:50:16 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
 
-I've had many interesting conversations with experienced Ruby/Rails programmers recently. One of the topics that often pops up is when it makes sense (for us) to still use Rails, given the variety of other choices. This blogpost aims to summarize some of views here. 
+I've had many interesting conversations with experienced Ruby/Rails programmers recently. One of the topics that often pops up is when it makes sense (for us) to still use Rails, given the variety of other choices. This blogpost aims to summarize some of the views here. 
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ Some of the conversations started when we talked about Ruby conferences and when
 
 According to Uncle Bob [estimates](http://www.infoq.com/presentations/history-future-programming-languages), we double the number of programmers in the world every 5 years. It means that at any point of time, we have half of the programmers having less than 5 years of experience. That's a lot of people. 
 
-Many conferences, rightfully, aim to educate those new people. They do either by making the whole conference newbie-friendly or they try to find the balance mixing the "easy" and "hard" talks.
+Many conferences, rightfully, aim to educate those new people. They do it either by making the whole conference newbie-friendly or they try to find the balance mixing the "easy" and "hard" talks.
 
 It's also a visible trend at Ruby conferences to present more and more non-Ruby talks. Some of them are the typical "soft" talks, while others are focusing on some other technologies (Elixir, React.js, Clojure, Rust, Go).
 
@@ -70,11 +70,11 @@ I still use Rails for the first version of the application. Me (and other people
 
 I'm yet to find an alternative to Rails which is so productivity-oriented.
 
-There's the whole issue with rails-dependent gems. There are some which are more easy to remove/replace when needed - like [Devise](https://github.com/plataformatec/devise). While, there are some crazy gems which introduce huge coupling and are harder to replace (in my experience). This is the border for me. If I'm tempted to introduce some heavily-coupled gems then it's time to slow down and do it the non-rails way.
+There's the whole issue with the rails-dependent gems. There are some which are more easy to remove/replace when needed - like [Devise](https://github.com/plataformatec/devise). While, there are some crazy gems which introduce huge coupling and are harder to replace (in my experience). This is the border for me. If I'm tempted to introduce some heavily-coupled gems then it's time to slow down and do it the non-rails way.
 
-Yes, the Rails patterns make the code difficult to maintain in the long run. But in the shorter perspective they're just hard to replicate in other environments.
+Yes, the Rails patterns make the code difficult to maintain in the long run. But in the shorter perspective they're just hard to replicate in other environments. I can't be faster with other tooling. There's obviously the skills bias here - I'm fast with Rails, so I'm going to stick with what I know. But that's the point of this post - to show you that if you're fast with Rails then you can enjoy staying with Rails for longer.
 
-My approach of starting with Rails is based on the understanding that code is not set in stone. You can change it later.
+**My approach of starting with Rails is based on the understanding that code is not set in stone**. You can change it later.
 
 You can decouple your app from the framework step by step and [I wrote a whole book about it](http://rails-refactoring.com).
 
