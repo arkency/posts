@@ -68,6 +68,8 @@ I still use Rails for the first version of the application. Me (and other people
 
 I'm yet to find an alternative to Rails which is so productivity-oriented.
 
+There's the whole issue with rails-dependent gems. There are some which are more easy to remove/replace when needed - like Devise. While, there are some crazy gems which introduce huge coupling and are harder to replace (in my experience). This is the border for me. If I'm tempted to introduce some heavily-coupled gems then it's time to slow down and do it the non-rails way.
+
 Yes, the Rails patterns make the code difficult to maintain in the long run. But in the shorter perspective they're just hard to replicate in other environments.
 
 My approach of starting with Rails is based on the understanding that code is not set in stone. You can change it later.
