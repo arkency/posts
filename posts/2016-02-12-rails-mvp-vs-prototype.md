@@ -2,7 +2,7 @@
 title: "Rails: MVP vs prototype"
 created_at: 2016-02-12 20:07:59 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -98,4 +98,5 @@ A prototype is something you can click on, while MVP is a prototype that is prod
 
 
 PS. Janko, thanks for your valuable comment!
+
 PS2. If you'd like to improve your React/JavaScript skills, then our [free React.js koans](https://github.com/arkency/reactjs_koans) are a perfect place to start!
