@@ -56,7 +56,7 @@ Did you look at apotonick's Trailblazer? [Have you read his book?](http://trailb
 
 ## But Rails makes developers stupid
 
-It's now more popular to criticize Rails that it was before. Once you get past the things that are possible with Rails you see the problems with some of its patterns - the active record pattern being the main one.
+It's now more popular to criticize Rails than it was before. Once you get past the things that are possible with Rails you see the problems with some of its patterns - the active record pattern being the main one.
 
 Suddenly, we realize that Rails teaches new developers bad habits. [We're worried that Rails makes other developers stupid](http://andrzejonsoftware.blogspot.com/2014/04/be-careful-with-rails-way.html). We try to show that [there's a world beyond The Rails Way](http://blog.arkency.com/2014/12/beyond-the-rails-way/).
 
@@ -80,7 +80,7 @@ You can decouple your app from the framework step by step and [I wrote a whole b
 
 You can gradually separate the frontend and go into React.js (recommended!) and/or Redux. We wrote a book how to use [React.js with Rails](http://blog.arkency.com/rails-react/), but we also wrote a book full of examples (and +10 repos!) [how to start with React.js](http://blog.arkency.com/rails-react/). We have [a huge list of Arkency React.js resources](http://blog.arkency.com/2015/11/arkency-react-dot-js-resources/). I see the React/Redux movement as my frontend future.
 
-Heck, you can even move to DDD from a typical Rails codebase, if that's your king of thing (it is for me).
+Heck, you can even move to DDD from a typical Rails codebase, if that's your kind of thing (it is for me).
 
 OK, so that was the first reason when to use Rails - when you want to start quickly and you know how to gradually improve the code later on.
 
@@ -93,7 +93,7 @@ ActiveRecord as a persistence library is also good enough. As long as the AR obj
 
 ## The future of Rails
 
-I see a bright future for Rails. The Rails 5 release is controversial to many, mainly due to [ActionCable](https://github.com/rails/actioncable). I'm not critizing it. Without going into details of the ActionCable infrastructure (there are parts worth some critique), the whole idea is making Rails even more attractive for the typical backend+frontend setups. You will be able to do cooler things faster.
+I see a bright future for Rails. The Rails 5 release is controversial to many, mainly due to [ActionCable](https://github.com/rails/actioncable). I'm not criticizing it. Without going into details of the ActionCable infrastructure (there are parts worth some critique), the whole idea is making Rails even more attractive for the typical backend+frontend setups. You will be able to do cooler things faster.
 
 Rails is a cool marketing product for many programmers. Yes, we live in times, where frameworks are products and require marketing. 
 
