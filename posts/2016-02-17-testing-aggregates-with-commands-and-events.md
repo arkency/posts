@@ -45,10 +45,20 @@ There will be a concept of organizations, but for now I just have the concept of
 
 I implemented the host object as the aggregate. At the moment it should know how to:
 
-*register a user
-*chossing a login for the user
-*providing the password
-*authenticate
+* register a user
+* chossing a login for the user
+* providing the password
+* authenticate
+
+Looking at different kinds of aggregates implementations, I decided to go with the way where the aggregate accepts a command as the input. It makes the aggregate closer to an actor. It's not an actor in the meaning of concurrent computation, but an actor in the conceptual meaning.
+
+This means, the host takes 4 kinds of messages/commands as the input. The expected output for each command is an event or a set of events.
+
+For example, if we have a RegisterUser command, then if it's successfully handled, we expect an UserRegistered event.
+
+In this case, I also went with Event Sourcing the aggregate. It means that an aggregate can be composed from events. 
+
+BTW, here we get a bit closer to the Functional Programming way of thinking. I didn't go with full FP yet, but I'm considering it. With "full" FP the objects here wouldn't mutate state, but they would return new objects every time a new event is applied.
 
 
 
