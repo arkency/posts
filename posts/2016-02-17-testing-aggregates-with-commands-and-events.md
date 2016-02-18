@@ -37,6 +37,19 @@ Before releasing it to public, I wanted to implement the concept of a typical au
 
 This is where I got sidetracked a bit. 
 
+It's our internal project and not a client project, so there's a bit more freedom to experiment. As you may know, we talk a lot about going from legacy to DDD. That's what we usually do. It's not that often that we do DDD from scratch. So, the fuckups app core is a legacy Rails Way approach. But, authentication is another bounded context. I can have the excitement of starting a new "subproject" here.
+
+Long story, short, I started implementing what I call `access` library/gem. A separated codebase responsible for authentication, not coupled to fuckups in any way.
+
+There will be a concept of organizations, but for now I just have the concept of Host (a container for organizations). We can think of it as the host for other tenants (organizations).
+
+I implemented the host object as the aggregate. At the moment it should know how to:
+
+*register a user
+*chossing a login for the user
+*providing the password
+*authenticate
+
 
 
 ```
