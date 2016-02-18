@@ -4,7 +4,7 @@ created_at: 2016-02-17 12:26:59 +0100
 kind: article
 publish: false
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: :skip
 ---
 
 Once you start switching to using aggregates in your system (as opposed to say, ActiveRecord objects), you will need to find good ways of testing those objects. This blogpost is an attempt to explore one of the possible ways.
