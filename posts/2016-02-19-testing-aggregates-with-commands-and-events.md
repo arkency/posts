@@ -99,7 +99,7 @@ BTW, here we get a bit closer to the Functional Programming way of thinking. I d
   end
 ```
 
-If you're interested what's the AggregateRoot part, here is the current implementation:
+If you're interested what's the AggregateRoot part, here is the current implementation (it's part of our [aggregate_root](https://github.com/arkency/aggregate_root) gem):
 
 ```
 #!ruby
@@ -137,7 +137,7 @@ Exposing such thing publicly is not the perfect thing, but it works and solves t
 How can we test it?
 
 In the beginning, I started testing the aggregate by preparing state with events. Then I applied a command and asserted the `unpublished_events`.
-It works, but the downside is similar to using FactoryGirl for ActiveRecord testing. There's the risk of using events for the state, which are not possible to happen in the real world usage.
+It works, but the downside is [similar to using FactoryGirl for ActiveRecord testing](http://blog.arkency.com/2014/06/setup-your-tests-with-). There's the risk of using events for the state, which are not possible to happen in the real world usage.
 
 ```
 #!ruby
@@ -156,6 +156,8 @@ It works, but the downside is similar to using FactoryGirl for ActiveRecord test
       verify_scenario(input_events, command, expected_events)
     end
 ```
+
+If you like this approach, we show it also as [a way to test the read models](http://blog.arkency.com/2015/09/testing-event-sourced-application-the-read-side/) and separately [for the write side](http://blog.arkency.com/2015/07/testing-event-sourced-application/).
 
 Another approach that I'm aware of is by treating the aggregate as a whole and test with whole scenarios, by applying a list of commands.
 
@@ -188,4 +190,6 @@ module Access
 end
 ```
 
-I like this approach. The only downside is that I need to assert the whole list of events here. This is no longer just testing handling one command. It's testing the whole unit (aggregate with commands, events and value objects) with scenarios.
+I like this approach. The only downside is that I need to assert the whole list of events here. This is no longer just testing handling one command, though. It's testing the whole unit (aggregate with commands, events and value objects) with scenarios. In this case, testing all events kind of makes sense. What's your opinion here?
+
+If you're stuck with a more Rails Way code but you like the command-driven approach, then form objects may be a good step for you. Form objects are like the Command for the whole app, not just the aggregate, but their overall idea is similar. We wrote more about form objects in our ["Fearless Refactoring: Rails Controllers" book](http://rails-refactoring.com).
