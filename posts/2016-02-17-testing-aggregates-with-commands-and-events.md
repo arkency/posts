@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: :skip
 ---
 
-Once you start switching to using aggregates in your system (as opposed to say, ActiveRecord objects), you will need to find good ways of testing those objects. This blogpost is an attempt to explore one of the possible ways.
+Once you start switching to using aggregates in your system (as opposed to say, ActiveRecord objects), you will need to find good ways of testing those aggregate objects. This blogpost is an attempt to explore one of the possible ways.
 
 <!-- more -->
 
@@ -21,7 +21,7 @@ Every Friday we have a weekly sync. [As a remote/async company](http://blog.arke
 
 One part is usually the most interesting is the Fuckups part. We iterate through them, one person says what happened and we try to discuss and find the root problems. Once a fuckup is discussed we mark it as "discussed".
 
-The app is a replacement for hackpad. In its core, it's a simple list, where we append new things. 
+The app is a replacement for the hackpad. In its core, it's a simple list, where we append new things. 
 
 I tried to follow the "Start from the middle" approach here and it mostly worked. It's far from perfect, but we're able to use it now. One nice thing is that we can add a new fuckup to the list by a simple Slack command. 
 
@@ -31,13 +31,13 @@ I tried to follow the "Start from the middle" approach here and it mostly worked
 
 No need to leave Slack anymore.
 
-Although the app is already "in production", new organizations can't start using it yet. The main reason was that I started from the middle with authentication by implementing the Github OAuth.
+Although the app is already "in production", new organizations can't start using it yet. The main reason was that I started from the middle with authentication by implementing the Github OAuth. This implementation requires Github permissions to read people organizations (because not all memberships are public). 
 
 Before releasing it to public, I wanted to implement the concept of a typical authentication - you know - logins/passwords, etc.
 
 This is where I got sidetracked a bit. 
 
-It's our internal project and not a client project, so there's a bit more freedom to experiment. As you may know, we talk a lot about going from legacy to DDD. That's what we usually do. It's not that often that we do DDD from scratch. So, the fuckups app core is a legacy Rails Way approach. But, authentication is another bounded context. I can have the excitement of starting a new "subproject" here.
+It's our internal project and not a client project, so there's a bit more freedom to experiment. As you may know, we talk a lot about [going from legacy to DDD](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/). That's what we usually do. It's not that often that we do DDD from scratch. So, the fuckups app core is a legacy Rails Way approach. But, authentication is another bounded context. I can have the excitement of starting a new "subproject" here.
 
 Long story, short, I started implementing what I call `access` library/gem. A separated codebase responsible for authentication, not coupled to fuckups in any way.
 
@@ -83,8 +83,109 @@ BTW, here we get a bit closer to the Functional Programming way of thinking. I d
           provide_password(command.user_id, command.password)
       end
     end
+
+		private
+
+    def register_user(user_id)
+      apply(UserRegistered.new(data: {user_id: user_id}))
+    end
+
+
+    def apply_user_registered(event)
+      @users[event.data[:user_id]] = RegisteredUser.new
+    end
+
     # ...
   end
 ```
 
+If you're interested what's the AggregateRoot part, here is the current implementation:
 
+```
+#!ruby
+module RailsEventStore
+  module AggregateRoot
+    def apply(event)
+      apply_event(event)
+      unpublished_events << event
+    end
+
+    def apply_old_event(event)
+      apply_event(event)
+    end
+
+    def unpublished_events
+      @unpublished_events ||= []
+    end
+
+    private
+
+    def apply_event(event)
+      send("apply_#{event.event_type.underscore.gsub('/', '_')}", event)
+    end
+
+  end
+end
+```
+
+What's worth noticing is that the output of each aggregate command handling is an event (or a set of events). We collect them in the `@unpublished_events` and expose publicly.
+
+Exposing such thing publicly is not the perfect thing, but it works and solves the problem of a potential dependency on some kind of event store.
+
+# Testing
+
+How can we test it?
+
+In the beginning, I started testing the aggregate by preparing state with events. Then I applied a command and asserted the `unpublished_events`.
+It works, but the downside is similar to using FactoryGirl for ActiveRecord testing. There's the risk of using events for the state, which are not possible to happen in the real world usage.
+
+```
+#!ruby
+    def test_happy_path
+      input_events = [
+          UserRegistered.new(data: {user_id: "123"}),
+          UserLoginChosen.new(data: {user_id: "123", login: "andrzej"}),
+          UserPasswordProvided.new(data: {user_id: "123", password: "12345678"})
+      ]
+      command = Authenticate.new(Login.new("andrzej"), Password.new("12345678"))
+
+      expected_events = [
+          UserAuthenticated.new(data: {user_id: "123"})
+      ]
+
+      verify_scenario(input_events, command, expected_events)
+    end
+```
+
+Another approach that I'm aware of is by treating the aggregate as a whole and test with whole scenarios, by applying a list of commands.
+
+This is the command-driven testing in practice:
+
+```
+#!ruby
+module Access
+  class AuthenticateTest < Minitest::Test
+
+    def test_happy_path
+      commands = [
+          RegisterUser.new("123"),
+          ChooseLogin.new("123", Login.new("andrzej")),
+          ProvidePassword.new("123", Password.new("12345678")),
+          Authenticate.new(Login.new("andrzej"), Password.new("12345678"))
+      ]
+      expected_events = [
+          UserRegistered.new(data: {user_id: "123"}),
+          UserLoginChosen.new(data: {user_id: "123", login: "andrzej"}),
+          UserPasswordProvided.new(data: {user_id: "123", password: "12345678"}),
+          UserAuthenticated.new(data: {user_id: "123"})
+      ]
+
+      host = Host.new
+      commands.each { |cmd| host.handle(cmd) }
+      assert_events_equal(expected_events, host.unpublished_events)
+    end
+  end
+end
+```
+
+I like this approach. The only downside is that I need to assert the whole list of events here. This is no longer just testing handling one command. It's testing the whole unit (aggregate with commands, events and value objects) with scenarios.
