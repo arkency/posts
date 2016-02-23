@@ -52,7 +52,7 @@ JSON API support for AMS comes with the newest unrealeased versions, currently i
 gem 'active_model_serializers', '0.10.0.rc4'
 ```
 
-That's it. Because it is the RC version it is unfortunately not supporting the whole JSON API spec (for example it's hard to embed links inside relationships), but the codebase is still growing. What's good is that [AMS will ship by default with Rails 5](https://medium.com/@joaomdmoura/the-future-of-ams-e5f9047ca7e9#.pp27sncwz), so you won't need to install it when Rails 5 will get released.
+That's it. Because it is the RC version it is unfortunately not supporting the whole JSON API spec (for example it's hard to embed links inside relationships), but the codebase is still growing. 
 
 ## Configuration
 
