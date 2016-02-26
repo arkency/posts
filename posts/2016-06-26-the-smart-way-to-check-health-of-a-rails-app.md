@@ -3,7 +3,7 @@ title: "The smart way to check health of a Rails app"
 created_at: 2016-02-26 17:05:19 +0100
 kind: article
 publish: false
-author: anonymous
+author: Szymon Fiedler
 tags: [ 'rails', 'health check', 'ops' ]
 newsletter: :arkency_form
 ---
@@ -37,7 +37,8 @@ We decided to implement `/health` in our app. Nonetheless, we agreed that it's a
 The gem consists of Middleware which is being attached close to the response in the app's request-response cycle. It checks if application responds to such route, it not it responds to the client with `204 No Content`.
 We used such approach not to override already existing endpoints in an app. Just in case, someone is developing app related to _health_.
 
-``` ruby
+```
+#!ruby
 module Wet
   module HealthEndpoint
     class Middleware
@@ -63,7 +64,8 @@ end
 
 That's how it's attached to the app:
 
-```ruby
+```
+#!ruby
 require 'wet/health_endpoint/middleware'
 
 module Wet
@@ -86,6 +88,7 @@ to your Gemfile and run `bundle install`.
 ## How to check if it works
 
 You can simply run a _curl_ command
+
 ```
 $ curl -I http://example.com/health
 HTTP/1.1 204 No Content
@@ -97,7 +100,8 @@ Connection: close
 
 or even better, write a test:
 
-``` ruby
+```
+#!ruby
 require 'test_helper'
 
 class ApplicationHasHealthMonitoringEnabled < ActionDispatch::IntegrationTest
@@ -116,7 +120,7 @@ Reverse proxies like [Haproxy](https://cbonte.github.io/haproxy-dconv/configurat
 
 Please see the sample _Haproxy_ configuration:
 
-``` shell
+```
 backend my_fancy_app
   option httpcheck get /health
   http-check expect status 204
