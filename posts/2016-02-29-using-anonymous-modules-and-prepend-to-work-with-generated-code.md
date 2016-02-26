@@ -10,13 +10,13 @@ newsletter_inside: :clean
 ---
 
 In my previous blog-post [about using setters](/2016/01/drop-this-before-validation-and-use-method/)
-one of the commenter mentioned a case in which the setter methods are created by a gem. How can we
-overwrite the setters in such situation?
+one of the commenter mentioned a case in which **the setter methods are created by a gem. How can we
+overwrite the setters in such situation?**
 
 <!-- more -->
 
 Imagine a gem `awesome` which gives you `Awesome` module that you could use in your class
-to get  `awesome=` getter and `awesome=(val)` setter with an interesting logic.
+to get  `awesome` getter and `awesome=(val)` setter with an interesting logic.
 You would use it like that:
 
 ```
@@ -147,7 +147,8 @@ module Awesome
 end
 ```
 
-That way the module with methods generated using meta-programming techniques are lower in the hierarchy than the class itself.
+That way the module, with methods generated using meta-programming techniques, is lower
+in the hierarchy than the class itself.
 
 ```
 #!ruby
@@ -155,7 +156,7 @@ Foo.ancestors
 # => [Foo, #<Module:0x000000018062a8>, Object, Kernel, BasicObject]
 ```
 
-Which makes it possible for the users of your gem to just use old school `super`...
+Which makes it possible for the users of your gem to just use old school `super` ...
 
 ```
 #!ruby
