@@ -1,1 +1,0 @@
-content/posts/2016-02-26-the-smart-way-to-check-health-of-a-rails-app.md
