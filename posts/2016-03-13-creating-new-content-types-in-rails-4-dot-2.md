@@ -46,7 +46,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.jsonapi do  
         Event.find(params[:id]).tap do |event|
-          render json: EventSerializer.new(self, event.conference_id).serialize(event)
+          serializer = EventSerializer.new(self, event.conference_id)
+          render json: serializer.serialize(event)
       end
 
       format.all { head :bad_request }
