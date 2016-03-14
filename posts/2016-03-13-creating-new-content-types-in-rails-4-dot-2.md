@@ -2,7 +2,7 @@
 title: "Creating new content types in Rails 4.2"
 created_at: 2016-03-13 00:57:16 +0100
 kind: article
-publish: false
+publish: true 
 author: Marcin Grzywaczewski
 tags: [ 'rails', 'jsonapi', 'paramsparser' ]
 newsletter: :arkency_form
