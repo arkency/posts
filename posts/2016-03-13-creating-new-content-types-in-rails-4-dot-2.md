@@ -140,8 +140,7 @@ Rails loads this middleware by default without optional parameter set. What you 
 #!ruby
 # check app name in config/application.rb
 middlewares = YourAppName::Application.config.middleware
-middlewares.delete "ActionDispatch::ParamsParser"
-middlewares.use(ActionDispatch::ParamsParser, {
+middlewares.swap(ActionDispatch::ParamsParser, ActionDispatch::ParamsParser, {
   Mime::Type.lookup('application/vnd.api+json') => lambda do |body|
     ActiveSupport::JSON.decode(body)
   end
@@ -151,9 +150,8 @@ middlewares.use(ActionDispatch::ParamsParser, {
 Let's take a look at this code in a step by step manner:
 
 1. First of all, the variable called `middlewares` is created. It is an object of [`MiddlewareStackProxy`](http://api.rubyonrails.org/classes/Rails/Configuration/MiddlewareStackProxy.html) type which represents a chain of your loaded middlewares.
-2. `delete` is responsible for deleting the old version of the `ParamsParser` from the chain. We need it because the old one is not initialized with our custom addition of an added parser.
-3. `use` is a method for adding a new middleware. In this use case we're not adding our own middleware, but we're recreating the middleware Rails used before - but with custom arguments.
-4. The `parsers` object is keyed with identifiers of a content type which can be accessed using `Mime::Type.lookup` method. A value is a lambda that will be called upon request's body every time the new request arrives - in this case it is just calling method for parsing the body as JSON. The result should be an object representing parameters.
+2. `swap` is a function to replace the chosen middleware with another middleware. In this use case we're replacing the default `ActionDispatch::ParamsParser` middleware with the same type of middleware, but we're recreating it with custom arguments. `swap` also takes care of putting the middleware in the same place that the previous middleware sat before - that can avoid us subtle errors that could be possible with wrong order of middlewares.
+3. The `parsers` object is keyed with identifiers of a content type which can be accessed using `Mime::Type.lookup` method. A value is a lambda that will be called upon request's body every time the new request arrives - in this case it is just calling method for parsing the body as JSON. The result should be an object representing parameters.
 
 As you can see this is quite powerful. This is a very primitive use case. But this approach is flexible enough to extract parameters from any content type. This can be used to pass `*.Plist` files used by Apple technologies as requests (I saw such use cases) and, in fact, anything. Waiting for someone crazy enough to pass `*.docx` documents and extracting params out of it! :)
 
