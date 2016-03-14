@@ -56,7 +56,7 @@ class EventsController < ApplicationController
           render json: serializer.serialize(event)
       end
 
-      format.all { head :bad_request }
+      format.all { head :not_acceptable }
     end
   end
 end
