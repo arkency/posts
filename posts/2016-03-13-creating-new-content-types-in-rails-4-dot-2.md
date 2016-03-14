@@ -6,8 +6,14 @@ publish: false
 author: Marcin Grzywaczewski
 tags: [ 'rails', 'jsonapi', 'paramsparser' ]
 newsletter: :arkency_form
+img: "creating-custom-types/header.jpg"
 ---
 
+<p>
+  <figure>
+    <img src="<%= src_fit("creating-custom-types/header.jpg") %> alt="" width="100%" />
+  </figure>
+</p>
 
 While working on the application for [React.js+Redux workshop](http://blog.arkency.com/2016/02/how-to-teach-react-dot-js-properly-a-quick-preview-of-wroc-love-dot-rb-workshop-agenda/) I've decided to follow the [JSON API](http://blog.arkency.com/2016/02/how-and-why-should-you-use-json-api-in-your-rails-api/) specification of responses for my API endpoints. Apart from a fact that following the spec allowed me to avoid bikeshedding, there was also an interesting issue I needed to solve with Rails.
 
