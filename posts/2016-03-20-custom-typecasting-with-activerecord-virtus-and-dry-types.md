@@ -1,10 +1,10 @@
 ---
-title: "Custom type-casting with ActiveRecord, Virtus and Dryrb"
-created_at: 2016-02-29 15:28:50 +0100
+title: "Custom type-casting with ActiveRecord, Virtus and dry-types"
+created_at: 2016-03-20 12:38:50 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-rb' ]
+tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]
 newsletter: :arkency_form
 ---
 
@@ -21,7 +21,7 @@ And let's continue with the simple example of stripped string.
 
 <!-- more -->
 
-## Active Record 4.2+
+### Active Record 4.2+
 
 ```
 #!ruby
@@ -46,7 +46,7 @@ p.title
 # => "Use Rails"
 ```
 
-## Virtus
+### Virtus
 
 ```
 #!ruby
@@ -85,18 +85,19 @@ a.city
 # => "Wrocław"
 ```
 
-## Dry.rb
+### dry-types 0.6
 
 ```
 #!ruby
 module Types
-  StrippedString = Dry::Data::Type.new(->(val){ String(val).strip }, primitive: String)
+  include Dry::Types.module
+  StrippedString = String.constructor(->(val){ String(val).strip })
 end
 ```
 
 ```
 #!ruby
-class Post < Dry::Data::Struct
+class Post < Dry::Types::Struct
   attribute :title, Types::StrippedString
 end
 ```
@@ -107,3 +108,14 @@ p = Post.new(title: " Use dry ")
 p.title
 # => "Use dry"
 ```
+
+## Conclusion
+
+If you want to improve type casting for you Active Record class or if you need it for a different layer (e.g.
+a Form Object or [Command Object](http://www.slideshare.net/robert.pankowecki/2-years-after-the-first-event-the-saga-pattern/4))
+in both cases you are covered.
+
+Historically, we have been using Virtus for that non-persistable layers. But
+with the [recent release of dry-types (part of dry-rb)](http://dry-rb.org/news/2016/03/16/announcing-dry-rb/)
+we started also investigating this angle as it looks very promising. I am very happy with the improvements
+added between 0.5 and 0.6 release. Definitelly a step in a right direction.
