@@ -12,7 +12,7 @@ tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
   <figure>
     <img src="<%= src_fit("short-urls/bench.jpg") %>" width="100%">
     <details>
-      <a href="http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/">Photo</a> 
+      <a href="http://www.flickr.com/photos/aigle_dore/5626341059/in/photostream/">Photo</a>
       remix available thanks to the courtesy of
       <a href="http://www.flickr.com/photos/aigle_dore/">Moyan Brenn</a>.
       <a href="http://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
@@ -95,7 +95,7 @@ This will work fine but there are few downsides to such solution and you
 need to remember about couple of things.
 
 First, you must make sure that slugs are unique across all your resources
-that you use this for. In our project this is the responsibility of 
+that you use this for. In our project this is the responsibility of
 <%= service_landing_link("services") %> which first try to reserve
 the slug across the whole application,
 and assign it to the resource if it succeeded. But you can also implement
@@ -117,7 +117,7 @@ What we saw in previous chapter
 gives us rendering. So the browser is going to display the visited url such as
 `/MartinFowler` . In such case there might be multiple URLs pointing to the same
 resource in your application and for best SEO you probably should standarize
-which url is the [canonical](https://support.google.com/webmasters/answer/139394?hl=en): 
+which url is the [canonical](https://support.google.com/webmasters/answer/139394?hl=en):
 `/authors/MartinFowler` or `/MartinFowler/` ? Eventually you might also consider
 dropping the longer URL entirely in your app to have a consistent routing.
 
@@ -205,7 +205,7 @@ class ShortDispatcher
       routing    = Rails.application.routes.recognize_path(@url.target)
       controller = (routing.delete(:controller) + "_controller").
         classify.
-        constantize 
+        constantize
       action     = routing.delete(:action)
       env["action_dispatch.request.path_parameters"] = routing
       controller.action(action).call(env)
@@ -221,9 +221,9 @@ if you go with either render or redirect and don't mix those two
 approaches. I just wanted to show that you can use any of them.
 
 Let's focus on the `Render` strategy for this moment. What happens here.
-Assuming some visited `/fowler` in the browser, we found the right `Short::Url` 
+Assuming some visited `/fowler` in the browser, we found the right `Short::Url`
 in the dispatcher, now in our `Render#call` we need to do some work that
-usually Rails does for us. 
+usually Rails does for us.
 
 First we need to recognize what the long,
 target url (`/authors/MartinFowler`) points to.
@@ -238,7 +238,7 @@ Based on that knowledge we can obtain the controller class.
 
 ```
 #!ruby
-controller = (routing.delete(:controller) + "_controller").classify.constantize 
+controller = (routing.delete(:controller) + "_controller").classify.constantize
 # => AuthorsController
 ```
 
@@ -302,6 +302,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

@@ -114,4 +114,4 @@ Does your company practice these techniques? How is that working for you?
 * [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
 * [Take the first task](/2013/10/take-the-first-task/)
 * [Chronos vs Kairos: Find out how you think about time when working on a project](/2013/11/chronos-and-kairos/)
-* [Developers oriented project management](/developers-oriented-project-management/)
+* [Developers oriented project management](/async-remote/)

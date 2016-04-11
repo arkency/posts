@@ -216,7 +216,7 @@ CommonValidations = [SlugMustStartWithU, SlugMustEndWithZ]
 class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
-  validates_with *(CommonValidations + 
+  validates_with *(CommonValidations +
     [SlugMustHaveAtLeastOneCharacter]
   )
 end
@@ -224,7 +224,7 @@ end
 class UserEditedByUserValidator < SimpleDelegator
   include ActiveModel::Validations
 
-  validates_with *(CommonValidations + 
+  validates_with *(CommonValidations +
     [SlugMustHaveAtLeastThreeCharacters]
   )
 end
@@ -234,7 +234,7 @@ end
 
 The previous examples won't cooperate nicely with Rails features expecting
 list of errors validations on the validated object, because as I showed in
-first example, the `#errors` that are filled are defined on the 
+first example, the `#errors` that are filled are defined on the
 validator object.
 
 
@@ -262,7 +262,7 @@ class UserEditedByAdminValidator
     @user = user
   end
 
-  validates_with *(CommonValidations + 
+  validates_with *(CommonValidations +
     [SlugMustHaveAtLeastOneCharacter]
   )
 
@@ -291,6 +291,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

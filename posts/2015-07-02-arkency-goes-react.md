@@ -8,12 +8,12 @@ newsletter: :skip
 newsletter_inside: :kung_fu
 ---
 
-From its beginnings in 2007, Arkency was connected to Ruby and Rails. We’re still most active in those technologies. 
+From its beginnings in 2007, Arkency was connected to Ruby and Rails. We’re still most active in those technologies.
 However, over time there’s another R-named technology that quickly won our hearts - React.js.
 
 <!-- more -->
 
-Our journey with JavaScript was quite long already and sometimes even painful. We’ve started with pure JavaScript, then went all CoffeeScript. Nowadays we introduce ES 6. 
+Our journey with JavaScript was quite long already and sometimes even painful. We’ve started with pure JavaScript, then went all CoffeeScript. Nowadays we introduce ES 6.
 
 We’ve experimented with Backbone (some parts are OK), we’ve had painful experiences with Angular (don’t ask…). We’ve been proudly following the no-framework JS way, while being very hexagonal-influenced ( [http://hexagonaljs.com](http://hexagonaljs.com) is alive and fine).
 
@@ -29,9 +29,9 @@ We started sharing our React.js knowledge with our Ruby community, with which we
 
 If you want to read the whole story (and more reasons) why we switched to React.js, then go here: [1 year of React.js in Arkency](http://blog.arkency.com/2015/05/one-year-of-react-dot-js-in-arkency/)
 
-Over time, we started to do more. More blog posts, more chapters in the book. We added a Rails repo which goes with the book. 
+Over time, we started to do more. More blog posts, more chapters in the book. We added a Rails repo which goes with the book.
 
-At the same time, [we were contacted](http://arkency.com) by more and more clients who were mostly interested in our React.js experience and needed help with rebuilding their frontends. 
+At the same time, [we were contacted](http://arkency.com) by more and more clients who were mostly interested in our React.js experience and needed help with rebuilding their frontends.
 
 Then we came up with [React.js koans](https://github.com/arkency/reactjs_koans). The idea was simple - let people learn React.js. Despite our Rails roots, we didn’t see any sense to couple this idea with Rails. The koans use ES6 and they run on node-based tooling. With koans, there was nothing Ruby-related, so it wasn’t targeted only to our beloved Ruby community.
 
@@ -43,7 +43,7 @@ Long story short - we’re opening a new chapter in the Arkency history. We’re
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
-We’re still in the Ruby community, though. We are working on a new update to the [Rails Refactoring book](http://rails-refactoring.com). 
+We’re still in the Ruby community, though. We are working on a new update to the [Rails Refactoring book](http://rails-refactoring.com).
 
 BTW, this book is at the moment part of the [Ruby Book Bundle](http://rubybookbundle.com).  The bundle contains 6 advanced Ruby books for a great price.
 
@@ -51,7 +51,7 @@ I just presented a [webinar about Rails and RubyMine](http://blog.jetbrains.com/
 
 Let me repeat - Arkency is still a mostly Ruby company. We love Ruby. However, we have a great team of developers and this allows us to do more things. One of those new things is React.js.
 
-Keep in mind, that Ruby and React.js are just technologies. They change, over the years. What is not changing is the set of practices. We’re doing TDD, despite the technology choice. We believe in small, decoupled modules. We understand the importance of higher-level architecture. We keep improving at understanding the domains of our clients. We translate the domain to code using the DDD techniques. We create bounded contexts. We let the bounded contexts communicate via events and we often consider CQRS and Event Sourcing. We measure the production applications. [We believe in the importance of async and remote cooperation](http://blog.arkency.com/developers-oriented-project-management/). We split features into smaller tasks. 
+Keep in mind, that Ruby and React.js are just technologies. They change, over the years. What is not changing is the set of practices. We’re doing TDD, despite the technology choice. We believe in small, decoupled modules. We understand the importance of higher-level architecture. We keep improving at understanding the domains of our clients. We translate the domain to code using the DDD techniques. We create bounded contexts. We let the bounded contexts communicate via events and we often consider CQRS and Event Sourcing. We measure the production applications. [We believe in the importance of async and remote cooperation](http://blog.arkency.com/async-remote/). We split features into smaller tasks.
 The practices define us - not the specific technologies or syntaxes.
 
 React.js deserves to be listed as one of the R-technologies in our toolbox. Open this new chapter with us - subscribe to the new mailing list and stay up to date with what we’re cooking.

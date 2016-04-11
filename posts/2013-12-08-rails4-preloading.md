@@ -13,7 +13,7 @@ tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 <%= img_fit("preloading/header.png") %>
 
 You are probably already familiar with the method `#includes` for eager loading
-data from database if you are using Rails and ActiveRecord. 
+data from database if you are using Rails and ActiveRecord.
 But do you know why you someties get few small and nice SQL queries and sometimes
 one giant query with every table and column renamed? And do you know
 about `#preload` and `#eager_load` which can help you achieve the same goal?
@@ -58,7 +58,7 @@ Rails1 ;). And that works like a charm doing 2 queries:
 ```
 #!ruby
 User.includes(:addresses)
-#  SELECT "users".* FROM "users" 
+#  SELECT "users".* FROM "users"
 #  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
 ```
 
@@ -67,7 +67,7 @@ So what are those two other methods for? First let's see them in action.
 ```
 #!ruby
 User.preload(:addresses)
-#  SELECT "users".* FROM "users" 
+#  SELECT "users".* FROM "users"
 #  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
 ```
 
@@ -80,9 +80,9 @@ And as for the `#eager_load`:
 #!ruby
 User.eager_load(:addresses)
 #  SELECT
-#  "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
-#  "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
-#  FROM "users" 
+#  "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
+#  "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
+#  FROM "users"
 #  LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
 ```
 
@@ -102,12 +102,12 @@ is one big query only.
 User.includes(:addresses).where("addresses.country = ?", "Poland")
 User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 
-# SELECT 
+# SELECT
 # "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
-# "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
+# "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
 # FROM "users"
-# LEFT OUTER JOIN "addresses" 
-# ON "addresses"."user_id" = "users"."id" 
+# LEFT OUTER JOIN "addresses"
+# ON "addresses"."user_id" = "users"."id"
 # WHERE (addresses.country = 'Poland')
 ```
 
@@ -164,7 +164,7 @@ part right?
 r = User.joins(:addresses).where("addresses.country = ?", "Poland").includes(:addresses)
 
 r[0]
-#=> #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24"> 
+#=> #<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">
 
 r[0].addresses
 # [
@@ -181,12 +181,12 @@ but for that query it doesn't even make any difference.
 
 ```
 #!sql
-SELECT 
+SELECT
 "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
-"addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7 
+"addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
 FROM "users"
-INNER JOIN "addresses" 
-ON "addresses"."user_id" = "users"."id" 
+INNER JOIN "addresses"
+ON "addresses"."user_id" = "users"."id"
 WHERE (addresses.country = 'Poland')
 ```
 
@@ -197,19 +197,19 @@ about what you want to achieve by directly calling `#preload` instead of
 ```
 #!ruby
 r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
-# SELECT "users".* FROM "users" 
-# INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
+# SELECT "users".* FROM "users"
+# INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
 # WHERE (addresses.country = 'Poland')
 
 # SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1)
 
-r[0] 
-# [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">] 
+r[0]
+# [#<User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">]
 
 r[0].addresses
 # [
 #  <Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">,
-#  <Address id: 3, user_id: 1, country: "France", street: "8 rue Chambiges", postal_code: "75008", city: "Paris", created_at: "2013-12-08 11:36:30", updated_at: "2013-12-08 11:36:30">] 
+#  <Address id: 3, user_id: 1, country: "France", street: "8 rue Chambiges", postal_code: "75008", city: "Paris", created_at: "2013-12-08 11:36:30", updated_at: "2013-12-08 11:36:30">]
 # ]
 ```
 
@@ -242,7 +242,7 @@ And just preload it explicitely using one way:
 #!ruby
 r = User.preload(:polish_addresses)
 
-# SELECT "users".* FROM "users" 
+# SELECT "users".* FROM "users"
 # SELECT "addresses".* FROM "addresses" WHERE "addresses"."country" = 'Poland' AND "addresses"."user_id" IN (1, 2)
 
 r
@@ -250,16 +250,16 @@ r
 # [
 #   <User id: 1, name: "Robert Pankowecki", email: "robert@example.org", created_at: "2013-12-08 11:26:24", updated_at: "2013-12-08 11:26:24">
 #   <User id: 2, name: "Bob Doe", email: "bob@example.org", created_at: "2013-12-08 11:26:25", updated_at: "2013-12-08 11:26:25">
-# ] 
+# ]
 
 r[0].polish_addresses
 
 # [
 #   #<Address id: 1, user_id: 1, country: "Poland", street: "Rynek", postal_code: "55-555", city: "Wrocław", created_at: "2013-12-08 11:26:50", updated_at: "2013-12-08 11:26:50">
-# ] 
+# ]
 
 r[1].polish_addresses
-# [] 
+# []
 ```
 
 or another:
@@ -268,10 +268,10 @@ or another:
 #!ruby
 r = User.eager_load(:polish_addresses)
 
-# SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
+# SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
 #        "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
-# FROM "users" 
-# LEFT OUTER JOIN "addresses" 
+# FROM "users"
+# LEFT OUTER JOIN "addresses"
 # ON "addresses"."user_id" = "users"."id" AND "addresses"."country" = 'Poland'
 
 r
@@ -341,7 +341,7 @@ express scope conditions.
 # Bad, Time.now would be always the time when the class was loaded
 # You might not even spot the bug in development because classes are
 # automatically reloaded for you after changes.
-scope :from_the_past, where("happens_at <= ?", Time.now) 
+scope :from_the_past, where("happens_at <= ?", Time.now)
 
 # OK
 scope :from_the_past, -> { where("happens_at <= ?", Time.now) }
@@ -373,8 +373,8 @@ User.preload(:addresses)
 User.eager_load(:addresses)
 #  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
 #         "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
-#  FROM "users" 
-#  LEFT OUTER JOIN "addresses" 
+#  FROM "users"
+#  LEFT OUTER JOIN "addresses"
 #  ON "addresses"."user_id" = "users"."id"
 ```
 
@@ -387,7 +387,7 @@ User.includes(:addresses).where("addresses.country = ?", "Poland")
 
 #DEPRECATION WARNING: It looks like you are eager loading table(s)
 # (one of: users, addresses) that are referenced in a string SQL
-# snippet. For example: 
+# snippet. For example:
 #
 #    Post.includes(:comments).where("comments.title = 'foo'")
 #
@@ -399,14 +399,14 @@ User.includes(:addresses).where("addresses.country = ?", "Poland")
 # tell Active Record when you are referencing a table from a string:
 #
 #   Post.includes(:comments).where("comments.title = 'foo'").references(:comments)
-# 
+#
 # If you don't rely on implicit join references you can disable the
 # feature entirely by setting `config.active_record.disable_implicit_join_references = true`. (
 
 # SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
 #        "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
-# FROM "users" 
-# LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
+# FROM "users"
+# LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
 # WHERE (addresses.country = 'Poland')
 ```
 
@@ -430,12 +430,12 @@ reference only one of them:
 #!ruby
 User.includes(:addresses, :places).where("addresses.country = ?", "Poland").references(:addresses)
 
-#  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4, 
+#  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
 #         "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7,
-#         "places"."id" AS t2_r0, "places"."user_id" AS t2_r1, "places"."name" AS t2_r2, "places"."created_at" AS t2_r3, "places"."updated_at" AS t2_r4 
-#  FROM "users" 
-#  LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" 
-#  LEFT OUTER JOIN "places" ON "places"."user_id" = "users"."id" 
+#         "places"."id" AS t2_r0, "places"."user_id" AS t2_r1, "places"."name" AS t2_r2, "places"."created_at" AS t2_r3, "places"."updated_at" AS t2_r4
+#  FROM "users"
+#  LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
+#  LEFT OUTER JOIN "places" ON "places"."user_id" = "users"."id"
 #  WHERE (addresses.country = 'Poland')
 ```
 
@@ -445,7 +445,7 @@ the `#preload` algorithm (by doing separate query to get them) but
 as you can see that's not the case. Maybe they will change the
 behavior in the future.
 
-Rails 4 does not warn you to use the `#references` method if you 
+Rails 4 does not warn you to use the `#references` method if you
 explicitely use `#eager_load` to get the data and the executed
 query is identical:
 
@@ -517,6 +517,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

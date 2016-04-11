@@ -76,17 +76,17 @@ Now, let's check how it behaves in development.
 ```
 #!ruby
 defined?(Blog)
-# => nil 
+# => nil
 defined?(Foo)
-# => nil 
+# => nil
 
 Blog
-# => Blog (call 'Blog.connection' to establish a connection) 
+# => Blog (call 'Blog.connection' to establish a connection)
 Foo
-# => Foo 
+# => Foo
 
 defined?(Blog)
-# => "constant" 
+# => "constant"
 defined?(Foo)
 # => "constant"
 ```
@@ -110,12 +110,12 @@ defined?(Foo)
 # => nil
 
 Blog
-# => Blog (call 'Blog.connection' to establish a connection) 
+# => Blog (call 'Blog.connection' to establish a connection)
 Foo
-# => Foo 
+# => Foo
 
 defined?(Blog)
-# => "constant" 
+# => "constant"
 defined?(Foo)
 # => "constant"
 ```
@@ -182,9 +182,9 @@ How will that work on production? Let's see.
 ```
 #!ruby
 defined?(Blog)
-# => "constant" 
+# => "constant"
 defined?(Foo)
-# => "constant" 
+# => "constant"
 ```
 
 **Not only is our class/constant `Foo` from `extras/foo.rb` autoloaded now, but it
@@ -216,15 +216,15 @@ autoloading is configured to check for eager loaded paths.
 #!ruby
 def _all_autoload_paths
   @_all_autoload_paths ||= (
-    config.autoload_paths   + 
-    config.eager_load_paths + 
+    config.autoload_paths   +
+    config.eager_load_paths +
     config.autoload_once_paths
   ).uniq
 end
 ```
 
 in [`Rails::Engine`](https://github.com/rails/rails/blob/v4.1.7/railties/lib/rails/engine.rb#L684)
-code. 
+code.
 
 ## One more thing
 
@@ -236,7 +236,7 @@ config.autoload_paths += %W( #{config.root}/app/services )
 config.autoload_paths += %W( #{config.root}/app/presenters )
 ```
 
-It is completely unnecessary because `app/*` is already added there. You 
+It is completely unnecessary because `app/*` is already added there. You
 can just add any directory to `app/` and start use it like you use
 `app/controllers` and `app/models`. **You might however need to restart your
 console, server or spring server (`spring stop`) for it start working**. You can see
@@ -338,6 +338,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

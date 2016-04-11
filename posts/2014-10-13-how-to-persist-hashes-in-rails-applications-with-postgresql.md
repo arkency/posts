@@ -207,7 +207,7 @@ Book.where("description -> 'pl' = 'Kaczka dziwaczka'")
 # => #<ActiveRecord::Relation [#<Book id: "3ba701d2-15b9-43c3-88b6-56410b176b36", title: nil, created_at: "2014-10-10 11:21:02", updated_at: "2014-10-10 11:21:02", description: {"en"=>"Eccentric duck", "pl"=>"Kaczka dziwaczka"}>]>
 ```
 
-Find a book containing 'duck' in english description: 
+Find a book containing 'duck' in english description:
 
 ```
 #!ruby
@@ -351,7 +351,7 @@ Book.where("metadata->>'published' = ?", 'false')
 #  Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE (metadata->>'published' = 'false')
 # => #<ActiveRecord::Relation [#<Book id: "00449e9f-4b03-423d-a8a9-4bcce6a92df4", title: nil, created_at: "2014-10-10 12:56:42", updated_at: "2014-10-10 12:56:42", description: {}, metadata: {"pages"=>400, "published"=>false, "isbn"=>"35280581-7169-48ce-88fa-9e85de5df778"}>]>
 ```
- 
+
 ```
 #!ruby
 Book.where("metadata->>'pages' = ?", '400')
@@ -400,6 +400,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

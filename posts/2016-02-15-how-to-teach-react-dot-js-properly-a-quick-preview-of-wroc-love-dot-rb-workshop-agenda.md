@@ -2,8 +2,8 @@
 title: "How to teach React.js properly? A quick preview of wroc_love.rb workshop agenda"
 created_at: 2016-02-15 18:47:24 +0100
 kind: article
-publish: true 
-author: Marcin Grzywaczewski   
+publish: true
+author: Marcin Grzywaczewski
 tags: [ 'react.js', 'redux', 'wroc_love.rb' ]
 newsletter: :react_books
 img: "reactjs-workshop-blogpost-agenda/header.jpg"
@@ -92,7 +92,7 @@ Let's rephrase it a little:
 
 I'm honored to make a workshop as a part of the wonderful [wroc_love.rb conference](http://www.wrocloverb.com/) in Wrocław, Poland. This is my little _thank you_ to the community, as well as an another occasion to share my knowledge about React.js.
 
-I wanted to make this workshop as Arkency-like as possible. You may know that we're working remotely and we're following async principles. You can learn more about it in [Developers-Oriented Project Management](http://blog.arkency.com/developers-oriented-project-management/) book which is our 'manifest' of workflow, culture and techniques. While a workshop form is not _remote_ at all, I wanted to make it as _async_ as possible.
+I wanted to make this workshop as Arkency-like as possible. You may know that we're working remotely and we're following async principles. You can learn more about it in [Async Remote: The Guide to Building a Self-Organizing Team](http://blog.arkency.com/async-remote/) book which is our 'manifest' of workflow, culture and techniques. While a workshop form is not _remote_ at all, I wanted to make it as _async_ as possible.
 
 In the workshop we'll be developing an app. A real one - it'll be an application to manage Call-for-Papers process which takes place before a conference. You'll be presented with a working API, static mockups and working environment where you can just start writing React.js-Redux code. Your goal will be to develop an user interface for this application.
 

@@ -18,7 +18,7 @@ techniques can be applied to any team. So what is it all about?
 ## Working in a nicely organized project.
 
 And happiness. Exactly this kind of happiness related to working in a nicely organized project. Because
-even if we develop applications in our favorite programming language (Ruby 
+even if we develop applications in our favorite programming language (Ruby
 anyone?) we can still be in a lot of stress due to the way the project is
 managed, right?
 
@@ -64,7 +64,7 @@ As programmers we are privileged. In our lives we can enjoy many things that
 people doing other kinds of job cannot. But we need a work-flow that will let
 us actually seize the opportunities such as eg. the ability to work remotely.
 
-As team leaders and company owners we always want to hire and work with 
+As team leaders and company owners we always want to hire and work with
 the best people. But they also have very high expectations. Is your company
 ready to provide them a nicely working experience to benefit most from their
 talent and experience? We are also always overloaded with tons of other duties
@@ -82,7 +82,7 @@ the book even if remote working is not your highest priority right now.
 
 ## Developers oriented project management
 
-You can find out more in our book: 
+You can find out more in our book:
 **<%= landing_link("Developers oriented project management") %> ebook**
 or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you can read in our previous blog posts:
@@ -91,4 +91,4 @@ with tips and excerpts from the book similar in form to what you can read in our
 * [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
 * [Take the first task](/2013/10/take-the-first-task/)
 * [Chronos vs Kairos: Find out how you think about time when working on a project](/2013/11/chronos-and-kairos/)
-* [Developers oriented project management](/developers-oriented-project-management/)
+* [Developers oriented project management](/async-remote/)

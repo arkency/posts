@@ -204,7 +204,7 @@ end
 No problem, just disable it, investigate, fix and re-enable.
 
 You can read more about [programmer friendly workflow environment in our
-Developers Oriented Project Management ebook](/developers-oriented-project-management) .
+Developers Oriented Project Management ebook](/async-remote) .
 We describe there for example how to work on `master` branch without Pull Requests
 and quote Google Chrome team which works the same way.
 

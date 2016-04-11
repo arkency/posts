@@ -12,18 +12,18 @@ Once you start switching to using aggregates in your system (as opposed to say, 
 <!-- more -->
 
 
-The code I'm going to show is part of a project that I was recently working on. The app is called Fuckups (yes, I consider changing that name) and it helps us track and learn from all kinds of mistakes we make. 
+The code I'm going to show is part of a project that I was recently working on. The app is called Fuckups (yes, I consider changing that name) and it helps us track and learn from all kinds of mistakes we make.
 
-Yes, we make mistakes. 
+Yes, we make mistakes.
 
 The important part is to **really** learn from those mistakes. This is our company habit that we have for years now. During the week we collect all the fuckups that we see. It doesn't matter who did them, the story and the lesson matters. We used to track them in a Hackpad called "Fakapy jak startupy" which means "Fuckups as Startups" (don't ask). That's why this name persisted until today. Our hackpad has all the archives now.
-Every Friday we have a weekly sync. [As a remote/async company](http://blog.arkency.com/developers-oriented-project-management/) we avoid all kinds of "sync" meetings. Fridays are the exception, when we disuss all kinds of interesting things as the whole team. We call it "weeklys".
+Every Friday we have a weekly sync. [As a remote/async company](http://blog.arkency.com/async-remote/) we avoid all kinds of "sync" meetings. Fridays are the exception, when we disuss all kinds of interesting things as the whole team. We call it "weeklys".
 
 One part is usually the most interesting is the Fuckups part. We iterate through them, one person says what happened and we try to discuss and find the root problems. Once a fuckup is discussed we mark it as "discussed".
 
-The app is a replacement for the hackpad. In its core, it's a simple list, where we append new things. 
+The app is a replacement for the hackpad. In its core, it's a simple list, where we append new things.
 
-I tried to follow the "Start from the middle" approach here and it mostly worked. It's far from perfect, but we're able to use it now. One nice thing is that we can add a new fuckup to the list by a simple Slack command. 
+I tried to follow the "Start from the middle" approach here and it mostly worked. It's far from perfect, but we're able to use it now. One nice thing is that we can add a new fuckup to the list by a simple Slack command.
 
 ```
 /fuckup SSL Certificates has not been updated before expiration date
@@ -31,11 +31,11 @@ I tried to follow the "Start from the middle" approach here and it mostly worked
 
 No need to leave Slack anymore.
 
-Although the app is already "in production", new organizations can't start using it yet. The main reason was that I started from the middle with authentication by implementing the Github OAuth. This implementation requires Github permissions to read people organizations (because not all memberships are public). 
+Although the app is already "in production", new organizations can't start using it yet. The main reason was that I started from the middle with authentication by implementing the Github OAuth. This implementation requires Github permissions to read people organizations (because not all memberships are public).
 
 Before releasing it to public, I wanted to implement the concept of a typical authentication - you know - logins/passwords, etc.
 
-This is where I got sidetracked a bit. 
+This is where I got sidetracked a bit.
 
 It's our internal project and not a client project, so there's a bit more freedom to experiment. As you may know, we talk a lot about [going from legacy to DDD](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/). That's what we usually do. It's not that often that we do DDD from scratch. So, the fuckups app core is a legacy Rails Way approach. But, authentication is another bounded context. I can have the excitement of starting a new "subproject" here.
 
@@ -56,7 +56,7 @@ This means, the host takes 4 kinds of messages/commands as the input. The expect
 
 For example, if we have a RegisterUser command, then if it's successfully handled, we expect an UserRegistered event.
 
-In this case, I also went with Event Sourcing the aggregate. It means that an aggregate can be composed from events. 
+In this case, I also went with Event Sourcing the aggregate. It means that an aggregate can be composed from events.
 
 BTW, here we get a bit closer to the Functional Programming way of thinking. I didn't go with full FP yet, but I'm considering it. With "full" FP the objects here wouldn't mutate state, but they would return new objects every time a new event is applied.
 

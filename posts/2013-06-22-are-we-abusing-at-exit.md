@@ -158,7 +158,7 @@ Which brings us to `minitest`
 
 ## minitest
 
-One of the best known example of using 
+One of the best known example of using
 `at_exit` is [`minitest`](https://github.com/seattlerb/minitest). Note: My little
 examples are using `minitest-5.0.5` installed from rubygems.
 
@@ -244,7 +244,7 @@ Minitest.run
 It works:
 
 ```
-> ruby test.rb 
+> ruby test.rb
 Run options: --seed 63193
 # Running:
 .
@@ -300,7 +300,7 @@ and running the web server in `at_exit` hook. So by analogy
 
 But `minitest` is not the only one doing interesting things in `at_exit` hook.
 Another very common example is `capybara`. [Capybara is using `at_exit` hook
-to close a browser](https://github.com/jnicklas/capybara/blob/4772f509f88ba5f2dcd5841846d0347423e8c9ed/lib/capybara/selenium/driver.rb#L14) 
+to close a browser](https://github.com/jnicklas/capybara/blob/4772f509f88ba5f2dcd5841846d0347423e8c9ed/lib/capybara/selenium/driver.rb#L14)
 such as Firefox, when tests are finished. As you can see there is quite
 complicated logic around it:
 
@@ -345,7 +345,7 @@ to run itself (the application).
 ## Conclusion
 
 I think it would be best if every long running and commonly used process such as
-web servers or test frameworks provide there own binary and custom hooks for 
+web servers or test frameworks provide there own binary and custom hooks for
 executing code at the end of a program. That way we could all forget about
 `at_exit` and live happily ever after. We were considering `at_exit` usage for
 our [`chillout`](https://github.com/chilloutio/chillout) gem to ensure that
@@ -371,6 +371,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

@@ -59,7 +59,7 @@ specify do
     end
     wait_for_it = false
     threads.each(&:join)
-    
+
     expect_fail_for_one_customer(fail_occurred)
     expect_success_for_rest_of_customers(customers, product)
     expect_product_not_oversold(product, concurrency_level)
@@ -193,5 +193,5 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="18%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="18%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="18%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="18%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="18%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="18%" /></a>

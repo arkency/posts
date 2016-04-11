@@ -40,7 +40,7 @@ You can follow all of presented steps with your brand new Rails application. To 
 #!bash
 rails new -T -J -V -S postgres-extensions --database postgresql
 ```
- 
+
 We skipped some tests, javascripts, views and sprockets and set our database to PostgreSQL.
 
 ## `UUID`
@@ -53,7 +53,7 @@ This is 16-octet / 128 bit type compatible with most common GUID and UUID genera
 Although UUID might appear in different versions (MAC address, DCE security, MD5 or SHA-1 hash), [the most generators](http://en.wikipedia.org/wiki/Universally_unique_identifier#Implementations) relies on random numbers and produces UUID version 4.
 
 > Version 4 UUIDs have the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where x is any hexadecimal digit and y is one of 8, 9, A, or B.
- 
+
 So the validation regexp may be as follows:
 
 ```
@@ -102,7 +102,7 @@ Let's see how can we use it in our applications. To enable this extension in our
 #!bash
 rails g migration enable_uuid_extension
 ```
- 
+
 ```
 #!ruby
 class EnableUuidExtension < ActiveRecord::Migration
@@ -129,7 +129,7 @@ class CreateBooks < ActiveRecord::Migration
       t.timestamps
     end
   end
-end   
+end
 
 # app/models/book.rb
 class Book < ActiveRecord::Base; end
@@ -144,7 +144,7 @@ And then we can play with them a little bit:
   SQL (0.9ms)  INSERT INTO "books" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-10-01 10:30:12.152568"], ["updated_at", "2014-10-01 10:30:12.152568"]]
    (0.4ms)  COMMIT
  => #<Book id: "adf5efad-7c72-4e3f-9b1a-922fdbf6ebdf", title: nil, created_at: "2014-10-01 10:30:12", updated_at: "2014-10-01 10:30:12">
- 
+
  2.1.2 :002 > _.id
  => "adf5efad-7c72-4e3f-9b1a-922fdbf6ebdf"
 ```
@@ -176,7 +176,7 @@ After migration we have:
   SQL (0.2ms)  INSERT INTO "books" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-10-01 10:39:19.646211"], ["updated_at", "2014-10-01 10:39:19.646211"]]
    (0.9ms)  COMMIT
  => #<Book id: "e15b0c03-3ff0-46c2-99b2-76406da80b3a", title: nil, created_at: "2014-10-01 10:39:19", updated_at: "2014-10-01 10:39:19", uuid: nil>
- 
+
 2.1.2 :002 > Book.first
   Book Load (0.4ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => #<Book id: "e15b0c03-3ff0-46c2-99b2-76406da80b3a", title: nil, created_at: "2014-10-01 10:39:19", updated_at: "2014-10-01 10:39:19", uuid: "0699c100-4c6e-4dc3-b72f-91bac8847304">
@@ -231,7 +231,7 @@ and we are trying to create an association:
   SQL (0.3ms)  INSERT INTO "books" ("author_id") VALUES ($1) RETURNING "id"  [["author_id", 49624675]]
    (0.3ms)  COMMIT
  => #<Book id: "38c66078-9e03-45dc-8b78-408a1a41b55c", title: nil, uuid: nil, author_id: 49624675>
- 
+
 2.1.2 :002 > Book.first
   Book Load (0.8ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => #<Book id: "38c66078-9e03-45dc-8b78-408a1a41b55c", title: nil, uuid: "3caa9344-c7e3-4a9e-abb4-e44d1b857d25", author_id: 49624675>
@@ -330,6 +330,6 @@ Did you like this article? You might find [our Rails books interesting as well](
 <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/developers-oriented-project-management/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
 <a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

@@ -33,7 +33,7 @@ This happens because sometimes the developers have different goals to your goals
 They want to make their job easy or fun, where the goal of the project owners is
 to have the most important task get done. And the most important task is not
 always the most compelling, neither related to the most fancy, recent technology
-that the developers would like to learn and use 
+that the developers would like to learn and use
 
 The solution is to have very strict and simple rule for the developers to follow. And the
 rule says **Take the first task**. Where _First_ means unstarted tasks with highest
@@ -54,7 +54,7 @@ with tips and excerpts from the book similar in form to what you just read.
 ### In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
-and what are the alternatives to hiring them. 
+and what are the alternatives to hiring them.
 [Subscribe](<%= aar_newsletter_subscription_link %>)
 to be notified when it is out.
 
@@ -62,7 +62,7 @@ to be notified when it is out.
 
 **Is it immediately clear to you in your current project what you should be
 working on as a developer?** How long does it take to figure it out? Do you need to
-talk to someone to get that information? Leave your feedback in comments or 
+talk to someone to get that information? Leave your feedback in comments or
 on [twitter](https://twitter.com/intent/tweet?source=webclient&text=Hi+%40arkency+I+have+just+joined+a+new+project+and+it+takes+me+XYZ+seconds%2Fminutes%2Fdays+to+figure+out+what+to+work+on).
 
 ## In this series
@@ -71,4 +71,4 @@ on [twitter](https://twitter.com/intent/tweet?source=webclient&text=Hi+%40arkenc
 * [Leave tasks unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)
 * [Take the first task](/2013/10/take-the-first-task/)
 * [Chronos vs Kairos: Find out how you think about time when working on a project](/2013/11/chronos-and-kairos/)
-* [Developers oriented project management](/developers-oriented-project-management/)
+* [Developers oriented project management](/async-remote/)
