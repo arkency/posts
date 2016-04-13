@@ -115,10 +115,10 @@ interactions with it. And all that stuff that your UX is responsible for.
 
 <div class="well bs-component">
   <%%= react_component('ShowArticle',
-         @article.to_json, 
+         @article.to_json,
          prerender: true,
          id: 'article',
-         data: {reactive: start_show_path}) 
+         data: {reactive: start_show_path})
   %%>
 </div>
 
@@ -234,7 +234,7 @@ Surprisingly (or not) it works. You can watch the 20s demo.
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/P9Upn194b9M?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
-You can see the whole code on github [arkency/rethinkdb-reactjs](https://github.com/arkency/rethinkdb-reactjs) . 
+You can see the whole code on github [arkency/rethinkdb-reactjs](https://github.com/arkency/rethinkdb-reactjs) .
 
 ## Dragons
 
@@ -298,5 +298,3 @@ end
 
 Despite many dragons I have a feeling that there is a big potential in RethinkDB.
 I will keep it on my radar and explore more deeply.
-
-<%= inner_newsletter(item[:newsletter_inside]) %>

@@ -228,7 +228,7 @@ Except that I always think that this method is called `#without`.
 
 
 Slice a hash to include only the given keys.
- 
+
 ```
 #!ruby
 
@@ -322,5 +322,3 @@ You can use it to generate and verify signed messages
 That's it. You can browse entire ActiveSupport codebase quickly and easily at [github](https://github.com/rails/rails/tree/master/activesupport/lib/active_support)
 
 If you liked it, you may also enjoy [Hidden features of Ruby you may not know about](/2014/07/hidden-features-of-ruby-you-may-dont-know-about/)
-
-<%= inner_newsletter(item[:newsletter_inside]) %>

@@ -909,5 +909,3 @@ ingerate inside it.
 * Integrate with the external libraries inside a component, not outside them.
 If you ever want to change your solution to pure react or something else, it
 will be localized to that one component.
-
-<%= inner_newsletter(item[:newsletter_inside]) %>

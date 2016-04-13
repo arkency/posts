@@ -50,7 +50,7 @@ view template that is used for rendering an event page for a preview page.
 There are slight differences however so one additional variable
 (`is_preview`) is **passed down through number of partials that
 the page is consisted of**.
- 
+
 We have a class called `EventPool` which is responsible
 for gathering and keeping data to quickly answer the one question - whether
 a given ticket type is available to buy or not. In other words, it checks
@@ -79,7 +79,7 @@ looked like this:
 #!html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
-  = render 'events/ticket', { 
+  = render 'events/ticket', {
       ticket: ticket,
       ticket_pool: event_pool.pool_for_ticket_id(ticket.id),
       is_preview: is_preview
@@ -97,7 +97,7 @@ But for the entire tree of partials to work correctly
 we still need to pass down `event_pool` which needs to have `#pool_for_ticket_id`
 method, even if at the end we decide not to check
 the availability status of returned `ticket_pool`.
-  
+
 For me it looked like a great case for applying Null Object Pattern.
 
 ```
@@ -145,7 +145,7 @@ class Controller
 #!html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
-  = render 'events/ticket', { 
+  = render 'events/ticket', {
       ticket: ticket,
       ticket_pool: event_pool.pool_for_ticket_id(ticket.id),
     }
@@ -162,7 +162,7 @@ If all the places which care whether we are in a real mode
 or preview mode adopted this approach, bunch of if-statements
 could be removed in favor of using properly named classes
 with identical interfaces. Some would be used only when a real
-event is displayed, some only when the preview is shown. 
+event is displayed, some only when the preview is shown.
 
 **The code
 using dedicated Null-* classes (in our case the view) wouldn't care and wouldn't know
@@ -173,5 +173,3 @@ We could also completely eliminate the `is_preview` variable in the end. In this
 we only eliminated it for the related part of code.
 
 Did you like the blogpost? Join our newsletter to receive more goodies.
-
-<%= inner_newsletter(item[:newsletter_inside]) %>

@@ -143,5 +143,3 @@ In my next blogpost I would like to share how we dealt with a similar problem wh
 Twitter Bloodhound library for autocomplete.
 
 If you liked this blogpost you might like our React.js books.
-
-<%= inner_newsletter(item[:newsletter_inside]) %>

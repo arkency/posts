@@ -131,6 +131,3 @@ Naming is important! If we do not use _convention_ but instead _implicit assumpt
 
 ## Make implicit explicit!
 By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less _"magic"_ and it should be easier to reason how things work.
-
-<%= inner_newsletter(item[:newsletter_inside]) %>
-
