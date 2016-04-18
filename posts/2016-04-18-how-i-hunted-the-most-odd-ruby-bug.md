@@ -45,7 +45,7 @@ the 4K of jobs (sometimes we even had spikes to 40K jobs) but very slowly. So ob
 performance.
 
 But I know our codebase and I know that many of background jobs do almost nothing. They do 1 or 2 SQL query and
-decided that given sale is not related to them. When the sales is related they need to do something which does take long times
+decide that given sale is not related to them. When the sales is related they need to do something which does take long times
 but often they quit very quickly. Also, we had 6 machines with 4 resque workers running on them so technically we
 had 24 processes for handling the load of jobs. And yet everything appeared to be... slow. Very slow.
 
@@ -562,7 +562,7 @@ So the program stopped after 10 seconds. What else would you expect? But you nev
 2016-04-15 11:07:51 +0200 stopping agent
 ```
 
-And here we are with out problem reproduced. This time Ruby waited for the thread `t` to finish. So it waited
+And here we are with our problem reproduced. This time Ruby waited for the thread `t` to finish. So it waited
 for the 15s sleep `delay` inside the `ensure` block. I did not see that coming.
 
 I was able to randomly cause this behavior in Ruby `2.1` and `2.2` as well. The behavior of this program
@@ -615,3 +615,18 @@ The remaining jobs were processed much much faster after the hotfix deployment.
 The CPU usage became much higher on the utility machines.
 
 <%= img_original("ruby-honeybadger-resque-slow/cpu.jpg") %>
+
+## Learn more
+
+Did you like this article? You might find [our Rails books interesting as well](/products) . We especially recommend
+our [Responsible Rails](/responsible-rails) which contains more stories like that.
+
+<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="35%" /></a>
+
+You can also enjoy:
+
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="19%" /></a>
+<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="19%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="19%" /></a>
+<a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
+<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
