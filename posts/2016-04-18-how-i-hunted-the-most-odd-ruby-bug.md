@@ -602,7 +602,8 @@ Honeybadger::Agent.class_eval do
 end
 ```
 
-I notified the Honeybadger and Ruby team about this problem and I hope they will come up with a good coldfix.
+I notified [Honeybadger](https://github.com/honeybadger-io/honeybadger-ruby/issues/186), [Resque](https://github.com/resque/resque/issues/1451) and
+[Ruby team](https://bugs.ruby-lang.org/issues/12298) about this problem and I hope they will come up with a good coldfix.
 
 ## Results
 
