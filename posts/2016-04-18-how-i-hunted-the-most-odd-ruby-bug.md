@@ -610,7 +610,7 @@ The effect was visible immediately in all metrics that we had.
 
 The remaining jobs were processed much much faster after the hotfix deployment.
 
-<%= img_original("ruby-honeybadger-resque-slow/resque_before.jpg") %>
+<%= img_original("ruby-honeybadger-resque-slow/resque_after.jpg") %>
 
 The CPU usage became much higher on the utility machines.
 
