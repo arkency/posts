@@ -83,7 +83,7 @@ with next job in the queue.
 Here is related part of code from [resque](https://github.com/resque/resque/blob/df9dea4dc319e1675919cdd0539d213117c72701/lib/resque/worker.rb#L222)
 
 ```
-#ruby
+#!ruby
 def work(interval = 5.0, &block)
   interval = Float(interval)
   $0 = "resque: Starting"
@@ -217,7 +217,7 @@ I wasn't sure what those two threads were for, which gems would use them. I was 
 out later with one trick:
 
 ```
-#ruby
+#!ruby
 # config/initializers/resque.rb
 Resque.after_fork do
   at_exit do
@@ -345,7 +345,7 @@ The second time `stopping agent` appears in the log is exactly after `10` second
 And guess what I've remembered from [reading Honeybadger codebase](https://github.com/honeybadger-io/honeybadger-ruby/blob/1c7c2c747b152b4340b15bf6ed4d0ab45746c8ec/lib/honeybadger/agent.rb#L139).
 
 ```
-#ruby
+#!ruby
 def initialize(config)
   @config = config
   @delay = config.debug? ? 10 : 60
@@ -354,7 +354,7 @@ def initialize(config)
 And here is where that `delay` [is being used inside `work` method](https://github.com/honeybadger-io/honeybadger-ruby/blob/1c7c2c747b152b4340b15bf6ed4d0ab45746c8ec/lib/honeybadger/agent.rb#L309):
 
 ```
-#ruby
+#!ruby
 def run
   loop { work } # <<-- HERE
 rescue Exception => e
@@ -383,7 +383,7 @@ And the `work` methods is being called from inside of `run` method which is what
 separate thread.
 
 ```
-#ruby
+#!ruby
 def start
   mutex.synchronize do
     return false unless pid
@@ -407,7 +407,7 @@ Check [it](https://github.com/honeybadger-io/honeybadger-ruby/blob/1c7c2c747b152
 It's killing the Thread.
 
 ```
-#ruby
+#!ruby
 at_exit do
   stop if config[:'send_data_at_exit']
 end
@@ -415,7 +415,7 @@ end
 ```
 
 ```
-#ruby
+#!ruby
 def stop(force = false)
   debug { 'stopping agent' }
 
@@ -447,7 +447,7 @@ There are two cases what can happen inside `work` method.
 Imagine that there is an exception when we `sleep`
 
 ```
-#ruby
+#!ruby
 def work
   flush_metrics if metrics.flush?
   flush_traces if traces.flush?
@@ -467,7 +467,7 @@ bubble up. That's an easy and harmless scenario.
 But what happens when the exception happens inside one of the `flush` methods?
 
 ```
-#ruby
+#!ruby
 def work
   flush_metrics if metrics.flush? # <- Exception here
   flush_traces if traces.flush?
@@ -497,7 +497,7 @@ missing something which causes this whole situation to occur.
 Here is what I wrote.
 
 ```
-#ruby
+#!ruby
 require 'securerandom'
 class MyThread < ::Thread; end
 
@@ -582,7 +582,7 @@ Here is my very simple hotfix. It skips the `sleep` phase if the thread is `abor
 after being killed with `Thread.kill`.
 
 ```
-#ruby
+#!ruby
 if Honeybadger::VERSION != "2.1.0"
   raise "You've upgraded the gem. Check if the hotfix still applies
   an in identical way! They might have changed #work method body."
