@@ -618,8 +618,8 @@ The CPU usage became much higher on the utility machines.
 
 ## Learn more
 
-Did you like this article? You might find [our Rails books interesting as well](/products) . We especially recommend
-our [Responsible Rails](/responsible-rails) which contains more stories like that.
+Did you like this article? You will find [our Rails books interesting as well](/products) . We especially recommend
+[Responsible Rails](/responsible-rails) which contains more stories like that.
 
 <a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="35%" /></a>
 
@@ -629,4 +629,4 @@ You can also enjoy:
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="19%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="19%" /></a>
 <a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
+<a href="/blogging"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
