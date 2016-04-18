@@ -29,7 +29,10 @@ we have 15 background jobs or maybe even more. Some are responsible for generati
 some are responsible for delivering emails with receipts. Other communicate with 3rd party APIs responsible for
 delivering additional services for the buyers.
 
-Let me show you how the spikes look like.
+Let me show you how the sales spikes look like.
 
-<img src="<%= src_fit("ruby-honeybadger-resque-slow/spike.jpg") %> alt="" width="100%" />
+<%= img_fit("ruby-honeybadger-resque-slow/spike.jpg") %>
 
+And their effect on the number of queued jobs that we had:
+
+<%= img_original("ruby-honeybadger-resque-slow/spike.jpg") %>
