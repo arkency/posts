@@ -6,6 +6,7 @@ publish: false
 author: Robert Pankowecki
 tags: [ 'ruby', 'resque', 'honeybadger', 'at_exit', 'threads' ]
 newsletter: :arkency_form
+img: "ruby-honeybadger-resque-slow/cpu.jpg"
 ---
 
 Every now and then there comes a bug in programmer's life that is different than anything
