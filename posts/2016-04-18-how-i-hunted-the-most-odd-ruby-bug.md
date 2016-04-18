@@ -14,7 +14,7 @@ else you've encountered so far. Last time for me it was 3 days of debugging to f
 was returning incorrect results. We didn't have to do much to fix it. We removed an index and created it again
 from scratch. There, problem gone. But that was a few years ago.
 
-Last week I was hunting an entirely different beast. But before we dive into details, let me tell
+Last week I was **hunting an entirely different beast**. But before we dive into details, let me tell
 you a bit about the business story behind it.
 
 <!-- more -->
@@ -22,11 +22,11 @@ you a bit about the business story behind it.
 ## Business background
 
 We are working on a ticketing platform which sells tickets for big events, festivals but also for smaller gigs.
-The nature of this industry is that from time to time there are spikes of sales when an organizer opens
+**The nature of this industry is that from time to time there are spikes of sales** when an organizer opens
 sales for hot tickets. Early birds discounts and other promotions. You've probably attended some conferences
 and concerts. You know how it works.
 
-In our application there are tons of things that happen in the background. Especially after the sale. We want the
+In our application there are **tons of things that happen in the background**. Especially after the sale. We want the
 sale to be extremely quick so that we can handle the spikes nicely without hiccups. So when the purchase is finalized
 we have 15 background jobs or maybe even more. Some are responsible for generating the PDFs of those tickets,
 some are responsible for delivering emails with receipts. Other communicate with 3rd party APIs responsible for
@@ -40,7 +40,7 @@ And their effect on the number of queued jobs that we had:
 
 <%= img_original("ruby-honeybadger-resque-slow/resque_before.jpg") %>
 
-As you can notice we were not even processing our jobs fast enough to handle next spikes (other organizers, other events
+As you can notice **we were not even processing our jobs fast enough to handle next spikes** (other organizers, other events
 are still selling at the same time on our platform). During normal hours we were digging ourselves out from
 the 4K of jobs (sometimes we even had spikes to 40K jobs) but very slowly. So obviously we were not happy with our
 performance.
@@ -48,7 +48,7 @@ performance.
 But I know our codebase and I know that many of background jobs do almost nothing. They do 1 or 2 SQL query and
 decide that given sale is not related to them. When the sales is related they need to do something which does take long times
 but often they quit very quickly. Also, we had 6 machines with 4 resque workers running on them so technically we
-had 24 processes for handling the load of jobs. And yet everything appeared to be... slow. Very slow.
+had 24 processes for handling the load of jobs. **And yet everything appeared to be... slow. Very slow.**
 
 I had this gut feeling that there is a hidden problem and we are missing something. We started investigating.
 
@@ -59,7 +59,7 @@ We logged in to our utility machines and simply checked with `htop` what are the
 <%= img_original("ruby-honeybadger-resque-slow/load.png") %>
 
 The load was often between `0.2 - 0.4`. For 2 CPU machines with 4 resque jobs running on each of them. In the moment
-when they should be processing like crazy thousands of queued jobs. So that sounded ridiculously low.
+when they should be processing, like crazy, thousands of queued jobs. So that sounded _ridiculously low_.
 
 We started watching resque logs which show when a job is taken and when it's done. I was able to see jobs being processed
 normally one by one and then a moment later things stopped. A job was done but next job was not taken and started.
@@ -262,13 +262,13 @@ So I had two potential candidates to investigate. New Relic and Honeybadger.
 I grepped their codebase for `Thread`, `sleep`, `at_exit`, `Thread.join` and investigated the code around it.
 I was trying to find out if there could be a race condition, a situation in which the main ruby thread
 from `at_exit` callback would call `Thread.join` to wait for a honeybadger or new relic thread responsible for either
-collecting or sending data to them. But I could not find anything like it.
+collecting or sending data to them. **But I could not find anything like it.**
 
 I configured New Relic and Honeybadger gems to work in DEBUG mode on one machine. I was watching the logs and
 trying to figure out something odd at the moment when I saw resque doing nothing after the job was done. It was not
 easy task because the occurences of those `do-nothing`` periods were quite random. Sometimes I was able to spot it
 after 3 jobs were done. Other times it had to process 80 jobs for the problem to appear. Also it was not easy
-to spot any kind of similarity. But at some point I noticed one pattern.
+to spot any kind of similarity. **But at some point I noticed one pattern.**
 
 The previous log listing that I show you did not contain honeybadger when the problem occured. It looked like.
 
@@ -295,7 +295,7 @@ new_relic/agent/threading/agent_thread.rb:14:in `block in create'
 
 So I decided to focus more of my efforts on looking into honeybadger logs and codebase. I still could not find
 out why would anything threading related in Honeybadger cause an issue. So I paid more attention to the logs.
-I even edited the gem on production to procedure much more logs. And then I noticed something:
+**I even edited the gem on production to produce much more logs**. And then I noticed something:
 
 This is how the logs looked like when everything went fine (line numbers might not reflect those in your
 codebase as I added more debugging statements). One line highlighted for your convinience.
@@ -339,7 +339,7 @@ And compare it to:
 15:27:37.813214 #11091] stopping agent level=0 pid=11091 at="lib/honeybadger/agent.rb:296:in `ensure in run'"
 ```
 
-The second time `stopping agent` appears in the log is exactly after `10` seconds. And then it appears in the middle.
+The second time `stopping agent` appears in the log exactly after `10` seconds.
 
 ## Digging into Honeybadger's code
 
@@ -402,7 +402,7 @@ end
 
 Ok, so we have a thread running which sometimes sleeps. But how would that affect us? Why would it matter.
 After all when Ruby main thread finishes it does not care about other threads that are running. Also
-Honeybadger is not doing `Thread.join` at any point to wait for that thread. If anything. It's doing the opposite.
+Honeybadger is not doing `Thread.join` at any point to wait for that thread. If anything, it's doing the opposite.
 Check [it](https://github.com/honeybadger-io/honeybadger-ruby/blob/1c7c2c747b152b4340b15bf6ed4d0ab45746c8ec/lib/honeybadger/agent.rb#L151)
 [out](https://github.com/honeybadger-io/honeybadger-ruby/blob/1c7c2c747b152b4340b15bf6ed4d0ab45746c8ec/lib/honeybadger/agent.rb#L190).
 It's killing the Thread.
@@ -486,8 +486,10 @@ We land inside the `ensure` block and we `sleep`. It was an interesting revelati
 It seemed important and similar to what might randomly happen in real life. A race condition in
 action.
 
-But I still could not find any Ruby code that would actually wait for that Thread. But everything pointed
-out that something does indeed wait for it.
+And thread being killed is like an exception in your ruby code.
+
+**But I still could not find any Ruby code that would actually wait for that Thread. But everything pointed
+out that something does indeed wait for it.**
 
 ## In which we bring Ruby as a witness
 
@@ -563,10 +565,10 @@ So the program stopped after 10 seconds. What else would you expect? But you nev
 2016-04-15 11:07:51 +0200 stopping agent
 ```
 
-And here we are with our problem reproduced. This time Ruby waited for the thread `t` to finish. So it waited
+**And here we are with our problem reproduced**. This time Ruby waited for the thread `t` to finish. So it waited
 for the 15s sleep `delay` inside the `ensure` block. I did not see that coming.
 
-I was able to randomly cause this behavior in Ruby `2.1` and `2.2` as well. The behavior of this program
+I was able to randomly cause this behavior in Ruby `2.1`, `2.2` and `2.3` as well. The behavior of this program
 was non-deterministic for me. Sometimes it waits and sometimes it does not.
 
 ## Hotfixing
@@ -608,15 +610,17 @@ I notified [Honeybadger](https://github.com/honeybadger-io/honeybadger-ruby/issu
 
 ## Results
 
-The effect was visible immediately in all metrics that we had.
+The **spectacular effect** was visible immediately in all metrics that we had.
 
 The remaining jobs were processed much much faster after the hotfix deployment.
 
 <%= img_original("ruby-honeybadger-resque-slow/resque_after.jpg") %>
 
-The CPU usage became much higher on the utility machines.
+The CPU usage became much higher on the utility machines for the time they were processing the spike.
 
 <%= img_original("ruby-honeybadger-resque-slow/cpu.jpg") %>
+
+I suspect that with that improvement we will be even able to decommission some of them.
 
 ## Learn more
 
@@ -632,3 +636,8 @@ You can also enjoy:
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="19%" /></a>
 <a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
 <a href="/blogging"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
+
+## Resources
+
+* [Ruby's Thread#raise, Thread#kill, timeout.rb, and net/protocol.rb libraries are broken](http://blog.headius.com/2008/02/ruby-threadraise-threadkill-timeoutrb.html)
+* [Are we abusing at_exit?](/2013/06/are-we-abusing-at-exit/)
