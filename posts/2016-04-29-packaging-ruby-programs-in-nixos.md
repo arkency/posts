@@ -6,7 +6,14 @@ publish: false
 author: Rafał Łasocha
 tags: [ 'nix', 'nixos', 'ruby', 'devops' ]
 newsletter: :arkency_form
+img: "packaging-ruby-programs-in-nixos/hammer-sledgehammer-mallet-tool.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="<%= src_fit("packaging-ruby-programs-in-nixos/hammer-sledgehammer-mallet-tool.jpg") %> alt="" width="100%" />
+  </figure>
+</p>
 
 Recently at Arkency we're exploring how [NixOS](https://nixos.org/) could fit our infrastructure.
 From a few weeks we've switched most of our projects CI systems from CircleCI to [Buildkite](https://buildkite.com/).
