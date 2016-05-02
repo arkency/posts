@@ -39,7 +39,7 @@ Just to recap the syntax of nix language, you should know a few things:
  
 ## Simplest ruby package
 
-Our program is distributed as a gem, so we can take an advantage of the fact that NixOS has a built-in `bundlerEnv` function for creating Bundler environments as packages.
+Our program is distributed as a gem, so **we can take an advantage of the fact that NixOS has a built-in `bundlerEnv` function for creating Bundler environments as packages**.
 After checking out how other ruby programs' packages look like, we can write following function:
 
 ```
@@ -122,12 +122,12 @@ Examplary gemset.nix looks like this:
 
 Currently our function is generating a bundler environment and if we would release it this way, `pws` program would be able to run. However current `default.nix` has two major disadvantages:
 
-* it doesn't include runtime dependencies. On Linux, `pws` needs `xsel` command to run and if user won't install this program by himself, `pws` will be useless
-* as it's bundler environment, it expose following binaries: `pws`, `bundle` and `bundler`. You probably don't want to surprise someone with providing `bundler` binary by installing your package.
+* **it doesn't include runtime dependencies**. On Linux, `pws` needs `xsel` command to run and if user won't install this program by himself, `pws` will be useless
+* as it's bundler environment, it expose following binaries: `pws`, `bundle` and `bundler`. **You probably don't want to surprise someone with providing `bundler` binary by installing your package**.
 
 ## Wrapper package
 
-Thus, let's create a wrapper package which will just use generated bundler environment and provide only pws as a binary.
+Thus, let's create a **wrapper package which will just use generated bundler environment and provide only pws as a binary**.
 
 Our wrapper package can be achieved by the following code:
 
