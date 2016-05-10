@@ -2,7 +2,7 @@
 title: "Packaging ruby programs in NixOS"
 created_at: 2016-04-29 00:28:12 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'nix', 'nixos', 'ruby', 'devops' ]
 newsletter: :arkency_form
@@ -19,7 +19,7 @@ Recently at Arkency we're exploring how [NixOS](https://nixos.org/) could fit ou
 From a few weeks we've switched most of our projects CI systems from CircleCI to [Buildkite](https://buildkite.com/).
 Buildkite offers unique offer in which it is us who provide infrastructure and containers to test our applications so we've decided to setup these containers with NixOS and we are by far happy with this solution.
 
-However in this post I would like to describe how to package a simple ruby program, based on simple password manager CLI utility - [pws](https://github.com/janlelis/pws).
+However in this post I would like to describe how to package a simple ruby program, based on simple password manager CLI utility - [pws](https://github.com/janlelis/pws). I've chose such a simple program to reduce the scope of this post - I hope that in future I'll be able to describe more complicated cases.
 
 <!-- more -->
 
@@ -78,7 +78,7 @@ gem 'pws'
 
 Let's generate `Gemfile.lock` file by running `bundle install` command.
 
-Now, if we have both `Gemfile` and `Gemfile.lock` in one directory, you can generate `gemset.nix` using Bundix tool. `gemset.nix` is basically a `Gemfile.lock` but written in nix language. Bundix is not yet finished, thus it is not able to translate less used `Gemfile` features like `path:` attribute.
+Now, if we have both `Gemfile` and `Gemfile.lock` in one directory, you can generate `gemset.nix` using Bundix tool. `gemset.nix` is basically a `Gemfile.lock` but written in nix language. We need it because we want Nix to know what are dependencies of our package. Note that bundix is not yet finished, thus it is not able to translate less used `Gemfile` features like `path:` attribute.
 
 Examplary gemset.nix looks like this:
 
@@ -211,4 +211,4 @@ stdenv.mkDerivation rec {
 
 We've added `xsel` as dependency. We've also modified the `installPhase` script (`makeWrapper` call, to be specific) to prepend location of `xsel` (which is something like `/nix/store/...-xsel/bin`) to our `PATH` environment variable.
 
-Now our package is done. You could follow [Chapter 10. Submitting changes](https://nixos.org/nixpkgs/manual/#chap-submitting-changes) of nixpkgs manual to release your package to the public. [Based on my experience, it's very simple process](https://github.com/NixOS/nixpkgs/pull/14963). If you're a ruby developer I hope this guide got you closer to the nix ecosystem and let me know if there are topics you would like to get coveraged.
+Now our package is done. You could follow [Chapter 10. Submitting changes](https://nixos.org/nixpkgs/manual/#chap-submitting-changes) of nixpkgs manual to release your package to the public. [Based on my experience, it's very simple process](https://github.com/NixOS/nixpkgs/pull/14963). If you're a ruby developer I hope this guide got you closer to the nix ecosystem and let me know if there are topics you would like to get coveraged. If you are interested in deploying your ruby applications in a declarative way, [sign up to our newsletter](http://eepurl.com/LnL3b) to get info on that topic.
