@@ -6,7 +6,14 @@ publish: false
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :arkency_form
+img: "events/blue-bulbs.jpeg"
 ---
+
+<p>
+  <figure>
+    <img src="<%= src_fit("events/blue-bulbs.jpeg") %> alt="" width="100%" />
+  </figure>
+</p>
 
 Almost 2 years and over 16 million domain events ago I’ve started a process of "switching the mindset". I had no production experience with Event Sourcing (BTW it still is used only in some parts of the application, but that’s a topic for another post), I had only a limited experience with Domain Driven Design (mainly knowing the tactical patterns). During that time, a lot has changed.
 
