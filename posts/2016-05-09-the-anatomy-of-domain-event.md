@@ -28,15 +28,12 @@ RailsEventStore::Client.new.read_all_streams_forward(:head, 1)
 => ProductItemEvents::ProductItemSold
      @event_id="74eb88c0-8b97-4f27-9234-ed390f72287c",
      @metadata={:timestamp=>2014-11-12 22:20:24 UTC},
-     @data={:order_id=>1472818, :product_item_id=>2065172,
+     @data={:order_id=>23456, :product_item_id=>123456,
             :attributes=>{
-               "id"=>2065172, "order_id"=>1472818, "product_type_id"=>85522,
-               "serialized_ticket_type"=>nil, "vip_token"=>nil, "invitation_id"=>nil,
-               "price_in_cents"=>5000, "fee_in_cents"=>200, "barcode"=>"20651721194",
-               "fee_included"=>true, "state"=>"sold", "type"=>"Ticket", "organization_id"=>58,
-               "reciever_user_id"=>nil, "reciever_added_at"=>nil, "scanned_at"=>nil,
-               "terminal_name"=>nil, "order_line_id"=>1336662, "code_id"=>nil,
-               "ticket_scanner_ticket_uuid"=>nil, "vat_rate"=>nil,
+               "id"=>123456, "order_id"=>23456, "product_type_id"=>98765,
+               "price"=>50, "barcode"=>"1234567890",
+               "scanned_at"=>nil, "serialized_type"=>nil,
+               "order_line_id"=>3456789, "code_id"=>nil,
                "updated_at"=>2014-11-12 22:20:24 UTC, "created_at"=>2014-11-12 22:20:24 UTC}}
 ```
 
@@ -73,7 +70,7 @@ system that rely on that contract. Changing it is always a trouble. Avoid that b
 
 ## Rule #4: be explicit
 
-The `serialized_ticket_type`? It this a business language? Really? Or does the business care about the `scanned_at` when a ticket has been just sold? I don’t. And all event handlers for this event do not care. That’s just pure garbage. It holds no meaningful information here. It just messing with your domain event contract making it less usable, more complicated.
+The `serialized_type`? It this a business language? Really? Or does the business care about the `scanned_at` when a ticket has been just sold? I don’t. And all event handlers for this event do not care. That’s just pure garbage. It holds no meaningful information here. It just messing with your domain event contract making it less usable, more complicated.
 Explicit definition of your domain event’s attributes will not only let you avoid those unintentional things in the domain event schema but will force you to think what really should be included in the event’s data.
 
 ```
@@ -81,9 +78,9 @@ Explicit definition of your domain event’s attributes will not only let you av
 => TicketSold
      @event_id="74eb88c0-8b97-4f27-9234-ed390f72287c",
      @metadata={:timestamp=>2014-11-12 22:20:24 UTC},
-     @data={:barcode=>"20651721194",
-            :order_id=>1472818, :order_line_id=>1336662,
-            :ticket_type_id=>85522,
+     @data={:barcode=>"1234567890",
+            :order_id=>23456, :order_line_id=>3456789,
+            :ticket_type_id=>98765,
             :price=>{Price value object here}}
 ```
 
@@ -97,6 +94,13 @@ Natural keys are part of the ubiquitous language, are the identifications of the
 barcode (…or order number, or guest name if you doing it right ;) ). The barcode is the identification of the ticket. The database record’s id is not. Don’t let you database leak through your domain.
 
 ## Rule #6: time is a modelling factor
+
+> “Modelling events forces temporal focus”
+
+<p class="quote-by">Greg Young, <a href="http://youtube.com/watch?v=LDW0QWie21s">DDD Europe 2016 talk</a></p>
+
+How things correlate over time, what happens when this happens before this becomes a real domain problem. Very often our understanding of domain is very naive. If you don’t include time as a modelling factor your model might not be reflecting what is happening in the real world.
+
 ## Rule #7: when in doubt
 
 # <center>TALK TO YOUR DOMAIN EXPERT / BUSINESS</center>
