@@ -18,7 +18,7 @@ It's hard to say, but I suppose I'm somewhere in the 33% of the planned scope. W
 
 #### Some of the people who started watching the videos asked to describe more of the context of the start. 
 
-As it is right now, the videos start with requirements to implement. The requirements are given by the misterious Jane. Who is she? What are we doing here as a programmer?
+As it is right now, the videos start with requirements to implement. The requirements are given by the mysterious Jane. Who is she? What are we doing here as a programmer?
 
 The story wasn't really told in the videos yet. I postponed to later time, assuming that the technical content is more important. _However, now I see that the story is also intruiging to many of you :) That's good._
 
