@@ -2,7 +2,7 @@
 title: "One more step to DDD in a legacy app"
 created_at: 2016-05-21 13:50:09 +0200
 kind: article
-publish: false
+publish: true
 author: Szymon Fiedler
 tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :arkency_form
