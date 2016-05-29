@@ -4,7 +4,7 @@ created_at: 2016-05-21 13:50:09 +0200
 kind: article
 publish: true
 author: Szymon Fiedler
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'ddd', 'rails', 'active record', 'migration' ]
 newsletter: :arkency_form
 ---
 <p>
@@ -58,32 +58,32 @@ class AddNewVatRatesToNoOrgazation < ActiveRecord::Migration
   #… minimum viable implementations of used classes
 
   def up
-      event_store   = Rails.application.config.event_store
+    event_store   = Rails.application.config.event_store
 
-      organization  = Organization.find_by(domain: 'example.no')
-      originator_id = User.find_by(email: 'me@example.com').id
+    organization  = Organization.find_by(domain: 'example.no')
+    originator_id = User.find_by(email: 'me@example.com').id
 
-      organization.available_vat_rates = [
-          VatRate.new('NoVat'),
-          VatRate.new(5),  # deprecated one
-          VatRate.new(10), # new one
-          VatRate.new(12), # deprecated one
-          VatRate.new(15), # new one
-          VatRate.new(25),
-      ]
+    organization.available_vat_rates = [
+        VatRate.new('NoVat'),
+        VatRate.new(5),  # deprecated one
+        VatRate.new(10), # new one
+        VatRate.new(12), # deprecated one
+        VatRate.new(15), # new one
+        VatRate.new(25),
+    ]
 
-      if organization.save
-        event_store.publish(Organization::VatRateAdded.new(
-          organization: organization.id,
-          vat_rate_code: 10,
-          originator_id: originator_id
-        )
-        event_store.publish(Organization::VatRateAdded.new(
-          organization: organization.id,
-          vat_rate_code: 15,
-          originator_id: originator_id
-        )
-      end
+    if organization.save
+      event_store.publish(Organization::VatRateAdded.new(
+        organization: organization.id,
+        vat_rate_code: 10,
+        originator_id: originator_id
+      )
+      event_store.publish(Organization::VatRateAdded.new(
+        organization: organization.id,
+        vat_rate_code: 15,
+        originator_id: originator_id
+      )
+    end
   end
 end
 ```
@@ -102,30 +102,30 @@ class RemoveOldVatRatesFromNoOrgazation < ActiveRecord::Migration
   #… minimum viable implementations of used classes
 
   def up
-      event_store   = Rails.application.config.event_store
+    event_store   = Rails.application.config.event_store
 
-      organization  = Organization.find_by(domain: 'example.no')
-      originator_id = User.find_by(email: 'me@example.com').id
+    organization  = Organization.find_by(domain: 'example.no')
+    originator_id = User.find_by(email: 'me@example.com').id
 
-      organization.available_vat_rates = [
-          VatRate.new('NoVat'),
-          VatRate.new(10),
-          VatRate.new(15),
-          VatRate.new(25),
-      ]
+    organization.available_vat_rates = [
+        VatRate.new('NoVat'),
+        VatRate.new(10),
+        VatRate.new(15),
+        VatRate.new(25),
+    ]
 
-      if organization.save
-        event_store.publish(Organization::VatRateRemoved.new(
-          organization: organization.id,
-          vat_rate_code: 5,
-          originator_id: originator_id
-        )
-        event_store.publish(Organization::VatRateRemoved.new(
-          organization: organization.id,
-          vat_rate_code: 12,
-          originator_id: originator_id
-        )
-      end
+    if organization.save
+      event_store.publish(Organization::VatRateRemoved.new(
+        organization: organization.id,
+        vat_rate_code: 5,
+        originator_id: originator_id
+      )
+      event_store.publish(Organization::VatRateRemoved.new(
+        organization: organization.id,
+        vat_rate_code: 12,
+        originator_id: originator_id
+      )
+    end
   end
 end
 ```
