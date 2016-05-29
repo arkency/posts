@@ -22,11 +22,13 @@ This app is a great example of a legacy software. It's successful, earns a lot o
 
 ```
 #!ruby
-irb(main):001:0> vat_rate = VatRate.new(15)
-=> #<VatRate:0x007fdb8ed50db0 @value=15.0, @code="15">
-irb(main):002:0> vat_rate.code
-=> "15"
-irb(main):003:0> vat_rate.to_d
+vat_rate = VatRate.new(15)
+# => #<VatRate:0x007fdb8ed50db0 @value=15.0, @code="15">
+
+vat_rate.code
+# => "15"
+
+vat_rate.to_d
 => #<BigDecimal:7fdb8ed716c8,'0.15E2',9(27)>
 ```
 
@@ -71,8 +73,16 @@ class AddNewVatRatesToNoOrgazation < ActiveRecord::Migration
       ]
 
       if organization.save
-        event_store.publish(OrganizationFacts::VatRateAdded.new({ organization: organization.id, vat_rate_code: 10, originator_id: originator_id})
-        event_store.publish(OrganizationFacts::VatRateAdded.new({ organization: organization.id, vat_rate_code: 15, originator_id: originator_id})
+        event_store.publish(OrganizationFacts::VatRateAdded.new(
+          organization: organization.id,
+          vat_rate_code: 10,
+          originator_id: originator_id
+        )
+        event_store.publish(OrganizationFacts::VatRateAdded.new(
+          organization: organization.id,
+          vat_rate_code: 15,
+          originator_id: originator_id
+        )
       end
   end
 end
@@ -105,8 +115,16 @@ class RemoveOldVatRatesFromNoOrgazation < ActiveRecord::Migration
       ]
 
       if organization.save
-        event_store.publish(OrganizationFacts::VatRateRemoved.new({ organization: organization.id, vat_rate_code: 5, originator_id: originator_id})
-        event_store.publish(OrganizationFacts::VatRateRemoved.new({ organization: organization.id, vat_rate_code: 12, originator_id: originator_id})
+        event_store.publish(OrganizationFacts::VatRateRemoved.new(
+          organization: organization.id,
+          vat_rate_code: 5,
+          originator_id: originator_id
+        )
+        event_store.publish(OrganizationFacts::VatRateRemoved.new(
+          organization: organization.id,
+          vat_rate_code: 12,
+          originator_id: originator_id
+        )
       end
   end
 end
