@@ -60,8 +60,8 @@ class AddNewVatRatesToNoOrgazation < ActiveRecord::Migration
   def up
     event_store   = Rails.application.config.event_store
 
-    organization  = Organization.find_by(domain: 'example.no')
-    originator_id = User.find_by(email: 'me@example.com').id
+    organization  = Organization.find_by(domain: 'me.no')
+    originator_id = User.find_by(email: 'me@me.no').id
 
     organization.available_vat_rates = [
         VatRate.new('NoVat'),
@@ -104,8 +104,8 @@ class RemoveOldVatRatesFromNoOrgazation < ActiveRecord::Migration
   def up
     event_store   = Rails.application.config.event_store
 
-    organization  = Organization.find_by(domain: 'example.no')
-    originator_id = User.find_by(email: 'me@example.com').id
+    organization  = Organization.find_by(domain: 'me.no')
+    originator_id = User.find_by(email: 'me@me.no').id
 
     organization.available_vat_rates = [
         VatRate.new('NoVat'),
