@@ -44,7 +44,7 @@ I simply started with making a plan of this upgrade.
 
 1. I've checked if the change made to `available_vat_rates` will be represented properly in the financial reports.
 2. I've checked how many products were having old VAT rates set.
-3. I've introduced new domain events called `OrganizationFacts::VatRatedAdded` and `OrganizationFacts::VatRateRemoved` which are published to the `Organization$organization_id` stream.
+3. I've introduced new domain events called `Organization::VatRatedAdded` and `Organization::VatRateRemoved` which are published to the `Organization$organization_id` stream.
 4. I've run a migration, which was adding new VAT rates (10% & 15%) and publishing sufficient domain facts — let's call it **step 1**.
 5. I've performed an upgrade of the VAT rates on the products which required it - **step 2**.
 6. I've run a migration, which has removed old VAT rates (5% & 12%) and published domain facts - **step 3**.
@@ -73,12 +73,12 @@ class AddNewVatRatesToNoOrgazation < ActiveRecord::Migration
       ]
 
       if organization.save
-        event_store.publish(OrganizationFacts::VatRateAdded.new(
+        event_store.publish(Organization::VatRateAdded.new(
           organization: organization.id,
           vat_rate_code: 10,
           originator_id: originator_id
         )
-        event_store.publish(OrganizationFacts::VatRateAdded.new(
+        event_store.publish(Organization::VatRateAdded.new(
           organization: organization.id,
           vat_rate_code: 15,
           originator_id: originator_id
@@ -115,12 +115,12 @@ class RemoveOldVatRatesFromNoOrgazation < ActiveRecord::Migration
       ]
 
       if organization.save
-        event_store.publish(OrganizationFacts::VatRateRemoved.new(
+        event_store.publish(Organization::VatRateRemoved.new(
           organization: organization.id,
           vat_rate_code: 5,
           originator_id: originator_id
         )
-        event_store.publish(OrganizationFacts::VatRateRemoved.new(
+        event_store.publish(Organization::VatRateRemoved.new(
           organization: organization.id,
           vat_rate_code: 12,
           originator_id: originator_id
