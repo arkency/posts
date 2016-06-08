@@ -44,19 +44,19 @@ class Stats extends React.Component {
   render() {
     return (
       <div>
-        {`Won ${this.context.user.won}`}
+        Won {this.context.user.won}
         <br />
-        {`Lost ${this.context.user.lost}`}
+        Lost {this.context.user.lost}
         <br />
         <a href={`http://www.example.org/stats/${this.context.user.id}`} >
-          {`(see the whole stats of ${this.context.user.name})`}
+          (see the whole stats of {this.context.user.name})
         </a>
       </div>
     );
   }
 }
 ```
-Note ES6 template literals `` ` ``` Won ${this.context.user.won}``` ` `` which we are using to construct strings.
+Note ES6 template literal `` ` ``` http://www.example.org/stats/${this.context.user.id}``` ` `` which we are using to construct string url.
 
 
 
