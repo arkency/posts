@@ -8,13 +8,14 @@ tags: [ 'react', 'frontend', 'es6', 'jsx', 'refactoring', 'porting' ]
 newsletter: :react_books
 ---
 
-We are working on renewing version of our bestseller book - [Rails meets React.js](http://blog.arkency.com/rails-react/). 
-Below some examples showing that process of porting from CoffeeScript to ES6 and JSX.
+We are working on a new version of our bestseller book - [Rails meets React.js](http://blog.arkency.com/rails-react/). Currently, the book is based in CoffeeScript and we want to port it to ES6. The update will be free for everyone, who bought the CoffeeScript version
+
+Here are some examples showing a process of porting from CoffeeScript to ES6 and JSX.
 
 ## JSX
 
-In our previous version of this book we didn't used JSX because it does not fit well with CoffeScript.
-With ES6 javascript it is different, JSX fits here very well. Here some example:
+In our previous version of this book, we didn't use JSX because it does not fit well with CoffeScript.
+With ES6 it is different, JSX fits here very well.
 
 **Before:**
 
@@ -56,13 +57,13 @@ class Stats extends React.Component {
   }
 }
 ```
-Note ES6 template literal `` ` ``` http://www.example.org/stats/${this.context.user.id}``` ` `` which we are using to construct string url.
 
+_Note_ ES6 template literal `` ` ``` http://www.example.org/stats/${this.context.user.id}``` ` `` which we are using to construct string url.
 
 
 ##ES6 classes
 
-Instead of using React.createClass we are now using ES6 class syntax:
+Instead of using `React.createClass` we are now using ES6 class syntax:
 
 **Before:**
 
@@ -95,7 +96,7 @@ class OneTimeClickLink extends React.Component {
 
 ## State initialization
 
-Since getInitialState is deprecated for ES6 classes, we are initializing it in constructor, like in this example:
+Since `getInitialState` does not work with classes syntax, we are initializing `state` in a constructor. Like in this example:
 
 **Before:**
 
@@ -128,7 +129,7 @@ class DateWithLabel extends React.Component {
 
 ## Bind instance methods
 
-Because React class has no build-in feature which binds all methods to this we are binding them in our constructor.
+In class syntax, React doesn't bind all methods automatically. So, we are binding them in our constructor.
 
 **Before:**
 
@@ -184,7 +185,7 @@ Because React class has no build-in feature which binds all methods to this we a
 ```
 ## Default props and validations
 
-defaultProps , propTypes and contextTypes must with ES6 classes be defined outside of the class. Here some examples:
+`defaultProps` , `propTypes` and `contextTypes` must be defined outside the class body. Here are some examples:
 
 **Before:**
 
@@ -244,7 +245,7 @@ defaultProps , propTypes and contextTypes must with ES6 classes be defined outsi
 
 ```
 
-The same goes for propTypes:
+The same goes for `propTypes`:
 
 **Before:**
 
@@ -270,7 +271,8 @@ Blogpost.propTypes = {
 ```
 
 ## Summary
-Code written in ES6 jsx can be pretty clean.
-I've used [ESLint](http://eslint.org/) which helped me to keep syntax clean and free of errors. [Here](https://medium.com/planet-arkency/catch-mistakes-before-you-run-you-javascript-code-6e524c36f0c8#.d94ni2r78) you can find a Blogpost how correctly configure it for your editor.
-If you like this examples We will deliver a new version of  [Rails meets React.js](http://blog.arkency.com/rails-react/) soon. It will be free for all who bought previous CoffeeScript version.
 
+Code written in ES6 with JSX can be pretty clean.
+I've used [ESLint](http://eslint.org/) which helped me to keep syntax clean and free of errors. [Here](https://medium.com/planet-arkency/catch-mistakes-before-you-run-you-javascript-code-6e524c36f0c8#.d94ni2r78) you can find a Blogpost how correctly configure it for your editor.
+
+If you are interested in learning how to use React with Rails, with the ES6 syntax, we are working on a new version of [Rails meets React.js](http://blog.arkency.com/rails-react/). It will be free for everyone who bought previous CoffeeScript version.
