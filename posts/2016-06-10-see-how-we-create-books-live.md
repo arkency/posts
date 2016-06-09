@@ -29,7 +29,7 @@ I started to think about how exactly the whole stream could look like and I got 
 
 ## Book creation process at Arkency - Rails Meets React
 
-**I want to show you the part of our book-creation proces**. The tooling, the automation, the content creation process. We made everything possible to make this process quick and easy.
+**I want to show you the part of our book-creation process**. The tooling, the automation, the content creation. We spent a bit of time on making whole technical process around our books quick and easy.
 
 Here's the plan of things I want to show:
 
