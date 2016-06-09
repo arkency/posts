@@ -1,8 +1,8 @@
 ---
 title: "Porting a Rails frontend from CoffeeScript to ES6 and JSX - examples"
-created_at: 2016-06-08 00:08:29 +0200
+created_at: 2016-06-09 00:08:29 +0200
 kind: article
-publish: false
+publish: true
 author: "Tomasz Patrzek"
 tags: [ 'react', 'frontend', 'es6', 'jsx', 'refactoring', 'porting' ]
 newsletter: :react_books
@@ -11,6 +11,8 @@ newsletter: :react_books
 We are working on a new version of our bestseller book - [Rails meets React.js](http://blog.arkency.com/rails-react/). Currently, the book is based in CoffeeScript and we want to port it to ES6. The update will be free for everyone, who bought the CoffeeScript version
 
 Here are some examples showing a process of porting from CoffeeScript to ES6 and JSX.
+
+<!-- more -->
 
 ## JSX
 
