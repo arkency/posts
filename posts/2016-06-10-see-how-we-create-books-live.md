@@ -41,6 +41,6 @@ Here's the plan of things I want to show:
 
 This is our first attempt to making this kind of live streaming event. And I hope it won't be the last! :) There are much more things we would love to share with you!
 
-And yes! **The stream will be saved and published later on our [YouTube channel}(https://www.youtube.com/c/arkency)**.
+And yes! **The stream will be saved and published later on our [YouTube channel](https://www.youtube.com/c/arkency)**.
 
 _Psst..._ and there will be a special offer for people watching the stream. ;)
