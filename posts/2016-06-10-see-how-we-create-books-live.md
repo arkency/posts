@@ -12,7 +12,7 @@ newsletter: :react_books
 
 We are in the middle of a process of converting our bestselling book [Rails Meets React](http://blog.arkency.com/rails-react/) from CoffeeScript to ES6. This book turned out to be a huge help for many Rails developers seeking a sane way to create their front end applications.
 
-Many people are not using CoffeeScript and could use the information from the book. This is our main request for improving this book, we got from you all. And **we are providing this upgrade to all people, who will ever buy *Rails Meets React***
+Many people are not using CoffeeScript and could use the information from the book. This is our main request for improving this book, we got from you all. And **we are providing this upgrade to all people, who will ever buy _Rails Meets React_**
 
 ## Working on a book on a live stream
 
