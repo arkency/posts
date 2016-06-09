@@ -18,7 +18,12 @@ Many people are not using CoffeeScript and could use the information from the bo
 
 The process of rewriting the content may be interesting for people wanting to convert their React codebase from CoffeeScript to ES6. So, I thought it may be a good time to experiment with video streaming.
 
-There is one thing I like about gaming live streams. The streamer has a chance to interact with the audience in a real-time. There is a chat where everyone can ask  a question. This is a great way to connect with an audience.
+<!-- more -->
+
+There is one thing I like about gaming live streams. The streamer has a chance
+to interact with the audience in a real-time. There is a chat where everyone can
+ask a question. This is a great way to connect with an audience. That makes me
+really interested in trying this out.
 
 I started to think about how exactly the whole stream could look like and I got an idea.
 
