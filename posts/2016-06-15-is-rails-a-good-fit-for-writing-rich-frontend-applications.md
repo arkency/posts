@@ -3,7 +3,7 @@ title: "Is Rails a good fit for writing rich frontend applications?"
 created_at: 2016-06-15 15:56:22 +0200
 kind: article
 publish: false
-newsletter: :arkency_form
+newsletter: :skip
 author: Marcin Grzywaczewski
 ---
 
@@ -37,7 +37,7 @@ The result was spectacular. After months of hard work (it was a big, legacy app)
 During these months, and to this date I was collecting such gems of knowledge which needed a lot of groundwork to research and implement correctly. Those techniques I’ve learned helped me to write dynamic, rich code better and find the answer to the question of Rails being a good fit. And my answer is:
 
 
-Yes. But you need to be aware of what you need to change to make it work in an optimal way.
+**Yes. But you need to be aware of what you need to change to make it work in an optimal way**.
 
 ## Frontend-friendly Rails
 
@@ -72,4 +72,4 @@ Those three chapters are in fact connected together. The biggest boost of produc
 
 I’ve also included a handful of blogposts we’ve written about making Rails more friendly while working with rich frontends in a form of bonus chapters. I’m very happy about contents of this book and had tons of fun writing it - and I’m sure it’ll make you a better frontend developer.
 
-(this announcement was initially sent to the Arkency mailing list - the place where all our announcements go first. If you'd like to know early about what we're cooking at Arkency, use the form below)
+(this announcement was initially sent to the Arkency mailing list - the place where all our announcements go first. If you'd like to know early about what we're cooking at Arkency, please [subscribe](http://arkency.com/newsletter/))
