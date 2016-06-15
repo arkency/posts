@@ -3,6 +3,7 @@ title: "Is Rails a good fit for writing rich frontend applications?"
 created_at: 2016-06-15 15:56:22 +0200
 kind: article
 publish: false
+newsletter: :arkency_form
 author: Marcin Grzywaczewski
 ---
 
@@ -64,9 +65,11 @@ This technique is all about making your frontend even more interactive - by intr
 
 This is not a technique, but more like a philosophical essay ;). I deconstruct the thinking behind two basic flows of how frontend app may work - bound to the backend or not bound to it - code snippets included. Knowing those differences allowed me to upgrade my thinking about JS frontends to the higher level.
 
-**Using modern Javascript with Rails.**
+**Using modern Javascript with Rails. Quick guide to tooling in JavaScript. Constructing the Node.js assets pipeline - step by step.**
 
-Quick guide to tooling in JavaScript. Constructing the Node.js assets pipeline - step by step. Those three chapters are in fact connected together. The biggest boost of productivity that you can have while writing your frontend app is switching to modern JavaScript tooling and standards. Using tools like Webpack to achieve modularization of your code, or Babel to use the newest flavor of JavaScript are bringing spectacular productivity gains. In this part I show why it is beneficial to you, what new tools you’ll be using and what they do and how to build the whole JS assets pipeline which replaces Sprockets - step by step. By finishing this chapter and following steps you’ll have working assets stack with production-ready builds, ES2015 and CoffeeScript support and a complete testing stack. I find this knowledge extremely helpful and most of our projects have this knowledge applied.
+Those three chapters are in fact connected together. The biggest boost of productivity that you can have while writing your frontend app is switching to modern JavaScript tooling and standards. Using tools like Webpack to achieve modularization of your code, or Babel to use the newest flavor of JavaScript are bringing spectacular productivity gains. In this part I show why it is beneficial to you, what new tools you’ll be using and what they do and how to build the whole JS assets pipeline which replaces Sprockets - step by step. By finishing this chapter and following steps you’ll have working assets stack with production-ready builds, ES2015 and CoffeeScript support and a complete testing stack. I find this knowledge extremely helpful and most of our projects have this knowledge applied.
 
 
 I’ve also included a handful of blogposts we’ve written about making Rails more friendly while working with rich frontends in a form of bonus chapters. I’m very happy about contents of this book and had tons of fun writing it - and I’m sure it’ll make you a better frontend developer.
+
+(this announcement was initially sent to the Arkency mailing list - the place where all our announcements go first. If you'd like to know early about what we're cooking at Arkency, use the form below)
