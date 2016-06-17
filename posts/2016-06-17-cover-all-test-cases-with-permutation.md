@@ -6,6 +6,7 @@ publish: false
 author: Robert Pankowecki
 tags: [ 'ruby', 'permutation', 'rspec', 'tests' ]
 newsletter: :arkency_form
+img: "ruby-permutation/permutation-cube.jpg"
 ---
 
 <img src="<%= src_fit("ruby-permutation/permutation-cube.jpg") %> alt="" width="100%" />
