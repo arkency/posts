@@ -443,7 +443,7 @@ I had tons of fun writing it and I’m using those techniques in my day to day w
 
 It’s the beta version of the book. If you buy it now, you’ll get all updates for free.
 
-**Just enter FF_RAILS_BLOG as a coupon code to get 40% discount for this book**. The original price is $49 and you’ll get it for less than $30!
+**Just enter `FF_RAILS_BLOG` as a coupon code to get 40% discount for this book**. The original price is $49 and you’ll get it for less than $30!
 
 Book has 97 pages of exclusive content now + bonus chapters, so it’s 154 pages in total. If you don’t like it, we have an eternal no-questions-asked refund policy - just drop us an e-mail and you’ll get refunded.
 
