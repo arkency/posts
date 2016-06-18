@@ -8,7 +8,7 @@ author: Marcin Grzywaczewski
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
 
-_This is a content which was previously published as a mail in the [Arkency Newsletter](http://eepurl.com/LnL3b). This promotes a new book - Frontend Friendly Rails which is available on sale now. Use **FF_RAILS_BLOG** to get 40% discount on the book, which you can [buy here](http://blog-arkency.imgix.net/frontend-friendly-rails/ffr-cover.png?w=758&h=758&fit=max)._
+> This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](http://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **FF_RAILS_BLOG** to get 40% discount on the book, which you can [buy here](http://blog-arkency.imgix.net/frontend-friendly-rails/ffr-cover.png?w=758&h=758&fit=max).
 
 ECMAScript 2015 is the new standard of JavaScript, popularised mostly by communities around [React.js](https://facebook.github.io/react/) view library. While Angular people chose [TypeScript](https://www.typescriptlang.org/) for their language of choice and Ember is (mostly) unopinionated about it, React people tend to use ES2015 extensively.
 
@@ -24,26 +24,28 @@ One of the most common struggles people have with JavaScript is its ‘unfamilia
 
 To aid developers migrating from languages like Ruby, C# or C++, ECMAScript 2015 provides a support of classes you already know and love. Compare:
 
-```javascript
+```
+#!javascript
 // Old JavaScript, using prototypes
 function Vehicle() {}
-Vehicle.prototype.drive = function 
-  drive(speed) { 
-    console.log("Whopping " + speed + " kilometres!"); 
+Vehicle.prototype.drive = function
+  drive(speed) {
+    console.log("Whopping " + speed + " kilometres!");
   };
 function Car() {}
 // Inheritance:
 Car.prototype = new Vehicle();
-Car.prototype.nitroBoostDrive = function 
-  nitroBoostDrive(speed) { 
-    this.drive(speed * 10); 
+Car.prototype.nitroBoostDrive = function
+  nitroBoostDrive(speed) {
+    this.drive(speed * 10);
   };
 Car.prototype.constructor = Car;
 ```
 
 To:
 
-```javascript
+```
+#!javascript
 class Vehicle {
   drive(speed) {
     // BTW. You can interpolate strings in new JS!
@@ -64,7 +66,8 @@ Other problem people tend to had with JavaScript is a visibility of variables an
 
 Old variables in JavaScript has the _function scope_ - that means whenever you’ll define them they’ll be bound to the scope of a function. Consider this:
 
-```javascript
+```
+#!javascript
 function weirdJavascript(n) {
   if (n % 2 == 0) {
     var f = 3;
@@ -79,6 +82,7 @@ function weirdJavascript(n) {
 In most languages `console.log(f)` would throw an error since `f` is undefined. But since JS variables tend to be scoped in a _function scope_ and there is a concept of _hoisting_, the function behaves more like this function:
 
 ```
+#!javascript
 function weirdJavascript(n) {
   var f;
   if (n % 2 == 0) {
@@ -95,7 +99,8 @@ This breaks familiarity with other languages you know. It is because most langua
 
 ES2015 fixes this by introducing a new type of variables which are _block scoped_ - say hello to `let` and `const`:
 
-```javascript
+```
+#!javascript
 function familiarJavascript(n) {
   if (n % 2 == 0) {
     let f = 3;
@@ -110,12 +115,13 @@ function familiarJavascript(n) {
 
 The difference between `let` and `const` is that if you define `const`, you can’t change it later (because it is _constant_):
 
-```javascript
+```
+#!javascript
 function constantJavascript(n) {
   const result = n + 1;
   if (n % 2 == 0) {
-    // Uncaught TypeError: Assignment to constant variable.  
-    result += 1;     
+    // Uncaught TypeError: Assignment to constant variable.
+    result += 1;
   }
   return result;
 }
@@ -129,7 +135,8 @@ JavaScript is burdened by its past - and certain unhappy decisions made that you
 
 One of the most annoying is the concept of default context. If you forget to use `var`, `let` or `const` in an assignment to the variable, you’ll define a global variable:
 
-```javascript
+```
+#!javascript
 f = 3;
 window.f; // 3
 ```
@@ -166,20 +173,21 @@ Specifying context works [different than in most languages](http://reactkungfu.c
 
 This is also the reason of the pattern you may often see in jQuery code:
 
-```javascript
+```
+#!javascript
 var counter = {
   count: 0,
   setCount: function setCount(newCount) {
     this.count = newCount;
   },
   countFriends: function countFriends() {
-    /*     
+    /*
     $(".friend").each(function iterateFriends() {
       // ERROR! each set its own context here.
       this.setCount(this.count + 1);
     });
     */
-    
+
     var that = this;
     $(".friend").each(function iterateFriends() {
       that.setCount(that.count + 1);
@@ -192,7 +200,8 @@ This `that` pattern is because context is not lexical scoped. This is powerful c
 
 Fortunately, ES2015 provides lexical-scoped functions, being also a very handy shorthand for defining functions in place - the feature is called ‘arrow functions’:
 
-```javascript
+```
+#!javascript
 var counter = {
   count: 0,
   setCount: function setCount(newCount) {
@@ -200,7 +209,7 @@ var counter = {
   },
   countFriends: function doSomething() {
     // Arrow function has lexical 'this'. No 'that' necessary!
-    $(".friend").each(() => { 
+    $(".friend").each(() => {
       this.setCount(this.count + 1);
     });
   }
@@ -215,7 +224,8 @@ Arrow functions are one thing that is making writing typical code in JavaScript 
 
 First feature that was lacking for a long time is _string interpolation_. ES2015 provides it by wrapping your string content with backticks:
 
-```javascript
+```
+#!javascript
 var answer = 42;
 var output = `answer to the ultimate question of life the universe and everything is ${answer}`;
 
@@ -225,7 +235,8 @@ Not a problem.`;
 
 Unpacking objects and arrays is so common operation that ES2015 provides a special syntax for it called _destructuring_. Just see it in action to see how useful it is:
 
-```javascript
+```
+#!javascript
 const object = {
   x: 1,
   y: 2,
@@ -234,7 +245,7 @@ const object = {
   }
 };
 
-// Extract 'x' and 'y' fields from object 
+// Extract 'x' and 'y' fields from object
 // and make variables x and y.
 const { x, y } = object;
 console.log(x); // 1
@@ -271,7 +282,7 @@ const [firstNum, ...restNumbers] = arr2;
 console.log(firstNum); // 1
 console.log(restNumbers); // [2, 3]
 
-// You can use object destructuring 
+// You can use object destructuring
 // in function arguments list too:
 function sumObj({ a, b }) {
   return a + b;
@@ -288,7 +299,8 @@ Looking innocent, this saves you a lot of tedious writing.
 
 There is also a change to defining functions. You can supply default arguments and use spread operator to work with variadic functions:
 
-```javascript
+```
+#!javascript
 function addTwo(a = 0, b) {
   return a + b;
 }
@@ -306,7 +318,8 @@ sumAll(1, 2, 3, 4, 5); // 15
 
 The last addition that is extremely useful is _enhanced object notation_. It’s better to see it by an example:
 
-```javascript
+```
+#!javascript
 const x = 2, y = 3, itsMe = "hello";
 
 const enhancedObj = {
@@ -337,7 +350,8 @@ There are many more. Those are only that I’m using in my day-to-day work, maki
 
 Last, but not least. Before ES2015 JavaScript had no syntax for building modules. There were technologies and standards that allowed your code to be modular (CommonJS, RequireJS…). But with ES2015 modules became first-class citizens, having its own syntax. It allows your code to hide implicit details of implementation, relying only on the public API. Not to mention it makes your dependency control way easier:
 
-```javascript
+```
+#!javascript
 // moduleA.js
 
 const moduleState = {
@@ -355,7 +369,8 @@ function moduleFunction() {
 export default callModuleFunction;
 ```
 
-```javascript
+```
+#!javascript
 // moduleB
 import moduleAFunction from './moduleA';
 
