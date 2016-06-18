@@ -12,6 +12,8 @@ img: "frontend-friendly-rails/ffr-cover.png"
 
 ECMAScript 2015 is the new standard of JavaScript, popularised mostly by communities around [React.js](https://facebook.github.io/react/) view library. While Angular people chose [TypeScript](https://www.typescriptlang.org/) for their language of choice and Ember is (mostly) unopinionated about it, React people tend to use ES2015 extensively.
 
+<!-- more -->
+
 ECMAScript 2015 is the new standard of JavaScript. Just like Ruby has version 2 or 1.8, ECMAScript 2015 is the new version of the language. It’ll be supported by every browser soon. Right now it’s not, but you can still use it today thanks to so-called _transpilers_ or _source-to-source compilers_ that understand new syntax and transforms it into the old standard of JS.
 
 Since it’s hard to chase all JavaScript novelties if you don’t sit in it, it’s understandable that ES2015 can be a new thing to you. I’d like to present you what you can gain by using it today and what’s the best way to do it with Rails.
