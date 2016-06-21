@@ -2,13 +2,12 @@
 title: "Mutation testing of Rails views"
 created_at: 2016-06-21 21:55:37 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
-tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :skip
 ---
 
-Thanks to mutation testing we can get much higher confidence while working with Ruby/Rails apps. There is one area, though, where I've been struggling to make mutant to work - the Rails views. People use erb or haml and they're both not a proper Ruby code, they're templating languages. 
+Thanks to mutation testing we can get much higher confidence while working with Ruby/Rails apps. There is one area, though, where I've been struggling to make mutant to work - the Rails views. People use erb or haml and they're both not a proper Ruby code, they're templating languages.
 
 In this post, I'm showing a trick which can help make Rails views covered by mutation testing coverage.
 
@@ -78,23 +77,9 @@ RAILS_ENV=test bundle exec mutant -r ./config/environment -r ./test/integration/
 I get a nice mutation coverage report:
 
 ```
+
 (more here...)
- evil:Views::Root::Index#content:/Users/andrzej/spikes/erector_mutanted_rails/app/views/root/index.rb:3:03c5e
-@@ -1,6 +1,4 @@
- def content
--  p(class: "content") do
--    text("Hello world")
--  end
-+  text("Hello world")
- end
------------------------
-Mutant configuration:
-Matcher:         #<Mutant::Matcher::Config match_expressions: [Views::Root::Index]>
-Integration:     Mutant::Integration::Minitest
-Expect Coverage: 100.00%
-Jobs:            4
-Includes:        []
-Requires:        ["./config/environment", "./test/integration/happy_test.rb"]
+
 Subjects:        1
 Mutations:       26
 Results:         26
@@ -105,18 +90,33 @@ Killtime:        10.74s
 Overhead:        -64.96%
 Mutations/s:     6.91
 Coverage:        61.54%
-Expected:        100.00% ```
+Expected:        100.00%
+```
 
-This means, that the view did get covered by mutant and it was mutated to see what's the coverage. 
+and the mutated code:
+
+```
+#!ruby
+
+def content
+  -  p(class: "content") do
+  -    text("Hello world")
+  -  end
+  +  text("Hello world")
+end
+
+```
+
+This means, that the view did get covered by mutant and it was mutated to see what's the coverage.
 With this example, it showed me, that I have no test requiring that it's a `<p>` tag. I'm not sure if that's really useful, but at least this technique can be applied in situations where we need to take care of Rails views as well :)
 
 Obviously, if you want to apply it to existing Rails views, they need to be converted to Fortitude first, which may not be the best choise for every project...
 
 ## Frontend friendly Rails
 
-You can struggle with Rails views or ... you can make your Rails more frontend-friendly and go with JavaScript-based applications. That's one of our favourite ways at Arkency in the last years. 
+You can struggle with Rails views or ... you can make your Rails more frontend-friendly and go with JavaScript-based applications. That's one of our favourite ways at Arkency in the last years.
 
-Marcin has just released a new book describing the techniques we've been using. Our new book is called "Frontend friendly Rails" and during this week (until Friday night) it's on a discounted price 40% off with the code FF_RAILS_BLOG.
+Marcin has just released a new book describing the techniques we've been using. Our new book is called "Frontend friendly Rails" and during this week (until Friday night) it's on a discounted price 40% off with the code `FF_RAILS_BLOG`.
 
 <a href="https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386">
   <%= img_fit("frontend-friendly-rails/ffr-cover.png") %>
