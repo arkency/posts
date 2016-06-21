@@ -8,7 +8,7 @@ author: Marcin Grzywaczewski
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
 
-> This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](http://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **`FF_RAILS_BLOG`** to get 40% discount on the book, which you can [buy here](http://blog-arkency.imgix.net/frontend-friendly-rails/ffr-cover.png?w=758&h=758&fit=max).
+> This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](http://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **`FF_RAILS_BLOG`** to get 40% discount on the book, which you can [buy here](https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386).
 
 ECMAScript 2015 is the new standard of JavaScript, popularised mostly by communities around [React.js](https://facebook.github.io/react/) view library. While Angular people chose [TypeScript](https://www.typescriptlang.org/) for their language of choice and Ember is (mostly) unopinionated about it, React people tend to use ES2015 extensively.
 
