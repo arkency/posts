@@ -23,7 +23,7 @@ infrastructure provided by Rails. We are covering few topics from the book:
 
 [Download MP3 file](http://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3).
 
-You can subscribe to __Rails Refactoring Podcast__ on [RSS](http://rails-refactoring.com/podcast/rss.xml) or on [iTunes](https://itunes.apple.com/en/podcast/rails-refactoring-podcast/id943212549).
+You can subscribe to _Rails Refactoring Podcast_ on [RSS](http://rails-refactoring.com/podcast/rss.xml) or on [iTunes](https://itunes.apple.com/en/podcast/rails-refactoring-podcast/id943212549).
 
 ### Show notes
 
