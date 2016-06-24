@@ -2,7 +2,7 @@
 title: "API of the future"
 created_at: 2016-06-24 15:42:00 +0200
 kind: article
-publish: false
+publish: true
 newsletter: :skip
 author: Marcin Grzywaczewski
 tags: ["frontend-friendly-rails"]
