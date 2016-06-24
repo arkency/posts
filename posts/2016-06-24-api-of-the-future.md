@@ -14,6 +14,7 @@ _The "Frontend-friendly Rails" book is now live!_
 Here is what Ryan Platte (one of the readers) wrote after reading the book:
 
 > I'm very experienced with Rails, and I've built production apps in React. But faced with starting a new Rails+React integration, I didn't look forward to arguing with Sprockets or undoing other Rails "opinions". Frontend Ready Rails pointed me to a clean setup with easy-to-follow steps to do it right the first time. And every step is explained thoroughly so I understand the reasoning behind each part of the advice.
+
 > With this book, I basically got an experienced pair to step through this setup with me. I recommend it to anyone who wants to integrate React into their Rails app the right way.
 
 <p><a href="https://arkency.dpdcart.com/cart/add?product_id=133328&amp;method_id=142386&amp;_ga=1.91543644.719304756.1458753187" style="display: block; margin: 1em 0; text-align: center; font-size: 2em;">Click here to buy the book!</a>
