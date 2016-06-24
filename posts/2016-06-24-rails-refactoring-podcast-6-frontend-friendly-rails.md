@@ -33,5 +33,5 @@ You can subscribe to __Rails Refactoring Podcast__ on [RSS](http://rails-refacto
 * [Creating new content types in Rails 4.2](http://blog.arkency.com/2016/03/creating-new-content-types-in-rails-4-dot-2/)
 * [The Hitchhiker’s Guide to Modern JavaScript Tooling](http://reactkungfu.com/2015/07/the-hitchhikers-guide-to-modern-javascript-tooling/)
 * [Setting up ESLint](https://medium.com/planet-arkency/catch-mistakes-before-you-run-you-javascript-code-6e524c36f0c8)
-* 40% off coupon for podcast listeners: **PODCAST\_FRONTEND\_FRIENDLY**
+* 40% off coupon: **PODCAST\_FRONTEND\_FRIENDLY**
 
