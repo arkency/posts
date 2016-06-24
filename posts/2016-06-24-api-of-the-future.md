@@ -11,7 +11,7 @@ img: "frontend-friendly-rails/ffr-cover.png"
 
 # API of the future
 
-_The "Frontend-friendly Rails" book is now live! Use the `FF_RAILS_BLOG` coupon code to get 40% discount._
+_The "Frontend-friendly Rails" book is now live!_ 
 
 Here is what Ryan Platte (one of the readers) wrote after reading the book:
 
@@ -19,7 +19,7 @@ Here is what Ryan Platte (one of the readers) wrote after reading the book:
 > With this book, I basically got an experienced pair to step through this setup with me. I recommend it to anyone who wants to integrate React into their Rails app the right way.
 
 <p><a href="https://arkency.dpdcart.com/cart/add?product_id=133328&amp;method_id=142386&amp;_ga=1.91543644.719304756.1458753187" style="display: block; margin: 1em 0; text-align: center; font-size: 2em;">Click here to buy the book!</a>
-<a href="http://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a></p>
+<p style="text-align: center; font-weight: bold">Use the <strong>`FF_RAILS_BLOG`</strong> coupon to get 40% off!</p>
 
 API is a constantly evolving topic. Today, the most of APIs we’re all using are REST, JSON-based APIs. That was not the case a few years ago, when XML was a king in terms of response formats and techniques like XML RPC was quite popular.
 
@@ -106,7 +106,7 @@ Prepare JSON API endpoints for your API - JSON API allows you to have very robus
 * **A complete overview of creating modern assets pipeline** - the last chapters are about creating the assets pipeline from scratch. You’ll learn what tools you’ll use, what their responsibilities are and how to configure it in a step-by-step manner. After you finish, you’ll have the stack with ES2015 support, CoffeeScript support for legacy compatibility, testing stack and production builds.
 
 <a href="https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386" style="display: block; margin: 1em 0; text-align: center; font-size: 2em;">Click here to buy the book!</a>
-<p style="text-align: center;">Use the <strong>`FF_RAILS_BLOG`</strong> coupon to get 40% off!</p>
+<p style="text-align: center; font-weight: bold">Use the <strong>`FF_RAILS_BLOG`</strong> coupon to get 40% off!</p>
 
 I found a ton of value in applying these techniques in projects I’ve been working on. I hope this book will be as handy for you as those techniques are for me - to this day!
 
