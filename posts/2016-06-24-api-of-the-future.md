@@ -9,8 +9,6 @@ tags: ["frontend-friendly-rails"]
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
 
-# API of the future
-
 _The "Frontend-friendly Rails" book is now live!_ 
 
 Here is what Ryan Platte (one of the readers) wrote after reading the book:
@@ -26,6 +24,8 @@ API is a constantly evolving topic. Today, the most of APIs we’re all using ar
 But is the current state of API is here to stay? Do REST-based APIs scale well? Do they provide an optimal experience for integrated clients?
 
 I don’t know the answer to this question. What I know is that there are companies that are challenging this idea - and you can  try out their solutions today. Maybe those solutions will be a better fit for your project?
+
+<!-- more -->
 
 ## Netflix - Falcor & JSONGraph
 
