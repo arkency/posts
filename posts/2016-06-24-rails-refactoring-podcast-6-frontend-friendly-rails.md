@@ -25,7 +25,7 @@ infrastructure provided by Rails. We are covering few topics from the book:
 
 You can subscribe to __Rails Refactoring Podcast__ on [RSS](http://rails-refactoring.com/podcast/rss.xml) or on [iTunes](https://itunes.apple.com/en/podcast/rails-refactoring-podcast/id943212549).
 
-# Show notes
+### Show notes
 
 * [Frontend-Friendly Rails book](http://blog.arkency.com/frontend-friendly-rails/)
 * [JSON API](http://jsonapi.org/)
