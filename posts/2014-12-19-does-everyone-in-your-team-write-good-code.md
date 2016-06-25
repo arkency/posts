@@ -106,4 +106,4 @@ What can you do with this website?
 
 First, have a look at the existing recipes. Find the ones, that may be most relevant to your project. If there were recent commits in this area, jump to github, find the Pull Request or commit and paste the URL of the recipe in the commit comment. This way, you will communicate the idea to the team and to the author of the code.
 
-Second, if you know that your team would benefit from knowing of a recipe that is not on our website yet, then please hit "Reply" and let me know about it. We want the recipes collection to grow fast!
+Second, if you know that your team would benefit from knowing of a recipe that is not on our website yet, then please [write us an email](mailto:dev@arkency.com) and let me know about it. We want the recipes collection to grow fast!
