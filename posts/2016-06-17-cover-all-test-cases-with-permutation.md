@@ -1,8 +1,8 @@
 ---
 title: "Cover all test cases with #permutation"
-created_at: 2016-06-17 13:06:21 +0200
+created_at: 2016-06-25 21:06:21 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'permutation', 'rspec', 'tests' ]
 newsletter: :arkency_form
