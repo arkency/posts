@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'refactoring']
-newsletter: :fearless_refactoring_1
+newsletter: :fearless_refactoring_main
 ---
 
 Have you ever been stuck with some code? Looking at it for minutes, hours, feeling the code smells, but not being able to fix it?
@@ -44,9 +44,9 @@ I knew it's responsible for creating time entries, but not much more than that.
 
   def create
     @time_entry ||= TimeEntry.new(
-      :project => @project, 
-      :issue => @issue, 
-      :user => User.current, 
+      :project => @project,
+      :issue => @issue,
+      :user => User.current,
       :spent_on => User.current.today
     )
     @time_entry.safe_attributes = params[:time_entry]
@@ -64,7 +64,7 @@ I knew it's responsible for creating time entries, but not much more than that.
             if params[:project_id]
               options = {
                 :time_entry => {
-                  :issue_id => @time_entry.issue_id, 
+                  :issue_id => @time_entry.issue_id,
                   :activity_id => @time_entry.activity_id
                 },
                 :back_url => params[:back_url]
@@ -99,8 +99,8 @@ I knew it's responsible for creating time entries, but not much more than that.
           end
         }
         format.api  {
-          render :action => 'show', 
-                 :status => :created, 
+          render :action => 'show',
+                 :status => :created,
                  :location => time_entry_url(@time_entry)
         }
       end
@@ -139,14 +139,14 @@ class CreateTimeEntryService < SimpleDelegator
   def call
     project = nil
     begin
-      project_id = (params[:project_id] || 
-                    params[:time_entry] && 
+      project_id = (params[:project_id] ||
+                    params[:time_entry] &&
                     params[:time_entry][:project_id]
       )
       if project_id.present?
         project = Project.find(project_id)
       end
-      issue_id = (params[:issue_id] || 
+      issue_id = (params[:issue_id] ||
                   params[:time_entry] &&
                   params[:time_entry][:issue_id]
       )
@@ -163,7 +163,7 @@ class CreateTimeEntryService < SimpleDelegator
     end
 
     allowed = User.current.allowed_to?({
-      :controller => params[:controller], 
+      :controller => params[:controller],
       :action => params[:action]}, project, :global => false
     )
 
@@ -179,9 +179,9 @@ class CreateTimeEntryService < SimpleDelegator
 
 
     time_entry ||= TimeEntry.new(
-      :project => project, 
-      :issue => issue, 
-      :user => User.current, 
+      :project => project,
+      :issue => issue,
+      :user => User.current,
       :spent_on => User.current.today
     )
     time_entry.safe_attributes = params[:time_entry]
@@ -211,15 +211,15 @@ class CreateTimeEntryService < SimpleDelegator
                 )
               else
                 redirect_to new_project_time_entry_path(
-                  time_entry.project, 
+                  time_entry.project,
                   options
                 )
               end
             else
               options = {
                   :time_entry => {
-                    :project_id => time_entry.project_id, 
-                    :issue_id => time_entry.issue_id, 
+                    :project_id => time_entry.project_id,
+                    :issue_id => time_entry.issue_id,
                     :activity_id => time_entry.activity_id
                    },
                   :back_url => params[:back_url]
@@ -232,25 +232,25 @@ class CreateTimeEntryService < SimpleDelegator
             )
           end
         }
-        format.api  { render 'show', 
+        format.api  { render 'show',
           :status => :created,
-          :location => time_entry_url(time_entry), 
+          :location => time_entry_url(time_entry),
           :locals => {:time_entry => time_entry}
         }
       end
     else
       respond_to do |format|
-        format.html { 
-          render :new, 
+        format.html {
+          render :new,
                  :locals => {
-                   :time_entry => time_entry, 
+                   :time_entry => time_entry,
                    :project => project}
         }
         format.api  { render_validation_errors(time_entry) }
       end
     end
   end
-end  
+end
 ```
 
 As you see the 40-lines block turned into 80 lines, temporarily.
@@ -391,10 +391,3 @@ What if this lesson took me 1 day of work? Sounds like a waste of time and money
 Ruby/Rails is a difficult environment to be perfect in refactoring. It requires practicing, failures, lessons, trials, patience. However, once you become more confident with your refactoring skills, you'll save a lot of time in the future. You will not only deliver more features, but also the code quality will be much better.
 
 I think it's worth it.
-
----
-
-Did you like the refactoring? I'm working on a book that explains the refactoring techniques in more detail and shows more
-examples. Sign up below to receive free Refactoring lessons.
-
-

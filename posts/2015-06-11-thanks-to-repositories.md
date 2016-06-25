@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Piotr Macuk
 tags: [ 'ruby', 'rails', 'repository pattern', 'entity object', 'active record' ]
-newsletter: :arkency_form
+newsletter: :fearless_refactoring_main
 img: "thanks-to-repositories/repository.jpg"
 ---
 

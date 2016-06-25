@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'rails_event_store', 'read model', 'event', 'event sourcing' ]
-newsletter: :arkency_form
+newsletter: :fearless_refactoring_main
 img: "introducing-read-models-in-your-legacy-application/books.jpg"
 ---
 
@@ -70,7 +70,7 @@ Remember, that this is legacy application. **So we have many games and many like
 ## Snapshot event
 So, as I said, we are going to create a snapshot event. **Such event have a lot of data inside, because basically it contains all of the data we need for our read model.**
 
-Firstly, I created `RankingHadState` event. 
+Firstly, I created `RankingHadState` event.
 
 ```
 #!ruby
@@ -183,6 +183,6 @@ After that you should subscribe this event handler to `UserLikedGame` and `UserU
 
 ## Keeping data consistent
 
-Now we're almost done, truly! Notice that it took some time to write & deploy code above it. **Thus, between running `CopyCurrentRankingToReadModel` on production and deploying this code there could be some `UserLikedGame` events which weren't handled.** And if they weren't handled, they didn't update `liked_count` field in our read model. 
+Now we're almost done, truly! Notice that it took some time to write & deploy code above it. **Thus, between running `CopyCurrentRankingToReadModel` on production and deploying this code there could be some `UserLikedGame` events which weren't handled.** And if they weren't handled, they didn't update `liked_count` field in our read model.
 
 But the fix for this is very simple - we just need to run our `CopyCurrentRankingToTheReadModel` in the production again, in the same way we did it before. Our data will be now consistent and we can just write code which will display data on the frontend - but I believe you can handle this by yourself. Note that in this blog post I didn't take care about race conditions. They may occur for example between fetching data for `HadRankingState` event and handling this event.

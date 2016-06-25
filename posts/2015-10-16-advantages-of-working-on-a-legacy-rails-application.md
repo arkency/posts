@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'legacy', 'rails' ]
-newsletter: :fearless_refactoring_1
+newsletter: :fearless_refactoring_main
 ---
 
 Are there any advantages of working on such an application?
@@ -103,7 +103,7 @@ It's hard, it's tiresome and **exhausting**. But what other options do we have? 
 give up?
 
 It's not that you are alone with those problems and challenges. Small companies
-write shitty code and [big companies write spaghetti code](http://www.safetyresearch.net/blog/articles/toyota-unintended-acceleration-and-big-bowl-%E2%80%9Cspaghetti%E2%80%9D-code) 
+write shitty code and [big companies write spaghetti code](http://www.safetyresearch.net/blog/articles/toyota-unintended-acceleration-and-big-bowl-%E2%80%9Cspaghetti%E2%80%9D-code)
 as well.
 In the world where almost everything, from factories, power plants, planes and [cars](http://www.theverge.com/2015/10/7/9470551/volvo-self-driving-car-liability)
 are controlled by software this problem is only going to get bigger. And we need to
@@ -154,4 +154,4 @@ immediate feedback is a tremendous benefit**.
 * The customers can quickly provide a feedback and let you a/b test the solutions
 * The company behind the project needs you and should pay without problems
 
-**I wish you good luck in your legacy project and lot of [learning opportunities](http://rails-refactoring.com/).** 
+**I wish you good luck in your legacy project and lot of [learning opportunities](http://rails-refactoring.com/).**

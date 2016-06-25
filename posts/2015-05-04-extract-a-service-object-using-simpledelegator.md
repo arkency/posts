@@ -4,7 +4,7 @@ created_at: 2015-05-04 14:57:53 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: :fearless_refactoring_main
 img: "service_object_with_simple_delegate.png"
 ---
 
@@ -47,27 +47,27 @@ Change
 class A
   def method_is_public
   end
-    
+
   protected
-    
+
   def method_is_protected
   end
 end
 ```
 
 into
-    
+
 ```
 #!ruby
 class A
   def method_is_public
   end
-      
+
   def method_is_protected
   end
-          
+
   protected
-    
+
 end
 ```
 
@@ -80,27 +80,27 @@ Change
 class A
   def method_is_public
   end
-    
+
   protected
-    
+
   def method_is_protected
   end
 end
 ```
 
 into
-    
+
 ```
 #!ruby
 class A
   def method_is_public
   end
-    
+
   protected
-    
+
   def method_is_protected
   end
-      
+
   public :method_is_protected
 end
 ```
@@ -428,7 +428,7 @@ private
 
 # Extracted to small helper method
 def gateway_transaction_attributes
-  params.slice(:status, :error_message, :merchant_error_message, 
+  params.slice(:status, :error_message, :merchant_error_message,
     :shop_orderid, :transaction_id, :type, :payment_status,
     :masked_credit_card, :nature, :require_capture, :amount, :currency
   )
@@ -514,7 +514,7 @@ class PaymentGatewayController < ApplicationController
 
   def callback
     PaymentGatewayCallbackService.new.callback(params[:order_id], gateway_transaction_attributes)
-    redirect_to successful_order_path(params[:order_id]) 
+    redirect_to successful_order_path(params[:order_id])
   # Rescue and redirect
   rescue PaymentGatewayCallbackService::TransactionFailed => f
     redirect_to retry_order_path(params[:order_id])
@@ -523,7 +523,7 @@ class PaymentGatewayController < ApplicationController
   rescue
     redirect_to failed_order_path(params[:order_id]), alert: t("order.problems")
   end
-  
+
   # ...
 end
 ```
