@@ -17,7 +17,7 @@ infrastructure provided by Rails. We are covering few topics from the book:
 * Modern frontend infrastructure with Node.js
 * ESLint
 
-<iframe width="100%" height="600" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/238108523&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+<iframe width="635" height="357" src="https://www.youtube.com/embed/V7LYpA4PYNM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 <audio controls>
   <source id="mp3-source" src="http://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3" type="audio/mpeg">
