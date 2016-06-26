@@ -4,7 +4,7 @@ created_at: 2014-06-13 18:39:02 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :aar_newsletter
+newsletter: :async_remote_main
 tags: [ 'remote', 'async', 'communication' ]
 stories: ['async-remote']
 ---
@@ -23,7 +23,7 @@ What we mean by working asynchronously is not to always work async, to avoid mee
 
 Because that means less disruptive interruptions for you and your team. In sync mode developers try to keep writing code and reply to everything that happens in the surrounding environment (just like your CPU does). It's hard to keep focused that way and write a good code. **That's why you see so many developers sitting with headphones in the office**. They are trying to communicate to the world that they are busy and now it's not a good time to be asked of any favor.
 
-In teams which embraced async communication and discussion (especially remote teams) it looks a little different. Developers don't receive notifications that needs to be answered immediately. Instead they go seek them when they are ok processing them. So I might **schedule 60-120 minutes of time for myself purely for coding**. I set myself away on chat and turn of notifications fur that time. In that time I am fully in developers mindset. Coding, TDD, Architecture is what I breath at that time. When I am done with some part of the problem that I wanted to implement I get out of zone. I check my email, chat, answer peoples questions, send my own questions to people. I might take a break to grab a lunch or stretch a neck, send something nice to my wife. When I am done, I can schedule next uninterruptible part of time for myself to code. 
+In teams which embraced async communication and discussion (especially remote teams) it looks a little different. Developers don't receive notifications that needs to be answered immediately. Instead they go seek them when they are ok processing them. So I might **schedule 60-120 minutes of time for myself purely for coding**. I set myself away on chat and turn of notifications fur that time. In that time I am fully in developers mindset. Coding, TDD, Architecture is what I breath at that time. When I am done with some part of the problem that I wanted to implement I get out of zone. I check my email, chat, answer peoples questions, send my own questions to people. I might take a break to grab a lunch or stretch a neck, send something nice to my wife. When I am done, I can schedule next uninterruptible part of time for myself to code.
 
 This is great for a daily work when you know what to work on, tasks are already discussed and properly prioritized or assigned. It's a casual day of asynchronous programmer. It might look similar to you to Pomodoro technique except that Pomodoro default is usually very small (25min) and I found that for serious programming you usually need more time than that to get all the necessary concepts into my head. So I usually **try to organize my day around 4 or 5 sessions that are about 90 minutes long**.
 
@@ -106,5 +106,3 @@ the discussion usually starts on hackpad earlier
 As you can see we try to keep number of enforced discussion very low. Too many mandatory meetings are considered harmful. Instead we prefer smaller talks including only interested participants that mostly happen in text before they are evaluated on a synchronous audio/video meeting. In other words: _a lot of async before we sync_.
 
 In next blogpost we are going to show you how to take most out of async, textual standups so that they are truly a masterpiece :)
-
-Subscribe below.

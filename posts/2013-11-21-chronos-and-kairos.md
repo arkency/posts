@@ -4,7 +4,7 @@ created_at: 2013-11-21 17:18:19 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :aar_newsletter
+newsletter: :async_remote_main
 tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
 stories: ['async-remote']
 ---
@@ -21,14 +21,14 @@ There are two ways you can look at it...
 
 * **I have so much to do and so little time and the time is just passing by...**
 
-    This is the classic way of perceiving time. Time in general. Chronological 
+    This is the classic way of perceiving time. Time in general. Chronological
     time as indicated by the dates on a calendar or the ticking of a clock.
     The Greeks called it _Chronos_ (or _Kronos_).
 
 * **I have 2 hours of my time, what is the best way I can use it?**
 
     For a special and unique time in your life, especially regarding important
-    events such as wedding there was a separate word: _Kairos_. 
+    events such as wedding there was a separate word: _Kairos_.
     What is special depends on who is articulating the word. And that was
     the word used when you were encouraged to make the best use of the time,
     of your time. While _Chronos_ is quantitative, _Kairos_ has a qualitative
@@ -50,8 +50,8 @@ That is our recipe to make those moments of time uniqe and worthwhile to you as 
 developer. To be sure that we actually did someting in that time, instead of just
 letting it pass.
 
-Read more about improving your current project in our book: 
-**<%= landing_link("Developers oriented project management") %> ebook**
+Read more about improving your current project in our book:
+**[Async Remote](http://blog.arkency.com/async-remote/) ebook**
 
 ##### Links
 

@@ -4,7 +4,7 @@ created_at: 2014-06-11 20:16:56 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :aar_newsletter
+newsletter: :async_remote_main
 tags: [ 'foo', 'bar', 'baz' ]
 stories: ['async-remote']
 ---
@@ -119,7 +119,7 @@ Whatever interesting happens in our company, it gets an URL on Hackpad. Do I hav
   <img src="<%= src_fit("remote-toolbox/hackpad.png") %>" />
 </a>
 
-The email notifications are very powerful tool to keep being updated in an asynchronous discussion about topics that you subscribed to. Here is a screenshot with notifications from our hackpad dedicated to our annual Arkency Camp event. As you can see the notifications are provide with a a bit of context for the changes, so sometimes you don't even have to open the pad, to know what's been changed or what is someone opinion about the topic. 
+The email notifications are very powerful tool to keep being updated in an asynchronous discussion about topics that you subscribed to. Here is a screenshot with notifications from our hackpad dedicated to our annual Arkency Camp event. As you can see the notifications are provide with a a bit of context for the changes, so sometimes you don't even have to open the pad, to know what's been changed or what is someone opinion about the topic.
 
 <a href="/assets/images/remote-toolbox/hackpad_email_notifications.png" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/hackpad_email_notifications.png") %>" />

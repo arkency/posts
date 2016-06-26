@@ -4,7 +4,7 @@ created_at: 2014-06-16 19:04:36 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :aar_newsletter
+newsletter: :async_remote_main
 tags: [ 'remote', 'async', 'communication', 'standups' ]
 stories: ['async-remote']
 ---
@@ -31,21 +31,21 @@ _Yesterday I finished the "fix the price calculator" feature, which was mostly a
 
 ### What's good?
 
-* many details, 
-* letting other people jump in and help me, 
-* some opinions about the code that I saw, 
+* many details,
+* letting other people jump in and help me,
+* some opinions about the code that I saw,
 * some details about practices I applied (TDD, foreman'ing)
 * reminds about some business information - import of users from the X system, happening soon
 * links to the commit (potential education)
 
 ### Format
 
-1. yesterday 
-2. today 
-3. good things 
-4. bad things 
-5. challenges 
-6. call for help 
-7. reminder about good practices (tdd, foreman, help colleagues) 
+1. yesterday
+2. today
+3. good things
+4. bad things
+5. challenges
+6. call for help
+7. reminder about good practices (tdd, foreman, help colleagues)
 8. code examples (link)
 9. business-related info

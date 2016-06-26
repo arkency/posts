@@ -4,8 +4,7 @@ created_at: 2014-08-17 15:07:31 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :skip
-newsletter_inside: :aar_newsletter
+newsletter: :async_remote_main
 tags: [ '' ]
 stories: ['async-remote']
 ---
@@ -31,11 +30,11 @@ _If you are Rails backend developer, switch to frontend or even go with gaming_.
 said the money doesn't matter, it's your mental health that is the most important and
 earning 2x or even 4x less is not the thing to focus and not the most crucial factor.
 
-Well, I don't know if that's going to help, if that's a good advice. I'm not a 
+Well, I don't know if that's going to help, if that's a good advice. I'm not a
 psychologist nor psychiatrist. Although I am guilty of dreaming occasionaly about
 switching to gaming and releasing my own 2D platform game based on _Unity_ probably.
 However, that is not the most important here. What got me thinking is **_Do we really
-need to change a job to try out new things?_** 
+need to change a job to try out new things?_**
 
 ## Does it mean I need to change my job?
 
@@ -65,7 +64,7 @@ Could it be that way?
 
 ## Could it be different?
 
-I don't think there is a silver bullett for burnouts but _excuse me_ **I think we can 
+I don't think there is a silver bullett for burnouts but _excuse me_ **I think we can
 as industry do way more to minimize the scale of the problem**. Here are few ideas:
 
 * Small stories
@@ -155,5 +154,3 @@ we expanded our horizons, where are we to apply that knowledge? In a new job?**
 but **you probably hired geeks who would like to know everything there is in the world**. They are
 never going to stop learning, whether you let them or not. If they need to, they will change a job for
 it. But it doesn't mean they want to do it. It's just, you might not leave them much choice.
-
-## If you liked this article, you might also enjoy our <%= landing_link %> ebook.
