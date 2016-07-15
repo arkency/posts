@@ -53,7 +53,9 @@ def capture(order_id)
     orderID:    order_id,
     retailerID: static_configuration.retailer_id.to_s,
   }.tap do |params|
-    params[:signature] = HashGuard.new(static_configuration.shared_secret).calculate(params.values)
+    params[:signature] = HashGuard.new(
+      static_configuration.shared_secret
+    ).calculate(params.values)
   end
 
   response = client.call(
@@ -98,7 +100,7 @@ Savon.client(
 )
 ```
 
-It tell `Savon` where to find `WSDL` - _an XML file
+It tells `Savon` where to find `WSDL` - _an XML file
 for describing network services as a set of
 endpoints operating on messages_. 
 
@@ -166,7 +168,9 @@ data = {
   orderID:    order_id,
   retailerID: static_configuration.retailer_id.to_s,
 }.tap do |params|
-  params[:signature] = HashGuard.new(static_configuration.shared_secret).calculate(params.values)
+  params[:signature] = HashGuard.new(
+    static_configuration.shared_secret
+  ).calculate(params.values)
 end
 ```
 
