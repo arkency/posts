@@ -8,9 +8,9 @@ tags: [ 'rails', 'respond_to', 'format' ]
 ---
 
 You might think that if a controller action is only
-capable of rendering HTML there is not much reason
+capable of rendering HTML, there is not much reason
 to use `respond_to`. After all, this is what
-rails scaffold probably taught you.
+Rails scaffold probably taught you.
 
 <!-- more -->
 
@@ -23,8 +23,8 @@ class PostsController < ApplicationController
 end
 ```
 
-There is however one very annoying situation in which
-this will lead to an exception. When a silly client
+There is, however, one very annoying situation in which
+this code will lead to an exception: when a silly client
 asks to get your page in XML format.
 
 Try for yourself:
@@ -52,16 +52,16 @@ problem was on the server side.
 
 This problem will be logged by an
 exception tracker, that you use for your Rails app.
-However, there is nothing we can really do about the
+However, there is nothing we can do about the
 fact that someone out there thinks they can get
 a random page in our app via XML. We don't need
 a notification every time that happens. And the
 bigger your website, the more often such random
 crap happens.
 
-But we also don't want to ignore those errors completly
+But we also don't want to ignore those errors completely
 when they occur. There could be a situation in
-which they can help us catch a real error i.e.
+which they can help us catch a real problem i.e.
 a refactoring which went wrong.
 
 How can we fix the situation? Just add `respond_to`
