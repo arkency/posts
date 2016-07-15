@@ -4,14 +4,14 @@ created_at: 2016-07-08 09:51:03 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'SOAP', 'API', 'ruby' ]
 newsletter: :arkency_form
 ---
 
-The bigger your application the more likely you will need
-to integrate with less usual APIs. This time we are going
+The bigger your application, the more likely you will need
+to integrate with less common APIs. This time, we are going
 to discuss testing communication with SOAP based services.
-It's not that bad. Still better
+It's no big deal. Still better
 than gzipped XMLs over SFTP (I will leave that story to
 another time).
 
@@ -20,8 +20,8 @@ so enterprisey and intimidating. But it doesn't need to be.
 Also, I usually prematurely worry that Ruby tooling won't
 be good enough to handle all those XMLs. Perhaps this is
 because of some of my memories of terrible SOAP APIs that
-I needed to integrate with when I was working as .net
-developer. But SOAP is not inherently bad. In fact, it has
+I needed to integrate with when I was working as a .NET
+developer. But SOAP is not inherently evil. In fact, it has
 some good sides as well.
 
 <!-- more -->
@@ -30,7 +30,7 @@ some good sides as well.
 
 We are going to use `savon` gem for the implementation
 and `webmock` to help us with testing. The plan is to
-implement a `capture` functionaly for a payment gateway.
+implement a `capture` functionality for a payment gateway.
 It means that goods were already shipped or delivered to
 the customer and the reserved amount can be paid to the
 merchant.
@@ -67,27 +67,27 @@ def capture(order_id)
 end
 ```
 
-The example is not really long, but sufficient enough
+The example is not long but sufficient enough
 to discuss a few aspects.
 
-There are is a static configuration that we don't need
+There is a static configuration that we don't need
 to bother ourselves with right now. It contains API URLs
 and API keys. In Rails app they usually differ per
-enviroment. Development and staging is using pre-production
+environment. Development and staging are using the pre-production
 environment of the API provider. Our production env 
-is using api production host. In test I usually use
+is using API production host. In tests, I usually use
 pre-production config for safety as well. But thanks to webmock
 we should never reach this host anyway.
 
 We use Savon gem to communicate with the API. I explicitly
-configure it to use `TLS` instead of obsolete `SSL` protocol
-for safety. Depending on your preferences you might configure
-it to log the whole communication and to which file. I find
+configure it to use `TLS` instead of the obsolete `SSL` protocol
+for safety. Depending on your preferences you might set
+it to log the full communication and to which file. I find
 it very useful to have full dump during the exploratory phase.
 When I just play with the API in development to see how it
 behaves and what it responds. Having full output of the XML
-from requests and responses can be a lifesafer when debugging
-and comparing with a documentation.
+from requests and responses can be a lifesaver when debugging
+and comparing with documentation.
 
 The most important part of the initialization is:
 
@@ -148,15 +148,15 @@ So as you can see the whole API is defined based on primitives
 which build more complex types which can be parts of even more
 complex types.
 
-The nice thing about using SOAP APIs with WSDL is that the client
+The best thing about using SOAP APIs with WSDL is that the client
 can parse such API definition and dynamically or statically define
-all the methods and conversion required to interact with the API.
+all the methods and conversions required to interact with the API.
 
-Also even the API documentation written by humans is incorrect,
-you can peak into the WSDL to see what's really going on there.
-Helped me a lot a few times.
+Also, even when the API documentation written by humans is incorrect,
+you can peek into the WSDL to see what's actually going on there.
+It helped me a lot a few times.
 
-In next part we build a Hash with keys matching the names
+In next part, we build a Hash with keys matching the names
 from the WSDL definition of the type.
 
 ```
@@ -173,7 +173,7 @@ end
 The signature is a cryptographic digest of all the other
 values based on a secret that only me and the payment gateway
 should know. That way the gateway can check the integrity of
-the message and that it is coming from me and no one else.
+the message and that it is coming from me and not somebody else.
 So it plays a role of authentication token as well.
 I extracted the implementation into `HashGuard` class which
 is not interesting for us today.
@@ -190,7 +190,7 @@ response = client.call(
 )
 ```
 
-The result of the API call is also automatically convered for us
+The result of the API call is also automatically converted for us
 from XML to Ruby primitives such as numbers, strings, arrays
 and hashes.
 
@@ -206,16 +206,16 @@ see if everything worked correctly.
 
 ## Testing
 
-I am gonna test this code based on the underlying
-networking communication protocol. In other words
-we will stub the HTTP requests with XML being sent.
+I am going to test this code based on the underlying
+networking communication protocol. In other words,
+we will stub the HTTP requests with the XML being sent.
 
 This is on purpose. I want to be able to switch to
 different gem or a library provided by the payment
 gateway authors without the need to change the
 tests.
 
-If I just stubbed Ruby method calls I would not have
+If I just stubbed Ruby method calls, I would not have
 the ability to change the implementation without
 changing tests. I would be just typo-testing the
 implementation. That way I check if we send proper
@@ -272,16 +272,16 @@ def stub_getting_wsdl_definition
 end
 ```
 
-First we stub getting the `WSDL`. I downloaded it
+First, we stub getting the `WSDL`. I downloaded it
 myself and saved under `spec/fixtures/pg.wsdl.xml`.
-They are usually quite a lenghty files so I prefer to
+They are usually quite a long files, so I prefer to
 keep their content outside of the specification.
 It remains the same and does not depend on any
-paramters that we could pass so it does not bring
+parameters that we could pass so it does not bring
 anything valuable to the spec.
 
 Then we stub the `GoodsShipped` request that we issue.
-It contains the static data coming from configuration
+It contains the static data coming from the configuration
 and the provided `order_id`. I have taken the XML
 structure of the file from savon logs while playing
 with the API. Sometimes you have the correct 
@@ -293,9 +293,9 @@ I like my XMLs in tests to be human readable. So I use
 this little trick to compact my XML into the same format
 as savon will generate. It has no indentation.
 
-We also stub the response. In this test we are checking
+We also stub the response. In this test, we are checking
 the successful path. So the status is "Ok". In such
-case our adapter should return the `transaction_id`
+case, our adapter should return the `transaction_id`
 from the response. That would be `8c2ee655b5114`.
 
 
