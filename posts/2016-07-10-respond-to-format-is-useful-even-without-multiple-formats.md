@@ -81,8 +81,8 @@ class PostsController < ApplicationController
 end
 ```
 
-Alternatively you can go with `respond_to :html`.
-But that itself is not good enough and requires
+Alternatively, you can go with `respond_to :html`.
+But that itself is not sufficient and requires
 using it together with `respond_with`.
 
 ```
@@ -97,7 +97,7 @@ class PostsController < ApplicationController
 end
 ```
 
-After such change the client will get `406` error
+After such change, the client will get `406` error
 when the format is not supported.
 
 ```
