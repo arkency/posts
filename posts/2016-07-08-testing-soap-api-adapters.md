@@ -1,6 +1,6 @@
 ---
 title: "Implementing & Testing SOAP API clients in Ruby"
-created_at: 2016-07-08 09:51:03 +0200
+created_at: 2016-07-18 16:51:03 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
