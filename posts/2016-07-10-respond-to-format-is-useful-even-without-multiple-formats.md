@@ -1,8 +1,8 @@
 ---
 title: "respond_to |format| is useful even without multiple formats"
-created_at: 2016-07-10 16:39:29 +0200
+created_at: 2016-07-21 16:39:29 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'respond_to', 'format' ]
 ---
@@ -111,3 +111,7 @@ when the format is not supported.
 And _missing template_ exception leading to `500` error code
 will occur only when you really have a problem with the template
 for supported MIME types (HTML in our example).
+
+P.S. If you haven't heard yet, [Post-Rails Way Book Bundle](http://www.railsbookbundle.com/)
+is ending soon. With 55% discount you can buy 8 products that will help you a lot. Especially
+if you work with bigger or legacy Rails applications. Enjoy!
