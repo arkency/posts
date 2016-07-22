@@ -2,7 +2,7 @@
 title: "Two dimensions of a Rails developer's growth"
 created_at: 2016-07-22 19:53:41 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
