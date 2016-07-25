@@ -7,6 +7,9 @@ author: Marcin Grzywaczewski
 newsletter: :skip
 ---
 
+
+(Pssssst, due to several requests, we've reopened the [Post-Rails-Way Book Bundle](http://railsbookbundle.com) only for today - Monday. It's the last chance to get the books/videos with 55% discount!)
+
 Refactoring is a on-going process that is necessary in big Rails applications. Without it, you can quickly get into trouble - not only your code quality will suffer, but pieces of your architecture - models, controllers and views will get more and more coupled together. This is not a nice separation you had at the beginning of the project - it can quickly transform into an entangled mess of callbacks, going by relationships through half of the system to do stuff, and horrible things like that.
 
 <!-- more -->
