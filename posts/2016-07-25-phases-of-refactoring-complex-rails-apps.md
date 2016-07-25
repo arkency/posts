@@ -139,43 +139,7 @@ Next techniques you can use need a proper understanding of the business domain -
 
 But this is only Arkency way, right? In fact, we’re not the only one inspired by proper design and architectural patterns. We write about them (a lot!), but there are other great developers sharing the same goal with us - make Rails a better fit for complex applications.
 
-That’s why we’ve reached out to some of them and we’re preparing a special offer for you - the *Rails Sales Bundle*. It’s a bundle of excellent books about escaping Rails or providing missing architecture parts for the framework. All of developers we’ve reached written books about the topic. We believe books are a great medium to share knowledge - we’ve written plenty of books after all! We are certain that the long form of books can help you master techniques that can help you with your code.
-
-The bundle consists of the following books:
-
-* FEARLESS REFACTORING - RAILS CONTROLLERS: This book guides you through the complicated task of cleaning up the mess that controllers often become in legacy Rails applications.
-
-How do you extract the business essence from the controller, while keeping the HTTP related aspects in it, untouched?
-
-It also touches to topic of introducing explicitness to multiple Rails conventions which simply further refactorings.
-
-* TRAILBLAZER - A NEW ARCHITECTURE FOR RAILS: 
-Trailblazer introduces several new abstraction layers into Rails. It gives developers structure and architectural guidance and finally answers the question of "Where do I put this kind of code?" in Rails.
-
-This book walks you through a realistic development of a Rails application with Trailblazer and discusses every bloody aspect of it.
-
-* RAILS AS SHE IS SPOKE - HOW RAILS GETS OOP WRONG, BUT IT WORKS ANYWAY:   
-Do you want to understand Rails? Do you want to write Rails apps effectively, or see your own open source creations delight their users and enjoy wild success like Rails has? Have you noticed that Rails never quite makes perfect sense according to traditional object-oriented theory, or that the Ruby On Rails Guides never seem to quite explain the realities of cutting-edge Rails development?
-
-* GROWING RAILS APPLICATIONS IN PRACTICE - STRUCTURE LARGE RUBY ON RAILS APPS WITH THE TOOLS YOU ALREADY KNOW AND LOVE:  
-Discover a simpler way to scale Rails codebases. Instead of introducing new patterns or service-oriented architecture, we will show how to use discipline, consistency and code organization to make your application grow more gently.
-
-* MODULAR RAILS - THE COMPLETE GUIDE TO MODULAR RAILS APPLICATIONS:  
-Wait! What's a modular application?!
-
-It's pretty simple. Instead of putting everything into one project, you put your MVC components into specialized Rails engines packaged as gems. Module by module, you can define what your application will be!
-
-* UNFUCK A MONORAIL FOR GREAT JUSTICE - RAILS APPS ARE NOT SUPPOSED TO BE MONOLITHIC:  
-Monolithic Rails apps -- or monorails -- are a problem in the world of Rails development. This book doesn't just show you how to get them back on track. It shows you how to get them back on track more cleanly and more swiftly than you would have believed humanly possible.
-
-* FRONTEND FRIENDLY RAILS - BETTER DEFAULTS FOR YOUR SOPHISTICATED FRONTENDS:  
-
-Upgrade Rails defaults and introduce cool features that’ll help you with making your apps more maintainable and faster to write.
-
-Take your API to a higher level in terms of maintenance and provide user experience improvements?
-
-Chapters are written as a step-by-step, complete solutions. They start with showing benefits a technique may bring to your workflow, so you can discuss it with your team before.
-
+That's why we have organized a book bundle with those authors. Officially we've finished it on Friday, but due to many requests, we've reopened the [Post-Rails-Way Book Bundle](http://railsbookbundle.com) today, just for one day!
 
 
 
