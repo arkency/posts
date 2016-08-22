@@ -2,7 +2,7 @@
 title: "Domain Events Schema Definitions"
 created_at: 2016-07-10 15:40:11 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'schema', 'rails_event_store' ]
 newsletter: :arkency_form
