@@ -349,4 +349,4 @@ As you can see the whole object is contained within `included` root field. This 
 
 JSON API is a great tool to have in your toolbox. It reduces [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding) and allows you to focus on delivering features and good code. Active Model Serializers make it easy to work with this well-established standard. Your client code will benefit to thanks to tailored libraries available for reading JSON API-based responses.
 
-If you liked this post, you can always get in touch with us [via an e-mail](mailto:dev@arkency.com) or [Twitter](http://twitter.com/arkency). We're pretty interested whether you've used JSON API before - how do you like it? If not, how do you structure your APIs? Share your stories with us!
+If you'd like to learn more how we recommend to use JSON API within Rails apps, then look at our new book ["Frontend-friendly Rails](http://blog.arkency.com/frontend-friendly-rails/).
