@@ -2,7 +2,7 @@
 title: "Command bus in a Rails application"
 created_at: 2016-09-15 08:26:38 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
