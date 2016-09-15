@@ -79,13 +79,10 @@ class CommandExecutor
 
   private
   def register_commands
-    @bus.register(AddCostCode, AddCostCodeHandler.new(repository))
+    @bus.register(AddCostCode, AddCostCodeHandler.new)
     # ...
   end
 
-  def repository
-    AggregateRoot::Repository.new(event_store)
-  end
 end
 ```
 
@@ -94,11 +91,6 @@ In this case, we declare a dedidacted command handler, called `AddHostCodeHandle
 ```
 #!ruby
 class AddCostCodeHandler < CommandHandler
-  attr_reader :repository
-
-  def initialize(repository)
-    @repository = repository
-  end
 
   def call(command)
     aggregate(CompanyCostCentre, Company.new(id: command.company_id)) do |company_settings|
