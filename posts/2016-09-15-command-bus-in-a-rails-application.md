@@ -87,12 +87,12 @@ class CommandExecutor
     AggregateRoot::Repository.new(event_store)
   end
 end
-
 ```
 
 In this case, we declare a dedidacted command handler, called `AddHostCodeHandler`.
 
 ```
+#!ruby
 class AddCostCodeHandler < CommandHandler
   attr_reader :repository
 
@@ -111,6 +111,7 @@ end
 We use a full-CQRS approach here together with event sourcing and aggregates. Let's look at the aggregate here:
 
 ```
+#!ruby
 class CompanyCostCentre
   include AggregateRoot::Base
 
@@ -138,16 +139,17 @@ This means, that we're publishing a successful `CostCodeAdded` event, which can 
 
 How are the events then connected?
 
-``` module EventSourcing
+```
+#!ruby module EventSourcing
   def event_store
     @client ||= RailsEventStore::Client.new.tap do |client|
       client.subscribe(BuildCostCodeReadModel.new, [CostCodeAdded])
     end
   end
-end
- ```
+end ```
 
 ```
+#!ruby
 class BuildCostCodeReadModel
 
   def call(event)
@@ -164,6 +166,7 @@ class BuildCostCodeReadModel
 In which, the CompanyCostCode is just a normal ActiveRecord class:
 
 ```
+#!ruby
 class CompanyCostCode < ActiveRecord::Base
   def self.all_for_company(company)
     where(company_id: company.id)
