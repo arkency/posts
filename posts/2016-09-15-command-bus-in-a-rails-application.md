@@ -64,7 +64,7 @@ So, there's a `CommandExecutor` class which is responsible for dispatching comma
 #!ruby
 
 class CommandExecutor
-  include EventSourcing
+  include EventStoreConfiguration
 
   def initialize
     @bus = Arkency::CommandBus.new
@@ -141,7 +141,7 @@ How are the events then connected?
 
 ```
 #!ruby
-module EventSourcing
+module EventStoreConfiguration
   def event_store
     @client ||= RailsEventStore::Client.new.tap do |client|
       client.subscribe(BuildCostCodeReadModel.new, [CostCodeAdded])
