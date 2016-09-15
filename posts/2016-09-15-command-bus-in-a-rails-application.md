@@ -89,7 +89,7 @@ class CommandExecutor
 end
 ```
 
-In this case, we declare a dedidacted command handler, called `AddHostCodeHandler`.
+In this case, we declare a dedidacted command handler, called `AddCostCodeHandler`.
 
 ```
 #!ruby
