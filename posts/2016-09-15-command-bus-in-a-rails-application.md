@@ -100,6 +100,38 @@ class AddCostCodeHandler < CommandHandler
 end
 ```
 
+
+What is the `CommandHandler` class which we inherit from?
+
+```
+#!ruby
+class CommandHandler
+  protected
+  def aggregate(aggregate_type, *aggregate_id, &block)
+    if block
+      load(aggregate_type, *aggregate_id).tap do |aggregate|
+        block.call(aggregate)
+        publish_changes(aggregate)
+      end
+    else
+      load(aggregate_type, aggregate_id)
+    end
+  end
+
+  private
+  def load(aggregate_type, *aggregate_id)
+    aggregate_type.new(*aggregate_id).tap do |aggregate|
+      repository.load(aggregate)
+    end
+  end
+
+  def publish_changes(aggregate)
+    repository.store(aggregate)
+  end
+end
+
+```
+
 We use a full-CQRS approach here together with event sourcing and aggregates. Let's look at the aggregate here:
 
 ```
