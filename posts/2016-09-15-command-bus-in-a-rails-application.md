@@ -155,6 +155,7 @@ class BuildCostCodeReadModel
   def handle_cost_code_added(event)
     CompanyCostCode.create!(code: event.data.code, company_id: event.data.company_id, description: event.data.description)
   end
+end
 ```
 
 In which, the CompanyCostCode is just a normal ActiveRecord class:
