@@ -140,13 +140,15 @@ This means, that we're publishing a successful `CostCodeAdded` event, which can 
 How are the events then connected?
 
 ```
-#!ruby module EventSourcing
+#!ruby
+module EventSourcing
   def event_store
     @client ||= RailsEventStore::Client.new.tap do |client|
       client.subscribe(BuildCostCodeReadModel.new, [CostCodeAdded])
     end
   end
-end ```
+end
+```
 
 ```
 #!ruby
