@@ -35,8 +35,8 @@ _When Season Pass Holder is imported, create an account for her/him and send a w
 e-mail with password setting instructions._.
 
 The usual way to achieve it would be to wrap everything in a transaction, create a user,
-create a season pass and commit it. But we already decided to split our application
-into two separate parts. And we don't want to operate on both of them directly. They
+create a season pass and commit it. **But we already decided to split our application
+into two separate parts**. And we don't want to operate on both of them directly. They
 have their responsibilities, and we want to keep them decoupled.
 
 ## Evented way
@@ -55,29 +55,29 @@ It certainly sounds (and is) more complicated compared to our default solution.
 So we should only apply this tactic where it benefits us more than it costs.
 
 But I assume that if you decided to separate some sub-systems of your applications
-into indepedent, decoupled units, you already weighted the pros and cons. So now,
+into **indepedent, decoupled units, you already weighted the pros and cons**. So now,
 we are talking only about the execution.
 
 ## About the cost
 
 You might be thinking that there is big infrastructural cost in communicating via domain events.
 That you need to set up some message bus and think about event serialization.
-But big chances are things are easier than you expect them to be.
+But big chances are **things are easier than you expect them to be**.
 
 You can start small and straightforward and later change to more complex solutions when
 the need appears. And chances are you already have all the components required
 for it, but you never thought of them in such a way.
 
 Do you use Rails 5 Active Job, or resque or sidekiq or delayed job or any similar tooling,
-for scheduling background jobs? Good, you can use them as message bus for asynchronous
-communication between two parts of your application.
+for scheduling background jobs? Good, you can **use them as message bus for asynchronous
+communication between two parts of your application**.
 With [`#retry_job`](http://api.rubyonrails.org/v5.0.0.0.1/classes/ActiveJob/Enqueuing.html#method-i-retry_job)
 you can even think of it as _at least one delivery_ in case of failures.
 
 So the parts of your application (sub-systems, bounded-contexts) don't need at the
 beginning to be deployed as separate applications (microservices). They don't need
 a separate message bus such as RabbitMQ or Apache Kafka. At the start, all
-you need is a code which assumes asynchronous communication (and also embraces
+you need is a code which assumes **asynchronous communication** (and also embraces
 eventual consistency) and uses the tools that you have at your disposal.
 
 Also, you don't need any fancy serializer at the beginning such as message pack or protobuf.
@@ -125,7 +125,7 @@ queue, treating it as a simple message bus. We use Rails 5 API here.
 Rails.application.config.event_store.tap do |es|
   es.subscribe(->(event) do
     IdentityAndAccess::RegisterSeasonPassHolder.perform_later(YAML.dump(event))
-  end, [SeasonPassImported])
+  end, [Season::PassImported])
 
   es.subscribe(->(event) do
     Season::AssignUserIdToHolder.perform_later(YAML.dump(event))
@@ -135,7 +135,7 @@ end
 
 <hr />
 
-Imagine this part of code somewhere in a part of code responsible for
+Imagine this part of code (somewhere) responsible for
 importing season passes. It saves the pass and publishes `PassImported` event.
 
 ```
@@ -152,7 +152,7 @@ ActiveRecord::Base.transaction do
 end
 ```
 
-When event_store saves and publishes the `Season::PassImported` event, it will also be queued
+When `event_store` saves and publishes the `Season::PassImported` event, it will also be queued
 for processing by `IdentityAndAccess::RegisterSeasonPassHolder` background job
 (handler equivalent in DDD world).
 
@@ -271,8 +271,8 @@ end
 
 ## When your needs grow
 
-Now imagine that the needs of Identity And Access grow a lot. We would like to extract it
-as a small application (microservice) and scale separately. Maybe deploy much more instances
+Now imagine that the needs of Identity And Access grow a lot. We would like to **extract it
+as a small application (microservice) and scale separately**. Maybe deploy much more instances
 than the rest of our app needs? Maybe ship it with JRuby instead of MRI.
 Maybe expose it to other applications that will now use it for authentication and managing
 users as well? Can it be done?
@@ -282,7 +282,7 @@ serialization format (not YAML, because YAML is connected to class names and you
 identical class names between two separate apps).
 
 Your code already assumes asynchronous communication between Season Passes and Identity&Access
-so you are safe to do so.
+so you are **safe to do so**.
 
 ## Did you like it?
 
