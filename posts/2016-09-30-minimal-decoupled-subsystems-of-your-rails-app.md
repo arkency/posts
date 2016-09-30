@@ -12,10 +12,10 @@ There are multiple ways to implement communication between two separate
 microservices in your application. Messaging is often the most recommended
 way of doing this. However, you probably heard that
 [_"You must be this tall to use microservices"_](http://martinfowler.com/bliki/MicroservicePrerequisites.html).
-In other words your project must be certain size and your organization
-must be mature (in terms of DevOps, monitoring, etc) to split your app
+In other words, your project must be certain size and your organization
+must be mature (in terms of DevOps, monitoring, etc.) to split your app
 into separately running and deployed processes. **But that doesn't mean
-you can't benefit from decoupling certain subsystems in your application
+you can't benefit from decoupling individual subsystems in your application
 earlier.**
 
 <!-- more -->
@@ -29,15 +29,15 @@ Now, imagine that you have two bounded contexts in your application:
 * **Season Passes [SP]** - which takes care of managing season passes for football clubs.
 * **Identity & Access [I&A]** - which takes care of authentication, registrations and permissions.
 
-And the usecase that we will be working with is described as:
+And the use-case that we will be working with is described as:
 
 _When Season Pass Holder is imported, create an account for her/him and send a welcome
 e-mail with password setting instructions._.
 
-The usual way to achieve it, would be to wrap everything in a transaction, create an user,
+The usual way to achieve it would be to wrap everything in a transaction, create a user,
 create a season pass and commit it. But we already decided to split our application
 into two separate parts. And we don't want to operate on both of them directly. They
-have their own responsibilities and we want to keep them decoupled.
+have their responsibilities, and we want to keep them decoupled.
 
 ## Evented way
 
@@ -47,7 +47,7 @@ So here is what we could do instead:
 * [SP] publish a domain event that season pass was imported
 * [I&A] react to that domain event in Identity & Access part of our application and create the user account
 * [I&A] in case of success, publish a domain event that User was imported (`UserImported`)
-    * or if user is already present on our platform, it would publish `UserAlreadyRegistered` domain event.
+    * or if the user is already present on our platform, it would publish `UserAlreadyRegistered` domain event.
 * [SP] react to `UserImported` or `UserAlreadyRegistered` domain event and update the `user_id` of created `SeasonPass` 
 to the ID of the user.
 
@@ -55,7 +55,7 @@ It certainly sounds (and is) more complicated compared to our default solution.
 So we should only apply this tactic where it benefits us more than it costs.
 
 But I assume that if you decided to separate some sub-systems of your applications
-into separate, indepdent, decoupled units, you already weighted the pros and cons. So now,
+into indepedent, decoupled units, you already weighted the pros and cons. So now,
 we are talking only about the execution.
 
 ## About the cost
@@ -64,23 +64,23 @@ You might be thinking that there is big infrastructural cost in communicating vi
 That you need to set up some message bus and think about event serialization.
 But big chances are things are easier than you expect them to be.
 
-You can start small and simple and change to more complex solutions later, when
-the need appears. And chances are you already have all the components needed
+You can start small and straightforward and later change to more complex solutions when
+the need appears. And chances are you already have all the components required
 for it, but you never thought of them in such a way.
 
 Do you use Rails 5 Active Job, or resque or sidekiq or delayed job or any similar tooling,
 for scheduling background jobs? Good, you can use them as message bus for asynchronous
 communication between two parts of your application.
 With [`#retry_job`](http://api.rubyonrails.org/v5.0.0.0.1/classes/ActiveJob/Enqueuing.html#method-i-retry_job)
-you can even think of it as _at least 1 delivery_ in case of failures.
+you can even think of it as _at least one delivery_ in case of failures.
 
 So the parts of your application (sub-systems, bounded-contexts) don't need at the
 beginning to be deployed as separate applications (microservices). They don't need
-a separate message bus such as RabbitMQ or Apache Kafka. At the very beginning all
+a separate message bus such as RabbitMQ or Apache Kafka. At the start, all
 you need is a code which assumes asynchronous communication (and also embraces
-eventuall consistency) and uses the tools that you have at your disposal.
+eventual consistency) and uses the tools that you have at your disposal.
 
-Also, you don't any fancy serializer at the beginning such as message pack or protobuf.
+Also, you don't need any fancy serializer at the beginning such as message pack or protobuf.
 YAML or JSON can be sufficient when you keep communicating asynchronously
 within the same codebase (just different part of it).
 
@@ -88,10 +88,10 @@ within the same codebase (just different part of it).
 
 ### Storing and publishing a domain event
 
-We are going to use [`rails_event_store`](https://github.com/arkency/rails_event_store)
-but you could achieve the same results using any other pub-sub (eg. whisper +
+We are going to use [`rails_event_store`](https://github.com/arkency/rails_event_store),
+but you could achieve the same results using any other pub-sub (e.g. whisper +
 whisper-sidekiq extension). `rails_event_store` has the benefit that your
-domain events will be saved in database.
+domain events will be saved in a database.
 
 <hr />
 
@@ -152,8 +152,8 @@ ActiveRecord::Base.transaction do
 end
 ```
 
-When event_store saves and publishes the `Season::PassImported` event, it will be also queued
-to be processed by `IdentityAndAccess::RegisterSeasonPassHolder` background job
+When event_store saves and publishes the `Season::PassImported` event, it will also be queued
+for processing by `IdentityAndAccess::RegisterSeasonPassHolder` background job
 (handler equivalent in DDD world).
 
 ### Reacting to the PassImported event
@@ -189,7 +189,7 @@ end
 
 <hr />
 
-This is how Identity And Access reacts to the fact
+This is how Identity And Access context reacts to the fact
 that Season Pass was imported.
 
 ```
@@ -241,9 +241,9 @@ end
 
 <hr />
 
-Season Pass Bonuded context reacts to either `UserImported`
+Season Pass Bounded Context reacts to either `UserImported`
 or `UserAlreadyRegistered` by saving the reference to
-`user_id`. It does not have a direct access to `User`
+`user_id`. It does not have direct access to `User`
 class. It just holds a reference.
 
 ```
@@ -287,11 +287,11 @@ so you are safe to do so.
 ## Did you like it?
 
 Make sure to check our [books](/products)
-and upcoming [Smart Income For Developers Bundle](http://www.smartincomefordevelopers.com/) .
+and upcoming [Smart Income For Developers Bundle](http://www.smartincomefordevelopers.com/).
 
 ## Disclaimer
 
-* This is an oversimiplified example to show you the idea :)
+* This is an oversimplified example to show you the idea :)
 
 ## Read more
 
