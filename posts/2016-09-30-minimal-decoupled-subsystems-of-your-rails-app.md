@@ -6,6 +6,7 @@ publish: false
 author: Robert Pankowecki
 tags: [ 'active job', 'ddd', 'eventual consistency', 'messaging' ]
 newsletter: :arkency_form
+img: "decoupled-bounded-contexts-async-rails/two_rails_bounded_contexts.png"
 ---
 
 There are multiple ways to implement communication between two separate
@@ -50,6 +51,8 @@ So here is what we could do instead:
     * or if the user is already present on our platform, it would publish `UserAlreadyRegistered` domain event.
 * [SP] react to `UserImported` or `UserAlreadyRegistered` domain event and update the `user_id` of created `SeasonPass` 
 to the ID of the user.
+
+<%= img_fit("decoupled-bounded-contexts-async-rails/two_rails_bounded_contexts.png") %>
 
 It certainly sounds (and is) more complicated compared to our default solution.
 So we should only apply this tactic where it benefits us more than it costs.
@@ -231,7 +234,7 @@ in the other part of the app.
 Rails.application.config.event_store.tap do |es|
   es.subscribe(->(event) do
     IdentityAndAccess::RegisterSeasonPassHolder.perform_later(YAML.dump(event))
-  end, [SeasonPassImported])
+  end, [Season::PassImported])
 
   es.subscribe(->(event) do
     Season::AssignUserIdToHolder.perform_later(YAML.dump(event))
