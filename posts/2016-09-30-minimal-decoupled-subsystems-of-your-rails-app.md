@@ -102,7 +102,7 @@ Domain event definition. This will be published when Season Pass is imported:
 
 ```
 #!ruby
-class Season::PassImported < Class.new(RubyEventStore::Event)
+class Season::PassImported < RubyEventStore::Event
   SCHEMA = {
     id: Integer,
     barcode: String,
@@ -165,7 +165,7 @@ These are the events that will be published by Identity and Access bounded conte
 
 ```
 #!ruby
-class IdentityAndAccess::UserImported < Class.new(RubyEventStore::Event)
+class IdentityAndAccess::UserImported < RubyEventStore::Event
   SCHEMA = {
     id: Integer,
     email: String,
@@ -177,7 +177,7 @@ class IdentityAndAccess::UserImported < Class.new(RubyEventStore::Event)
   end
 end
 
-class IdentityAndAccess::UserAlreadyRegistered < Class.new(RubyEventStore::Event)
+class IdentityAndAccess::UserAlreadyRegistered < RubyEventStore::Event
   SCHEMA = {
     id: Integer,
     email: String,
