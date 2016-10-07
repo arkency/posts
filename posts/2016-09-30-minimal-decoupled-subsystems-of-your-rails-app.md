@@ -92,8 +92,8 @@ within the same codebase (just different part of it).
 ### Storing and publishing a domain event
 
 We are going to use [`rails_event_store`](https://github.com/arkency/rails_event_store),
-but you could achieve the same results using any other pub-sub (e.g. whisper +
-whisper-sidekiq extension). `rails_event_store` has the benefit that your
+but you could achieve the same results using any other pub-sub (e.g. wisper +
+wisper-sidekiq extension). `rails_event_store` has the benefit that your
 domain events will be saved in a database.
 
 <hr />
@@ -112,7 +112,7 @@ class Season::PassImported < RubyEventStore::Event
   }.freeze
 
   def self.strict(data:)
-    ClassyHash.validate(data, SCHEMA)
+    ClassyHash.validate_strict(data, SCHEMA)
     new(data: data)
   end
 end
@@ -172,7 +172,7 @@ class IdentityAndAccess::UserImported < RubyEventStore::Event
   }.freeze
 
   def self.strict(data:)
-    ClassyHash.validate(data, SCHEMA)
+    ClassyHash.validate_strict(data, SCHEMA)
     new(data: data)
   end
 end
@@ -184,7 +184,7 @@ class IdentityAndAccess::UserAlreadyRegistered < RubyEventStore::Event
   }.freeze
 
   def self.strict(data:)
-    ClassyHash.validate(data, SCHEMA)
+    ClassyHash.validate_strict(data, SCHEMA)
     new(data: data)
   end
 end
