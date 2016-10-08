@@ -252,7 +252,9 @@ returns `Enumerator`.
 If you enjoyed the article, 
 [follow us on Twitter](https://twitter.com/arkency)
 [and Facebook](https://www.facebook.com/pages/Arkency/107636559305814), 
-or subscribe to our newsletter below so that you are always
+or [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always
 the first one to get the knowledge that you might find useful in your
 everyday programmer job. Content is mostly focused on (but not limited to)
 Rails, Webdevelopment and Agile.
+
+Make sure to [check our books and videos](/products)
