@@ -125,3 +125,8 @@ Some may argue that failed payment isn't actually a failure, but experience with
 
 Of course, this solution is prone to false-positives. It can happen that a group of customers have their payments declined because lack of funds etc. and no successful payment happens in the meantime. The process manager records it as a problem with payment provider and triggers a switch.
 However, in platforms with heavy traffic it's very unlikely. And even if it does happen it's still better than the inability to sell goods for a period of time before someone notices and manually selects a backup gateway.
+
+## Did you like it?
+
+Make sure to check our [books](/products)
+and upcoming [Smart Income For Developers Bundle](http://www.smartincomefordevelopers.com/).
