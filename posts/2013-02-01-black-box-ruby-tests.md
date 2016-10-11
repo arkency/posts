@@ -111,3 +111,7 @@ As you can see it is about what scenario actor's will do in real life - one of t
 All details about our architecture are not available on scenario level. If we decide to split one of our apps to few smaller we will just have to add new commands to run in ```AcceptanceTestClass```. We can also show it to you to tell you about our new feature - _automatic simple business metrics_.
 
 How do like this style of testing? Please leave a comment - maybe you have something better?
+
+## Did you like it?
+
+Make sure to check our [books, videos and bundles](/products)
