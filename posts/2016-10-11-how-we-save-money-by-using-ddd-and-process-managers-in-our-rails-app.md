@@ -34,11 +34,14 @@ module Payments
       self.table_name = "switch_to_fallback_provider"
 
       def self.purge(payment_provider_identifier)
-        where(payment_provider_identifier: payment_provider_identifier).update_all(failed_payments_count: 0)
+        where(
+          payment_provider_identifier: payment_provider_identifier
+        ).update_all(failed_payments_count: 0)
       end
 
       def self.failures_count(payment_provider_identifier)
-        find_by(payment_provider_identifier: payment_provider_identifier).failed_payments_count
+        find_by(payment_provider_identifier: payment_provider_identifier).
+          failed_payments_count
       end
     end
 
@@ -85,7 +88,9 @@ module Payments
     end
 
     def payment_failed(data)
-      record = State.lock.find_or_create_by(payment_provider_identifier: data[:payment_provider_identifier])
+      record = State.lock.find_or_create_by(
+        payment_provider_identifier: data[:payment_provider_identifier]
+      )
       State.increment_counter(:failed_payments_count, record.id)
     rescue ActiveRecord::RecordNotUnique
       retry
