@@ -39,7 +39,7 @@ You want things to
   
 You don't want to stress over things every time.  
   
-Most of the people finish their job after 5, **go home and don't give a fuck. **I've been learning every week since 8 years after I finished studying at the university. I bet you are as well crunching knowledge on a daily basis. Educating yourself and improving your skills.  
+Most of the people finish their job after 5, **go home and don't give a fuck.** I've been learning every week since 8 years after I finished studying at the university. I bet you are as well crunching knowledge on a daily basis. Educating yourself and improving your skills.  
   
 With the impostor syndrome so prevailing in our industry we always feel behind, we need to know more and we spend so much time and money and energy reading and educating in the **ever-changing landscape of technologies**.  
   
