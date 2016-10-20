@@ -102,7 +102,7 @@ end
 ```
 
 This almost works, but I noticed that for New Relic to actually handle those metrics
-I had to made sure `#increment_metric` it is called from the inside of a directly
+I had to made sure `#increment_metric` it is called from the inside of a directly 
 traced code:
 
 ```
@@ -177,7 +177,7 @@ things are going. The next step is after monitoring is to have alerts and team
 how can fix the problems.
 
 In case of the problems that we detected with our payment gateway we were capable
-of switching it to a different one using the Feature Toggle implementation that I
+of switching it to a different one using the Feature Toggle implementation that I 
 showed you in [_Rolling back complex apps_](http://blog.arkency.com/2015/10/rolling-back-complex-apps/#use_feature_toggles)
 
 ```
@@ -208,3 +208,6 @@ show you how to handle fuckups and be a more responsible developer.
 
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
+

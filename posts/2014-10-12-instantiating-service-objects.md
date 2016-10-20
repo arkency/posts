@@ -265,7 +265,7 @@ describe CreateProductService do
   let(:metrics_adapter) do
     FakeMetricsAdapter.new
   end
-
+  
   #or
 
   def metrics_adapter
@@ -305,9 +305,9 @@ module NotificationsCenterInjector
       clock            = NotificationsCenter::Clocks::Real.new
 
       push = PushNotificationService.new(
-        url_helpers,
+        url_helpers, 
         apns_adapter,
-        policy,
+        policy, 
         mixpanel_adapter
       )
       NotificationsCenter.new(db, push, scheduler, clock)
@@ -341,7 +341,7 @@ end
 class ProductsController
   extend Dependor::Injectable
   inject_from Injector
-
+ 
   inject :create_product_service
   def create
     product = create_product_service.call(params[:product])
@@ -371,8 +371,8 @@ require 'dependor/rspec'
 
 describe Injector do
   let(:injector) { described_class.new }
-
-  specify do
+ 
+  specify do 
     expect{injector.create_product_service}.to_not raise_error
   end
 end
@@ -405,3 +405,5 @@ end
 
 Thanks for reading. If you liked it and you wanna find out more subscribe
 to course below.
+
+<%= inner_newsletter(item[:newsletter_inside]) %>

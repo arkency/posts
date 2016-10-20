@@ -385,3 +385,5 @@ for stateful components proper key is a must have!**
 ## One more thing
 
 If you liked this blogpost you might enjoy our books about React.js .
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
