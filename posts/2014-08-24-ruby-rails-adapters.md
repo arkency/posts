@@ -628,7 +628,7 @@ Interchangeability**.
 
 ![](<%= src_fit("rails-ruby-adapter/adapter_client_adaptee.png") %>)
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 ##### Images with CC license
 

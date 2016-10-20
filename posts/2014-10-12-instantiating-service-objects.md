@@ -406,4 +406,4 @@ end
 Thanks for reading. If you liked it and you wanna find out more subscribe
 to course below.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

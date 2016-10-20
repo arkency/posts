@@ -314,7 +314,7 @@ PostgreSQL offers many more extensions and types out of the box, that [are compa
 - [Range](http://www.postgresql.org/docs/9.4/static/rangetypes.html)
 - [Network](http://www.postgresql.org/docs/9.4/static/datatype-net-types.html)
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 The rest will be covered in further blogposts very soon.
 

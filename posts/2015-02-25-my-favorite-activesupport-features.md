@@ -323,4 +323,4 @@ That's it. You can browse entire ActiveSupport codebase quickly and easily at [g
 
 If you liked it, you may also enjoy [Hidden features of Ruby you may not know about](/2014/07/hidden-features-of-ruby-you-may-dont-know-about/)
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

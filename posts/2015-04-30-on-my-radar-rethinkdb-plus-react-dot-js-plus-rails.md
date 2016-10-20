@@ -299,4 +299,4 @@ end
 Despite many dragons I have a feeling that there is a big potential in RethinkDB.
 I will keep it on my radar and explore more deeply.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

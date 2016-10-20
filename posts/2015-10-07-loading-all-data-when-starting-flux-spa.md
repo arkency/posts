@@ -118,7 +118,7 @@ class InitialStateStore {
 }
 ```
 
-<%= inner_newsletter(:kung_fu) %>
+<%= show_product(:kung_fu) %>
 
 ## The Actions
 

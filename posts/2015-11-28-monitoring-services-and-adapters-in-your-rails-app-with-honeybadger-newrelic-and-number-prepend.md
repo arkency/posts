@@ -209,5 +209,5 @@ show you how to handle fuckups and be a more responsible developer.
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 

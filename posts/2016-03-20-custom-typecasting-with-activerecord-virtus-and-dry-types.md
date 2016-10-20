@@ -128,7 +128,7 @@ how to improve your Rails codebase, subscribe to our mailing list below.
 We will regularly send you valuable tips and tricks. 3200 developers already
 trusted us.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 ## More
 

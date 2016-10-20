@@ -302,7 +302,7 @@ class_creation = ClassCreation.new(
 So with this kind of test setup you are way more flexible and less constrained. Having data in db is no longer your only
 option.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 ## TL;DR;
 

@@ -46,7 +46,7 @@ While reviewing the `Gemfile`, you should take a great focus about those things:
 * Custom vendor gems. If they aren't simple they are first candidates to be discussed with the previous team or technical people on your client's side.
 * Gems changing the programming model of the application like `event_machine`. They require different commitment and care while testing and refactoring - so you need to take this into consideration.
 
-<%= inner_newsletter(:fearless_refactoring_1) %>
+<%= show_product(:fearless_refactoring_1) %>
 
 ## Take a look at `db/schema.rb`
 

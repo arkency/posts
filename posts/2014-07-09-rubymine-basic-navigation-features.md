@@ -28,4 +28,4 @@ tags: [ 'foo', 'bar', 'baz' ]
 
 <iframe width="640" height="360" src="//www.youtube.com/embed/uRh2uetV4_I" frameborder="0" allowfullscreen></iframe>
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

@@ -142,7 +142,7 @@ end
 
 `{ @instance ||= new }` block is guaranteed to be yielded exactly once in a thread-safe manner to crate singleton object.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 ## Summary
 Concurrency in native iOS, or rather C, is far more advanced than in RubyMotion. From the other side, `Dispatch` module offers a lot of features too, more complicated than we described here. It's worth to get familiar with these methods so that we can better manage code execution.

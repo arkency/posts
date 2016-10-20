@@ -191,7 +191,7 @@ end
 
 And that's it. I'm happy that you went through this article. In case you need ready code, I created [repository with example application](https://github.com/KamilLelonek/ruby-motion-facebook). Enjoy!
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 For now, stay tuned for more mobile blogposts!
 

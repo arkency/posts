@@ -109,4 +109,4 @@ This is your application:_
 _Now try to change something._
 
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

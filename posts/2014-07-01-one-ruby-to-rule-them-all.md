@@ -74,4 +74,4 @@ We encourage every ruby developer to **try RubyMotion**. It's a great way to **g
 For now, stay tuned for more mobile blogposts!
 
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

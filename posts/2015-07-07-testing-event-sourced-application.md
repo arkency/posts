@@ -174,4 +174,4 @@ Remember that any command may end up with an error. There could be various reaso
 
 Complete code sample for blog post could be found [here](https://github.com/mpraglowski/cqrs-es-sample-with-res).
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>

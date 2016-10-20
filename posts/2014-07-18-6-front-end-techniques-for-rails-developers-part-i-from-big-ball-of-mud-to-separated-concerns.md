@@ -225,7 +225,7 @@ This post is a part of the 6-day course about front-end techniques for Rails dev
 * Designing your front-end as a **many small apps** rather than a big one to **improve maintainability** of your code.
 * Easily make actions on reaction for a domain change, in a **dependency-free way** using **reactive programming** with RxJS.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
 
 ## Resources
 

@@ -185,4 +185,4 @@ This is dependent on your testing infrastructure so it might differ in your proj
 If enjoyed this article and would like to **keep getting free Rails tips** in the future, subscribe
 to our mailing list below:
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
+<%= show_product(item[:newsletter_inside]) %>
