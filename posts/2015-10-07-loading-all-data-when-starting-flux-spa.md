@@ -118,7 +118,7 @@ class InitialStateStore {
 }
 ```
 
-<%= show_product(:kung_fu) %>
+<%= show_product_inline(:kung_fu) %>
 
 ## The Actions
 

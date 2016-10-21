@@ -303,5 +303,5 @@ show you useful techniques for handling larger Rails codebases.
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 

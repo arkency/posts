@@ -174,4 +174,4 @@ we only eliminated it for the related part of code.
 
 Did you like the blogpost? Join our newsletter to receive more goodies.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>

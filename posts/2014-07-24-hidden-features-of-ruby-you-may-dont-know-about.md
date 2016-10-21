@@ -555,4 +555,4 @@ Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good
 
 If you have your favourite tricks, you can share them in the comments below.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>

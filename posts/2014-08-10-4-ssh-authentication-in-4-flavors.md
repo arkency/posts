@@ -164,7 +164,7 @@ As I described before, the basic benefit of using SSH agents is to protect your 
 
 Now you see how authentication works and what are the ways to set it up. You may choose any configuration based on your needs, it's advantages and drawbacks. Let's secure your server without any fear now. Hope you find this useful.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Resources
 - http://www.unixwiz.net/techtips/ssh-agent-forwarding.html

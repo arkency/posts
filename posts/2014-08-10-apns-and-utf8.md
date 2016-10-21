@@ -433,7 +433,7 @@ notif.payload
 # :path=>"appnameios://games/123457890123"}
 ```
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Urban Airship
 

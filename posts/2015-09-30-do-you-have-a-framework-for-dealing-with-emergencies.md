@@ -105,7 +105,7 @@ You should have your own _framework_ for such cases. Otherwise you are exposed t
 
 We described ours in _Responsible Rails_ book.
 
-<%= show_product(:responsible_rails) %>
+<%= show_product_inline(:responsible_rails) %>
 
 ## Summary
 

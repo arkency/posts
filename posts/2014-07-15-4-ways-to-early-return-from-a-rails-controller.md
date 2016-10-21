@@ -188,7 +188,7 @@ in the end in rails.
 It might be interesting for you to know that expecting `render` and `redirect` to break the flow of the method and exit it immediately
 is one of the most common mistake experienced by some Rails developers at the beginning of their career.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## throw :halt (rails?)
 

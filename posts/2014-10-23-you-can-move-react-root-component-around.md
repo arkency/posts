@@ -910,4 +910,4 @@ ingerate inside it.
 If you ever want to change your solution to pure react or something else, it
 will be localized to that one component.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>

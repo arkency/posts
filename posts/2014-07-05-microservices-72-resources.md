@@ -331,7 +331,7 @@ allow yourself to experiment and try.
 * http://microsvcs.io/
 * https://www.youtube.com/watch?v=ZFBvvUlqQ6w
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Summary
 

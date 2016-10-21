@@ -62,7 +62,7 @@ With RubyMotion you can also develop OSX apps. We have not tried it yet, but it'
 
 RubyMotion is actively developed library. **Android support is officially announced and it is included in recent versions**. Investing in this technology can be really cost-effective since you can develop mobile solutions for both major platforms on the market.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Summary
 

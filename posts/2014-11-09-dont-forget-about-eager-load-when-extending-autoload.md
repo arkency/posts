@@ -331,7 +331,7 @@ Don't confuse _eager loading of code_ with _eager loding of active record object
 which [we also happen to have an article about](/2013/12/rails4-preloading/).
 The numenclature they use is similar but they mean completely different things.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 Did you like this article? You might find [our Rails books interesting as well](/products) .
 

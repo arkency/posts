@@ -386,4 +386,4 @@ for stateful components proper key is a must have!**
 
 If you liked this blogpost you might enjoy our books about React.js .
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>

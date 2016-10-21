@@ -385,7 +385,7 @@ Rake::Task['db:structure:dump'].clear unless Rails.env.development?
 
 I believe after that article you see the benefits of using `store` and `json` types in Rails projects. A lot of flexibility combined with relational database give us almost unlimited room for improving our storage patterns.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Resources
 

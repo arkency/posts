@@ -347,7 +347,7 @@ All this can be summarized in a few examples:
 So `Range` will give always you the ability to check if something is in the range, but it only **might** give you the
 ability to iterate.
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Resources
 

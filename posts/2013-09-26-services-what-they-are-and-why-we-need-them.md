@@ -188,7 +188,7 @@ It's much more concise. Also, all the knowledge about process are gone from it -
 
 You can easily test your service using a simple unit testing, mocking your PaymentAdapter and Logger. Also, when testing controller you can stub `trip_reservation_service` method to easily test it. That's a huge improvement - in a previous version you would've been used a tool like Capybara or Selenium - both are very slow and makes tests very implicit - it's a 1:1 user experience after all!
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Conclusion
 

@@ -315,7 +315,7 @@ end
 
 I hope you get the idea :) But this is just a dream. Let's get back to reality...
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
 
 ## Rails 4 changes
 

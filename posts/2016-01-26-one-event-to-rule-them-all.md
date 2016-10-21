@@ -162,4 +162,4 @@ this is still the same domain event.
       updated_at: Tue, 26 Jan 2016 23:33:48 UTC +00:00>]
 ```
 
-<%= show_product(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter_inside]) %>
