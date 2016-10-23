@@ -80,4 +80,28 @@ followed by this:
 which got me thinking and inspired to write this blogpost (thanks Paweł!).
 
 
+```
+#!ruby
+
+  def call
+    create_local_markdown_file_based_on_template
+    git_add_commit_push
+    open_browser_with_production_url
+    open_draft_in_browser
+  end
+```
+
+What we see here, is a typical run/execute/call method (I've settled with "call") which orchestrates other parts. The naming is a bit verbose but also quite explicit in describing what it does.
+
+There's something Ruby-specific which makes the code appealing to certain developers. This was probably the part which brought me to Ruby back in 2004 (and I still didn't find a programming languages which would be more esthetically appealing to me then Ruby!).
+
+The lack of braces is one thing.
+
+Then there's the dynamic typing, resuling in no type declaration. Less verbose thanks to that.
+
+There's also a design choice here - there's lack of params being passed. The "call" method doesn't take anything, nor the other methods.
+
+However, in fact, they do use some input data, but those 2 variables are set in the constructor method. This means that we can access them via "@title" and "@date" instance variables.
+
+There are additional 7 private methods here, which are using the instance variables.
 
