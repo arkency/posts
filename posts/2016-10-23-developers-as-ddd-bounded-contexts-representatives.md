@@ -19,9 +19,29 @@ The thing I'd like you to focus on is that the different types of developers - t
 
 ## Performance oriented developer
 
+- "we should have written it in SQL"
+- "there's nothing faster than reading from a file"
+- loves performance benchmarks
+- favourite words: cache, traffic, rpm (requests per minute)
+
 ## Framework-man
 
+- excited about new frameworks
+- loves having many buzzwords in the resume
+- believes in the current The Framework Way
+- honours only developers who created frameworks
+- silently dreams about writing own framework
+- always up to date with the new framework of the week
+- great for writing prototypes
+
 ## TDDer
+
+- can't sleep if someone wrote production code without tests first
+- when reviews code of others, starts with tests
+- with all new features thinks "how am I going to test it?"
+- great at refactoring critical pieces of code
+- makes sure about test coverage
+- excited about mutation testing
 
 ## Sad FP programmer
 
