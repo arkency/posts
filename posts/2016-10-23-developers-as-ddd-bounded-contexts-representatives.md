@@ -45,6 +45,13 @@ The thing I'd like you to focus on is that the different types of developers - t
 
 ## Sad FP programmer
 
+- super intelligent
+- can't accept that some people see the world as mutable
+- modeling business means writing math equations
+- is sad, because can't write code in the purest FP language
+- great at dealing with concurrency
+
+
 ## Over-excited agiler
 
 ## Clerk
