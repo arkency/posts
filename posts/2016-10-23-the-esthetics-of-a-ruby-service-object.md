@@ -97,11 +97,43 @@ There's something Ruby-specific which makes the code appealing to certain develo
 
 The lack of braces is one thing.
 
-Then there's the dynamic typing, resuling in no type declaration. Less verbose thanks to that.
+Then there's the **dynamic typing**, resuling in no type declaration. Less verbose thanks to that.
 
-There's also a design choice here - there's lack of params being passed. The "call" method doesn't take anything, nor the other methods.
+There's also a design choice here - **there's lack of params being passed**. The "call" method doesn't take anything, nor the other methods.
 
 However, in fact, they do use some input data, but those 2 variables are set in the constructor method. This means that we can access them via "@title" and "@date" instance variables.
 
 There are additional 7 private methods here, which are using the instance variables.
 
+The topic of service objects in Rails apps was so fascinating to me that I wrote [a whole book](http://rails-refactoring.com) about it. 
+
+One realisation I've had over my time spent on service objects is their connection to functions and to functional programming. Some people call them function objects or commands. My architectural journey led me to discover the beauty of Domain-Driven Development and CQRS (Command Query Responsibility Segregation). 
+
+At some point, all those pieces started to fit together. I'm now looking at code in a more functional way. What I was doing with my "Rails Refactoring" actions was actually about **localizing the places where data gets mutated**.
+
+In fact, [my current Rails/DDD teaching](http://blog.arkency.com/ddd-training/) how to build Rails apps feels almost like Functional Programming. 
+
+So, the question appears - is this service object functional?
+
+I'm not aware of all FP techniques, but being explicit with input/output of each function is one of the main rules, as I understand. Which means, that the 8 methods of my service object are not functional at all.
+
+(the part of this object which **mutates the whole world around **- file system, git repo, operating system - is also not helping in calling it functional).
+
+But let's focus on the input arguments part. What if we explicitly add them?
+
+```
+#!ruby
+
+  def call(title, date)
+    create_local_markdown_file_based_on_template(title, date)
+    git_add_commit_push(title, date)
+    open_browser_with_production_url(title, date)
+    open_draft_in_browser(title, date)
+  end
+```
+
+Given that this post is about esthethics and it's always a subject to personal opinion - I'd say it's worse now. It's more verbose, it's even too explicit.
+
+But there's one part which makes this new code better. As a big refactoring fan, I can tell that **when each method is explicit about the input it needs, the code is much more friendly towards extracting new classes and methods**.
+
+What's your take on the esthetics here?
