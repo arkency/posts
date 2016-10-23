@@ -120,6 +120,11 @@ Each of them deserve a dedicated module. It's truly bounded if they don't talk t
 
 When I first encountered DDD - this all was a mystery to me. How to actually achieve this? Now, after seeing this happen in our projects it all seems much simpler.
 
+Each context is either a separate module/directory in the repo or it's a separare microservice/repository.
+
+When I work on `Accounting` features, I'm not bothered by the concepts of other contexts. I'm only surrounded by things like accounts, revenues, profits. This makes me much easier "to get into the zone".
+
+Heck, thanks to the CQRS (I consider this to be part of the bigger DDD family) techniques, I don't need to bother too much about how it displays on the UI. The "read" code is also separated.
 --------------
 
 
