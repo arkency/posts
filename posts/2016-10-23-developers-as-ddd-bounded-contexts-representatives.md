@@ -101,3 +101,26 @@ This is all for our internal needs - to safely/efficiently deliver software.
 
 Now look similarly at the actual project you're working on. What subdomains do you see?
 
+If you're working on some kind of e-commerce, you'll probably see:
+
+- Inventory
+- Catalog
+- Ordering
+- Accounting
+- Invoicing
+- Reports
+- Pricing
+- Promotions
+
+and many others. It's not uncommon to see ~30 potential bounded contexts.
+
+Are they clearly represented in your system? 
+
+Each of them deserve a dedicated module. It's truly bounded if they don't talk to each other directly. They either communicate with events or there's a layer above (app layer) which orchestrates them. Each of them should have a separate storage (conceptually) and never ever look at each other storage directly.
+
+When I first encountered DDD - this all was a mystery to me. How to actually achieve this? Now, after seeing this happen in our projects it all seems much simpler.
+
+--------------
+
+
+Pssssst, if you're interested in applying DDD in your Rails projects, consider coming for 2 days to Wrocław, Poland and attend our [Rails DDD workshops](http://blog.arkency.com/ddd-training/). The next edition is 24-25 November, 2016.
