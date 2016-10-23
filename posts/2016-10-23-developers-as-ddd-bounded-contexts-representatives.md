@@ -62,7 +62,20 @@ The thing I'd like you to focus on is that the different types of developers - t
 
 ## Clerk
 
-
+- the first one to establish a "code style guide" in the team
+- can argue about tabs/spaces for ages
+- good at documenting
+- will install all the possible code metrics tools
+- is happy when the build fails because of his post-push lint rules
 
 ## Devpreneur
+
+- with each feature thinks how much money it is going to bring
+- did calculations and know how much each line of code is worth
+- able to introduce a hack just to have the feature faster on production "making money"
+	- then forgets about removing the hack
+- the best friend of product owners / customers
+- instead of writing tests, prefers to write bank account monitoring script - alerting when it's balance is increasing slower
+- never a passionate of some specific tool - whatever gets the job done
+- thinks in budget terms
 
