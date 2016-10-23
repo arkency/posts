@@ -54,7 +54,15 @@ The thing I'd like you to focus on is that the different types of developers - t
 
 ## Over-excited agiler
 
+- open-space fan
+- loves when people talk to each other
+- loves post-it notes on the wall
+- loves moving post-it notes between columns
+- generally loves post-it notes
+
 ## Clerk
+
+
 
 ## Devpreneur
 
