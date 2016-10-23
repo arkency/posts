@@ -129,3 +129,7 @@ Heck, thanks to the CQRS (I consider this to be part of the bigger DDD family) t
 
 
 Pssssst, if you're interested in applying DDD in your Rails projects, consider coming for 2 days to Wrocław, Poland and attend our [Rails DDD workshops](http://blog.arkency.com/ddd-training/). The next edition is 24-25 November, 2016.
+
+This is how the first 2 hours of the workshops look like - a heaven for the agiles - post-it notes everywhere ;) It's a technique called Event Storming - we visualize a system with events/commands/aggregates - each having a different color of a post-it note.
+
+<blockquote class="twitter-video" data-lang="en"><p lang="en" dir="ltr">Our <a href="https://twitter.com/hashtag/Rails?src=hash">#Rails</a> <a href="https://twitter.com/hashtag/DDD?src=hash">#DDD</a> Workshop is happening right now! <a href="https://t.co/qzMbL8tNwt">pic.twitter.com/qzMbL8tNwt</a></p>&mdash; Arkency (@arkency) <a href="https://twitter.com/arkency/status/777798532132638720">September 19, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
