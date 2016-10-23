@@ -93,11 +93,11 @@ which got me thinking and inspired to write this blogpost (thanks Paweł!).
 
 What we see here, is a typical run/execute/call method (I've settled with "call") which orchestrates other parts. The naming is a bit verbose but also quite explicit in describing what it does.
 
-There's something Ruby-specific which makes the code appealing to certain developers. This was probably the part which brought me to Ruby back in 2004 (and I still didn't find a programming languages which would be more esthetically appealing to me then Ruby!).
+There's something Ruby-specific which makes the code appealing to certain developers. This was probably the part which brought me to Ruby back in 2004 (and I still didn't find a programming language which would be more esthetically appealing to me then Ruby!).
 
 The lack of braces is one thing.
 
-Then there's the **dynamic typing**, resuling in no type declaration. Less verbose thanks to that.
+Then there's the **dynamic typing**, resulting in no type declaration. Less verbose thanks to that.
 
 There's also a design choice here - **there's lack of params being passed**. The "call" method doesn't take anything, nor the other methods.
 
@@ -105,9 +105,7 @@ However, in fact, they do use some input data, but those 2 variables are set in 
 
 There are additional 7 private methods here, which are using the instance variables.
 
-The topic of service objects in Rails apps was so fascinating to me that I wrote [a whole book](http://rails-refactoring.com) about it. 
-
-One realisation I've had over my time spent on service objects is their connection to functions and to functional programming. Some people call them function objects or commands. My architectural journey led me to discover the beauty of Domain-Driven Development and CQRS (Command Query Responsibility Segregation). 
+The topic of service objects in Rails apps was so fascinating to me that I wrote [a whole book](http://rails-refactoring.com) about it. One realisation I've had over my time spent on service objects is their connection to functions and to functional programming. Some people call them function objects or commands. My architectural journey led me to discover the beauty of Domain-Driven Development and CQRS (Command Query Responsibility Segregation). 
 
 At some point, all those pieces started to fit together. I'm now looking at code in a more functional way. What I was doing with my "Rails Refactoring" actions was actually about **localizing the places where data gets mutated**.
 
@@ -117,7 +115,7 @@ So, the question appears - is this service object functional?
 
 I'm not aware of all FP techniques, but being explicit with input/output of each function is one of the main rules, as I understand. Which means, that the 8 methods of my service object are not functional at all.
 
-(the part of this object which **mutates the whole world around **- file system, git repo, operating system - is also not helping in calling it functional).
+(the part of this object which **mutates the whole world around** - file system, git repo, operating system - is also not helping in calling it functional).
 
 But let's focus on the input arguments part. What if we explicitly add them?
 
@@ -135,5 +133,7 @@ But let's focus on the input arguments part. What if we explicitly add them?
 Given that this post is about esthethics and it's always a subject to personal opinion - I'd say it's worse now. It's more verbose, it's even too explicit.
 
 But there's one part which makes this new code better. As a big refactoring fan, I can tell that **when each method is explicit about the input it needs, the code is much more friendly towards extracting new classes and methods**.
+
+In this specific situation, the estethics won over the being refactoring-friendly :)
 
 What's your take on the esthetics here?
