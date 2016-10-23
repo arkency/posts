@@ -79,3 +79,25 @@ The thing I'd like you to focus on is that the different types of developers - t
 - never a passionate of some specific tool - whatever gets the job done
 - thinks in budget terms
 
+## Summary
+
+There's definitely more such types/contexts. If you can name some - feel free to do it in the comments!
+
+Please note, that each of us can play any of the roles at any time. However, sometimes some roles are more natural for each of us.
+
+Note the language that we're using. Even though we can have some fun describing the personas, all the contexts are important at specific times. 
+
+What contexts do we see here?
+
+- Performance
+- Technology/Tools
+- Tests / Refactoring / Regressions
+- Concurrency / Math / Proofs
+- Communication 
+- Documentation / Standards
+- Budget / Finances / Accounting
+
+This is all for our internal needs - to safely/efficiently deliver software. 
+
+Now look similarly at the actual project you're working on. What subdomains do you see?
+
