@@ -125,11 +125,12 @@ Each context is either a separate module/directory in the repo or it's a separar
 When I work on Accounting features, I'm not bothered by the concepts of other contexts. I'm only surrounded by things like accounts, revenues, profits. This makes me much easier "to get into the zone".
 
 Heck, thanks to the CQRS (I consider this to be part of the bigger DDD family) techniques, I don't need to bother too much about how it displays on the UI. The "read" code is also separated.
+
 --------------
 
 
 Pssssst, if you're interested in applying DDD in your Rails projects, consider coming for 2 days to Wrocław, Poland and attend our [Rails DDD workshops](http://blog.arkency.com/ddd-training/). The next edition is 24-25 November, 2016.
 
-This is how the first 2 hours of the workshops look like - a heaven for the agiles - post-it notes everywhere ;) It's a technique called Event Storming - we visualize a system with events/commands/aggregates - each having a different color of a post-it note.
+This is how the first 2 hours of the workshops look like in the first edition - a heaven for the agilers - post-it notes everywhere ;) It's a technique called Event Storming - we visualize a system with events/commands/aggregates - each having a different color of a post-it note.
 
 <blockquote class="twitter-video" data-lang="en"><p lang="en" dir="ltr">Our <a href="https://twitter.com/hashtag/Rails?src=hash">#Rails</a> <a href="https://twitter.com/hashtag/DDD?src=hash">#DDD</a> Workshop is happening right now! <a href="https://t.co/qzMbL8tNwt">pic.twitter.com/qzMbL8tNwt</a></p>&mdash; Arkency (@arkency) <a href="https://twitter.com/arkency/status/777798532132638720">September 19, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
