@@ -2,7 +2,7 @@
 title: "Running bash command from Ruby (with your bash_profile)"
 created_at: 2016-10-24 13:14:46 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -35,6 +35,8 @@ Now, I have a script which not only generates the draft file, but also git pushe
   end
 ```
 
+See my previous blogpost to [read more about this specific Ruby service object](http://blog.arkency.com/2016/10/the-esthetics-of-a-ruby-service-object/)
+
 The thing is, if you just use `system` it's not enough. You need to invoke `bash` in a special mode `-ilc` to actually get the `bash_profile` loaded. Otherwise, the `ia` alias is not recognized.
 
 So, I ended up with this:
@@ -46,3 +48,10 @@ So, I ended up with this:
   end
 ```
 
+Which works great so far. It helped me speeding up my blogging process and hopefully will result in more blogposts ;)
+
+Happy blogging!
+
+-----
+
+BTW, if you want to improve your blogging skils, my "Blogging for Busy Programmers" book is now part (for a limited time) of the [Smart Income For Developers bundle](http://www.smartincomefordevelopers.com). Check it out!
