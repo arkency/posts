@@ -38,6 +38,7 @@ class CreateNewPostFromTemplate
 
     puts "URL: #{likely_url_on_production}"
   end
+end
 ```
 
 
@@ -93,7 +94,7 @@ which got me thinking and inspired to write this blogpost (thanks Paweł!).
 
 What we see here, is a typical run/execute/call method (I've settled with "call") which orchestrates other parts. The naming is a bit verbose but also quite explicit in describing what it does.
 
-There's something Ruby-specific which makes the code appealing to certain developers. This was probably the part which brought me to Ruby back in 2004 (and I still didn't find a programming language which would be more esthetically appealing to me then Ruby!).
+There's something Ruby-specific which makes the code appealing to certain developers. This was probably the part which brought me to Ruby back in 2004 (and I still didn't find a programming language which would be more esthetically appealing to me than Ruby!).
 
 The lack of braces is one thing.
 
