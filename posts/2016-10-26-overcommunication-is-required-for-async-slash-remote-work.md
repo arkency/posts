@@ -73,7 +73,7 @@ Happy overcommunicating!
 
 ----
 
-We wrote a book called ["Async/Remote"](http://blog.arkency.com/async-remote/) where you can find more about the required skills for async work, no only over-communication. Those are things like "1-size stories", "single backlog", "async standups". 
+We wrote a book called ["Async/Remote"](http://blog.arkency.com/async-remote/) where you can find more about the required skills for async work, not only over-communication. Those are things like "1-size stories", "single backlog", "async standups". 
 
 The book is now part of the ["Smart Income for Developers"](http://www.smartincomefordevelopers.com) bundle. It's a good deal. Go check it out, it's only valid this week.
 
