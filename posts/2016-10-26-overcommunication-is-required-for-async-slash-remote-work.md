@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: :skip
 ---
 
-At Arkency we're working remotely. Being able to work remotely is just a side-effect of working asynchronously. 
+At Arkency we're working remotely. **Being able to work remotely is just a side-effect of working asynchronously.**
 
 Let's talk about what it means in practice.
 
@@ -19,7 +19,7 @@ Async means not being blocked on work of other people. It also means not blockin
 
 Remote work doesn't need to be async. You can still have rules about certain time of working. In that case, blocking on each other is less of a big deal. You can always interrupt others to remove blockades. As in the office.
 
-Async is where the fun begins. Async is where productivity begins.
+Async is where the fun begins. **Async is where productivity begins**.
 
 I sometimes hear people saying - "working remotely is not for me". I prefer to use other words. 
 
@@ -27,7 +27,7 @@ Async work, like remote work is a skill. You can choose to learn but you may be 
 
 Async work is actually a set of skills. One of the most important skills is overcommunication.
 
-It's hard to work async without overcommunication.
+**It's hard to work async without overcommunication.**
 
 Actually, overcommunication is also a big term and not very precise.
 
@@ -65,7 +65,7 @@ Some chances are that if I'm doing something stupid (and I often do), then can q
 
 In our case, it's not only project members who can help me. Also people from other teams stay interested in what is going on. They become familiar with the project (good for possible future rotations!). They can help me too. They can also learn from me, if I did something nice.
 
-Overcommunication is like the best parts of live pairing, without the uncomfortable ones. It's like being surrounded by friends who want to help me, if only I give them the chance to help me.
+Overcommunication is like the best parts of live pairing, without the uncomfortable ones. **It's like being surrounded by friends who want to help me, if only I give them the chance to help me.**
 
 I choose to givem them the chance.
 
@@ -73,7 +73,7 @@ Happy overcommunicating!
 
 ----
 
-We wrote a book called "Async/Remote" where you can find more about the required skills for async work, no only over-communication. Those are things like "1-size stories", "single backlog", "async standups". 
+We wrote a book called ["Async/Remote"](http://blog.arkency.com/async-remote/) where you can find more about the required skills for async work, no only over-communication. Those are things like "1-size stories", "single backlog", "async standups". 
 
 The book is now part of the ["Smart Income for Developers"](http://www.smartincomefordevelopers.com). It's a good deal. Go check it out, it's only valid this week.
 
