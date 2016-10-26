@@ -67,7 +67,7 @@ In our case, it's not only project members who can help me. Also people from oth
 
 Overcommunication is like the best parts of live pairing, without the uncomfortable ones. **It's like being surrounded by friends who want to help me, if only I give them the chance to help me.**
 
-I choose to givem them the chance.
+I choose to give them the chance.
 
 Happy overcommunicating!
 
