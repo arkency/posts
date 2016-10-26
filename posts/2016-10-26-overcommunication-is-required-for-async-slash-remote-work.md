@@ -2,7 +2,7 @@
 title: "Overcommunication is required for async/remote work"
 created_at: 2016-10-26 12:58:08 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -75,5 +75,5 @@ Happy overcommunicating!
 
 We wrote a book called ["Async/Remote"](http://blog.arkency.com/async-remote/) where you can find more about the required skills for async work, no only over-communication. Those are things like "1-size stories", "single backlog", "async standups". 
 
-The book is now part of the ["Smart Income for Developers"](http://www.smartincomefordevelopers.com). It's a good deal. Go check it out, it's only valid this week.
+The book is now part of the ["Smart Income for Developers"](http://www.smartincomefordevelopers.com) bundle. It's a good deal. Go check it out, it's only valid this week.
 
