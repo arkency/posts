@@ -39,7 +39,7 @@ end
 Apparently, it was crucial that the value returned by this method was actually used in the view.
 
 ```
-<%= tracker.analytics_code %>
+= tracker.analytics_code
 ```
 
 It went through several layers, so it wasn't that easy to spot.
@@ -87,3 +87,8 @@ def create
 end
 ```
 
+We haven't noticed the problem at first. The visible difference was that the UI now showed a failure message, but it was actually adding the customer to the system!
+
+And the exception under the hood was something about `IOError`, which didn't help in debugging it.
+
+As you see, two different stories, but the same problem - changing the last line of a method.
