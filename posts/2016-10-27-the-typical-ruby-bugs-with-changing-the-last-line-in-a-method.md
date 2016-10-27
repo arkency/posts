@@ -76,3 +76,14 @@ class RegisterNewCustomer
 end
 ```
 
+The thing is, this service object was used from a controller, like this:
+
+```
+#!ruby
+
+def create
+  customer = RegisterNewCustomer.new.call(customer_params)
+  render json: customer
+end
+```
+
