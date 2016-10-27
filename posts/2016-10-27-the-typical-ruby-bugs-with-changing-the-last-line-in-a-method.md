@@ -13,7 +13,7 @@ In Ruby, we don't have to type `return` at the end of the method. As many other 
 
 Only this year, we've had two different situations where experienced developers introduced bugs into a system.
 
-The first story started when business wanted us to remove one existing feature from the application. This feature was something about analytics code in the view. The intention was to no longer track something if I remember correctly.
+The first story started when business wanted us to remove one existing feature from the application. This feature was something about analytics code in the view. The intention was to no longer track something.
 
 There was something like this in the code.
 
@@ -91,4 +91,4 @@ We haven't noticed the problem at first. The visible difference was that the UI 
 
 And the exception under the hood was something about `IOError`, which didn't help in debugging it.
 
-As you see, two different stories, but the same problem - changing the last line of a method.
+As you see, two different stories, but the same problem - changing the last line of a method. Be careful with that :)
