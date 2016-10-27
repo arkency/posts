@@ -64,3 +64,15 @@ end
 
 After extending the service object, it looked like this:
 
+```
+#!ruby
+
+class RegisterNewCustomer
+  def call
+    customer = Customer.new(customer_params)
+    customer_repo.save(customer)
+    event_bus.publish(customer_registered)
+  end
+end
+```
+
