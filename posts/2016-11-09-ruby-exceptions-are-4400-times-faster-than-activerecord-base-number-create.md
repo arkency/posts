@@ -26,9 +26,9 @@ ActiveRecord::Base.establish_connection adapter:  'postgresql',
 Whatever = Class.new(ActiveRecord::Base)
 
 Benchmark.ips do |bench|
-  bench.report('SQL query')      { Whatever.create(text: 'meh')                     }
+  bench.report('SQL query')      { Whatever.create(text: 'meh') }
   bench.report('exception hit')  { raise StandardError.new rescue nil }
-  bench.report('exception miss') { raise StandardError.new if false   }
+  bench.report('exception miss') { raise StandardError.new if false }
   bench.compare!
 end
 ```
