@@ -11,7 +11,7 @@ How slow are Ruby exceptions as compared to other frequent actions we may be doi
 
 <!-- more -->
 
-Big thanks to [Robert Pankowecki](https://twitter.com/pankowecki) who created [the original gist](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e) and to [Piotr Szotkowski](https://twitter.com/chastell) who provided even more data:
+Big thanks to [Robert Pankowecki](https://twitter.com/pankowecki) who created [the original gist](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e) and to [Piotr Szotkowski](https://twitter.com/chastell) who provided even more data. The gist was originally created as part of our [Fearless Refactoring: Rails Controllers book](http://rails-refactoring.com) where Ruby exceptions are suggested as one of the possible techniques of the controller communication with service objects.
 
 ```
 #!ruby
