@@ -11,7 +11,7 @@ How slow are Ruby exceptions as compared to other frequent actions we may be doi
 
 <!-- more -->
 
-Big thanks to Robert Pankowecki who created the original gist and to Piotr Szotkowski who provided even more data:
+Big thanks to [Robert Pankowecki](https://twitter.com/pankowecki) who created [the original gist](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e) and to [Piotr Szotkowski](https://twitter.com/chastell) who provided even more data:
 
 ```
 #!ruby
@@ -35,11 +35,12 @@ end
 
 Then we can run it with:
 
-``` ruby -v bench.rb ```
+ ruby -v bench.rb 
 
 with results like this:
 
-``` ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+```
+ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
 Warming up --------------------------------------
            SQL query    18.000  i/100ms
        exception hit    57.640k i/100ms
@@ -52,6 +53,8 @@ Calculating -------------------------------------
 Comparison:
       exception miss: 10129279.5 i/s
        exception hit:   808613.1 i/s - 12.53x slower
-           SQL query:      182.1 i/s - 55617.43x slower ```
+           SQL query:      182.1 i/s - 55617.43x slower 
+```
+ 
 
 which means that for this configuration, the exceptions are 4438 times faster than AR::Base#create.
