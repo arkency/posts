@@ -85,6 +85,6 @@ same time, then why not.
 
 ## P.S.
 
-[Post Rails book bundle](http://www.railsbookbundle.com/) starts next week!
-Subscribe to the [bundle newsletter](http://eepurl.com/b6Vlkb) so you don't
-miss the huge discount! The bundle contains 7 books, and hours of video.
+* Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
+
+    <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
