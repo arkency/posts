@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: :skip
-newsletter_inside: :arkency_form
+newsletter_inside: :arkency_short
 tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'UUID' ]
 ---
 
@@ -305,6 +305,7 @@ and that is what we're talking about.
 ### How unique is universally unique identifier?
 While the UUIDs **are not guaranteed to be unique**, the probability of a duplicate is *extremely low*. The UUID is generated using a cryptographically strong pseudo random number generator. There's very slight chance to get the same result twice. [Wikipedia provides](http://en.wikipedia.org/wiki/Universally_unique_identifier#Random%5FUUID%5Fprobability%5Fof%5Fduplicates) some nice explanation of possible duplicates.
 
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ## Conclusion
 
@@ -313,8 +314,6 @@ PostgreSQL offers many more extensions and types out of the box, that [are compa
 - [Binary](http://www.postgresql.org/docs/9.4/static/datatype-binary.html)
 - [Range](http://www.postgresql.org/docs/9.4/static/rangetypes.html)
 - [Network](http://www.postgresql.org/docs/9.4/static/datatype-net-types.html)
-
-<%= show_product_inline(item[:newsletter_inside]) %>
 
 The rest will be covered in further blogposts very soon.
 

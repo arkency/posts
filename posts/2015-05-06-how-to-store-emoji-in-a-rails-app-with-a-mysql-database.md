@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'mysql', 'unicode', 'emoji', 'rails', 'utf8mb4' ]
-newsletter: :arkency_form
+newsletter_inside: :arkency_short
 img: "how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emoji.png"
 ---
 
@@ -81,6 +81,8 @@ production:
 ```
 
 Now you are ready to handle emoji 👍
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 # Rails, why you don't like `utf8mb4`?
 

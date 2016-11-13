@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: :skip
-newsletter_inside: :arkency_form
+newsletter_inside: :arkency_short
 tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'Array' ]
 ---
 
@@ -185,6 +185,8 @@ In previous versions of Rails we may encounter some weird behavior:
 ```
 
 What happened here? Why subjects array wasn't updated?
+
+<%= inner_newsletter(item[:newsletter_inside]) %>
 
 ### Dirty tracking
 
