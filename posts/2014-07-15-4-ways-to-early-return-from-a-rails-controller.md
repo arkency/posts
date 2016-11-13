@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :skip
-newsletter_inside: :fearless_refactoring_1
+newsletter_inside: :arkency_short
 tags: [ 'controllers', 'rails' ]
 ---
 
@@ -110,6 +110,8 @@ If you decide to go with this type of refactoring you must remember to add `retu
 end of the extracted method. However the good side is that all your `redirect_to and return` lines
 can remain unchanged.
 
+<%= inner_newsletter(item[:newsletter_inside]) %>
+
 ## 3. extracted_method{ return }
 
 ```
@@ -188,8 +190,6 @@ in the end in rails.
 It might be interesting for you to know that expecting `render` and `redirect` to break the flow of the method and exit it immediately
 is one of the most common mistake experienced by some Rails developers at the beginning of their career.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
-
 ## throw :halt (rails?)
 
 As Avdi wrote and [his blogpost](http://rubylearning.com/blog/2011/07/12/throw-catch-raise-rescue-im-so-confused/)
@@ -203,11 +203,7 @@ pre-conditions from http concerns.
 
 ## More
 
-Did you like this article? You might find [our Rails books interesting as well](/products) .
+Did you like this article? Learn how to make your Rails controllers pretty,
+refactor to Service Objects and much more from our [Fearless Refactorin: Rails controllers](http://rails-refactoring.com)
 
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
