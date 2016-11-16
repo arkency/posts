@@ -1,8 +1,8 @@
 ---
 title: "One request can be multiple commands"
-created_at: 2016-11-13 13:45:40 +0100
+created_at: 2016-11-16 13:45:40 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'commands' ]
 newsletter: :arkency_form
