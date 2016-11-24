@@ -2,7 +2,7 @@
 title: "Async/Remote: make work a better place"
 created_at: 2016-11-24 17:01:51 +0200
 kind: article
-publish: false
+publish: true
 author: Anton Paisov
 tags: [ 'async', 'remote', 'work', 'lifestyle', 'arkency' ]
 newsletter: :skip
