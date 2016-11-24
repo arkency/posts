@@ -8,15 +8,17 @@ tags: [ 'async', 'remote', 'work', 'lifestyle', 'arkency' ]
 newsletter: :skip
 ---
 
+I’d like to share my insights on some personal benefits that I gain working [async/remote](http://blog.arkency.com/async-remote/). Some of them are well known and while they might seem obvious, they aren’t seen until you have the real experience.
+
+<!-- more -->
+
 <p>
   <figure align="center">
     <img src="<%= src_fit("anton_async.jpg") %>">
   </figure>
 </p>
 
-*Notice: This post is a snapshot of my personal experience and probably isn’t directly applicable to you, just use your imagination and project it on yourself* 😉
-
-I’d like to share my insights on some personal benefits that I gain working [async/remote](http://blog.arkency.com/async-remote/). Some of them are well known and while they might seem obvious, they aren’t seen until you have the real experience.
+*Notice: This post is a snapshot of my personal experience and probably isn’t directly applicable to you, just use your imagination and project it on yourself*
 
 ### More time with kids
 Ability to share more moments with kids is by far the greatest benefit I’m getting from my remote job.
