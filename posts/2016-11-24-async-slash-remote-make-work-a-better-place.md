@@ -8,7 +8,11 @@ tags: [ 'async', 'remote', 'work', 'lifestyle', 'arkency' ]
 newsletter: :skip
 ---
 
-![](/assets/images/anton_async.jpg)
+<p>
+  <figure align="center">
+    <img src="<%= src_fit("anton_async.jpg") %>">
+  </figure>
+</p>
 
 *Notice: This post is a snapshot of my personal experience and probably isn’t directly applicable to you, just use your imagination and project it on yourself* 😉
 
