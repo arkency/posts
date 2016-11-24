@@ -8,7 +8,7 @@ tags: [ 'async', 'remote', 'work', 'lifestyle', 'arkency' ]
 newsletter: :skip
 ---
 
-<img src="https://www.dropbox.com/s/0fe8wsp7ir3rqzr/blogging.jpg?dl=0" width="40%">
+![](/assets/images/anton_async.jpg)
 
 *Notice: This post is a snapshot of my personal experience and probably isn’t directly applicable to you, just use your imagination and project it on yourself ;)*
 
