@@ -10,7 +10,7 @@ newsletter: :skip
 
 What if I told you that covering javascript code with tests can be easy and pleasant experience?
 
-There’s one simple rule you need to follow in order to achieve that: **keep the logic stateless**.
+There’s one simple rule you need to follow in order to achieve that: **keep your functions pure** or in other words **keep your code side-effect free**.
 And all of a sudden you don’t need to mock anything, or emulate browser, or do any other not logic related stuff.
 
 <!-- more -->
@@ -18,7 +18,7 @@ And all of a sudden you don’t need to mock anything, or emulate browser, or do
 _Breaking news: this rule applies to other areas of programming too :)_
 
 
-So, imagine we have a task: implement a mechanism for displaying ticket fees.
+So, imagine we have a task: implement a mechanism that calculates ticket fees.
 
 Let’s write the logic first:
 
@@ -26,13 +26,13 @@ Let’s write the logic first:
 #!javascript
 export function feeAmount(fees) {
   return (statePrice, include) => {
-    const price       = parseFloat(statePrice);
+    const price       = statePrice;
+    const startingFee = fees.startingFee;
+    const maximumFee  = fees.maximumFee;
     const percentage  = parseFloat(fees.percentage);
-    const startingFee = parseFloat(fees.startingFee);
-    const maximumFee  = parseFloat(fees.maximumFee);
 
-    if (statePrice === 0) {
-      return 0.0;
+    if (price === 0) {
+      return 0;
     }
 
     const coreFeeableSum = include ? ((price - startingFee) / (1 + percentage)) : price;
@@ -42,7 +42,7 @@ export function feeAmount(fees) {
       return maximumFee;
     }
 
-    return currentFee;
+    return Math.round(currentFee);
   };
 }
 
@@ -54,8 +54,6 @@ export function amountWithFee(feeAmountFn) {
 }
 ```
 
-_Notice that we’re doing functional [currying](https://en.wikipedia.org/wiki/Currying) here, it’s really handy when you need to pass same calculations into different functions, for example._
-
 Now let’s have some tests for it (I’m using [mocha](https://www.npmjs.com/package/mocha) and [assert](https://www.npmjs.com/package/assert)):
 
 ```
@@ -66,8 +64,8 @@ import assert from 'assert';
 
 const fees = {
   percentage: 0.035,
-  starting_fee: 3.49,
-  maximum_fee: 53.99
+  starting_fee: 349,
+  maximum_fee: 5399
 };
 
 const feeAmountFn = feeAmount(fees);
@@ -76,34 +74,67 @@ const organizerRevenueFn = organizerRevenue(feeAmountFn);
 
 describe("feeAmount", () => {
   it("calculates fee NOT included", () => {
-    assert.equal(feeAmountFn(150, false).toFixed(2), 8.74);
+    assert.equal(feeAmountFn(15000, false), 874);
   });
 
   it("calculates fee included", () => {
-    assert.equal(feeAmountFn(150, true).toFixed(2), 8.44);
+    assert.equal(feeAmountFn(15000, true), 844);
   });
 
   it("returns maximum_fee", () => {
-    assert.equal(feeAmountFn(2000, false).toFixed(2), 53.99);
+    assert.equal(feeAmountFn(200000, false), 5399);
   });
 
   it("returns maximum_fee", () => {
-    assert.equal(feeAmountFn(2000, true).toFixed(2), 53.99);
+    assert.equal(feeAmountFn(200000, true), 5399);
   });
 });
 
 describe("amountWithFee", () => {
   it("calculates amount with fee NOT included", () => {
-    assert.equal(amountWithFeeFn(150, false).toFixed(2), 158.74);
+    assert.equal(amountWithFeeFn(15000, false), 15874);
   });
 
   it("calculates amount with maximum_fee", () => {
-    assert.equal(amountWithFeeFn(2000, false).toFixed(2), 2053.99);
+    assert.equal(amountWithFeeFn(200000, false), 205399);
   });
 });
 ```
 
 And now just import these functions where you will actually use them.
+
+And to give you a full picture, here's how this logic may look when author doesn't care about logic testability:
+
+```
+#!javascript
+feeAmount() {
+  const price       = this.state.price;
+  const startingFee = this.props.fees.startingFee;
+  const maximumFee  = this.props.fees.maximumFee;
+  const percentage  = parseFloat(this.props.fees.percentage);
+
+  if (price === 0) {
+    return 0;
+  }
+
+  const coreFeeableSum = include ? ((price - startingFee) / (1 + percentage)) : price;
+  const currentFee = coreFeeableSum * percentage + startingFee;
+
+  if (maximumFee && (currentFee > maximumFee)) {
+    return maximumFee;
+  }
+
+  return Math.round(currentFee);
+}
+
+amountWithFee() {
+  if (this.state.include) {
+    return this.state.price;
+  } else {
+    return this.feeAmount() + this.state.price;
+  }
+}
+```
 
 _If you want to learn more about testable javascript code with pure functions, be sure to check [this page](http://redux.js.org/docs/recipes/WritingTests.html)._
 
