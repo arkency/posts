@@ -2,7 +2,7 @@
 title: "Testable Javascript with pure functions"
 created_at: 2016-11-28 20:11:51 +0200
 kind: article
-publish: false
+publish: true
 author: Anton Paisov
 tags: [ 'javascript', 'testing', 'mocha' ]
 newsletter: :skip
@@ -25,8 +25,7 @@ Let’s write the logic first:
 ```
 #!javascript
 export function feeAmount(fees) {
-  return (statePrice, include) => {
-    const price       = statePrice;
+  return (price, include) => {
     const startingFee = fees.startingFee;
     const maximumFee  = fees.maximumFee;
     const percentage  = parseFloat(fees.percentage);
@@ -64,8 +63,8 @@ import assert from 'assert';
 
 const fees = {
   percentage: 0.035,
-  starting_fee: 349,
-  maximum_fee: 5399
+  startingFee: 349,
+  maximumFee: 5399
 };
 
 const feeAmountFn = feeAmount(fees);
@@ -81,11 +80,11 @@ describe("feeAmount", () => {
     assert.equal(feeAmountFn(15000, true), 844);
   });
 
-  it("returns maximum_fee", () => {
+  it("returns maximum fee", () => {
     assert.equal(feeAmountFn(200000, false), 5399);
   });
 
-  it("returns maximum_fee", () => {
+  it("returns maximum fee", () => {
     assert.equal(feeAmountFn(200000, true), 5399);
   });
 });
@@ -95,7 +94,7 @@ describe("amountWithFee", () => {
     assert.equal(amountWithFeeFn(15000, false), 15874);
   });
 
-  it("calculates amount with maximum_fee", () => {
+  it("calculates amount with maximum fee", () => {
     assert.equal(amountWithFeeFn(200000, false), 205399);
   });
 });
