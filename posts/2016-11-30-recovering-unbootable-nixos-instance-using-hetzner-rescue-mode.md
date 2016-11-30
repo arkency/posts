@@ -24,4 +24,6 @@ grub-reboot --boot-directory=/mnt/boot "NixOS - Configuration 4 (2016-09-10 - 16
 
 After reboot I had my old, working configuration (`configuration 4`) so I was able to upload correct `/etc/nixos/configuration.nix` file and rerun `nixos-rebuild --switch` to create new, working configuration (`configuration 6`) as a default one, instead of invalid one (`configuration 5`).
 
-_During debugging I was looking for a blogpost like that and I've found none. So now, there's at least one :)_
+It was my first opportunity to fix broken NixOS system. What are your experiences with such situations? Let me know if you know better ways of handling such cases.
+
+_During working on this task I was looking for a blogpost like that and I've found none. So now, there's at least one :)_
