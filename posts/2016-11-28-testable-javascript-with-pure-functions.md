@@ -69,7 +69,6 @@ const fees = {
 
 const feeAmountFn = feeAmount(fees);
 const amountWithFeeFn = amountWithFee(feeAmountFn);
-const organizerRevenueFn = organizerRevenue(feeAmountFn);
 
 describe("feeAmount", () => {
   it("calculates fee NOT included", () => {
