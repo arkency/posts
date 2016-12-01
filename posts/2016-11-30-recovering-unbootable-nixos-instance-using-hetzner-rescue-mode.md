@@ -2,7 +2,7 @@
 title: "Recovering unbootable NixOS instance using Hetzner rescue mode"
 created_at: 2016-11-30 19:37:19 +0100
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'nix', 'nixos', 'hetzner', 'devops' ]
 newsletter: :arkency_form
