@@ -134,6 +134,12 @@ amountWithFee() {
 }
 ```
 
+As you probably noticed this version comes from a method in React.js component
+and relies on `state` and `props` from that component. But the calculations
+have nothing to do with the UI logic. So it's better to keep them outside
+the component and test separately. We don't need (or want) React to check our
+math.
+
 _If you want to learn more about testable javascript code with pure functions, be sure to check [this page](http://redux.js.org/docs/recipes/WritingTests.html)._
 
 _We also have [Approaches to testing React components - an overview](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/) post._
