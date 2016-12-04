@@ -1,8 +1,8 @@
 ---
-title: "Techniques for dealing with uncertainity"
-created_at: 2016-12-03 22:55:49 +0100
+title: "Patterns for dealing with uncertainity"
+created_at: 2016-12-04 15:55:49 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'DDD', 'networking' ]
 newsletter: :arkency_form
