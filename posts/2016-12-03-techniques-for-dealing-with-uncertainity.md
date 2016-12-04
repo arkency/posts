@@ -16,13 +16,13 @@ used to handle such problems are very similar.
 
 <!-- more -->
 
-## Retries / At least one delivery
+## Retries / At least once delivery
 
 You tried to send something from computer A to computer B. It didn't work.
 What do we do? One of the most often technique is to try to do it again.
 Very simple isn't it?
 
-We say _at least one delivery_ because computer B can receive our message
+We say _at least once delivery_ because computer B can receive our message
 multiple times in case 1st time already worked but computer A wasn't sure
 about it so it sent it again.
 
@@ -37,7 +37,7 @@ Notice that what is just a delivery on a higher level (message reached point B)
 requires a delivery and confirmation on a lower level (packets consisting the
 message reached point B and acknowledge of it reached point A back).
 
-## At most one delivery
+## At most once delivery
 
 Sometimes we prefer speed and smaller usage of resources over certainty or
 reliability. In such case, we always send the message only once. Either it
@@ -74,7 +74,7 @@ the payment. That is an example of a compensation.
 ## Idempotence
 
 Idempotence is a way to correctly handle duplicated messages received due
-to retries and at least one delivery strategy. The idea is that when we
+to retries and at least once delivery strategy. The idea is that when we
 receive the same message multiple times it does not cause additional
 important side-effects and the client is informed that the operation was
 successful.
