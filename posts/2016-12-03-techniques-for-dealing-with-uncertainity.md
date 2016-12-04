@@ -10,7 +10,7 @@ newsletter: :arkency_form
 
 In programming we are often dealing with an uncertainity. We don't know,
 we are not sure if something happened or not. Or we are not sure about
-the result. Especially when it comes to networking but also in other
+the result. Especially when it comes to networking/distributed systems but also in other
 contexts. What I find interesting is that in many cases the techniques
 used to handle such problems are very similar.
 
