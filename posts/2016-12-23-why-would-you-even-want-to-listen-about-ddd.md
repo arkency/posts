@@ -2,7 +2,7 @@
 title: "Why would you even want to listen about DDD?"
 created_at: 2016-12-26 08:15:56 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
 newsletter: :arkency_form
