@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
 newsletter: :arkency_form
+img: "rails-ddd-listen/why-ddd-rails.png"
 ---
 
 You might have heard about this thing called DDD which stands for _Domain-Driven Design_.
