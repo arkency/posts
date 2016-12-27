@@ -111,3 +111,13 @@ How things correlate over time, what happens when this happens before this becom
 ## Rule #7: when in doubt
 
 # <center>TALK TO YOUR DOMAIN EXPERT / BUSINESS</center>
+
+
+
+### Want to learn more?
+
+Struggling with finding a direction of refactorings to keep your app maintainable? Legacy codebase driving you nuts and not revealing intention?
+
+Join our [Rails + Domain Driven Design Workshop](http://blog.arkency.com/ddd-training/).
+The next edition will be held on 12-13th January 2017 (Thursday & Friday), in Wrocław, Poland.
+
