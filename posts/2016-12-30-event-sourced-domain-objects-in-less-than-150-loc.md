@@ -8,7 +8,7 @@ tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :arkency_form
 ---
 
-Some say: "Event sourcing is hard". Some say: "You need a framework to use Event Sourcing".
+Some say: _"Event sourcing is hard"_. Some say: _"You need a framework to use Event Sourcing"_.
 Some say: ...
 
 Meh.
