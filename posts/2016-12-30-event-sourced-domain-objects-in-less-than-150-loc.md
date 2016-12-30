@@ -11,7 +11,7 @@ newsletter: :arkency_form
 Some say: "Event sourcing is hard". Some say: "You need a framework to use Event Sourcing".
 Some say: ...
 
-Bulshit.
+Meh.
 
 You aren't gonna need it.
 
