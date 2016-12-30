@@ -6,7 +6,14 @@ publish: false
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :arkency_form
+img: "mpraglowski/lightbulbs-on-black.jpg"
 ---
+
+<p>
+  <figure>
+    <img src="<%= src_fit("mpraglowski/lightbulbs-on-black.jpg") %> alt="" width="100%" />
+  </figure>
+</p>
 
 Some say: _"Event sourcing is hard"_. Some say: _"You need a framework to use Event Sourcing"_.
 Some say: ...
