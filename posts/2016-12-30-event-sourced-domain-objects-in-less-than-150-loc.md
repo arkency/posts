@@ -8,20 +8,25 @@ tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
 newsletter: :arkency_form
 ---
 
-Some say: "Event sourcing is hard". Some day: "You need a framework to use Event Sourcing".
-Some say: ... Bulshit. You aren't gonna need it.
+Some say: "Event sourcing is hard". Some say: "You need a framework to use Event Sourcing".
+Some say: ...
+
+Bulshit.
+
+You aren't gonna need it.
 
 <!-- more -->
 
 # Start with just a PORO object
 
 Let's use `Payment` as a sample here. The "story" is simple. Customer place an order.
-When order is validated the payment is authorized. We do not just create it.
+When an order is validated the payment is authorized. We do not just create it.
 Create is not a word our business experts will use here (hopefully). The customer
-authorizes us to charge him some amout of money.
+authorizes us to charge him some amount of money.
 Read this [Udi Dahan's post](http://udidahan.com/2009/06/29/dont-create-aggregate-roots/).
 
-```ruby
+```
+#!ruby
 class Payment
   InvalidOperation = Class.new(StandardError)
 
@@ -30,7 +35,7 @@ class Payment
     puts "Domain model: create new authorized payment #{transaction_id}"
     Payment.new.tap do |payment|
       payment.transaction_id = transaction_id
-      payment.amout          = amount
+      payment.amount         = amount
       payment.state          = :authorized
     end
   end
@@ -66,9 +71,9 @@ end
 ```
 
 The payment logic is pretty simple (for a sake of this example, in real life it is much more complicated).
-Customer authorizes payment for specified amount. We send the authorization to payment gateway.
-After some time (async FTW) payment gateway will respond with OK or NOT OK messsage.
-If payment gateway informs us about successful payment it means it has been able to charge customer and
+Customer authorizes payment for specified amount. We send the authorization to the payment gateway.
+After some time (async FTW) payment gateway will respond with OK or NOT OK message.
+If payment gateway informs us about successful payment it means it has been able to charge the customer and
 the money is waiting reserved for us.
 Successful payments could be then captured (what means asking payment gateway to give us our money).
 
@@ -76,9 +81,10 @@ Ok, so we have our business logic.
 
 # Introducing domain events
 
-First we need to define our domain events.
+First, we need to define our domain events.
 
-```ruby
+```
+#!ruby
 PaymentAuthorized = Class.new(RailsEventStore::Event)
 PaymentSuccessed  = Class.new(RailsEventStore::Event)
 PaymentFailed     = Class.new(RailsEventStore::Event)
@@ -87,7 +93,8 @@ PaymentCaptured   = Class.new(RailsEventStore::Event)
 
 Then let's use them to implement our `Payment` domain model.
 
-```ruby
+```
+#!ruby
 class Payment
   InvalidOperation = Class.new(StandardError)
   include AggregateRoot
@@ -163,11 +170,11 @@ class Payment
 end
 ```
 
-With a little help from [RailsEventStore](http://railseventstore.arkency.com) & [AggregateRoot](https://github.com/arkency/aggregate_root) gems we have now full functional event sourced `Payment` aggregate.
+With a little help from [RailsEventStore](http://railseventstore.arkency.com) & [AggregateRoot](https://github.com/arkency/aggregate_root) gems we have now fully functional event sourced `Payment` aggregate.
 
 # Plumbing
 
-`RailsEventStore` allows to to read & store domain events. `AggregateRoot` is just a module to include in your aggregate root classes. It provides just 3 methods: `apply`, `load` & `store`. Check the [source code](https://github.com/arkency/aggregate_root/blob/master/lib/aggregate_root.rb) to understand how it works. It's quite simple.
+`RailsEventStore` allows to read & store domain events. `AggregateRoot` is just a module to include in your aggregate root classes. It provides just 3 methods: `apply`, `load` & `store`. Check the [source code](https://github.com/arkency/aggregate_root/blob/master/lib/aggregate_root.rb) to understand how it works. It's quite simple.
 
 ## How to make it work?
 
@@ -179,7 +186,8 @@ The typical lifecycle of that domain object is:
 
 Let's define our process. To help us use it later we will define an application service class that will handle all "plumbing" for us.
 
-```ruby
+```
+#!ruby
 class PaymentsService
   def initialize(event_store:, payment_gateway:)
     @event_store     = event_store
@@ -217,9 +225,10 @@ class PaymentsService
 end
 ```
 
-Now we need only adapter for our payment gateway & instance of `RailsEventStore::Client`.
+Now we need only an adapter for our payment gateway & instance of `RailsEventStore::Client`.
 
-```ruby
+```
+#!ruby
 class PaymentGateway
   def initialize(transaction_id_generator)
     @generator = transaction_id_generator
@@ -241,7 +250,8 @@ event_store = RailsEventStore::Client.new(repository: RailsEventStore::InMemoryR
 
 # Happy path
 
-```ruby
+```
+#!ruby
 random_id = SecureRandom.uuid
 gateway = PaymentGateway.new(-> { random_id })
 service = PaymentsService.new(event_store: event_store, payment_gateway: gateway)
@@ -256,20 +266,27 @@ Complete code (149 LOC) is available [here](https://gist.github.com/mpraglowski/
 
 # Is it worth the effort?
 
-Of course it is additional effort. Of course it requires more code (and probably even more as I have not shown read models here).
-Of course it required a change in Your mindset. But is it worth it?
+Of course, it is an additional effort. Of course, it requires more code (and probably even more as I have not shown read models here).
+Of course, it required a change in Your mindset.
+
+## But is it worth it?
 
 I've posted [Why use Event Sourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) some time ago.
-The auditability of all actions is priceless (especially when you deal with customers money). All state changes are made only by applying domain event, so you will not have any change that is not stored in domain events (which are your audit log).
-Avoiding impedance mismatch between object oriented and relational world & not having `ActiveRecord` in your domain model - another win for me. By using CQRS and read models (maybe not just a single one, polyglot data is BIG win here) you could make your application more scallable, move available. Decoupling different parts of the system (bounded contextx) is also much easier.
+
+The audit log of all actions is priceless (especially when you deal with customers money). All state changes are made only by applying domain event, so you will not have any change that is not stored in domain events (which are your audit log).
+
+Avoiding impedance mismatch between object oriented and relational world & not having `ActiveRecord` in your domain model - another win for me.
+
+By using CQRS and read models (maybe not just a single one, polyglot data is a BIG win here) you could make your application more scalable, more available. Decoupling different parts of the system (bounded contexts) is also much easier.
 
 # Wants to learn more?
 
 This is a very basic example. There is much more to learn here, naming some only:
+
 * defining bounded contexts
-* using sagas / process managers to hadle long running processes
+* using sagas/process managers to handle long running processes
 * CQRS architecture & using read models
-* patterns how to use strentch of event sourcing
+* patterns when & how to use event sourcing
 * and when not to use it
 
-If you are interested join our upcomming [Rails + Domain Driven Design Workshop](http://blog.arkency.com/ddd-training/). Next edition will be held on **12-13th January 2017** (Thursday & Friday) in Wrocław, Poland. Workshop will be held in English.
+If you are interested join our upcoming [Rails + Domain Driven Design Workshop](http://blog.arkency.com/ddd-training/). Next edition will be held on **12-13th January 2017** (Thursday & Friday) in Wrocław, Poland. The workshop will be held in English.
