@@ -95,3 +95,9 @@ So just be aware that in upcoming Ruby versions `s = ""` and
 `s = String.new` might not be equal. And in the case when you
 are building a new string via multiple transformations or
 concatenations the 2nd version might be preffered.
+
+I wonder if some time later ruby (4 ?) will make all Strings
+immutable (not only those created via literals) and introduce
+`StringBuilder` class like .Net or Java has?
+
+Happy 2017!
