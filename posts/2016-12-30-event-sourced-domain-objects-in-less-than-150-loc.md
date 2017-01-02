@@ -51,25 +51,25 @@ class Payment
     puts "Domain model: handle payment gateway OK notification #{transaction_id}"
     raise InvalidOperation unless state == :authorized
     schedule_capture
-    state = :successed
+    self.state = :successed
   end
 
   def fail
     puts "Domain model: handle payment gateway NOK notification #{transaction_id}"
     raise InvalidOperation unless state == :authorized
-    state = :failed
+    self.state = :failed
   end
 
   def capture(payment_gateway:)
     puts "Domain model: get the money here! #{transaction_id}"
     raise InvalidOperation unless state == :successed
     payment_gateway.capture(transaction_id)
-    state = :captured
+    self.state = :captured
   end
 
-  private
-  attr_reader :transaction_id, :amount, :state
+  attr_accessor :transaction_id, :amount, :state
 
+  private
   def schedule_capture
     puts "Domain model: schedule caputre #{transaction_id}"
     # send it to background job for performance reasons
