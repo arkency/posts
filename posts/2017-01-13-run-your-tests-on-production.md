@@ -8,7 +8,7 @@ tags: [ 'tests', 'integration', 'microservices' ]
 newsletter: :arkency_form
 ---
 
-Running your tests on production? On the real, live system?
+Running your tests on "production"? On the real, live system?
 Sounds unorthodox? There might be situations, where it's actually a good idea. Read on!
 
 <!-- more -->
@@ -21,7 +21,15 @@ In a project comprised of microservices, there are many integration surfaces, so
 
 Building a dedicated infrastructure to launch all the required processes in test environment was a no-go for us at the moment because that would easily consume way too much time. Such an environment would also be a permanent source of **debugging why a certain thing works here and not there**.
 
-So we thought why don't we try running some test cases on our production app. Something in the direction of [syntetic monitoring](https://en.wikipedia.org/wiki/Synthetic_monitoring). Of course, we don't mean to run every single test case - that would easily be an overkill. We want to **cover the "critical" scenario, a typical use case**. Chances are it will catch a big part of integration/UI/infrastructural issues. Handling all the corner cases would, of course, stay in lower-level tests.
+So we thought why don't we try running some test cases on our production app. Something in the direction of [syntetic monitoring](https://en.wikipedia.org/wiki/Synthetic_monitoring). Of course, we don't mean to run every single test case - that would easily be an overkill. We want to **cover the "critical" scenario, a typical use case**.
+
+1. A new user registers
+2. Browses the products page
+3. Orders a coffee grinder
+
+If you're a coffee grinder salesman, you certainly don't want this to be broken. You also don't want to learn it the hard way by noticing a cliff on your sales chart.
+
+Chances are such tests will catch a **big part of integration, UI, infrastructural issues**. Handling all the corner cases would, of course, stay in lower-level tests.
 
 The important thing to note - it was easier for us to give it a try because we don't yet have real customers using our app - just the QA - so one could argue it's not really a production app. True. But chances are we'll stay with this approach for longer and there are considerable benefits involved.
 
@@ -39,16 +47,18 @@ Another concern that comes up quickly is how we're going to clean up the data cr
 
 I discussed this with my colleagues and an interesting idea came up. **"Just don't clean up"**. Sounds even sillier. But:
 
-* If test data is isolated enough, it shouldn't affect other users
+* If test data is isolated enough, it shouldn't affect other users 
+* If your dataset is big, maybe it's not a big deal at all
 * If your dataset is small (eg. early stage of the project), it will get bigger, which can lead you to **discover potential performance issues** occurring in such situations, like a missing db index in an important query. Issues are of course better spotted earlier (when it's usually easier to fix things) than later (when the user base grows and some solutions are more problematic to apply)
+* I'm pretty sure there are many systems in the wild where there's a lot of test data on production that was "produced" by QAs while performing a manual test of the "critical path" after a bigger thing was deployed. I'm also pretty sure they often didn't bother to clean up all those `test_user_187`
 * Nothing stops you from eventually cleaning up the data. You can do it manually or automatically whenever you need. You can create a backup beforehand for additional confidence. Of course, you will need a way to tell test data apart, which can be harder or easier (like in our case with tenants)
 
-During our discussions there even was an idea of performing a **real credit card payment** in such a test. To clean it up, you could issue a refund (another use case covered by the way). Ok, there could be non-returnable costs involved, like transaction fees. But, if the reliability of a large app is at stake, why not? Consider the cost of your time lost battling bugs that could have been avoided, or users not being able to work with the app. The bottom line is: a lot is possible, it's just trade-offs everywhere.
+During our discussions there even was an idea of performing a **real credit card payment** in such a test. To clean it up, you could issue a refund (another use case covered by the way). Ok, there could be non-returnable costs involved, like transaction fees. But, if the reliability of a large app is at stake, why not? Consider the cost of your time lost battling bugs that could have been avoided, or users not being able to work with the app. The bottom line is: **a lot is possible, it's just trade-offs everywhere**.
 
 ## What are the benefits?
 
 * What you're testing is closest to what your users are actually using. You can never eliminate all differences between test/prod environments and, in the end, it's the production that matters. In our case, these tests quickly helped us to discover a **infrastructural issue on production** (memory problems on one of the nodes)
-* You're sparing yourself the need to maintain a separate environment for integration tests, which can be especially difficult if there are many parts involved.
+* You're **sparing yourself the need to maintain a separate environment** for integration tests, which can be especially difficult if there are many parts involved and can make you spend a lot of time debugging why a certain bug is reproducible in only one of those.
 
 ## Setting it up
 
@@ -74,7 +84,7 @@ end
 
 `run_server = false` tells capybara not to spin up a server itself. This code does not need to live in our rails app. It can (and it probably should) be a **separate repo**. This way you don't unnecessarily load any of the rails stuff, so it hopefully makes the test startup a little faster.
 
-Basically, apart from the test cases itself, the only thing you will need there is the rake task to run the tests:
+Basically, apart from the test cases, the only thing you will need is to add this to the `Rakefile`:
 
 ```
 #!ruby
@@ -85,11 +95,11 @@ Rake::TestTask.new do |t|
 end
 ```
 
-## Random builds
+### Random builds
 
 How about the reliability of tests executing the whole stack, involving a complicated JS client code? Frequent random failures can be frustrating, especially that debugging is harder with such high-level tests. It's a question for us too. So far we've had a tolerable amount of random builds and we hope that it stays this way (or if it doesn't, that we can do something about it). We'll keep you posted!
 
-## Interacting with an API?
+### Interacting with an API?
 
 What if you don't need to test a web page, just an API? Actually we have one scenario, where we chose to interact with the API directly. What to use to fire http requests? You don't need Capybara in such case, nor any other test specific tool. Just use a normal http library, and continue with your assertions. We went for [rest-client](https://github.com/rest-client/rest-client) because it handled file uploads in an easy way.
 
@@ -101,9 +111,11 @@ There are basically three three ways you can run such tests:
 * from your local machine against the remote server - useful while working on test cases itself
 * from your local machine against the local server - useful while working on features, especially if you wanna TDD
 
-## Running on CI
+### Running on CI
 
 Our goal is to make it all run automatically and see nice green notifications on our slack channel (or wherever else). Since it's the production server being tested, we cannot run the tests in the regular build process after a push, because the code is simply not yet there in production. Typically your push would trigger a build on CI and after it passes (of course if you also got continuous delivery set up), it would then trigger a deploy. Only then we can run the tests. So basically you just need to **trigger a build** of the repo containing the tests, **whenever the app was deployed successfully**.
+
+### CircleCI & Heroku setup
 
 If you happen to use **CircleCI**, there's an API endpoint that let's you trigger the build whenever you want, all you need is to post to this url:
 
