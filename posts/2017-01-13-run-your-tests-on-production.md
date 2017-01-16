@@ -8,7 +8,7 @@ tags: [ 'tests', 'integration', 'microservices' ]
 newsletter: :arkency_form
 ---
 
-Running your tests in production? On the real, live system?
+Running your tests on production? On the real, live system?
 Sounds unorthodox? There might be situations, where it's actually a good idea. Read on!
 
 <!-- more -->
@@ -64,11 +64,11 @@ Capybara.run_server = false
 Capybara.current_driver = :poltergeist
 
 class ProductionTestCase < Minitest::Test
-include Capybara::DSL
+  include Capybara::DSL
 
-def teardown
-Capybara.reset_sessions!
-end
+  def teardown
+    Capybara.reset_sessions!
+  end
 end
 ```
 
@@ -81,7 +81,7 @@ Basically, apart from the test cases itself, the only thing you will need there 
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
-t.pattern = "test/**/*_test.rb"
+  t.pattern = "test/**/*_test.rb"
 end
 ```
 
