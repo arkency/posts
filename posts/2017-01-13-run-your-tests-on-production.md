@@ -2,7 +2,7 @@
 title: "Run your tests on production!"
 created_at: 2017-01-13 13:16:56 +0100
 kind: article
-publish: false
+publish: true
 author: Tomasz Wróbel
 tags: [ 'tests', 'integration', 'microservices' ]
 newsletter: :arkency_form
