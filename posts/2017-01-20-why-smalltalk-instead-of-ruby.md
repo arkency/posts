@@ -128,6 +128,8 @@ Bret Victor in his wonderful talk, “The Future of Programming,” points to
 Smalltalk as a harbinger of how software creation will evolve four decades in
 the future (from 1973):
 
+<iframe width="420" height="315" src="https://youtu.be/8pTEmbeENF4" frameborder="0" allowfullscreen></iframe>
+
 > Why are we still using file-based tools??? Are we Neanderthals?
 
 To be sure, Smalltalk isn’t as popular as Ruby. [This is the reason for my
