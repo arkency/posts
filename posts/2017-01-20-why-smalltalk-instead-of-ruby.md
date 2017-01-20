@@ -18,6 +18,12 @@ I'll leave you with Richard and his strong arguments for Smalltalk, enjoy! :)
 
 <!-- more -->
 
+<p>
+  <figure align="center">
+    <img src="<%= src_fit("smalltalk-ruby/smalltalk-ruby.jpg") %>">
+  </figure>
+</p>
+
 *****
 
 Ruby is a popular language, largely because of Rails. Ruby borrows OOP from
