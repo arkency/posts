@@ -16,8 +16,6 @@ I'll leave you with Richard and his strong arguments for Smalltalk, enjoy! :)
 
 <!-- more -->
 
-![](https://cdn-images-1.medium.com/max/800/1*9qZ2hTPp8ApBFnwn6qWgYw.jpeg)
-
 # Why Smalltalk instead of Ruby
 
 *****
