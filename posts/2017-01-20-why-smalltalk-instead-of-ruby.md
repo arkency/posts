@@ -5,6 +5,7 @@ kind: article
 publish: false
 author: Richard Eng
 newsletter: :skip
+img: "smalltalk-ruby/smalltalk-ruby.jpg"
 ---
 
 Hello, it's Andrzej Krzywda here. Today we have a special guest post from Richard Eng, the man who is behind the Smalltalk revolution.
