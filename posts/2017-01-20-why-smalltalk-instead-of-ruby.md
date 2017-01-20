@@ -8,15 +8,15 @@ newsletter: :skip
 img: "smalltalk-ruby/smalltalk-ruby.jpg"
 ---
 
-Hello, it's Andrzej Krzywda here. Today we have a special guest post from Richard Eng, the man who is behind the Smalltalk revolution.
-I've been fascinated with Smalltalk since my University. In a way, my Ruby code is Smalltalk-infected all the time. Many of the great things in programming come from Smalltalk, like MVC, IDE, refactoring.
-Smalltalk has its history, but it's still in use in huge, production systems. As Ruby developers we often look at the new, shiny languages. Maybe we can also look at something less new? Maybe we can get inspired with Smalltalk?
+Hello, it's Andrzej Krzywda from Arkency here. Today we have a special guest post from Richard Eng, the man who is behind the Smalltalk Renaissance.
+
+I've been fascinated with Smalltalk since my University. In a way, my Ruby code is Smalltalk-infected all the time. Many of the great things in programming come from Smalltalk, like MVC, IDE, refactoring. 
+
+Smalltalk has its history, but it's also still in use in huge, production systems. As Ruby developers we often look at the new, shiny languages. Maybe we can also look at something less new? Maybe we can get inspired with Smalltalk?
 
 I'll leave you with Richard and his strong arguments for Smalltalk, enjoy! :)
 
 <!-- more -->
-
-# Why Smalltalk instead of Ruby
 
 *****
 
