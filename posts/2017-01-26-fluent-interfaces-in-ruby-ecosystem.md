@@ -82,7 +82,7 @@ without leaking global stats.
 <%= img_fit("fluent-interface-api-ruby-rails/google_analytics_merchant_panel.jpg") %>
 
 Google Analytics API can be queried in thousands of possible ways. If you have at least
-one domain with GA, I encourage you to give [Query Explorer Query Explorer a try](https://ga-dev-tools.appspot.com/query-explorer/).
+one domain with GA, I encourage you to give [Query Explorer a try](https://ga-dev-tools.appspot.com/query-explorer/).
 
 <%= img_fit("fluent-interface-api-ruby-rails/query_explorer.jpg") %>
 
