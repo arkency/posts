@@ -6,7 +6,10 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'yield', 'default' ]
 newsletter: :arkency_form
+img: "ruby-yield-default-object/title.jpeg"
 ---
+
+<%= img_fit("ruby-yield-default-object/title.jpeg") %>
 
 There is one programming pattern that I sometimes use
 which I wanted to tell you about today. I called this technique
