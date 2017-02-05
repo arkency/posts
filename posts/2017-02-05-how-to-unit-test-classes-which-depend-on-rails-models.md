@@ -37,6 +37,8 @@ How can we test this class without loading Rails?
 One way to unit test it is by using the repository object and the concept of replacing the repo object with an in-memory one in tests.
 
 ```
+#!ruby
+
 class CreateSomethingService
   def initialize(repo, params)
     @repo = repo
