@@ -130,7 +130,7 @@ def start_till_cash_register_session
     currency: currency,
     starting_cash_balance: "0.00",
   )
-  yield cmd
+  yield cmd if block_given?
   command_bus.call(cmd)
 end
 ```
