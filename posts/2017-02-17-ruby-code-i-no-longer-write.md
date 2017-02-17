@@ -16,17 +16,16 @@ When we learn programming languages and techniques we go through certain phases:
 * Rejection
 * Approval
 
-etc. Similarly witch other things we enjoy in our life such as icecream, pizza and sunbathing :)
+etc. Similarly with other things we enjoy in our life such as ice cream, pizza and sunbathing :)
 We learn to enjoy them, we try too much of it and learn the consequences. Hopefully
-some time later we find a good balance. We know how much of it we can use without
-hurting ourself.
+some time later we find a good balance. We know, how much of it, we can use without hurting ourselves.
 
-I think we can have similar experience in programming for example when you find out about
+I think we can have a similar experience in programming for example when you find out about
 metaprogramming, immutability, unit testing, DDD. Basically anything. We often need to hit
 an invisible wall and realize that we overdosed. It's not easy at all to realize it and learn
 from it.
 
-After 8 years of using Ruby and Rails there are certain constructs that I try not to use anymore
+After 8 years of using Ruby and Rails, there are certain constructs that I try not to use anymore
 because I believe they make maintaining large applications harder.
 
 <!-- more -->
@@ -61,25 +60,25 @@ class Ticket
 end
 ```
 
-However there are certain problems with this construct.
+However, there are certain problems with this construct.
 
 It's a bit more insecure. If `kind` comes from external sources we
 accidentally allow calling other methods which end in `_pdf`. Granted,
-you might think that in such case this should be prevented on different layer
+you might think that in such case this should be prevented by different layer
 and perhaps you would be right.
 
-But much bigger issue for me is that this code is hard to refactor, hard to `grep`.
+But a much bigger issue for me is that this code is hard to refactor, hard to `grep`.
 If I try to find usages of `zebra_pdf` method before refactoring it, I won't find out that
 `pdf_of_kind` is using it. If your codebase is small or you don't have too many of such
 constructs, it doesn't hurt much. But the larger the code is, the more you use it,
 the more you will find it is hard to change easily. Perhaps you read it as a sign that
-I miss static typing and you would be right. After so many years of Ruby I miss the
+I miss static typing and you would be right. After so many years with Ruby, I miss the
 powerful refactoring tooling that comes with statically typed languages. Rubymine can do
 a lot, but there are limits to its features.
 
-The surface of `pdf_of_kind` method is infinite. There is infinite number of things it
-can do. I don't handle infinite very well :). If you look more deeply to the code you will
-realize that it can do 3 things possibly. Run two methods or raise an exception with incorrect
+The surface of `pdf_of_kind` method is infinite. There is an infinite number of things it
+can do. I don't handle infinite very well :). If you look more deeply at the code you will
+realize that it can do 3 things possibly. Run two methods or raise an exception in case of an incorrect
 argument (invalid `kind`). However, to find it out you need to look a bit more deeply. With the first
 implementation that I showed you, you quickly and easily see the limited scope of the function.
 
@@ -164,7 +163,7 @@ into using `inject` and the inheritance seems excessive.
 If I ever want to find out where is `currency_iso_code` used, I will know about
 its usage in `AccountMapper`.
 
-What makes this refactoring possible? The fact that we have limited and predefined
+What makes this refactoring possible? The fact that we have a limited and predefined
 number of attributes that we need to map between. If the number was unlimited then
 dynamic transformation would be the only possible solution and the right one. But
 there is no need for it if you know upfront about all possibilities.
@@ -172,17 +171,17 @@ there is no need for it if you know upfront about all possibilities.
 ## Summary
 
 Similarly, I try to avoid [ActiveSupport extensions to String](http://edgeguides.rubyonrails.org/active_support_core_extensions.html#inflections)
-such as `constantize` or `underscore` to find ruby classes or build css classes.
+such as `constantize` or `underscore` to find ruby classes or build CSS classes.
 I prefer explicit mapping from `Abc::Xyz` to `abc_xyz` or whatever. That way when
 I Remove `Xyz` class I can also find the mapping and remember to remove other parts
 of code related to what I am removing.
 
-On one hand Rails conventions are convinient, but on the other hand whenever I refactor
+On one hand Rails conventions are convenient, but on the other hand, whenever I refactor
 something I need to search for `Abc::WhateverXyz`, `WhateverXyz`, `whatever_xyz` and
-probably even more variations to be sure that everything is going to work. The more
+probably, even more, variations to be sure that everything is going to work. The more
 dynamic and _meta_ your code is, the more such cases you will have. So I try to limit
-those situations when the mapping is in fact predefined and limited.
+those situations when the mapping is, in fact, predefined and limited.
 
-There are even more conventions in Rails which makes refactorings harder. For example
+There are even more conventions in Rails which make refactorings harder. For example
 the usage of instance variables when rendering views that we described in
 [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com/).
