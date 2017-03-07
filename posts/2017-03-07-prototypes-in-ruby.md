@@ -103,7 +103,7 @@ which is available for every `Object` in Ruby. Including in
 [ActiveRecord](http://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Core.html#method-i-dup) .
 When using `dup` be aware of its differences from
 [clone](http://ruby-doc.org/core-2.4.0/Object.html#method-i-clone),
-especially in [ActiveRecord case][http://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Core.html#method-i-clone].
+especially in [ActiveRecord case](http://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Core.html#method-i-clone).
 Those [semantics changed a few years ago in in Rails 3.10](http://guides.rubyonrails.org/3_1_release_notes.html#active-record).
 
 The most important difference for me turns out to be the record identity.
