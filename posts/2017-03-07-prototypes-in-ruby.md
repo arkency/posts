@@ -349,3 +349,12 @@ using that rescue idiom._
 So it is a performance optimization inside the framwork's critical paths. Remember
 that optimizing exceptions in you web application [most likely won't have any
 meaningful impact](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e).
+
+### P.S. Looking for a way to get your first Ruby job?
+
+Check out our [Junior Rails Developer](/junior-rails-developer/) course.
+
+### Already a Ruby master?
+
+You will enjoy our upcoming [Rails DDD Workshop](/ddd-training/) (25-26th May 2017, Thursday & Friday, Lviv, Ukraine. In English)
+which teaches you techniques for maintaining large, complex Rails applications.
