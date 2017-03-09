@@ -62,10 +62,10 @@ Entry.create!(
 ```
 
 There were more columns and more entries
-(betwen 2 and 5) being created for the financial ledger.
+(between 2 and 5) being created for the financial ledger.
 
 I could have extracted the common attributes into a Hash
-but I decided to go with a slighthly different direction.
+but I decided to go with a slightly different direction.
 
 ## After
 
@@ -123,7 +123,7 @@ _i want a copy pointing to the same db record_.
 ## Can I really, really clone/duplicate it?
 
 It is true that every `Object` has `dup` implemented so you might be tempted to believe you
-actually can duplicate every object.
+actually, can duplicate every object.
 
 ```
 #!ruby
@@ -150,8 +150,8 @@ b.object_id
 # => 2106552
 ```
 
-And so on, and so on... Unfortunately the truth is a bit more complicated.
-There are so called [_immediate objects_ (or _immediate values_) in Ruby](https://www.ruby-forum.com/topic/50305) which
+And so on, and so on... Unfortunately, the truth is a bit more complicated.
+There are so-called [_immediate objects_ (or _immediate values_) in Ruby](https://www.ruby-forum.com/topic/50305) which
 cannot be duplicated/cloned.
 
 ```
@@ -202,7 +202,7 @@ they return the same instances. Because there is only one instance of `nil`, `fa
 
 ## ActiveSupport Object#duplicable?
 
-Rails extends every `Object` with `duplicable?` method which tell if you can safely
+Rails framework extends every `Object` with `duplicable?` method which tells if you can safely
 call `dup` and not get an exception sometimes. It's
 [interesting how `duplicable?` is implemented](https://github.com/rails/rails/blob/37770bc8d13c5c7af024e66539c79f966718aec0/activesupport/lib/active_support/core_ext/object/duplicable.rb).
 
@@ -242,14 +242,14 @@ class NilClass
 end
 ```
 
-As can see the the return value of `nil.duplicable?` will actually depend on
+As can see the return value of `nil.duplicable?` will actually depend on
 the Ruby version you are running on. `true` or `false` is not hardcoded (what
-I expected) but rather dynamically probed. In case of `TypeError` exception
-the method is overwritten in a that specific class.
+I expected) but rather dynamically probed. In the case of `TypeError` exception,
+the method is overwritten in that specific class.
 
 ![Mindblown](/assets/images/ruby-rails-dup-clone-duplicable-prototype/mindblown.gif)
 
-However for some reason for a few classes a different strategy is used
+However, for some reason for a few classes, a different strategy is used
 by explicitly returning `true` or `false` without such check.
 
 ```
@@ -315,13 +315,13 @@ one created before it... yep...
 
 Frankly, I am not sure if that's a bug or expected behavior.
 I see no reason why the dynamic symbol could not return itself
-as well. Maybe `dup` is suppose to presever some constraints
+as well. Maybe `dup` is suppose to preserve some constraints
 that I am not aware of...
 
 I enjoyed reading the explanation why ActiveSupport even attempts to implement
 those methods. Quoting the documentation itself.
 
-_Most objects are cloneable, but not all. For example you can't dup methods:_
+_Most objects are cloneable, but not all. For example, you can't dup methods:_
 
 ```
 #!ruby
