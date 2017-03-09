@@ -126,6 +126,7 @@ It is true that every `Object` has `dup` implemented so you might be tempted to 
 actually can duplicate every object.
 
 ```
+#!ruby
 a = BigDecimal.new("123")
 # => #<BigDecimal:282cf60,'0.123E3',9(18)> 
 
@@ -333,6 +334,7 @@ or raising exceptions from them. So, to dup an arbitrary object you normally
 use an optimistic approach and are ready to catch an exception, say:_
 
 ```
+method(:puts).dup
 arbitrary_object.dup rescue object
 ```
 
