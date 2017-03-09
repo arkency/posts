@@ -2,7 +2,7 @@
 title: "Prototypes in Ruby and the strange story of dup"
 created_at: 2017-03-07 22:24:48 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby','rails','prototypes' ]
 newsletter: :arkency_form
