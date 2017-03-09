@@ -334,7 +334,7 @@ or raising exceptions from them. So, to dup an arbitrary object you normally
 use an optimistic approach and are ready to catch an exception, say:_
 
 ```
-method(:puts).dup
+#!ruby
 arbitrary_object.dup rescue object
 ```
 
