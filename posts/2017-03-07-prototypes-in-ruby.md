@@ -246,7 +246,7 @@ the Ruby version you are running on. `true` or `false` is not hardcoded (what
 I expected) but rather dynamically probed. In case of `TypeError` exception
 the method is overwritten in a that specific class.
 
-![Mindblown](/images/ruby-rails-dup-clone-duplicable-prototype/mindblown.gif)
+![Mindblown](/assets/images/ruby-rails-dup-clone-duplicable-prototype/mindblown.gif)
 
 However for some reason for a few classes a different strategy is used
 by explicitly returning `true` or `false` without such check.
