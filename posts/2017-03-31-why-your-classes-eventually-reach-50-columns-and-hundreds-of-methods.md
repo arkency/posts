@@ -1,5 +1,5 @@
 ---
-title: "Why your classes eventually reach 50 columns and hundreds of methods"
+title: "Why classes eventually reach 50 columns and hundreds of methods"
 created_at: 2017-03-31 11:20:39 +0200
 kind: article
 publish: true
