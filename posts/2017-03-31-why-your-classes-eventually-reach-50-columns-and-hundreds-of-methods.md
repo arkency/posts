@@ -37,3 +37,5 @@ But before a class reached 50 columns, there were 40 occasions to review its des
 It does not necessarily mean micro-services. You can start with namespaces in your monolith. You can start be splitting those obese classes into smaller ones.
 
 I don't recommend doing it in early stages of the project. It is easy to get things wrong unless the business which came to you already have years of experience from developing previous versions of their software. My recommendation would be to stay vigilant, try to notice those patterns in your application. Introduce modularization when the business is a bit more mature, but perhaps before you have 50 columns problem :)
+
+P.S. If you want to learn more about using DDD techniques to solve problems in Rails apps check out our [upcoming workshop, 25-26th May 2017 (Thursday & Friday), Lviv, Ukraine, in English](/ddd-training/).
