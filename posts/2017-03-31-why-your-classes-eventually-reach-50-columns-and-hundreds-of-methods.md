@@ -2,7 +2,7 @@
 title: "Why your classes eventually reach 50 columns and hundreds of methods"
 created_at: 2017-03-31 11:20:39 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'bounded contexts' ]
 newsletter: :arkency_form
