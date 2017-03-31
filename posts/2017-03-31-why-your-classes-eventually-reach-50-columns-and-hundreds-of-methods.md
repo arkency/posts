@@ -16,7 +16,7 @@ One of the most common issues that I see is that classes tend to grow bigger and
 
 Reading about "Bounded Contexts", on of the strategical DDD pattern, allowed me to be better understand one of the potential cause of the problem. We hear the same word from many people, used in different situations and we identify the word with the same class. After all, that's what we were often thought in school. You know, the noun/verb mapping into classes/methods.
 
-Let me show you 2 slides from one of my favorite presentation. It was an eye-opener for me.
+Let me show you 2 slides from one of my [favorite presentation](https://www.slideshare.net/jeppec/soa-and-event-driven-architecture-soa-20). It was an eye-opener for me.
 
 <%= img_fit("rails-active-record-class-big-attributes-columns/before.png") %>
 
@@ -24,7 +24,7 @@ So... This is what we often think we have. A class (or entity). Just `Product`. 
 
 <%= img_fit("rails-active-record-class-big-attributes-columns/after.png") %>
 
-This is what we could have. `Sales::Product`, `Pricing::Product`, `Inventory::Product`. Separate classes stored in separate storage (just separate tables for start), with their own attributes. When doing such split there are multiple heuristics you can apply to determine how to split a class. Think which attributes change together in a response to certain actions. Check who changes those attributes. Quantities can change because of customer's purchases but pricing is only changed by Merchants.
+This is what we could have. `Sales::Product`, `Pricing::Product`, `Inventory::Product`. Separate classes with separate storage (just separate tables for start), with their own attributes. When doing such split there are multiple heuristics you can apply to determine how to split a class. Think which attributes change together in a response to certain actions. Check who changes those attributes. Quantities can change because of customer's purchases but pricing is only changed by Merchants.
 
 If you are working on discounts or promotions which are bound to certain conditions, perhaps that itself is reaching a level of complexity when you realize _I have a Pricing context in my application_.
 
