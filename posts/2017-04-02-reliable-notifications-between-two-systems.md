@@ -41,8 +41,10 @@ I believe however that all those situations combined are less likely than server
 1. System A does something in a SQL transaction
 2. System A saves info in an external queuing system
 3. System A commits DB transaction.
-4 a) System A takes jobs from queuing system and sends them to system B. Jobs can be retried in case of failure.
+4. a) System A takes jobs from queuing system and sends them to system B. Jobs can be retried in case of failure.
+    
     or
+    
     b) System B takes jobs from queuing system and processes them Jobs can be retried in case of failure.
 
 In this situation, we introduced an external queuing system such as Kafka, RabbitMQ or redis. I called it external because the storage mechanism is using a different database then the application itself (which assume SQL DB).
@@ -64,9 +66,11 @@ Ultimately the only safe solution is to use only one database only which would b
 1. System A does something in a SQL transaction
 2. System A saves info in an internal queuing system running based on the same SQL DB
 3. System A commits DB transaction.
-4a. System A (another thread or process) takes jobs from the internal queuing system and sends them to system B.
-or
-4b.System A (another thread or process) takes jobs from the internal queuing system and moves them to the external queuing system, where system B takes them from.
+4. a) System A (another thread or process) takes jobs from the internal queuing system and sends them to system B.
+    
+    or
+    
+    b) System A (another thread or process) takes jobs from the internal queuing system and moves them to the external queuing system, where system B takes them from.
 
 In this case, we save jobs info about what we want to notify external system about in the same SQL DB we store application state in. We can safely commit or rollback both of them together.
 
@@ -80,7 +84,7 @@ Anyway, this is probably the safest solution. But it requires more monitoring. N
 
 How do you solve those problems in your system? Which solution did you go with?
 
-I think some apps just ignore them and handle them manually or not at all because they are not crucial. But many things that I work on handle monetary transactions so I am always cautious when thinking about such problems.
+I think some apps just ignore them and handle such issues manually (or not at all), because they are not crucial. But many things that I work on, handle monetary transactions, so I am always cautious when thinking about such problems.
 
 <%= img_fit("reliable-messaging-notifications-between-two-apps-micoservices-api/queue.png") %>
 
