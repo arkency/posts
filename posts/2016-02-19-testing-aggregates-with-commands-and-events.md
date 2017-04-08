@@ -139,7 +139,7 @@ Exposing such thing publicly is not the perfect thing, but it works and solves t
 How can we test it?
 
 In the beginning, I started testing the aggregate by preparing state with events. Then I applied a command and asserted the `unpublished_events`.
-It works, but the downside is [similar to using FactoryGirl for ActiveRecord testing](http://blog.arkency.com/2014/06/setup-your-tests-with-). There's the risk of using events for the state, which are not possible to happen in the real world usage.
+It works, but the downside is [similar to using FactoryGirl for ActiveRecord testing](http://blog.arkency.com/2014/06/setup-your-tests-with-services/). There's the risk of using events for the state, which are not possible to happen in the real world usage.
 
 ```
 #!ruby
