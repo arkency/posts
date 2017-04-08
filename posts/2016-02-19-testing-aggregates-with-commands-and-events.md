@@ -35,6 +35,8 @@ Although the app is already "in production", new organizations can't start using
 
 Before releasing it to public, I wanted to implement the concept of a typical authentication - you know - logins/passwords, etc.
 
+UPDATE: The Fuckups app is now open to the public (and free). It's still rough on the edges, but feel free to test it at [http://fuckups.arkency.com/fuckups](http://fuckups.arkency.com/fuckups)
+
 This is where I got sidetracked a bit.
 
 It's our internal project and not a client project, so there's a bit more freedom to experiment. As you may know, we talk a lot about [going from legacy to DDD](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/). That's what we usually do. It's not that often that we do DDD from scratch. So, the fuckups app core is a legacy Rails Way approach. But, authentication is another bounded context. I can have the excitement of starting a new "subproject" here.
@@ -195,3 +197,7 @@ I like this approach. The only downside is that I need to assert the whole list 
 If you're stuck with a more Rails Way code but you like the command-driven approach, then form objects may be a good step for you. Form objects are like the Command for the whole app, not just the aggregate, but their overall idea is similar. We wrote more about form objects in our ["Fearless Refactoring: Rails Controllers" book](http://rails-refactoring.com).
 
 ... and just to finish the Fuckups app story - once I'm ready with implementing this authentication gem, I'm going to plug it into the application. Then the next step is to extend the authentication with tenants feature and I can invite you to testing the app :)
+
+We're talking about aggregates and the ways of testing them with more details at our Rails DDD workshops. The next one is in Lviv, Ukraine, 25-26th May, 2017. It's worth mentioning that Lviv now got quite a number of new flight connections from many European cities. It's a beatiful city, see you there!
+
+[http://blog.arkency.com/ddd-training/](http://blog.arkency.com/ddd-training/)
