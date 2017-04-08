@@ -201,3 +201,5 @@ If you're stuck with a more Rails Way code but you like the command-driven appro
 We're talking about aggregates and the ways of testing them with more details at our Rails DDD workshops. The next one is in Lviv, Ukraine, 25-26th May, 2017. It's worth mentioning that Lviv now got quite a number of new flight connections from many European cities. It's a beatiful city, see you there!
 
 [http://blog.arkency.com/ddd-training/](http://blog.arkency.com/ddd-training/)
+
+<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/lmpPfTy-Tvw?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
