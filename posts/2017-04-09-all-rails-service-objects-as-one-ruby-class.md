@@ -131,6 +131,23 @@ UserLoggedOut                  = Class.new(RailsEventStore::Event)
 UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 ```
 
+And here is an example test at the app layer:
+
+```
+#!ruby
+
+  def test_user_not_able_to_report_fuckup_in_not_her_organization
+    app = App.new
+    app.register_new_user(github_login: "ak", name: "Andrzej Krzywda")
+    app.register_organization("Arkency")
+    user_id         = User.last.id
+    assert_raises App::NotAuthorized do
+      app.report_fuckup(user_id, description: "whatever")
+    end
+  end
+```
+
+
 If the app itself sounds interesting to you, it's free to use at  [http://fuckups.arkency.com/](http://fuckups.arkency.com/).
 
 If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://rails-refactoring.com).
