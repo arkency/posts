@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: :skip
 ---
 
-I review many Rails applications every month, every year. One visible change is that service objects became mainstream in the Rails community. This makes me happy, as I believe they do introduce some more order in typical Rails apps. Service objects were the main topic of my "Fearless Refactoring: Rails controllers" book, along with adapters, repositories and form objects.
+I review many Rails applications every month, every year. One visible change is that **service objects became mainstream in the Rails community**. This makes me happy, as I believe they do introduce some more order in typical Rails apps. Service objects were the main topic of my "Fearless Refactoring: Rails controllers" book, along with adapters, repositories and form objects.
 
 Today I'd like to present one technique for grouping service objects. 
 
@@ -21,7 +21,7 @@ Basically, the whole service layer (or as I like to call it in more DDD-style, t
 
 The app layer defines its own exceptions so they're declared at the top. After that it has a number of public methods, each responsible for handling one user request. 
 
-I've followed one important rule here - the service layer knows nothing about http-related stuff. This is left to controllers to handle. Rails is great at this.
+I've followed one important rule here - **the service layer knows nothing about http-related stuff**. This is left to controllers to handle. Rails is great at this.
 
 ```
 #!ruby
@@ -98,19 +98,21 @@ What's inside the `report_fuckup` method then?
 
 Well, so this is not the usual service object, as it's extended with more things (event_store). 
 
-Let me first start with the more typical stuff. All the service objects accept params which are primitives, or at least are not Rails objects. This is important to decouple them at this level from Rails. Passing user_id is more than enough, as we can retrieve the data on our own.
+Let me first start with the more typical stuff. **All the service objects accept params which are primitives, or at least are not Rails objects**. This is important to decouple them at this level from Rails. Passing user_id is more than enough, as we can retrieve the data on our own.
 The first part is authorization. We need to ensure you belong to the organization where you try to report the fuckup to. (It might be a good idea somewhere in the future to submit fuckups to foreign organizations, but it's not in the scope yet).
 Then we use the normal ActiveRecord associations to create the database record. There's no validations here, so nothing to check.
 
-Depending on ActiveRecord here is another dilemma. It's not perfect here. It would be nicer if we just called `fuckuops_repo.create` but it's not there, yet? 
+Depending on ActiveRecord here is another dilemma. It's not perfect here. It would be nicer if we just called `fuckuops_repo.create` but it's not there (yet?).
 
 I left the persistence layer here, without any repo objects. Mostly due to lack of time for this effort, as it would be nice here.
 
-The last part is the unusual part. This is where the app starts to become `beyond service objects`. This is where the app starts to be more Domain-Driven Design in its architecture. We publish an event here and store it. 
+The last part is the unusual part. This is where the app starts to become **beyond service objects**. This is where the app starts to be more Domain-Driven Design in its architecture. We publish an event here and store it. 
 
 Events were not meant to be in the scope of this blogpost, but as a sneak-peek, here they are for this app:
 
 ```
+#!ruby
+
 FuckupReported               = Class.new(RailsEventStore::Event)
 FuckupReportedFromSlack      = Class.new(RailsEventStore::Event)
 FuckupReportedFromCodeEditor = Class.new(RailsEventStore::Event)
@@ -129,3 +131,10 @@ UserLoggedOut                  = Class.new(RailsEventStore::Event)
 UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 ```
 
+If the app itself sounds interesting to you, it's free to use at  [http://fuckups.arkency.com/](http://fuckups.arkency.com/).
+
+If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://rails-refactoring.com).
+
+If you're interested in the events/DDD style of coding, please consider attending our [Rails DDD workshop](http://blog.arkency.com/ddd-training/) in Lviv, Ukraine, 25-26 May, 2017. There's still some time to decide, but first slots (of the maximum 20) are already sold.
+
+<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/lmpPfTy-Tvw?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
