@@ -1,8 +1,8 @@
 ---
 title: "Reliable notifications between two apps or microservices"
-created_at: 2017-04-02 13:30:18 +0200
+created_at: 2017-09-02 11:30:18 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'messaging' ]
 newsletter: :arkency_form
@@ -89,6 +89,10 @@ I think some apps just ignore them and handle such issues manually (or not at al
 <%= img_fit("reliable-messaging-notifications-between-two-apps-micoservices-api/queue.png") %>
 
 As you can see there are many ways system A can notify B about something (notice that we are talking about notifications, where A is not immediately interested in a response from B, just that it got the message and they are both in sync about the state of the world). You can do it directly, you can introduce external queues, you can have internal queues in the same DB or you can even go with both queues if you find it worthy of the cost of DevOps.
+
+## More
+
+Are you working on more advanced Rails Apps? Register [for our upcoming workshop in May, in Lviv](/ddd-training/) to learn and practice more techniques, beyond service objects, which will help you organize your code.
 
 ## Links
 
