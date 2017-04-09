@@ -43,5 +43,89 @@ class App
   def remove_user_from_organization(user_id, organization_id)
   def provide_slack_token(organization_id, slack_token)
   def report_fuckup_from_slack(slack_token, fuckup_tldr)
+end
+```
+
+From a Rails controller point of view, this is quite simple, leaving the controllers very thin:
+
+```
+#!ruby
+class FuckupsController < ApplicationController
+  def create
+    begin
+      authenticate and return
+      @fuckup = app.report_fuckup(current_user.id, fuckup_params)
+    rescue App::NotAuthorized
+      redirect_to root_path and return
+    end
+
+    redirect_to(@fuckup)
+  end
+```
+
+As you may notice, the authentication (who are you?) part is handled at the controller level, while the authorization (can you do that?) is part of the service layer.
+
+Authentication is the usual dilemma, as it's not clear where it belongs. I like to think about it as the app layer. But given the usual coupling between authentication (hello Devise) and Rails controllers, this is usually the last part to decouple, if ever. 
+
+Authorization feels much more in the app layer, that's why it's here too.
+
+What's inside the `report_fuckup` method then?
+
+```
+#!ruby
+  def report_fuckup(user_id, fuckup_params)
+    user = User.find(user_id)
+
+    raise NotAuthorized if !user.organization
+    fuckup = user.organization.fuckups.create(fuckup_params)
+    stream_name = "fuckup_#{fuckup.id}"
+    event_data = { data:
+                       {
+                           user_id: user_id,
+                           organization_id: user.organization.id,
+                           tldr: fuckup.tldr,
+                           description: fuckup.description,
+                           symptoms: fuckup.symptoms,
+                           hotfix: fuckup.hotfix,
+                           coldfix: fuckup.coldfix,
+                       }
+    }
+    event = FuckupReported.new(event_data)
+    event_store.publish_event(event, stream_name)
+    fuckup
+  end
+```
+
+Well, so this is not the usual service object, as it's extended with more things (event_store). 
+
+Let me first start with the more typical stuff. All the service objects accept params which are primitives, or at least are not Rails objects. This is important to decouple them at this level from Rails. Passing user_id is more than enough, as we can retrieve the data on our own.
+The first part is authorization. We need to ensure you belong to the organization where you try to report the fuckup to. (It might be a good idea somewhere in the future to submit fuckups to foreign organizations, but it's not in the scope yet).
+Then we use the normal ActiveRecord associations to create the database record. There's no validations here, so nothing to check.
+
+Depending on ActiveRecord here is another dilemma. It's not perfect here. It would be nicer if we just called `fuckuops_repo.create` but it's not there, yet? 
+
+I left the persistence layer here, without any repo objects. Mostly due to lack of time for this effort, as it would be nice here.
+
+The last part is the unusual part. This is where the app starts to become `beyond service objects`. This is where the app starts to be more Domain-Driven Design in its architecture. We publish an event here and store it. 
+
+Events were not meant to be in the scope of this blogpost, but as a sneak-peek, here they are for this app:
+
+```
+FuckupReported               = Class.new(RailsEventStore::Event)
+FuckupReportedFromSlack      = Class.new(RailsEventStore::Event)
+FuckupReportedFromCodeEditor = Class.new(RailsEventStore::Event)
+FuckupRemoved                = Class.new(RailsEventStore::Event)
+FuckupBatchUpdated           = Class.new(RailsEventStore::Event)
+FuckupShared                 = Class.new(RailsEventStore::Event)
+FuckupVisitedByUser          = Class.new(RailsEventStore::Event)
+FuckupVisitedByGuest         = Class.new(RailsEventStore::Event)
+
+OrganizationAllowedToUseTheApp = Class.new(RailsEventStore::Event)
+UserApprovedInTheOrganization  = Class.new(RailsEventStore::Event)
+PersonRemovedFromOrganization  = Class.new(RailsEventStore::Event)
+UserRegisteredFromGithub       = Class.new(RailsEventStore::Event)
+UserSessionStarted             = Class.new(RailsEventStore::Event)
+UserLoggedOut                  = Class.new(RailsEventStore::Event)
+UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 ```
 
