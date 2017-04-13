@@ -99,6 +99,7 @@ Are you working on more advanced Rails Apps? Register [for our upcoming workshop
 Examples of internal queues:
 
 * https://github.com/collectiveidea/delayed_job
+* https://github.com/chanks/que
 
 Examples of external queues:
 
