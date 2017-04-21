@@ -6,6 +6,7 @@ publish: false
 author: Robert Pankowecki
 tags: [ 'ruby', 'fp' ]
 newsletter: :arkency_form
+img: control-flow-filter-data-ruby-feathers/quote.jpg
 ---
 
 I am not that smart. I didn't say it. Michael Feathers did.
