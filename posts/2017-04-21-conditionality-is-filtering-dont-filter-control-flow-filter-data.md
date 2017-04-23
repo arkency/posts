@@ -10,7 +10,7 @@ img: control-flow-filter-data-ruby-feathers/quote.jpg
 ---
 
 I am not that smart. I didn't say it. Michael Feathers did.
-But it got me thinking and I know it inspired my collegause as well.
+But it got me thinking and I know it inspired my colleagues as well.
 
 <!-- more -->
 
@@ -26,16 +26,16 @@ Instead of slugs provided by organizers such as `/wrocloverb2016/`
 we now generate them ourselves based on the name of the event, its id, browser language,
 some translations so it looks like `/e/wroc-love-rb-2016-tickets-111222333`.
 
-But, of course, for a few months we need to support old URLs and continue to
+But, of course, for a few months, we need to support old URLs and continue to
 redirect them to new URLs. We implemented it as redirects in routing.
-Unfortunately they need to query database to find matching events to know
-the new URL that the redirect should point to but I think that's acceptable.
+Unfortunately, they need to query database to find matching events to know
+the new URL, the redirect should point to, but I think that's acceptable.
 
 Our platform also needs to support multiple languages and the URLs are a bit different
-in every language (the word "tickets" is translated). And we don't need this redirecation
+in every language (the word "tickets" is translated). And we don't need this redirection
 feature for new events which will only use the new URL structure.
 
-This is the solution for redirecting.
+This is the solution.
 
 ```
 #!ruby
@@ -54,7 +54,10 @@ EventRedirect = -> (path_params) {
   end
   [path_params[:locale], "e", slugged].reject(&:blank?).join("/")
 }
+```
 
+```
+#!ruby
 get '/:id', as: 'short_event', to: (redirect() do |path_params, _req|
   EventRedirect.(path_params)
 end)
@@ -72,7 +75,7 @@ URL path is `/whatever/` then `path_params[:locale]` is `nil` and we use the def
 of current country (which we know based on the domain). If it is `/es/whatever` then 
 `path_params[:locale]` is `es` and we know that the user wants to see the page in
 Spanish. We normally recognize it and set `I18n.locale` in `ApplicationController`
-but it works in routing as well, if you need it.
+but it works in routing as well if you need it.
 
 So there is nothing super unusual or fantastic in this line of code,
 except that I originally wanted to write it as:
@@ -97,12 +100,12 @@ never empty. A bit more in a functional style.
 
 It is a trivial example but if you want to see how far you can go with it,
 I recommend watching [Norbert's talk](https://www.youtube.com/watch?v=l5ML_4WnAWg). For bonus, you
-can learn more about scurvy ;) No wonder that `Enumberable` methods are
+can learn more about scurvy ;) No wonder that `Enumerable` methods are
 often [favorites](https://www.reddit.com/r/ruby/comments/665esj/whats_your_favorite_rubyrails_method/dgfrcxf/)
 of best Ruby developers. I think one of the main reasons is that they often allow us to
-avoid bunch of if-statements. Instead we can easily filter the data we work on.
+avoid a bunch of if-statements. Instead, we can easily filter the data we work on.
 
-There is a similar patterns in Redux reducers, especially [when they are combined](http://redux.js.org/docs/api/combineReducers.html).
+There is a similar pattern in Redux reducers, especially [when they are combined](http://redux.js.org/docs/api/combineReducers.html).
 
 ```
 #!javascript
@@ -124,7 +127,7 @@ store.dispatch({
 
 When an action is dispatched, the `reducer` does not think whether `todos` or `counter` should
 react to it. The action is passed to both of them and sometimes one of them decides to do nothing
-and keeps its current state. It filters out uninteresting action.
+and keeps its current state. It filters out uninteresting actions.
 
 BTW. Our [book Fearless Refactoring: Rails controllers](http://rails-refactoring.com/) contains a chapter
 about _Extract routing constraint_ technique (as well as many others) that you might be interested in, as well.
