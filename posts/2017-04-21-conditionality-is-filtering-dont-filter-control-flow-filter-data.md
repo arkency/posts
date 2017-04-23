@@ -2,7 +2,7 @@
 title: "Conditionality is filtering. Don't filter control flow, filter data."
 created_at: 2017-04-21 11:33:52 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'fp' ]
 newsletter: :arkency_form
