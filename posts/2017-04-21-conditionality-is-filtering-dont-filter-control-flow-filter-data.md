@@ -97,7 +97,34 @@ never empty. A bit more in a functional style.
 
 It is a trivial example but if you want to see how far you can go with it,
 I recommend watching [Norbert's talk](https://www.youtube.com/watch?v=l5ML_4WnAWg). For bonus, you
-can learn more about scurvy ;)
+can learn more about scurvy ;) No wonder that `Enumberable` methods are
+often [favorites](https://www.reddit.com/r/ruby/comments/665esj/whats_your_favorite_rubyrails_method/dgfrcxf/)
+of best Ruby developers. I think one of the main reasons is that they often allow us to
+avoid bunch of if-statements. Instead we can easily filter the data we work on.
+
+There is a similar patterns in Redux reducers, especially [when they are combined](http://redux.js.org/docs/api/combineReducers.html).
+
+```
+#!javascript
+import { combineReducers } from 'redux'
+import todos from './todos'
+import counter from './counter'
+
+let reducer = combineReducers({
+  todos,
+  counter
+})
+
+let store = createStore(reducer)
+store.dispatch({
+  type: 'ADD_TODO',
+  text: 'Use Redux'
+})
+```
+
+When an action is dispatched, the `reducer` does not think whether `todos` or `counter` should
+react to it. The action is passed to both of them and sometimes one of them decides to do nothing
+and keeps its current state. It filters out uninteresting action.
 
 BTW. Our [book Fearless Refactoring: Rails controllers](http://rails-refactoring.com/) contains a chapter
 about _Extract routing constraint_ technique (as well as many others) that you might be interested in, as well.
