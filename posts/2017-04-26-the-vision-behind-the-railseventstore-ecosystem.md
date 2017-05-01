@@ -43,3 +43,32 @@ We have released some code and it gained traction. Some people started using it 
 With RailsEventStore the main goal at the beginning was to be as Rails-friendly as possible. The goal was to let people plug RES in very quickly and start publishing events. This goal was achieved.
 Another goal was to keep the API the same as with HttpEventStore, with the idea being that once people need a better solution than RES they can quickly switch to HES. This goal wasn't accomplished and at some point we decided not to keep the compatibility. The main reason was that while HES was mostly ready, the RES project became bigger and we didn't want it to slow us down. Which in the hindsight seems like a good decision.
 
+# Where we are
+
+Fast forward, where we are today. The ecosystem of tools grew to:
+
+- [Rails Event Store](https://github.com/arkency/rails_event_store)
+- [Ruby Event Store](https://github.com/arkency/ruby_event_store)
+- [Rails Event Store ActiveRecord](https://github.com/arkency/rails_event_store_active_record)
+- [Aggregate Root](https://github.com/arkency/aggregate_root)
+- [Command Bus](https://github.com/arkency/command_bus)
+
+RailsEventStore is the umbrella gem to group the other gems. The CommandBus is not yet put into RES, but it will probably happen.
+
+We have also established development practices to follow in those projects with a strong focus on TDD and test coverage. We're using mutant to ensure all the code is covered with tests.  It's described here: [Why I want to introduce mutation testing to the rails_event_store gem](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/) and here: [Mutation testing and continuous integration](http://blog.arkency.com/2015/05/mutation-testing-and-continuous-integration/).
+
+Education-wise we encourage people to use DDD/CQRS/ES in their Rails apps. **It's not our goal to lock-in people with our tooling**. On one hand, tooling is a detail here. On the other hand, an existing production-ready tooling makes it much easier for developers to try it and introduce it in their apps.
+
+Arkency people delivered many talks at conferences and meetups, where we talk about the ups and downs of DDD with Rails.
+
+We also offer a commercial (non-free) [Rails/DDD workshops](http://blog.arkency.com/ddd-training/). A 2-day format is a great way to teach all of this at one go. 
+
+The workshop comes with an example Rails/CQRS/DDD application which does show all the concepts. The application also contains a number of example "requirements" to add by using the DDD patterns. 
+
+Also, there's a video class which I recorded (about 3 hours) which is about using Rails, TDD and some DDD concepts together.
+
+[Hands-on Ruby, TDD, DDD - a simulation of a real project](https://vimeo.com/ondemand/arkencyruby)
+
+As for our client projects, we now use DDD in probably all of them. At the beginning we've only used DDD in legacy projects, but now we also introduce DDD/CQRS/ES in those projects which we start from scratch (rare cases in our company). In majority of those apps we went with RailsEventStore.
+
+**CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
