@@ -21,7 +21,7 @@ If you want to watch more about this journey from service objects to DDD - watch
 
 <div style="position:relative;height:0;padding-bottom:75.0%"><iframe src="https://www.youtube.com/embed/ynj_C-Abjgk?ecver=2" width="480" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 
-When I met Mirek and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed. 
+When I met Mirek and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed.
 
 In one of our biggest client projects, we have introduced the concept and the implementation of an Event Store. At the beginning it was just a simple table which stores events, wrapped with ActiveRecord. This enabled us to publish events and subscribe to them. Also this created the Event Log capabilities.
 
@@ -34,7 +34,7 @@ This was the time, when we thought we could help other people with existing Rail
 
 ## HttpEventStore (aka HES)
 
-With HttpEventStore our vision was to make it easy to use the so-called Greg's Event Store (or GetEventStore, or GES) from within a Ruby or Rails app. 
+With HttpEventStore our vision was to make it easy to use the so-called Greg's Event Store (or GetEventStore, or GES) from within a Ruby or Rails app.
 
 We have released some code and it gained traction. Some people started using it in their production apps, which was great. We also got a lot of help/contributions from people like [Justin Litchfield](https://github.com/litch) or [Morgan Hallgren](https://github.com/hallgren) who became an active contributor.
 
@@ -55,20 +55,21 @@ Fast forward, where we are today. The ecosystem of tools grew to:
 
 RailsEventStore is the umbrella gem to group the other gems. The CommandBus is not yet put into RES, but it will probably happen.
 
-We have also established development practices to follow in those projects with a strong focus on TDD and test coverage. We're using mutant to ensure all the code is covered with tests.  It's described here: [Why I want to introduce mutation testing to the rails_event_store gem](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/) and here: [Mutation testing and continuous integration](http://blog.arkency.com/2015/05/mutation-testing-and-continuous-integration/).
+We have also established development practices to follow in those projects with a strong focus on TDD and test coverage. We're using mutant to ensure all the code is covered with tests.  It's described here: [Why I want to introduce mutation testing to the rails\_event\_store gem](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/) and here: [Mutation testing and continuous integration](http://blog.arkency.com/2015/05/mutation-testing-and-continuous-integration/).
 
 Education-wise we encourage people to use DDD/CQRS/ES in their Rails apps. **It's not our goal to lock-in people with our tooling**. On one hand, tooling is a detail here. On the other hand, an existing production-ready tooling makes it much easier for developers to try it and introduce it in their apps.
 
 Arkency people delivered many talks at conferences and meetups, where we talk about the ups and downs of DDD with Rails.
 
-We also offer a commercial (non-free) [Rails/DDD workshops](http://blog.arkency.com/ddd-training/). A 2-day format is a great way to teach all of this at one go. 
+We also offer a commercial (non-free) [Rails/DDD workshops](http://blog.arkency.com/ddd-training/). A 2-day format is a great way to teach all of this at one go.
 
-The workshop comes with an example Rails/CQRS/DDD application which does show all the concepts. The application also contains a number of example "requirements" to add by using the DDD patterns. 
+The workshop comes with an example Rails/CQRS/DDD application which does show all the concepts. The application also contains a number of example "requirements" to add by using the DDD patterns.
 
 Also, there's a video class which I recorded (about 3 hours) which is about using Rails, TDD and some DDD concepts together.
 
 [Hands-on Ruby, TDD, DDD - a simulation of a real project](https://vimeo.com/ondemand/arkencyruby)
 
-As for our client projects, we now use DDD in probably all of them. At the beginning we've only used DDD in legacy projects, but now we also introduce DDD/CQRS/ES in those projects which we start from scratch (rare cases in our company). In majority of those apps we went with RailsEventStore.
+As for our client projects, we now use DDD probably in all of them. At the beginning we've only used DDD in legacy projects, but now we also introduce DDD/CQRS/ES in those projects which we start from scratch (rare cases in our company). In majority of those apps we went with RailsEventStore.
 
 **CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
+
