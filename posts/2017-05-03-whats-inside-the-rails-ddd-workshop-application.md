@@ -14,12 +14,12 @@ Many people have asked what's inside the app, so I have prepared a small sneak-p
 
 <!-- more -->
 
-<%= img_fit("workshop_app/customers_crud") %>
-<%= img_fit("workshop_app/products_crud") %>
-<%= img_fit("workshop_app/orders_list") %>
-<%= img_fit("workshop_app/new_order") %>
-<%= img_fit("workshop_app/payment_screen") %>
-<%= img_fit("workshop_app/order_history") %>
+<%= img_fit("workshop_app/customers_crud.png") %>
+<%= img_fit("workshop_app/products_crud.png") %>
+<%= img_fit("workshop_app/orders_list.png") %>
+<%= img_fit("workshop_app/new_order.png") %>
+<%= img_fit("workshop_app/payment_screen.png") %>
+<%= img_fit("workshop_app/order_history.png") %>
 
 Routes
 
