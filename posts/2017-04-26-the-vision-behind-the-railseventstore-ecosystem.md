@@ -112,4 +112,6 @@ Let me throw another buzzword here - **serverless**. It's a confusing name for a
 
 Splitting your app into smaller infrastructural pieces also enables you to experiment with other technologies which are trending in our community recently - **Elixir**, Clojure, Haskell, Go, Rust. Instead of having a big debate whether to start a new app in one of those languages (and probably risking a bit), you can now say - "let's build this read model in Elixir" - this is something much easier to accept by everyone involved!
 
+This part a bit science-fiction so far, but as part of my preparation to the next edition of the [Rails/DDD workshops in Lviv](http://blog.arkency.com/ddd-training/), I started researching those topics more. At the workshop, we'll have a discussion about it.
+
 I'm not sure about you, but I'm very excited about the state of the Rails and DDD ecosystem and I'm excited about the upcoming possibilities. I'm very happy to be part of the changes! Thanks for reading this blogpost and thanks for supporting us in our efforts!
