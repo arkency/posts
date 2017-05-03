@@ -7,6 +7,9 @@ author: Andrzej Krzywda
 newsletter: :skip
 ---
 
+An integral part of our Rails DDD workshops is an application which we use during the teaching and exercises process.
+
+Many people have asked what's inside the app, so I have prepared a small sneak-peek.
 
 <!-- more -->
 
