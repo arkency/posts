@@ -15,7 +15,9 @@ Arkency became known for our DDD efforts in the Rails community. DDD together wi
 
 The journey with DDD at Arkency started probably around ~6 years ago, when we started using technical patterns like service objects (in DDD we would call them application services), adapters and repositories. This phase resulted in writing the ["Fearless Refactoring: Rails Controllers"](http://rails-refactoring.com) ebook which is all about those patterns.
 
-Those patterns helped, but didn't solve all of our problems. We could say, that service objects were like a gateway drug - they enabled us to isolate our logic from the Rails app. But still, how exactly to structure the logic?
+Those patterns helped, but didn't solve all of our problems. We could say, that service objects were like a gateway drug - they enabled us to isolate our logic from the Rails app. 
+
+The patterns from the book are helping with one big mission - how to separate the Rails part from your actual application. Then we also help to structure your application with the app/infra layer and the domain layer. This is the real value of that phase. The next phase, the DDD phase is then more about how to structure the domain.
 
 If you want to watch more about this journey from service objects to DDD - watch our conversation with Robert, where we talked a lot about this evolution.
 
@@ -84,6 +86,30 @@ To summarise where we are:
 
 Things are changing really fast so it's hard to predict anything precisely. However, all signs show that Arkency will keep doing DDD and Rails apps. This naturally means that we'll do even more **education** around DDD and about solving typical problems in Rails apps. 
 
-We'll also work on the RailsEventStore ecosystem of tooling. We want the tooling to stay stable and to be reliable. 
+We'll also work on the **RailsEventStore ecosystem of tooling**. We want the tooling to stay stable and to be reliable. 
 
-I put education at the first place, as our offer it's not about "selling" you some tooling. We do have it in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app.
+I put education at the first place, as our offer it's not about "selling" you some tooling. We do have it in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app. We want to focus on helping you split your application into bounded contexts. We want to help you understand how to map requirements into code. That's the big value here. If our tooling can help you, that's great. 
+
+We have already gathered a small but very passionate **community** around the DDD ideas. The important thing here - it's a community around DDD, not a community around RailsEventStore or any kind of specific tooling. We're learning together, we help each other. At the moment the community doesn't have a central place of communication, but we're thinking about improving this part.
+
+**Even further in the future?**
+
+One thing which I was sceptical in the past is **microservices**. Whenever we were suggesting any ideas how to improve Rails apps, microservices were rarely among the techniques. The thing is - microservices represent an infrastructural split, while what's more important is the conceptual split. 
+
+This has changed a little bit recently. I see the value in well-split microservices. After understanding the value of Bounded Contexts, aggregates, read models - I can now see much better that the the split is the same as with Bounded Contexts. 
+
+If you do more DDD, you'll notice how it emphasises good OOP - the one were attributes are not publicly exposed, where object tell, don't ask. Where messages are used to communicate. Where you can think about aggregates as objects or read models as objects. You will also notice how good OOP and good Functional Programming are close to each other and how DDD/CQRS/Event Sourcing exposes it. 
+
+**Aggregates** can be thought as functions. They are built from events and they "return" new events. A lot is being said about [functional aggregates](https://blog.scooletz.com/2017/01/05/event-sourcing-making-it-functional-1/).
+
+**Read models** can be thought as functions - given some events, they return some state.
+
+**Sagas** can be seen as functions, given some events, they return commands.
+
+Rails + DDD + CQRS + ES +OOP + FP == that's a lot of buzzwords, isn't it? It's good to be able to name things to communicate between developers and understand the patterns by their name. But the buzzwords is not the point. Again, it's all about delivering business value in a consistent manner.
+
+Let me throw another buzzword here - **serverless**. It's a confusing name for a concept that is relatively simple. It's about Functions as a Service, but also about a different way of billing for the hosting. How is that relevant to Rails and DDD? Well, if you work on a bigger Rails app, then hosting is a big part of your (or your client) budget. Whether you went with a dedicated machine or you went cloud with Heroku or Engine Yard or anything else, this all cost a lot of money, for bigger traffic and bigger data. Making your Rails app more functional by introducing Aggregates, Read models, sagas enables you to benefit from lower costs using the serverless infrastructure.
+
+Splitting your app into smaller infrastructural pieces also enables you to experiment with other technologies which are trending in our community recently - **Elixir**, Clojure, Haskell, Go, Rust. Instead of having a big debate whether to start a new app in one of those languages (and probably risking a bit), you can now say - "let's build this read model in Elixir" - this is something much easier to accept by everyone involved!
+
+I'm not sure about you, but I'm very excited about the state of the Rails and DDD ecosystem and I'm excited about the upcoming possibilities. I'm very happy to be part of the changes! Thanks for reading this blogpost and thanks for supporting us in our efforts!
