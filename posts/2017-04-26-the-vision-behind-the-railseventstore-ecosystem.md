@@ -21,7 +21,7 @@ If you want to watch more about this journey from service objects to DDD - watch
 
 <div style="position:relative;height:0;padding-bottom:75.0%"><iframe src="https://www.youtube.com/embed/ynj_C-Abjgk?ecver=2" width="480" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 
-When I met Mirek and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed.
+When I met [Mirek](https://twitter.com/mpraglowski) and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed. 
 
 In one of our biggest client projects, we have introduced the concept and the implementation of an Event Store. At the beginning it was just a simple table which stores events, wrapped with ActiveRecord. This enabled us to publish events and subscribe to them. Also this created the Event Log capabilities.
 
@@ -73,3 +73,17 @@ As for our client projects, we now use DDD probably in all of them. At the begin
 
 **CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
 
+**CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
+
+To summarise where we are:
+
+- we've created a tooling around the idea of introducing DDD into Rails apps. The tooling is now ready to use and a growing number of developers are using it
+- we do a lot of education to inspire Rails developers to try out DDD
+
+# Where we are going
+
+Things are changing really fast so it's hard to predict anything precisely. However, all signs show that Arkency will keep doing DDD and Rails apps. This naturally means that we'll do even more **education** around DDD and about solving typical problems in Rails apps. 
+
+We'll also work on the RailsEventStore ecosystem of tooling. We want the tooling to stay stable and to be reliable. 
+
+I put education at the first place, as our offer it's not about "selling" you some tooling. We do have it in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app.
