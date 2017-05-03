@@ -75,8 +75,6 @@ As for our client projects, we now use DDD probably in all of them. At the begin
 
 **CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
 
-**CQRS or DDD are not about microservices**, but the concepts can help each other. In some of our projects, we have microservices which represent bounded contexts. This adds some infrastructure complexity but it also does bring some value in the physical separation and the ability to split the into smaller pieces.
-
 To summarise where we are:
 
 - we've created a tooling around the idea of introducing DDD into Rails apps. The tooling is now ready to use and a growing number of developers are using it
