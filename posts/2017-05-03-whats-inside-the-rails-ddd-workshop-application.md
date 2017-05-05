@@ -2,7 +2,7 @@
 title: "What's inside the Rails DDD workshop application?"
 created_at: 2017-05-03 14:18:37 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 img: workshop_app/order_history.png
@@ -130,6 +130,10 @@ module Orders
       ]
     end
 ```
+
+# The CQRS/EventSourcing infra code
+
+The app is a nice example of a non-trivial code which is using the [RailsEventStore](https://github.com/arkency/rails_event_store) ecosystem of tools.
 
 # The exercises
 
