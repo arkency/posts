@@ -1,6 +1,6 @@
 ---
 title: "The vision behind Rails, DDD and the RailsEventStore ecosystem"
-created_at: 2017-04-26 15:35:54 +0200
+created_at: 2017-05-07 15:35:54 +0200
 kind: article
 publish: false
 author: Andrzej Krzywda
