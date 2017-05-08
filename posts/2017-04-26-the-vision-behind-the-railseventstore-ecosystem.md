@@ -1,5 +1,5 @@
 ---
-title: "The vision behind the RailsEventStore ecosystem"
+title: "The vision behind Rails, DDD and the RailsEventStore ecosystem"
 created_at: 2017-04-26 15:35:54 +0200
 kind: article
 publish: false
@@ -86,7 +86,7 @@ Things are changing really fast so it's hard to predict anything precisely. Howe
 
 We'll also work on the **RailsEventStore ecosystem of tooling**. We want the tooling to stay stable and to be reliable. 
 
-I put education at the first place, as our offer it's not about "selling" you some tooling. We do have it in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app. We want to focus on helping you split your application into bounded contexts. We want to help you understand how to map requirements into code. That's the big value here. If our tooling can help you, that's great. 
+I put education at the first place, as our offer it's not about "selling" you some tooling. We do have the free and open-source tools in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app. We want to focus on helping you split your application into bounded contexts. We want to help you understand how to map requirements into code. That's the big value here. If our tooling can help you, that's great. 
 
 We have already gathered a small but very passionate **community** around the DDD ideas. The important thing here - it's a community around DDD, not a community around RailsEventStore or any kind of specific tooling. We're learning together, we help each other. At the moment the community doesn't have a central place of communication, but we're thinking about improving this part.
 
