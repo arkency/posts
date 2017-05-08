@@ -63,7 +63,7 @@ Education-wise we encourage people to use DDD/CQRS/ES in their Rails apps. **It'
 
 Arkency people delivered many talks at conferences and meetups, where we talk about the ups and downs of DDD with Rails.
 
-We also offer a commercial (non-free) [Rails/DDD workshops](http://blog.arkency.com/ddd-training/). A 2-day format is a great way to teach all of this at one go.
+We also offer a commercial (non-free) [Rails/DDD workshops](http://blog.arkency.com/ddd-training/). A 2-day format is a great way to teach all of this at one go. As an integral part of the workshop we have built [a non-trivial Rails DDD/CQRS/ES applications](http://blog.arkency.com/2017/05/whats-inside-the-rails-ddd-workshop-application/) which shows how to use DDD with Rails, but also with the RailsEventStore ecosystem.
 
 The workshop comes with an example Rails/CQRS/DDD application which does show all the concepts. The application also contains a number of example "requirements" to add by using the DDD patterns.
 
