@@ -2,7 +2,7 @@
 title: "Self-hosting Event Store on Digital Ocean"
 created_at: 2017-05-24 11:46:11 +0300
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
