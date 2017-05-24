@@ -18,20 +18,20 @@ I have asked Paweł to provide some instructions how he did it, as it seems to a
 Here are some of the notes. If it lacks any important information, feel free to ping us in the comments.
 
 ```
-root@ges:~# history
-    1  apt-get update
-    2  curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS/script.deb.sh | sudo bash
-    3  apt-get install eventstore-oss
-    4  service eventstore start
-    5  netstat -palnt
-    6  service eventstore stop
-    7  vim /etc/eventstore/eventstore.conf
-    8  service eventstore start
+$  apt-get update
+$  curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS/script.deb.sh | sudo bash
+$  apt-get install eventstore-oss
 ```
 
+```
+$ ifconfig eth0 |grep addr:
+          inet addr:XXX.XXX.XXX.NNN  Bcast:XXX.XXX.XXX.255  Mask:255.255.255.0
+          inet6 addr: fe80::36:88ff:febb:5d6d/64 Scope:Link
+```
 
 ```
-root@ges:~# cat /etc/eventstore/eventstore.conf
+$ echo "ExtIp: XXX.XXX.XXX.NNN" >> /etc/eventstore/eventstore.conf
+$ cat /etc/eventstore/eventstore.conf
 ---
 RunProjections: None
 ClusterSize: 1
@@ -39,15 +39,7 @@ ExtIp: XXX.XXX.XXX.NNN
 ```
 
 ```
-root@ges:~# ifconfig eth0
-eth0      Link encap:Ethernet  HWaddr 02:36:88:bb:5d:6d
-          inet addr:XXX.XXX.XXX.NNN  Bcast:XXX.XXX.XXX.255  Mask:255.255.255.0
-          inet6 addr: fe80::36:88ff:febb:5d6d/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:323856446 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:450237174 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:53356158071 (53.3 GB)  TX bytes:40631577493 (40.6 GB)
+$ service eventstore start
 ```
 
-Those are the instructions for the basic setup/installation.
+Those are the instructions for the basic setup/installation. For production use you'd need to invest in reliability (clustering, process supervision and monitoring) as well as in security.
