@@ -42,4 +42,4 @@ ExtIp: XXX.XXX.XXX.NNN
 $ service eventstore start
 ```
 
-Those are the instructions for the basic setup/installation. For production use you'd need to invest in reliability (clustering, process supervision and monitoring) as well as in security.
+Those are the instructions for the basic setup/installation. You can now start experimenting with EventStore. For production use though you'd need to invest in reliability (clustering, process supervision and monitoring) as well as in security.
