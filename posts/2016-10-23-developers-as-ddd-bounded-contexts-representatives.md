@@ -4,6 +4,7 @@ created_at: 2016-10-23 16:54:16 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ddd']
 newsletter: :skip
 ---
 
@@ -85,7 +86,7 @@ There's definitely more such types/contexts. If you can name some - feel free to
 
 Please note, that each of us can play any of the roles at any time. However, sometimes some roles are more natural for each of us.
 
-Note the language that we're using. Even though we can have some fun describing the personas, all the contexts are important at specific times. 
+Note the language that we're using. Even though we can have some fun describing the personas, all the contexts are important at specific times.
 
 What contexts do we see here?
 
@@ -93,11 +94,11 @@ What contexts do we see here?
 - Technology/Tools
 - Tests / Refactoring / Regressions
 - Concurrency / Math / Proofs
-- Communication 
+- Communication
 - Documentation / Standards
 - Budget / Finances / Accounting
 
-This is all for our internal needs - to safely/efficiently deliver software. 
+This is all for our internal needs - to safely/efficiently deliver software.
 
 Now look similarly at the actual project you're working on. What subdomains do you see?
 
@@ -114,7 +115,7 @@ If you're working on some kind of e-commerce, you'll probably see:
 
 and many others. It's not uncommon to see ~30 potential bounded contexts.
 
-Are they clearly represented in your system? 
+Are they clearly represented in your system?
 
 Each of them deserve a dedicated module. It's truly bounded if they don't talk to each other directly. They either communicate with events or there's a layer above (app layer) which orchestrates them. Each of them should have a separate storage (conceptually) and never ever look at each other storage directly.
 

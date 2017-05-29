@@ -4,6 +4,7 @@ created_at: 2017-05-03 14:18:37 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ddd']
 newsletter: :skip
 img: workshop_app/order_history.png
 ---
@@ -23,7 +24,7 @@ There are typical Rails scaffold CRUD UIs for customers and products, respective
 <%= img_fit("workshop_app/customers_crud.png") %>
 <%= img_fit("workshop_app/products_crud.png") %>
 
-In the above screens we can manage and prepare customers and products, which will be used in other parts of the system. 
+In the above screens we can manage and prepare customers and products, which will be used in other parts of the system.
 
 The order list screen lets us review the orders, which is the main part of the system:
 
@@ -63,14 +64,14 @@ end
 
 # The domain
 
-Given that this app helps learning DDD, you could expect some interesting domain layer, right? 
+Given that this app helps learning DDD, you could expect some interesting domain layer, right?
 
 In this case there are 2 domain-rich bounded contexts, each of them represented as a Ruby namespace:
 
 - `Orders`
 - `Payments`
 
-and there are `Products` and `Customers` which we could probably also call like Catalog and CRM respectively, but here they are just CRUD contexts, without much logic. 
+and there are `Products` and `Customers` which we could probably also call like Catalog and CRM respectively, but here they are just CRUD contexts, without much logic.
 
 We've used the Product and Customer ActiveRecord-driven CRUDs to represent how such things can cooperate with domain-rich bounded contexts.
 

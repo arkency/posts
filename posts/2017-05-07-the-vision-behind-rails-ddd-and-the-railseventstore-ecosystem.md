@@ -4,6 +4,7 @@ created_at: 2017-05-07 15:35:54 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ddd']
 newsletter: :skip
 ---
 
@@ -15,7 +16,7 @@ Arkency became known for our DDD efforts in the Rails community. DDD together wi
 
 The journey with DDD at Arkency started probably around ~6 years ago, when we started using technical patterns like service objects (in DDD we would call them application services), adapters and repositories. This phase resulted in writing the ["Fearless Refactoring: Rails Controllers"](http://rails-refactoring.com) ebook which is all about those patterns.
 
-Those patterns helped, but didn't solve all of our problems. We could say, that service objects were like a gateway drug - they enabled us to isolate our logic from the Rails app. 
+Those patterns helped, but didn't solve all of our problems. We could say, that service objects were like a gateway drug - they enabled us to isolate our logic from the Rails app.
 
 The patterns from the book are helping with one big mission - how to separate the Rails part from your actual application. Then we also help to structure your application with the app/infra layer and the domain layer. This is the real value of that phase. The next phase, the DDD phase is then more about how to structure the domain.
 
@@ -23,7 +24,7 @@ If you want to watch more about this journey from service objects to DDD - watch
 
 <div style="position:relative;height:0;padding-bottom:75.0%"><iframe src="https://www.youtube.com/embed/ynj_C-Abjgk?ecver=2" width="480" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 
-When I met [Mirek](https://twitter.com/mpraglowski) and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed. 
+When I met [Mirek](https://twitter.com/mpraglowski) and when Mirek has joined Arkency it was a fast progress with our understanding of DDD. You can read books, read blogposts, even try to write some simple prototypes, but having access to someone who already knows all of it is just priceless.  Our adoption of DDD, CQRS and Event Sourcing was at full speed.
 
 In one of our biggest client projects, we have introduced the concept and the implementation of an Event Store. At the beginning it was just a simple table which stores events, wrapped with ActiveRecord. This enabled us to publish events and subscribe to them. Also this created the Event Log capabilities.
 
@@ -82,21 +83,21 @@ To summarise where we are:
 
 # Where we are going
 
-Things are changing really fast so it's hard to predict anything precisely. However, all signs show that Arkency will keep doing DDD and Rails apps. This naturally means that we'll do even more **education** around DDD and about solving typical problems in Rails apps. 
+Things are changing really fast so it's hard to predict anything precisely. However, all signs show that Arkency will keep doing DDD and Rails apps. This naturally means that we'll do even more **education** around DDD and about solving typical problems in Rails apps.
 
-We'll also work on the **RailsEventStore ecosystem of tooling**. We want the tooling to stay stable and to be reliable. 
+We'll also work on the **RailsEventStore ecosystem of tooling**. We want the tooling to stay stable and to be reliable.
 
-I put education at the first place, as our offer it's not about "selling" you some tooling. We do have the free and open-source tools in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app. We want to focus on helping you split your application into bounded contexts. We want to help you understand how to map requirements into code. That's the big value here. If our tooling can help you, that's great. 
+I put education at the first place, as our offer it's not about "selling" you some tooling. We do have the free and open-source tools in our offer, but we care more about the real value of DDD - using the Domain language in the code, shape the code after discussions with Domain Experts. The tooling is irrelevant here. It helps only to provide you some basic structure but the real thing is your app. We want to focus on helping you split your application into bounded contexts. We want to help you understand how to map requirements into code. That's the big value here. If our tooling can help you, that's great.
 
 We have already gathered a small but very passionate **community** around the DDD ideas. The important thing here - it's a community around DDD, not a community around RailsEventStore or any kind of specific tooling. We're learning together, we help each other. At the moment the community doesn't have a central place of communication, but we're thinking about improving this part.
 
 **Even further in the future?**
 
-One thing which I was sceptical in the past is **microservices**. Whenever we were suggesting any ideas how to improve Rails apps, microservices were rarely among the techniques. The thing is - microservices represent an infrastructural split, while what's more important is the conceptual split. 
+One thing which I was sceptical in the past is **microservices**. Whenever we were suggesting any ideas how to improve Rails apps, microservices were rarely among the techniques. The thing is - microservices represent an infrastructural split, while what's more important is the conceptual split.
 
-This has changed a little bit recently. I see the value in well-split microservices. After understanding the value of Bounded Contexts, aggregates, read models - I can now see much better that the the split is the same as with Bounded Contexts. 
+This has changed a little bit recently. I see the value in well-split microservices. After understanding the value of Bounded Contexts, aggregates, read models - I can now see much better that the the split is the same as with Bounded Contexts.
 
-If you do more DDD, you'll notice how it emphasises good OOP - the one were attributes are not publicly exposed, where object tell, don't ask. Where messages are used to communicate. Where you can think about aggregates as objects or read models as objects. You will also notice how good OOP and good Functional Programming are close to each other and how DDD/CQRS/Event Sourcing exposes it. 
+If you do more DDD, you'll notice how it emphasises good OOP - the one were attributes are not publicly exposed, where object tell, don't ask. Where messages are used to communicate. Where you can think about aggregates as objects or read models as objects. You will also notice how good OOP and good Functional Programming are close to each other and how DDD/CQRS/Event Sourcing exposes it.
 
 **Aggregates** can be thought as functions. They are built from events and they "return" new events. A lot is being said about [functional aggregates](https://blog.scooletz.com/2017/01/05/event-sourcing-making-it-functional-1/).
 

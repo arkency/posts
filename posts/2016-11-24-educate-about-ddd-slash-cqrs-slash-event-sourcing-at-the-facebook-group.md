@@ -4,6 +4,7 @@ created_at: 2016-11-24 15:55:30 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ddd']
 newsletter: :skip
 ---
 
@@ -12,7 +13,7 @@ There's more and more places where people interested in DDD can learn more. One 
 
 <!-- more -->
 
-I was wondering if a more light-weight place to learn about DDD would make sense and as part of an experiment, I've started a Facebook group. I know that not all people use Facebook, but I know several thriving programming communities on Facebook, so why not? 
+I was wondering if a more light-weight place to learn about DDD would make sense and as part of an experiment, I've started a Facebook group. I know that not all people use Facebook, but I know several thriving programming communities on Facebook, so why not?
 
 Feel free [to join the new Facebook group](https://www.facebook.com/groups/1232045823501220/) and learn more. The place is meant to be technology-agnostic. Ruby, Java, .Net, JavaScript, you name it. What's great is that the DDD/CQRS/Event Sourcing patterns look almost the same in all the languages. They all make sense. Why not learn from other communities too?
 
