@@ -9,9 +9,9 @@ newsletter: :arkency_form
 ---
 
 My colleague Tomek today was responsible for changing a bit how we
-handle file upload in project so that it can support SVG logos.
+handle file uploads in a project so that it can support SVG logos.
 
-For handling uploads this Rails project uses `Refile` library. And
+For handling uploads this Rails app uses `Refile` library. And
 for serving images there is `Imgix` which helps you save bandwith
 and apply transformations (using Imgix servers instead of yours).
 
