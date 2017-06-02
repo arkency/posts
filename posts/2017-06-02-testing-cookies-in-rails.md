@@ -18,8 +18,8 @@ I wanted to test this code to prevent regressions in the future.
 
 Firstly I thought about [controller tests](https://relishapp.com/rspec/rspec-rails/v/3-6/docs/controller-specs), but you can use only one controller in
 one test (at least without strong hacks) and in this case it was important to check
-values of cookies after requests sent into few different controllers. You can now think, that controller
-tests are "good enough" for you, if you don't need to reach to different controllers. Not quite, unfortunately.
+values of cookies after requests sent into few different controllers. **You can now think, that controller
+tests are "good enough" for you, if you don't need to reach to different controllers. Not quite, unfortunately**.
 Let's consider following code:
 
 ```
@@ -53,8 +53,8 @@ describe SomeController do
 end
 ```
 
-Note that the cookie time has expiration time of 30 minutes and we are doing second call
-"after" 35 minutes, so we would expect output to be:
+Note that the **cookie time has expiration time of 30 minutes and we are doing second call
+"after" 35 minutes**, so we would expect output to be:
 
 ```
 My cookie is:
@@ -68,8 +68,8 @@ My cookie is:
 My cookie is: some value!
 ```
 
-Therefore, it is not a good tool to test cookies when you want to test cookies
-expiring.
+**Therefore, it is not a good tool to test cookies when you want to test cookies
+expiring.**
 
 # Feature specs?
 
@@ -110,7 +110,7 @@ cookies class is by calling `cookies.inspect`:
 
 Great, we see that it has all information we want to check: value of the cookie,
 expiration time, and more. You can easily retrieve the value of the cookie by calling
-`cookies[:foo]`. Getting expire time is more tricky, but nothing you couldn't do in ruby.
+`cookies[:foo]`. **Getting expire time is more tricky, but nothing you couldn't do in ruby.**
 On `HEAD` of `rack-test` there's already a method [get_cookie](https://github.com/rack-test/rack-test/blob/a396bd16a1bcdb8a3fc668bd238688911db32199/lib/rack/test/cookie_jar.rb#L130-L132) you can use to get all cookie's options.
 If you are on `0.6.3` though, you can add following method somewhere in your specs:
 
@@ -124,6 +124,7 @@ end
 It is not perfect, but it is simple enough until you migrate to newer version of `rack-test`. In the end, my specs looks like this:
 
 ```
+#!ruby
 describe do
   specify do
     get "/"
@@ -144,9 +145,9 @@ describe do
 end
 ```
 
-With these I can test more complex logic of my cookies. Having reliable tests
+With these I can test more complex logic of my cookies. **Having reliable tests
 allows me and my colleagues to easily refactor code in the future and prevent
-regressions in our legacy applications (*if topic of refactoring legacy applications
+regressions in our legacy applications** (if topic of refactoring legacy applications
 is interesting to you, you may want to check out our [Fearless Refactoring book](http://rails-refactoring.com/)).
 
 What are your experiences of testing cookies in rails?
