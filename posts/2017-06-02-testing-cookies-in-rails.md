@@ -83,6 +83,7 @@ There's another kind of specs, [request specs](https://relishapp.com/rspec/rspec
 case it is very interesting for us. Let's take a look at this test:
 
 ```
+#!ruby
 describe do
   specify do
     get "/"
