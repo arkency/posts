@@ -1,12 +1,14 @@
 ---
-title: "Testing cookies in rails"
+title: "Testing cookies in Rails"
 created_at: 2017-06-02 22:31:25 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'rails', 'cookies', 'testing' ]
 newsletter: :arkency_form
 ---
+
+<%= img_fit("testing-cookies-in-rails/top.jpeg") %>
 
 Recently at Arkency I was working on a task, on which it was very important to 
 ensure that the right cookies are saved with the specific expiration time. Obiovusly 
