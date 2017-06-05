@@ -6,6 +6,7 @@ publish: true
 author: Rafał Łasocha
 tags: [ 'rails', 'cookies', 'testing' ]
 newsletter: :arkency_form
+img: testing-cookies-in-rails/top.jpeg
 ---
 
 <%= img_fit("testing-cookies-in-rails/top.jpeg") %>
@@ -108,7 +109,11 @@ Now we would like to add some assertions about the cookies. Let's check what
 cookies class is by calling `cookies.inspect`:
 
 ```
-#<Rack::Test::CookieJar:0x0056321c1d8950 @default_host="www.example.com", @cookies=[#<Rack::Test::Cookie:0x0056321976f010 @default_host="www.example.com", @name_value_raw="foo=some+value%21", @name="foo", @value="some value!", @options={"path"=>"/", "expires"=>"Fri, 02 Jun 2017 22:29:34 -0000", "domain"=>"www.example.com"}>]>
+#<Rack::Test::CookieJar:0x0056321c1d8950 @default_host="www.example.com", 
+  @cookies=[#<Rack::Test::Cookie:0x0056321976f010 @default_host="www.example.com", 
+    @name_value_raw="foo=some+value%21", @name="foo", @value="some value!", 
+      @options={"path"=>"/", "expires"=>"Fri, 02 Jun 2017 22:29:34 -0000", "domain"=>"www.example.com"
+}>]>
 ```
 
 Great, we see that it has all information we want to check: value of the cookie,
