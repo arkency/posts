@@ -43,7 +43,7 @@ Long story short - we’re opening a new chapter in the Arkency history. We’re
 
 <%= show_product_inline(item[:newsletter_inside]) %>
 
-We’re still in the Ruby community, though. We are working on a new update to the [Rails Refactoring book](http://rails-refactoring.com).
+We’re still in the Ruby community, though. We are working on a new update to the [Rails Refactoring book](http://controllers.rails-refactoring.com).
 
 BTW, this book is at the moment part of the [Ruby Book Bundle](http://rubybookbundle.com).  The bundle contains 6 advanced Ruby books for a great price.
 

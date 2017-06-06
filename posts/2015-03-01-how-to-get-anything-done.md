@@ -84,7 +84,7 @@ very hard to ship anything. **So I lowered my expectations. I write a blog post 
 a single person**. If I helped one person, then I am good. It was worth writing, worth
 spending time, worth the effort.
 
-Sure, from time to time you write a post or create a [product](http://rails-refactoring.com)
+Sure, from time to time you write a post or create a [product](http://controllers.rails-refactoring.com)
 that helps hundreds or thousands. But you might also get 4 upvotes, dozen of visits and
 that's it.
 

@@ -195,7 +195,7 @@ end
 
 I like this approach. The only downside is that I need to assert the whole list of events here. This is no longer just testing handling one command, though. It's testing the whole unit (aggregate with commands, events and value objects) with scenarios. In this case, testing all events kind of makes sense. What's your opinion here?
 
-If you're stuck with a more Rails Way code but you like the command-driven approach, then form objects may be a good step for you. Form objects are like the Command for the whole app, not just the aggregate, but their overall idea is similar. We wrote more about form objects in our ["Fearless Refactoring: Rails Controllers" book](http://rails-refactoring.com).
+If you're stuck with a more Rails Way code but you like the command-driven approach, then form objects may be a good step for you. Form objects are like the Command for the whole app, not just the aggregate, but their overall idea is similar. We wrote more about form objects in our ["Fearless Refactoring: Rails Controllers" book](http://controllers.rails-refactoring.com).
 
 ... and just to finish the Fuckups app story - once I'm ready with implementing this authentication gem, I'm going to plug it into the application. Then the next step is to extend the authentication with tenants feature and I can invite you to testing the app :)
 

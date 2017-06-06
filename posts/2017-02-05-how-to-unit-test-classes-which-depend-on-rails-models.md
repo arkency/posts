@@ -99,6 +99,6 @@ It's worth noting here, that it may be better to treat a bigger thing as a unit 
 [Services - what they are and why we need them](http://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/)
 This setup has its limitations (the risk of diverging), but it's solvable. The benefit here is that you don't rely on Rails in tests, which makes them faster.
 
-If you like this kind of approaches to Rails apps, then you will enjoy more such techniques in my book about [Refactoring Rails](http://rails-refactoring.com)
+If you like this kind of approaches to Rails apps, then you will enjoy more such techniques in my book about [Refactoring Rails](http://controllers.rails-refactoring.com)
 
 

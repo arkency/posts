@@ -150,7 +150,7 @@ And here is an example test at the app layer:
 
 If the app itself sounds interesting to you, it's free to use at  [http://fuckups.arkency.com/](http://fuckups.arkency.com/).
 
-If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://rails-refactoring.com).
+If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://controllers.rails-refactoring.com).
 
 If you're interested in the events/DDD style of coding, please consider attending our [Rails DDD workshop](http://blog.arkency.com/ddd-training/) in Lviv, Ukraine, 25-26 May, 2017. There's still some time to decide, but first slots (of the maximum 20) are already sold.
 

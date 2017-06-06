@@ -68,7 +68,7 @@ Explaining such cases takes time. I usually try to explain the bigger picture - 
 
 **The refactoring recipes**
 
-Over time, I’ve collected all of such arguments and released a whole book on this topic. The [“Fearless Refactoring: Rails Controllers” book](http://rails-refactoring.com) is exactly this - a way of encapsulating those arguments into one place. It’s not only that, though. I’m focusing on the explanation how to apply the refactoring in a fast way. I call it - recipes. Thanks to the recipes, I can expect that people can take the instructions and apply the code change within 30 minutes of their time.
+Over time, I’ve collected all of such arguments and released a whole book on this topic. The [“Fearless Refactoring: Rails Controllers” book](http://controllers.rails-refactoring.com) is exactly this - a way of encapsulating those arguments into one place. It’s not only that, though. I’m focusing on the explanation how to apply the refactoring in a fast way. I call it - recipes. Thanks to the recipes, I can expect that people can take the instructions and apply the code change within 30 minutes of their time.
 
 Being time efficient is one of the reasons why the recipes exist. I’ve seen refactorings taking DAYS and ending with bugs. This is not a refactoring.
 

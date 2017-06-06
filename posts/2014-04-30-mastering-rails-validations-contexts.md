@@ -263,7 +263,7 @@ The next part is out:
 
 Did you like this article? You might find [our Rails books interesting as well](/products) .
 
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
+<a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
 <a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="15%" /></a>
 <a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>

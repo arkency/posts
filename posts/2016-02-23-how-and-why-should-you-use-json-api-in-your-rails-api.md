@@ -172,7 +172,7 @@ So far, so good. But you need the controller code to make asking endpoint possib
   end
 ```
 
-`conferences_repository` is [an example of the `Repository` pattern](http://blog.arkency.com/2015/06/thanks-to-repositories/) you may also know from our [Rails Refactoring book](http://rails-refactoring.com). As you can it is quite normal controller - if you install AMS rendering through `json:`  option of `render` is getting handled by your serializer by default. While I find such implicitness bad I can live with it for now.
+`conferences_repository` is [an example of the `Repository` pattern](http://blog.arkency.com/2015/06/thanks-to-repositories/) you may also know from our [Rails Refactoring book](http://controllers.rails-refactoring.com). As you can it is quite normal controller - if you install AMS rendering through `json:`  option of `render` is getting handled by your serializer by default. While I find such implicitness bad I can live with it for now.
 
 And, last but not least - a `ConferenceSerializer`:
 

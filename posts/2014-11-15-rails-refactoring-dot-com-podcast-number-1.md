@@ -12,7 +12,7 @@ enclosure:
 ---
 
 Andrzej Krzywda & Robert Pankowecki in first episode of
-[rails-refactoring.com](http://rails-refactoring.com) podcast. We are talking about migrating
+[rails-refactoring.com](http://controllers.rails-refactoring.com) podcast. We are talking about migrating
 applications from ruby 1.9 to 2.1 and using gems for form
 and service objects.
 

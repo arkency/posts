@@ -144,8 +144,8 @@ attributes and pass them further, even to a different Service Objects.
 
 ## Read more
 
-* More about commands and service objects in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
+* More about commands and service objects in our [Fearless Refactoring: Rails controllers ebook](http://controllers.rails-refactoring.com/)
 
-    <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
+    <a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
 
 * [Task based UI](https://cqrs.wordpress.com/documents/task-based-ui/)

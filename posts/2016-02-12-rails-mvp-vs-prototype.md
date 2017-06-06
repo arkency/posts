@@ -30,7 +30,7 @@ Janko touched some important topics here. Let me reply here. Janko's words are m
 
 **The problem that I have with always starting to Rails is that it's later difficult to change to another framework or design**. 
 
-I don't think it's always true. This is actually where most of my focus goes - [how to gradually change your app so that it doesn't rely on Rails](http://rails-refactoring.com). It's not easy, but in many projects we proved it's possible and worth the effort. The sooner you start the separation, the easier it goes. This doesn't mean going there from the beginning.
+I don't think it's always true. This is actually where most of my focus goes - [how to gradually change your app so that it doesn't rely on Rails](http://controllers.rails-refactoring.com). It's not easy, but in many projects we proved it's possible and worth the effort. The sooner you start the separation, the easier it goes. This doesn't mean going there from the beginning.
 
 **That's why I think if you want to later start with frontend and backend separate, you should do so from the beginning. If we practice that like we've practiced with Rails, we would become equally familiar**.
 

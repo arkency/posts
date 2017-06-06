@@ -156,7 +156,7 @@ There's more we could do at some point, like isolating from the file system. How
 
 It's worth to consider this techniqe whenever you use any framework, be it Rails, Sinatra, nanoc or anything else that calls you. **Isolate early**.
 
-If you're interested in such refactorings, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com). This book consists of 3 parts: 
+If you're interested in such refactorings, you may consider looking at the book I wrote: [Fearless Refactoring: Rails Controllers](http://controllers.rails-refactoring.com). This book consists of 3 parts: 
 
 * the refactoring recipes, 
 * the bigger examples,  

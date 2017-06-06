@@ -98,7 +98,7 @@ run Rails.application
 
 I really like this concept. I think it has the potential of removing a lot of controller code. 
 
-If this can work in some cases, this idea would become the most radical one in [my book on dealing with Rails controllers](http://rails-refactoring.com). In the current version of the book, we talk a lot about the concept of form objects as a data structure which is initialized in the controller and passed to the service object. 
+If this can work in some cases, this idea would become the most radical one in [my book on dealing with Rails controllers](http://controllers.rails-refactoring.com). In the current version of the book, we talk a lot about the concept of form objects as a data structure which is initialized in the controller and passed to the service object. 
 
 The approach with a generic controller handling commands removes a big part of the controller layer. 
 

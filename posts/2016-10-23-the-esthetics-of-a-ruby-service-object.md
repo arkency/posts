@@ -106,7 +106,7 @@ However, in fact, they do use some input data, but those 2 variables are set in 
 
 There are additional 7 private methods here, which are using the instance variables.
 
-The topic of service objects in Rails apps was so fascinating to me that I wrote [a whole book](http://rails-refactoring.com) about it. One realisation I've had over my time spent on service objects is their connection to functions and to functional programming. Some people call them function objects or commands. My architectural journey led me to discover the beauty of Domain-Driven Development and CQRS (Command Query Responsibility Segregation). 
+The topic of service objects in Rails apps was so fascinating to me that I wrote [a whole book](http://controllers.rails-refactoring.com) about it. One realisation I've had over my time spent on service objects is their connection to functions and to functional programming. Some people call them function objects or commands. My architectural journey led me to discover the beauty of Domain-Driven Development and CQRS (Command Query Responsibility Segregation). 
 
 At some point, all those pieces started to fit together. I'm now looking at code in a more functional way. What I was doing with my "Rails Refactoring" actions was actually about **localizing the places where data gets mutated**.
 

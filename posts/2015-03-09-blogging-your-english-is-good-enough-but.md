@@ -47,6 +47,6 @@ There’s many techniques for writing a better English. I’ve presented just so
 
 Let me finish by saying - I know how my English sucks. Separating my English from the message I want to send was a huge unblocking point for me. I’m very sorry to all the people who think it’s terrible. I was involved in writing 2 books. I like to believe that they bring good value to the buyers, despite my English :) When writing books, though, I do several other rounds of checks. The chapters are reviewed by many people before they’re “released”.
 
-[Fearless Refactoring: Rails Controllers](http://rails-refactoring.com)
+[Fearless Refactoring: Rails Controllers](http://controllers.rails-refactoring.com)
 
 [Developers oriented project management](http://blog.arkency.com/async-remote/)

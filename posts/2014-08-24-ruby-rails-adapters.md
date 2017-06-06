@@ -121,7 +121,7 @@ module ApnsAdapters
 end
 ```
 
-Now whenever your [service objects](http://rails-refactoring.com) are taking `apns_adapter` as dependency you can use this one
+Now whenever your [service objects](http://controllers.rails-refactoring.com) are taking `apns_adapter` as dependency you can use this one
 instead of the real one.
 
 ```
