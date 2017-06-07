@@ -20,7 +20,8 @@ an Active Record object was created. It has some interesting points so let's hav
 
 ## Higher level abstraction
 
-```ruby
+```
+#!ruby
 require 'test_helper'
 
 class ClientSendsMetricsTest < AcceptanceTestCase
@@ -45,14 +46,15 @@ In our consulting projects we often introduce classes such as `TestCustomer` or
 They usually encapsulate logic/behavior of a certain role.
 Their implementation detail vary between project.
 
-## Testing with UI + Capybara (webkit/selenium/rack driver)
+### Testing with UI + Capybara (webkit/selenium/rack driver)
 
 Sometimes they will use Capybara and one of its drivers. That can usually happen
 at the beginning, when we join a new legacy project, which test coverage is not
 yet good enough. In that case you can build helper methods that will navigate
 around the page and perform certain actions.
 
-```ruby
+```
+#!ruby
 merchant = TestMerchant.new
 merchant.register
 merchant.open_a_new_shop
@@ -71,7 +73,8 @@ expect(merchant.current_gross_revenue).to eq(123)
 This style allows you to build a story and hide a lot of implementation details.
 Usually defaults are provided either in terms of default method arguments:
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(currency: "EUR")
     # ...
@@ -85,7 +88,8 @@ end
 
 or as instance variables filled by previous actions
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(currency: "EUR")
     @shop = # ...
@@ -106,7 +110,8 @@ countries/currencies etc.
 
 The instance variables will usually contain primitive values. Either identifier (id or slug) of something that was done or a value filled out in a form which can be later used to find the relevant object again.
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(subdomain: "arkency-shop")
     @shop = subdomain
@@ -126,7 +131,8 @@ end
 
 but sometimes it can a simple struct, if that's useful for subsequent method calls.
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(subdomain: "arkency-shop", currency: "EUR")
     @shop = TestShop.new(subdomain, currency)
@@ -134,13 +140,15 @@ class TestMerchant
     # ...
     click_button("Start a new shop")
   end
+end
 ```
 
 ### Testing by changing DB
 
 In some cases those actors will directly (or indirectly through factory girl) create some Active Record models. That is the case where we don't have UI for some settings because they are rarely changed.
 
-```ruby
+```
+#!ruby
 class TestDeveloper
   def register_country(currency:, default_vat_rate:)
     Country.create(...)
@@ -155,7 +163,8 @@ In other cases an actor will build a command and pass it to a
 need (or want to because they are usually slow) to use the frontend
 to test the functionality.
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(subdomain: "arkency-shop", currency: "EUR")
     @shop = subdomain
@@ -168,7 +177,8 @@ class TestMerchant
 end
 ```
 
-```ruby
+```
+#!ruby
 class TestMerchant
   def open_a_new_shop(subdomain: "arkency-shop", currency: "EUR")
     @shop = subdomain
@@ -191,8 +201,9 @@ have a memory. They know what they just did :)
 If an actor plays a role of a mobile app which uses the API to communicate with
 us, then the methods will call the API.
 
-```ruby
-class MobileClient < Bbq::TestClient
+```
+#!ruby
+class MobileClient
   JSON_CONTENT = {'CONTENT_TYPE' => 'application/json'}.freeze
   def choose_first_country
     response = get_api 'countries', {}, JSON_CONTENT
@@ -206,7 +217,8 @@ So let's get back to the acceptance test of our chillout gem which is done in a 
 
 ### Overview
 
-```ruby
+```
+#!ruby
 class ClientSendsMetricsTest < AcceptanceTestCase
   def test_client_sends_metrics
     test_app      = TestApp.new
@@ -227,7 +239,8 @@ end
 
 Let's start with `TestEndpoint` which plays the role of a chillout.io API server.
 
-```ruby
+```
+#!ruby
 class TestEndpoint
 
   attr_reader :metrics, :startups
@@ -281,11 +294,11 @@ Ok, but what about `TestApp` ?
 There is more heavy machinery involved. We start a full Rails application with
 chillout gem.
 
-```ruby
+```
+#!ruby
 class TestApp
-
   def boot
-    sample_app_name = ENV['SAMPLE_APP'] || 'rails_5_1_3'
+    sample_app_name = ENV['SAMPLE_APP'] || 'rails_5_1_1'
     sample_app_root = Pathname.new(File.expand_path('../support', __FILE__)).join(sample_app_name)
     command         = [Gem.ruby, sample_app_root.join('script/rails').to_s, 'server'].join(' ')
     @executor = Bbq::Spawn::Executor.new(command) do |process|
@@ -307,7 +320,8 @@ end
 The [`bbq-spawn`](https://github.com/drugpl/bbq-spawn) gem makes sure that the
 Rails app is fully started before we try to contact with it.
 
-```ruby
+```
+#!ruby
 def join
   Timeout.timeout(@timeout) do
     wait_for_io       if @banner
@@ -338,7 +352,8 @@ It can do it based on a text which appears in the command output (such as `INFO 
 
 There is also `TestUser` (`TestBrowser` would be probably a better name) which sends a request to the Rails app.
 
-```ruby
+```
+#!ruby
 class TestUser
   def create_entity(name)
     Net::HTTP.start('127.0.0.1', 3000) do |http|
@@ -358,7 +373,8 @@ Together the story goes like this:
 * chillout.io discovers the record was created and sends a metric
 * the test endpoint receives the metric
 
-```ruby
+```
+#!ruby
 class ClientSendsMetricsTest < AcceptanceTestCase
   def test_client_sends_metrics
     test_app      = TestApp.new
@@ -374,3 +390,8 @@ class ClientSendsMetricsTest < AcceptanceTestCase
   end
 end
 ```
+
+### Links
+
+* https://github.com/drugpl/bbq
+* https://github.com/drugpl/bbq-spawn
