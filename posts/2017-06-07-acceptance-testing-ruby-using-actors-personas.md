@@ -300,14 +300,25 @@ chillout gem.
 class TestApp
   def boot
     sample_app_name = ENV['SAMPLE_APP'] || 'rails_5_1_1'
-    sample_app_root = Pathname.new(File.expand_path('../support', __FILE__)).join(sample_app_name)
-    command         = [Gem.ruby, sample_app_root.join('script/rails').to_s, 'server'].join(' ')
+    sample_app_root = Pathname.new(
+      File.expand_path('../support', __FILE__)
+    ).join(sample_app_name)
+    command = [
+      Gem.ruby, 
+      sample_app_root.join('script/rails').to_s,
+      'server'
+    ].join(' ')
     @executor = Bbq::Spawn::Executor.new(command) do |process|
       process.cwd = sample_app_root.to_s
-      process.environment['BUNDLE_GEMFILE'] = sample_app_root.join('Gemfile').to_s
-      process.environment['RAILS_ENV']      = 'production'
+      process.environment['BUNDLE_GEMFILE'] = 
+        sample_app_root.join('Gemfile').to_s
+      process.environment['RAILS_ENV']= 'production'
     end
-    @executor = Bbq::Spawn::CoordinatedExecutor.new(@executor, :url => 'http://127.0.0.1:3000/', timeout: 15)
+    @executor = Bbq::Spawn::CoordinatedExecutor.new(
+      @executor,
+      url: 'http://127.0.0.1:3000/',
+      timeout: 15
+    )
     @executor.start
     @executor.join
   end
