@@ -358,7 +358,7 @@ def wait_for_response
 end
 ```
 
-It can do it based on a text which appears in the command output (such as `INFO  WEBrick::HTTPServer#start: pid=400 port=3000`). It can do it based on whether you can connect to a port using a socket. Or in our case based whether it can send and receive a response to an HTTP request, which is the most reliable way to determine that the app is fully booted and working.
+It can do it based on a text which appears in the command output (such as `INFO  WEBrick::HTTPServer#start: pid=400 port=3000`). It can do it based on whether you can connect to a port using a socket. Or in our case based on whether it can send and receive a response to an HTTP request, which is the most reliable way to determine that the app is fully booted and working.
 
 ## TestUser
 
