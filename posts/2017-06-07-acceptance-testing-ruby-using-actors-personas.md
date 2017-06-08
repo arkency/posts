@@ -47,7 +47,7 @@ In our consulting projects we often introduce classes such as `TestCustomer` or
 They usually encapsulate logic/behavior of a certain role.
 Their implementation detail varies between project.
 
-### Testing with UI + Capybara (webkit/selenium/rack driver)
+## Testing with UI + Capybara (webkit/selenium/rack driver)
 
 Sometimes they will use Capybara and one of its drivers. That can usually happen
 at the beginning when we join a new legacy project, which test coverage is not
@@ -69,7 +69,7 @@ merchant.visit_revenue_reporting
 expect(merchant.current_gross_revenue).to eq(123)
 ```
 
-### Defaults
+## Defaults
 
 This style allows you to build a story and hide a lot of implementation details.
 Usually, defaults are provided either in terms of default method arguments:
@@ -107,7 +107,7 @@ operate in one tenant/country/shop/etc but sometimes you would like to test how
 things behave if one merchant has two shops or if one customer buys in two different
 countries/currencies etc.
 
-### Memoize
+## Memoize
 
 The instance variables will usually contain primitive values. Either identifier (id or slug) of something that was done or a value filled out in a form which can be later used to find the relevant object again.
 
@@ -144,7 +144,7 @@ class TestMerchant
 end
 ```
 
-### Testing by changing DB
+## Testing by changing DB
 
 In some cases, those actors will directly (or indirectly through factory girl) create some Active Record models. That is the case where we don't have UI for some settings because they are rarely changed.
 
@@ -157,7 +157,7 @@ class TestDeveloper
 end
 ```
 
-### Testing using Service Objects
+## Testing using Service Objects
 
 In other cases an actor will build a command and pass it to a
 [service object](/2013/09/services-what-they-are-and-why-we-need-them/) or [command](https://github.com/arkency/command_bus) [bus](http://blog.arkency.com/2016/09/command-bus-in-a-rails-application/). This is a case where we feel that we don't
@@ -197,7 +197,7 @@ and fill out the commands with `user_id` or `order_id` based on what they did.
 That means you don't need to keep too many variables in the test. These personas
 have a memory. They know what they just did :)
 
-### MobileClient - testing using HTTP request
+## MobileClient - testing using HTTP request
 
 If an actor plays a role of a mobile app which uses the API to communicate with
 us, then the methods will call the API.
@@ -216,7 +216,7 @@ end
 
 So let's get back to the acceptance test of our chillout gem which is done in a similar style and see what we can find inside.
 
-### Overview
+## Overview
 
 ```
 #!ruby
@@ -236,7 +236,7 @@ class ClientSendsMetricsTest < AcceptanceTestCase
 end
 ```
 
-### TestEndpoint
+## TestEndpoint
 
 Let's start with `TestEndpoint` which plays the role of a chillout.io API server.
 
@@ -290,7 +290,7 @@ It is also capable of checking whether there is something received in the queue.
 
 Ok, but what about `TestApp` ?
 
-### TestApp
+## TestApp
 
 There is more heavy machinery involved. We start a full Rails application with
 chillout gem.
@@ -349,7 +349,7 @@ end
 
 It can do it based on a text which appears in the command output (such as `INFO  WEBrick::HTTPServer#start: pid=400 port=3000`). It can do it based on whether you can connect to a port using a socket. Or in our case based whether it can send and receive a response to an HTTP request, which is the most reliable way to determine that the app is fully booted and working.
 
-### TestUser
+## TestUser
 
 There is also `TestUser` (`TestBrowser` would be probably a better name) which sends a request to the Rails app.
 
@@ -364,7 +364,7 @@ class TestUser
 end
 ```
 
-### Recap
+## Recap
 
 Together the story goes like this:
 
@@ -392,7 +392,11 @@ class ClientSendsMetricsTest < AcceptanceTestCase
 end
 ```
 
-### Links
+## More
+
+If you enjoyed reading [subscribe to our newsletter](/newsletter/) and continue receiving useful tips for maintaining Rails applications, plus **get a free e-book** as well. 
+
+## Links
 
 * https://github.com/drugpl/bbq
 * https://github.com/drugpl/bbq-spawn
