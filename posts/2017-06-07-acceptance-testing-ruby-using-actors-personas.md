@@ -2,9 +2,9 @@
 title: "Acceptance testing using actors/personas"
 created_at: 2017-06-07 17:25:36 +0200
 kind: article
-publish: false
-author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+publish: true
+author: Robert Pankowecki
+tags: [ 'testing', 'actors', 'personas' ]
 newsletter: :arkency_form
 ---
 
@@ -14,8 +14,8 @@ All of that so you can _chill out_ and know that your app is working.
 
 <!-- more -->
 
-We have one, almost full-stack, acceptance test which spawns a rails app, a thread listening to
-HTTP requests and which checks that the metrics are receive by chillout.io when
+We have one, almost full-stack, acceptance test which spawns a Rails app, a thread listening to
+HTTP requests and which checks that the metrics are received by chillout.io when
 an Active Record object was created. It has some interesting points so let's have a look.
 
 ## Higher level abstraction
@@ -44,13 +44,13 @@ The test has higher-level abstractions, which we like to call Test Actors.
 In our consulting projects we often introduce classes such as `TestCustomer` or
 `TestAdmin` or `TestMerchant`, even `TestMobileApp` and `TestDeveloper` etc.
 They usually encapsulate logic/behavior of a certain role.
-Their implementation detail vary between project.
+Their implementation detail varies between project.
 
 ### Testing with UI + Capybara (webkit/selenium/rack driver)
 
 Sometimes they will use Capybara and one of its drivers. That can usually happen
-at the beginning, when we join a new legacy project, which test coverage is not
-yet good enough. In that case you can build helper methods that will navigate
+at the beginning when we join a new legacy project, which test coverage is not
+yet good enough. In that case, you can build helper methods that will navigate
 around the page and perform certain actions.
 
 ```
@@ -71,7 +71,7 @@ expect(merchant.current_gross_revenue).to eq(123)
 ### Defaults
 
 This style allows you to build a story and hide a lot of implementation details.
-Usually defaults are provided either in terms of default method arguments:
+Usually, defaults are provided either in terms of default method arguments:
 
 ```
 #!ruby
@@ -129,7 +129,7 @@ class TestMerchant
 end
 ```
 
-but sometimes it can a simple struct, if that's useful for subsequent method calls.
+but sometimes it can a simple struct if that's useful for subsequent method calls.
 
 ```
 #!ruby
@@ -145,7 +145,7 @@ end
 
 ### Testing by changing DB
 
-In some cases those actors will directly (or indirectly through factory girl) create some Active Record models. That is the case where we don't have UI for some settings because they are rarely changed.
+In some cases, those actors will directly (or indirectly through factory girl) create some Active Record models. That is the case where we don't have UI for some settings because they are rarely changed.
 
 ```
 #!ruby
@@ -346,7 +346,7 @@ def wait_for_response
 end
 ```
 
-It can do it based on a text which appears in the command output (such as `INFO  WEBrick::HTTPServer#start: pid=400 port=3000`). It can do it based on whether you can connect to a port using a socket. Or in our case based whether it can send and receive a response to an HTTP request, which is most reliable way to determine that the app is fully booted and working.
+It can do it based on a text which appears in the command output (such as `INFO  WEBrick::HTTPServer#start: pid=400 port=3000`). It can do it based on whether you can connect to a port using a socket. Or in our case based whether it can send and receive a response to an HTTP request, which is the most reliable way to determine that the app is fully booted and working.
 
 ### TestUser
 
