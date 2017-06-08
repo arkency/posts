@@ -303,12 +303,12 @@ class TestApp
     sample_app_root = Pathname.new(
       File.expand_path('../support', __FILE__)
     ).join(sample_app_name)
-    command = [
+    cmd = [
       Gem.ruby, 
       sample_app_root.join('script/rails').to_s,
       'server'
     ].join(' ')
-    @executor = Bbq::Spawn::Executor.new(command) do |process|
+    @executor = Bbq::Spawn::Executor.new(cmd) do |process|
       process.cwd = sample_app_root.to_s
       process.environment['BUNDLE_GEMFILE'] = 
         sample_app_root.join('Gemfile').to_s
