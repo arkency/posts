@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'testing', 'actors', 'personas' ]
 newsletter: :arkency_form
+img: "actors-personas-ruby-rails-testing/actors_in_ruby_testing.jpeg"
 ---
 
 Today I've been working on chillout.io (new landing page coming soon).
