@@ -34,7 +34,7 @@ class ClientSendsMetricsTest < AcceptanceTestCase
     test_endpoint.listen
     test_app.boot
     test_user.create_entity('Something')
-    assert test_endpoint.has_one_creation_for_entity_resource
+    assert test_endpoint.has_one_creation
   ensure
     test_app.shutdown if test_app
   end
@@ -229,7 +229,7 @@ class ClientSendsMetricsTest < AcceptanceTestCase
     test_endpoint.listen
     test_app.boot
     test_user.create_entity('Something')
-    assert test_endpoint.has_one_creation_for_entity_resource
+    assert test_endpoint.has_one_creation
   ensure
     test_app.shutdown if test_app
   end
@@ -271,7 +271,7 @@ class TestEndpoint
     [200, {'Content-Type' => 'text/plain'}, ['OK']]
   end
 
-  def has_one_creation_for_entity_resource
+  def has_one_creation
     5.times do
       begin
         return metrics.pop(true)
@@ -385,7 +385,7 @@ class ClientSendsMetricsTest < AcceptanceTestCase
     test_endpoint.listen
     test_app.boot
     test_user.create_entity('Something')
-    assert test_endpoint.has_one_creation_for_entity_resource
+    assert test_endpoint.has_one_creation
   ensure
     test_app.shutdown if test_app
   end
