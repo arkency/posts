@@ -130,7 +130,7 @@ class TestMerchant
 end
 ```
 
-but sometimes it can a simple struct if that's useful for subsequent method calls.
+but sometimes it can be a simple struct if that's useful for subsequent method calls.
 
 ```
 #!ruby
