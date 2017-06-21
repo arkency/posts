@@ -77,7 +77,7 @@ Whenever one of the aforementioned domain events is published by the event store
 
 Implementation above uses ActiveRecord (with dedicated table) to persist internal process state between those executions. In addition you'd have to run database migration and create this table. I was just about to code it but then suddenly one of those aha moments came.
 
-We already know how to persist events - that's what we use `RailsEventStore` for. We also know how to recreate state from events — with event sourcing. Last but not least the input for process manager are events. Wouldn't it be simpler for process managers to eat it's own dog food?
+We already know how to persist events — that's what we use `RailsEventStore` for. We also know how to recreate state from events with event sourcing. Last but not least the input for process manager are events. Wouldn't it be simpler for process managers to eat it's own dog food?
 
 ## Let's do this!
 
