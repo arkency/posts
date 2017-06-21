@@ -30,7 +30,7 @@ Given the tools from `RailsEventStore` ecosystem I use on a daily basis, the imp
 #!ruby
 class CateringMatch
   class State < ActiveRecord::Base
-    self.table = :catering_match_state
+    self.table_name = :catering_match_state
     # order_id
     # caterer_confirmed
     # customer_confirmed
