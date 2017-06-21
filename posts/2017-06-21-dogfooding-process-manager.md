@@ -8,6 +8,9 @@ tags: [ 'ddd', 'saga', 'process_manager', 'event_store', 'projection' ]
 newsletter: :arkency_form
 ---
 
+<%= img_fit("dogfooding-process-manager/dogfooding.jpg") %>
+
+
 Process managers (sometimes called Sagas) help us with modeling long running processes which happen in our domains. Think of such process as a series of domain events. When enough of them took place (and the particular ones we're interested in) then we execute a command. The thing is that the events we're waiting for might take a longer time to arrive, during which our process manager has to keep track of what has been already processed. And that's where it gets interesting.
 
 <!-- more -->
