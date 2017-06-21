@@ -153,13 +153,13 @@ The configuration can be set such as:
 ```
 #!ruby
 Sidekiq.configure_server do |config|
-  config.redis = { :namespace => 'myapp', :size => 25 }
+  config.redis = { namespace: 'myapp', size: 25 }
   config.server_middleware do |chain|
     chain.add MyServerHook
   end
 end
 Sidekiq.configure_client do |config|
-  config.redis = { :namespace => 'myapp', :size => 1 }
+  config.redis = { namespace: 'myapp', size: 1 }
 end
 ```
 
