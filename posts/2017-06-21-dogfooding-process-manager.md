@@ -56,7 +56,9 @@ class CateringMatch
       state.update_column(:caterer_confirmed, true)
     end
 
-    command_bus.(ConfirmOrder.new(data: { order_id: order_id })) if state.complete?
+    command_bus.(ConfirmOrder.new(data: {
+     order_id: order_id
+   })) if state.complete?
   end
 end
 ```
@@ -223,7 +225,9 @@ class CateringMatch
     order_id = event.data(:order_id)			
     state    = State.new(event_store: @event_store, stream_name: "Order$#{order_id}")
 
-    command_bus.(ConfirmOrder.new(data: { order_id: order_id })) if state.complete?
+    command_bus.(ConfirmOrder.new(data: {
+     order_id: order_id
+   })) if state.complete?
   end
 end
 ```
