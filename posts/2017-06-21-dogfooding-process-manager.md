@@ -1,5 +1,5 @@
 ---
-title: "Dogfooding Process Managers"
+title: "Dogfooding Process Manager"
 created_at: 2017-06-21 23:09:00 +0200
 kind: article
 publish: false
