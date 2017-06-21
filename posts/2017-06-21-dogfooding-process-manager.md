@@ -63,7 +63,8 @@ end
 
 This process manager is then enabled by following `RailsEventStore` instance configuration:
 
-```ruby
+```
+#!ruby
 RailsEventStore::Client.new.tap do |client|
   client.subscribe(ProcessManager.new(command_bus: command_bus), [CustomerConfirmedMenu, CatererConfirmedMenu])
 end
@@ -161,12 +162,14 @@ When process manager is executed, we load already processed events from stream (
 In theory that could work, I could already feel that dopamine kick after job well done. In practice, the reality brought me this:
 
 ```
+
 Failure/Error: event_store.append_to_stream(event, stream_name: stream_name)
 
 ActiveRecord::RecordNotUnique:
-PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_event_store_events_on_event_id"
-DETAIL:  Key (event_id)=(bddeffe8-7188-4004-918b-2ef77d94fa65) already exists.
-: INSERT INTO "event_store_events" ("event_id", "stream", "event_type", "metadata", "data", "created_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
+  PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_event_store_events_on_event_id"
+  DETAIL:  Key (event_id)=(bddeffe8-7188-4004-918b-2ef77d94fa65) already exists.
+  : INSERT INTO "event_store_events" ("event_id", "stream", "event_type", "metadata", "data", "created_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
+
 ```
 
 Doh!
