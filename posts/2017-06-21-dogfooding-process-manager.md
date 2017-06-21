@@ -94,14 +94,14 @@ module EventSourcing
   def load(stream_name, event_store:)
     events = event_store.read_stream_events_forward(stream_name)
     events.each do |event|
-    apply(event)
+      apply(event)
     end
     @unpublished_events = nil
   end
 
   def store(stream_name, event_store:)
     unpublished_events.each do |event|
-    event_store.append_to_stream(event, stream_name: stream_name)
+      event_store.append_to_stream(event, stream_name: stream_name)
     end
     @unpublished_events = nil
   end
@@ -165,19 +165,18 @@ When process manager is executed, we load already processed events from stream (
 In theory that could work, I could already feel that dopamine kick after job well done. In practice, the reality brought me this:
 
 ```
-
+#!sql
 Failure/Error: event_store.append_to_stream(event, stream_name: stream_name)
 
 ActiveRecord::RecordNotUnique:
   PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_event_store_events_on_event_id"
   DETAIL:  Key (event_id)=(bddeffe8-7188-4004-918b-2ef77d94fa65) already exists.
   : INSERT INTO "event_store_events" ("event_id", "stream", "event_type", "metadata", "data", "created_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
-
 ```
 
 Doh!
 
-I forgot about this limitation of `RailsEventStore`. You can't yet have the same event in multiple streams. In contrast in `GetEventStore` streams are cheap and that's one of the common use cases.
+I forgot about this limitation of `RailsEventStore`. You can't yet have the same event in multiple streams. By contrast in `GetEventStore` streams are cheap and that's one of the common use cases.
 
 ## Take 2
 
