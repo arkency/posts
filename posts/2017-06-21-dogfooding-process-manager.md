@@ -66,7 +66,8 @@ This process manager is then enabled by following `RailsEventStore` instance con
 ```
 #!ruby
 RailsEventStore::Client.new.tap do |client|
-  client.subscribe(ProcessManager.new(command_bus: command_bus), [CustomerConfirmedMenu, CatererConfirmedMenu])
+  client.subscribe(ProcessManager.new(command_bus: command_bus),
+    [CustomerConfirmedMenu, CatererConfirmedMenu])
 end
 ```
 
@@ -152,7 +153,9 @@ class CateringMatch
     state.apply(event)
     state.store(stream_name, event_store: @event_store)
 
-    command_bus.(ConfirmOrder.new(data: { order_id: order_id })) if state.complete?
+    command_bus.(ConfirmOrder.new(data: {
+      order_id: order_id
+    })) if state.complete?
   end
 end
 ```
@@ -192,12 +195,20 @@ class CateringMatch
     end
 
     def complete?
+      initial =
+        { caterer_confirmed: false,
+          customer_confirmed: false,
+        }
       state =
         RailsEventStore::Projection
           .from_stream(@stream_name)
-          .init(->{ { caterer_confirmed: false, customer_confirmed: false } })
-          .when(CustomerConfirmedMenu, ->(state, event) { state[:customer_confirmed] = true })
-          .when(CatererConfirmedMenu,  ->(state, event) { state[:caterer_confirmed]  = true })
+          .init(->{ initial })
+          .when(CustomerConfirmedMenu, ->(state, event) {
+              state[:customer_confirmed] = true
+            })
+          .when(CatererConfirmedMenu, ->(state, event) {
+              state[:caterer_confirmed] = true
+            })
           .run(@event_store)
       state[:customer_confirmed] && state[:caterer_confirmed]
     end
