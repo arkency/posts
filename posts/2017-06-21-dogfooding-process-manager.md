@@ -12,10 +12,14 @@ Process managers (sometimes called Sagas) help us with modeling long running pro
 
 <!-- more -->
 
+## The Domain
+
 Consider following example taken from catering domain. You're an  operations manager. Your task is to suggest your customer a menu they'd like to order and at the same time you have to confirm that caterer can deliver this particular menu (for given catering conditions). In short you wait for `CustomerConfirmedMenu` and `CatererConfirmedMenu`. Only after both happened you can proceed further.
 You'll likely offer several menus to the customer and each of them will need a confirmation from corresponding caterers.
 
 If there's a match of `CustomerConfirmedMenu` and `CatererConfirmedMenu` for the same `order_id` you cheer and trigger `ConfirmOrder` command to push things forward. By the way there's a chance you may as well never hear from the caterer or they may decline, so process may as well never complete ;)
+
+## Classical example
 
 Given the tools from `RailsEventStore` ecosystem I use on a daily basis, the implementation might look more or less like this:
 
@@ -67,7 +71,7 @@ Implementation above uses ActiveRecord (with dedicated table) to persist interna
 
 We already know how to persist events - that's what we use `RailsEventStore` for. We also know how to recreate state from events — with event sourcing. Last but not least the input for process manager are events. Wouldn't it be simpler for process managers to eat it's own dog food?
 
-## Let's do this
+## Let's do this!
 
 My first take on event sourced process manager looked something like this:
 
