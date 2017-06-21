@@ -246,9 +246,8 @@ RSpec.describe CateringMatch do
   ]
   facts.permutation.each do |fact1, fact2|
     specify do
-      command_bus = double
+      command_bus = spy(:command_bus)
       event_store = RailsEventStore::Client.new
-      allow(command_bus).to receive(:call)
 
       CateringMatch.new(event_store: event_store, command_bus: command_bus).tap do |process_manager|
         event_store.append_to_stream(fact1, stream_name: "Order$#{fact1.data[:order_id]}")
