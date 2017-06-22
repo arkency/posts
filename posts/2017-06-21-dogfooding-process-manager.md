@@ -232,7 +232,7 @@ class CateringMatch
 end
 ```
 
-Implementation is noticeably shorter (thanks to hidden parts of `RailsEventStore::Projection`. It also works, especially in practice. And this is the one I chose to stick with for my process manager.
+Implementation is noticeably shorter (thanks to hidden parts of `RailsEventStore::Projection`). Works not only in theory. And this is the one I chose to stick with for my process manager.
 
 I cannot however say I fully like it. The smell for me is that we peek into the stream that does not exclusively belong to the process manager (it does belong to aggregate into whose stream `CustomerConfirmedMenu` and `CatererConfirmedMenu` were published).
 Another culprit comes when testing. Projection can only work with events persisted in streams, so it is not sufficient to only pass an event as an input to process manager. You have to additionally persist it.
