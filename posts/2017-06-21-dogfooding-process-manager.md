@@ -68,7 +68,7 @@ This process manager is then enabled by following `RailsEventStore` instance con
 ```
 #!ruby
 RailsEventStore::Client.new.tap do |client|
-  client.subscribe(ProcessManager.new(command_bus: command_bus),
+  client.subscribe(CateringMatch.new(command_bus: command_bus),
     [CustomerConfirmedMenu, CatererConfirmedMenu])
 end
 ```
