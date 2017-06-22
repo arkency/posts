@@ -57,7 +57,7 @@ class CateringMatch
     end
 
     command_bus.(ConfirmOrder.new(data: {
-     order_id: order_id
+      order_id: order_id
     })) if state.complete?
   end
 end
