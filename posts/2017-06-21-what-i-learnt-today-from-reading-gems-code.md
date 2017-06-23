@@ -6,6 +6,7 @@ publish: true
 author: Pankowecki
 tags: [ 'chillout', 'sidekiq', 'gems', 'activesupport' ]
 newsletter: :arkency_form
+img: sidekiq-active_support-chillout-rails-metrics/pexels-photo-225769.jpeg
 ---
 
 Today I was working on [chillout.io](http://get.chillout.io/) [client](https://github.com/chilloutio/chillout) and while I was debugging some parts, I had a look at some Ruby gems. This is always an interesting experience because you can learn how other developers design their API and how different it can be from your approach.
