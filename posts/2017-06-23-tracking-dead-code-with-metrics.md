@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'custom metrics', 'dead code' ]
 newsletter: :arkency_form
+img: ruby-rails-metrics-for-detecting-unused-code/chillout-io-grafana-alert-unused-code2.jpg
 ---
 
 When you work in big Rails application sometimes you would like to remove certain lines of code or even whole features. But often, you are not completely sure if they are truly unused. What can you do?
@@ -27,7 +28,7 @@ end
 
 After you add a graph to your panel, you can easily [configure an alert](http://docs.grafana.org/alerting/rules/) with notifications to Slack, email or whatever you prefer, so that you are pinged if this code is executed.
 
-<%= img_fit("ruby-rails-metrics-for-detecting-unused-code/chillout-io-grafana-alert-unused-code.jpg") %>
+<%= img_fit("ruby-rails-metrics-for-detecting-unused-code/chillout-io-grafana-alert-unused-code2.jpg") %>
 
 Wait an appropriate amount of time such as a few days or weeks. Make sure the code was not invoked and talk to your business client, boss, CTO or coworkers to make the final call that the feature should be dropped. Now you have the arguments.
 
