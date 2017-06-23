@@ -6,6 +6,7 @@ publish: false
 author: Pawel Pacana
 tags: [ 'ddd', 'saga', 'process_manager', 'event_store', 'projection' ]
 newsletter: :arkency_form
+img: dogfooding-process-manager/dogfooding.jpg
 ---
 
 <%= img_fit("dogfooding-process-manager/dogfooding.jpg") %>
