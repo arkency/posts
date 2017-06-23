@@ -3,7 +3,7 @@ title: "Microservices - 72 resources"
 created_at: 2014-07-05 10:20:25 +0200
 kind: article
 publish: true
-author: Pawel Pacana
+author: Paweł Pacana
 newsletter: :skip
 newsletter_inside: :microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
@@ -27,16 +27,16 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	Good broad introduction to the topic and further references, mentions *"you build it, you run it"* from Werner Vogels. Make sure to check related comments: https://news.ycombinator.com/item?id=7382390
 
 * http://yobriefca.se/blog/2013/04/28/micro-service-architecture/
-	
+
 	Another broad description, how to go from legacy to microservices, also mentions importance of ops skills in this architecture.
 
 
 * http://abdullin.com/journal/2014/1/20/how-micro-services-approach-worked-out-in-production.html
-	
+
 	Case study with some practical advice, mentions performance.
 
 * https://github.com/tobyclemson/testing-micro-service-architecture-presentation/raw/master/presentation/testing-strategies-in-a-micro-service-architecture.pdf
-	
+
 	Shows anatomy of microservice, relation to DDD, various testing aproaches explained.
 
 * http://bovon.org/index.php/archives/350
@@ -44,7 +44,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 	> "Each business capability [microservice], should be no bigger than my head when you chunk up to this level. And these capabilities should be business-meaningful."
 
 * http://www.udidahan.com/2014/03/31/on-that-microservices-thing/
-	
+
 	Remarks on microservices coupling on the example of product price.
 
 * http://arnon.me/2014/03/services-microservices-nanoservices/
@@ -54,7 +54,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 
 * http://service-architecture.blogspot.co.uk/2014/03/microservices-is-soa-for-those-who-know.html
 
-	
+
 	Apparently microservices is just SOA described with langauge that can be understood by ordinary people. I've also learned that "microservice" is insulting for SOA service (too small).
 
 * http://blog.wordnik.com/with-software-small-is-the-new-big
@@ -64,7 +64,7 @@ Microservices - everyone talks about them nowadays. There's no common understand
 
 * http://www.paperplanes.de/2013/10/18/the-smallest-distributed-system.html
 
-	
+
 	Not sure if microservices but still relevant on importance of monitoring in distributed system.
 
 * http://highscalability.com/blog/2014/4/8/microservices-not-a-free-lunch.html
@@ -76,13 +76,13 @@ Microservices - everyone talks about them nowadays. There's no common understand
 
 * http://peopleandcode.blogspot.in/2014/03/microservices-and-agility.html
 
-	
+
 	Mentions most common reasons to partition the system and organization, also confirms that bounded context makes great microservice.
 
 * http://davidmorgantini.blogspot.com/2013/08/micro-services-introduction.html
 http://davidmorgantini.blogspot.co.uk/2013/08/micro-services-what-are-micro-services.html
 http://davidmorgantini.blogspot.com/2013/08/micro-services-when-should-you-use.html
-http://davidmorgantini.blogspot.com/2013/08/micro-services-why-shouldnt-you-use.html and 
+http://davidmorgantini.blogspot.com/2013/08/micro-services-why-shouldnt-you-use.html and
 http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html
 
 	Not bad but mostly obvious when you've read Fowler, more why than how.
@@ -110,11 +110,11 @@ http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html
 
 
 	Most importantly this presentation shows difference between layered architecture in SOA form and proper SOA (microservices).
-	
+
 	Also related:
 	*  http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-1/
 	* http://www.tigerteam.dk/2014/micro-services-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-2/
- 	
+
 		Contains answer to important question *How do we split our data / services and identify them?*
 
    * http://www.tigerteam.dk/2014/microservices-its-not-only-the-size-that-matters-its-also-how-you-use-them-part-3/
@@ -137,7 +137,7 @@ http://davidmorgantini.blogspot.com/2014/03/microservices-effective-testing.html
 
 * http://rrees.me/2014/03/24/the-state-of-microservices/
 
-	
+
 	Mostly general opinions on microservices
 
 * http://byterot.blogspot.com/2014/04/reactive-cloud-actors-no-nonsense-microservice-beehive-restful-evolvable-web-events-orleans-framework.html
@@ -219,12 +219,12 @@ choose jvm [jruby, scala, clojure]. Composite UI (api) and services with own sto
 
 * http://www.slideshare.net/chris.e.richardson/microservices-decomposing-applications-for-deployability-and-scalability-jax
 
-	
+
 	Wise words sad earlier in slightly more complicated language.
 
 * http://www.infoq.com/articles/russ-miles-antifragility-microservices
 
-	
+
 	Didn't provide much value having consummed previous articles.
 
 * http://www.infoq.com/articles/microservices-intro
@@ -239,7 +239,7 @@ choose jvm [jruby, scala, clojure]. Composite UI (api) and services with own sto
 * http://developers.soundcloud.com/blog/building-products-at-soundcloud-part-1-dealing-with-the-monolith
 
 
-	Bounded context as boundary. Wow microservices communicate with monolith [however they still ask monolith for data, which is strange]. 
+	Bounded context as boundary. Wow microservices communicate with monolith [however they still ask monolith for data, which is strange].
 Presumably Event Sourcing.
 
 * http://blog.carbonfive.com/2014/05/29/an-incremental-migration-from-rails-monolithic-to-microservices
@@ -247,7 +247,7 @@ Presumably Event Sourcing.
 
 	API contracts, IDL, RPC. Not my microservices world. Interesting only if you're into RPC and contracts.
 
-## Videos 
+## Videos
 
 * http://gotocon.com/video#47
 
@@ -262,16 +262,16 @@ Presumably Event Sourcing.
 	Related to http://www.slideshare.net/spnewman/practical-microservices-yow-2013 . Practical - starts good
 why microservices or "fine-grained" architectures. In reality many more options to scale in "fine-grained". Need to standardise for own sanity.
 
-	>Standardise in the gaps between services - be flexible about what happens inside the boxes. 
+	>Standardise in the gaps between services - be flexible about what happens inside the boxes.
 
 	>Avoid RPC-mechanisms or shared serialisation protocols to avoid coupling (REST is OK).
-	
+
 	>Have one, two or maybe three ways of integrating, not 20.
-	
+
 	>Pick some sensible conventions, and stick with them (i.e. how to return errors from API).
-	
+
 	>Avoid distributed transactions if at all possible.
-	
+
 	>You have to get *much* better at monitoring.
 
 	>Capture metrics, and logs, for each node, and aggregate them to get a rolled up picture.
@@ -279,7 +279,7 @@ why microservices or "fine-grained" architectures. In reality many more options 
 	>Use synthetic transactions to test production systems (something like continous live test - undestructive operation).
 
 	>Abstract out underlying platform differences to provide a uniform deployment mechanism.
-	
+
 	>Have a single way of deploying services in any given environment (also applies to development machines).
 
 
@@ -311,7 +311,7 @@ Events, not entities. Push to client, so that it does not wait. Circuit-breaker 
 
 * https://www.youtube.com/watch?v=A9rwSDMp-ls
 
-	Components scale individually. Break down knowledge of the huge monolithic system (scale organization), Rails as composite UI, however sometimes UI talks straight to service. Memcache becomes database. Troubles with moving from monolith's AR to service. Migrating to services with "double dispatching" - service is redundant at the beginning to monolith before completely migrating to it, allows profiling, leaves backup plan. Custom tools for deployment. Standardized tools, no snowflakes - they use dropwizard. 10-week teams, then they rotate. 
+	Components scale individually. Break down knowledge of the huge monolithic system (scale organization), Rails as composite UI, however sometimes UI talks straight to service. Memcache becomes database. Troubles with moving from monolith's AR to service. Migrating to services with "double dispatching" - service is redundant at the beginning to monolith before completely migrating to it, allows profiling, leaves backup plan. Custom tools for deployment. Standardized tools, no snowflakes - they use dropwizard. 10-week teams, then they rotate.
 
 	Good, general presentation.
 

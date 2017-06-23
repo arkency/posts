@@ -4,7 +4,7 @@ created_at: 2013-06-17 10:47:05 +0200
 kind: article
 publish: true
 newsletter: :arkency_form
-author: Pawel Pacana
+author: Paweł Pacana
 tags: [ 'ruby', 'thread', 'fork', 'chillout', 'unicorn', 'puma', 'passenger' ]
 ---
 
@@ -105,8 +105,3 @@ There's one peculiar thing left. If you happen to use logger in your worker thre
 
 
 You can see all the solutions from above applied in [chillout](https://github.com/chilloutio/chillout) gem. If you're interested how we're collecting metrics have look on [How to track ActiveRecord model statistics](http://blog.arkency.com/2013/06/how-to-track-activerecord-model-statistics/). Happy hacking!
-
-
-
-
-

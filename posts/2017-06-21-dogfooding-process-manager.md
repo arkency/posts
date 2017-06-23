@@ -3,7 +3,7 @@ title: "Dogfooding Process Manager"
 created_at: 2017-06-21 23:09:00 +0200
 kind: article
 publish: false
-author: Pawel Pacana
+author: Paweł Pacana
 tags: [ 'ddd', 'saga', 'process_manager', 'event_store', 'projection' ]
 newsletter: :arkency_form
 img: dogfooding-process-manager/dogfooding.jpg
