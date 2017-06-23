@@ -1,10 +1,10 @@
 ---
 title: "What I learnt today from reading gems' code"
-created_at: 2017-06-21 16:11:27 +0200
+created_at: 2017-06-23 08:11:27 +0200
 kind: article
-publish: false
-author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+publish: true
+author: Pankowecki
+tags: [ 'chillout', 'sidekiq', 'gems', 'activesupport' ]
 newsletter: :arkency_form
 ---
 
