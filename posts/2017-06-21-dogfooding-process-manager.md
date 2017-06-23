@@ -36,6 +36,12 @@ class CateringMatch
     # caterer_confirmed
     # customer_confirmed
 
+    def self.get_by_order_id(order_id)
+      transaction do
+        yield lock.find_or_create_by(order_id: order_id)
+      end
+    end
+
     def complete?
       caterer_confirmed? && customer_confirmed?
     end
@@ -48,18 +54,18 @@ class CateringMatch
 
   def call(event)
     order_id = event.data(:order_id)
-    state = State.find_or_create_by(order_id: order_id)
+    State.get_by_order_id(order_id) do |state|
+      case event
+      when CustomerConfirmedMenu
+        state.update_column(:customer_confirmed, true)
+      when CatererConfirmedMenu
+        state.update_column(:caterer_confirmed, true)
+      end
 
-    case event
-    when CustomerConfirmedMenu
-      state.update_column(:customer_confirmed, true)
-    when CatererConfirmedMenu
-      state.update_column(:caterer_confirmed, true)
+      command_bus.(ConfirmOrder.new(data: {
+        order_id: order_id
+      })) if state.complete?
     end
-
-    command_bus.(ConfirmOrder.new(data: {
-      order_id: order_id
-    })) if state.complete?
   end
 end
 ```
