@@ -20,17 +20,17 @@ If you wonder how it works I can provide you a very quick tour based on the [The
 
 1. First, arriving data is written to a WAL (Write Ahead Log). The WAL is a write-optimized storage format that allows for writes to be durable, but not easily queryable. Writes to the WAL are appended to segments of a fixed size.
 
-  The WAL is organized as a bunch of files that look like _000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches certain size, it is closed and a new one is opened.
+    The WAL is organized as a bunch of files that look like _000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches certain size, it is closed and a new one is opened.
 
 2. The database has an in-memory cache of all the data written to WAL. In case of crash and restart this cache is recreated from scratch based on the data written to WAL file.
 
-  When a write comes it is written to a WAL file, synced and added to an in-memory index.
+    When a write comes it is written to a WAL file, synced and added to an in-memory index.
 
 3. From time to time (based on both size and time interval) the cache of latest data is snapshotted to disc (as Time-Structured Merge Tree File).
 
-  The DB also needs to clear the in-memory cache and can clear WAL file.
+    The DB also needs to clear the in-memory cache and can clear WAL file.
 
-  The structure of these TSM files looks very similar to an SSTable in LevelDB or other LSM Tree variants.
+    The structure of these TSM files looks very similar to an SSTable in LevelDB or other LSM Tree variants.
 
 4. In the background these files can be compacted and merged together to form bigger files.
 
