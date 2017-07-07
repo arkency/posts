@@ -5,6 +5,7 @@ kind: article
 publish: false
 author: Robert Pankowecki
 tags: [ 'chillout', 'influxdb' ]
+img: ruby-influxdb-chillout/pdfs_orders2.png
 ---
 
 InfluxDB is an open-source time series database, written in Go. It is optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics and real-time analytics.
