@@ -49,6 +49,7 @@ For me personally, [influxdb-ruby](https://github.com/influxdata/influxdb-ruby) 
 ### writes
 
 ```
+#!ruby
 require 'influxdb'
 influxdb = InfluxDB::Client.new
 influxdb.write_point(, {
@@ -78,6 +79,7 @@ However, InfluxQL query language (similar to SQL but not really it) really shine
 #### raw data using influxdb console
 
 ```
+#!sql
 SELECT
   sum(completed)/sum(started) AS ratio
 FROM orders
