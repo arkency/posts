@@ -1,14 +1,14 @@
 ---
 title: "Using influxdb with ruby"
-created_at: 2017-07-07 15:12:05 +0200
+created_at: 2017-07-10 17:12:05 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'influxdb' ]
 img: ruby-influxdb-chillout/pdfs_orders2.png
 ---
 
-InfluxDB is an open-source time series database, written in Go. It is optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics and real-time analytics.
+InfluxDB is an open-source time series database, written in Go. It is optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics, and real-time analytics.
 
 We use it in [chillout](https://get.chillout.io) for storing business and performance metrics sent by our [collector](https://github.com/chilloutio/chillout).
 
@@ -20,9 +20,9 @@ If you wonder how it works I can provide you a very quick tour based on the [The
 
 1. First, arriving data is written to a WAL (Write Ahead Log). The WAL is a write-optimized storage format that allows for writes to be durable, but not easily queryable. Writes to the WAL are appended to segments of a fixed size.
 
-    The WAL is organized as a bunch of files that look like _000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches certain size, it is closed and a new one is opened.
+    The WAL is organized as a bunch of files that look like _000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches a certain size, it is closed and a new one is opened.
 
-2. The database has an in-memory cache of all the data written to WAL. In case of crash and restart this cache is recreated from scratch based on the data written to WAL file.
+2. The database has an in-memory cache of all the data written to WAL. In a case of a crash and restart this cache is recreated from scratch based on the data written to WAL file.
 
     When a write comes it is written to a WAL file, synced and added to an in-memory index.
 
@@ -32,11 +32,11 @@ If you wonder how it works I can provide you a very quick tour based on the [The
 
     The structure of these TSM files looks very similar to an SSTable in LevelDB or other LSM Tree variants.
 
-4. In the background these files can be compacted and merged together to form bigger files.
+4. In the background, these files can be compacted and merged together to form bigger files.
 
-[The documentation](http://docs.influxdata.com/influxdb/v1.2/concepts/storage_engine/) has a nice historical overview how previous version of InfluxDB tried to use LevelDB and BoltDB as underlying engines but it was not enough for most demanding scenarios.
+[The documentation](http://docs.influxdata.com/influxdb/v1.2/concepts/storage_engine/) has a nice historical overview how previous versions of InfluxDB tried to use LevelDB and BoltDB as underlying engines but it was not enough for the most demanding scenarios.
 
-I must admin that I never really understood very deeply how DBs work under the hood and what are the differences between them (from the point of underlying technology and design, not from the point of APIs, query languages and features).
+I must admin that I never really understood very deeply how DBs work under the hood and what are the differences between them (from the point of underlying technology and design, not from the point of APIs, query languages, and features).
 
 The book that I mentioned [Designing Data Intensive Applications](https://www.amazon.com/gp/product/1449373321/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449373321&linkCode=as2&tag=arkency-20&linkId=2d9f6564fa4056f6f6966bf3400049b0) really helped me understand it.
 
@@ -73,7 +73,7 @@ The difference between tags and values is that tags are always automatically ind
 
 ## reads
 
-However InfluxQL query language (similar to SQL but not really it) really shines when it comes to returning data grouped by time periods, which is great for metrics.
+However, InfluxQL query language (similar to SQL but not really it) really shines when it comes to returning data grouped by time periods (notice `GROUP BY time(1d)`), which is great for metrics and visualizing.
 
 #### raw data using influxdb console
 
