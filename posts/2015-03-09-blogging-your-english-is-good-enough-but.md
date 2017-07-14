@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :blogging_book
+tags: [ 'blog', 'blogging']
 ---
 
 English may be one of the reasons you’re not blogging. Here are some tips to change this thinking. TLDR: You English is good enough, don’t worry.

@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :blogging_book
+tags: [ 'blog', 'blogging']
 ---
 
 I was wondering why only few programmers actively blog, so I asked for reasons on Twitter. Here are the responses.

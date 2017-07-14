@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: :react_books
-tags: [ 'blog', 'nanoc']
+tags: [ 'blog', 'nanoc', 'blogging']
 ---
 
 There are many possible blogging platforms out there to be used, yet we decided not to use any of them.

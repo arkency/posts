@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :skip
+tags: [ 'blog', 'blogging']
 ---
 
 Slack (or any other team communication tool) may be a good source for your blogposts. 
@@ -21,9 +22,3 @@ Here are some techniques which may help you in turning the Slack conversations i
 - if your colleague wrote something interesting on Slack, encourage them to wrap it as a blogpost - suggest the title, focus on how useful it may be for others
 - look at what you wrote today on Slack - does it have some interesting value? Ask your team if this could make a blogpost.
 - prepare a blogpost based on what others wrote. If they feel blocked to blog on their own, show them how easy it is. Grab their messages, create a blogpost, send them the draft if they're OK with it. Publish.
-
-**The book**
-
-Would you like to blog more? Did you like this Slack blogging tip? There's more such tips in the ["Blogging for busy programmers"](https://arkency.dpdcart.com/product/106667) book.
-
-<a href="https://arkency.dpdcart.com/product/106667"><img style="display:block; margin: 0 auto;" src="<%= src_fit("blogging-small.png") %>" width="40%" /></a>

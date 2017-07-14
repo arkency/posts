@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :blogging_book
+tags: [ 'blog', 'blogging']
 ---
 
 Time constraints seems to be the main reason for not blogging more often. 
