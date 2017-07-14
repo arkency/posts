@@ -32,6 +32,7 @@ Assuming you want store API keys (or passwords for SSL ceritifcate files) what a
 * Every 3rd party app has access to this key. That includes all those cloud-based apps for storing your code, rating your code, or CIs running the tests. Even if you never have a leak, you can't be sure they don't have a breach in security one day. After all, they are very good target.
 * Wrong server configuration can lead to exposing this file. There has been historical cases where attackers used `../../something/else` as file names, parameter names to read certain files on servers. Not that likely in Rails environment, but who knows.
 * In short: when the project code is leaked, your API key is leaked.
+* **Least safe**
 
 ## Save in ENV
 
@@ -96,7 +97,7 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
   * DB leak
   * ENV or code leak, which contain the secret you use for encryption
 * If only one of them happens, that's not enough.
-* Safest approach
+* **The safest approach**
 
 #### Cons
 
