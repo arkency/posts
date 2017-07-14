@@ -4,7 +4,7 @@ created_at: 2017-07-14 13:48:33 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'security', 'rails', 'api' ]
 newsletter: :arkency_form
 ---
 
@@ -23,10 +23,6 @@ Assuming you want store API keys (or passwords for SSL ceritifcate files) what a
 #config/environments/production.rb
   config.mailchimp_api_key = "ABCDEF"
 ```
-
-#### Pros:
-
-* Easy
 
 #### Cons:
 
@@ -73,7 +69,7 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 
 #### Cons
 
-* If you ever send Group as json, via API, or serialize to other place, you might accidentally leak the API key as well.
+* If you ever send `Group` as json, via API, or serialize to other place, you might accidentally leak the API key as well. Take caution to avoid it.
 * If your database or database backup leaks, the keys leaks as well. This can especially happen when developers download backups or use them for development.
 
 ## Save in DB and encrypt (secret in code or in ENV)
@@ -99,7 +95,9 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
   * DB leak
   * ENV or code leak, which contain the secret you use for encryption
 * If only one of them happens, that's not enough.
+* Safest approach
 
 #### Cons
 
-* a bit more complicated, but not much
+* A bit more complicated, but not much
+* Your test might be a bit slower when you strongly encrypt/decrypt in most important models, which are used a lot
