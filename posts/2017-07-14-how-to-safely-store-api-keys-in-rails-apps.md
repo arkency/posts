@@ -76,7 +76,7 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 * If you ever send Group as json, via API, or serialize to other place, you might accidentally leak the API key as well.
 * If your database or database backup leaks, the keys leaks as well. This can especially happen when developers download backups or use them for development.
 
-## Save in DB and encrypt (in code or in ENV)
+## Save in DB and encrypt (secret in code or in ENV)
 
 #### How
 
@@ -103,4 +103,3 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 #### Cons
 
 * a bit more complicated, but not much
-*
