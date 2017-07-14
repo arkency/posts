@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'security', 'rails', 'api' ]
 newsletter: :arkency_form
+img: "ruby-store-api/api-keys-rails.png"
 ---
 
 Inspired by [a question on reddit: Can you store user API keys in the database?](https://www.reddit.com/r/rails/comments/6n63ql/can_you_store_user_api_keys_in_the_database/) I decided to elaborate just a little bit on this topic.
