@@ -30,6 +30,7 @@ Assuming you want store API keys (or passwords for SSL ceritifcate files) what a
 
 #### Cons:
 
+* Won't work with dynamic keys provided by users of your app
 * Every developer working on your app knows API keys. This can bite you later when that person leaves or is fired. And I doubt you rotate your API keys regularly. That includes every notebook your developers have, which can be stolen (make sure it has encrypted disc) or gained access to.
 * Every 3rd party app has access to this key. That includes all those cloud-based apps for storing your code, rating your code, or CIs running the tests. Even if you never have a leak, you can't be sure they don't have a breach in security one day. After all, they are very good target.
 * Wrong server configuration can lead to exposing this file. There has been historical cases where attackers used `../../something/else` as file names, parameter names to read certain files on servers. Not that likely in Rails environment, but who knows.
@@ -46,16 +47,60 @@ config.mailchimp_api_key = ENV.fetch('MAILCHIMP_API_KEY')
 
 #### Pros:
 
+* Won't work with dynamic keys provided by users of your app
 * Relatively easy. On Heroku you can configure production variables in their panel. For development and test environment you can use [dotenv](https://github.com/bkeepers/dotenv) which will set environment based on configuration files. You can keep your development config in a repository and share it with your whole team.
 
 #### Cons:
 
-* Coming soon...
+* If your `ENV` leaks due to a security bug, you have a problem.
 
 ## Save in DB
 
-Coming soon...
+#### How
 
-## Save in DB and encrypt
+```
+#!ruby
+class Group < ApplicationRecord
+end
 
-Coming soon...
+Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
+```
+
+#### Pros
+
+* Easy
+* Works with dynamic keys
+
+#### Cons
+
+* If you ever send Group as json, via API, or serialize to other place, you might accidentally leak the API key as well.
+* If your database or database backup leaks, the keys leaks as well. This can especially happen when developers download backups or use them for development.
+
+## Save in DB and encrypt (in code or in ENV)
+
+#### How
+
+```
+#!ruby
+class Group < ApplicationRecord
+  attr_encrypted_options.merge!(key: ENV.fetch('MAILCHIMP_API_KEY'))
+  attr_encrypted :host
+end
+
+Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
+```
+
+* use [attr_encrypted](https://github.com/attr-encrypted/attr_encrypted)
+* and already mentioned [dotenv](https://github.com/bkeepers/dotenv)
+
+#### Pros
+
+* For the sensitive API key to be leaked, two things needs to happen:
+  * DB leak
+  * ENV or code leak, which contain the secret you use for encryption
+* If only one of them happens, that's not enough.
+
+#### Cons
+
+* a bit more complicated, but not much
+*
