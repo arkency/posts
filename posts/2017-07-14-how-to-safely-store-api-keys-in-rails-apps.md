@@ -83,8 +83,8 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 ```
 #!ruby
 class Group < ApplicationRecord
-  attr_encrypted_options.merge!(key: ENV.fetch('MAILCHIMP_API_KEY'))
-  attr_encrypted :host
+  attr_encrypted_options.merge!(key: ENV.fetch('ATTR_ENCRYPTED_SECRET'))
+  attr_encrypted :mailchimp_api_key
 end
 
 Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
