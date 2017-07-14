@@ -12,9 +12,13 @@ I saw a great question on reddit which I am gonna quote and try to provide a few
 
 
 > Ran in to a scenario for a second or 3rd time today and I'm stumped as how to handle it.
+
 > We run a ton of stuff as background workers, pretty standard stuff, broken up in to a few priority queues.
+
 > Every now and then one of our jobs fails and starts running for a long time - usually for reasons outside of our control - our connection to S3 drops or as it happened today - our API connection to our mail system was timing out.
+
 > So jobs that normally run in a second or two are now taking 60 seconds and holding a worker for that time. Enough of those jobs quickly saturate our available workers and no other work gets done. The 60 second timeout hits for those in-process jobs, they get shuffled to the retry queue, a few smaller jobs process through the available workers until the queued jobs pull in enough of the failing jobs to again saturate the available workers.
+
 > I'd think this would be a pattern that other systems would have and there would be a semi-obvious solution for it - I've come up empty handed. My thought was to separate the workers by queue and balance those on different worker jobs but then that still runs the risk of saturating a specific queue's workers.
 
 <!-- more -->
