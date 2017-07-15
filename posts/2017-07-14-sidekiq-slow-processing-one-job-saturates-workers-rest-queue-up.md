@@ -37,6 +37,13 @@ Here are your options:
 
     Have machine one work on queues A,B,C,D and machine two work on queues E,F,G,H.
 
+* Use [Circuit Breaker](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) pattern.
+
+    > Circuit breaker is used to detect failures and encapsulates logic of preventing a failure to reoccur constantly
+
+    * https://github.com/Shopify/semian
+    * https://github.com/orgsync/stoplight
+
 * Keep your queues in two reverse orders
 
     I am not sure if that's possible with Sidekiq but it was possible with Resque. Most of our machines were processing jobs in normal priority: A,B,C,D,E,F,G. But there was one machine configured to process them in reverse: G,F,E,D,C,B,A.
