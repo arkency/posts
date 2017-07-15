@@ -8,7 +8,7 @@ tags: [ 'sidekiq' ]
 newsletter: :arkency_form
 ---
 
-I saw a great question on reddit which I am gonna quote and try to provide a few possible answers.
+I saw [a great question on reddit](https://www.reddit.com/r/rails/comments/6mp1fi/help_how_to_handle_sidekiq_processing_when_one/) which I am gonna quote and try to provide a few possible answers.
 
 
 > Ran in to a scenario for a second or 3rd time today and I'm stumped as how to handle it.
@@ -28,6 +28,8 @@ Here are your options:
 * Lower your timeouts
 
     Keep monitoring averages and percentiles of how long it takes to finish a certain job in your system (using [chillout](https://get.chillout.io) or any other metric collector). This will give you a better insight into how long is normal for this task to take and what timeout you should set.
+
+    Prefer using [configurable, lower-level network timeouts provided directly by libraries](http://www.mikeperham.com/2015/05/08/timeout-rubys-most-dangerous-api/) over `Timeout` module.
 
 * Pause a queue.
 
