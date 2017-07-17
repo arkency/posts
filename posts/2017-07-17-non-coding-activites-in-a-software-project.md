@@ -2,7 +2,7 @@
 title: "Non-coding activities in a software project"
 created_at: 2017-07-17 15:25:30 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
