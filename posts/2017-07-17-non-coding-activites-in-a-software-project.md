@@ -11,6 +11,8 @@ Recently in our project, we came up with a list of non-coding activities. Those 
 
 <!-- more -->
 
+If we tend to forget them, then there's a risk that someone else will introduce a process around those activities. Sometimes it may mean new people will be brought so that they "manage" those activities. In my opinion, the more can be done by a developer the better, because we don't introduce non-technical people to the communication loop.
+
 * read communication on pivotal (and optionally reply)
 * read communication on slack (and optionally reply)
 * build/monitoring failures
