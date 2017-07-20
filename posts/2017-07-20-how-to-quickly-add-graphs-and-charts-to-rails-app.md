@@ -12,7 +12,7 @@ When how to visualize data in your Rails app there are certain factors that you 
 
 * Static graphs which generate images are out of question. They are not any simpler to use, install or maintain and are less usable. The ability to toggle and highlight is just a necessity in XXI century. Thus our options are limited to charts generated with JavaScript.
 * You are probably working for a startup with monetary constraints so using libraries which cost $200 is something might want to avoid.
-* You would prefer something looking good out of the box, which can also be easily styled by designers to follow the design of the whole app.
+* You would prefer something looking good out of the box, which can also be easily styled by designers to follow the look&feel of the whole app.
 * You would like something maintained so it continues working in the future with newer browser versions without spending much time in upgrades.
 
 <!-- more -->
