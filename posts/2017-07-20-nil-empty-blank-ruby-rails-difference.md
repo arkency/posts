@@ -8,7 +8,7 @@ tags: [ 'ruby', 'nil', 'empty', 'blank' ]
 newsletter: :arkency_form
 ---
 
-There is `nil?, empty?, blank?
+There are plenty of options available. Let's evaluate their usefulness and potential problems that they bring to the table.
 
 <!-- more -->
 
@@ -245,20 +245,7 @@ car.blank?
 # => false
 ```
 
-## `present?`
-
-* `present?` is just a negation of `blank?` and can be used on anything.
-
-```ruby
-class Object
-  # An object is present if it's not blank.
-  def present?
-    !blank?
-  end
-end
-```
-
-* No number or Time is blank:
+* No number or Time is blank. Frankly I don't know why these methods were implemented separately here and why the implementation from `Object` is not enough. Perhaps for speed of not checking if they have `empty?` method which they don't...
 
 ```
 #!ruby
@@ -274,6 +261,20 @@ class Time #:nodoc:
   #   Time.now.blank? # => false
   def blank?
     false
+  end
+end
+```
+
+## `present?`
+
+* `present?` is just a negation of `blank?` and can be used on anything.
+
+```ruby
+#! ruby
+class Object
+  # An object is present if it's not blank.
+  def present?
+    !blank?
   end
 end
 ```
