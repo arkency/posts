@@ -74,8 +74,6 @@ end
 
 ## Pass to view and javascript
 
-Here we load
-
 ```
 #!html+erb
 <div id="chart" style="width: auto; height: 600px;"></div>
