@@ -96,6 +96,7 @@ This is where Rails comes with ActiveSupport extensions and defines `blank?` Let
 
 ## `blank?`
 
+* Provided by Rails
 * `nil` and `false` are obviously blank.
 
 ```
@@ -267,6 +268,7 @@ end
 
 ## `present?`
 
+* Provided by Rails
 * `present?` is just a negation of `blank?` and can be used on anything.
 
 ```ruby
@@ -281,7 +283,7 @@ end
 
 ## `presence`
 
-Sometimes you would like to write a logic such as:
+Provided by Rails. Sometimes you would like to write a logic such as:
 
 ```
 #!ruby
