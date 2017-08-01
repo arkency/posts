@@ -54,16 +54,16 @@ We decided to call it "Event-Driven Rails" because we believe "Domain events" is
 
 Just as learning new frontend frameworks and techniques requires certain amount of unlearning or re-mapping, similary DDD will re-orient you to focus on finding and tackling complexity, modeling business processes and finding what's important in it, what events occur, instead of storing and transforming the state via database.
 
-####
+#### Notes to myself
 
-Notes to myself:
-
-Unlearn, unfocus on CRUD, forms and saving. More focus on business processes
-React - unfocus on forms, focus on interactions, more dynamic UIs which make easier to finish a task
-
-
-.net / java / php discovered DDD invented, discovered, talked for years
-not that popular in Rails community because startups
-but what if your project succeeds for years
-but DDD costs more.
- no, it does not.
+* Mention what's in the book?
+* Mention using rails underlying solutions?
+* Mention RES?
+* Mention next blog-post about something from Ruby Onward? Maybe EventIDE?
+* Unlearn, unfocus on CRUD, forms and saving. More focus on business processes
+* React - unfocus on forms, focus on interactions, more dynamic UIs which make easier to finish a task
+* .net / java / php discovered DDD invented, discovered, talked for years
+* not that popular in Rails community because startups
+* but what if your project succeeds for years
+* but DDD costs more.
+  * no, it does not.
