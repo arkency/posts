@@ -274,3 +274,105 @@ I haven't yet figured out what Replies are used for. It seems interesting.
 
 ### File structure
 
+So far we haven't looked at these files in `controlers` directory. I wonder what's there.
+
+```
+│   ├── controls
+│   │   ├── account.rb
+│   │   ├── commands
+│   │   │   ├── close.rb
+│   │   │   ├── deposit.rb
+│   │   │   ├── open.rb
+│   │   │   └── withdraw.rb
+│   │   ├── customer.rb
+│   │   ├── events
+│   │   │   ├── closed.rb
+│   │   │   ├── deposited.rb
+│   │   │   ├── opened.rb
+│   │   │   ├── withdrawal_rejected.rb
+│   │   │   └── withdrawn.rb
+│   │   ├── id.rb
+│   │   ├── message.rb
+│   │   ├── money.rb
+│   │   ├── position.rb
+│   │   ├── replies
+│   │   │   └── record_withdrawal.rb
+│   │   ├── stream_name.rb
+│   │   ├── time.rb
+│   │   └── version.rb
+│   ├── controls.rb
+```
+
+### Controls
+
+```
+#!ruby
+lib/account_component/controls/commands/close.rb
+module AccountComponent
+  module Controls
+    module Commands
+      module Close
+        def self.example
+          close = AccountComponent::Messages::Commands::Close.build
+
+          close.account_id = Account.id
+          close.time = Controls::Time::Effective.example
+
+          close
+        end
+```
+
+```
+#!ruby
+# lib/account_component/controls/events/withdrawn.rb
+module AccountComponent
+  module Controls
+    module Events
+      module Withdrawn
+        def self.example
+          withdrawn = AccountComponent::Messages::Events::Withdrawn.build
+
+          withdrawn.withdrawal_id = ID.example
+          withdrawn.account_id = Account.id
+          withdrawn.amount = Money.example
+          withdrawn.time = Controls::Time::Effective.example
+          withdrawn.processed_time = Controls::Time::Processed.example
+
+          withdrawn.transaction_position = Position.example
+
+          withdrawn
+        end
+```
+
+```
+#!ruby
+# lib/account_component/controls/account.rb
+module AccountComponent
+  module Controls
+    module Account
+      def self.example(balance: nil, transaction_position: nil)
+        balance ||= self.balance
+
+        account = AccountComponent::Account.build
+
+        account.id = id
+        account.balance = balance
+        account.opened_time = Time::Effective::Raw.example
+
+        unless transaction_position.nil?
+          account.transaction_position = transaction_position
+        end
+
+        account
+      end
+
+      module Closed
+        def self.example
+          account = Account.example
+          account.closed_time = Time::Effective::Raw.example
+          account
+        end
+      end
+```
+
+It looks to me like these are helpers that help you build exemplary data, maybe test data. Maybe some kind of builders.
