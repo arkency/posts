@@ -101,4 +101,6 @@ Next week we are going to release our newest book "Domain-Driven Rails".
   </a>
 </div>
 
+It already has 140 pages and we've simply waited too long with publishing. So many readers could have already benefited from it.
+
 Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.
