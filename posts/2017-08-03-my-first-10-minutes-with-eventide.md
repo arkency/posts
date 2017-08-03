@@ -165,13 +165,14 @@ What I recognized immediately was:
 * getting account in its current version based on historically stored domain events.
 
 ```
-#!
+#!ruby
 account, version = store.fetch(account_id, include: :version)
 ```
 
 * saving new domain events in the account stream using optimistic concurrency (we expect the version has not changed since we got it last time)
 
 ```
+#!ruby
 write.(opened, stream_name, expected_version: version)
 ```
 
