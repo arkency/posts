@@ -71,12 +71,14 @@ In this case I realized that I can refactor the payment process as:
 
 * reacts to `PaymentPaid`, `OrderCompleted`, `OrderCompletionFailure`
 * when both subsystems have success and it receives `PaymentPaid`, `OrderCompleted`, it can trigger `CapturePayment` command (in credit card payments the process has 2 phases: autorization, which reserves the money, and capturing, which actually confirms you want to receive them).
+
+    <%= img_fit("ddd-rails-ruby-saga-clicked/saga_diagram_ok_1.png") %>
+
 * when the `Payment` is _Paid_ but we could not complete our `Order` and got `OrderCompletionFailure` for a brief moment of time (temporally) we have discrepancy between two sub-systems. But DDD made me realize this is a natural situation. More importantly DDD helped me realized this is a daily routine in businesses. There is never 100% agreement with the money you got and Orders you shipped/delivered. It just takes time.
 
-  This might be obvious for you if you work on e-commerce system selling normal goods. But in systems dealing with virtual goods (book, coupons, accesses, videos, streaming) I noticed that the teams rarely make that distinction. The discrepancy can be easily fixed by triggering Release/Refund for the payment.
+    This might be obvious for you if you work on e-commerce system selling normal goods. But in systems dealing with virtual goods (book, coupons, accesses, videos, streaming) I noticed that the teams rarely make that distinction. The discrepancy can be easily fixed by triggering release/refund command for the payment. Just as you would do in normal business when you got the money but for some reason you could not send it to a customer.
 
-<%= img_fit("ddd-rails-ruby-saga-clicked/saga_diagram_ok_1.png") %>
-<%= img_fit("ddd-rails-ruby-saga-clicked/saga_diagram_fail_1.png") %>
+    <%= img_fit("ddd-rails-ruby-saga-clicked/saga_diagram_fail_1.png") %>
 
 ### Consequences
 
@@ -87,3 +89,16 @@ What does it do for your system design, how does it split the responsibilities?
 * _Orders_ deal only with the `Order`
   * it does not care how it was paid or not.
 * Saga orchestrates the process of keeping Payments and Orders in sync and compensates in case of failures.
+
+
+## Learn More
+
+Next week we are going to release our newest book "Domain-Driven Rails".
+
+<div style="margin:auto; width: 480px;">
+  <a href="/domain-driven-rails/">
+    <img src="//blog-arkency.imgix.net/domain-driven-rails-design/cover7-100.png?w=480&h=480&fit=max">
+  </a>
+</div>
+
+Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.
