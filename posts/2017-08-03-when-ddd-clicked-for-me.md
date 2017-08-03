@@ -2,7 +2,7 @@
 title: "When DDD clicked for me"
 created_at: 2017-08-03 10:08:44 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
 newsletter: :arkency_form
