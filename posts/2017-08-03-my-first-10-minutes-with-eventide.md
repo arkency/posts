@@ -15,7 +15,7 @@ newsletter: :arkency_form
 
 <!-- more -->
 
-### Structure
+### File structure
 
 My first thought was that there is quite interesting structure of directories:
 
@@ -248,3 +248,29 @@ Here is an interesting thing:
     write.reply(record_withdrawal)
   end
 ```
+
+### Replies
+
+Events and commands are messages in EventIDE. Apparently there is also one more class of messages: Replies.
+
+```
+#!ruby
+# lib/account_component/messages/replies/record_withdrawal.rb
+module AccountComponent
+  module Messages
+    module Replies
+      class RecordWithdrawal
+        include Messaging::Message
+
+        attribute :withdrawal_id, String
+        attribute :account_id, String
+        attribute :amount, Numeric
+        attribute :time, String
+        attribute :processed_time, String
+      end
+```
+
+I haven't yet figured out what Replies are used for. It seems interesting.
+
+### File structure
+
