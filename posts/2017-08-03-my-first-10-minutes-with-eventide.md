@@ -273,6 +273,99 @@ module AccountComponent
 
 I haven't yet figured out what Replies are used for. It seems interesting.
 
+### Model
+
+I wonder where is the logic for changing account balance or checking if the funds are sufficient for withdrawal. Let's find out.
+
+```
+#!ruby
+# lib/account_component/account.rb
+module AccountComponent
+  class Account
+    include Schema::DataStructure
+
+    attribute :id, String
+    attribute :customer_id, String
+    attribute :balance, Numeric, default: 0
+    attribute :opened_time, Time
+    attribute :closed_time, Time
+    attribute :transaction_position, Integer
+
+    def open?
+      !opened_time.nil?
+    end
+
+    def closed?
+      !closed_time.nil?
+    end
+
+    def deposit(amount)
+      self.balance += amount
+    end
+
+    def withdraw(amount)
+      self.balance -= amount
+    end
+
+    def current?(position)
+      return false if transaction_position.nil?
+
+      transaction_position >= position
+    end
+
+    def sufficient_funds?(amount)
+      balance >= amount
+    end
+  end
+end
+```
+
+### Projection
+
+It's interesting that even though the model is event sourced you don't see it when looking at it. Let's find the place responsible for rebuilding model state based on domain events.
+
+```
+#!ruby
+# lib/account_component/projection.rb
+module AccountComponent
+  class Projection
+    include EntityProjection
+    include Messages::Events
+
+    entity_name :account
+
+    apply Opened do |opened|
+      account.id = opened.account_id
+      account.customer_id = opened.customer_id
+
+      opened_time = Time.parse(opened.time)
+
+      account.opened_time = opened_time
+    end
+
+    apply Deposited do |deposited|
+      account.id = deposited.account_id
+
+      amount = deposited.amount
+
+      account.deposit(amount)
+
+      account.transaction_position = deposited.transaction_position
+    end
+
+    apply Withdrawn do |withdrawn|
+      account.id = withdrawn.account_id
+
+      amount = withdrawn.amount
+
+      account.withdraw(amount)
+
+      account.transaction_position = withdrawn.transaction_position
+    end
+
+    # ...
+```
+
 ### File structure
 
 So far we haven't looked at these files in `controlers` directory. I wonder what's there.
