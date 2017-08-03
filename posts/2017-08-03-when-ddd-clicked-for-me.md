@@ -69,9 +69,9 @@ In this case I realized that I can refactor the payment process as:
 
 #### Saga
 
-  * reacts to `PaymentPaid`, `OrderCompleted`, `OrderCompletionFailure`
-  * when both subsystems have success and it receives `PaymentPaid`, `OrderCompleted`, it can trigger `CapturePayment` command (in credit card payments the process has 2 phases: autorization, which reserves the money, and capturing, which actually confirms you want to receive them).
-  * when the `Payment` is _Paid_ but we could not complete our `Order` and got `OrderCompletionFailure` for a brief moment of time (temporally) we have discrepancy between two sub-systems. But DDD made me realize this is a natural situation. More importantly DDD helped me realized this is a daily routine in businesses. There is never 100% agreement with the money you got and Orders you shipped/delivered. It just takes time.
+* reacts to `PaymentPaid`, `OrderCompleted`, `OrderCompletionFailure`
+* when both subsystems have success and it receives `PaymentPaid`, `OrderCompleted`, it can trigger `CapturePayment` command (in credit card payments the process has 2 phases: autorization, which reserves the money, and capturing, which actually confirms you want to receive them).
+* when the `Payment` is _Paid_ but we could not complete our `Order` and got `OrderCompletionFailure` for a brief moment of time (temporally) we have discrepancy between two sub-systems. But DDD made me realize this is a natural situation. More importantly DDD helped me realized this is a daily routine in businesses. There is never 100% agreement with the money you got and Orders you shipped/delivered. It just takes time.
 
   This might be obvious for you if you work on e-commerce system selling normal goods. But in systems dealing with virtual goods (book, coupons, accesses, videos, streaming) I noticed that the teams rarely make that distinction. The discrepancy can be easily fixed by triggering Release/Refund for the payment.
 
