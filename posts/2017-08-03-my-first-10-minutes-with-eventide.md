@@ -10,8 +10,6 @@ newsletter: :arkency_form
 
 * https://eventide-project.org/
 * https://github.com/eventide-examples/account-component
-* Part of https://ruby-onward.org/ initiative
-  * same as https://github.com/arkency/rails_event_store
 
 <!-- more -->
 
