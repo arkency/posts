@@ -8,6 +8,8 @@ tags: [ 'ddd', 'eventide' ]
 newsletter: :arkency_form
 ---
 
+Recently I find out about EventIDE project and it looked really nice for me based on the initial documentation so I wanted have a small look inside. Here is what I found in a first few minutes without knowing anything about EventIDE so far.
+
 * https://eventide-project.org/
 * https://github.com/eventide-examples/account-component
 
@@ -468,3 +470,17 @@ module AccountComponent
 ```
 
 It looks to me like these are helpers that help you build exemplary data, maybe test data. Maybe some kind of builders.
+
+## Learn More
+
+Next week we are going to release our newest book "Domain-Driven Rails".
+
+<div style="margin:auto; width: 480px;">
+  <a href="/domain-driven-rails/">
+    <img src="//blog-arkency.imgix.net/domain-driven-rails-design/cover7-100.png?w=480&h=480&fit=max">
+  </a>
+</div>
+
+It already has 140 pages and we've simply waited too long with publishing. So many readers could have already benefited from it.
+
+Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.
