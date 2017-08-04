@@ -8,7 +8,13 @@ tags: [ 'ddd', 'eventide' ]
 newsletter: :arkency_form
 ---
 
-Recently I find out about EventIDE project and it looked really nice for me based on the initial documentation so I wanted have a small look inside. Here is what I found in a first few minutes without knowing anything about EventIDE so far.
+Recently I find out about Eventide project and it looked really nice for me based on the initial documentation so I wanted have a small look inside. Here is what I found in a first few minutes without knowing anything about Eventide so far.
+
+What's Eventide?
+
+> Microservices, Autonomous Services, Service-Oriented Architecture, and Event Sourcing Toolkit for Ruby with Support for Event Store and Postgres
+
+Sounds good to me!
 
 * https://eventide-project.org/
 * https://github.com/eventide-examples/account-component
