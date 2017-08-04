@@ -1,5 +1,5 @@
 ---
-title: "My first 10 minutes with EventIDE"
+title: "My first 10 minutes with Eventide"
 created_at: 2017-08-03 17:01:24 +0200
 kind: article
 publish: true
