@@ -153,6 +153,7 @@ Now, this kata is the base for for many exercises from our [Domain-Driven Rails 
 Here is part of one of the solutions from Event Sourcing spectrum.
 
 ```
+#!ruby
 class Product
   include AggregateRoot
 
