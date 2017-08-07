@@ -148,7 +148,42 @@ However, my implementation was... not the best.
 
 It took me quite some time, a lot of reading and experimenting to find out better ways to achieve it.
 
-Now, this kata is the base for for many exercises from our [Domain-Driven Rails book](/domain-driven-rails/) and [Rails/DDD workshops](/ddd-training/) and you can see several different approaches to the problem. They progressively go from more Rails-way spectrum to more DDD-way of solving the before-mentioned problems.
+Now, this kata is the base for for many exercises from our [Domain-Driven Rails book](/domain-driven-rails/) and [Rails/DDD workshops](/ddd-training/) and you can see several different approaches to the problem. They progressively go from more Rails-way spectrum to more DDD-way of solving the before-mentioned problems so you can see for yourself how the solution changes but the logic remains the same.
+
+Here is part of one of the solutions from Event Sourcing spectrum.
+
+```
+class Product
+  include AggregateRoot
+
+  def reserve(quantity:,)
+    raise QuantityTooBig unless @quantity_available >= quantity
+
+    apply(ProductReserved.strict(data: {
+      identifier: @identifier,
+      quantity: quantity,
+      order_number: order_number,
+    }))
+  end
+
+  private
+
+  def apply_strategy
+    -> (event) {
+      {
+        ProductReserved   => method(:reserved),
+        # other domain events ...
+      }.fetch(event.class).call(event)
+    }
+  end
+
+  def reserved(event)
+    quantity = event.data.fetch(:quantity)
+    @quantity_available -= quantity
+    @quantity_reserved  += quantity
+  end
+end
+```
 
 ## Learn More
 
