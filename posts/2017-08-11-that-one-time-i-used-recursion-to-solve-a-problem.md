@@ -19,7 +19,7 @@ You see... The iterators from Ruby's Enumerable and queries from ActiveRecord ar
 
 The story goes like this. Your platform sells a ticket to an event. It might be for example a race or a marathon or other something completely different. Some of those competitions are pro or semi-pro and they are announced and purchased even 2 years upfront.
 
-The attendants (or should I rather say sportspeople) need to provide sometimes quite a lot of additional, mandatory data that the organizer asks for. It can be the name of your team, your age, your personal best record, etc. That kind of data. Which can also change over time...
+The attendees (or should I rather say sportspeople) need to provide sometimes quite a lot of additional, mandatory data that the organizer asks for. It can be the name of your team, your age, your personal best record, etc. That kind of data. Which can also change over time...
 
 Also for many other kinds of events, the platform offers additional services such as insurance (in case an accident prevents you from going to an event) or postal delivery (lol, yep). Some kinds of those services require plenty of additional data as well. We don't ask for them before purchase because that would lower the conversion. So we ask about them after a purchase, on the very first page after you pay. However, some customers (so happy that they bought a ticket) don't provide this data immediately.
 
