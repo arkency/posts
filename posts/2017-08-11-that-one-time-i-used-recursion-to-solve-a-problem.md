@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'recursion' ]
 newsletter: :arkency_form
-img: "recursion-recursive-function-method-ruby-rails/recursion_ruby.jpg"
+img: "recursion-recursive-function-method-ruby-rails/recursion_ruby.png"
 ---
 
 Some time ago I was working on a problem and I could not find a satisfactory solution. But it all turned out to be much simpler when I reminded myself about a tool that I rarely use: recursive function.
