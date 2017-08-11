@@ -16,31 +16,31 @@ You see... The iterators from Ruby's Enumerable and queries from ActiveRecord ar
 
 ## The story
 
-The story goes like this. Your platform sells a ticket to a an event. It might be for example a race or a marathon or other something completely different. Some of those competitions are pro or semi-pro and they are announced and purchased even 2 years upfront.
+The story goes like this. Your platform sells a ticket to an event. It might be for example a race or a marathon or other something completely different. Some of those competitions are pro or semi-pro and they are announced and purchased even 2 years upfront.
 
 The attendants (or should I rather say sportspeople) need to provide sometimes quite a lot of additional, mandatory data that the organizer asks for. It can be the name of your team, your age, your personal best record, etc. That kind of data. Which can also change over time...
 
 Also for many other kinds of events, the platform offers additional services such as insurance (in case an accident prevents you from going to an event) or postal delivery (lol, yep). Some kinds of those services require plenty of additional data as well. We don't ask for them before purchase because that would lower the conversion. So we ask about them after a purchase, on the very first page after you pay. However, some customers (so happy that they bought a ticket) don't provide this data immediately.
 
-This can have various consequences. It might mean their insurance is not valid yet, it might mean that the organizer does not have all the necessary information about them. Or it might mean we can't send them those tickets via postal, like they wanted. But we don't want our customers to experience these problems. We want them to be happy and get what they paid for. So we have implemented reminders. From time to time they should receive an email to fill out missing data. But not too often (because that's annoying) and not rarely (because they might miss them).
+This can have various consequences. It might mean their insurance is not valid yet, it might mean that the organizer does not have all the necessary information about them. Or it might mean we can't send them those tickets via postal like they wanted. But we don't want our customers to experience these problems. We want them to be happy and get what they paid for. So we have implemented reminders. From time to time they should receive an email to fill out missing data. But not too often (because that's annoying) and not rarely (because they might miss them).
 
 Also... The reminders work best close to the purchase (just after it, when customers still remember what's all the fuss about) and close to the date of the actual event (you are more concerned about providing proper data 1 week before a match or a race than 1 year before yet). The reminders are obviously not sent anymore when you provide all the necessary data.
 
-I wanted to implement an algorithm that would schedule reminders progressively less often going from the moment purchase towards the event date. And similarly in the other direction from the event date back to sales date. And they both should meet somwehre in the middle. On timeline it would look like this.
+I wanted to implement an algorithm that would schedule reminders progressively less often going from the moment purchase towards the event date. And similarly in the other direction from the event date back to sales date. And they both should meet somewehre in the middle. On a timeline, it would look like this.
 
 <%= img_fit("recursion-recursive-function-method-ruby-rails/reminders-calendar-over-time.png") %>
 
 ## The problem
 
-At the beginning all of my approaches were were similar. Almost identical. I split the timeline in half. I iterated from left to right, doubling the distance in time for every reminder (up to 1 month). Similarly, I iterated from right to left, doubling as well.
+At the beginning all of my approaches were similar. Almost identical. I split the timeline in half. I iterated from left to right, doubling the distance in time for every reminder (up to 1 month). Similarly, I iterated from right to left, doubling as well.
 
-But there was a big problem with that solution. If often happened that two reminder in the middle were either:
+But there was a big problem with that solution. If often happened that two reminders in the middle were either:
 
 * too far away
   * the less annoying and problematic case.
   * because there was no reminder in the middle
   * it could be that some reminders were 50 days from each other
-  * event though we wanted 1 month to be max
+  * even though we wanted 1 month to be max
 * too close
   * the more annoying case
   * reminders could be 2 days from each other
@@ -52,7 +52,7 @@ I tried about 3 different approaches and all failed the same way.
 
 ## The solution
 
-You see... The problem was that I tried to iterate from left to right, from right to left and combine the solutions around the middle. What worked for me instead? Iterating from both sides at the same time.
+You see... The problem was that I tried to iterate from left to right, from right to the left and combine the solutions around the middle. What worked for me instead? Iterating from both sides at the same time.
 
 ```
 #!ruby
@@ -97,7 +97,7 @@ It works like this:
   * but maximally up to 1 month.
 * In every step there are 3 possible situations:
   * The amount of time between two previous reminders is soo big (`3*duration`) that we can add at least two reminders (`1*duration` from each side). We add the reminders and recursively try to deal with what amount of time we have left inside.
-  * The amount of time between two previous reminders is sufficient enough to add exactly 1 reminder in the middle of it. For example we have 76 days between reminders and duration one month. That's not enough to add two reminders separated by 1-month period. Instead we add 1 reminder exactly 38 days from the previous and from the next reminder. It's more than 1 month (which I wanted to be max) but that's ok. At least we don't have two reminders close to each other.
+  * The amount of time between two previous reminders is sufficient enough to add exactly 1 reminder in the middle of it. For example, we have 76 days between reminders and duration equals one month. That's not enough to add two reminders separated by 1-month period. Instead, we add 1 reminder exactly 38 days from the previous and from the next reminder. It's more than 1 month (which I wanted to be max) but that's ok. At least we don't have two reminders close to each other.
   * There is not enough time to add any reminder in between
 
 The whole solution is around 12 logical lines of code in total :)
