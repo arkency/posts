@@ -112,6 +112,7 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 * Edit `config/secrets.yml.enc` using `bin/rails secrets:edit` and commit + push the changes
 * Set `config.read_encrypted_secrets = true` at least in `config/environments/production.rb`
 * Use `Rails.application.secrets` in the application code
+* [Read more](https://www.engineyard.com/blog/encrypted-rails-secrets-on-rails-5.1)
 
 #### Pros
 
