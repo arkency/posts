@@ -103,3 +103,21 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 
 * A bit more complicated, but not much
 * Your test might be a bit slower when you strongly encrypt/decrypt in most important models, which are used a lot
+
+## Use encrypted Rails secrets
+
+#### How
+
+* Configure `RAILS_MASTER_KEY` env variable on your development and production environment
+* Edit `config/secrets.yml.enc` using `bin/rails secrets:edit` and commit + push the changes
+* Set `config.read_encrypted_secrets = true` at least in `config/environments/production.rb`
+* Use `Rails.application.secrets` in the application code
+
+#### Pros
+
+* Your API keys are encrypted
+* The keys are versioned using your version control system such as GIT
+
+#### Cons
+
+* Does not work with dynamic keys
