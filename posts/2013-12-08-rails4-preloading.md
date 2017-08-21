@@ -1,5 +1,5 @@
 ---
-title: "3 ways to do eager loading (preloading) in Rails&nbsp;3&nbsp;&&nbsp;4"
+title: "3 ways to do eager loading (preloading) in Rails&nbsp;3&nbsp;&&nbsp;4&nbsp;&&nbsp;5"
 created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: true
@@ -9,7 +9,7 @@ newsletter_inside: :arkency_short
 img: "preloading/header.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 description: "There are 3 ways to do Eager Loading in Rails: #includes, #preload, #eager_load. Want to know more about it? #CLICK HERE to visit Arkency Blog !!!"
-meta_title: "→  Eager Loading (preloading) - 3 ways to do it in Rails 3 & 4"
+meta_title: "→  Eager Loading (preloading) - 3 ways to do it in Rails 3 & 4 & 5"
 ---
 
 <%= img_fit("preloading/header.png") %>
@@ -319,7 +319,7 @@ I hope you get the idea :) But this is just a dream. Let's get back to reality..
 
 <%= inner_newsletter(item[:newsletter_inside]) %>
 
-## Rails 4 changes
+## Rails 4 & 5 changes
 
 ... and talk about what changed in Rails 4.
 
@@ -509,7 +509,7 @@ presence or absence of condition related to one of the preloaded table.
 `#eager_load` is using one big query with `LEFT JOIN` for each eager loaded
 table.
 
-In Rails 4 you should use `#references` combined with `#includes` if you
+In Rails 4 & 5 you should use `#references` combined with `#includes` if you
 have the additional condition for one of the eager loaded table.
 
 ## More
