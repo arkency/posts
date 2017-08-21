@@ -102,7 +102,7 @@ rxp =~ str >= 0
 
 ```
 #!ruby
-rng === obj → true or false click
+rng === obj → true or false
 ```
 
 Returns true if `obj` is an element of the range, false otherwise.
