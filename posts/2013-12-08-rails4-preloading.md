@@ -8,6 +8,8 @@ newsletter: :skip
 newsletter_inside: :arkency_short
 img: "preloading/header.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
+description: "There are 3 ways to do Eager Loading in Rails: #includes, #preload, #eager_load. Want to know more about it? #CLICK HERE to visit Arkency Blog !!!"
+meta_title: "→  Eager Loading (preloading) - 3 ways to do it in Rails 3 & 4"
 ---
 
 <%= img_fit("preloading/header.png") %>
@@ -87,7 +89,7 @@ User.eager_load(:addresses)
 ```
 
 It is a completely different story, isn't it? The whole mystery is that Rails
-has 2 ways of preloading data. One is using separate db queries to obtain the addtional
+has 2 ways of preloading data. One is using separate db queries to obtain the additional
 data. And one is using one query (with `left join`) to get them all.
 
 If you use `#preload`, it means you always want separate queries. If you use

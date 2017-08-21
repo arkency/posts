@@ -8,6 +8,8 @@ tags: [ 'domain', 'event', 'eventsourcing' ]
 newsletter: :skip
 newsletter: :arkency_form
 img: "events/eventsourcing.jpg"
+meta_title: "→ Event Sourcing - The Reasons Why To Use It"
+description: "Event Sourcing - We Explain The Biggest Advantage of Using It. Visit Our Blog and READ MORE !!!"
 ---
 
 <p>
