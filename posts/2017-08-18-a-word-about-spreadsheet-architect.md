@@ -35,7 +35,7 @@ Post.to_xlsx(instances: posts_array)
 or another way:
 
 ```
-#ruby
+#!ruby
 headers = ['Col 1','Col 2','Col 3']
 data = [[1,2,3], [4,5,6], [7,8,9]]
 SpreadsheetArchitect.to_xlsx(data: data, headers: headers)
