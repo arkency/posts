@@ -200,7 +200,7 @@ end
 # => "Your order has been verified and is awaiting shippment"
 ```
 
-Of course this is only for the cases when you don't feel that checking those conditions is a responsibility of the tested object and you don't want to implement is as method in its class.
+Of course this is only for the cases when you don't feel that checking those conditions is a responsibility of the tested object and you don't want to implement it as a method in its class.
 
 ## Your object
 
