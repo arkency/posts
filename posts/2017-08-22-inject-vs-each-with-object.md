@@ -1,6 +1,6 @@
 ---
 title: "inject vs each_with_object"
-created_at: 2017-08-22 13:30:53 +0200
+created_at: 2017-08-24 13:30:53 +0200
 kind: article
 publish: false
 author: Robert Pankowecki

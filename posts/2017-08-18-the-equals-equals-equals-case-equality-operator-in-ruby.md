@@ -1,8 +1,8 @@
 ---
 title: "The === (case equality) operator in Ruby"
-created_at: 2017-08-18 10:34:16 +0200
+created_at: 2017-08-23 10:34:16 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'equality' ]
 newsletter: :arkency_form
@@ -41,7 +41,8 @@ As you can see it works with any class which implements `===` operator. So I was
 ## Class / Module
 
 ```
-mod === obj → true or false
+#!ruby
+mod === obj #→ true or false
 ```
 
 `===` returns true if `obj` is an instance of `mod` or one of `mod`’s descendants. Of limited use for modules, but can be used to classify objects by class.
@@ -77,7 +78,7 @@ Numeric === "text"
 
 ```
 #!ruby
-rxp === str → true or false
+rxp === str #→ true or false
 ```
 
 Basically implemented as:
@@ -102,7 +103,7 @@ rxp =~ str >= 0
 
 ```
 #!ruby
-rng === obj → true or false
+rng === obj #→ true or false
 ```
 
 Returns true if `obj` is an element of the range, false otherwise.
