@@ -53,7 +53,7 @@ lower_to_upper = lower.inject({}) do |hash, char|
 end
 ```
 
-because `inject` requires that the memoized value provided for subsequent block calls (`hash` which initially is `{}`) is returned by previous block calls. So even though you constantly operate on the same object, you always need to return in the last line of provided block.
+because `inject` requires that the memorized value provided for subsequent block calls (`hash` which initially is `{}`) is returned by previous block calls. So even though you constantly operate on the same object, you always need to return in the last line of provided block.
 
 `each_with_object` on the other hand always calls the block with the same initial object that was passed as first argument to the method.
 
