@@ -18,9 +18,9 @@ I was interested in Hanami because they follow Clean Architecture principles. Th
 I've started my pet-project with Hanami and I like it! I decided to look for opportunities to contribute.
 Luca Guidi (founder of Hanami), [suggested](https://discourse.hanamirb.org/t/hanami-2-0-ideas/306/9) that for Hanami 2.0 it would be good to have Pub/Sub functionality implemented with Wisper gem.
 
-I like event-driven system, and I've been using Wisper for a while, so I created example of possible implementation. Luca suggested some improvements, but in general he liked it. After some iterations and discussions, he created a repository and [Anton Davydov](https://twitter.com/anton_davydov) (core dev of Hanami) and I started to work on gem called Hanami::Events. I enjoy working with Anton, it's a good way to learn something new.
+I like event-driven systems, and I've been using Wisper for a while, so I created an example of possible implementation. Luca suggested some improvements, but in general, he liked it. After some iterations and discussions, he created a repository and [Anton Davydov](https://twitter.com/anton_davydov) (core dev of Hanami) and I started to work on a gem called `Hanami::Events`. I enjoy working with Anton, it's a good way to learn something new.
 
-I think the long term goal for this gem is to be included into Hanami framework and provide flexible a solution for event-driven systems. We tried to keep our focus on flexibility. For example, developers can extend the gem by any custom adapter, or use existing ones. For now we have MemorySync, MemoryAsync and Redis adapters included into the gem. We have ideas to implement DB adapters and Anton wants to add Kafka adapter as well.
+I think the long term goal for this gem is to be included into Hanami framework and provide flexible a solution for event-driven systems. We tried to keep our focus on flexibility. For example, developers can extend the gem by any custom adapter, or use existing ones. For now, we have MemorySync, MemoryAsync and Redis adapters included into the gem. We have ideas to implement DB adapters and Anton wants to add Kafka adapter as well.
 This gem is still in an early stage but I think we have created a good foundation for future features.
 
 ### What was your most challenging or frustrating moment when working on hanami-events?
@@ -28,20 +28,20 @@ This gem is still in an early stage but I think we have created a good foundatio
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 > _-- Phil Karlton_
 
-I feel like we've been struggling with the second one. Naming things is hard. Especially considering the fact that we have ["Many Meanings of Event-Driven Architecture"](https://www.youtube.com/watch?v=STKCRSUsyP0). I like that talk by Martin Fowler. If somebody says "we have event-driven system", usually we need to ask more questions to clearly understand role of events in a system and how they're being used.
+I feel like we've been struggling with the second one. Naming things is hard. Especially considering the fact that we have ["Many Meanings of Event-Driven Architecture"](https://www.youtube.com/watch?v=STKCRSUsyP0). I like that talk by Martin Fowler. If somebody says "we have an event-driven system", usually we need to ask more questions to clearly understand the role of events in the system and how they're being used.
 
-We had to refactor code couple times just to change naming conventions. Also, Anton suggested to create definition for each keyword. It's a really good idea.
+We had to refactor code couple times just to change naming conventions. Also, Anton suggested creating a definition for each keyword. It was a really good idea.
 
 
-3## Where do you look for inspiration on how to design a good API for a high-level library with many adapters?
+### Where do you look for inspiration on how to design a good API for a high-level library with many adapters?
 
 We had a lot of good gems to get inspiration from (wisper, rails\_event\_store).
-Speaking about API for libraries, I prefer to start with something really simple, like MVP in startup world.
+Speaking about API for libraries, I prefer to start with something really simple, like MVP in a startup world.
 My idea was to solve one specific problem and make sure it works perfectly. When I have a simple well-tested solution I can add more features.
 
-In case of Hanami::Events it was as simple as: `broadcast` (or `publish`? :) and `subscribe` methods. You can not go wrong with those two.
+In case of `Hanami::Events` it was as simple as: `broadcast` (or `publish`? :) and `subscribe` methods. You can not go wrong with those two.
 Then we started to add more features: more adapters, allowed to inject custom logger, etc.
-In early stage Anton did all hard work and set that foundation for us.
+In the early stage, Anton did all hard work and set that foundation for us.
 
 By the way, it's a good idea to start using own gem when it’s on early stage. Anton tried to create Hanami app with `Hanami::Events` and found couple bugs which we already fixed.
 
@@ -57,31 +57,31 @@ Hanami feels really similar to Rails, especially if you use it with a basic MVC 
 
 I should mention that some ideas looked unusual at the beginning, but when I became more familiar with it, I noticed a lot of benefits.
 For example, in Hanami, controllers are Ruby modules that group actions. Actions are objects that respond to the `#call` method.
-The View layer is split into two pieces: template and view. Where view is a testable object that's responsible for rendering a template.
+The View layer is split into two pieces: template and view. Where a view is a testable object that's responsible for rendering a template.
 Hanami has nice documentation that should help dive into all the details.
 
 Speaking about Hanami-way of writing apps, I think it’s defined in description of the framework and [Architecture Overview](http://hanamirb.org/guides/1.0/architecture/overview/):
 
-> Hanami prioritises the use of plain objects over magical, over-complicated classes with too much responsibility
+> Hanami prioritizes the use of plain objects over magical, over-complicated classes with too much responsibility
 
 > Hanami is based on two principles: Clean Architecture and Monolith First.
 
 Clean Architecture is a hot topic. Robert C. Martin (Uncle Bob) is publishing his book "Clean Architecture" in October. I've pre-ordered one and really looking for it. I've been using this approach for a while I want to learn more from Uncle Bob.
 
-When they say “Monolith First”, they refer to Martin Fowler's article which suggests to start with Monolith and split it to microservices only if there's a need for that. Usually that happens when developers understand domain and complexity behind it so they can split it properly.
+When they say “Monolith First”, they refer to Martin Fowler's article which suggests to start with Monolith and split it to microservices only if there's a need for that. Usually, that happens when developers understand domain and complexity behind it so they can split it properly.
 
 
 ### Do you use some DDD techniques in your applications? If so, which ones do you find most useful and beneficial for your projects?
 
 Sure. I read all 3 books on DDD and [visited](https://www.youtube.com/watch?v=ed7qhvR7oAE) [your workshop](http://blog.arkency.com/ddd-training/) where I learned how to actually use DDD in Rails projects. It totally changed my way of thinking about designing applications. Your last book [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/) is a really good one too. I like the practical aspect of it.
 
-DDD brings a lot of benefits. First, most important and underestimated is ubiquitous language. I've seen many times where developers and project managers have misunderstandings because of different vocabulary for the same object. Also, I've seen developers use different names for the same things in code which is even worse.
+DDD brings a lot of benefits. First, most important and underestimated is ubiquitous language. I've seen many times where developers and project managers have misunderstandings because of different vocabulary for the same object. Also, I've seen developers use different names for the same things in code, which is even worse.
 
 I use the idea of Entities, Value objects and Repositories. Having those little PORO’s in your core domain is really beneficial.
 The idea of layered architecture works out pretty well too. It allows to decouple elements of a system. Also, I like to use events as a way to communicate between some parts of the application.
 
 I must admit that I don't use everything that DDD offers, I try to pick just what I need.
-I have architecture which is more similar to Clean Architecture, but as I dive into different architectures, I see more similarities.
+I have an architecture which is more similar to Clean Architecture, but as I dive into different architectures, I see more similarities.
 
 In apps that I create these days I usually have three layers:
 
@@ -92,13 +92,13 @@ In apps that I create these days I usually have three layers:
 As you mentioned in your book, it's just layers of the same cake :)
 But then we should keep in mind that layered cake should be sliced to pieces as well. That's where bounded contexts come into play. I try not to overcomplicate apps from the beginning, that split should happen naturally. The most important thing is not to miss that moment.
 
-### “Not to miss that moment” - I like it. And how do you not miss it exactly? What heuristics do you use to decide that a certain part of application should be extracted into a separate bounded context? What are the clues that we as developers should not miss?
+### “Not to miss that moment” - I like it. And how do you not miss it exactly? What heuristics do you use to decide that a certain part of an application should be extracted into a separate bounded context? What are the clues that we as developers should not miss?
 
 I can not miss opportunity to answer with “It depends” :)
-But it really does. Sometimes, if I know upfront that it’s going to be just a small app: portfolio website, “Proof of concept” project, etc, I follow “yagni” principle and try not to over engineer things.
+But it really does. Sometimes, if I know upfront that it’s going to be just a small app: portfolio website, “Proof of concept” project, etc, I follow _YAGNI_ principle and try not to over engineer things.
 But if it’s an app that supposed to grow to something bigger - it’s a good idea to invest time into flexible architecture.
 
-Usually I keep an eye on 2 sources of complexity that can lead to changes: business requirements and existing codebase.
+Usually, I keep an eye on 2 sources of complexity that can lead to changes: business requirements and existing codebase.
 
 Business requirements:
 
@@ -107,7 +107,7 @@ For example, one of my previous projects was related to child day care. Sounds e
 
 But as we started to dig into that domain, we figured out that it's huge. Schedules and notifications for parents. Payment collection and benefits calculation. Absence calculation, etc, etc.
 
-Every time we received request from business, we revisited our existing implementation, how it fits to new requirements? Which words do they used to describe new business processes? It returns us back to ubiquitous language. It's just great how much we can learn from domain experts. Usually after discussion with them I feel like I'm super overwhelmed, but new knowledge allows developers to architect solution properly. If you see that new words and definitions appear in requirements, make sure you understand meaning behind it. Is that a separate entity, or just an existing one but used in different context?
+Every time we received a request from the business, we revisited our existing implementation, how it fits to new requirements? Which words did they use to describe new business processes? It brings us back to the ubiquitous language. It's just great how much we can learn from domain experts. Usually, after a discussion with them, I feel like I'm super overwhelmed, but new knowledge allows developers to architect solution properly. If you see that new words and definitions appear in requirements, make sure you understand the meaning behind it. Is that a separate entity, or just an existing one but used in different context?
 Long story short: I try to keep an eye on complexity and new knowledge. Listen to domain experts. Revisit what I have. Constantly.
 
 Codebase:
@@ -115,8 +115,8 @@ Codebase:
 Sometimes we make decisions that are not exactly accurate because of many reasons: lack of domain knowledge, lack of programming skills, lack of time, etc.
 That's why I try to revise existing solutions from time to time.
 
-We can have a relatively simple domain, but business rules can be implemented in a way that it makes it hard to follow. In that case we want to refactor it to the smaller pieces. Knowledge of object-oriented design should help here. I found that [Sandi Metz rules](https://robots.thoughtbot.com/sandi-metz-rules-for-developers) help a lot. It sounds too simple to be true, right? But it helps. The benefit I see is that it shows areas where you probably have opportunity to refactor code and extract nice little clases with single responsibility out of one huge God object.
-Writing clean code helps to prevent future messes. It's much easier to add `if..else` statement to method with 50+ lines of code, than add it to method with 5 lines of code. It will be to obvious that you're just trying to hotfix something, instead of providing solid solution.
+We can have a relatively simple domain, but business rules can be implemented in a way that it makes it hard to follow. In that case, we want to refactor it to the smaller pieces. Knowledge of object-oriented design should help here. I found that [Sandi Metz rules](https://robots.thoughtbot.com/sandi-metz-rules-for-developers) help a lot. It sounds too simple to be true, right? But it helps. The benefit I see is that it shows areas where you probably have an opportunity to refactor code and extract nice little classes with single responsibility out of one huge God object.
+Writing clean code helps to prevent future messes. It's much easier to add `if..else` statement to a method with 50+ lines of code than add it to a method with 5 lines of code. It will be too obvious that you're just trying to hotfix something, instead of providing a solid solution.
 
 ### Do you work remotely? If so, was it hard to start? What are the potential traps for remote workers or remote companies and how can they avoid them?
 
@@ -156,14 +156,14 @@ Once they have a good understanding of a framework it's good to dig into languag
 
 Very often junior developers need guidance with soft skills as well. It's good to be able to communicate with team mates on a good level, not to have a problem with stand-ups and other meetings, to be able to show own strengths during an interview, etc.
 
-When a developer knows framework and language, it's good to help him to write not just code that works, but code that can be considered as clean code. At that moment I would show the ideas of Object-Oriented Design, Patterns and some general ideas of possible architectural decisions. It will help a developer to pass code review stage with fewer iterations. At that moment developer can be considered as a Middle level developer I think. But all companies are different so it's a good idea to have something like this: https://github.com/basecamp/handbook/blob/master/titles-for-programmers.md
+When a developer knows framework and language, it's good to help him to write not just code that works, but code that can be considered as clean code. At that moment I would show the ideas of Object-Oriented Design, Patterns and some general ideas of possible architectural decisions. It will help a developer to pass code review stage with fewer iterations. At that moment developer can be considered as a middle-level developer, I think. But all companies are different so it's a good idea to have something like this: https://github.com/basecamp/handbook/blob/master/titles-for-programmers.md
 
-### What do you think about Ukrainian Ruby community? I’ve been a guest at Pivorak meetup in Lviv and for me that was a splendid experience. Top-notch organization and plenty of friendly attendees to discuss with. I am not sure about other cities though. Can you shed some light.
+### What do you think about Ukrainian Ruby community? I’ve been a guest at Pivorak meetup in Lviv and for me, that was a splendid experience. Top-notch organization and plenty of friendly attendees to discuss with. I am not sure about other cities though. Can you shed some light?
 
-Yes, Pivorak is amazing. They created the unique environment for developers. It motivates, it makes you feel like you're part of something big. They bring amazing speakers.
+Yes, [Pivorak](https://www.facebook.com/pivorak/) is amazing. They created the unique environment for developers. It motivates, it makes you feel like you're part of something big. They bring amazing speakers.
 I met Piotr Solnica, creator of dry-rb there. Nick Sutterer (creator of Trailblazer) did a workshop on Trailblazer for us. I met Michal Papis - core developer of rvm. I learned a lot from my Ukrainian colleagues as well. It's definitely worth visiting.
 
-There is also RubyC conference - it's a big annual Ruby-conference in Ukraome. It's a really good one too. A lot of new ideas and interesting speakers there.
+There is also RubyC conference - it's a big annual Ruby-conference in Ukraine. It's a really good one too. A lot of new ideas and interesting speakers there.
 
 I know that in Kyiv there is a Ruby Meditation meetup which is quite popular too. I haven’t had a chance to visit it yet, but I would love to.
 
@@ -171,7 +171,7 @@ I feel like we have a strong Ruby community in Ukraine. I will be happy if more 
 
 ### What’s your strategy for releasing new features? For example, do you often use feature toggles? Do you monitor some key metric changes after a deploy?
 
-I prefer to release less features but more often. Of course "more often" depends on the structure of a company and the process of software delivery it has.
+I prefer to release fewer features but more often. Of course "more often" depends on the structure of a company and the process of software delivery it has.
 In general, I try to rely on tests and additional checks, for example, linters and code quality tools. If everything's green I can pass it to QA for regression and manual testing.
 
 I like the idea of feature toggle but it should be used really carefully. It looks good on paper, but when you have a complex system and too many toggles, the code can be really messy and contain a lot of duplication. It makes much harder to debug issues and follow the flow of the application. It's a powerful tool that should be used wisely and only if it's needed.
