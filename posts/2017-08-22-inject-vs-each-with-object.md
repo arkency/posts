@@ -1,8 +1,8 @@
 ---
 title: "inject vs each_with_object"
-created_at: 2017-08-24 13:30:53 +0200
+created_at: 2017-08-29 13:30:53 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'enumerable' ]
 newsletter: :arkency_form
@@ -32,7 +32,7 @@ Let's see the differences with some examples. Imagine you have a collection of o
 * You are building a new object (Hash `lower_to_upper`)
 * There is a fresh, starting point `{}`
 
-In such case `each_with_object` is very convenient.
+In such case, `each_with_object` is very convenient.
 
 ```
 #!ruby
@@ -53,15 +53,15 @@ lower_to_upper = lower.inject({}) do |hash, char|
 end
 ```
 
-because `inject` requires that the memoized value provided for subsequent block calls (`hash` which initially is `{}`) is returned by previous block calls. So even though you constantly operate on the same object, you always need to return in the last line of provided block.
+because `inject` requires that the memoized value provided for subsequent block calls (`hash` which initially is `{}`) is returned by previous block calls. So even though you constantly operate on the same object, you always need to return it in the last line of the provided block.
 
-`each_with_object` on the other hand always calls the block with the same initial object that was passed as first argument to the method.
+`each_with_object` on the other hand always calls the block with the same initial object that was passed first as first argument to the method.
 
 ## Example 2
 
-But let's say you already have an existing object that you would like to modify. In such case it would be usually preferable to just use `each` over `each_with_object` but `each_with_object` can be a bit shorter if you still need to return the changed object.
+But let's say you already have an existing object that you would like to modify. In such case, it would be usually preferable to just use `each` over `each_with_object` but `each_with_object` can be a bit shorter if you still need to return the changed object.
 
-All three versions below generate same result.
+All three versions below generate the same result.
 
 ```
 #!ruby
@@ -91,13 +91,13 @@ lower.each_with_object(mapping) do |char|
 end
 ```
 
-I would say that `each` is preferable because if you mutate existing collection, usually you don't need to return it. After all, whoever gave you that object as an argument, wherever it comes from, that place in code probably still has reference to this object.
+I would say that `each` is preferable if you mutate an existing collection, because usually you don't need to return it. After all, whoever gave you that object as an argument, wherever it comes from, that place in code probably still has reference to this object.
 
 ## Example 3
 
 This time you are not mutating internal state of an object but rather always creating a new one. The operation that you use always returns a new object.
 
-A most simple example can be `+` operator for numbers.
+The most simple example can be `+` operator for numbers.
 
 ```
 #!ruby
@@ -113,7 +113,7 @@ c = a + b
 # => 3
 ```
 
-There is no way to change the Integer object referenced by variable `a` into `3`. The only thing you can do is assign a different object into variable `a` or `b` or `c`.
+There is no way to change the Integer object referenced by variable `a` into `3`. The only thing you can do is assign a different object to variable `a` or `b` or `c`.
 
 It's an obvious example. But `Date` is a less obvious one.
 
@@ -217,3 +217,4 @@ end
 
 ## Learn more
 
+Soon we will be launching Ruby's Enumerable course on [DevMemo.io](https://devmemo.io). [Try it](https://devmemo.io) and subscribe if you like it.
