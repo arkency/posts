@@ -12,7 +12,7 @@ newsletter: :arkency_form
 A complete Rails Event Store solution consists of following gems:
 
 * **ruby\_event\_store** — core concepts and and mechanics of an event store
-* **rails\_event\_store** — thin wrapper over ruby_event_store with additions possible in Rails framework (like automatically capturing some of the request params into event metadata) and necessary glue to make it work out of the box
+* **rails\_event\_store** — thin wrapper over ruby\_event\_store with additions possible in Rails framework (like automatically capturing some of the request params into event metadata) and necessary glue to make it work out of the box
 * **rails\_event\_store\_active_record** — a database adapter based on ActiveRecord
 * **aggregate\_root** — library useful for making event sourced aggregates
 
@@ -50,14 +50,12 @@ Being sold to the idea of monorepo we had to figure out "The How". For sure we w
 We could think of 3 possible approaches:
 
 1. **git subtree merge**
-
 	* original commit SHA retained (refering to SHA from commit messages and refering to existing tags should work)
 	*  on a graph it is several roots going into one HEAD
 	* breaks file history as the paths after merge are different and it shows only the merge commit
 
 
 1. **git filter-branch and pull --allow-unrelated-histories**
-
 	* commit SHA changed as this is modifying history 😱
 	* on a graph it is several roots going into one HEAD as well
 	* file history works as paths are rewritten in commits
