@@ -19,7 +19,7 @@ A complete Rails Event Store solution consists of following gems:
 <!-- more -->
 ## The problem
 
-Until recently, each of the gems lived in a repository of it's own. That's how you usually develop a gem and what majority of tools assume. Bundler for example in of it's release-helping [Rake tasks](https://github.com/bundler/bundler/blob/master/lib/bundler/gem_helper.rb#L54-L57) provides a code for tagging git repo with gem version number for a RubyGems release.
+Until recently, each of the gems lived in a repository of it's own. That's how you usually develop a gem and what majority of tools assume. Bundler for example in its release-helping [Rake tasks](https://github.com/bundler/bundler/blob/master/lib/bundler/gem_helper.rb#L54-L57) provides a code for tagging git repo with gem version number for a RubyGems release.
 
 Each gem in it own's repository provides a separation and some gems like `aggregate_root` or `ruby_event_store` can be used completely on their own.
 
@@ -95,7 +95,7 @@ Sidenote: `gsed` stands for GNU Sed. BSD Sed available on MacOS caused me [some 
 All these changes were mostly for contributors and maintainers convenience. If you're a happy Rails Event Store user you might be wondering if that change should be on your radar.
 
 - we still publish separate gems to RubyGems like we did
-- you can still refer to [git sources of a gem in a monorepo](https://stackoverflow.com/questions/14536742/referencing-the-unreleased-activesupport-4-0-gem-in-a-gemfile/14551999#14551999) (via `Gemfle` and `git:` source)
+- you can still refer to [git sources of a gem in a monorepo](https://stackoverflow.com/questions/14536742/referencing-the-unreleased-activesupport-4-0-gem-in-a-gemfile/14551999#14551999) (via `Gemfile` and `git:` source)
 - you can submit issues on [RailsEventStore repo](https://github.com/RailsEventStore/rails_event_store) as before, as a plus there are no other repos which could confuse you
 - there was a [bump in version number](https://github.com/RailsEventStore/rails_event_store/releases/tag/v0.15.0) so that all components can have the same but generally there's no breaking change here either (as a bonus it easier to reason about versions of involved components and there's a single changelog catching all changes you'd be interested in when upgrading)
 
