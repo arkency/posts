@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_1
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'service_objects', 'rails', 'testing']
 ---
 
 <p>

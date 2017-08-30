@@ -4,7 +4,7 @@ created_at: 2015-01-04 15:28:14 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'ruby' ]
 newsletter: :arkency_form
 ---
 

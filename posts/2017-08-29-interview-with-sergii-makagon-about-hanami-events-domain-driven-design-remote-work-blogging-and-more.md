@@ -3,12 +3,18 @@ title: "Interview with Sergii Makagon about hanami-events, domain-driven design,
 created_at: 2017-08-29 17:42:44 +0200
 kind: article
 publish: false
-author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+author: Robert Pankowecki
+tags: [ 'sergii', 'makagon', 'hanami', 'ddd', 'interview' ]
 newsletter: :arkency_form
 ---
 
-FIXME: Place post lead here.
+You might not have heard about Sergii but he got my attention some time ago. Because, you see... In one year Sergii wrote about 40 articles on http://rubyblog.pro/ and I started to see them mentioned in various places.
+
+Then I saw he started doing some open source work on `Hanami::Events` and that tipped the balance. For a long time I wanted to interview some Ruby developers and I decided to start with him as I met him personally before :)
+
+Meet Sergii Makagon :)
+
+<%= img_thumbnail("sergii-makagon-ruby-hanami-events-domain-driven-interview/sergii-look-into-you.jpg") %>
 
 <!-- more -->
 
