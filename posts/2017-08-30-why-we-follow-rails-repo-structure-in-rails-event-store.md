@@ -14,7 +14,7 @@ A complete Rails Event Store solution consists of following gems:
 * **ruby\_event\_store** — core concepts and and mechanics of an event store
 * **rails\_event\_store** — thin wrapper over ruby\_event\_store with additions possible in Rails framework (like automatically capturing some of the request params into event metadata) and necessary glue to make it work out of the box
 * **rails\_event\_store\_active_record** — a database adapter based on ActiveRecord
-* **aggregate\_root** — library useful for making event sourced aggregates
+* **aggregate\_root** — library useful for making event-sourced aggregates
 
 <!-- more -->
 ## The problem
