@@ -50,20 +50,23 @@ Being sold to the idea of monorepo we had to figure out "The How". For sure we w
 We could think of 3 possible approaches:
 
 #### **git subtree merge**
-	* original commit SHA retained (refering to SHA from commit messages and refering to existing tags should work)
-	*  on a graph it is several roots going into one HEAD
-	* breaks file history as the paths after merge are different and it shows only the merge commit
+
+* original commit SHA retained (refering to SHA from commit messages and refering to existing tags should work)
+*  on a graph it is several roots going into one HEAD
+* breaks file history as the paths after merge are different and it shows only the merge commit
 
 
 #### **git filter-branch and pull --allow-unrelated-histories**
-	* commit SHA changed as this is modifying history 😱
-	* on a graph it is several roots going into one HEAD as well
-	* file history works as paths are rewritten in commits
+
+* commit SHA changed as this is modifying history 😱
+* on a graph it is several roots going into one HEAD as well
+* file history works as paths are rewritten in commits
 
 #### **git mv and pull --allow-unrelated-histories**
-	* original commit SHA retained (refering to SHA from commit messages and refering to existing tags should work)
-	* on a graph it is several roots going into one HEAD (surprise)
-	* file history works (with `--follow` flag that tracks renames) but not necessarily on GitHub UI
+
+* original commit SHA retained (refering to SHA from commit messages and refering to existing tags should work)
+* on a graph it is several roots going into one HEAD (surprise)
+* file history works (with `--follow` flag that tracks renames) but not necessarily on GitHub UI
 
 For us, from contributor perspective, working file history is more important than preserving original commit identifiers. So we chose approach involving `git filter-branch`.
 
