@@ -26,7 +26,7 @@ Each gem in it own's repository provides a separation and some gems like `aggreg
 This split however has several drawbacks if you're already a contributor or wishing to become one:
 
 * the code is harder to navigate if you have to jump between repositories, that makes a difference for `rails_event_store` which depends on the rest
-* if you introduce a change in one of the gems you have to be sure how it affects the rest, integration tests are that span components are easier to write and maintain in a monorepo
+* if you introduce a change in one of the gems you have to be sure how it affects the rest, integration tests that span components are easier to write and maintain in a monorepo
 * bigger changes that affect several components are harder to coordinate and become split into smaller commits in each repo
 * separate repositories also mean several places where issues are reported and pull-requests submitted — not necessarily the right ones and that multiple sources make code reviews and discussions painful
 * it might be confusing for newcomers to figure out what is the right place to start the journey with OSS contribution in Rails Event Store
