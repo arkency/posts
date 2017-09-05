@@ -2,7 +2,7 @@
 title: "Testing deprecations warnings with RSpec"
 created_at: 2017-08-27 14:04:06 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -86,6 +86,8 @@ The second spec:
 The third one was a bit more complex. We rely on `.warn` method which is built-in in Ruby. Its result is to output a message to $stderr. There are several ways to approach this. We can either mock the `.warn` method, or we can wrap the whole thing with some kind of `UIAdapter` which just happens to have `.warn` as the implementation detail (but we still need to test the new class). The last solution is to make sure the effect is valid - we see some output on $stderr, which can be done by introducing a FakeStdErr class.
 
 ```
+#!ruby
+
 class FakeStdErr
   attr_accessor :messages
 
