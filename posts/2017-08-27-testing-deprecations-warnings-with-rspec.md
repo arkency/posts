@@ -7,7 +7,9 @@ author: Andrzej Krzywda
 newsletter: :skip
 ---
 
-Recently at Arkency we've been doing quite a lot of work around the RailsEventStore ecosystem. The growing number of teams which use RES + a growing number of contributors made us do some cleaning.
+Recently at Arkency we've been doing quite a lot of work around the [RailsEventStore](https://railseventstore.org) ecosystem. We see RailsEventStore as the way to help Rails teams start doing DDD without needing to build the infrastructure for CQRS/ES. 
+
+The growing number of teams which use RES + a growing number of contributors made us do some cleaning.
 
 One of the small changes which was introduced was a very simple refactoring. It would be simple if not the fact, that this was changing the public API, so it requires a proper handling with a deprecation warning.
 
@@ -15,7 +17,7 @@ One of the small changes which was introduced was a very simple refactoring. It 
 
 In the RailsEventStore you can pass a handler to any event. We expect that this handler responds to `call`. If it doesn't respond to that, we used to raise MethodNotDefined exception. However, this can be a confusing name, so we decided to rename that to InvalidHandler to be more explicit about the problem.
 
-It's very unlikely that someone was relying on this exception in their project using RES. Still, it's a good practice to not crash the client code, after an upgrade. We want to keep it working, but give a warning message. Also, we don't any new code to depend on this old class.
+It's very unlikely that someone was relying on this exception in their project using RES. Still, it's a good practice to not crash the client code, after an upgrade. We want to keep it working, but give a warning message. Also, we don't want any new code to depend on this old class.
 
 What we did:
 
@@ -25,10 +27,12 @@ What we did:
 
 This is the whole implementation:
 
-``` module RubyEventStore
+```
+#!ruby
+ module RubyEventStore
   def self.const_missing(const_name)
     super unless const_name.equal?(:MethodNotDefined)
-    warn "`RubyEventStore::MethodNotDefined` has been deprecated. Use `RubyEventStore::InvalidHandler` instead."
+    warn "RubyEventStore::MethodNotDefined has been deprecated. Use RubyEventStore::InvalidHandler instead."
     InvalidHandler
   end
 end
@@ -45,6 +49,8 @@ We have 3 requirements here:
 which nicely turns into this RSpec code:
 
 ```
+#!ruby
+
 RSpec.describe "RubyEventStore.const_missing" do
   it "makes sure we use InvalidHandler instead of MethodNotDefined" do
   end
@@ -60,6 +66,8 @@ end
 The first spec goes like that:
 
 ```
+#!ruby
+
   it "makes sure we use InvalidHandler instead of MethodNotDefined" do
     expect(RubyEventStore::MethodNotDefined).to(eq(RubyEventStore::InvalidHandler))
   end
@@ -68,6 +76,8 @@ The first spec goes like that:
 The second spec:
 
 ```
+#!ruby
+
   it "still crashes for other missing consts" do
     expect(-> {RubyEventStore::FooBarNotExisting}).to(raise_error(NameError))
   end
@@ -92,6 +102,8 @@ end
 Then the spec looks like this:
 
 ```
+#!ruby
+
 it "warns the developer about the deprecation" do
     begin
       original_stderr = $stderr
@@ -106,9 +118,11 @@ it "warns the developer about the deprecation" do
   end
 ```
 
-It's also worth noting, that most developers will rely on the RailsEventStore gem, which is the umbrella gem for all the ecosystem here. However, RailsEventStore is a simple wrapper over the RubyEventStore gem. In particular it means we wrap the public exceptions with a code like this:
+It's also worth noting, that most developers will rely on the RailsEventStore gem, which is the umbrella gem for all the ecosystem here. However, RailsEventStore is only a simple wrapper over the RubyEventStore gem. In particular it means we wrap the public exceptions with a code like this:
 
 ```
+#!ruby
+
 module RailsEventStore
   Event                     = RubyEventStore::Event
   InMemoryRepository        = RubyEventStore::InMemoryRepository
@@ -132,4 +146,6 @@ This way the feature is covered fully with tests. Mutant is happy (100% coverage
 
 Obviously, we could debate whether this kind of a feature (deprecations) deserves the tests. It's a hard question and not easy to answer. We should probably decide whether the new tests make our further work harder. 
 
-One thing which we follow from the beginning of the project is to have 100% mutation coverage to ensure the quality and to encourage the contributors to follow the TDD techniques. RailsEventStore is a tool on which serious projects rely on and we want to ensure that it works the best possible way.
+One thing which we follow from the beginning of the project is [to have 100% mutation coverage](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/) to ensure the quality and to encourage the contributors to follow the TDD techniques. RailsEventStore is a tool on which serious projects rely on and we want to ensure that it works the best possible way.
+
+PS. Don’t know how to start with DDD in your Rails app? Join our Rails/DDD workshop in [Berlin](http://blog.arkency.com/ddd-training/) or in [London](http://blog.arkency.com/domain-driven-rails-workshop-london/). Also, there's a new book which we have recently released: [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/)
