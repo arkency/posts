@@ -2,7 +2,7 @@
 title: "Interview with Sergii Makagon about hanami-events, domain-driven design, remote work, blogging and more"
 created_at: 2017-08-29 17:42:44 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'sergii', 'makagon', 'hanami', 'ddd', 'interview' ]
 newsletter: :arkency_form
