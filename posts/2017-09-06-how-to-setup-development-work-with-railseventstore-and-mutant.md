@@ -2,7 +2,7 @@
 title: "How to setup development work with RailsEventStore and mutant"
 created_at: 2017-09-06 12:39:16 +0200
 kind: article
-publish: false
+publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'event_store', 'mutant', 'ddd' ]
 newsletter: :arkency_form
