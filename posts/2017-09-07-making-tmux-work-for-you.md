@@ -8,6 +8,8 @@ tags: [ 'tmux', 'microservices', 'tools', 'workflow', 'productivity' ]
 newsletter: :arkency_form
 ---
 
+<%= img_fit("making-tmux-work-for-you/niv-rozenberg-356666.jpg") %>
+
 When it comes to my developer toolset, **I like solutions that I can easily understand and tweak**. I guess I'm not the only one. I believe that for a lot of people one of the (many) reasons to join the Ruby bandwagon was that you could do virtually everything without a big, fat IDE, that I never know what it's doing and how. Just your editor and console. First class citizens.
 
 <!-- more -->
