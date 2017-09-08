@@ -21,7 +21,7 @@ In a project comprised of microservices, there are many integration surfaces, so
 
 Building a dedicated infrastructure to launch all the required processes in test environment was a no-go for us at the moment because that would easily consume way too much time. Such an environment would also be a permanent source of **debugging why a certain thing works here and not there**.
 
-So we thought why don't we try running some test cases on our production app. Something in the direction of [syntetic monitoring](https://en.wikipedia.org/wiki/Synthetic_monitoring). Of course, we don't mean to run every single test case - that would easily be an overkill. We want to **cover the "critical" scenario, a typical use case**.
+So we thought why don't we try running some test cases on our production app. Something in the direction of [synthetic monitoring](https://en.wikipedia.org/wiki/Synthetic_monitoring). Of course, we don't mean to run every single test case - that would easily be an overkill. We want to **cover the "critical" scenario, a typical use case**.
 
 1. A new user registers
 2. Browses the products page

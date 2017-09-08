@@ -61,9 +61,9 @@ One `tmux` binary invocation let's you specify multiple tmux-commands:
 Once you launch your script, you can:
 
 * press `ctrl+b` followed by window number to **switch window** 
-* press `ctrl+b` followed by `d` to **detach** from the session - now everything is in the background (`ctrl+b` prefixes all tmux hotkeys; people often change it to `ctrl+a`)
+* press `ctrl+b` followed by `d` to **detach** from the session - now everything is in the background (`ctrl+b` prefixes all tmux hotkeys; people often sometimes it to `ctrl+a`)
 * run `tmux a` to **attach** to it again. Add `-t your_session_name` if you have more of them
-* run `tmux kill-session -t your_session_name` to **quit** everything. Same as existing every terminal window one by one.
+* run `tmux kill-session -t your_session_name` to **quit** everything. Same as exiting every terminal window one by one.
 * run `tmux ls` to see all the sessions
 
 ### Tweaking the config
@@ -71,11 +71,13 @@ Once you launch your script, you can:
 You'll find your tmux config in `~/.tmux.conf`:
 
 * remap alt+left & alt+right to easily switch to the **left/right window**:
+
 ```
 bind -n M-Left select-window -p
 bind -n M-Right select-window -n
 ``` 
 * start **window numbers from 1** to match keyboard ordering
+
 ```
 set -g base-index 1
 set-window-option -g pane-base-index 1
@@ -88,6 +90,11 @@ set-window-option -g pane-base-index 1
 * put it all in a handy script in you PATH - so that you can later just type `myproject start|quit` from any directory
 * if you use **iterm** on Mac OS, you can enable tmux integration and attach to the session like this: `tmux -CC a` - this way your tmux session will appear **as a normal iterm session** and you can use all your hotkeys as you normally do
 
+### Working with multiple repos?
+
+By the way, if you sometimes happen to work with multiple repos, you might wanna have a look at this shell-one-liner: [multigit](https://github.com/arkency/multigit) - it lets you run (git) commands on all "sibling" repos.
+
 ## Solution 2 - spinning off builds/tests in a terminal session
 
 ...to come in another blogpost - but the building blocks are the same, no additional magic needed :)
+
