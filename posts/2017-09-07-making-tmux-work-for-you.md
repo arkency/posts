@@ -43,11 +43,11 @@ So `tmux` has this nice command "send-keys". What does it do? Yup, **it sends a 
 ```
 tmux \
   new-session -s your_session_name                                       \; \
-  send-keys -t :0 "cd ~/app_1 "$'\n'"bundle exec rails s -p 5000"$'\n'   \; \
+  send-keys -t :0 "cd ~/app_1" Enter "bundle exec rails s -p 5000" Enter \; \
   new-window                                                             \; \
-  send-keys -t :1 "cd ~/app_2 "$'\n'"bundle exec rails s -p 6000"$'\n'   \; \
+  send-keys -t :1 "cd ~/app_2" Enter "bundle exec rails s -p 6000" Enter \; \
   new-window                                                             \; \
-  send-keys -t :2 "cd ~/app_3 "$'\n'"bundle exec rails s -p 7000"$'\n'
+  send-keys -t :2 "cd ~/app_3" Enter "bundle exec rails s -p 7000" Enter 
 
 ```
 
@@ -55,7 +55,7 @@ One `tmux` binary invocation let's you specify multiple tmux-commands:
 
 * `new-session` starts a new session with given name, that you can later identify it with in `-t` options
 * `new-window` opens another window within a session. They're identified with numbers like this: `-t :1`
-* `send-keys` - if you want to send a newline you have to use this impossible to memorize sequence: `"$'\n'"` (assuming bash)
+* `send-keys` - tmux tries to make it easy for you and guess whether you meant a key or literal sequence: `Enter` does what you'd (not) expect
 
 
 ### Basic usage
