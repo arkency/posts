@@ -30,6 +30,8 @@ It's a powerful and versatile tool - a lot of people us it for a lot of differen
 
 ## Solution 1 - launching gazzillion servers locally
 
+<%= img_fit("making-tmux-work-for-you/tmux_screenshot.png") %>
+
 Sometimes you work on a project with one rails server and probably a background worker. Not a big deal to launch when you start your work in the morning. But what when you have **10 microservices**? You don't want to do it by hand.
 
 Of course, there are so many tools that can help you with that, pow, puma-dev, docker, whatever. But you don't always wanna learn and employ **a new tool to do a dead simple thing** like launching a server. You wanna keep it simple, and not spend a day on configuring a specific solution.
