@@ -132,6 +132,6 @@ end
 
 ## Summary
 All the products on the platform have proper VAT rates set, _organization_ has proper list of available VAT rates. And last, but not least, we know what and when exactly happened, we have better domain understanding, we started publishing events for another bounded context of our app.
-If you're still not convinced to publishing domain events, please read Andrzej [post on that topic](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/) or even better, by watching his keynote _From Rails legacy to DDD_ performed on [wroc_love.rb](wrocloverb.com).
+If you're still not convinced to publishing domain events, please read Andrzej [post on that topic](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/) or even better, by watching his keynote _From Rails legacy to DDD_ performed on [wroc_love.rb](http://wrocloverb.com).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LrSBrHgCLm8" frameborder="0" allowfullscreen></iframe>

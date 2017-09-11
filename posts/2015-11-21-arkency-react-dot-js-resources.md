@@ -55,7 +55,7 @@ This blogpost is an attempt to put all the resources in one place.
 
 # React.js koans
 
-[https://github.com/arkency/reactjs_koans](React.js koans)
+[React.js koans](https://github.com/arkency/reactjs_koans)
 
 # YouTube videos
 
