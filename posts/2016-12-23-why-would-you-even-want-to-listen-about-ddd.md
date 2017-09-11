@@ -18,7 +18,7 @@ about it. What's so good in it? What problems does it try to solve?
 If you look at the cover of the book (often referred to as the _Blue Book_) which brought
 a lot of attention to DDD you will see the answer.
 
-![](http://t0.gstatic.com/images?q=tbn:ANd9GcRMZdy6ljlwtPjLnytZhArgnMkeQX9SusHSVtmIur3sTlNOhp2E)
+![](https://t0.gstatic.com/images?q=tbn:ANd9GcRMZdy6ljlwtPjLnytZhArgnMkeQX9SusHSVtmIur3sTlNOhp2E)
 
 The subtitle says "Tackling Complexity in the Heart of Software". That's what DDD is all about.
 Managing, fighting and struggling with complexity. Building software according to certain

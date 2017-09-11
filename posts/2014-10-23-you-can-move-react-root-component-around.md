@@ -689,7 +689,7 @@ move the elements around thanks to sortable. But their content is
 rendered with react. **It's all possible because every element is rendered
 as separate react root.**
 
-<iframe width="100%" height="250" src="http://jsfiddle.net/LQxy7/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="250" src="https://jsfiddle.net/LQxy7/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 So this is a useful trick to know.
 

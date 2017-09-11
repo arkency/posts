@@ -100,7 +100,7 @@ Animations with React.js is such a great topic that we decided to record and inc
 
 We love working with React.js so much, that we also published another book on this topic - "React.js by Example".
 
-<a href="http://reactkungfu.com/react-by-example/"><img style="display:block; margin: 0 auto;" src="http://reactkungfu.com/assets/images/rbe-cover.png" width="40%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img style="display:block; margin: 0 auto;" src="<%= src_fit("rbe/rbe-cover.png") %>" width="40%" /></a>
 
 This book doesn't focus on the Rails integration. We wanted to share with you how to setup a separated (from Rails) React.js-based frontend.
 

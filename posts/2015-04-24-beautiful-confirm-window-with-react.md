@@ -197,4 +197,4 @@ This is the final look:
 
 # Summary
 
-Replacing native `window.confirm` with custom solution gives you ability to have the same behaviour but without restrictions - you can have beautifully styled dialog with custom button labels or dialog title. You can grab the demo on [jsfiddle](http://jsfiddle.net/JakubKosinski/3Lwdyvw1/).
+Replacing native `window.confirm` with custom solution gives you ability to have the same behaviour but without restrictions - you can have beautifully styled dialog with custom button labels or dialog title. You can grab the demo on [jsfiddle](https://jsfiddle.net/JakubKosinski/3Lwdyvw1/).

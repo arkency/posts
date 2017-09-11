@@ -145,7 +145,7 @@ Twitter Bloodhound library for autocomplete.
 If you liked this blogpost you might like our React.js books.
 
 <a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="19%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="http://reactkungfu.com/assets/images/rbe-cover.png" width="19%" /></a>
+<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="19%" /></a>
 <a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
 <a href="/blogging"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
 <a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="19%" /></a>
