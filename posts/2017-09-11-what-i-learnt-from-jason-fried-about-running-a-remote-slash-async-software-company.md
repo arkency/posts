@@ -41,7 +41,7 @@ Most importantly, we discuss ideas. We shouldn't let our egos to dominate the co
 
 ## A meeting splits your day into 2 parts
 
-Jason and Basecamp are against meetings. That's a similar approach at Arkency. As developers, we usually work on deep problems. This requires our focus. Meetings are an interruption. In the spirit of Jason's talk - of companies are products, then meetings are bugs.
+Jason and Basecamp are against meetings. That's a similar approach at Arkency. As developers, we usually work on deep problems. This requires our focus. Meetings are an interruption. In the spirit of Jason's talk - if companies are products, then meetings are bugs.
 
 ## Dependency is a bug
 
