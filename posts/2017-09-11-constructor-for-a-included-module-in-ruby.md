@@ -1,14 +1,14 @@
 ---
-title: "Constructor for an included module in Ruby"
-created_at: 2017-09-11 16:40:07 +0200
+title: "How mutation testing causes deeper thinking about your code + constructor for an included module in Ruby"
+created_at: 2017-09-13 14:40:07 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'ruby', 'inheritance', 'module', 'constructor' ]
+tags: [ 'ruby', 'inheritance', 'module', 'constructor', 'mutation testing','mutant' ]
 newsletter: :arkency_form
 ---
 
-FIXME: Place post lead here.
+This is a short story which starts with being very surprised by mutation testing results and trying to figure out how to deal with it.
 
 <!-- more -->
 
@@ -58,16 +58,16 @@ end
 
 In two places it uses `@unpublished_events = []`.
 
-However, besides normal specs we also check out mutation testing coverage using [mutant](https://github.com/mbj/mutant).
+However, besides normal specs, we also check out mutation testing coverage using [mutant](https://github.com/mbj/mutant).
 
-If you are not familiar with the technique, in short it works like this:
+If you are not familiar with the technique, in short, it works like this:
 
 * change the code subtly to introduce an incorrect behavior
 * verify if the specs failed
 
 If the specs continue passing, it might indicate that you have a missing test.
 
-However, one thing we realized over time is that mutant often tries to tell you something deeper and point out a potential higher level problem with your design. With every mutation detected it's good to dig a bit deeper and ask yourself _why_ 5 times :)
+However, one thing we realized over time is that mutant often tries to tell you something deeper and point out a potential, higher level problem with your design. With every mutation detected it's good to dig a bit deeper and ask yourself _why_ 5 times :)
 
 Let's discuss a simple example.
 
@@ -85,9 +85,9 @@ into
 @unpublished_events = nil
 ```
 
-Introducing `nil` in random places is a great technique to discover untested or unused code. After all, if changing an assignment to `nil` does not break your code, why do you need it at all? Either you don't need it and you can remove given line of code, or you miss a spec that properly verifies this line of code.
+Introducing `nil` in random places is a great technique to discover untested or unused code. After all, if changing an assignment to `nil` does not break your code, why do you need it at all? Either you don't need it and you can remove the line of code, or you miss a spec that properly verifies this line of code.
 
-My first reaction was _fuck you, that doesn't make any sense_. Why would you change an empty array to a nil.
+My first reaction was _fuck you, that doesn't make any sense_. Why would you change an empty array to a nil?
 
 I think about `@unpublished_events` that it is an `Array`. You can see that in
 
@@ -123,7 +123,7 @@ to
 @unpublished_events = nil
 ```
 
-I run the tests and they passed. I don't know what I was thinking, obviously they passed, mutant already verified that they pass in such case. That's why I am here. But I didn't believe so I made this change manually and of course specs passed. I was confused. I looked into those specs to find out if we were missing some cases and we did not.
+I run the tests and they passed. I don't know what I was thinking, obviously, they passed, mutant already verified that they pass in such case. That's why I am here. But I didn't believe so I made this change manually and of course specs passed. I was confused. I looked into those specs to find out if we were missing some cases and we did not.
 
 So why was everything working? - I wondered. And I quickly realized.
 
@@ -161,7 +161,7 @@ Then I asked myself... Why are we using this `unpublished_events` getter at all?
 
 And the answer was... Because we don't set `@unpublished_events = []` in a constructor.
 
-You see, usually you use the library in two ways. You load historical domain events when you edit an object.
+You see, usually, you use the library in two ways. You load historical domain events when you edit an object.
 
 ```
 #!ruby
@@ -188,7 +188,7 @@ product.apply(ProductRegistered.new(
 product.store("Product$#{sku}")
 ```
 
-In this second case we want to append new domain events to `@unpublished_events` collection but it is nil. Using the `unpublished_events` getter workarounds this problem.
+In this second case, we want to append new domain events to `@unpublished_events` collection but it is a `nil`. Using the `unpublished_events` getter workarounds this problem.
 
 ```
 #!ruby
@@ -206,7 +206,7 @@ class Product
 end
 ```
 
-This lead me into next two questions:
+This led me to next two questions:
 
 * should `AggregateRoot` be a module that you include or a class to inherit from?
 
@@ -214,7 +214,7 @@ This lead me into next two questions:
 
 * can we have constructors for modules?
 
-    It turns out we can (but there are issues) with the little help of `prepend` which is available in Ruby for years now. Check it out.
+    It turns out we can with the little help of `prepend` which is available in Ruby for years now. Check it out.
 
 ```
 #!ruby
@@ -255,7 +255,7 @@ module AggregateRoot
 end
 ```
 
-But there are some problems problems:
+But there are some problems:
 
 * another developer might forget to call `super` in a class constructor to trigger `AggregateRoot#initialize` and `@unpublished_events` will be `nil`.
 
@@ -364,7 +364,7 @@ class Product
 end
 ```
 
-If I had many instance variables to set I could consider it. But with one or two, I think I am gonna stay with reader and a default value.
+If I had many instance variables to set I could consider it. But with one or two, I think I am gonna stay with a getter and a default value.
 
 ```
 #!ruby
@@ -372,3 +372,7 @@ def unpublished_events
   @unpublished_events ||= []
 end
 ```
+
+## P.S.
+
+Struggling with complex Rails app and business domain? - Check out [Domain Driven Rails ebook](/domain-driven-rails/) and our [upcoming workshops in London and Berlin](/ddd-training/)
