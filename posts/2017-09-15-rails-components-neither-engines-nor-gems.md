@@ -129,7 +129,7 @@ config.paths.add 'scanner/lib', eager_load: true
 
 And that's mostly it!
 
- ## Dealing with test files
+## Dealing with test files
 
 If you wish to painlessly run spec files in the isolated directory there are certain steps to take.
 
