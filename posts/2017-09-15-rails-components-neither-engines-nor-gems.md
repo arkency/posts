@@ -19,7 +19,6 @@ There are various approaches to achieve such separation —  Rails Engines and [
 Back in the day we had an approach in Arkency in which distinct code areas were extracted to gems. They had the typical gem structure with `lib/` and `spec/` and top-level `gemspec` file.
 
 ```
-#!ruby
 # top-level app directory
 
 scanner/
@@ -153,7 +152,7 @@ require_relative 'spec_helper'
 
 module Scanner
   RSpec.describe ScanTicketsCommand do
-	  # whatever it takes to gain confidence in code ;)
+    # whatever it takes to gain confidence in code ;)
   end
 end
 ```
