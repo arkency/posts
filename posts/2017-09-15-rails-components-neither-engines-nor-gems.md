@@ -8,13 +8,11 @@ tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
 newsletter: :arkency_form
 ---
 
-# Rails components — neither engines nor gems
-
 There has been a very interesting discussion today on [\#ruby-rails-ddd slack channel](https://arkency.dpdcart.com/cart/view?product_id=154898&method_id=165682#/). The topic circulated around bounded contexts and introducing certain component artifacts to enclose them.
 
 <!-- more -->
 
-There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://shageman.github.io/cbra.info/) were mentioned among them. It was however the mention of "unbuilt gems" that reminded me of something.
+There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://shageman.github.io/cbra.info/) were listed among them. It was however the mention of "unbuilt gems" that reminded me of something.
 
 ## Gem as a code boundary
 
