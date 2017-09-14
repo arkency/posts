@@ -43,7 +43,7 @@ BTW, splitting at the web/controllers level is an interesting technique of split
 
 Anyway, Rails engines can be perfectly used as a physical separation of the domain bounded contexts. If you don't mind the dependency on Rails (for the physical separation mechanism) here, then that's a good option. 
 
-This approach is recommended by our friends from Pivotal, they call it [Component-Based Rails Applications](http://shageman.github.io/cbra.info/).
+It's worth noting that gems and engines were chosen as the physical separation by our friends from Pivotal, they call it [Component-Based Rails Applications](http://shageman.github.io/cbra.info/).
 
 # Microservices
 
