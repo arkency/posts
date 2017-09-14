@@ -49,4 +49,24 @@ This approach is recommended by our friends from Pivotal, they call it [Componen
 
 This approach relies on having multiple nodes/microservices for our app. Each one can be a Rails application on its own. It can be that one microservice per bounded context, but it doesn't need to be like that. In my current project, we have 6 microservices, but >15 bounded contexts.
 
-I wasn't a big fan of microservices, as they bring a lot of infrastructure overhead. This has changed after I worked more heavily with Heroku-based setup.
+I wasn't a big fan of microservices, as they bring a lot of infrastructure overhead. My opinion has changed after I worked more heavily with Heroku-based setup. The tooling nowadays has improved and a lot is offered by the platform providers.
+
+It's worth noting that you can separate the code among several repos, however you can also keep them in one monorepo. With a heroku-based setup it seems to be simpler to keep them separated, but one repo should also be possible.
+
+Microservices also allow another separation - at the programming language level. You can write each microservice in different languages, if it makes sense for you. It's an option not possible in previous approaches.
+
+# Serverless aka Function as a Service
+
+This is a relatively new option and probably not mostly considered. Especially that the current serverless providers don't support Ruby out of the box.
+Serverless is quite a revolution happening and they can change a lot in regards to the physical separation.
+
+What's possible with serverless is to not only separate physically bounded contexts, but also the smaller building blocks, like aggregates, read models, process managers (sagas). 
+
+I'm not yet experienced enough with how to use it with Rails, but I'm excited about this option. As with microservices, this gives an option to use a different programming language, but at a lower scale. While, I'd be scared to implement a whole app in Haskell, I'm super ok, if we implement one read module or one aggregate in Haskell. In the worst case, we can rewrite those 200 LOC.
+Another big deal with serverless is the fact that they handle the http layer for you. Does it mean "good bye Rails"? I'm not sure yet, but possibly it can reduce the http-layer of our codebases to minimum. 
+
+# Summary
+
+The nice thing with a DDD-based architecture of your application is that it mostly works with whichever physical separation you choose. It's worth noting that those physical mechanisms can change over time. You can start with a Rails engine, then turn it into a microservice and then split it into several serverless functions.
+
+How about you, how do you physically separate the modules/bounded contexts of your Rails apps?
