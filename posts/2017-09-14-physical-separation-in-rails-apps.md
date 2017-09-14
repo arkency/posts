@@ -25,6 +25,8 @@ But what options do you have for a physical separation?
 
 You can just create a new directory for the bounded context files and keep the separation at this level. It can be at the top-level directory of your Rails app or at the level of `lib/`.  This usually works fine, however you need to play a bit with Rails autoloading paths to make it work perfectly.
 
+This is probably the default option we choose for the Rails apps at Arkency.
+
 # Gems
 
 Another level is a gem. It can be still within the same app directory/repo, but you keep them in separate directories, but declare the dependency at the Gemfile level.
@@ -39,3 +41,12 @@ This is a way, probably most in the spirit of The Rails Way. Which is both good 
 
 BTW, splitting at the web/controllers level is an interesting technique of splitting your app/infra layer, but it's less relevant to the "domain" discussions". I like to split the admin web app, as it's usually a separate set of controllers/UI. The same with API. But still, this split is rarely a good split for your domain, that's only the infra layer.
 
+Anyway, Rails engines can be perfectly used as a physical separation of the domain bounded contexts. If you don't mind the dependency on Rails (for the physical separation mechanism) here, then that's a good option. 
+
+This approach is recommended by our friends from Pivotal, they call it [Component-Based Rails Applications](http://shageman.github.io/cbra.info/).
+
+# Microservices
+
+This approach relies on having multiple nodes/microservices for our app. Each one can be a Rails application on its own. It can be that one microservice per bounded context, but it doesn't need to be like that. In my current project, we have 6 microservices, but >15 bounded contexts.
+
+I wasn't a big fan of microservices, as they bring a lot of infrastructure overhead. This has changed after I worked more heavily with Heroku-based setup.
