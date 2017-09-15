@@ -33,8 +33,7 @@ However there are [cases](http://blog.codinghorror.com/maybe-normalizing-isnt-no
 
 We'll start with empty database and create there example table:
 
-```
-#!sql
+```sql
 ➜  Arkency-Blog git:(master) ✗ psql -d postgres
 psql (9.3.5, server 9.3.4)
 Type "help" for help.
@@ -51,8 +50,7 @@ CREATE TABLE
 
 We can put some data now:
 
-```
-#!sql
+```sql
 postgres=# INSERT INTO arrays_example VALUES('numbers', '{1, 2, 3}');
 INSERT 0 1
 
@@ -79,15 +77,13 @@ In the last blogpost about `hstore` we showed how to enable particular extension
 
 In two previous articles (mentioned in the introduction of this article) we created `Book` model and appropriate SQL schema. Let's stick to that and extend it a little bit:
 
-```
-#!bash
+```bash
 rails g migration add_subjects_to_book subjects:text
 ```
 
 And the migration file:
 
-```
-#!ruby
+```ruby
 class AddSubjectsToBook < ActiveRecord::Migration
   def change
     add_column :books, :subjects, :text, array:true, default: []
@@ -98,8 +94,7 @@ end
 We can check it now:
 
 
-```
-#!ruby
+```ruby
 2.1.2 :001 > b = Book.create
    (0.2ms)  BEGIN
   SQL (2.0ms)  INSERT INTO "books" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-10-17 08:21:17.870437"], ["updated_at", "2014-10-17 08:21:17.870437"]]
@@ -114,8 +109,7 @@ We can check it now:
 
 Now is the time to add some subjects for books and then query them. Please keep in mind that all of the following examples are executed `Rails 4.2.0.beta1` environment.
 
-```
-#!ruby
+```ruby
 2.1.2 :003 > b.subjects << 'education'
  => ["education"]
 
@@ -126,8 +120,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
  => true
 ```
 
-```
-#!ruby
+```ruby
 2.1.2 :005 > Book.first.subjects
   Book Load (0.9ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education"]
@@ -142,8 +135,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
  => true
 ```
 
-```
-#!ruby
+```ruby
 2.1.2 :008 > Book.first.subjects
   Book Load (0.5ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business"]
@@ -158,8 +150,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
  => true
 ```
 
-```
-#!ruby
+```ruby
 2.1.2 :011 > Book.first.subjects
   Book Load (0.4ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business", "history"]
@@ -169,8 +160,7 @@ Now is the time to add some subjects for books and then query them. Please keep 
 
 In previous versions of Rails we may encounter some weird behavior:
 
-```
-#!ruby
+```ruby
 2.1.2 :012 > b.subjects << 'art'
  => ["education", "business", "history", "art"]
 
@@ -192,8 +182,7 @@ What happened here? Why subjects array wasn't updated?
 
 [`ActiveModel::Dirty` module](http://api.rubyonrails.org/classes/ActiveModel/Dirty.html) provides a way to track changes in your objects. Sometimes our record does not know that underlying object properties have been changed and that's why we have to point this explicitly.
 
-```
-#!ruby
+```ruby
 2.1.2 :015 > b.subjects_will_change!
  => ["education", "business", "history"]
 
@@ -207,8 +196,7 @@ What happened here? Why subjects array wasn't updated?
  => true
 ```
 
-```
-#!ruby
+```ruby
 2.1.2 :018 > Book.first.subjects
   Book Load (0.6ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1
  => ["education", "business", "history", "art"]
@@ -216,8 +204,7 @@ What happened here? Why subjects array wasn't updated?
 
 And everything went as we wanted. So if you have any problem with updating properties of some enclosed object you can indicate that this particular object will be changed by your operations and then safely save it with new properties that will be updated:
 
-```
-#!ruby
+```ruby
 2.1.2 :019 > b.subjects << 'finances'
  => ["education", "business", "history", "finances"]
 
@@ -247,15 +234,13 @@ And everything went as we wanted. So if you have any problem with updating prope
 
 PostgreSQL have a bunch of useful [array methods](http://www.postgresql.org/docs/9.4/static/functions-array.html) that you can leverage in your Rails applications.
 
-```
-#!ruby
+```ruby
 2.1.2 :026 > Book.where("'history' = ANY (subjects)")
   Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE ('history' = ANY (subjects))
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>
 ```
 
-```
-#!ruby
+```ruby
 2.1.2 :027 > Book.where("subjects @> ?", '{finances}')
   Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE (subjects @> '{finances}')
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>

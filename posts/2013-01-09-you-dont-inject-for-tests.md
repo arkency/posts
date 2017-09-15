@@ -28,8 +28,7 @@ Where's maintainability in this example? With smaller classes each change in one
 
 Let's suppose you use some external services like database or REST API. First of all you use them for a reason, like "I want to get all tweets with #sillycat hashtag". When you write classes that will communicate with those services you should expose that reason. And here's the place for border tests - you write them to make sure, that service adapters (which expose our need) do what they should really do. For db it would be getting records from that db, for REST API it would be making real request and checking if the answer is what we assumed.
 
-```
-#!ruby
+```ruby
 class TwitterMessageAdapter
   def initialize(app, secret) # configuration
     @app = app

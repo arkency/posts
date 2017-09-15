@@ -38,8 +38,7 @@ to school dictionaries suited to kids' needs.
 
 Let's think about our tests for a moment.
 
-```
-#!ruby
+```ruby
 let!(:school)     { create(:school, native_language: "en") }
 let!(:klass)      { create(:klass, school: school) }
 let!(:pupil)      { create(:pupil, klass: klass) }
@@ -91,8 +90,7 @@ through our webapp and see that everything works correctly. But guess what. Our 
 
 Our tests fail because we must add one more piece of data to them. The `KlassLanguage` that we introduced.
 
-```
-#!ruby
+```ruby
 let!(:klass_language) { create(:klass_language,
   klass: klass, 
   dictionary: dictionary,
@@ -106,8 +104,7 @@ code**.
 Consider that after introducing our change to code, **some tests are not even properly testing what they used
 to test**. Like imagine you had a test like this:
 
-```
-#!ruby
+```ruby
 
 let!(:assignment) { create(:assignment,
   klass:      klass, 
@@ -135,8 +132,7 @@ Before we tackle our problem let's for a moment talk about basics of TDD and tes
 testing you start with simple data structure such as `Stack` and you try to implement it using existing language structure
 and verify its correctness.
 
-```
-#!ruby
+```ruby
 
 class Stack
   Empty = Class.new(StandardError)
@@ -158,8 +154,7 @@ end
 
 So you put something on the stack, you take it back and you verify that it is in fact the same thing.
 
-```
-#!ruby
+```ruby
 
 describe Stack do
   subject(:stack) { described_class.new }
@@ -177,8 +172,7 @@ basic TDD technique**.
 
 I cannot but think we started to turn our test more into something like:
 
-```
-#!ruby
+```ruby
 
 describe Stack do
   subject(:stack) { described_class.new }
@@ -214,8 +208,7 @@ that what _Commands_ created is the same for what we test in _Queries_.
 What can we do to mitigate this unfortunate situation? Go back to the basic and **setup our tests by directly interacting
 with the system** instead of building its state. In case of our original school example it might look like.
 
-```
-#!ruby
+```ruby
 
 registration = SchoolRegistration.new
 registration.call(SchoolRegistration::Input.new.tap do |i|
@@ -264,8 +257,7 @@ additionally and required our tests to change, which we didn't want to.
 
 Let's recall our test:
 
-```
-#!ruby
+```ruby
 
 specify "pupil can learn from class dictionaries" do
   expect(
@@ -289,8 +281,7 @@ in our system communicate with multiple modules such as `Teaching`, `Accounting`
 only interested in what happened in one of them. So we could stub other dependencies except for `teaching` if they were
 explicitly passed in constructor.
 
-```
-#!ruby
+```ruby
 teaching = Teaching.new
 class_creation = ClassCreation.new(
   teaching, 

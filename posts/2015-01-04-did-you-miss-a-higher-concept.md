@@ -30,8 +30,7 @@ First, let's have a look at this example:
 
 Now you know a bit of the story related to the example from the book.
 
-```
-#!ruby
+```ruby
 class Location
   attr_reader :x, :y
   def neighbors
@@ -48,8 +47,7 @@ you yet, because I quickly realized that it could actually work...
 This `Location` is basically just a [Value Object](http://martinfowler.com/bliki/ValueObject.html) 
 and it could return all neighbour locations as value objects as well. Let's try to implement that.
 
-```
-#!ruby
+```ruby
 class Location
   attr_reader :x, :y
 
@@ -73,8 +71,7 @@ end
 
 And you could use it like:
 
-```
-#!ruby
+```ruby
 Location.new(0, 0).neighbors.to_a
 # => [#<Location:0x00000000fde8a0 @x=-1, @y=-1>, #<Location:0x00000000fde878 @x=-1, @y=0>, #<Location:0x00000000fde850 @x=-1, @y=1>,
 #     #<Location:0x00000000fde828 @x=0, @y=-1>,  #<Location:0x00000000fde7d8 @x=0, @y=1>,  #<Location:0x00000000fde7b0 @x=1, @y=-1>,
@@ -96,8 +93,7 @@ it is a _zero-player game_ but I think the intuition of Game still applies.
 When discussing a different code example in the book, Corey reverses
 the dependency between two objects. Instead of `Cell` knowing its location
 
-```
-#!ruby
+```ruby
 class Cell
   attr_reader :location
 end
@@ -105,8 +101,7 @@ end
 
 Now the location can know what cell is on it, thus becoming a `Coordinate`:
 
-```
-#!ruby
+```ruby
 class Coordinate
   attr_reader :x, :y
   attr_reader :cell
@@ -138,8 +133,7 @@ class in Ruby that would work with ruby Range](/2014/08/using-ruby-range-with-cu
 Basically `YearMonth` knows how to compute its successor, the next YearMonth. It also works nicely with iterating
 and comparison.
 
-```
-#!ruby
+```ruby
 range = YearMonth.new(2014, 1)..YearMonth.new(2014, 3)
 # => #<struct YearMonth year=2014, month=1>..#<struct YearMonth year=2014, month=3>
 

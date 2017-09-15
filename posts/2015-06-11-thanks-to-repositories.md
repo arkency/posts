@@ -31,8 +31,7 @@ The app has users with its tender projects. Each project has many named lists wi
 
 I was wondering the post structure implementation. In my first attempt I had two tables. One for posts and one for its values (fields) associated with properties. The database schema looked as follows:
 
-```
-#!ruby
+```ruby
 create_table "properties" do |t|
   t.integer  "project_id", null: false
   t.string   "english_name"
@@ -57,8 +56,7 @@ That implementation was not the best one. Getting data required many SQL queries
 
 I have removed the values table and I have changed the posts table definition as follows:
 
-```
-#!ruby
+```ruby
 create_table "posts" do |t|
   t.integer  "list_id",              null: false
   t.integer  "position", default: 1, null: false
@@ -80,8 +78,7 @@ But I was lucky :) At that time I was reading the [Fearless Refactoring Book by 
 
 Placed in `app/models`. Used only by repositories to access the database.
 
-```
-#!ruby
+```ruby
 class Property < ActiveRecord::Base
   belongs_to :project
 end
@@ -101,8 +98,7 @@ end
 
 Placed in `app/entities`. Entities are simple PORO objects with Virtus included. These objects are the smallest system building blocks. The repositories use these objects as return values and as input parameters to persist them in the database.
 
-```
-#!ruby
+```ruby
 class PropertyEntity
   include Virtus.model
 
@@ -142,8 +138,7 @@ Placed in `app/repos/post_repo.rb`. PostRepo is always for single list only. The
 
 The properties array is given in initialize parameters. Please also take a note that ActiveRecord don't leak outside the repo. Even ActiveRecord exceptions are covered by the repo exceptions.
 
-```
-#!ruby
+```ruby
 class PostRepo
   ListNotFound  = Class.new(StandardError)
   PostNotUnique = Class.new(StandardError)
@@ -216,8 +211,7 @@ end
 
 # Sample console session
 
-```
-#!ruby
+```ruby
 # Setup
 > name = PropertyEntity.new(symbol: :name,
                             english_name: 'Name',

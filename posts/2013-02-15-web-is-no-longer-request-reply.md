@@ -43,8 +43,7 @@ So the question is: Do our current tools help us to develop applications with su
 frameworks and libraries which would make it simple to think about the new part of the web, about notifications.
 I do not want to just respond to a request anymore. I want to do something additional. Like:
 
-```
-#!ruby
+```ruby
 # pseudo-rails code
 class CommentsController
   def create

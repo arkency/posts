@@ -19,8 +19,7 @@ Imagine a gem `awesome` which gives you `Awesome` module that you could use in y
 to get  `awesome` getter and `awesome=(val)` setter with an interesting logic.
 You would use it like that:
 
-```
-#!ruby
+```ruby
 class Foo
   extend Awesome
   attribute :awesome
@@ -37,8 +36,7 @@ generate the methods like some gems do.
 
 Be aware that it is a bit contrived example.
 
-```
-#!ruby
+```ruby
 module Awesome
   def attribute(name)
     define_method("#{name}=") do |val|
@@ -55,8 +53,7 @@ because they don't know about your usecases.
 
 Ideally we would like to do what we normally do:
 
-```
-#!ruby
+```ruby
 class Foo
   extend Awesome
   attribute :awesome
@@ -70,16 +67,14 @@ end
 But this time we can't. Because the gem relies on meta-programming and adds setter method directly to our class.
 We would simply overwrite it.
 
-```
-#!ruby
+```ruby
 Foo.new.awesome = "bar"
 # => NoMethodError: super: no superclass method `awesome=' for #<Foo:0x000000012ff0e8>
 ```
 
 If the gem did not rely on meta programming and followed a simple convention:
 
-```
-#!ruby
+```ruby
 module Awesome
   def awesome=(val)
     @awesome = "Awesome #{val}"
@@ -104,8 +99,7 @@ by the programmers don't have such comfort.
 
 Here is what you can do if the gem authors add methods directly to your class:
 
-```
-#!ruby
+```ruby
 class Foo
   extend Awesome
   attribute :awesome
@@ -120,8 +114,7 @@ end
 
 Use `prepend` with anonymous module. That way `awesome=` setter defined in the module is higher in the hierarchy.
 
-```
-#!ruby
+```ruby
 Foo.ancestors
 # => [#<Module:0x00000002d0d660>, Foo, Object, Kernel, BasicObject]
 ```
@@ -131,8 +124,7 @@ Foo.ancestors
 You can make the life of users of your gem easier. Instead of directly defining methods in the class, you can
 include an anonymous module with those methods. With such solution the programmer will be able to use `super``.
 
-```
-#!ruby
+```ruby
 module Awesome
   def awesome_module
     @awesome_module ||= Module.new().tap{|m| include(m) }
@@ -150,16 +142,14 @@ end
 That way the module, with methods generated using meta-programming techniques, is lower
 in the hierarchy than the class itself.
 
-```
-#!ruby
+```ruby
 Foo.ancestors
 # => [Foo, #<Module:0x000000018062a8>, Object, Kernel, BasicObject]
 ```
 
 Which makes it possible for the users of your gem to just use old school `super` ...
 
-```
-#!ruby
+```ruby
 class Foo
   extend Awesome
   attribute :awesome

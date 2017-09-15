@@ -26,16 +26,14 @@ One of the projects we work on is a rather large frontend app, built with React 
 
 Our app is a typical frontend application, which means there are AJAX requests sent all over the place. Even the simplest edit and save operation sends one and then shows a flash message when it's done. Now to have a test that checks if the proper flash message is visible, we need to wait for AJAX, it's not enough to simply do:
 
-```
-#!ruby
+```ruby
 
 expect(actor).to see "Success messaage"
 ```
 
 even though ["Capybara is ridiculously good at waiting for content"](http://www.elabs.se/blog/53-why-wait_until-was-removed-from-capybara). In our case this fails from time to time and so we have resorted to a custom `wait_for_ajax` helper method that checks if there are any AJAX requests still running:
 
-```
-#!ruby
+```ruby
 
 # snippet of spec/support/helpers.rb
 def wait_for_ajax
@@ -47,8 +45,7 @@ end
 
 Then in our tests we call it after clicking a Save button:
 
-```
-#!ruby
+```ruby
 
 # snippet of an acceptance test
 def set_reward_attribute(actor, reward)
@@ -70,8 +67,7 @@ Initially, we were using PhantomJS 1.9.8, but it didn't have the `bind` method n
 
 Now, to actually use PhantomJS 2.0 on CircleCI, you need to have this in your circleci.yml:
 
-```
-#!ruby
+```ruby
 
 # snippet of: circleci.yml
 
@@ -87,8 +83,7 @@ dependencies:
 
 Here is a trick that may also make your build more stable. We have noticed that WEBrick, which is the default server, hangs from time to time and gives us weird timeouts during the test runs. So we searched for alternatives and ended up using Puma instead. It seems to be much more stable and here is how you can plug it in:
 
-```
-#!ruby
+```ruby
 
 # fragment of: spec/spec_helper.rb
 Capybara.server do |app, port|
@@ -103,16 +98,14 @@ Our frontend uses different animations, like fading out and in. This all looks n
 
 First, we add a custom CSS class to our `<body>` tag, for the test environment only:
 
-```
-#!erb
+```erb
 
 <body<%%= Rails.env.test? ? ' class="disable-animations"'.html_safe : '' %>>
 ```
 
 Then we use the following styles:
 
-```
-#!sass
+```sass
 
 .disable-animations *,
 .disable-animations *:after,

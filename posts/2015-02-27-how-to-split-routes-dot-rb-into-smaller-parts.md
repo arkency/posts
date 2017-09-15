@@ -33,8 +33,7 @@ In case of not finding a matching path in the file, Rails will serve 404. Becaus
 
 The following example is a short part of routes.rb:
 
-```
-#!ruby
+```ruby
 ActionController::Routing::Routes.draw do
   root to: "home#index"
   get "/about
@@ -65,15 +64,13 @@ So we have created api.rb, admin.rb, messages.rb and orders.rb. Usually, I put t
 Next step is to load above files. We can do this in several ways. In applications based on Rails 3, loading route files from application config is a very popular method . 
 Finally, we have to add to our application.rb following line:
 
-```
-#!ruby
+```ruby
 config.paths["config/routes"] += Dir[Rails.root.join('config/routes/*.rb’)]
 ```
 
 If you want to have control over the order of loading files you can do this this way:
 
-```
-#!ruby
+```ruby
 config.paths["config/routes"] = %w(
       config/routes/messages.rb
       config/routes/orders.rb
@@ -87,8 +84,7 @@ However, since version 4 of Ruby on Rails if you attempt to add the above line a
 The Rails 4 does not provide ['config/routes'] key in Rails::Engine. There is another option that works in both versions of the framework. 
 Here we have another solution:
 
-```
-#!ruby
+```ruby
 YourApplication::Application.routes.draw do
 
 def draw(routes_name)

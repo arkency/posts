@@ -46,8 +46,7 @@ Let's start building our Event Sourced application with defining a domain model.
 
 Also an aggregate is a source of new domain events. Every call of a method for an aggregate might result in publishing new domain events. Every change in internal state of an aggregate must be done by publishing and applying a new domain event. No state change in other way! Only then we could ensure that our aggregate will be rebuild to the same state from events.
 
-```
-#!ruby
+```ruby
 module Events
   class OrderCreated < RailsEventStore::Event
     def order_number
@@ -67,8 +66,7 @@ I usually create a helper method to access event's attributes witch are stored t
 
 Ok, now when we have domain events defined let's apply them to our domain object.
 
-```
-#!ruby
+```ruby
 module Domain
   class Order
     include AggregateRoot
@@ -107,8 +105,7 @@ Let's see what is going on in our `Domain::Order` class.
 First the `initialize` method. It builds the initial state of an aggregate, a state where all begins :)
 Then we have the `create` method. It should be used by other objects to invoke aggregate features. Here we should protect our invariants, check business rules do validations etc. From CQRS we know it should not return a value - it should just execute or fail (by raising error). In the `create` method we never change the state of an aggregate. Instead we build and apply a new domain event. The `apply` method is defined in `AggregateRoot` module:
 
-```
-#!ruby
+```ruby
 module AggregateRoot
   def apply(event, new = true)
     send("apply_#{event.class.name.demodulize.tableize.singularize}", event)
@@ -135,8 +132,7 @@ And one more thing: notice that all state of an aggregate object is private. Not
 
 A command is a simple object that encapsulates parameters for an action to be executed. Should be named in a business language (Ubiquitous Language) and express the user's intention. Before a command is executed it should be validated. Those validations should be simple, out of full context, just based on command data and read model data. Should not check business rules (that will be handled later by domain object).
 
-```
-#!ruby
+```ruby
 module Commands
   class CreateOrder < Command
     attr_accessor :order_id
@@ -154,8 +150,7 @@ They are also known as Form Object (in Ruby world).
 
 Base class `Command` uses some ActiveModel features to allow simple validation and creation of command objects.
 
-```
-#!ruby
+```ruby
 class Command
   ValidationError = Class.new(StandardError)
 
@@ -187,8 +182,7 @@ This is the only module where I use core features of Rails Event Store. It loads
 
 So with the use of the `CommandHandler` module the `CreateOrder` command is handled by:
 
-```
-#!ruby
+```ruby
 module CommandHandlers
   class CreateOrder
     include Injectors::ServicesInjector
@@ -212,8 +206,7 @@ The `with_aggregate(command.aggregate_id)` method will return a `Domain::Order` 
 
 The command is send from any controller using method from `ApplicationController` (notice it is validated before execution):
 
-```
-#!ruby
+```ruby
 def execute(command)
   command.validate!
   handler = "CommandHandlers::#{command.class.name.demodulize}"
@@ -234,8 +227,7 @@ And one more thing: it could be anything - relational DB, NoSQL store, graph dat
 
 Here we go with build in Rails Event Store pub/sub feature. If you took a look at source of `CommandHandler` module you might have noticed
 
-```
-#!ruby
+```ruby
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|
     es.subscribe(Denormalizers::Router.new)

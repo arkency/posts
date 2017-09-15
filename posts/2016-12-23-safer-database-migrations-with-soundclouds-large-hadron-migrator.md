@@ -67,8 +67,7 @@ That's the idea behind it.
 The syntax is not as easy as with standard Rails migrations because you will need
 to restore to using SQL syntax a bit more often.
 
-```
-#!ruby
+```ruby
 require 'lhm'
 
 class MigrateUsers < ActiveRecord::Migration

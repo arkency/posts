@@ -22,8 +22,7 @@ I was also experimenting with keeping the main business logic decoupled from DB 
 
 #### Product
 
-```
-#!ruby
+```ruby
 class Inventory::Product
   attr_reader :store_quantity,
     :available_quantity,
@@ -64,8 +63,7 @@ end
 
 I imagined that the `Product` protects some rules such as that you can't reserve more of given product than you already have. Quite simple, quite logical. The product keeps track of all the quantities and implements the business logic. In the case of reservation that's just:
 
-```
-#!ruby
+```ruby
   def reserve(qty)
     raise QuantityTooBig if qty > available_quantity
     self.available_quantity -= qty
@@ -79,8 +77,7 @@ However, because I wanted to keep history what happened I came up with what I ca
 
 It looked like this:
 
-```
-#!ruby
+```ruby
 class ProductHistoryChange < Struct.new(
   :identifier,
 
@@ -101,8 +98,7 @@ Nothing fancy. 3 fields for what changed in the quantities and 3 fields about cu
 
 Here is how I imagined using those classes together:
 
-```
-#!ruby
+```ruby
 class Inventory
   Error          = Class.new(StandardError)
   QuantityTooBig = Class.new(Error)
@@ -152,8 +148,7 @@ Now, this kata is the base for for many exercises from our [Domain-Driven Rails 
 
 Here is part of one of the solutions from Event Sourcing spectrum.
 
-```
-#!ruby
+```ruby
 class Product
   include AggregateRoot
 

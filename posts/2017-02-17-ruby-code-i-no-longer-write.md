@@ -37,8 +37,7 @@ because I believe they make maintaining large applications harder.
 
 Here is a piece of code I wrote some time ago.
 
-```
-#!ruby
+```ruby
 class Ticket
   def pdf_of_kind(kind)
     {
@@ -54,8 +53,7 @@ end
 I am sure that, as most developers, you will find it... unusual. After all
 the code can be written as:
 
-```
-#!ruby
+```ruby
 class Ticket
   def pdf_of_kind(kind)
     send(kind.to_s + "_pdf")
@@ -89,8 +87,7 @@ implementation that I showed you, you quickly and easily see the limited scope o
 
 Here is another similar example.
 
-```
-#!ruby
+```ruby
 class Salesforce::Mapper
   private
 
@@ -131,8 +128,7 @@ However, again the number of columns that we will update is limited and predefin
 There is no need for the mapping to be dynamic (computed based on `gsub` and `underscore`)
 instead of static (defined as `A` => `B` once). How would I write this code now:
 
-```
-#!ruby
+```ruby
 class Salesforce::Mapper
   private
 

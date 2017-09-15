@@ -24,8 +24,7 @@ moment I haven't thought of the object in such way.
 
 The code before refactoring looked similar to this:
 
-```
-#!ruby
+```ruby
 Entry.create!(
   fact_id: fact.id,
   time: fact.metadata.fetch(:timestamp),
@@ -69,8 +68,7 @@ but I decided to go with a slightly different direction.
 
 ## After
 
-```
-#!ruby
+```ruby
 base_entry = Entry.new(
   fact_id: fact.id,
   time: fact.metadata.fetch(:timestamp),
@@ -108,8 +106,7 @@ Those [semantics changed a few years ago in in Rails 3.1](http://guides.rubyonra
 
 The most important difference for me turns out to be the record identity.
 
-```
-#!ruby
+```ruby
 User.last.dup.id
 # => nil
 
@@ -125,8 +122,7 @@ _i want a copy pointing to the same db record_.
 It is true that every `Object` has `dup` implemented so you might be tempted to believe you
 actually, can duplicate every object.
 
-```
-#!ruby
+```ruby
 a = BigDecimal.new("123")
 # => #<BigDecimal:282cf60,'0.123E3',9(18)> 
 
@@ -154,8 +150,7 @@ And so on, and so on... Unfortunately, the truth is a bit more complicated.
 There are so-called [_immediate objects_ (or _immediate values_) in Ruby](https://www.ruby-forum.com/topic/50305) which
 cannot be duplicated/cloned.
 
-```
-#!ruby
+```ruby
 nil.clone
 # TypeError: can't clone NilClass
 nil.dup
@@ -179,8 +174,7 @@ false.dup
 
 unless... you are on recently released ruby 2.4...
 
-```
-#!ruby
+```ruby
 nil.clone
 # => nil
 nil.object_id
@@ -208,8 +202,7 @@ call `dup` and not get an exception sometimes. It's
 
 First, they start by saying you can `dup` an `Object`.
 
-```
-#!ruby
+```ruby
 class Object
   # Can you safely dup this object?
   #
@@ -224,8 +217,7 @@ end
 And then it is dynamically checked if that's actually true for some known exceptions
 such as `nil` etc.
 
-```
-#!ruby
+```ruby
 class NilClass
   begin
     nil.dup
@@ -252,8 +244,7 @@ the method is overwritten in that specific class.
 However, for some reason for a few classes, a different strategy is used
 by explicitly returning `true` or `false` without such check.
 
-```
-#!ruby
+```ruby
 class BigDecimal
   def duplicable?
     true
@@ -275,8 +266,7 @@ end
 
 But the most interesting part is around `Symbol`.
 
-```
-#!ruby
+```ruby
 class Symbol
   begin
     :symbol.dup # Ruby 2.4.x.
@@ -298,8 +288,7 @@ Because Ruby 2.4 is a bit weird and a literal symbol can be duplicated
 but dynamic one cannot. Unless the dynamic one is the same as a literal
 one created before it... yep...
 
-```
-#!ruby
+```ruby
 
 :literal_symbol.dup
 # => :literal_symbol
@@ -323,8 +312,7 @@ those methods. Quoting the documentation itself.
 
 _Most objects are cloneable, but not all. For example, you can't dup methods:_
 
-```
-#!ruby
+```ruby
 method(:puts).dup
 # => TypeError: allocator undefined for Method
 ```
@@ -333,8 +321,7 @@ _Classes may signal their instances are not duplicable removing `dup`/`clone`
 or raising exceptions from them. So, to dup an arbitrary object you normally
 use an optimistic approach and are ready to catch an exception, say:_
 
-```
-#!ruby
+```ruby
 arbitrary_object.dup rescue object
 ```
 

@@ -24,8 +24,7 @@ You can check what happened when you posted link to Hacker News or Reddit in Rea
 
 When you promote product with blog you should be able to measure how many readers did what you want - click link or sign up with some form. Here's our little script that solves that problems.
 
-```
-#!javascript
+```javascript
 function trackEvent(category, action, label) {
   window._gaq.push(['_trackEvent', category, action, label])
 }

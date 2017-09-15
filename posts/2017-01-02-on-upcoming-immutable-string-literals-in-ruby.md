@@ -18,8 +18,7 @@ I found there an opportunity for him to learn more about a few things...
 
 That's his code which inspired me for a reflection.
 
-```
-#!ruby
+```ruby
 string = ''
 string += 'Pling' if num % 3 == 0
 string += 'Plang' if num % 5 == 0
@@ -36,16 +35,14 @@ but in some time [string literals will be immutable](https://bugs.ruby-lang.org/
 
 Let's focus on a very small part of the code:
 
-```
-#!ruby
+```ruby
 string = ''
 string += 'Pling' if num % 3 == 0
 ```
 
 We could easily refactor it to:
 
-```
-#!ruby
+```ruby
 string = ''
 string << 'Pling' if num % 3 == 0
 ```
@@ -57,8 +54,7 @@ rvm use ruby-2.3.0
 RUBYOPT=--enable-frozen-string-literal irb
 ```
 
-```
-#!ruby
+```ruby
 s = ""
 
 s.frozen?
@@ -72,16 +68,14 @@ Obviously, because `s = ""` is a string literal.
 
 In such case we would need to go with a less elegant solution probably:
 
-```
-#!ruby
+```ruby
 string = String.new
 string << 'Pling' if num % 3 == 0
 ```
 
 because
 
-```
-#!ruby
+```ruby
 s = String.new
 
 s.frozen?

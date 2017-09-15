@@ -20,8 +20,7 @@ We've tried almost everything for our Rails frontends - typical Rails views, Bac
 
 Our file structure per a single mini-application:
 
-```
-#!bash
+```bash
 app_init.js.coffee
 --- app_directory
     --- app.module.js.coffee
@@ -35,8 +34,7 @@ app_init.js.coffee
 
 app_init - we got one per each application. We always keep it simple:
 
-```
-#!coffeescript
+```coffeescript
 #= require_tree ./app_directory
 
 App = require('app_directory/app')

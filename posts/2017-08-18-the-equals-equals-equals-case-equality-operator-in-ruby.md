@@ -14,8 +14,7 @@ And my attention was captured by `Enumerable#grep`.
 
 <!-- more -->
 
-```
-#!ruby
+```ruby
 # grep(pattern) → array
 
 # Returns an array of every element in enum
@@ -40,8 +39,7 @@ As you can see it works with any class which implements `===` operator. So I was
 
 ## Class / Module
 
-```
-#!ruby
+```ruby
 mod === obj #→ true or false
 ```
 
@@ -49,15 +47,13 @@ mod === obj #→ true or false
 
 Basically implemented as
 
-```
-#!ruby
+```ruby
 obj.kind_of?(mod)
 ```
 
 #### Example
 
-```
-#!ruby
+```ruby
 "text".class.ancestors
 # => [String, Comparable, Object, Kernel, BasicObject]
 
@@ -76,8 +72,7 @@ Numeric === "text"
 
 ## Regexp
 
-```
-#!ruby
+```ruby
 rxp === str #→ true or false
 ```
 
@@ -89,8 +84,7 @@ rxp =~ str >= 0
 
 #### Example
 
-```
-#!ruby
+```ruby
 
 /^[a-z]*$/ === "HELLO"
 #=> false
@@ -101,8 +95,7 @@ rxp =~ str >= 0
 
 ## Range
 
-```
-#!ruby
+```ruby
 rng === obj #→ true or false
 ```
 
@@ -110,8 +103,7 @@ Returns true if `obj` is an element of the range, false otherwise.
 
 #### Example
 
-```
-#!ruby
+```ruby
 
 (Date.new(2017, 8, 21)..Date.new(2017, 8, 27)) === Date.new(2017, 8, 27)
 # => true
@@ -128,8 +120,7 @@ Returns true if `obj` is an element of the range, false otherwise.
 
 ## Proc
 
-```
-#!ruby
+```ruby
 proc === obj # → result_of_proc
 ```
 
@@ -137,8 +128,7 @@ Invokes the block with `obj` as the `proc`'s parameter just like `#call`.
 
 #### Example
 
-```
-#!ruby
+```ruby
 is_today = -> (date) { Date.current === date }
 
 is_today === Date.current
@@ -160,8 +150,7 @@ For most of other objects the behavior of `===` is the same as `==`.
 
 You can define your own class and it's own `===` which might be as complex (or as simple) as you want. And you can use instances of such class as matchers in `case..when` statements or as arguments to `Array#grep`.
 
-```
-#!ruby
+```ruby
 class State
   def initialize(expected_state)
     @expected_state = expected_state
@@ -206,8 +195,7 @@ Of course this is only for the cases when you don't feel that checking those con
 
 As Ruby allows you to define singleton method which affect only a single object's behavior, you don't even need a class.
 
-```
-#!ruby
+```ruby
 VERIFIED = Object.new
 def VERIFIED.===(obj)
   obj.state.to_s == "verified"
@@ -225,8 +213,7 @@ VERIFIED === Order.new(2, "verified", "Rita")
 
 But frankly, I would rather go with `Proc` in such case.
 
-```
-#!ruby
+```ruby
 VERIFIED = -> (obj){ obj.state.to_s == "verified" }
 ```
 

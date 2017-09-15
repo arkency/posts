@@ -36,8 +36,7 @@ In next steps I will show you how we implemented simple CQRS. I will focus on bu
 Starting from the top. The following example shows the controller with basic actions. As you can see we simply call **Application services** where each one has a separate responsibility.
 In clean CQRS we should use **Commands**. We will refactor it in a next step.
 
-```
-#!ruby
+```ruby
 
 class TeamsController < ApplicationController
   before_action :authenticate_user_from_token!
@@ -67,8 +66,7 @@ end
 
 The following example shows one app service. We use this service to create new a Team.
 
-```
-#!ruby
+```ruby
 
 module AppServices
   class AddNewTeam
@@ -112,8 +110,7 @@ module AppServices
 end
 ```
 
-```
-#!ruby
+```ruby
 
 module OrganizationBc
   module Teams
@@ -148,8 +145,7 @@ But we save all events so It will be very ease to build an aggregate's state usi
 
 We inject the EventStore instance using a custom injector. The whole setup you can see bellow.
 
-```
-#!ruby
+```ruby
 
 module EventStore
   module Injector
@@ -162,8 +158,7 @@ module EventStore
 end
 ```
 
-```
-#!ruby
+```ruby
 
 Rails.application.configure do
   #other stuff
@@ -171,8 +166,7 @@ Rails.application.configure do
 end
 ```
 
-```
-#!ruby
+```ruby
 
 module EventStore
   class SetupEventStore
@@ -205,8 +199,7 @@ end
 So the **Write** part is almost done. In the `SetupEventStore` class we define event handler called `OrganizationBc::ReadModels::Structure` for our Read Model.
 We subscribe it to handle set of events.
 
-```
-#!ruby
+```ruby
 
 module OrganizationBc
   module ReadModels
@@ -336,8 +329,7 @@ The organization's structure is a tree structure. Each **Team** has relation to 
 These nodes are team’s members. We modify the structure's model and save in Postgres Database for each handled event. We save model in JSON representation.
 We save a new record in each update to keep whole change history. The following example shows how the repository looks like.
 
-```
-#!ruby
+```ruby
 
 module OrganizationBc
   module Adapters
@@ -376,8 +368,7 @@ end
 When we have build Read Model the last step is to create query for fetching model. We have separate module called `AppQueries` where we keep all queries.
 So the **Read** part is only one class. That's all.
 
-```
-#!ruby
+```ruby
 
 module AppQueries
   class LoadOrganizationStructure

@@ -37,8 +37,7 @@ You probably know what Cucumber is, but just to remind you - testing framework t
 
 Let's have the first attempt on writing test for sample TODO application using such perspective.
 
-```
-#!coffeescript
+```coffeescript
 describe "TODO app", ->
   beforeEach ->
     @app = new TodoApplication()
@@ -59,8 +58,7 @@ describe "TODO app", ->
 
 Yeah, you're right - it's not end user perspective. It's jQuery perspective. Let's fix this with our own capybara-like wrapper for DOM, based on jQuery:
 
-```
-#!coffeescript
+```coffeescript
 describe "TODO app", ->
   beforeEach ->
     @app = new TodoApplication()

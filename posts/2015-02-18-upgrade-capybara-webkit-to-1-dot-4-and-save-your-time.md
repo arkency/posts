@@ -38,8 +38,7 @@ So I disabled Mixpanel Javascript, tested it out and everything was working
 correctly. We were already using `capybara-webkit` version `1.3.1` with **blacklisting
 feature** to prevent exactly such kind of problems:
 
-```
-#!ruby
+```ruby
 Capybara.register_driver :webkit_with_blacklist do |app|
   driver = Capybara::Webkit::Driver.new(app)
   driver.browser.url_blacklist = %w(
@@ -62,8 +61,7 @@ What a shame.
 But this is where new version of `capybara-webkit` comes into the story. It has a
 really nice feature which allows you to **disable any external JS** by calling
 
-```
-#!ruby
+```ruby
 page.driver.block_unknown_urls
 ```
 
@@ -86,8 +84,7 @@ is using capybara api.
 Because we use [`bbq` gem](https://github.com/drugpl/bbq) in our project,
 for me it was:
 
-```
-#!ruby
+```ruby
 class Webui < Bbq::TestUser
   def initialize(*)
     super
@@ -104,8 +101,7 @@ have (and don't need) this feature available.
 If you follow standard way described in [Using Capybara with RSpec](http://www.rubydoc.info/gems/capybara#Using_Capybara_with_RSpec)
 you can write:
 
-```
-#!ruby
+```ruby
 describe "the signin process", js: true do
   before do
     page.driver.block_unknown_urls
@@ -120,8 +116,7 @@ end
 
 or in Capybara DSL:
 
-```
-#!ruby
+```ruby
 feature "Signing in" do
   background do
     page.driver.block_unknown_urls
@@ -140,8 +135,7 @@ have to repeat it multiple times.
 
 You can also configure it globally in `spec_helper` with:
 
-```
-#!ruby
+```ruby
 RSpec.configure do |config|
   config.before(:each, js: true) do
     page.driver.block_unknown_urls

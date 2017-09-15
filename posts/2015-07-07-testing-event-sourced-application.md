@@ -43,8 +43,7 @@ This should be quite easy. Any state is a derivative of domain events. You could
 
 To build a state you just need some events:
 
-```
-#!ruby
+```ruby
 include CommandHandlers::TestCase
 
 test 'order is created' do
@@ -99,8 +98,7 @@ Then we have our test state arranged. Notice that I've used fake event store & d
 
 In Event Sourced application act (operation we want to test) is usually handling of a command. To do it you just need a command, you need the command handler and then just dispatch the command to the command handler.
 
-```
-#!ruby
+```ruby
 test 'order is created' do
   # ...
   act(event_store,
@@ -139,8 +137,7 @@ The same `Command::Execute` module is used in `ApplicationController` to dispatc
 
 You should not assert on the current state, actually you should not rely on a state at all. All you need to verify is if the correct domain events have been produced.
 
-```
-#!ruby
+```ruby
 test 'order is created' do
   # ...
   assert_changes(event_store,

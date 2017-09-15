@@ -48,8 +48,7 @@ For me personally, [influxdb-ruby](https://github.com/influxdata/influxdb-ruby) 
 
 ### writes
 
-```
-#!ruby
+```ruby
 require 'influxdb'
 influxdb = InfluxDB::Client.new
 influxdb.write_point(, {
@@ -78,8 +77,7 @@ However, InfluxQL query language (similar to SQL but not really it) really shine
 
 #### raw data using influxdb console
 
-```
-#!sql
+```sql
 SELECT
   sum(completed)/sum(started) AS ratio
 FROM orders
@@ -104,8 +102,7 @@ where `Time.at(1499212800).utc` is `2017-07-05 00:00:00 UTC` and
 
 Using the gem you can easily query for the data using InfluxQL and get these values nicely formatted.
 
-```
-#!ruby
+```ruby
 influxdb.query "select sum(completed)/sum(created) as ratio FROM orders WHERE time >= '2017-07-05T00:00:00Z' group by time(1d)"
 
 [{

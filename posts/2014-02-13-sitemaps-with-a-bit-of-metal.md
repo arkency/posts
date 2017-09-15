@@ -39,8 +39,7 @@ and ping selected search engines about availability of new one one for your site
 
 Installation is very easy. You only need to add one line to your `Gemfile`:
 
-```
-#!ruby
+```ruby
 sitemap_generator
 ```
 
@@ -48,8 +47,7 @@ Then you should run `bundle` and `rake sitemap:install`.
 Now you should have `config/sitemap.rb` in your directory structure,
 which you need to tweak for your needs.
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.default_host = 'http://example.com'
 SitemapGenerator::Sitemap.create do
   add '/home', :changefreq => 'daily', :priority => 0.9
@@ -60,8 +58,7 @@ end
 And that's it! All you need to do is to run `rake sitemap:refresh`.
 Now you have new `sitemap.xml.gz` file in your `/public` directory.
 
-```
-#!xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
@@ -100,8 +97,7 @@ We will fetch all events from database through `find_each` method to get objects
 We do this in case that large amount of objets could not fit into memory.
 On each _event_ we would use `event_path` helper to add proper `URL` to our sitemap.
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.create_index = true
 
 SitemapGenerator::Sitemap.default_host = 'http://example.com'
@@ -117,8 +113,7 @@ At least because for each _n_ multiple of 50,000, `sitemap{n}.xml.gz` would get 
 
 Let's take a close look at `sitemap.xml.gz` content:
 
-```
-#!xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <sitemap>
@@ -136,8 +131,7 @@ It no longer contains a `Sitemap`, but `index` which specifies where the `Sitema
 
 Content of `sitemap1.xml.gz`:
 
-```
-#!xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
@@ -161,8 +155,7 @@ Content of `sitemap1.xml.gz`:
 
 Content of `sitemap2.xml.gz`:
 
-```
-#!xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
@@ -190,15 +183,13 @@ Pretty easy, isn't it?
 If you use CDN for static files and don't want to keep `Sitemap` in your `/public` directory,
 you can use specific adapter and just customize this in config file:
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
 ```
 
 or even
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new
 ```
 
@@ -207,8 +198,7 @@ If you need more customization in this area, you can just write your compatible 
 whenever you want: database, key-value storage or whatever.
 If we want to use `ActiveRecord` for this purpose, we can just write:
 
-```
-#!ruby
+```ruby
 module SitemapGenerator
   class ActiveRecordAdapter
     def write(location, raw_data)
@@ -230,8 +220,7 @@ end
 
 One more thing to do to keep this running is to create such db migration:
 
-```
-#!ruby
+```ruby
 class CreateSitemaps < ActiveRecord::Migration
   def change
     create_table :sitemaps do |t|
@@ -250,8 +239,7 @@ end
 We must also update our `config/sitemap.rb` file and tell that we want to use custom
 adapter:
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::ActiveRecordAdapter.new
 ```
 
@@ -264,8 +252,7 @@ We need to find away to get the file from db and render to user, in this case se
 To render our file we need to create proper controller.
 In typical Rails application we would probably do something like this:
 
-```
-#!ruby
+```ruby
 class SitemapsController < ApplicationController
   skip_before_filter :authenticate_user! # because you use devise, don't you?
 
@@ -283,15 +270,13 @@ We need to register this format, so our controller could render proper response 
 `*.xml.gz` format is requested by client. We can to do this by putting line below
 in `config/initializers/mime_types.rb` file.
 
-```
-#!ruby
+```ruby
 Mime::Type.register "application/x-gzip", :xml_gz, [], ["xml.gz"]
 ```
 
 One more necessary thing is adding these few lines to `config/routes.rb`:
 
-```
-#!ruby
+```ruby
 constraints(format: /[a-z]+(\.[a-z]+)?/) do
   resources :sitemaps, only: :show
   get '/sitemap.:format' => 'sitemaps#show'
@@ -304,8 +289,7 @@ would be treated as filename.
 
 Let's take a look what exactly our controller has inside:
 
-```
-#!ruby
+```ruby
 irb(main):001:0> SitemapsController.ancestors
 => [
      SitemapsController,
@@ -388,8 +372,7 @@ turbolinks, devise and any other useless in this case stuff. So, let's slim this
 
 ## Here comes the Metal
 
-```
-#!ruby
+```ruby
 class SitemapsController < ActionController::Metal
   include AbstractController::Rendering
   include ActionController::MimeResponds
@@ -409,8 +392,7 @@ end
 
 Let's take a look what we have achieved:
 
-```
-#!ruby
+```ruby
 irb(main):004:0> SitemapsController.ancestors
 => [
      SitemapsController,

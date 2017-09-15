@@ -32,8 +32,7 @@ Create is not a word our business experts will use here (hopefully). The custome
 authorizes us to charge him some amount of money.
 Read this [Udi Dahan's post](http://udidahan.com/2009/06/29/dont-create-aggregate-roots/).
 
-```
-#!ruby
+```ruby
 class Payment
   InvalidOperation = Class.new(StandardError)
 
@@ -90,8 +89,7 @@ Ok, so we have our business logic.
 
 First, we need to define our domain events.
 
-```
-#!ruby
+```ruby
 PaymentAuthorized = Class.new(RailsEventStore::Event)
 PaymentSuccessed  = Class.new(RailsEventStore::Event)
 PaymentFailed     = Class.new(RailsEventStore::Event)
@@ -100,8 +98,7 @@ PaymentCaptured   = Class.new(RailsEventStore::Event)
 
 Then let's use them to implement our `Payment` domain model.
 
-```
-#!ruby
+```ruby
 class Payment
   InvalidOperation = Class.new(StandardError)
   include AggregateRoot
@@ -193,8 +190,7 @@ The typical lifecycle of that domain object is:
 
 Let's define our process. To help us use it later we will define an application service class that will handle all "plumbing" for us.
 
-```
-#!ruby
+```ruby
 class PaymentsService
   def initialize(event_store:, payment_gateway:)
     @event_store     = event_store
@@ -234,8 +230,7 @@ end
 
 Now we need only an adapter for our payment gateway & instance of `RailsEventStore::Client`.
 
-```
-#!ruby
+```ruby
 class PaymentGateway
   def initialize(transaction_id_generator)
     @generator = transaction_id_generator
@@ -257,8 +252,7 @@ event_store = RailsEventStore::Client.new(repository: RailsEventStore::InMemoryR
 
 # Happy path
 
-```
-#!ruby
+```ruby
 random_id = SecureRandom.uuid
 gateway = PaymentGateway.new(-> { random_id })
 service = PaymentsService.new(event_store: event_store, payment_gateway: gateway)

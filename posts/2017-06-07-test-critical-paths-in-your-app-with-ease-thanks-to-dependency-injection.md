@@ -18,8 +18,7 @@ Easy peasy you think, but you probably also know that the subset is limited to 9
 
 Let’s start with a test for the best case scenario
 
-```
-#!ruby
+```ruby
 
 RSpec.describe OrderNumberGenerator do
   specify do
@@ -34,8 +33,7 @@ end
 
 And the simple implementation:
 
-```
-#!ruby
+```ruby
 
 class OrderNumberGenerator
   MAX_ATTEMPTS = 3
@@ -64,8 +62,7 @@ end
 
 The code looks fine, but we’re not able to easily verify whether `retry` scenario works as intended. We could stub Ruby’s `Kernel#rand` but we want cleaner & more flexible solution, so let’s do a tiny refactoring.
 
-```
-#!ruby
+```ruby
 
 class RandomNumberGenerator
   def call
@@ -95,8 +92,7 @@ class OrderNumberGenerator
 
 Random number generator is no longer a private method, but a separate class `RandomNumberGenerator`. It’s injected to `OrderNumberGenerator` and the code still works as before. Instead of a default `RandomNumberGenerator`, for the testing purposes we pass simple lambda. Lambda pops elements from crafted array to cause intended unique index violation.
 
-```
-#!ruby
+```ruby
 
 RSpec.describe OrderNumberGenerator do
   specify do

@@ -41,8 +41,7 @@ Now, we are ready to write an event handler, which will update a read model each
 
 Firstly, we will start from having records for each game, so we want to handle `AdminAddedGame` event.
 
-```
-#!ruby
+```ruby
 class UpdateGameRankingReadModel
   def handle_event(event)
     case event.event_type
@@ -59,8 +58,7 @@ end
 
 In our `GamesController` or wherever we're creating our games, we subscribe this event handler to an event:
 
-```
-#!ruby
+```ruby
 game_ranking_updater = UpdateGameRankingReadModel.new
 event_store.subscribe(game_ranking_updater, ['Events::AdminAddedGame']
 ```
@@ -72,8 +70,7 @@ So, as I said, we are going to create a snapshot event. **Such event have a lot 
 
 Firstly, I created `RankingHadState` event.
 
-```
-#!ruby
+```ruby
 module Events
   class RankingHadState < RailsEventStore::Event
   end
@@ -82,8 +79,7 @@ end
 
 Now we should create a class, which we could use for publishing this snapshot event (for example, using rails console). It should fetch all games and its' likes count and then publish it as one big event.
 
-```
-#!ruby
+```ruby
 class CopyCurrentRankingToReadModel
   def initialize(event_store = default_event_store)
     @event_store = event_store
@@ -115,8 +111,7 @@ end
 
 Now we only need to add handling method for this event to our event handler.
 
-```
-#!ruby
+```ruby
 class UpdateGameRankingReadModel
   def handle_event(event)
     ...
@@ -137,8 +132,7 @@ end
 
 After this deployment, we can log into our rails console and type:
 
-```
-#!ruby
+```ruby
 copy_object = CopyCurrentRankingToReadModel.new
 event_store = copy_object.event_store
 ranking_updater = UpdateGameRankingReadModel.new
@@ -155,8 +149,7 @@ As I previously said, I'm assuming that these events are already being published
 
 Obviously, we need handling of like/unlike events in the event handler:
 
-```
-#!ruby
+```ruby
 class UpdateGameRankingReadModel
   def handle_event(event)
     ...

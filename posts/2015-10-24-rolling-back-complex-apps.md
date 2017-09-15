@@ -62,8 +62,7 @@ value is simple and don't vary per record. You don't always have that comfort.
 
 Say you have a background job that expects one argument in revision A.
 
-```
-#!ruby
+```ruby
 class Job
   def self.perform(record_id)
   end
@@ -74,8 +73,7 @@ Job.enqueue(1)
 
 And you want to add one more argument `locale` in your revision B.
 
-```
-#!ruby
+```ruby
 class Job
   def self.perform(record_id, locale)
   end
@@ -87,8 +85,7 @@ Job.enqueue(1, "es")
 To keep the code in revision B comptabile with jobs scheduled in revision A you
 need to use a default:
 
-```
-#!ruby
+```ruby
 class Job
   def self.perform(record_id, locale="en")
   end
@@ -107,8 +104,7 @@ Solution? Break into more steps:
 First, just add a default but don't change the method code and the code enqueuing.
 Just the signature. This should be safe.
 
-```
-#!ruby
+```ruby
 class Job
   def self.perform(record_id, locale="en")
   end
@@ -121,8 +117,7 @@ And then in a second step change the method so it depends on the additional argu
 and the code that enqueues to pass that argument:
 
 
-```
-#!ruby
+```ruby
 class Job
   def self.perform(record_id, locale="en")
   end
@@ -181,8 +176,7 @@ precedence over settings for merchants which take precedence over
 settings for countries.
 
 
-```
-#!ruby
+```ruby
 class PaymentGatewaySetting < ActiveRecord::Base
   SettingNotFound = Class.new(StandardError)
 

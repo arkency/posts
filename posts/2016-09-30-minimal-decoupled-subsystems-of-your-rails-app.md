@@ -100,8 +100,7 @@ domain events will be saved in a database.
 
 Domain event definition. This will be published when Season Pass is imported:
 
-```
-#!ruby
+```ruby
 class Season::PassImported < RubyEventStore::Event
   SCHEMA = {
     id: Integer,
@@ -123,8 +122,7 @@ end
 Domain event handlers/callbacks. This is how we put messages on our background
 queue, treating it as a simple message bus. We use Rails 5 API here.
 
-```
-#!ruby
+```ruby
 Rails.application.config.event_store.tap do |es|
   es.subscribe(->(event) do
     IdentityAndAccess::RegisterSeasonPassHolder.perform_later(YAML.dump(event))
@@ -141,8 +139,7 @@ end
 Imagine this part of code (somewhere) responsible for
 importing season passes. It saves the pass and publishes `PassImported` event.
 
-```
-#!ruby
+```ruby
 ActiveRecord::Base.transaction do
   pass = Season::Pass.create!(...)
   event_store.publish_event(Season::PassImported.strict(data: {
@@ -163,8 +160,7 @@ for processing by `IdentityAndAccess::RegisterSeasonPassHolder` background job
 
 These are the events that will be published by Identity and Access bounded context:
 
-```
-#!ruby
+```ruby
 class IdentityAndAccess::UserImported < RubyEventStore::Event
   SCHEMA = {
     id: Integer,
@@ -195,8 +191,7 @@ end
 This is how Identity And Access context reacts to the fact
 that Season Pass was imported.
 
-```
-#!ruby
+```ruby
 module IdentityAndAccess
   class RegisterSeasonPassHolder < ApplicationJob
     queue_as :default
@@ -229,8 +224,7 @@ such topic. I am pretty sure you can imagine exception-less solution)
 Reminder how when an event is published we schedule something to happen
 in the other part of the app.
 
-```
-#!ruby
+```ruby
 Rails.application.config.event_store.tap do |es|
   es.subscribe(->(event) do
     IdentityAndAccess::RegisterSeasonPassHolder.perform_later(YAML.dump(event))
@@ -249,8 +243,7 @@ or `UserAlreadyRegistered` by saving the reference to
 `user_id`. It does not have direct access to `User`
 class. It just holds a reference.
 
-```
-#!ruby
+```ruby
 module Season
   class AssignUserIdToHolder < ApplicationJob
     queue_as :default

@@ -31,8 +31,7 @@ If you need to think about possible use cases, please note that hashes in other 
 ### SQL
 Firstly, let's see how it looks like in plain `SQL`, everything according to official [PostgreSQL documentation](http://www.postgresql.org/docs/9.4/static/hstore.html).
 
-```
-#!sql
+```sql
 ➜  Dev  psql
 psql (9.3.5)
 Type "help" for help.
@@ -61,13 +60,11 @@ Pretty simple. We created example DB, enabled extension and selected some key-va
 
 In [previous blogpost about UUIDs](http://blog.arkency.com/2014/10/how-to-start-using-uuid-in-activerecord-with-postgresql/) we already showed how to enable particular extension. That's what we gonna do again:
 
-```
-#!bash
+```bash
 rails g migration enable_hstore_extension
 ```
 
-```
-#!ruby
+```ruby
 class EnableHstoreExtension < ActiveRecord::Migration
   def change
     enable_extension 'hstore'
@@ -77,13 +74,11 @@ end
 
 Let's reuse an existing example:
 
-```
-#!bash
+```bash
 rails g migration add_description_to_books
 ```
 
-```
-#!ruby
+```ruby
 class AddDescriptionToBooks < ActiveRecord::Migration
   def change
     add_column :books, :description, :hstore, default: {}, null: false
@@ -93,8 +88,7 @@ end
 
 And now we can play with that:
 
-```
-#!ruby
+```ruby
 b = Book.create
 #   (0.2ms)  BEGIN
 #  SQL (0.7ms)  INSERT INTO "books" ("created_at", "updated_at")
@@ -148,13 +142,11 @@ As a rule of thumb, GIN indexes are best for static data because lookups are fas
 
 So let's create an another migration:
 
-```
-#!bash
+```bash
 rails g migration add_index_for_description_in_books
 ```
 
-```
-#!ruby
+```ruby
 class AddIndexForDescriptionInBooks < ActiveRecord::Migration
   def change
     add_index :books, :description, name: 'books_description_idx', using: :gin
@@ -189,8 +181,7 @@ Does the specified column `description` contain a value of `Eccentric duck` for 
 
 Create example book:
 
-```
-#!ruby
+```ruby
 b = Book.create(description: { en: 'Eccentric duck', pl: 'Kaczka dziwaczka' })
 #   (0.1ms)  BEGIN
 #  SQL (0.2ms)  INSERT INTO "books" ("created_at", "description", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-10-10 11:21:02.294080"], ["description", "\"en\"=>\"Eccentric duck\", \"pl\"=>\"Kaczka dziwaczka\""], ["updated_at", "2014-10-10 11:21:02.294080"]]
@@ -200,8 +191,7 @@ b = Book.create(description: { en: 'Eccentric duck', pl: 'Kaczka dziwaczka' })
 
 Find a book with particular polish description:
 
-```
-#!ruby
+```ruby
 Book.where("description -> 'pl' = 'Kaczka dziwaczka'")
 #  Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE (description -> 'pl' = 'Kaczka dziwaczka')
 # => #<ActiveRecord::Relation [#<Book id: "3ba701d2-15b9-43c3-88b6-56410b176b36", title: nil, created_at: "2014-10-10 11:21:02", updated_at: "2014-10-10 11:21:02", description: {"en"=>"Eccentric duck", "pl"=>"Kaczka dziwaczka"}>]>
@@ -209,8 +199,7 @@ Book.where("description -> 'pl' = 'Kaczka dziwaczka'")
 
 Find a book containing 'duck' in english description:
 
-```
-#!ruby
+```ruby
 Book.where("description @> 'en=>duck'")
 #  Book Load (0.3ms)  SELECT "books".* FROM "books" WHERE (description @> 'en=>duck')
 # => #<ActiveRecord::Relation [#<Book id: "c484009e-a8e1-4534-8127-2032a92f9bc1", title: nil, created_at: "2014-10-10 10:39:58", updated_at: "2014-10-10 10:40:27", description: {"en"=>"duck"}>]>
@@ -218,8 +207,7 @@ Book.where("description @> 'en=>duck'")
 
 Find all books with english descriptions provided:
 
-```
-#!ruby
+```ruby
 Book.where("description ? 'en'")
 #  Book Load (0.3ms)  SELECT "books".* FROM "books" WHERE (description ? 'en')
 # => #<ActiveRecord::Relation [#<Book id: "c484009e-a8e1-4534-8127-2032a92f9bc1", title: nil, created_at: "2014-10-10 10:39:58", updated_at: "2014-10-10 10:40:27", description: {"en"=>"duck"}>, #<Book id: "75fd5620-7a09-4ae1-88b4-935385a4e970", title: nil, created_at: "2014-10-10 10:42:49", updated_at: "2014-10-10 10:54:06", description: {"en"=>"false", "pl"=>"1", "short"=>"{:en=>\"Duck\", :pl=>\"Kaczka\"}"}>, #<Book id: "3ba701d2-15b9-43c3-88b6-56410b176b36", title: nil, created_at: "2014-10-10 11:21:02", updated_at: "2014-10-10 11:21:02", description: {"en"=>"Eccentric duck", "pl"=>"Kaczka dziwaczka"}>]>
@@ -235,8 +223,7 @@ Note the *update* statement stringifies our hash:
 
 In that case we may expect:
 
-```
-#!ruby
+```ruby
 b.description['en'] = false
 # => false
 
@@ -270,8 +257,7 @@ Although it may not be a common case to store other types than `string` in a **d
 
 The more possible case may be storing nested dictionaries:
 
-```
-#!bash
+```bash
 b.description['short'] = { en: 'Duck', pl: 'Kaczka' }
 # => {:en=>"Duck", :pl=>"Kaczka"}
 
@@ -300,13 +286,11 @@ In addition to `hstore`, `json` is a full document datatype. That means it suppo
 
 ### Migration
 
-```
-#!bash
+```bash
 rails g migration add_metadata_to_books
 ```
 
-```
-#!ruby
+```ruby
 class AddMetadataToBooks < ActiveRecord::Migration
   def change
     add_column :books, :metadata, :json, default: {}, null: false
@@ -316,8 +300,7 @@ end
 
 **Then do whatever you want:**
 
-```
-#!ruby
+```ruby
 metadata = { pages: 400, published: false, isbn: SecureRandom.uuid }
 # => {:pages=>400, :published=>false, :isbn=>"35280581-7169-48ce-88fa-9e85de5df778"}
 
@@ -345,15 +328,13 @@ b.metadata['published'].class
 
 **However you should know that when searching for some records, you should stringify search parameters:**
 
-```
-#!ruby
+```ruby
 Book.where("metadata->>'published' = ?", 'false')
 #  Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE (metadata->>'published' = 'false')
 # => #<ActiveRecord::Relation [#<Book id: "00449e9f-4b03-423d-a8a9-4bcce6a92df4", title: nil, created_at: "2014-10-10 12:56:42", updated_at: "2014-10-10 12:56:42", description: {}, metadata: {"pages"=>400, "published"=>false, "isbn"=>"35280581-7169-48ce-88fa-9e85de5df778"}>]>
 ```
 
-```
-#!ruby
+```ruby
 Book.where("metadata->>'pages' = ?", '400')
 ```
 
@@ -369,15 +350,13 @@ You can also read [PostgreSQL Outperforms MongoDB in New Round of Tests](http://
 
 If you're heroku user sometimes you may encounter the following error during `rake db:migrate` task:
 
-```
-#!bash
+```bash
 No such file or directory - pg_dump -i -s -x -O -f /app/db/structure.sql
 ```
 
 `pg_dump` command is not present on Heroku's environment, which is not needed in production, but it's nice to have this dumped SQL structure in development. You can get around it by turning of this feature when not needed:
 
-```
-#!ruby
+```ruby
 Rake::Task['db:structure:dump'].clear unless Rails.env.development?
 ```
 

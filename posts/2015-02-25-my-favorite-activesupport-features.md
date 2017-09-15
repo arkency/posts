@@ -23,8 +23,7 @@ ActiveSupport features.
 
 ## `Array#second`
 
-```
-#!ruby
+```ruby
 %i(a b).second
 # => :b
 ```
@@ -34,8 +33,7 @@ with `map` they give you `some_array.map(&:second)` to get what you want.
 
 ## `Array#extract_options`
 
-```
-#!ruby
+```ruby
 def options(*args)
   args.extract_options!
 end
@@ -48,8 +46,7 @@ But with [ruby 2.0 keyword arguments aka _kwargs_](https://gist.github.com/jackn
 and ruby [1.9.3 support ending in February 2015](https://www.ruby-lang.org/en/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)
 you should probably migrate to it:
 
-```
-#!ruby
+```ruby
 def options(*args, **kwargs)
   args
   kwargs
@@ -61,8 +58,7 @@ options(1, 2, a: :b) # => {:a=>:b}
 
 ## `Array#in_groups_of` and `Array#in_groups`
 
-```
-#!ruby
+```ruby
 %w(1 2 3 4 5 6 7 8 9 10).in_groups(3) {|group| p group}
 #   ["1", "2", "3", "4"]
 #   ["5", "6", "7", nil]
@@ -82,8 +78,7 @@ in the arrays.
 
 Wraps its argument in an array unless it is already an array.
 
-```
-#!ruby
+```ruby
 def method(one_or_many)
   Array.wrap(one_or_many).each(&:do_something)
 end
@@ -96,8 +91,7 @@ Nicely explained in the documentation [why it is better then usual ruby idioms](
 
 ## `to_formatted_s` on many types
 
-```
-#!ruby
+```ruby
 BigDecimal.new("12.23").to_s
 #=> "0.1223E2"
 
@@ -119,8 +113,7 @@ arguments provided)
 
 ## `#ago`, `#from_now`
 
-```
-#!ruby
+```ruby
 
 Time.now.ago(3.months)
 # => 2014-11-25 17:55:53 +0000
@@ -134,8 +127,7 @@ Time.now.ago(3.months)
 
 ## `beginning_of_...` & `end_of_...`
 
-```
-#!ruby
+```ruby
 %i(
   beginning_of_minute
   beginning_of_hour
@@ -174,8 +166,7 @@ Time.now.ago(3.months)
 
 The class behind the little trick:
 
-```
-#!ruby
+```ruby
 3.seconds.class
 # => ActiveSupport::Duration
 ```
@@ -184,8 +175,7 @@ The class behind the little trick:
 
 I hate time zones, but I love `ActiveSupport::TimeWithZone`. It is so easy to use.
 
-```
-#!ruby
+```ruby
 Time.use_zone("Europe/Moscow"){ Time.zone.now }
 # => Wed, 25 Feb 2015 21:09:12 MSK +03:00
 
@@ -202,8 +192,7 @@ Time.utc("2015-03-03 12:00:11").zone
 And I love that it can properly compare times from different timezones
 based on what moment of time they point to.
 
-```
-#!ruby
+```ruby
 moment = Time.utc("2015-03-03 12:00:11")
 #=> 2015-01-01 00:00:00 UTC
 
@@ -215,8 +204,7 @@ moment.in_time_zone("Europe/Warsaw") == moment.in_time_zone("America/Chicago")
 
 Returns a hash that includes everything but the given keys.
 
-```
-#!ruby
+```ruby
 hash = { a: true, b: false, c: nil}
 hash.except(:c)
 # => { a: true, b: false}
@@ -229,8 +217,7 @@ Except that I always think that this method is called `#without`.
 
 Slice a hash to include only the given keys.
  
-```
-#!ruby
+```ruby
 
 { a: 1, b: 2, c: 3, d: 4 }.slice(:a, :b)
 # => {:a=>1, :b=>2}
@@ -240,15 +227,13 @@ If only I could remember that this method is not named `#only` :)
 
 ## `Hash#reverse_merge`
 
-```
-#!ruby
+```ruby
 options.reverse_merge(size: 25, velocity: 10)
 ```
 
 is equivalent to
 
-```
-#!ruby
+```ruby
 { size: 25, velocity: 10 }.merge(options)
 ```
 
@@ -256,8 +241,7 @@ This is particularly useful for default values.
 
 ## `Module#delegate`
 
-```
-#!ruby
+```ruby
 class Foo < ActiveRecord::Base
   belongs_to :greeter
   delegate :hello, to: :greeter
@@ -272,8 +256,7 @@ it probably solves 95% of my delegation cases.
 
 ## `Object#blank?` and `Object#present?` and `Object#presence`
 
-```
-#!ruby
+```ruby
 
 nil.blank?
 # => true
@@ -289,8 +272,7 @@ Never check for `nil` or empty string again.
 
 ## `Enumerable#sum`
 
-```
-#!ruby
+```ruby
 [2,3,5].sum
 # => 10
 ```
@@ -303,8 +285,7 @@ Too long for our short blogpost but check out [instrumentation API](http://api.r
 
 You can use it to generate and verify signed messages
 
-```
-#!ruby
+```ruby
 @verifier = ActiveSupport::MessageVerifier.new('s3Krit', serializer: JSON)
 @verifier.generate("private message")
 #=> "InByaXZhdGUgbWVzc2FnZSI=--43fc83190b28daf8df04c0b86ff2976931a6dcd2"

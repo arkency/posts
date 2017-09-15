@@ -27,8 +27,7 @@ system we are sending push notifications with text (alert) only
 obviously need as well is device token. Let's **have a simple interface for sending
 push notifications**.
 
-```
-#!ruby
+```ruby
 def notify(device_token, text)
 end
 ```
@@ -36,8 +35,7 @@ end
 That's the interface that every one of our adapters will have to follow. So let's
 write our first implementation using the `apns` gem.
 
-```
-#!ruby
+```ruby
 module ApnsAdapters
   class Sync
     def notify(device_token, text)
@@ -100,8 +98,7 @@ from our test environment. What are our options? I don't like putting code such 
 as well as playing with the application in development mode harder. **For such usecases new
 adapter is handy**.
 
-```
-#!ruby
+```ruby
 module ApnsAdapters
   class Fake
     attr_reader :delivered
@@ -124,8 +121,7 @@ end
 Now whenever your [service objects](http://controllers.rails-refactoring.com) are taking `apns_adapter` as dependency you can use this one
 instead of the real one.
 
-```
-#!ruby
+```ruby
 describe LikingService do
   subject(:liking)   { described_class.new(apns_adapter) }
   let(:apns_adapter) { ApnsAdapters::Fake.new }
@@ -154,8 +150,7 @@ Ok, so we have two adapters, **how do we provide them to those who need these ad
 Well, I'm gonna show you an example and not talk much about it because it's going to be a topic
 of another blogpos.
 
-```
-#!ruby
+```ruby
 module LikingServiceInjector
   def liking_service
     @liking_service ||= LikingService.new(Rails.config.apns_adapter)
@@ -178,8 +173,7 @@ config.apns_adapter = ApnsAdapter::Fake.new
 Sending push notification takes some time (just like sending email or communicating with
 any remote service) so quickly we decided to do it asynchronously.
 
-```
-#!ruby
+```ruby
 
 module ApnsAdapters
   class Async
@@ -192,8 +186,7 @@ end
 
 And the `ApnsJob` is going to use our sync adapter.
 
-```
-#!ruby
+```ruby
 class ApnsJob
   def self.perform(device_token, text)
     new(device_token, text).call
@@ -248,8 +241,7 @@ So let's say that our project evolved and now **we need to be able to send push
 notifications to 2 separate mobile apps**. First we can **refactor the interface** of
 our adapter to:
 
-```
-#!ruby
+```ruby
 def notify(device_token, text, app_name)
 end
 ```
@@ -258,8 +250,7 @@ Then we can change the implementation of our `Sync` adapter to use `grocer` gem
 instead (we need some tweeks to the other implementations as well).
 In simplest version it can be:
 
-```
-#!ruby
+```ruby
 module ApnsAdapters
   class Sync
     def notify(device_token, text, app_name)
@@ -295,8 +286,7 @@ This can be especially usefull if you are using sidekiq. In such case every
 thread can have its own connection to apple for every app that you need
 to support. This makes sending the notifications very fast.
 
-```
-#!ruby
+```ruby
 require 'singleton'
 
 class GrocerFactory
@@ -333,8 +323,7 @@ that the task failed (and can schedule it again).
 
 And our adapter:
 
-```
-#!ruby
+```ruby
 module ApnsAdapters
   class Sync
     def notify(device_token, text, app_name)
@@ -357,8 +346,7 @@ probably simplified with some kind of threadpool library.
 
 I already showed you one way of configuring the adapter by using `Rails.config`.
 
-```
-#!ruby
+```ruby
 YourApp::Application.configure do
   config.apns_adapter = ApnsAdapters::Async.new
 end
@@ -369,8 +357,7 @@ need to take care of it being thread-safe (if you use threads). And you must
 take great care of its state. So calling it multiple times between requests is
 ok. The alternative is to use proc as factory for creating instances of your adapter.
 
-```
-#!ruby
+```ruby
 
 YourApp::Application.configure do
   config.apns_adapter = proc { ApnsAdapters::Async.new }
@@ -386,8 +373,7 @@ service objects.
 
 I like to verify the interface of my adapters using shared examples in rspec.
 
-```
-#!ruby
+```ruby
 shared_examples_for :apns_adapter do
   specify "#notify" do
     expect(adapter.method(:notify).arity).to eq(2)
@@ -402,8 +388,7 @@ end
 
 Of course this will only give you very basic protection.
 
-```
-#!ruby
+```ruby
 
 describe ApnsAdapter::Sync do
   it_behaves_like :apns_adapter
@@ -422,8 +407,7 @@ Another way of testing is to **consider one implementation as leading and
 correct** (in terms of interface, not in terms of behavior) and another
 implementation as something that must stay identical.
 
-```
-#!ruby
+```ruby
 describe ApnsAdapters::Async do
   subject(:async_adapter) { described_class.new }
 
@@ -452,8 +436,7 @@ so they might even not be worth writing.
 
 Test specific for one adapter:
 
-```
-#!ruby
+```ruby
 describe ApnsAdapter::Async do
   it_behaves_like :apns_adapter
 
@@ -492,8 +475,7 @@ providers. But both of them use separate gems for that. As you can easily imagin
 when anything goes wrong, **gems are throwing their own custom exceptions. We need
 to catch them and throw exceptions which our clients/services except to catch**.
 
-```
-#!ruby
+```ruby
 require 'hypothetical_gooogle_geolocation_gem'
 require 'new_cheaper_more_accurate_provider_gem'
 
@@ -522,8 +504,7 @@ end
 leaky abstraction**. Your services should only be concerned with exceptions
 defined by the interface.
 
-```
-#!ruby
+```ruby
 class UpdatePartyLocationService
   def call(party_id, address)
     party = party_db.find_by_id(party_id)
@@ -538,8 +519,7 @@ end
 Although some developers experiment with exposing exceptions that should be caught
 as part of the interface (via methods), I don't like this approach:
 
-```
-#!ruby
+```ruby
 require 'hypothetical_gooogle_geolocation_gem'
 require 'new_cheaper_more_accurate_provider_gem'
 
@@ -570,8 +550,7 @@ end
 
 And the service
 
-```
-#!ruby
+```ruby
 class UpdatePartyLocationService
   def call(party_id, address)
     party = party_db.find_by_id(party_id)

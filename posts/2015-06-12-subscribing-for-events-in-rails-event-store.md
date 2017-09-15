@@ -20,8 +20,7 @@ img: "events/hitbythebus.jpg"
 ## Sample CQRS / ES application gone wrong
 In my post [Building an Event Sourced application](http://blog.arkency.com/2015/05/building-an-event-sourced-application-using-rails-event-store/) I've included sample code to setup denormalizers (event handlers) that will build a read model:
 
-```
-#!ruby
+```ruby
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|
     es.subscribe(Denormalizers::Router.new)
@@ -36,8 +35,7 @@ Because that is only a sample application showing how easy is to build an Event 
 
 The router was defined as:
 
-```
-#!ruby
+```ruby
 module Denormalizers
   class Router
     def handle_event(event)
@@ -54,8 +52,7 @@ end
 
 And denormalisers were implemented as:
 
-```
-#!ruby
+```ruby
 module Denormalizers
   class Order
     def order_created(event)
@@ -73,8 +70,7 @@ But we could remove it completely and we do not need that `case` at all!
 
 All this code could be rewritten using [`rails_event_store`](https://github.com/arkency/rails_event_store) subscriptions as follows:
 
-```
-#!ruby
+```ruby
 #command handler (or anywhere you want to initialise rails_event_store
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|
@@ -100,8 +96,7 @@ You see? No Router at all! It's event store who _"knows"_ where to send messages
 ## Implicit assumptions a.k.a conventions
 Sometimes when you have a simple application like this it is tempting to define _"convention"_ and avoid the tedious need to setup all subscriptions. It seems to be easy to implement and (at least at the beginning of the project) it seems to be elegant and simple solution that would do _"the magic"_ for us.
 
-```
-#!ruby
+```ruby
 # WARNING: not recommended code ahead ;)
 def event_store
   @event_store ||= RailsEventStore::Client.new.tap do |es|

@@ -29,8 +29,7 @@ Of course, I’ve made a few mistakes, some of them still bite us because of dec
 Our first ever published domain event is:
 
 
-```
-#!ruby
+```ruby
 RailsEventStore::Client.new.read_all_streams_forward(:head, 1)
 => ProductItemEvents::ProductItemSold
      @event_id="74eb88c0-8b97-4f27-9234-ed390f72287c",
@@ -80,8 +79,7 @@ system that rely on that contract. Changing it is always a trouble. Avoid that b
 The `serialized_type`? It this a business language? Really? Or does the business care about the `scanned_at` when a ticket has been just sold? I don’t. And all event handlers for this event do not care. That’s just pure garbage. It holds no meaningful information here. It just messing with your domain event contract making it less usable, more complicated.
 Explicit definition of your domain event’s attributes will not only let you avoid those unintentional things in the domain event schema but will force you to think what really should be included in the event’s data.
 
-```
-#!ruby
+```ruby
 => TicketSold
      @event_id="74eb88c0-8b97-4f27-9234-ed390f72287c",
      @metadata={:timestamp=>2014-11-12 22:20:24 UTC},

@@ -32,8 +32,7 @@ These are the methods we are looking for! After quick look on table of contents,
 
 [Example from the same rails guide](http://edgeguides.rubyonrails.org/active_support_instrumentation.html#subscribing-to-an-event):
 
-```
-#!ruby
+```ruby
 ActiveSupport::Notifications.subscribe "process_action.action_controller" do |*args|
   event = ActiveSupport::Notifications::Event.new *args
  
@@ -47,8 +46,7 @@ end
 
 Now let's write the code which will track using of our partials. We put it into `config/initializers/template_monitoring.rb` because we want it to execute only once.
 
-```
-#!ruby
+```ruby
 require 'active_support/notifications'
 
 %w(render_template.action_view render_partial.action_view).map do |event_name|
@@ -68,8 +66,7 @@ Thus now **every time rails renders a template it notifies Chillout** which hand
 
 However, again from previously referenced rails guide, `event.payload[:identifier]` is an absolute path to the template. That's not good - what will happen when we deploy with capistrano new version of our application? In absolute path we have number of release which changes on each deployment. Let's change that.
 
-```
-#!ruby
+```ruby
 def metric_name(path)
   template_name = path.sub(/\A#{Rails.root}/, '')
   "template_#{partial_name}"
@@ -78,14 +75,12 @@ end
 
 Obviously now in our previous code we've to change
 
-```
-#!ruby
+```ruby
 template_name = event.payload[:identifier]
 ```
 to
 
-```
-#!ruby
+```ruby
 template_name = metric_name(event.payload[:identifier])
 ```
 
@@ -97,8 +92,7 @@ Great, now we are tracking usage of used templates! We got chillout report and w
 
 **That's going to be pretty chillout-specific.** Firstly we need to create container which keeps templates' counters.
 
-```
-#!ruby
+```ruby
 template_name = metric_name(event.payload[:identifier])
 Thread.current[:creations] ||= Chillout::CreationsContainer.new
 container = Thread.current[:creations]
@@ -108,8 +102,7 @@ We're assigning it to `Thread.current[:creations]` because that's place where ch
 
 Then we need to initialize counters for all templates to 0. We can do that by asking chillout "What is counter of `template_name` now?". We do that by fetching `container[template_name]`. From that moment Chillout will be aware that there exists such counter named `template_name`. Thus it will show it in reports.
 
-```
-#!ruby
+```ruby
 template_name = metric_name(event.payload[:identifier])
 Dir.glob("#{Rails.root}/app/views/**/_**").each do |raw_path|
   template_name = metric_name(raw_path)
@@ -120,8 +113,7 @@ end
 
 In the end whole `config/initializers/template_monitoring.rb` looks like this:
 
-```
-#!ruby
+```ruby
 template_name = metric_name(event.payload[:identifier])
 require 'active_support/notifications'
 

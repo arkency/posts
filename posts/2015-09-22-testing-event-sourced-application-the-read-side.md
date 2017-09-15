@@ -41,8 +41,7 @@ This should be quite easy. Any state is a derivative of domain events. You could
 
 To build a state you just need some events:
 
-```
-#!ruby
+```ruby
 require 'test_helper'
 
 module Denormalizers
@@ -77,8 +76,7 @@ There is always a problem how initial state for a test should be build. With the
 Each event handler is a function: `f(state, event) -> state`
 In our case, the acting part of the test will be sending a domain event to an event handler and by knowing the initial state and payload of the domain event we could define our expected state.
 
-```
-#!ruby
+```ruby
 require 'test_helper'
 
 module Denormalizers
@@ -109,8 +107,7 @@ end
 
 There could be various types of event handlers. There is no one way of asserting the output. In this case, where event handlers (denormalisers) produce relational denormalised model the thing we check is if the model is build as expected.
 
-```
-#!ruby
+```ruby
 require 'test_helper'
 
 module Denormalizers

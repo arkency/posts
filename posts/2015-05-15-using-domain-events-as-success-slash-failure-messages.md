@@ -24,8 +24,7 @@ We had an issue recently with one of our internal gems used to handle all commun
 
 When our code is triggered (no matter how in scope of this blog post) we are using our gem's methods to handle payments.
 
-```
-#!ruby
+```ruby
 # ...
 payment_gateway.refund(transaction)
 # ...
@@ -33,8 +32,7 @@ payment_gateway.refund(transaction)
 
 There are different payment gateways - some of them respond synchronously some of them prefer asynchronous communication. To avoid coupling we publish an event when the payment gateway responds.
 
-```
-#!ruby
+```ruby
 class TransactionRefunded < RailsEventStore::Event
 
 class PaymentGateway
@@ -84,8 +82,7 @@ The first thing we did was to check history of events for the aggregate performi
 
 It could not be any. Because we did not publish them :( This is how this code should look like:
 
-```
-#!ruby
+```ruby
 class TransactionRefunded < RailsEventStore::Event
 class TransactionRefundFailed < RailsEventStore::Event
 

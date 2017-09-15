@@ -38,8 +38,7 @@ enough. The code is probably doing some DB queries, maybe even updates. It might
 needs to catch some exceptions (especially networking related) in case anything goes wrong and
 convert them into something expected by the controller.
 
-```
-#!ruby
+```ruby
 class Service
   Error = Class.new(StandardError)
 
@@ -66,8 +65,7 @@ You send notifications (for example using standard rails
 mechanism such as [`ActiveSupport::Notifications`](http://api.rubyonrails.org/v4.2.5/classes/ActiveSupport/Notifications.html)
 ) or any other event bus that you use in your app.
 
-```
-#!ruby
+```ruby
 class Service
   Error = Class.new(StandardError)
 
@@ -85,8 +83,7 @@ end
 
 and you subscribe to them:
 
-```
-#!ruby
+```ruby
 # config/initializers/instrumentation.rb
 
 N = ActiveSupport::Notifications
@@ -105,8 +102,7 @@ This almost works, but I noticed that for New Relic to actually handle those met
 I had to made sure `#increment_metric` it is called from the inside of a directly 
 traced code:
 
-```
-#!ruby
+```ruby
 # config/initializers/instrumentation.rb
 require 'new_relic/agent/method_tracer'
 
@@ -125,8 +121,7 @@ with super. It's not as powerful as aspect-oriented programming, but it will suf
 
 The module that you prepend can be an anonymous one.
 
-```
-#!ruby
+```ruby
 Service.class_eval do
   instance_method(:call) or raise "Instrumentation broken for #call"
 
@@ -180,8 +175,7 @@ In case of the problems that we detected with our payment gateway we were capabl
 of switching it to a different one using the Feature Toggle implementation that I 
 showed you in [_Rolling back complex apps_](http://blog.arkency.com/2015/10/rolling-back-complex-apps/#use_feature_toggles)
 
-```
-#!ruby
+```ruby
 class PaymentGatewaySetting < ActiveRecord::Base
   SettingNotFound = Class.new(StandardError)
 

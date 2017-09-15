@@ -18,8 +18,7 @@ There are plenty of options available. Let's evaluate their usefulness and poten
 * Can an be used on anything
 * Will return `true` only for `nil`
 
-```
-#!ruby
+```ruby
 
 nil.nil?
 # => true
@@ -39,8 +38,7 @@ false.nil?
 * Provided by Ruby
 * Can be used on *collections* such as `Array`, `Hash`, `Set` etc. Returns true when they have no elements.
 
-```
-#!ruby
+```ruby
 [].empty?
 # => true
 
@@ -55,8 +53,7 @@ Set.new.empty?
 
     * Here you can [learn more about enumerators](http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/)
 
-```
-#!ruby
+```ruby
 fib = Enumerator.new do |y|
   a = b = 1
   loop do
@@ -71,8 +68,7 @@ fib.empty?
 
 * It can also be using on Strings (because you can think of String as a collection of bytes/characters)
 
-```
-#!ruby
+```ruby
 "".empty?
 # => true
 
@@ -82,8 +78,7 @@ fib.empty?
 
 * The problem with `empty?` is that you need to know the class of the object to be sure you won't get an exception. If you don't know if an object is an `Array` or `nil` then using `empty?` alone is not safe. You need tedious double protection.
 
-```
-#!ruby
+```ruby
 object = rand > 0.5 ? nil : array
 object.empty? # can raise an exception
 
@@ -99,8 +94,7 @@ This is where Rails comes with ActiveSupport extensions and defines `blank?` Let
 * Provided by Rails
 * `nil` and `false` are obviously blank.
 
-```
-#!ruby
+```ruby
 class NilClass
   def blank?
     true
@@ -116,8 +110,7 @@ end
 
 * `true` obviously is not
 
-```
-#!ruby
+```ruby
 class TrueClass
   #   true.blank? # => false
   def blank?
@@ -128,8 +121,7 @@ end
 
 * `Array` and `Hash` are `blank?` when they are `empty`? This is implemented using `alias_method`. You might wonder what about `Set`. This will be explained in a moment.
 
-```
-#!ruby
+```ruby
 class Array
   #   [].blank?      # => true
   #   [1,2,3].blank? # => false
@@ -145,8 +137,7 @@ end
 
 * `String#blank?` behavior was changed compared to what ruby does with `String#empty?` to account for whitespaces
 
-```
-#!ruby
+```ruby
 class String
   BLANK_RE = /\A[[:space:]]*\z/
 
@@ -174,8 +165,7 @@ This is convenient for web applications because you often want to reject or hand
 
 * The logic for every other class is that if it implements `empty?` then that's what going to be used. It's interesting to see that the method and its behavior was documented fully here.
 
-```
-#!ruby
+```ruby
 class Object
   # An object is blank if it's false, empty, or a whitespace string.
   # For example, +false+, '', '   ', +nil+, [], and {} are all blank.
@@ -196,18 +186,17 @@ class Object
 
 `!!empty?` - is just a double negation of `empty?`. This is useful in case `empty?` returned `nil` or a string or a number, something different than `true` or `false`. That way the returned value is always converted to a boolean value.
 
-```
-#!ruby
+```ruby
 !!true
 # => true
 
 !!false
 # => false
 
-#!!nil
+!!nil
  => false
 
-#!!0
+!!0
 # => true
 
 !!"abc"
@@ -216,8 +205,7 @@ class Object
 
 If you implement your own class and define `empty?` method it will effortlessly work as well.
 
-```
-#!ruby
+```ruby
 class Car
   def initialize
     @passengers = []
@@ -248,8 +236,7 @@ car.blank?
 
 * No number or Time is blank. Frankly I don't know why these methods were implemented separately here and why the implementation from `Object` is not enough. Perhaps for speed of not checking if they have `empty?` method which they don't...
 
-```
-#!ruby
+```ruby
 class Numeric #:nodoc:
   #   1.blank? # => false
   #   0.blank? # => false
@@ -272,7 +259,6 @@ end
 * `present?` is just a negation of `blank?` and can be used on anything.
 
 ```ruby
-#! ruby
 class Object
   # An object is present if it's not blank.
   def present?
@@ -285,8 +271,7 @@ end
 
 Provided by Rails. Sometimes you would like to write a logic such as:
 
-```
-#!ruby
+```ruby
 params[:state] || params[:country] || 'US'
 ```
 
@@ -294,8 +279,7 @@ but because the parameters can come from forms, they might be empty (or whitespa
 
 Instead of
 
-```
-#!ruby
+```ruby
 state   = params[:state]   if params[:state].present?
 country = params[:country] if params[:country].present?
 region  = state || country || 'US'
@@ -303,15 +287,13 @@ region  = state || country || 'US'
 
 you can write
 
-```
-#!ruby
+```ruby
 params[:state].presence || params[:country].presence || 'US'
 ```
 
 The implementation is very simple:
 
-```
-#!ruby
+```ruby
 class Object
   def presence
     self if present?

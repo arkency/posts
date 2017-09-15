@@ -11,8 +11,7 @@ newsletter_inside: :clean
 
 In many projects you can see code such as:
 
-```
-#!ruby
+```ruby
 
 class Something
   before_validation :strip_title
@@ -27,8 +26,7 @@ However there is **different way** to write this requirement.
 
 <!-- more -->
 
-```
-#!ruby
+```ruby
 
 class Something
   def title=(val)
@@ -39,8 +37,7 @@ end
 
 ...or...
 
-```
-#!ruby
+```ruby
 class Something
   def title=(val)
     self['title'] = val.strip
@@ -50,8 +47,7 @@ end
 
 ...or...
 
-```
-#!ruby
+```ruby
 class Something
   def title=(val)
     super(val.strip)
@@ -72,8 +68,7 @@ strip fuckin' spaces.
 * It **works** in more cases. It works when you read the field after setting it, without doing save in between. Or if you
 save without running the validations (for whatever reasons).
 
-```
-#!ruby
+```ruby
 something.code = " 123 "
 something.code
 # => 123

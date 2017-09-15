@@ -77,8 +77,7 @@ After having source files, it is needed to modify four files:
 
 Let's start with `bin/detect` script. It looks like this:
 
-```
-#!bash
+```bash
 # bin/detect <build-dir>
 
 if [ -f $1/package.json ]; then
@@ -91,16 +90,14 @@ exit 1
 
 Since `package.json` resides under `app/assets` of the build directory, you need to change this test:
 
-```
-#!bash
+```bash
 
 [ -f $1/package.json ];
 ```
 
 To:
 
-```
-#!bash
+```bash
 
 [ -f $1/app/assets/package.json ];
 ```
@@ -109,16 +106,14 @@ After this change everything will work as planned.
 
 The next step would be to change build directory in `bin/compile`. You need to look after:
 
-```
-#!bash
+```bash
 
 BUILD_DIR=${1:-}
 ```
 
 And change it to:
 
-```
-#!bash
+```bash
 
 BUILD_DIR=$(cd ${1:-}; cd app/assets; pwd)
 ```
@@ -127,8 +122,7 @@ This way the build directory of your builpack will change to `X/app/assets` wher
 
 So far, so good. Build directory is set correctly, now you need to run your npm script. After:
 
-```
-#!bash
+```bash
 
 header "Building dependencies"
 build_dependencies | output "$LOG_FILE"
@@ -136,8 +130,7 @@ build_dependencies | output "$LOG_FILE"
 
 You need to have:
 
-```
-#!bash
+```bash
 
 npm run build-production
 ```
@@ -146,8 +139,7 @@ So the compilation step is reconfigured correctly. Unfortunately it still doesn'
 
 That's why `lib/environment.sh` needs to be modified. You're interested in the `create_default_env()` procedure:
 
-```
-#!bash
+```bash
 
 create_default_env() {
   export NPM_CONFIG_PRODUCTION=${NPM_CONFIG_PRODUCTION:-true}
@@ -172,8 +164,7 @@ You can also omit this step and set corresponding environment variables using [H
 
 The last part is about disabling any 'releasing' behaviour in this buildpack. Modify `bin/release` to be:
 
-```
-#!bash
+```bash
 
 exit 0
 ```
@@ -188,15 +179,13 @@ To configure buildpacks used by an app you need to use [Heroku Toolbelt](https:/
 
 First of all, you need to add Ruby buildpack. `heroku buildpacks:add` accepts URL of the repository as an argument. So the command you need to issue in your app directory is:
 
-```
-#!bash
+```bash
 heroku buildpacks:add https://github.com/heroku/heroku-buildpack-ruby
 ```
 
 Then, you need to have _your repository_ URL. You need to add it as the **first** buildpack that is executed. There is a `--index 1` option which does exactly this - setting the buildpack as _first_ to be executed. So the next command you need to issue is:
 
-```
-#!bash
+```bash
 heroku buildpacks:add <YOUR-REPO-URL> --index 1
 ```
 

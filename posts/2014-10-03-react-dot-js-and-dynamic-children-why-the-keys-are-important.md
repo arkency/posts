@@ -128,8 +128,7 @@ blogpostJQuery(function() {
 
 Here is my code:
 
-```
-#!javascript
+```javascript
 var CountriesComponent = React.createClass({
   getInitialState: function () {
     return { currentCountry: this.props.countries[0] };
@@ -189,8 +188,7 @@ component, create it and call getInitialState_.
 
 That was about this part of code:
 
-```
-#!javascript
+```javascript
   TabList({
     elements: this.props.citiesPerCountry[this.state.currentCountry],
     clickHandler: function(city, index, event){ event.preventDefault(); }
@@ -201,8 +199,7 @@ I imagined that because I was changing properties (the `elements` key), then aft
 the countries react was rendering a new cities list and a new city list
 should have first item selected because of my [`getInitialState`](http://facebook.github.io/react/docs/component-specs.html#getinitialstate):
 
-```
-#!javascript
+```javascript
 var TabList = React.createClass({
   getInitialState: function () {
     return { active: 0 };
@@ -299,8 +296,7 @@ blogpostJQuery(function() {
 
 And the code:
 
-```
-#!javascript
+```javascript
 var CountriesComponent = React.createClass({
   getInitialState: function () {
     return { currentCountry: this.props.countries[0] };
@@ -328,8 +324,7 @@ var CountriesComponent = React.createClass({
 
 The important part is the key for second list:
 
-```
-#!javascript
+```javascript
 TabList({
   key: this.state.currentCountry,
   elements: this.props.citiesPerCountry[this.state.currentCountry],

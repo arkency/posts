@@ -24,8 +24,7 @@ order independence.
 
 <!-- more -->
 
-```
-#!ruby
+```ruby
 specify "postal sent via API" do
   procs = [
     ->{ postal.call(fill_out_customer_data) },
@@ -61,8 +60,7 @@ We should strive to test all possible cases. It's boring to go manually through 
 With even more possible inputs the number goes high very quickly. And it might be error prone.
 So let's generate all of them with the little help of `#permutation` method.
 
-```
-#!ruby
+```ruby
 
 [
   fill_out_customer_data,

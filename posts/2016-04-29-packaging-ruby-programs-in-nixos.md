@@ -70,8 +70,7 @@ There are few important things right here:
 The easy part is to create `Gemfile` and `Gemfile.lock`.
 Let's create simplest possible `Gemfile` containing `pws` gem:
 
-```
-#!ruby
+```ruby
 source 'https://rubygems.org'
 gem 'pws'
 ```
@@ -168,9 +167,8 @@ As you can see `env` field is pretty much our bundler environment which we've us
 
 If we check the source of such generated file, it looks like this:
 
-```
-#!bash
-#! /nix/store/1qg54rgrk0sm04fqjixm64hn94kxhvzk-bash-4.3-p42/bin/bash -e
+```bash
+#!/nix/store/1qg54rgrk0sm04fqjixm64hn94kxhvzk-bash-4.3-p42/bin/bash -e
 exec /nix/store/slxvwr8zgl2ajzjhb8692kp7mch978v7-pws-1.0.6-gems/bin/pws "${extraFlagsArray[@]}" "$@"
 ```
 
@@ -180,8 +178,7 @@ There's only one issue left with our current package which I've mentioned before
 
 That's why we want to modify our package a little bit:
 
-```
-#!nix
+```nix
 { bundlerEnv, ruby, stdenv, makeWrapper, xsel }:
 
 stdenv.mkDerivation rec {

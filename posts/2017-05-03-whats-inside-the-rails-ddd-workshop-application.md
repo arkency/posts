@@ -46,8 +46,7 @@ The history view shows the events related to that order, which makes debugging e
 
 # The routes/controllers
 
-```
-#!ruby
+```ruby
 
 Rails.application.routes.draw do
   root to: 'orders#index'
@@ -81,8 +80,7 @@ There's also a projection, called `PaymentsProjection`.
 
 In the spirit of CQRS, we handle the "write" part with Commands.
 
-```
-#!ruby
+```ruby
 
 module Payments
   class AuthorizePaymentCommand
@@ -99,8 +97,7 @@ end
 
 Everything is based on events, through which the different contexts communicate with each other.
 
-```
-#!ruby
+```ruby
 
   class PaymentReleased < RubyEventStore::Event
     SCHEMA = {
@@ -119,8 +116,7 @@ There are aggregates for `Payment` and for `Order`.
 
 All the domain logic of the application is fully tested.
 
-```
-#!ruby
+```ruby
 module Orders
   RSpec.describe Order do
     it 'newly created order could be expired' do

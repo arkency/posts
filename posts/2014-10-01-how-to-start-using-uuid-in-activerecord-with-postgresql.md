@@ -36,8 +36,7 @@ So not only we get a possibility to create our own extensions, but we get a bunc
 
 You can follow all of presented steps with your brand new Rails application. To create one, for the purpose of this tutorial, you can run:
 
-```
-#!bash
+```bash
 rails new -T -J -V -S postgres-extensions --database postgresql
 ```
 
@@ -56,8 +55,7 @@ Although UUID might appear in different versions (MAC address, DCE security, MD5
 
 So the validation regexp may be as follows:
 
-```
-#!ruby
+```ruby
 /[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/
 ```
 
@@ -65,8 +63,7 @@ So the validation regexp may be as follows:
 
 How can we produce it in Ruby?
 
-```
-#!ruby
+```ruby
 [1] (pry) main: 0> require 'securerandom'
 true
 
@@ -80,8 +77,7 @@ It's available since `Ruby 1.9` and provides UUID version 4 described above, whi
 
 How to use it in SQL code?
 
-```
-#!bash
+```bash
 postgres=# CREATE EXTENSION "uuid-ossp";
 
 CREATE EXTENSION
@@ -98,13 +94,11 @@ The uuid-ossp module provides functions to generate universally unique identifie
 
 Let's see how can we use it in our applications. To enable this extension in our database through rails, we can use [convenient helper method](https://github.com/rails/rails/blob/master/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb#L338-L342) for `PostgreSQLAdapter`:
 
-```
-#!bash
+```bash
 rails g migration enable_uuid_extension
 ```
 
-```
-#!ruby
+```ruby
 class EnableUuidExtension < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
@@ -115,13 +109,11 @@ end
 
 We can create our model now:
 
-```
-#!bash
+```bash
 rails g model book
 ```
 
-```
-#!ruby
+```ruby
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books, id: :uuid  do |t|
@@ -137,8 +129,7 @@ class Book < ActiveRecord::Base; end
 
 And then we can play with them a little bit:
 
-```
-#!ruby
+```ruby
 2.1.2 :001 > Book.create
    (0.1ms)  BEGIN
   SQL (0.9ms)  INSERT INTO "books" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-10-01 10:30:12.152568"], ["updated_at", "2014-10-01 10:30:12.152568"]]
@@ -153,13 +144,11 @@ So we created our book with auto-generated `id` as a UUID, great!
 
 But what if I need just another field  of `uuid` type? We can do it too.
 
-```
-#!bash
+```bash
 rails g migration add_uuid_to_books uuid:uuid
 ```
 
-```
-#!ruby
+```ruby
 class AddUuidToBooks < ActiveRecord::Migration
   def change
     add_column :books, :uuid, :uuid, default: 'uuid_generate_v4()'
@@ -169,8 +158,7 @@ end
 
 After migration we have:
 
-```
-#!ruby
+```ruby
 2.1.2 :001 > Book.create
    (0.1ms)  BEGIN
   SQL (0.2ms)  INSERT INTO "books" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-10-01 10:39:19.646211"], ["updated_at", "2014-10-01 10:39:19.646211"]]
@@ -190,15 +178,13 @@ To be honest I should mention about some drawbacks right now. Maybe they are not
 
 Some inconvenience may be referencing with a foreign key to associated model. We can't just add reference column like:
 
-```
-#!bash
+```bash
 rails g migration AddAuthorRefToBook
 ```
 
 because it produces:
 
-```
-#!ruby
+```ruby
 class AddAuthorRefToBook < ActiveRecord::Migration
   def change
     add_reference :books, :author, index: true
@@ -208,8 +194,7 @@ end
 
 Which may seems OK at the first sight, but it's actually a little bit tricky. We have the following models:
 
-```
-#!ruby
+```ruby
 class Book < ActiveRecord::Base
   belongs_to :author
 end
@@ -221,8 +206,7 @@ end
 
 and we are trying to create an association:
 
-```
-#!bash
+```bash
 2.1.2 :001 > Author.create.books.create
    (0.1ms)  BEGIN
   SQL (0.8ms)  INSERT INTO "authors" DEFAULT VALUES RETURNING "id"
@@ -243,8 +227,7 @@ and we are trying to create an association:
 
 See what happened? If not, take a look:
 
-```
-#!bash
+```bash
 2.1.2 :004 > Book.first.author
   Book Load (0.3ms)  SELECT  "books".* FROM "books"  ORDER BY "books"."id" ASC LIMIT 1
   Author Load (1.1ms)  SELECT  "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT 1  [["id", 49624675]]
@@ -256,8 +239,7 @@ ActiveRecord::StatementInvalid: PG::InvalidTextRepresentation: ERROR:  invalid i
 
 What is wrong? `add_reference` associates model by default integer ID, which is not present in our database. Here's created schema:
 
-```
-#!ruby
+```ruby
 create_table "books", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
   t.string  "title"
   t.uuid    "uuid",      default: "uuid_generate_v4()"
@@ -268,8 +250,7 @@ end
 
 Instead we should have a string field for referencing UUID, so any time we connect two tables, we can make a proper association. Fortunately it's a small change:
 
-```
-#!ruby
+```ruby
 class AddAuthorRefToBook < ActiveRecord::Migration
   def change
     add_column :books, :author_id, :uuid
@@ -279,8 +260,7 @@ end
 
 which creates:
 
-```
-#!ruby
+```ruby
 create_table "books", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
   t.string "title"
   t.uuid   "uuid",      default: "uuid_generate_v4()"
@@ -290,8 +270,7 @@ end
 
 and that is what we're talking about.
 
-```
-#!bash
+```bash
 2.1.2 :001 > Author.create.books.create.author
    (0.1ms)  BEGIN
   SQL (1.0ms)  INSERT INTO "authors" DEFAULT VALUES RETURNING "id"

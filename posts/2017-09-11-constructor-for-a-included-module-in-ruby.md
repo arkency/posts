@@ -14,8 +14,7 @@ This is a short story which starts with being very surprised by mutation testing
 
 Consider this module from [aggregate_root gem](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) which is part of [Rails Event Store](https://github.com/RailsEventStore/rails_event_store).
 
-```
-#!ruby
+```ruby
 module AggregateRoot
   def apply(event)
     apply_strategy.(self, event)
@@ -73,15 +72,13 @@ Let's discuss a simple example.
 
 Mutant decided to change
 
-```
-#!ruby
+```ruby
 @unpublished_events = []
 ```
 
 into
 
-```
-#!ruby
+```ruby
 @unpublished_events = nil
 ```
 
@@ -91,15 +88,13 @@ My first reaction was _fuck you, that doesn't make any sense_. Why would you cha
 
 I think about `@unpublished_events` that it is an `Array`. You can see that in
 
-```
-#!ruby
+```ruby
 unpublished_events << event
 ```
 
 and in:
 
-```
-#!ruby
+```ruby
 def unpublished_events
   @unpublished_events ||= []
 end
@@ -111,15 +106,13 @@ Then I calmed down and started thinking about it. 😜
 
 I changed the code manually from:
 
-```
-#!ruby
+```ruby
 @unpublished_events = []
 ```
 
 to
 
-```
-#!ruby
+```ruby
 @unpublished_events = nil
 ```
 
@@ -129,8 +122,7 @@ So why was everything working? - I wondered. And I quickly realized.
 
 Because of the getter with a default Array:
 
-```
-#!ruby
+```ruby
 def unpublished_events
   @unpublished_events ||= []
 end
@@ -138,20 +130,17 @@ end
 
 3 places in this code which need `@unpublished_events` always access them via this getter:
 
-```
-#!ruby
+```ruby
 unpublished_events << event
 ```
 
-```
-#!ruby
+```ruby
 @version += unpublished_events.size
 ```
 
 So even though `@unpublished_events` is `nil`, it will work because upon reading it will become an empty array and work nicely with `<<` and `size` methods.
 
-```
-#!ruby
+```ruby
 def unpublished_events
   @unpublished_events ||= []
 end
@@ -163,8 +152,7 @@ And the answer was... Because we don't set `@unpublished_events = []` in a const
 
 You see, usually, you use the library in two ways. You load historical domain events when you edit an object.
 
-```
-#!ruby
+```ruby
 product = Product.new
 product.load("Product$#{sku}") # this sets
                                # @unpublished_events
@@ -179,8 +167,7 @@ product.store
 
 or we may skip loading historical domain events for new records and go straight into changing their state and saving in DB.
 
-```
-#!ruby
+```ruby
 product = Product.new # @unpublished_events is nil
 product.apply(ProductRegistered.new(
   sku: sku,
@@ -190,8 +177,7 @@ product.store("Product$#{sku}")
 
 In this second case, we want to append new domain events to `@unpublished_events` collection but it is a `nil`. Using the `unpublished_events` getter workarounds this problem.
 
-```
-#!ruby
+```ruby
 unpublished_events << event
 ```
 
@@ -199,8 +185,7 @@ Ok, so we don't set `@unpublished_events = []` in a constructor. But why? Why do
 
 Because `AggregateRoot` is a module and not a class.
 
-```
-#!ruby
+```ruby
 class Product
   include AggregateRoot
 end
@@ -216,8 +201,7 @@ This led me to next two questions:
 
     It turns out we can with the little help of `prepend` which is available in Ruby for years now. Check it out.
 
-```
-#!ruby
+```ruby
 module AggregateRoot
   module Constructor
     def initialize(*vars, &proc)
@@ -241,8 +225,7 @@ end
 
 You might be thinking why not simply:
 
-```
-#!ruby
+```ruby
 module AggregateRoot
   def initialize(*vars, &proc)
     @unpublished_events = []
@@ -259,8 +242,7 @@ But there are some problems:
 
 * another developer might forget to call `super` in a class constructor to trigger `AggregateRoot#initialize` and `@unpublished_events` will be `nil`.
 
-    ```
-    #!ruby
+    ```ruby
     class Product
       include AggregateRoot
       def initialize(dependency)
@@ -272,8 +254,7 @@ But there are some problems:
 
 * Inside `AggregateRoot#initialize` we don't know how many arguments we should provide for a parent class constructor
 
-    ```
-    #!ruby
+    ```ruby
     module AggregateRoot
       def initialize(*vars, &proc)
         @unpublished_events = []
@@ -305,8 +286,7 @@ But there are some problems:
 
 * If we try to workaround the previous problem by not calling `super` from our module we get into problems in different situations.
 
-    ```
-    #!ruby
+    ```ruby
     module AggregateRoot
       def initialize(*vars, &proc)
         @unpublished_events = []
@@ -341,8 +321,7 @@ But there are some problems:
 
 It seems to me that while prepending `Constructor` can work it does not seem to be very intuitive.
 
-```
-#!ruby
+```ruby
 module AggregateRoot
   module Constructor
     def initialize(*vars, &proc)
@@ -366,8 +345,7 @@ end
 
 If I had many instance variables to set I could consider it. But with one or two, I think I am gonna stay with a getter and a default value.
 
-```
-#!ruby
+```ruby
 def unpublished_events
   @unpublished_events ||= []
 end

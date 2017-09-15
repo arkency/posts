@@ -40,16 +40,14 @@ In my recent work I needed to learn Angular from scratch. **After learning about
 
 First of all, create your Angular module:
 
-```
-#!coffeescript
+```coffeescript
 
 myApp = angular.module('myApp', [])
 ```
 
 Let's say you want to show dummy data on frontend just for quick prototyping, and then switch to a real AJAX requests to fetch it. Let's create our implementations:
 
-```
-#!coffeescript
+```coffeescript
 
 myApp.service('InMemoryProductsRepository', ['$q', ($q) ->
   @getAll = ->
@@ -75,8 +73,7 @@ myApp.service('RealProductsRepository', ['$http', ($http) ->
 
 Next step is to create a configuration variable to switch implementations as needed. This is the simplest approach - you may have more sophisticated rules to switch implementations (like user-based):
 
-```
-#!coffeescript
+```coffeescript
 
 myApp.constant('Config',
   productsRepository:
@@ -86,8 +83,7 @@ myApp.constant('Config',
 
 You are nearly done. Now, to the heart of this solution - a factory (you canread about it more [here](https://docs.angularjs.org/guide/providers)) will be used to encapsulate logic of implementation switch.
 
-```
-#!coffeescript
+```coffeescript
 
 myApp.factory('ProductsRepository', [
   'InMemoryProductsRepository', 'RealProductsRepository', 'Config', 
@@ -106,8 +102,7 @@ Notice you need to pass all implementations as separate dependencies - you can e
 
 The full code looks like this:
 
-```
-#!coffeescript
+```coffeescript
 
 myApp = angular.module('myApp', [])
 

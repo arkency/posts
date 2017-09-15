@@ -26,20 +26,17 @@ Recently [Andrzej Krzywda](http://andrzejonsoftware.blogspot.com/) raised a sens
 In the beginning I'll start with some examples in Ruby, that may lead to inconsistency in one project. That's not a comprehensive example but an overview to introduce this problem.
 
 
-```
-#!ruby
+```ruby
 :key => 'value' vs. key: 'value'
 ```
 If you decide to use new ruby `(>= 1.9)`, use also a new hash syntax, or if you are so used to the old one, keep it everywhere in your project, independent of your current mood.
 
-```
-#!ruby
+```ruby
 'some string' vs. "some string"
 ```
 Why to use double quotes when not interpolating anything?
 
-```
-#!ruby
+```ruby
 result = nil
 if some_condition
 	result = something
@@ -57,15 +54,13 @@ result = some_condition ? something : something_else
 ```
 Here ternary operator is less verbose than `if`, `then`, `else`, `end`, which are used rather in complex (multiline) cases.
 
-```
-#!ruby
+```ruby
 or, and vs. &&, ||
 
 ```
 They can be [really tricky](http://devblog.avdi.org/2010/08/02/using-and-and-or-in-ruby/) so it is [not recommended](https://github.com/bbatsov/ruby-style-guide/commit/5920497452c1f6f604742a735f5684e86d4c0003).
 
-```
-#!ruby
+```ruby
 ['a', 'b', 'c'] and [:a, :b, :c]
 
 vs.
@@ -86,8 +81,7 @@ In my opinion, the most important thing about our code is **readability**. Why? 
 
 It's much tougher to understand
 
-```
-#!ruby
+```ruby
 unless condition
 	something
 else
@@ -96,8 +90,7 @@ end
 ```
 rather than
 
-```
-#!ruby
+```ruby
 if condition
 	something
 else

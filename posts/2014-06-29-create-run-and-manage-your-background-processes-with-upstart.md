@@ -38,22 +38,19 @@ Let's choose `rvm` for managing rubies. You'll need to create [wrapper](https://
 According to [rvm website](https://rvm.io/rubies/alias) it can be done via simple command:
 
 
-```
-#!ruby
+```ruby
 rvm alias create my_program ruby-2.0.0-p247
 ```
 
 Now your ruby bin can be found under:
 
-```
-#!ruby
+```ruby
 /usr/local/rvm/wrappers/my_program/ruby
 ```	
 
 Then, create configuration file that contains script to be executed in a background job:
 
-```
-#!ruby
+```ruby
 vim /etc/init/my_program.conf
 ```
 
@@ -61,8 +58,7 @@ vim /etc/init/my_program.conf
 	
   a) You have to tell your script when to run and `start on` command is used for that. The syntax looks like:
 
-```
-#!ruby
+```ruby
 start on <your_command>
 ```
 
@@ -70,8 +66,7 @@ start on <your_command>
 `<your_command>` can be for example:
 
 
-```
-#!ruby
+```ruby
 	- startup				# start a job as early as possible
 	- filesystem 			# start after all filesystems are mounted
 	- started networking 	# start after network is connected
@@ -85,8 +80,7 @@ start on <your_command>
   d) You can execute your program right now, and there are two way of doing so. `execute` is one-liner keyword to run simple script, block
 
 
-```
-#!ruby		
+```ruby		
 		script
 		# ...
 		end script
@@ -97,8 +91,7 @@ is for multiline code.
   e) our `conf` file might look like:
 
 
-```
-#!ruby	
+```ruby	
 		start on my_event
 		respawn
 		script
@@ -113,22 +106,19 @@ As you might have guessed, there a couple ways to do that.
 
   a) when we run our script on custom event you can run it like
 
-```
-#!ruby	
+```ruby	
 sudo initctl emit my_event
 ```
 
   b) if you want use old service syntax you can do:
 
-```
-#!ruby	
+```ruby	
 sudo service my_program start
 ```
 		
   c) you can do also:
 
-```
-#!ruby	
+```ruby	
 sudo start my_program
 ```
 
@@ -138,8 +128,7 @@ I recommend you to take a look at [initctl](http://manpages.ubuntu.com/manpages/
 
 If you want to see execution logs (to check whether everything goes correctly) there's a handy way to display them:
 
-```
-#!ruby
+```ruby
 		sudo tail -f /var/log/upstart/my_program.log
 ```
 

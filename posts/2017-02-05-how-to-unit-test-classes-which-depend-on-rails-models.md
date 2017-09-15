@@ -10,8 +10,7 @@ newsletter: :skip
 Let's say you have such a class:
 (this code is borrowed from this [Reddit thread](https://www.reddit.com/r/rails/comments/5rzeeb/how_do_you_unit_test_classes_that_depend_on_models/)
 
-```
-#!ruby
+```ruby
 
 class CreateSomethingService
   def initialize(params)
@@ -36,8 +35,7 @@ How can we test this class without loading Rails?
 
 One way to unit test it is by using the repository object and the concept of replacing the repo object with an in-memory one in tests.
 
-```
-#!ruby
+```ruby
 
 class CreateSomethingService
   def initialize(repo, params)

@@ -46,8 +46,7 @@ read an example and everything should get clearer.
 
 Imagine: You build an application which stores code snippets. You can start one of the usecases this way:
 
-```
-#!ruby
+```ruby
 class SnippetsUseCase
   attr_reader :repository, :logger, :snippets
 
@@ -109,8 +108,7 @@ We'll refactor our code to embrace aspect-oriented programming techniques. You'l
 
 Our first step is to remove dependencies from our usecase. So, we delete constructor arguments and our usecase code after the change looks like this:
 
-```
-#!ruby
+```ruby
 class SnippetsUseCase
   attr_reader :snippets
 
@@ -132,8 +130,7 @@ end
 
 Notice the empty method `user_pushed `- it's perfectly fine, we're maintaining it only to provide a join point for our solution. You'll often see empty methods in code written in AOP paradigm. In my code, with a bit of metaprogramming, I turn it into a helper, so it becomes something like:
 
-```
-#!ruby
+```ruby
 join_point :user_pushed
 ```
 
@@ -141,8 +138,7 @@ Now we can test this unit class <strong>without any stubbing or mocking</strong>
 
 Afterwards, we have to provide aspect code to link with our use case. So, we create `SnippetsUseCaseGlue` class:
 
-```
-#!ruby
+```ruby
 require 'aquarium'
 
 class SnippetsUseCaseGlue
@@ -178,8 +174,7 @@ Inside the advice block, we have a lot of info - including very broad info about
 
 After that, we can use it in an application like this:
 
-```
-#!ruby
+```ruby
 class Application
   def initialize
     @snippets            = SnippetsUseCase.new

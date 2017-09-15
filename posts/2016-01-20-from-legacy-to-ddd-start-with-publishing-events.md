@@ -29,8 +29,7 @@ What I did, was I also tried not to use the CRUD verbs. Instead of FuckupCreated
 
 This is what I ended up with, in terms of events:
 
-```
-#!ruby
+```ruby
 
 FuckupReported               = Class.new(RailsEventStore::Event)
 FuckupReportedFromSlack      = Class.new(RailsEventStore::Event)
@@ -51,8 +50,7 @@ UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 
 Using the [Rails Event Store](https://github.com/arkency/rails_event_store) gem, this is how I publish those events:
 
-```
-#!ruby
+```ruby
 
     @fuckup = current_organization.fuckups.create(fuckup_params)
     stream_name = "fuckup_#{@fuckup.id}"

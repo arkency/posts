@@ -22,8 +22,7 @@ So, imagine we have a task: implement a mechanism that calculates ticket fees.
 
 Let’s write the logic first:
 
-```
-#!javascript
+```javascript
 export function feeAmount(fees) {
   return (price, include) => {
     const startingFee = fees.startingFee;
@@ -55,8 +54,7 @@ export function amountWithFee(feeAmountFn) {
 
 Now let’s have some tests for it (I’m using [mocha](https://www.npmjs.com/package/mocha) and [assert](https://www.npmjs.com/package/assert)):
 
-```
-#!javascript
+```javascript
 import { describe, it } from 'mocha';
 import { feeAmount, amountWithFee } from '../src/calculations';
 import assert from 'assert';
@@ -103,8 +101,7 @@ And now just import these functions where you will actually use them.
 
 And to give you a full picture, here's how this logic may look when author doesn't care about logic testability:
 
-```
-#!javascript
+```javascript
 feeAmount() {
   const price       = this.state.price;
   const startingFee = this.props.fees.startingFee;

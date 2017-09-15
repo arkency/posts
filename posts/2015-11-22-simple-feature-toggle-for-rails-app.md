@@ -40,8 +40,7 @@ Exactly, there are several gems available which will bring feature toggle to you
 
 ## Implementation
 
-```
-#!ruby
+```ruby
 
 class FeatureToggle
   def initialize
@@ -67,8 +66,7 @@ end
 
 There's not so much to comment here. The `for` method is used to define given toggle, eg.
 
-```
-#!ruby
+```ruby
 
 FT = FeatureToggle.new.tap do |ft|
   ft.for(:new_user_profile) do |user_id:|
@@ -84,8 +82,7 @@ And that's it, now it can be used in the codebase. An instance of _FeatureToggle
 
 Let's use it for example in controller action to render different, redesigned view instead of the basic one. It will only work for admin users as we stated in toggle definition.
 
-```
-#!ruby
+```ruby
 
 class UserProfilesController < ApplicationController
   def show

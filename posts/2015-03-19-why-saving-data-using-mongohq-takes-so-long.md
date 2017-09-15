@@ -28,8 +28,7 @@ Below you can see an example of a service to import files with BIM (Building Inf
 Every BIM object has properties. The properties may be duplicated. The important thing is that we have 2 loops here.
 10MB file may include 10k objects and 5k properties, so the service has to save 15k records in DB. 
 
-```
-#!ruby
+```ruby
 class ImportBimObjectsService
   def call(model, data)
     bim_object_parser = BimObjectsParser.new(data)
@@ -56,8 +55,7 @@ In our case the difference between Heroku and local environment was quite big. O
 ##How to minimize the number of requests?
 We can use MongoDB _insert_ method, however _insert_ doesn't run validations and it's on our hands to make sure that our model is correct. We can compare _insert_ with storing raw data in DB. There is the last thing to remember, before we store data, we have to add fields like _updated_\__at_ and _created_\__at_ to attributes.
 
-```
-#!ruby
+```ruby
 class ImportBimObjectsService
   def call(model, data)
     bim_object_parser = BimObjectsParser.new(data)
@@ -85,8 +83,7 @@ end
 
 Thanks to solution presented above we were able to reduce the number of requests from 15k into 5k, but we can make it even better. Be aware that part of the code responsible for saving properties isn't optimal. We could reduce _find\_or\_initialize\_by_ calls. To do that, we can use some kind of cache which stores only unique properties.
 
-```
-#!ruby
+```ruby
 class ImportBimObjectsService
   class BimPropertyUniqCache
     attr_accessor :objects

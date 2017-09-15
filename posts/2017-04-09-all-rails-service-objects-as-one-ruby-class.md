@@ -23,8 +23,7 @@ The app layer defines its own exceptions so they're declared at the top. After t
 
 I've followed one important rule here - **the service layer knows nothing about http-related stuff**. This is left to controllers to handle. Rails is great at this.
 
-```
-#!ruby
+```ruby
 class App
   class NotAuthorized                 < StandardError; end
   class AlreadyBelongToAnOrganization < StandardError; end
@@ -48,8 +47,7 @@ end
 
 From a Rails controller point of view, this is quite simple, leaving the controllers very thin:
 
-```
-#!ruby
+```ruby
 class FuckupsController < ApplicationController
   def create
     begin
@@ -71,8 +69,7 @@ Authorization feels much more in the app layer, that's why it's here too.
 
 What's inside the `report_fuckup` method then?
 
-```
-#!ruby
+```ruby
   def report_fuckup(user_id, fuckup_params)
     user = User.find(user_id)
 
@@ -110,8 +107,7 @@ The last part is the unusual part. This is where the app starts to become **beyo
 
 Events were not meant to be in the scope of this blogpost, but as a sneak-peek, here they are for this app:
 
-```
-#!ruby
+```ruby
 
 FuckupReported               = Class.new(RailsEventStore::Event)
 FuckupReportedFromSlack      = Class.new(RailsEventStore::Event)
@@ -133,8 +129,7 @@ UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 
 And here is an example test at the app layer:
 
-```
-#!ruby
+```ruby
 
   def test_user_not_able_to_report_fuckup_in_not_her_organization
     app = App.new

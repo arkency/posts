@@ -19,8 +19,7 @@ So here are some interesting bits from sidekiq code.
 
 ### Sidekiq::Client initializer
 
-```
-#!ruby
+```ruby
 module Sidekiq
   class Client
     def initialize(redis_pool=nil)
@@ -42,8 +41,7 @@ I generally don't like globals as a gem consumer but sometimes they are convenie
 
 The nice thing about this global is that you don't need to use it. It is **easily overridable** with such constructor. If you have specific requirements, your own connection pool, special redis connection, multiple clients and multiple connections etc, etc, you can still get the work done.
 
-```
-#!ruby
+```ruby
 Sidekiq::Client.new(ConnectionPool.new { Redis.new })
 ```
 
@@ -51,8 +49,7 @@ Sidekiq::Client.new(ConnectionPool.new { Redis.new })
 
 Going further with global which you don't need to use.
 
-```
-#!ruby
+```ruby
 module Sidekiq
   class Client
     def push(item)
@@ -68,8 +65,7 @@ end
 
 With this code, instead of
 
-```
-#!ruby
+```ruby
 Sidekiq::Client.new().push(
   'queue' => 'one',
   'class' => MyWorker,
@@ -79,8 +75,7 @@ Sidekiq::Client.new().push(
 
 you can do
 
-```
-#!ruby
+```ruby
 Sidekiq::Client.push(
   'queue' => 'one',
   'class' => MyWorker,
@@ -92,8 +87,7 @@ Again. No one forces you to use the class method. If for any reason, the first a
 
 ### Sidekiq.redis_pool
 
-```
-#!ruby
+```ruby
 module Sidekiq
   def self.redis_pool
     @redis ||= Sidekiq::RedisConnection.create
@@ -113,8 +107,7 @@ This `redis=(hash)` setter can handle a `Hash` with redis configuration options 
 
 ### yielding for configuration
 
-```
-#!ruby
+```ruby
 module Sidekiq
   def self.server?
     defined?(Sidekiq::CLI)
@@ -151,8 +144,7 @@ Sidekiq needs to know which mode it is in, and it needs to have the ability to h
 
 The configuration can be set such as:
 
-```
-#!ruby
+```ruby
 Sidekiq.configure_server do |config|
   config.redis = { namespace: 'myapp', size: 25 }
   config.server_middleware do |chain|
@@ -176,8 +168,7 @@ BTW. [chillout.io](http://get.chillout.io/) [client](https://github.com/chillout
 
 `ActiveSupport::TaggedLogging` wraps any standard Logger object to provide tagging capabilities.
 
-```
-#!ruby
+```ruby
 logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 logger.tagged('BCX') { logger.info 'Stuff' }           # Logs "[BCX] Stuff"
 logger.tagged('BCX', "Jason") { logger.info 'Puff' }   # Logs "[BCX] [Jason] Puff"
@@ -185,8 +176,7 @@ logger.tagged('BCX', "Jason") { logger.info 'Puff' }   # Logs "[BCX] [Jason] Puf
 
 There is one method which brought my attention:
 
-```
-#!ruby
+```ruby
 module ActiveSupport
   module TaggedLogging
     def flush
@@ -199,8 +189,7 @@ end
 
 I've never seen this `super if defined?(super)` but it turns out it is useful to dynamically figure out if the ancestor defined given method and you should call it or this is the first module/class in inheritance chain which defines it.
 
-```
-#!ruby
+```ruby
 class Fool
   def foo
     puts "foo from Fool"
@@ -297,8 +286,7 @@ p.corge
 
 Also, check this out.
 
-```
-#!ruby
+```ruby
 module ActiveSupport
   module TaggedLogging
     def self.new(logger)

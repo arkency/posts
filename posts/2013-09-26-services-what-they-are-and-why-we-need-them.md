@@ -20,8 +20,7 @@ However, when our application grows, our skinny controllers become not so skinny
 
 I bet many readers had some experience with languages like C++ or Java. This languages have a lot in common, yet are completely different. But one thing is similar in them - they have well defined entry point in every application. In C++ it's a `main()` function. The example `main` function in C++ application looks like this:
 
-```
-#!cpp
+```cpp
 #include <iostream>
 // Many includes...
 
@@ -71,8 +70,7 @@ Let's see a basic example of refactoring controller without service to one which
 
 Consider this action, which can be part of our system:
 
-```
-#!ruby
+```ruby
 
 class TripReservationsController < ApplicationController
   def create
@@ -110,8 +108,7 @@ end
 
 Although we packed our logic into models (like agency, trip), we still have a lot of corner cases - and our have explicit knowledge about them. This action is big - we can split it to separate methods, but still we share too much domain knowledge with this controller. We can fix it by introducing a new service:
 
-```
-#!ruby
+```ruby
 
 class TripReservationService
   class TripPaymentError < StandardError; end
@@ -150,8 +147,7 @@ As you can see, there is a pure business process extracted from a controller - w
 
 Our controller now looks like this:
 
-```
-#!ruby
+```ruby
 
 class TripReservationsController < ApplicationController
   def create

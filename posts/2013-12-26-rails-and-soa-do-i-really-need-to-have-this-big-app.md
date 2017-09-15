@@ -79,59 +79,61 @@ It's important to see it's a boundary context of our application - it's not tigh
 The `callback` object here is usually a controller in a Rails application.
 If you're unfamiliar with this kind of handling outcoming messages from service within Rails controller, here's an example how the code may look inside the controller:
 
-    #!ruby
-    def action
-      service = PaymentCreationService.new(PaymentsDB.new, PaymentsProviderAdapter.new, PaymentsMailer.new, self)
-      service.call(params[:payment])
-    end
+```ruby
+def action
+  service = PaymentCreationService.new(PaymentsDB.new, PaymentsProviderAdapter.new, PaymentsMailer.new, self)
+  service.call(params[:payment])
+end
 
-    def payment_successful(uuid)
-      # code processing successful payment request
-    end
+def payment_successful(uuid)
+  # code processing successful payment request
+end
 
-    def payment_data_invalid(reason)
-      # code processing invalid data within request
-    end
+def payment_data_invalid(reason)
+  # code processing invalid data within request
+end
 
-    def payment_unknown_error(payment_request)
-      # code processing unknown error
-    end
+def payment_unknown_error(payment_request)
+  # code processing unknown error
+end
+```
 
 Here's how our code might look like:
 
-    #!ruby
-    class PaymentCreationService
-      def initialize(payments_db, payments_provider_adapter, payments_mailer, callback)
-        @payments_db = payments_db
-        @payments_provider_adapter = payments_provided_adapter
-        @payments_mailer = payments_mailer
-        @callback = callback
-      end
+```ruby
+class PaymentCreationService
+  def initialize(payments_db, payments_provider_adapter, payments_mailer, callback)
+    @payments_db = payments_db
+    @payments_provider_adapter = payments_provided_adapter
+    @payments_mailer = payments_mailer
+    @callback = callback
+  end
 
-      def call(payment_request)
-        payment = payments_provider_adapter.request(payment_request)
+  def call(payment_request)
+    payment = payments_provider_adapter.request(payment_request)
 
-        if payment.accepted?
-          payments_db.store(payment.uuid, payment_request)
-          payments_mailer.send_confirmation_of(payment_request)
-          callback.payment_successful(payment.uuid)
-        end
-
-        if payment.data_invalid?
-          callback.payment_data_invalid(payment.reason)
-        end
-
-        if payment.unknown_error?
-          callback.payment_unknown_error(payment)
-        end
-      end
-
-      private
-      attr_reader :payments_db, 
-                  :payments_provider_adapter,
-                  :payments_mailer, 
-                  :callback
+    if payment.accepted?
+      payments_db.store(payment.uuid, payment_request)
+      payments_mailer.send_confirmation_of(payment_request)
+      callback.payment_successful(payment.uuid)
     end
+
+    if payment.data_invalid?
+      callback.payment_data_invalid(payment.reason)
+    end
+
+    if payment.unknown_error?
+      callback.payment_unknown_error(payment)
+    end
+  end
+
+  private
+  attr_reader :payments_db, 
+              :payments_provider_adapter,
+              :payments_mailer, 
+              :callback
+end
+```
 
 We put this file (with it's dependencies, but without a callback object - it's not a dependency!) to the separate directory.
 
@@ -147,85 +149,86 @@ methods read and render appropiate JSON to it. Since webmachine is really small
 compared to Rails, we have to create resources (we can think about it as 
 controllers) by ourselves.
 
-    #!ruby
-    require 'webmachine'
-    require 'multi_json'
+```ruby
+require 'webmachine'
+require 'multi_json'
 
-    require 'payment_creation_service'
-    require 'payments_db'
-    require 'payments_provider_adapter'
-    require 'payments_mailer'
+require 'payment_creation_service'
+require 'payments_db'
+require 'payments_provider_adapter'
+require 'payments_mailer'
 
-    class ResourceCreator
-      def ecall(route, request, response)
-        resource = route.resource.new(request, response)
-        service = PaymentsCreationService.new(PaymentsDB.new, 
-                                              PaymentsProviderAdapter.new, 
-                                              PaymentsMailer.new,
-                                              resource)
-        resource.payments_creation_service = service
-        resource
-      end
-    end
+class ResourceCreator
+  def ecall(route, request, response)
+    resource = route.resource.new(request, response)
+    service = PaymentsCreationService.new(PaymentsDB.new, 
+                                          PaymentsProviderAdapter.new, 
+                                          PaymentsMailer.new,
+                                          resource)
+    resource.payments_creation_service = service
+    resource
+  end
+end
 
-    class PaymentResource < Webmachine::Resource
-      attr_accessor :payments_creation_service,
-                    :rendered_data
+class PaymentResource < Webmachine::Resource
+  attr_accessor :payments_creation_service,
+                :rendered_data
 
-      def allowed_methods
-        %w(POST)
-      end
+  def allowed_methods
+    %w(POST)
+  end
 
-      def content_types_accepted
-        [['application/vnd.your-app.v1+json', :accept_resource]]
-      end
+  def content_types_accepted
+    [['application/vnd.your-app.v1+json', :accept_resource]]
+  end
 
-      def content_types_provided
-        [['application/vnd.your-app.v1+json', :render_resource]]
-      end
+  def content_types_provided
+    [['application/vnd.your-app.v1+json', :render_resource]]
+  end
 
-      def accept_resource
-        body = MultiJson.load(request.body.to_s)
+  def accept_resource
+    body = MultiJson.load(request.body.to_s)
 
-        payments_creation_service.call(body)
-      end
+    payments_creation_service.call(body)
+  end
 
-      def payment_unknown_error(payment)
-        self.rendered_data = MultiJson.dump(message: "UNKNOWN_ERROR",
-                                            inspect: payment.inspect)
-      end
+  def payment_unknown_error(payment)
+    self.rendered_data = MultiJson.dump(message: "UNKNOWN_ERROR",
+                                        inspect: payment.inspect)
+  end
 
-      def payment_data_invalid(reason)
-        self.rendered_data = MultiJson.dump(message: "DATA_INVALID",
-                                            reason: reason)
-      end
+  def payment_data_invalid(reason)
+    self.rendered_data = MultiJson.dump(message: "DATA_INVALID",
+                                        reason: reason)
+  end
 
-      def payment_successful(id)
-        self.rendered_data = MultiJson.dump(message: "SUCCESS",
-                                            uuid: id)
-      end
+  def payment_successful(id)
+    self.rendered_data = MultiJson.dump(message: "SUCCESS",
+                                        uuid: id)
+  end
 
-      def render_resource
-        self.rendered_data
-      end
-    end
+  def render_resource
+    self.rendered_data
+  end
+end
 
-    @webmachine = Webmachine::Application.new do |app|
-                    app.routes do
-                      add ['payments'], PaymentResource
-                    end
+@webmachine = Webmachine::Application.new do |app|
+                app.routes do
+                  add ['payments'], PaymentResource
+                end
 
-                    app.configure do |config|
-                      config.adapter = :Rack
-                      config.ip      = '127.0.0.1'
-                      config.port    = 5555
-                      config.adapter = :Webrick
-                    end
+                app.configure do |config|
+                  config.adapter = :Rack
+                  config.ip      = '127.0.0.1'
+                  config.port    = 5555
+                  config.adapter = :Webrick
+                end
 
-                    app.dispatcher.resource_creator = ResourceCreator.new
-                  end                
+                app.dispatcher.resource_creator = ResourceCreator.new
+              end                
 
-    @webmachine.run
+@webmachine.run
+```
 
 ### Step three:
 
@@ -240,11 +243,12 @@ response creation code into a separate object.
 
 Now we have to change our old controllers code. It can now look like this, using [Faraday](https://github.com/lostisland/faraday) library:
 
-    #!ruby
-    def action
-      response = Faraday.post("http://127.0.0.1:5555/payments", params[:payment_request])
-      # response handling code
-    end
+```ruby
+def action
+  response = Faraday.post("http://127.0.0.1:5555/payments", params[:payment_request])
+  # response handling code
+end
+```
 
 This ends our tricky parts of extraction. Step five is dependent on your application and it's fairly easy. 
 Now we have the tiny bit of our complex application as a separate application instead. We can run our new application and check out if everything works fine.

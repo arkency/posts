@@ -33,8 +33,7 @@ and
 
 ## Binary numbers
 
-```
-#!ruby
+```ruby
 [1] pry(main)> 0b110111
 => 55
 
@@ -50,8 +49,7 @@ and
 
 ## Because `== 0` is so mainstream
 
-```
-#!ruby
+```ruby
 [5] pry(main)> 0 == 0
 => true
 
@@ -69,8 +67,7 @@ and
 
 
 ## Get some random date
-```
-#!ruby
+```ruby
 require 'active_support/core_ext'
 def random_birth_date_with_age_between_20_and_30
   rand(30.years.ago..20.years.ago).to_date
@@ -82,8 +79,7 @@ end
 
 ## Call my name
 
-```
-#!ruby
+```ruby
 def introduce1
   __method__
 end
@@ -103,8 +99,7 @@ end
 
 ## Hash from array(s)
 
-```
-#!ruby
+```ruby
 [12] pry(main)> ("a".."c").zip(1..3)
 => [["a", 1], ["b", 2], ["c", 3]]
 [13] pry(main)> _.to_h
@@ -117,23 +112,20 @@ end
 
 Note that:
 
-```
-#!ruby
+```ruby
 [16] pry(main)> arr.count.even?
 => true
 ```
 
 In the other case:
 
-```
-#!ruby
+```ruby
 [17] pry(main)> Hash[*['one', 'two', 'three']]
 ArgumentError: odd number of arguments for Hash
 ```
 
 ## `%` notation
-```
-#!ruby
+```ruby
 %q[ ] # Non-interpolated String (except for \\ \[ and \])
 %Q[ ] # Interpolated String (default)
 %r[ ] # Interpolated Regexp (flags can appear after the closing delimiter)
@@ -145,8 +137,7 @@ ArgumentError: odd number of arguments for Hash
 ```
 Of course you can use other non-alpha-numeric character delimiters:
 
-```
-#!ruby
+```ruby
 %[including these]
 %?or these?
 %~or even these things~
@@ -162,8 +153,7 @@ Of course you can use other non-alpha-numeric character delimiters:
 [Source and examples](http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#The_.25_Notation)
 
 ## 'Better' errors
-```
-#!ruby
+```ruby
 class MyCustomBadError < StandardError; end
 
 MyCustomGoodError = Class.new(StandardError)
@@ -171,8 +161,7 @@ MyCustomGoodError = Class.new(StandardError)
 
 ## Symbol to proc
 
-```
-#!ruby
+```ruby
 [18] pry(main)> (1..100).inject(:+)
 => 5050
 
@@ -181,8 +170,7 @@ MyCustomGoodError = Class.new(StandardError)
 ```
 
 ## Enumerators
-```
-#!ruby
+```ruby
 [20] pry(main)> enum = [1, 2, 3].each
 => #<Enumerator: ...>
 [21] pry(main)> enum.next
@@ -198,8 +186,7 @@ from (pry):17:in `next'
 
 however
 
-```
-#!ruby
+```ruby
 [25] pry(main)> enum = [1, 2, 3].cycle
 => #<Enumerator: ...>
 [26] pry(main)> enum.next
@@ -213,8 +200,7 @@ however
 ```
 
 ## Let's be lazy!
-```
-#!ruby
+```ruby
 [30] pry(main)> range = 1..Float::INFINITY
 => 1..Infinity
 [31] pry(main)> range.map { |x| x+x }.first(10)
@@ -227,8 +213,7 @@ however
 ## Send a method
 Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a different case from symbol-to-proc, because we don't invoke method **on** `x` but call a method that takes `x`.
 
-```
-#!ruby
+```ruby
 [33] pry(main)> (1..5).each { |x| puts x }
 1
 2
@@ -247,8 +232,7 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 ```
 
 ## Join my array
-```
-#!ruby
+```ruby
 [35] pry(main)> array = %w(this is an array)
 => ["this", "is", "an", "array"]
 [36] pry(main)> array.join ', '
@@ -258,8 +242,7 @@ Here is nice trick to avoid tedious `{ |x| do_something_with(x) }`. This is a di
 ```
 
 ## We have a ternary operator too
-```
-#!ruby
+```ruby
 def odd?(x)
   x % 2 == 0 ? 'NO' : 'YES'
 end
@@ -271,15 +254,13 @@ end
 ```
 
 ## Rescue to the defaults
-```
-#!ruby
+```ruby
 [40] pry(main)> value = 1 / 0 rescue 0
 => 0
 ```
 
 ## Interpolate easier
-```
-#!ruby
+```ruby
 [41] pry(main)> @instance, @@class, $global = [ 'instance', 'class', 'global' ]
 => ["instance", "class", "global"]
 [42] pry(main)> p "#@instance, #@@class, #$global";
@@ -287,8 +268,7 @@ instance, class, global
 ```
 
 ## Wrap a method
-```
-#!ruby
+```ruby
 def caller(block_or_method)
   block_or_method.call
 end
@@ -309,8 +289,7 @@ end
 ```
 
 ## Memoization
-```
-#!ruby
+```ruby
 fibbonacci = Hash.new do |accumulator, index|
   accumulator[index] = fibbonacci[index - 2] + fibbonacci[index - 1]
 end.update(0 => 0, 1 => 1)
@@ -320,8 +299,7 @@ end.update(0 => 0, 1 => 1)
 ```
 
 ## Tap here
-```
-#!ruby
+```ruby
 class Foo
   attr_accessor :a, :b, :c
 end
@@ -340,8 +318,7 @@ end
 ```
 
 ## Nest some stuff
-```
-#!ruby
+```ruby
 [47] pry(main)> 
 nested_hash = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 => {}
@@ -352,8 +329,7 @@ nested_hash = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 ```
 
 ## Daemonize it
-```
-#!ruby
+```ruby
 # daemon.rb
 Process.daemon
 loop do
@@ -367,8 +343,7 @@ end
 
 
 ## Candy shop
-```
-#!ruby
+```ruby
 require 'yaml/store'
 store = YAML::Store.new 'candy.yml'
 
@@ -388,8 +363,7 @@ end
 ```
 
 ## `Struct` on
-```
-#!ruby
+```ruby
 Struct.new('Tuple', :first, :second) do
   def pair
     "(#{first}, #{second})"
@@ -403,8 +377,7 @@ end
 ```
 
 ## Have some defaults
-```
-#!ruby
+```ruby
 [52] pry(main)> zoo = Hash.new { |hash, key| hash[key] = 0 }
 => {}
 [53] pry(main)> zoo.fetch :gorillas, 0
@@ -418,8 +391,7 @@ end
 And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 
 ## Painless arrays
-```
-#!ruby
+```ruby
 # array of size 3 containing only 0s
 [56] pry(main)> Array.new(3, 0)
 => [0, 0, 0]
@@ -435,8 +407,7 @@ And [many more](http://www.ruby-doc.org/core-2.1.2/Hash.html#method-i-default).
 
 ## Play with URLs
 
-```
-#!ruby
+```ruby
 require 'uri'
 
 [59] pry(main)> URI::HTTP.build(['kamil', 'arkency.com', 8080, '/path', 'query', 'fragment'])
@@ -455,8 +426,7 @@ require 'cgi'
 
 ## Access the hash
 
-```
-#!ruby
+```ruby
 require 'active_support/core_ext/hash/indifferent_access'
 
 [62] pry(main)> 
@@ -470,8 +440,7 @@ rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 
 ## Expand range
 
-```
-#!ruby
+```ruby
 [65] pry(main)> p *(1..5)
 1
 2
@@ -491,8 +460,7 @@ rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 
 Did you know that placing a semicolon at the very end of line hides its output? It may be helpful when some expression produces a lot of data, which we want to just assign to variable instead of directly printing in output.
 
-```
-#!ruby
+```ruby
 "a"..."z"
 [68] pry(main)> alphabet = *('a'...'z')
 [
@@ -532,8 +500,7 @@ Did you know that placing a semicolon at the very end of line hides its output? 
 
 In how many ways can we call a proc? Actually in a few:
 
-```
-#!ruby
+```ruby
 [71] pry(main)> my_proc = -> argument { puts argument }
 #<Proc:0x007fb1ebe9c1a0@(pry):7 (lambda)>
 [72] pry(main)> my_proc.call('hello')

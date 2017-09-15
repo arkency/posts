@@ -19,8 +19,7 @@ Assuming you want store API keys (or passwords for SSL ceritifcate files) what a
 
 #### How?
 
-```
-#!ruby
+```ruby
 #config/environments/production.rb
   config.mailchimp_api_key = "ABCDEF"
 ```
@@ -38,8 +37,7 @@ Assuming you want store API keys (or passwords for SSL ceritifcate files) what a
 
 #### How:
 
-```
-#!ruby
+```ruby
 config.mailchimp_api_key = ENV.fetch('MAILCHIMP_API_KEY')
 ```
 
@@ -56,8 +54,7 @@ config.mailchimp_api_key = ENV.fetch('MAILCHIMP_API_KEY')
 
 #### How
 
-```
-#!ruby
+```ruby
 class Group < ApplicationRecord
 end
 
@@ -78,8 +75,7 @@ Group.create!(name: "...", mailchimp_api_key: "ABCDEF")
 
 #### How
 
-```
-#!ruby
+```ruby
 class Group < ApplicationRecord
   attr_encrypted_options.merge!(key: ENV.fetch('ATTR_ENCRYPTED_SECRET'))
   attr_encrypted :mailchimp_api_key

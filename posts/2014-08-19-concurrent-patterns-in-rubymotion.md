@@ -55,8 +55,7 @@ Here is the basic matrix of `Dispatch::Queue` [methods](https://developer.apple.
 
 When can this be helpful? All view changes have to be done in the main thread. In the other case you may receive something like:
 
-```
-#!bash
+```bash
 Tried to obtain the web lock from a thread other than the main thread or the web thread.
 This may be a result of calling to UIKit from a secondary thread.
 Crashing now..
@@ -64,8 +63,7 @@ Crashing now..
 
 To update UI from background thread:
 
-```
-#!ruby
+```ruby
 Dispatch::Queue.new('arkency').async do
   # background task
 
@@ -98,8 +96,7 @@ Queues are not bound to any specific thread of execution and blocks submitted to
 
 This technique is recommended by Apple itself to create shared instance of some class. In native iOS it may look like:
 
-```
-#!c
+```c
 + (MyClass *)sharedInstance
 {
     static MyClass *sharedInstance;
@@ -113,8 +110,7 @@ This technique is recommended by Apple itself to create shared instance of some 
 
 which is actually the same thing as:
 
-```
-#!c
+```c
 + (MyClass *)sharedInstance {
     static MyClass *sharedInstance;
     @synchronized(self) {
@@ -130,8 +126,7 @@ As you can see, the `dispatch_once` function takes care of all the necessary loc
 
 In RubyMotion implementation may be as follows:
 
-```
-#!ruby
+```ruby
 class MyClass
   def self.instance
     Dispatch.once { @instance ||= new }

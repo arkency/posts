@@ -37,8 +37,7 @@ merchant.
 
 Let's see the implementation first and go through it.
 
-```
-#!ruby
+```ruby
 def capture(order_id)
   client = Savon.client(
     wsdl:        static_configuration.goods_shipped_url,
@@ -93,8 +92,7 @@ and comparing with documentation.
 
 The most important part of the initialization is:
 
-```
-#!ruby
+```ruby
 Savon.client(
   wsdl: static_configuration.goods_shipped_url,
 )
@@ -161,8 +159,7 @@ It helped me a lot a few times.
 In next part, we build a Hash with keys matching the names
 from the WSDL definition of the type.
 
-```
-#!ruby
+```ruby
 data = {
   companyID:  static_configuration.company_id.to_s,
   orderID:    order_id,
@@ -186,8 +183,7 @@ Finally, we call `goods_shipped` API endpoint which is also
 defined in the WSDL so `Savon` knows how to reach it and
 how to build the XML with the `data` that we provide.
 
-```
-#!ruby
+```ruby
 response = client.call(
   :goods_shipped,
   message: data,
@@ -198,8 +194,7 @@ The result of the API call is also automatically converted for us
 from XML to Ruby primitives such as numbers, strings, arrays
 and hashes.
 
-```
-#!ruby
+```ruby
 result = response.body[:goods_shipped_response][:goods_shipped_result]
 result[:status] == "Ok" or raise ::PaymentGateway::Errors::CaptureFailed, "Capture status is: #{result[:status]}"
 return result[:TransactionID]

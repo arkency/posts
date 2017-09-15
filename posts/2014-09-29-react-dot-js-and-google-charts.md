@@ -23,8 +23,7 @@ an easy way to combine those two things together.
 
 <!-- more -->
 
-```
-#!javascript
+```javascript
 var GoogleLineChart = React.createClass({
   render: function(){
     return React.DOM.div({id: this.props.graphName, style: {height: "500px"}});
@@ -59,8 +58,7 @@ lifecycle methods of the react componenet. In our case it is:
 One more thing. Make sure you start rendering components only after the javascript for
 google charts have been fully loaded.
 
-```
-#!javascript
+```javascript
 InsightApp.prototype.start = function() {
   that = this;
 

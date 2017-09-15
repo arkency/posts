@@ -27,8 +27,7 @@ It has also gem dedicated to Rails applications, which communicates with our API
 
 To test whole stack we have to run all apps + Rails server. Let's have a look at our ```AcceptanceTestCase``` class:
 
-```
-#!ruby
+```ruby
 
 class AcceptanceTestCase < MiniTest::Unit::TestCase
   def commands_to_run
@@ -63,8 +62,7 @@ As you see we also have sample Rails app to make sure, that our gem really works
 
 _Business scenarios - stories or use cases - are defined with high-level terms_, i.e. "Someone created model in Rails app, so at the beginning of next day (when scheduler trigger) owner should get email with report containing model's counter increased by one". To expose that business, our product's real value, we use same terms in tests:
 
-```
-#!ruby
+```ruby
 class SendingBusinessMetricsTest < AcceptanceTestCase
   def setup
     @name, @email, @token = "Rere", "email@example.org", '01234567890123456789012345678901'

@@ -16,8 +16,7 @@ If you're really serious about your application you have to collect and analyze 
 
 Let's dig into the most important source code:
 
-```
-#!ruby
+```ruby
 # config/initializers/creation_listener.rb
 module CreationListener
   def inherited(subclass)
@@ -34,8 +33,7 @@ ActiveRecord::Base.extend(CreationListener)
 
 I think you already know what it does - it binds to ActiveRecord::Base's callback and puts appropriate message with time of creation and class name of created model. Then log messages are parsed with the following rake task:
 
-```
-#!ruby
+```ruby
 # lib/tasks/creations.rake
 task creations: :environment do
   creation_entry_regexp = /\[([\w\W]+)\] Model created: '([\w\W]+)'/

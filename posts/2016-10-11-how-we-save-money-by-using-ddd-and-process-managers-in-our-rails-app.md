@@ -24,8 +24,7 @@ Let's assume the system publishes these business events:
 
 Each of these business events include `payment_provider_identifier` in their data so the information is available which provider was related to the event. With these types of events it's possible to detect if there is a problem with the payment gateway that is currently in use. To achieve this a process manager can be used. It will react to these events and keep track of a number of failures. If the number exceeds a certain threshold a command is issued to switch to a backup provider:
 
-```
-#!ruby
+```ruby
 module Payments
   class SwitchToFallbackProvider
     include CommandBusInjector

@@ -22,8 +22,7 @@ into instantiating Adapters & Service Objects. So here we go.
 
 ## Boring style
 
-```
-#!ruby
+```ruby
 class ProductsController
   def create
     metrics = MetricsAdapter.new(METRICS_CONFIG.fetch(Rails.env))
@@ -51,8 +50,7 @@ hardest beasts when it come to testing.
 
 #### Controller
 
-```
-#!ruby
+```ruby
 
 describe ProductsController do
   specify "#create" do
@@ -105,8 +103,7 @@ or collecting our data from test environment.
 When testing the service you need to instantiate it and its dependencies
 manually as well.
 
-```
-#!ruby
+```ruby
 
 describe CreateProductService do
   let(:metrics_adapter) do
@@ -131,8 +128,7 @@ the full object into an `injector`. The purpose is to make it easy to create
 new instance everywhere and to make it trivial for people to overwrite the
 dependencies by overwriting methods.
 
-```
-#!ruby
+```ruby
 module CreateProductServiceInjector
   def metrics_adapter
     @metrics_adapter ||= MetricsAdapter.new( METRICS_CONFIG.fetch(Rails.env) )
@@ -144,8 +140,7 @@ module CreateProductServiceInjector
 end
 ```
 
-```
-#!ruby
+```ruby
 class ProductsController
   include CreateProductServiceInjector
 
@@ -168,8 +163,7 @@ value) and don't bother much with it anymore.
 
 Here we only test that we can inject the objects and change the dependencies.
 
-```
-#!ruby
+```ruby
 describe CreateProductServiceInjector do
   subject(:injected) do
     Object.new.extend(described_class)
@@ -199,8 +193,7 @@ Is it worth it? Well, it depends how complicated setting your object is. Some of
 colleagues just test that the object can be constructed (hopefully this has no
 side effects in your codebase):
 
-```
-#!ruby
+```ruby
 describe CreateProductServiceInjector do
   subject(:injected) do
     Object.new.extend(described_class)
@@ -218,8 +211,7 @@ Our controller is only interested in cooperating with `create_product_service`.
 It doesn't care what needs to be done to fully set it up. It's the job of `Injector`.
 We can throw away the code for creating the service.
 
-```
-#!ruby
+```ruby
 
 describe ProductsController do
   specify "#create" do
@@ -252,8 +244,7 @@ If you use your own method definition make sure to memoize as well
 (in some cases it is not necessary, but when you start stubbing/mocking
 it is).
 
-```
-#!ruby
+```ruby
 describe CreateProductService do
   include CreateProductServiceInjector
 
@@ -286,8 +277,7 @@ case it might not be worthy, in more complicated ones it might be however.
 
 Here is a more complicated example from one of our project.
 
-```
-#!ruby
+```ruby
 require 'notifications_center/db/active_record_sagas_db'
 require "notifications_center/schedulers/resque_scheduler"
 require "notifications_center/clocks/real"
@@ -321,8 +311,7 @@ end
 You might also consider using [dependor gem](https://github.com/psyho/dependor) for
 this.
 
-```
-#!ruby
+```ruby
 class Injector
   extend Dependor::Let
 
@@ -336,8 +325,7 @@ class Injector
 end
 ```
 
-```
-#!ruby
+```ruby
 class ProductsController
   extend Dependor::Injectable
   inject_from Injector
@@ -365,8 +353,7 @@ You can use only the parts that you like and are comfortable with.
 
 The simple way that just checks if things don't crash and nothing more.
 
-```
-#!ruby
+```ruby
 require 'dependor/rspec'
 
 describe Injector do
@@ -384,8 +371,7 @@ For testing the service you go whatever way you want.
 Create new instance manually or use
 [`Dependor::Isolate`](https://github.com/psyho/dependor#dependorisolate).
 
-```
-#!ruby
+```ruby
 require 'dependor/rspec'
 
 describe CreateProductService do

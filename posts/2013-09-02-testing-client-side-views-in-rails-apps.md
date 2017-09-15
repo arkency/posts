@@ -24,8 +24,7 @@ Depending on model's complexity and quality of your code view object can be real
 
 Let's start with something really simple - cyclic color change on button click. Let's assume, that cycle contains only two colors: red and blue. You've got following HTML:
 
-```
-#!html
+```html
 <div id="color-changer">
   <button value="Change color"></button>
   <div>Text</div>
@@ -34,8 +33,7 @@ Let's start with something really simple - cyclic color change on button click. 
 
 And following CoffeeScript:
 
-```
-#!coffeescript
+```coffeescript
 $ ->
   color = "blue"
   $("#color-changer button").click((e) =>
@@ -49,8 +47,7 @@ $ ->
 
 Looks pretty familiar, right? Before we can write test we have to do the first refactoring: separate definition from start-up. That's really simple:
 
-```
-#!coffeescript
+```coffeescript
 ## color_changer.coffee
 @colorChanger = ->
   color = "blue"
@@ -63,8 +60,7 @@ Looks pretty familiar, right? Before we can write test we have to do the first r
   )
 ```
 
-```
-#!coffeescript
+```coffeescript
 ## color_changer_startup.coffee
 #= require color_changer
 
@@ -78,8 +74,7 @@ Now we can test it. Let's focus on what should be tested - what are our requirem
 
 Let's start with "odd clicks should mark Text's color to red" requirement. Implementation of this first requirement will be also a foundation for all other tests.
 
-```
-#!coffeescript
+```coffeescript
 ## color_changer_spec.coffee
 #= require color_changer
 
@@ -108,8 +103,7 @@ Let's focus on test case. We call ```colorChanger``` function which binds to exi
 
 Now that we have test foundation we can implement missing test cases - Text should be blue by default, and after even number of clicks:
 
-```
-#!coffeescript
+```coffeescript
 ## color_changer_spec.coffee
 #= require color_changer
 
@@ -139,8 +133,7 @@ The other way is to move responsibility of rendering most of HTML from back-end 
 
 This leads us to new understanding of ```colorChanger```. Previously it was just a function, that binds to already existing DOM subtree, and now we have to think about as an object, that can both render itself (or be rendered by something else) and bind to rendered DOM, to interact with user. Here's how we can refactor our ```colorChanger``` to an object:
 
-```
-#!coffeescript
+```coffeescript
 ## color_changer.coffee
 
 class @ColorChanger = ->
@@ -168,8 +161,7 @@ class @ColorChanger = ->
 
 There are things that ask for refactoring, but you see that main goal is achieved - our view object can be rendered inside of any container and then can receive click events from button. This makes it reusable and easier to maintain:
 
-```
-#!coffeescript
+```coffeescript
 #= color_changer
 ## color_changer_spec.coffee
 

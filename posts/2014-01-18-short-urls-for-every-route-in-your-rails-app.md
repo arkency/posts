@@ -33,8 +33,7 @@ if those urls are meant to appear in printed materials (like `/productName` or
 If your requirements are less strict, you might be in a better position to use a
 simpler solution. Let's say that your current routing rules are like:
 
-```
-#!ruby
+```ruby
 resources :authors
 resources :posts
 
@@ -48,8 +47,7 @@ solution you use).
 
 And you would like to add route like:
 
-```
-#!ruby
+```ruby
 match '/:slug'
 ```
 
@@ -63,8 +61,7 @@ what the slug points to. Our client wants Pretty Urls:
 
 Well, you can solve this problem with constraints.
 
-```
-#!ruby
+```ruby
 class AuthorUrlConstrainer
   def matches?(request)
     id = request.path.gsub("/", "")
@@ -77,8 +74,7 @@ constraints(AuthorUrlConstrainer.new) do
 end
 ```
 
-```
-#!ruby
+```ruby
 class PostUrlConstrainer
   def matches?(request)
     id = request.path.gsub("/", "")
@@ -125,8 +121,7 @@ You won't have such dillemmas if you go with redirecting so that `/MartinFowler`
 simply redirects to `/authors/MartinFowler`. It is not hard with Rails routing.
 Just change
 
-```
-#!ruby
+```ruby
 constraints(AuthorUrlConstrainer.new) do
   match '/:id', to: "authors#show", as: 'short_author'
 end
@@ -134,8 +129,7 @@ end
 
 into
 
-```
-#!ruby
+```ruby
 constraints(AuthorUrlConstrainer.new) do
   match('/:id', as: 'short_author', to: redirect do |params, request|
     Rails.application.routes_url_helpers.author_path(params[:id])
@@ -150,8 +144,7 @@ version if admins generate it. In such case we store the slug and the
 path that it was generated based on in `Short::Url` class. It has the
 `slug` and `target` attributes.
 
-```
-#!ruby
+```ruby
 class Vanity::Url < ActiveRecord::Base
   validates_format_of     :slug, with: /\A[0-9a-z\-\_]+\z/i
   validates_uniqueness_of :slug, case_sensitive: false
@@ -169,8 +162,7 @@ url.save!
 
 Now our routing can use that information.
 
-```
-#!ruby
+```ruby
 class ShortDispatcher
   def initialize(router)
     @router = router
@@ -228,32 +220,28 @@ usually Rails does for us.
 First we need to recognize what the long,
 target url (`/authors/MartinFowler`) points to.
 
-```
-#!ruby
+```ruby
 routing = Rails.application.routes.recognize_path(@url.target)
 # => {:action=>"show", :controller=>"authors", :id=>"1"}
 ```
 
 Based on that knowledge we can obtain the controller class.
 
-```
-#!ruby
+```ruby
 controller = (routing.delete(:controller) + "_controller").classify.constantize
 # => AuthorsController
 ```
 
 And we know what controller action should be processed.
 
-```
-#!ruby
+```ruby
 action = routing.delete(:action)
 # => "show"
 ```
 
 No we can trick rails into thinking that the actual parameters coming from recognized url were different
 
-```
-#!ruby
+```ruby
 env["action_dispatch.request.path_parameters"] = routing
 # => {:id => "MartinFowler"}
 ```
@@ -265,8 +253,7 @@ And at the and we create [new instance of rack compatible application](https://g
 based on the `#show()` method of our `controller`. And we put everything in motion with
 `#call()` and pass it `env` (the `Hash` with [Rack environment](http://rack.rubyforge.org/doc/SPEC.html)).
 
-```
-#!ruby
+```ruby
 controller.action(action).call(env)
 # AuthorsController.action("show").call(env)
 ```

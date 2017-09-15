@@ -28,8 +28,7 @@ This is quite simple to implement using [Rails Event Store](https://github.com/a
 First let's start with the definition of a command that is executed when fuckup is registered and a domain event that is published
 when fuckup is reported.
 
-```
-#!ruby
+```ruby
 ReportFuckupCommand = Struct.new(:organization_id, :title)
 FuckupReported      = Class.new(RailsEventStore::Event)
 ```
@@ -37,8 +36,7 @@ FuckupReported      = Class.new(RailsEventStore::Event)
 Now we need a handler for our command. It should load an `Organization` aggregate from event store, execute domain logic responsible for reporting
 new fuckup and store all published domain events in the event store.
 
-```
-#!ruby
+```ruby
 module ApplicationServices
   class OrganizationService
     def repository
@@ -65,8 +63,7 @@ end
 Our command handler needs an `Organization` aggregate. It should have all logic needed by the organization, does not matter now what it could be.
 One thing to notice is that `Organization` does not create new `Fuckup` aggregate. Instead it "just" publishes a FuckupReported domain event.
 
-```
-#!ruby
+```ruby
 module Domain
   class Organization
     include RailsEventStore::AggregateRoot
@@ -96,8 +93,7 @@ end
 
 So, how is `Fuckup` created? The answer is: by handling a domain event. The event handler should create new `Fuckup` aggregate (because we don't have any to load it from event store) and just store it.
 
-```
-#!ruby
+```ruby
 module EventHandlers
   class OnFuckupReported
     def repository
@@ -140,8 +136,7 @@ With that implementation, our action responsible for reporting a fuckup should o
 Both aggregates have the domain events stored in its own stream, however as you may notice by comparing event_id
 this is still the same domain event.
 
-```
-#!ruby
+```ruby
 => [#<RailsEventStore::Models::Event:0x007fc0c0191120
       id: 77,
       stream: "42d98fe4-6d50-4fda-8b7f-9575d9ffa5a1",

@@ -64,8 +64,7 @@ variable is set up properly.
 Note: We use `exec` twice here so that runit ends up monitoring our
 `application-name` binary instead of monitoring `su` or `bash` shell.
 
-```
-#!bash
+```bash
 exec su - application-name -c "cd /var/lib/application-name/current/ \
 && exec bundle exec ruby -Ilib ./bin/application-name"
 ```
@@ -75,8 +74,7 @@ exec su - application-name -c "cd /var/lib/application-name/current/ \
 And the second mentioned solution is to use full ruby binary (or gem)
 path in a script:
 
-```
-#!bash
+```bash
 /var/lib/application-name/1.9.3-p286/bin/rackup path/to/the/app
 ```
 

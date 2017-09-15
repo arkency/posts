@@ -14,8 +14,7 @@ In one of projects we've been working on we introduced an event store. This allo
 
 Below you can see an example of `OrderEvents::OrderCompleted` event that is published after an order has been completed:
 
-```
-#!ruby
+```ruby
 class Orders::CompleteOrder
   def initialize(event_store)
     self.event_store = event_store
@@ -41,8 +40,7 @@ end
 
 After this fact take place, we want to deliver an email to the customer. We utilize an event handler to do it. To make the handler work we need to subscribe it to the event. We subscribe handlers to events in a config file like this:
 
-```
-#!yaml
+```yaml
 OrderEvents::OrderCompleted:
   stream: "Order$%{order_id}"
   handlers:
@@ -51,8 +49,7 @@ OrderEvents::OrderCompleted:
 
 When the event is published it is stored in a stream and for each of subscribed handlers "perform" class method is called with the event passed as an argument:
 
-```
-#!ruby
+```ruby
 class Order::DeliverEmail
   def self.perform(event)
     new.call(event)

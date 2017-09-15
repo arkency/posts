@@ -54,8 +54,7 @@ will convince you but here are my thoughts:
 
 ### YearMonth
 
-```
-#!ruby
+```ruby
 # Actual
 Time.days_in_month(2014, 1)
 Time.new(2014, 1).end_of_month
@@ -63,8 +62,7 @@ Time.new(2014, 1).end_of_month
 
 vs
 
-```
-#!ruby
+```ruby
 # Imaginary
 january2014 = YearMonth.new(2014, 1)
 january2014.number_of_days
@@ -75,16 +73,14 @@ january2014.end_of
 
 Same goes for other:
 
-```
-#!ruby
+```ruby
 Date.new(2000).leap?
 Date.new(2000).beginning_of_year
 ```
 
 vs
 
-```
-#!ruby
+```ruby
 year2000 = Year.new(2000)
 year.leap?
 year.beginning_of
@@ -92,16 +88,14 @@ year.beginning_of
 
 ### Week
 
-```
-#!ruby
+```ruby
 Date.new(2001, 2, 3).cweek
 Date.new(2001, 2, 3).cwyear
 ```
 
 vs
 
-```
-#!ruby
+```ruby
 week = Week.from_date(2001, 2, 3)
 week.year
 week.number
@@ -133,8 +127,7 @@ of view. What do you think?
 
 Ok, enough with the digressions. The main topic was using custom class with `Range`. Let's have an exemplary class.
 
-```
-#!ruby
+```ruby
 class YearMonth < Struct.new(:year, :month)
 
   def initialize(year, month)
@@ -169,8 +162,7 @@ end
 
 This was used as a **Value Object attribute** in my AR class:
 
-```
-#!ruby
+```ruby
 class ReportingConfiguration < ActiveRecord::Base
   composed_of :start,
     class_name: YearMonth.name, 
@@ -190,8 +182,7 @@ And it was all supposed to work but...
 
 ## ... bad value for range
 
-```
-#!ruby
+```ruby
 YearMonth.new(2014, 1)..YearMonth.new(2014, 2)
 # => ArgumentError: bad value for range
 ```
@@ -210,8 +201,7 @@ compatible with `Range`.
 
 ### Iterating
 
-```
-#!ruby
+```ruby
 range = YearMonth.new(2014, 1)..YearMonth.new(2014, 3)
 # => #<struct YearMonth year=2014, month=1>..#<struct YearMonth year=2014, month=3>
 
@@ -223,8 +213,7 @@ range.each {|ym| puts ym.inspect }
 
 **Iterating requires you to implement `#succ` method.**
 
-```
-#!ruby
+```ruby
   def next
     if month == 12
       self.class.new(year+1, 1)
@@ -249,8 +238,7 @@ words your class should be [`Comparable`](http://www.ruby-doc.org/core-2.1.2/Com
 else would the `Range` know when to stop without the ability to compare last generated element with the upper bound of
 your Range?
 
-```
-#!ruby
+```ruby
 class YearMonth
   include Comparable
 
@@ -263,8 +251,7 @@ end
 If you are not familiar with `<=>` operator here is a little reminder for you. It should return `-1`, `0` or `1`
 depending on whether the compared objects is greater, equal to, or lower:
 
-```
-#!ruby
+```ruby
 YearMonth.new(2014, 1) <=> YearMonth.new(2014, 3)
 # => -1
 
@@ -278,8 +265,7 @@ YearMonth.new(2014, 3) <=> YearMonth.new(2014, 1)
 If you have `<=>` operator implemented and include `Comparable` module into your class you get the behavior
 of classic operators `<`, `<=`, `==`, `>=` and `>` for free:
 
-```
-#!ruby
+```ruby
 YearMonth.new(2014, 3) > YearMonth.new(2014, 1)
 # => true
 
@@ -310,23 +296,20 @@ elements without knowing which one is the last one** (or whether you should star
 
 All this can be summarized in a few examples:
 
-```
-#!ruby
+```ruby
 # Range needs to know that 2 <= 1 is false
 # so it doesn't start iterating
 (2..1).each{|i| puts i} # no output
 ```
 
-```
-#!ruby
+```ruby
 # Range needs to know that 1.succ gives 2
 # 2.succ gives 3
 # and 3 == 3 so we need to stop iterating
 (1..3).each{|i| puts i}
 ```
 
-```
-#!ruby
+```ruby
 
 # You can't iterate over classes that don't have #succ method
 
@@ -337,8 +320,7 @@ All this can be summarized in a few examples:
 # => NoMethodError: undefined method `succ' for 1.0:Float
 ```
 
-```
-#!ruby
+```ruby
 # But you can check for inclusion in Range
 (1.0..2.0).include?(1.5)
  => true
@@ -363,8 +345,7 @@ Ruby related but FYI, dates are more complicated then what usually like to think
 
 ## Simple `YearMonth` implementation
 
-```
-#!ruby
+```ruby
 class YearMonth < Struct.new(:year, :month)
   include Comparable
 

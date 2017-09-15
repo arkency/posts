@@ -30,8 +30,7 @@ This is our starting point
 
 ## Where the fun begins
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   validates_length_of :slug, minimum: 3
 end
@@ -48,8 +47,7 @@ different for users. Nothing simpler, right?
 
 ## Where the fun ends
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   attr_accessor: :edited_by_admin
   validates_length_of :slug, minimum: 3, unless: Proc.new{|u| u.edited_by_admin? }
@@ -57,8 +55,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-```
-#!ruby
+```ruby
 class Admin::UsersController
   def edit
     @user = User.find(params[:id])
@@ -77,8 +74,7 @@ Now this would work, however it is not code I would be proud about.
 But wait, you already know a way to mark validations to trigger only sometimes.
 Do you remember it?
 
-```
-#!ruby
+```ruby
 class Meeting < ActiveRecord::Base
   validate :starts_in_future, on: :create
 end
@@ -91,16 +87,14 @@ I wonder whether we could use it...
 
 ## Where it's fun again
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   validates_length_of :slug, minimum: 3, on: :user
   validates_length_of :slug, minimum: 1, on: :admin
 end
 ```
 
-```
-#!ruby
+```ruby
 class Admin::UsersController
   def edit
     @user = User.find(params[:id])
@@ -117,8 +111,7 @@ Wow, now look at that. Isn't it cute?
 
 And if you want to only check validation without saving the object you can use:
 
-```
-#!ruby
+```ruby
 u = User.new
 u.valid?(:admin)
 # or
@@ -130,8 +123,7 @@ This feature is actually even documented [`ActiveModel::Validations#valid?(conte
 Now it is a good moment to remind ourselves of a nice API that can make it less
 redundant in case of multiple rules: [`Object#with_options`](http://api.rubyonrails.org/classes/Object.html#method-i-with_options)
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   with_options({on: :user}) do |for_user|
     for_user.validates_length_of :slug, minimum: 3
@@ -151,8 +143,7 @@ The problem with this approach is that you cannot supply multiple contexts.
 If you would like to have some validations `on: :admin` and some `on: :create`
 then it is probably not gonna work the way you would want.
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   validates_length_of :slug, minimum: 3, on: :user
   validates_length_of :slug, minimum: 1, on: :admin
@@ -166,8 +157,7 @@ it's not gonna trigger the last validation because we substituted the default
 
 You can [see it for yourself in rails code](https://github.com/rails/rails/blob/98b56eda5d7ebc595b6768d53ee12ad6296b4066/activerecord/lib/active_record/validations.rb#L68):
 
-```
-#!ruby
+```ruby
 # Runs all the validations within the specified context. Returns +true+ if
 # no errors are found, +false+ otherwise.
 #
@@ -191,8 +181,7 @@ We could go with manual check for both contexts in our controllers but we would
 have to take database transaction into consideration, if our validations are
 doing SQL queries.
 
-```
-#!ruby
+```ruby
 class Admin::UsersController
   def edit
     User.transaction do
@@ -215,8 +204,7 @@ I doubt that the end result is 100% awesome.
 I once used this technique to introduce new context `on: :destroy` which
 was doing something similar to:
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   has_many :invoices
   validate :does_not_have_any_invoice, on: :destroy

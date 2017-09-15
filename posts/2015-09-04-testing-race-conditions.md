@@ -32,8 +32,7 @@ out that sometimes it is **not so hard at all**, and it might be simpler than
 you imagine. Sometimes, all you need is **4 threads to reproduce and fix
 the problem**.
 
-```
-#!ruby
+```ruby
 specify do
   begin
     expect(ActiveRecord::Base.connection.pool.size).to eq(5)
@@ -81,8 +80,7 @@ preconditions for the test are what I imagined. That no developer, and no
 CI server has these values different.
 
 
-```
-#!ruby
+```ruby
 concurrency_level = 4
 ```
 
@@ -90,8 +88,7 @@ concurrency_level = 4
 This leaves us with 4 threads that can use the 4 remaining DB connections
 to simulate customers buying in our shop.
 
-```
-#!ruby
+```ruby
 merchant  = TestMerchant.new
 product   = merchant.create_product(quantity: concurrency_level - 1)
 ```
@@ -103,8 +100,7 @@ implemented with plain Ruby classes. They just call the same
 [Service Objects](http://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/)
 that our Controllers do. This code is specific to your application.
 
-```
-#!ruby
+```ruby
 customers = concurrency_level.times.map{ TestCustomer.new }
 ```
 
@@ -115,8 +111,7 @@ Because, we strive to achieve **the highest contention possible** around buying
 the product. If you create your customer in the _per-customer_ threads it might
 mean that one customer is already buying while another is still registering.
 
-```
-#!ruby
+```ruby
 fail_occurred = false
 ```
 
@@ -125,8 +120,7 @@ impossible because it is no longer in stock and remember that it occurred. We ne
 variable outside of the `Thread.new do end` block, **otherwise it would not be
 accessible in the main scope**.
 
-```
-#!ruby
+```ruby
 wait_for_it  = true
 ```
 
@@ -135,8 +129,7 @@ immediately. **So I am using this boolean flag instead**. All the threads are
 executing a nop-loop while waiting for this variable to be switched to false, which
 happens after initializing all threads.
 
-```
-#!ruby
+```ruby
 threads = concurrency_level.times.map do |i|
   Thread.new do
     true while wait_for_it
@@ -158,16 +151,14 @@ of them and remember that we want high contention. So we use `true while wait_fo
 to wait until all threads are created. Then main thread sets `wait_for_it` to `false`.
 That starts the buying process for those customers.
 
-```
-#!ruby
+```ruby
 threads.each(&:join)
 ```
 
 We don't know how long it will take for the threads to finish so we **gladly wait
 for all of them**.
 
-```
-#!ruby
+```ruby
 expect_fail_for_one_customer(fail_occured)
 expect_success_for_rest_of_customers(customers, product)
 expect_product_not_oversold(product, concurrency_level)

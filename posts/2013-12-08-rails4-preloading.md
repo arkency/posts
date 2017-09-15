@@ -28,8 +28,7 @@ of eager loading that you might not be yet familiar with.
 Let's start with our Active Record class and associations definitions that we
 are going to use throughout the whole post:
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   has_many :addresses
 end
@@ -41,8 +40,7 @@ end
 
 And here is the seed data that will help us check the results of our queries:
 
-```
-#!ruby
+```ruby
 rob = User.create!(name: "Robert Pankowecki", email: "robert@example.org")
 bob = User.create!(name: "Bob Doe", email: "bob@example.org")
 
@@ -57,8 +55,7 @@ Typically, when you want to use the eager loading feature you would use the
 `#includes` method, which Rails encouraged you to use since Rails2 or maybe even
 Rails1 ;). And that works like a charm doing 2 queries:
 
-```
-#!ruby
+```ruby
 User.includes(:addresses)
 #  SELECT "users".* FROM "users"
 #  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
@@ -66,8 +63,7 @@ User.includes(:addresses)
 
 So what are those two other methods for? First let's see them in action.
 
-```
-#!ruby
+```ruby
 User.preload(:addresses)
 #  SELECT "users".* FROM "users"
 #  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
@@ -78,8 +74,7 @@ Keep reading to find out.
 
 And as for the `#eager_load`:
 
-```
-#!ruby
+```ruby
 User.eager_load(:addresses)
 #  SELECT
 #  "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
@@ -99,8 +94,7 @@ What is the decision based on, you might ask. It is based on query conditions.
 Let's see an example where `#includes` delegates to `#eager_load` so that there
 is one big query only.
 
-```
-#!ruby
+```ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland")
 User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 
@@ -121,8 +115,7 @@ the job to `#eager_load`. You can always achieve the same result by using the
 
 What happens if you instead try to use `#preload` explicitly?
 
-```
-#!ruby
+```ruby
 User.preload(:addresses).where("addresses.country = ?", "Poland")
 #  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
 #
@@ -136,8 +129,7 @@ We get an exception because we haven't joined `users` table with
 
 If you look at our example again
 
-```
-#!ruby
+```ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland")
 ```
 
@@ -161,8 +153,7 @@ We know that we need only users with polish addresses. That itself is easy:
 that we want to eager load the addresses so we also need `includes(:addresses)`
 part right?
 
-```
-#!ruby
+```ruby
 r = User.joins(:addresses).where("addresses.country = ?", "Poland").includes(:addresses)
 
 r[0]
@@ -181,8 +172,7 @@ and used `#eager_load` implementation under the hood. The only difference compar
 previous example is that is that Rails used `INNER JOIN` instead of `LEFT JOIN`,
 but for that query it doesn't even make any difference.
 
-```
-#!sql
+```sql
 SELECT
 "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
 "addresses"."id" AS t1_r0, "addresses"."user_id" AS t1_r1, "addresses"."country" AS t1_r2, "addresses"."street" AS t1_r3, "addresses"."postal_code" AS t1_r4, "addresses"."city" AS t1_r5, "addresses"."created_at" AS t1_r6, "addresses"."updated_at" AS t1_r7
@@ -196,8 +186,7 @@ This is that kind of situation where you can outsmart Rails and be explicit
 about what you want to achieve by directly calling `#preload` instead of
 `#includes`.
 
-```
-#!ruby
+```ruby
 r = User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
 # SELECT "users".* FROM "users"
 # INNER JOIN "addresses" ON "addresses"."user_id" = "users"."id"
@@ -230,8 +219,7 @@ make sense if you are getting the data to display it.
 
 I prefer to add the condition to the association itself:
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   has_many :addresses
   has_many :polish_addresses, conditions: {country: "Poland"}, class_name: "Address"
@@ -240,8 +228,7 @@ end
 
 And just preload it explicitely using one way:
 
-```
-#!ruby
+```ruby
 r = User.preload(:polish_addresses)
 
 # SELECT "users".* FROM "users"
@@ -266,8 +253,7 @@ r[1].polish_addresses
 
 or another:
 
-```
-#!ruby
+```ruby
 r = User.eager_load(:polish_addresses)
 
 # SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
@@ -305,8 +291,7 @@ to build 2 or more queries (in case of using `#preload`).
 
 What kind of API would I love? I am thinking about something like:
 
-```
-#!ruby
+```ruby
 User.joins(:addresses).where("addresses.country = ?", "Poland").preload do |users|
   users.preload(:addresses).where("addresses.country = ?", "Germany")
   users.preload(:lists) do |lists|
@@ -323,8 +308,7 @@ I hope you get the idea :) But this is just a dream. Let's get back to reality..
 
 ... and talk about what changed in Rails 4.
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   has_many :addresses
   has_many :polish_addresses, -> {where(country: "Poland")}, class_name: "Address"
@@ -338,8 +322,7 @@ area where the condition were interpreted only once when the class was loaded.
 It is the same way you are encouraged to use lambda syntax or method syntax to
 express scope conditions.
 
-```
-#!ruby
+```ruby
 # Bad, Time.now would be always the time when the class was loaded
 # You might not even spot the bug in development because classes are
 # automatically reloaded for you after changes.
@@ -362,8 +345,7 @@ and protect us from the such kind of bugs.
 Now that we have the syntax changes in place, we can check for any differences
 in the behavior.
 
-```
-#!ruby
+```ruby
 User.includes(:addresses)
 #  SELECT "users".* FROM "users"
 #  SELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (1, 2)
@@ -383,8 +365,7 @@ User.eager_load(:addresses)
 Well, this looks pretty much the same. No surprise here.
 Let's add the condition that caused us so much trouble before:
 
-```
-#!ruby
+```ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland")
 
 #DEPRECATION WARNING: It looks like you are eager loading table(s)
@@ -420,16 +401,14 @@ spy on our `where` conditions to detect which algorithm to use, it expects
 our help. We must tell it that there is condition for one of the tables.
 Like that:
 
-```
-#!ruby
+```ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
 ```
 
 I was wondering what would happen if we try to preload more tables but
 reference only one of them:
 
-```
-#!ruby
+```ruby
 User.includes(:addresses, :places).where("addresses.country = ?", "Poland").references(:addresses)
 
 #  SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."created_at" AS t0_r3, "users"."updated_at" AS t0_r4,
@@ -451,23 +430,20 @@ Rails 4 does not warn you to use the `#references` method if you
 explicitely use `#eager_load` to get the data and the executed
 query is identical:
 
-```
-#!ruby
+```ruby
 User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 ```
 
 In other words, these two are the same:
 
-```
-#!ruby
+```ruby
 User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses)
 User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 ```
 
 And if you try to use `#preload`, you still get the same exception:
 
-```
-#!ruby
+```ruby
 User.preload(:addresses).where("addresses.country = ?", "Poland")
 #  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland')
 #
@@ -477,8 +453,7 @@ User.preload(:addresses).where("addresses.country = ?", "Poland")
 If you try to use the other queries that I showed you, they still work
 the same way in Rails 4:
 
-```
-#!ruby
+```ruby
 # Give me users with polish addresses and preload all of their addresses
 User.joins(:addresses).where("addresses.country = ?", "Poland").preload(:addresses)
 

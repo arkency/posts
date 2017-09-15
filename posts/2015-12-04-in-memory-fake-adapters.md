@@ -56,8 +56,7 @@ To have that feature working we need to communicate with them via API and they n
 
 Let's see a simple exemplary test.
 
-```
-#!ruby
+```ruby
 booking = BookingService.new(seats_adapter)
 expect(seats_adapter).to receive(:book_entrance).with(
   event_key: "concert",
@@ -79,8 +78,7 @@ writing more story-driven acceptance tests. Because this test does not say a sto
 be finished. Is that because seats.io was configured via UI so that _Sector 1_ has only 2 places? Was it because
 it has 20 standing places, but more than 17 were already sold so there is not enough left for 3 people?
 
-```
-#!ruby
+```ruby
 seats_adapter.add_event(event_key: "concert")
 seats_adapter.add_general_admission(event_key: "concert", section_name: "Sector 1", quantity: 2)
 
@@ -122,8 +120,7 @@ They show how the 3rd party API was configured using the web UI, without using t
 internal state of the fake adapter which represents the state of the 3rd party system.
 * Test Helpers: `clean`. Useful for example to reset the state. Not always needed.
 
-```
-#!ruby
+```ruby
 
 module SeatsIo
   Error = Class.new(StandardError)
@@ -228,8 +225,7 @@ to be the dependency.
 Use the same test scenarios. Stub HTTP API responses (based on what you observed while playing with the API)
 for the sake of real adapter. The fake one doesn't care. An oversimplified example below.
 
-```
-#!ruby
+```ruby
 
 RSpec.shared_examples "TweeterAdapters" do |twitter_db_class|
   specify do

@@ -28,15 +28,13 @@ showed precisely how it works, later to be confirmed by the documentation.
 
 Let's see a comparison case by case. But first, exception definition:
 
-```
-#!ruby
+```ruby
   RefundNotAllowed = Class.new(StandardError)
 ```
 
 #### Does two instances of same exception equal?
 
-```
-#!ruby
+```ruby
 RefundNotAllowed.new == RefundNotAllowed.new
 # => true
 ```
@@ -46,8 +44,7 @@ test fail if everything told us that we are comparing identical exceptions.
 
 #### What about message?
 
-```
-#!ruby
+```ruby
 RefundNotAllowed.new("one message") == RefundNotAllowed.new("another")
 # => false
 
@@ -63,8 +60,7 @@ about one more aspect of exceptions: backtrace.
 
 The backtrace of unthrown exception is...
 
-```
-#!ruby
+```ruby
 RefundNotAllowed.new.backtrace
  => nil
 ```
@@ -73,8 +69,7 @@ Ok, I didn't excepted that. I imagined that the backtrace is assigned at the
 moment of exception instantiation. But when you think deeper about it, you
 might realize that it wouldn't make sense.
 
-```
-#!ruby
+```ruby
 exception = RefundNotAllowed.new
 raise exception
 ```
@@ -85,8 +80,7 @@ exception is actually raised, not merly instantiated.
 
 But do they play any role in exception equality? Let's see.
 
-```
-#!ruby
+```ruby
 def one_method
   raise RefundNotAllowed.new
 rescue => x
@@ -140,8 +134,7 @@ exception class and message.
 Because they inherit from `Exception` (through `StandardError`) they share identical
 logic as described in documentation.
 
-```
-#!ruby
+```ruby
 class RefundNotAllowed < StandardError
   attr_reader :order_id
   def initialize(order_id)
@@ -156,8 +149,7 @@ RefundNotAllowed.new(1) == RefundNotAllowed.new(2)
 
 If you want something better you need to overwrite `==` operator yourself.
 
-```
-#!ruby
+```ruby
 class RefundNotAllowed < StandardError
   attr_reader :order_id
   def initialize(order_id)

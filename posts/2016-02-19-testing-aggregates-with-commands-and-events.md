@@ -65,8 +65,7 @@ BTW, here we get a bit closer to the Functional Programming way of thinking. I d
 
 
 
-```
-#!ruby
+```ruby
   class Host
     include RailsEventStore::AggregateRoot
 
@@ -104,8 +103,7 @@ BTW, here we get a bit closer to the Functional Programming way of thinking. I d
 
 If you're interested what's the AggregateRoot part, here is the current implementation (it's part of our [aggregate_root](https://github.com/arkency/aggregate_root) gem):
 
-```
-#!ruby
+```ruby
 module RailsEventStore
   module AggregateRoot
     def apply(event)
@@ -142,8 +140,7 @@ How can we test it?
 In the beginning, I started testing the aggregate by preparing state with events. Then I applied a command and asserted the `unpublished_events`.
 It works, but the downside is [similar to using FactoryGirl for ActiveRecord testing](http://blog.arkency.com/2014/06/setup-your-tests-with-services/). There's the risk of using events for the state, which are not possible to happen in the real world usage.
 
-```
-#!ruby
+```ruby
     def test_happy_path
       input_events = [
           UserRegistered.new(data: {user_id: "123"}),
@@ -166,8 +163,7 @@ Another approach that I'm aware of is by treating the aggregate as a whole and t
 
 This is the command-driven testing in practice:
 
-```
-#!ruby
+```ruby
 module Access
   class AuthenticateTest < Minitest::Test
 

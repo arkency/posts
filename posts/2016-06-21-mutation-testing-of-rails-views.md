@@ -19,8 +19,7 @@ Since then, I haven't used Erector much, but today I've tried to use it, just to
 
 I have created a simple Rails 5 app and then created a simple Capybara test which will be used by mutant:
 
-```
-#!ruby
+```ruby
 
 class HappyTest < ActionDispatch::IntegrationTest
 
@@ -33,8 +32,7 @@ end
 
 with the following routes:
 
-```
-#!ruby
+```ruby
 
 Rails.application.routes.draw do
   resource :root, only: [:index]
@@ -44,8 +42,7 @@ end
 
 and the controller:
 
-```
-#!ruby
+```ruby
 
 class RootController < ApplicationController
   def index
@@ -55,8 +52,7 @@ end
 
 Then I created a fortitude view:
 
-```
-#!ruby
+```ruby
 
 class Views::Root::Index < Views::Base
 
@@ -95,8 +91,7 @@ Expected:        100.00%
 
 and the mutated code:
 
-```
-#!ruby
+```ruby
 
 def content
   -  p(class: "content") do

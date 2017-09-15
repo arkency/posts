@@ -30,8 +30,7 @@ There's no special WebSocket opening method. After created, browser immediately 
 
 Client side:
 
-```
-#!coffeescript
+```coffeescript
 
 ws = new WebSocket 'ws://arkency.com/notifications'
 ws.onopen = -> ws.send 'connected!' # listen on state transition from WebSocket.CONNECTING to WebSocket.OPEN
@@ -40,8 +39,7 @@ ws.onmessage = (message) -> console.log message.data
 
 Server side:
 
-```
-#!coffeescript
+```coffeescript
 
 WebSocketServer = require('ws').Server
 wss = new WebSocketServer(port: 8080)
@@ -98,8 +96,7 @@ This handshake is supposed to replace initial `HTTP` protocol with WebSocket usi
 If you are reading us, there is a high chance that you are a Ruby developer. So naturally you might be tempted to use
 ruby solution for you server side code such as `EventMachine` like that:
 
-```
-#!ruby
+```ruby
 
 EM.run {
   EM::WebSocket.run(host: "0.0.0.0", port: 8080) do |ws|
@@ -151,8 +148,7 @@ Server-Sent Events intended for **streaming text-based event data from server di
 
 Client side:
 
-```
-#!coffeescript
+```coffeescript
 
 es = new EventSource '/notifications'
 es.onopen = -> es.send 'connected!'
@@ -161,8 +157,7 @@ es.onmessage = (event) -> console.log event.data
 
 Server side:
 
-```
-#!ruby
+```ruby
 
 class NotificationsController < ApplicationController
   include ActionController::Live

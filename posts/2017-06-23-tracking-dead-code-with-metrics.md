@@ -15,8 +15,7 @@ When you work in big Rails application sometimes you would like to remove certai
 
 With [chillout.io](http://get.chillout.io/) and other monitoring solutions that's easy. Just introduce a new metric in the place of code you are unsure about.
 
-```
-#!ruby
+```ruby
 class SocialSharesController < ApplicationController
   def friendster
     Chillout::Metric.track('SocialSharesController#friendster')

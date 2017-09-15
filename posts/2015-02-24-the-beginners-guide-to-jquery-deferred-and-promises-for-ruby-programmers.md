@@ -36,8 +36,7 @@ This is an easy one. Our storage objects have a `sync` method, which returns a *
 
 Here's an example:
 
-```
-#!coffeescript
+```coffeescript
 
 # ajaxResponse is a Promise
 ajaxResponse = $.ajax(url: '/surveys.json', type: 'GET')
@@ -64,8 +63,7 @@ You can register as many callbacks to Promises as you want. What's more, even if
 
 So, our final solution looks like this:
 
-```
-#!coffeescript
+```coffeescript
 
 @storage.sync().success =>
   # proceed with code...
@@ -79,8 +77,7 @@ In architecture I have in my project applications communicate only through event
 
 That is not helpful, though. I could've made something like this:
 
-```
-#!coffeescript
+```coffeescript
 
 @assetsReady  = false
 @ratingReady  = false
@@ -103,8 +100,7 @@ What's less known, jQuery provides us a way to turn any process into a Promise. 
 
 We can turn our waiting for start events to a promise, using `jQuery.Deferred`:
 
-```
-#!coffeescript
+```coffeescript
 
 assetsAppPromise = new jQuery.Deferred((deferred) =>
                      @eventBus.on('assetsStarted', deferred.resolve)
@@ -121,8 +117,7 @@ ratingAppPromise = new jQuery.Deferred((deferred) =>
 
 You can pass a function to `jQuery.Deferred` constructor - it will be applied to the deferred object itself. The same code could be written as:
 
-```
-#!coffeescript
+```coffeescript
 
 assetsAppDeferred = new jQuery.Deferred()
 @eventBus.on('assetsStarted', assetsAppDeferred.resolve)
@@ -137,8 +132,7 @@ ratingAppPromise = ratingAppDeferred.promise()
 
 Any arguments passed to `resolve` and `reject` methods of `Deferred` object will be passed to all `success` or `fail` callbacks, respectively.
 
-```
-#!coffeescript
+```coffeescript
 deferred = new jQuery.Deferred()
 deferred.promise().success (a, b, c) =>
   console.log a, b, c
@@ -170,8 +164,7 @@ deferred2.resolve('c', 'd')
 
 Apparently it is exactly what we're looking for! 
 
-```
-#!coffeescript
+```coffeescript
 assetsAppPromise = new jQuery.Deferred((deferred) =>
                      @eventBus.on('assetsStarted', deferred.resolve)
                      # Error handling: Timeout? Just call deferred.reject()

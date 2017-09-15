@@ -19,8 +19,7 @@ obvious after seeing it :)
 
 ## The trick
 
-```
-#!ruby
+```ruby
 class Order < ActiveRecord::Base
   has_one :meta_data, dependent: :destroy, autosave: true
   
@@ -39,8 +38,7 @@ end
 
 Now you can just do:
 
-```
-#!ruby
+```ruby
 order.ip_address = request.remote_ip
 order.save!
 ```
@@ -58,8 +56,7 @@ on an empty association (`nil`).
 It has some downsides, however. Reading (event an empty) `ip_address`
 can trigger a side-effect in saving the `meta_data`.
 
-```
-#!ruby
+```ruby
 ip = order.ip_address
 order.save!
 ```
@@ -69,8 +66,7 @@ at the same time. Otherwise, when
 `ip_address` can be null but `user_agent` cannot, setting only
 one of them will cause troubles.
 
-```
-#!ruby
+```ruby
 order.ip_address = request.remote_ip
 order.save! # Exception
 ```

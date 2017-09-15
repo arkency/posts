@@ -22,8 +22,7 @@ There are many ways to create objects in JavaScript, so let's name some of them.
 
 ### Object literal
 
-```
-#!javascript
+```javascript
 var dog = {
   name: "Jose",
   woof: function() {
@@ -36,8 +35,7 @@ It explicitly creates dog object with *name* field and *woof* method. Basic conc
 
 ### Object.create method
 
-```
-#!javascript
+```javascript
 var cat = Object.create()
 cat.name = "David"
 cat.meow = function() {
@@ -49,8 +47,7 @@ cat.meow = function() {
 
 ### Constructor function
 
-```
-#!javascript
+```javascript
 function Owl(name) {
   this.name = name;
   this.hoohoo = function() {
@@ -65,8 +62,7 @@ First of all what is Owl? As you see it's a function, but kind of special. It's 
 
 That's the first way to differentiate class of objects - if you created object with constructor you can say, that object is it's instance 
 
-```
-#!javascript
+```javascript
 owl instanceof Owl //=> true
 ```
 
@@ -76,8 +72,7 @@ But remember - owl is not instance of Owl class, but rather owl is instantiated 
 
 In JS inheritance base on objects, so object *a* can inherit data and behaviour form object *b* and then object *b* is called prototype of object *a*. Of course *b* can also have prototype, so each object has chain of prototypes. Ok, let's see example.
 
-```
-#!javascript
+```javascript
 var protoCat = {
   name: "Tom",
   meow: function() {
@@ -116,8 +111,7 @@ So prototype defines default data and behaviour of objects that inherits from it
 
 I showed you how to create object with prototype with *Object.create*. You can also assign common prototype for objects created by constructor:
 
-```
-#!javascript
+```javascript
 var animal = {
   woof: function() {
     return this.name + ": woof woof"
@@ -135,8 +129,7 @@ console.log(owl.woof()) // Albert: woof woof
 
 *Owl.prototype = animal* means, you want each of constructed object to have animal as prototype. Of course prototype can be also created with constructor:
 
-```
-#!javascript
+```javascript
 function Animal() {
   //...
 }

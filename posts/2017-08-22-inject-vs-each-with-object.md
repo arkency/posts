@@ -34,8 +34,7 @@ Let's see the differences with some examples. Imagine you have a collection of o
 
 In such case, `each_with_object` is very convenient.
 
-```
-#!ruby
+```ruby
 lower = 'a'..'z'
 lower_to_upper = lower.each_with_object({}) do |char, hash|
   hash[char] = char.upcase
@@ -44,8 +43,7 @@ end
 
 On the other hand `inject` is less convenient:
 
-```
-#!ruby
+```ruby
 lower = 'a'..'z'
 lower_to_upper = lower.inject({}) do |hash, char|
   hash[char] = char.upcase
@@ -63,8 +61,7 @@ But let's say you already have an existing object that you would like to modify.
 
 All three versions below generate the same result.
 
-```
-#!ruby
+```ruby
 mapping = {'ż' => 'Ż', 'ó' => 'Ó'}
 lower = 'a'..'z'
 lower.each do |char|
@@ -73,8 +70,7 @@ end
 return mapping # optionally
 ```
 
-```
-#!ruby
+```ruby
 mapping = {'ż' => 'Ż', 'ó' => 'Ó'}
 lower = 'a'..'z'
 lower.each_with_object(mapping) do |char, hash|
@@ -82,8 +78,7 @@ lower.each_with_object(mapping) do |char, hash|
 end
 ```
 
-```
-#!ruby
+```ruby
 mapping = {'ż' => 'Ż', 'ó' => 'Ó'}
 lower = 'a'..'z'
 lower.each_with_object(mapping) do |char|
@@ -99,8 +94,7 @@ This time you are not mutating internal state of an object but rather always cre
 
 The most simple example can be `+` operator for numbers.
 
-```
-#!ruby
+```ruby
 a = 1
 b = 2
 
@@ -117,16 +111,14 @@ There is no way to change the Integer object referenced by variable `a` into `3`
 
 It's an obvious example. But `Date` is a less obvious one.
 
-```
-#!ruby
+```ruby
 require 'date'
 d = Date.new(2017, 10, 10)
 ```
 
 If you want a different date, you cannot change the existing `Date` instance. You need to create a new one.
 
-```
-#!ruby
+```ruby
 d.day=12
 # => NoMethodError: undefined method `day=' for #<Date:
 
@@ -135,8 +127,7 @@ e = Date.new(2017, 10, 12)
 
 So that was a small introduction. What does it have to do with `inject`. If your initial object is immutable, `inject` is the way to go.
 
-```
-#!ruby
+```ruby
 (5..10).inject(:+)
 (5..10).inject(0, :+)
 (5..10).inject{|sum, n| sum + n }
@@ -146,8 +137,7 @@ So that was a small introduction. What does it have to do with `inject`. If your
 
 or
 
-```
-#!ruby
+```ruby
 starting_date = Date.new(2017,10,1)
 result = [1, 10].inject(starting_date) do |date, delay|
   date + delay
@@ -157,8 +147,7 @@ end
 
 or
 
-```
-#!ruby
+```ruby
 # gem install money
 require 'money'
 [
@@ -173,8 +162,7 @@ require 'money'
 
 This time we will be creating a new object every time but not because we can't change the internal state. This time it's because a certain method returns a new object.
 
-```
-#!ruby
+```ruby
 result = [
  {1 => 2},
  {2 => 3},
@@ -188,8 +176,7 @@ result = [
 
 Compare it with
 
-```
-#!ruby
+```ruby
 [
  {1 => 2},
  {2 => 3},
@@ -203,8 +190,7 @@ Compare it with
 
 Isn't it a bit irritating that the order of arguments passed to the block for `inject` and `each_with_object` is reversed?
 
-```
-#!ruby
+```ruby
 lower_to_upper = lower.each_with_object({}) do |char, hash|
   hash[char] = char.upcase
 end

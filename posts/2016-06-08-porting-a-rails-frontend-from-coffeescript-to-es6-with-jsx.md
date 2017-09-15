@@ -21,8 +21,7 @@ With ES6 it is different, JSX fits here very well.
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
   Stats = React.createClass
     contextTypes:
       user: React.PropTypes.object
@@ -41,8 +40,7 @@ With ES6 it is different, JSX fits here very well.
 
 **After:**
 
-```
-#!jsx
+```jsx
 class Stats extends React.Component {
   render() {
     return (
@@ -69,8 +67,7 @@ Instead of using `React.createClass` we are now using ES6 class syntax:
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
 OneTimeClickLink = React.createClass
   render: ->
     React.DOM.div(
@@ -84,8 +81,7 @@ OneTimeClickLink = React.createClass
 
 **After:**
 
-```
-#!coffeescript
+```coffeescript
 class OneTimeClickLink extends React.Component {
   render() {
     return (<div id="one-time-click-link">
@@ -102,8 +98,7 @@ Since `getInitialState` does not work with classes syntax, we are initializing `
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
 DateWithLabel = React.createClass
   getInitialState: ->
     date: new Date()
@@ -113,8 +108,7 @@ DateWithLabel = React.createClass
  
 **After:**
 
-```
-#!jsx
+```jsx
 class DateWithLabel extends React.Component {
   constructor(props) {
     super(props);
@@ -135,8 +129,7 @@ In class syntax, React doesn't bind all methods automatically. So, we are bindin
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
   OnOffCheckbox = React.createClass
     getInitialState: ->
       toggled: false
@@ -156,8 +149,7 @@ In class syntax, React doesn't bind all methods automatically. So, we are bindin
 
 **After:**
 
-```
-#!jsx
+```jsx
   class OnOffCheckbox extends React.Component {
     constructor(props) {
       super(props);
@@ -191,8 +183,7 @@ In class syntax, React doesn't bind all methods automatically. So, we are bindin
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
   OnOffCheckbox = React.createClass
     getDefaultProps: ->
       initiallyToggled: false
@@ -214,8 +205,7 @@ In class syntax, React doesn't bind all methods automatically. So, we are bindin
 
 **After:**
 
-```
-#!jsx
+```jsx
   class OnOffCheckbox extends React.Component {
     constructor(props) {
       super(props);
@@ -251,8 +241,7 @@ The same goes for `propTypes`:
 
 **Before:**
 
-```
-#!coffeescript
+```coffeescript
 Blogpost = React.createClass
   propTypes:
     name: React.PropTypes.string.isRequired
@@ -262,8 +251,7 @@ Blogpost = React.createClass
 
 **After:**
 
-```
-#!jsx
+```jsx
 class Blogpost extends React.Component {
   // ...
 }

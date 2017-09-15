@@ -25,15 +25,13 @@ The [documentation mentions](http://guides.rubyonrails.org/configuring.html#conf
 Another (maybe not that common) usecase is to have some components (such as `notification_center` for example)
 in top-level directory. To make it possible for them to work with your app people are usually using:
 
-```
-#!ruby
+```ruby
 config.autoload_paths += %W( #{config.root}/notification_center )
 ```
 
 or
 
-```
-#!ruby
+```ruby
 config.autoload_paths += %W( #{config.root}/notification_center/lib )
 ```
 
@@ -46,16 +44,14 @@ How it all works in production and what you can do to make it work better.**
 
 Let's say we have two files
 
-```
-#!ruby
+```ruby
 # root/extras/foo.rb
 class Foo
 end
 ```
 and
 
-```
-#!ruby
+```ruby
 # root/app/models/blog.rb
 class Blog < ActiveRecord::Base
 end
@@ -63,8 +59,7 @@ end
 
 Our configuration looks like this:
 
-```
-#!ruby
+```ruby
 # root/config/application.rb
 config.autoload_paths += %W( #{config.root}/extras )
 ```
@@ -73,8 +68,7 @@ config.autoload_paths += %W( #{config.root}/extras )
 
 Now, let's check how it behaves in development.
 
-```
-#!ruby
+```ruby
 defined?(Blog)
 # => nil
 defined?(Foo)
@@ -101,8 +95,7 @@ class.
 
 But on the production, the situation is a little different...
 
-```
-#!ruby
+```ruby
 defined?(Blog)
 # => "constant"
 
@@ -143,8 +136,7 @@ But what I want you to focus on is not that `Blog` constant is defined and eager
 new since many Rails versions ago). **I want you to notice that `Foo` constant is not loaded in production
 environment**.
 
-```
-#!ruby
+```ruby
 defined?(Blog)
 # => "constant"
 
@@ -172,15 +164,13 @@ when you practice continuous deployment. We don't want our customers to be affec
 There is another, less known rails configuration called
 `config.eager_load_paths` that we can use to achieve our goals.
 
-```
-#!ruby
+```ruby
 config.eager_load_paths += %W( #{config.root}/extras )
 ```
 
 How will that work on production? Let's see.
 
-```
-#!ruby
+```ruby
 defined?(Blog)
 # => "constant"
 defined?(Foo)
@@ -192,8 +182,7 @@ is also eager loaded in production mode. That fixed the problem.**
 
 Wait, does it mean you need to write two lines instead of one from now on?
 
-```
-#!ruby
+```ruby
 config.autoload_paths += %W( #{config.root}/extras )
 config.eager_load_paths += %W( #{config.root}/extras )
 ```
@@ -204,16 +193,14 @@ It doesn't seem so. You don't need to write two lines.
 
 If you just use
 
-```
-#!ruby
+```ruby
 config.eager_load_paths += %W( #{config.root}/extras )
 ```
 
 development and production environments seem to be working just fine. I think because
 autoloading is configured to check for eager loaded paths.
 
-```
-#!ruby
+```ruby
 def _all_autoload_paths
   @_all_autoload_paths ||= (
     config.autoload_paths   +
@@ -230,8 +217,7 @@ code.
 
 Unfortunately I've seen many people doing things like
 
-```
-#!ruby
+```ruby
 config.autoload_paths += %W( #{config.root}/app/services )
 config.autoload_paths += %W( #{config.root}/app/presenters )
 ```
@@ -242,8 +228,7 @@ can just add any directory to `app/` and start use it like you use
 console, server or spring server (`spring stop`) for it start working**. You can see
 the [default rails 4.1.7 paths configuration](https://github.com/rails/rails/blob/v4.1.7/railties/lib/rails/engine/configuration.rb#L38-72)
 
-```
-#!ruby
+```ruby
 def paths
   @paths ||= begin
     paths = Rails::Paths::Root.new(@root)
@@ -286,8 +271,7 @@ explains subdirectories of `app` working.
 
 You can always verify your settings in the console with
 
-```
-#!ruby
+```ruby
 Rails.configuration.autoload_paths
 Rails.configuration.eager_load_paths
 ```
@@ -299,8 +283,7 @@ to be sure.
 If you look at [`Rails::Engine::Configuration`](https://github.com/rails/rails/blob/v4.1.7/railties/lib/rails/engine/configuration.rb#L78-88)
 a litle bit down the lines, you will see how these methods are defined:
 
-```
-#!ruby
+```ruby
 def eager_load_paths
   @eager_load_paths ||= paths.eager_load
 end
@@ -318,8 +301,7 @@ They all delegate first call to `paths` which is `Rails.configuration.paths`.
 **Which leads us to a conclusion that we could configure our `extras` directory
 the same way Rails does it.**
 
-```
-#!ruby
+```ruby
 config.paths.add "extras", eager_load: true
 ```
 

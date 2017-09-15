@@ -55,8 +55,7 @@ I tried about 3 different approaches and all failed the same way.
 
 You see... The problem was that I tried to iterate from left to right, from right to the left and combine the solutions around the middle. What worked for me instead? Iterating from both sides at the same time.
 
-```
-#!ruby
+```ruby
   class Calculator
     def initialize(current_time:, event_starts_time:)
       @current_time = current_time

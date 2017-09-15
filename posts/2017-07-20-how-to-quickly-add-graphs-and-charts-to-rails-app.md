@@ -25,8 +25,7 @@ I am gonna propose you use Google Charts. Interactive and maintained by Google.
 
 ## Model + SQL
 
-```
-#!ruby
+```ruby
 class Order < ApplicationRecord
   def self.totals_by_year_month
     find_by_sql(<<-SQL
@@ -63,8 +62,7 @@ Obviously it is up to you what data and how you want to visualize :) This is jus
 
 ## Get your data in controller
 
-```
-#!ruby
+```ruby
 class OrdersController < ApplicationController
   def index
     @data = Order.totals_by_year_month
@@ -74,8 +72,7 @@ end
 
 ## Pass to view and javascript
 
-```
-#!html+erb
+```html+erb
 <div id="chart" style="width: auto; height: 600px;"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

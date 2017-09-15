@@ -28,8 +28,7 @@ In one of our projects, we are using gettext for i18n. We were putting Handlebar
 ## Transitioning from backend to frontend
 During rewrite, we created an simple API endpoint on backend that was returning translation for given key and locale and mixed it with React component that was asynchronously getting translations. The code was pretty simple and was using [jQuery promises](https://blog.arkency.com/2015/02/the-beginners-guide-to-jquery-deferred-and-promises-for-ruby-programmers/):
 
-```
-#!coffeescript
+```coffeescript
 React = require('react')
 {span} = React.DOM
 
@@ -86,32 +85,28 @@ module.exports = (key, locale) ->
 ## i18next - move your gettext to frontend
 This approach was good for quick start but did not scale - it required multiple ajax calls to backend on each page render, so we decided to find something better. After some research we have chosen [i18next](http://i18next.com/) - full-featured i18n JS library that have pretty good compatibility with gettext (including pluralization rules). With i18next you can easily return translations using almost the same API as in gettext:
 
-```
-#!coffeescript
+```coffeescript
 # {"key": "translation"}
 i18n.t('key') # => translation for key
 ```
 
 This library also supports variables inside translation keys:
 
-```
-#!coffeescript
+```coffeescript
 # {"key with __variable__": "translation with __variable__"}
 i18n.t('key with __variable__', {variable: 'value'}) # => translation with value
 ```
 
 It has also sprintf support:
 
-```
-#!coffeescript
+```coffeescript
 # {"Some text with string %s and number %d": "Hello %s! You're number %d!"}
 i18n.t('Some text with string %s and number %d', {postProcess: 'sprintf', sprintf: ['world', 1]}) # => Hello world! You're number 1!
 ```
 
 And supports plurar forms (even for languages with multiple plural forms):
 
-```
-#!coffeescript
+```coffeescript
 # {"key": "__count__ banana", "key_plural": "__count__ bananas"}
 i18n.t("key", {count: 0}) # => 0 bananas
 i18n.t("key", {count: 1}) # => 1 banana
@@ -122,8 +117,7 @@ There are much more configuration options and features in i18next library so you
 
 To convert our gettext `.po` files to json format readable by i18next, we're using [i18next-conv](http://i18next.com/pages/ext_i18next-conv.html) tool and store generated json in `public/locale` directory of our Rails app. Here's a simple script we're using during deploy to compile JS translations (`script/compile_js_i18n`):
 
-```
-#!bash
+```bash
 #!/bin/bash
 npm install .
 for locale in de en fr pl; do
@@ -137,8 +131,7 @@ To use it, just run `script/compile_js_i18n` in your app's root directory (but m
 
 i18next has also a bunch of [initialization options](http://i18next.com/pages/doc_init.html). Here's our setup that works in our app:
 
-```
-#!coffeescript
+```coffeescript
 i18n.init
   ns: 
     defaultNs: 'acme'
@@ -155,8 +148,7 @@ i18n.init
 Some of those initialization options need more explanation. First, we're using variable interpolation in our gettext translations. They have format different than i18next defaults (`%{variable_name}` instead of `__variable_name__`) so we had to set `interpolationPrefix` and `interpolationSuffix`. Second, since we're using english translations as gettext msgids (usually full sentences), we need to change key and namespace separator (`keyseparator` and `nsseparator` options). The default key separator in i18next is a dot (`.`) and namespace separator is a colon (`:`) and that was making most of our translations useless, since they were not translated at all when translation key contained `.` or `:`. We also had to change `resGetPath` since we decided to store our json in `public/locale` (e.g. `public/locale/en/acme.json` for acme namespace). 
 In our app, we wrapped initialization code in `i18n` CommonJS module for easier use:
 
-```
-#!coffeescript
+```coffeescript
 i18n = require('i18next')
 i18n.init(
   ns: 
@@ -178,8 +170,7 @@ With this helper, you don't need to initialize library each time you use it, it 
 
 By default, i18next retrieves translations asynchronously, using ajax get requests to the endpoint set in `resGetPath` when you set locale using `i18n.setLng` method. `setLng` method accepts locale as first parameter and optional callback that would be fired after loading translations. You can make use of it in your's app bootstrap code:
 
-```
-#!coffeescript
+```coffeescript
 React = require('react')
 i18n = require('i18n')
 Gui = React.createFactory(require('gui'))
@@ -198,8 +189,7 @@ new App(window.locale, document.body)
 
 Having this setup we can just use regular i18next API in our React components:
 
-```
-#!coffeescript
+```coffeescript
 i18n = require('i18n')
 
 module.exports = React.createClass

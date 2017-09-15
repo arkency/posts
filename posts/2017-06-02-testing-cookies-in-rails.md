@@ -25,8 +25,7 @@ values of cookies after requests sent into few different controllers. **You can 
 tests are "good enough" for you, if you don't need to reach to different controllers. Not quite, unfortunately**.
 Let's consider following code:
 
-```
-#!ruby
+```ruby
 class ApplicationController
   before_filter :do_something_with_cookies
 
@@ -42,8 +41,7 @@ end
 
 And controller test:
 
-```
-#!ruby
+```ruby
 
 describe SomeController do
   specify do
@@ -85,8 +83,7 @@ It would probably work, but as you can already guess, there's better solution.
 There's another kind of specs, [request specs](https://relishapp.com/rspec/rspec-rails/v/3-6/docs/request-specs/request-spec), which is less popular than previous two, but in this
 case it is very interesting for us. Let's take a look at this test:
 
-```
-#!ruby
+```ruby
 describe do
   specify do
     get "/"
@@ -122,8 +119,7 @@ expiration time, and more. You can easily retrieve the value of the cookie by ca
 On `HEAD` of `rack-test` there's already a method [get_cookie](https://github.com/rack-test/rack-test/blob/a396bd16a1bcdb8a3fc668bd238688911db32199/lib/rack/test/cookie_jar.rb#L130-L132) you can use to get all cookie's options.
 If you are on `0.6.3` though, you can add following method somewhere in your specs:
 
-```
-#!ruby
+```ruby
 def get_cookie(cookies, name)
   cookies.send(:hash_for, nil).fetch(name, nil)
 end
@@ -131,8 +127,7 @@ end
 
 It is not perfect, but it is simple enough until you migrate to newer version of `rack-test`. In the end, my specs looks like this:
 
-```
-#!ruby
+```ruby
 describe do
   specify do
     get "/"

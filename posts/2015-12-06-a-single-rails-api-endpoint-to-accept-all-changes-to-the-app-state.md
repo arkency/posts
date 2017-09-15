@@ -21,8 +21,7 @@ This is what led to a conversation between me and [Paweł](https://twitter.com/p
 
 Paweł decided to experiment with this idea and wrote the code below. This code is also a nice example of how concise can be a one-file-Rails application. 
 
-```
-#!ruby
+```ruby
 
 require 'action_controller/railtie'
 require 'securerandom'

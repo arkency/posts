@@ -115,8 +115,7 @@ For better understanding and real-life example, let's imagine that this second c
 
 In order to connect with SSH server and authenticate using your public/private keypair, you have to first share your public key with the server. As we described before, that can be done using [`ssh-copy-id`](https://github.com/beautifulcode/ssh-copy-id-for-OSX) or some script
 
-```
-#!bash
+```bash
 #!/bin/sh
 
 KEY="$HOME/.ssh/id_rsa.pub"

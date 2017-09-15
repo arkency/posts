@@ -23,8 +23,7 @@ tags: [ 'rails', 'pdf', 'background', 'job' ]
 Some time ago while doing Code Review for one of our clients I stumbled
 on a very unexpected piece of code. Background job calling a controller.
 
-```
-#!ruby
+```ruby
 
 
 class OrderPdfJob
@@ -68,8 +67,7 @@ clear for the rest of the team reading the code.
 After a few moments of struggling with rails, reading the doc, and trying
 things in `irb`, it turned out that all we need is this.
 
-```
-#!ruby
+```ruby
 # app/renderers/pdf_renderer.rb
 require 'pdfkit'
 
@@ -101,8 +99,7 @@ class PdfRenderer < ActionController::Metal
 end
 ```
 
-```
-#!ruby
+```ruby
 # app/renderers/order_pdf_renderer.rb
 class OrderPdfRenderer < PdfRenderer
   helper :orders
@@ -148,8 +145,7 @@ might be easier than you think.
 
 The list of modules to include is a little different:
 
-```
-#!ruby
+```ruby
 class PdfRenderer < ActionController::Metal
   include ActionView::ViewPaths
   include AbstractController::Rendering

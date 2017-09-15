@@ -23,8 +23,7 @@ I one of a previous blog's [post](/2015/03/your-solid-tool-for-event-sourcing-ev
 
 To communicate with ES you have to create instance of `HttpEventstore::Connection` class. After configuring a client, you can do the following things.
 
-```
-#!ruby
+```ruby
 client = HttpEventstore::Connection.new do |config|
    #default value is '127.0.0.1'
    config.endpoint = 'your_endpoint'
@@ -39,8 +38,7 @@ end
 
 * Creating a single event:
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 event_data = { event_type: "OrderCreated",
                data: { data: "sample" },
@@ -50,8 +48,7 @@ client.append_to_stream(stream_name, event_data)
 
 OR
 
-```
-#!ruby
+```ruby
 EventData = Struct.new(:data, :event_type)
 stream_name = "order_1"
 event_data = EventData.new({ data: "sample" }, "OrderCreated")
@@ -62,8 +59,7 @@ You can pass event's data as a **Hash** or **Struct**. As you can see in above e
 
 * Creating a single event with optimistic locking:
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 event_data = { event_type: "OrderCreated", data: { data: "sample" }}
 expected_version = 1
@@ -78,16 +74,14 @@ The soft delete cause that you will be allowed to recreate the stream by creatin
 
 * The soft delete of single stream:
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 client.delete_stream("stream_name")
 ```
 
 * The hard delete of single stream:
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 hard_delete = true
 client.delete_stream("stream_name", hard_delete)
@@ -97,8 +91,7 @@ client.delete_stream("stream_name", hard_delete)
 
 * Reading stream forward without Long Pooling
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 start = 21
 count = 40
@@ -107,8 +100,7 @@ client.read_events_forward(stream_name, start, count)
 
 * Reading stream forward using Long Pooling
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 start = 21
 count = 40
@@ -120,8 +112,7 @@ Long Pooling in ES works as when you want to load head of stream and no data is 
 
 ### Reading stream's event backward
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 start = 21
 count = 40
@@ -130,8 +121,7 @@ client.read_events_backward(stream_name, start, count)
 
 ### Reading all stream's event forward
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 client.read_all_events_forward(stream_name)
 ```
@@ -140,8 +130,7 @@ This method allows us to load all stream's events ascending.
 
 ### Reading all stream's event backward
 
-```
-#!ruby
+```ruby
 stream_name = "order_1"
 client.read_all_events_backward(stream_name)
 ```

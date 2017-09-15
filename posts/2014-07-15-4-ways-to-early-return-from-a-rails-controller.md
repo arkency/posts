@@ -21,8 +21,7 @@ after redirecting and sometimes after rendering). Here is an example:
 
 ## 1. redirect_to and return (classic)
 
-```
-#!ruby
+```ruby
 class Controller
   def show
     unless @order.awaiting_payment? || @order.failed?
@@ -47,8 +46,7 @@ in models or services. Let's just tackle the problem of extracting it into a con
 
 ## 2. extracted_method and return
 
-```
-#!ruby
+```ruby
 class Controller
   def show
     verify_order and return
@@ -81,8 +79,7 @@ So here is the alternative variant of it
 
 ## 2.b extracted_method or return
 
-```
-#!ruby
+```ruby
 class Controller
   def show
     verify_order or return
@@ -114,8 +111,7 @@ can remain unchanged.
 
 ## 3. extracted_method{ return }
 
-```
-#!ruby
+```ruby
 class Controller
   def show
     verify_order{ return }
@@ -151,8 +147,7 @@ less cognitive burden.
 
 ## 4. extracted_method; return if performed?
 
-```
-#!ruby
+```ruby
 class Controller
   def show
     verify_order; return if performed?

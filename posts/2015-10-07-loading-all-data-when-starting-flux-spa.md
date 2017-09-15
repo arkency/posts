@@ -31,8 +31,7 @@ We can assume that this is the application for managing blog, so we have only tw
 
 Firstly we will define a store, which will keep information which data we've already loaded.
 
-```
-#!javascript
+```javascript
 
 class InitialStateStore {
   constructor() {
@@ -73,8 +72,7 @@ Moreover a `reset` method is defined. It's called in `init` callback, so just af
 
 Here's the code where we set corresponding keys after receiving responses from the server:
 
-```
-#!javascript
+```javascript
 
 class InitialStateStore {
   //...
@@ -99,8 +97,7 @@ class InitialStateStore {
 
 Now the last one, the `checkIfDataLoaded()` function. As I've said before **when all data are loaded we want to trigger something - in this case it will be an action which will in result hide loading animation**. Note our action is called `finishedLoading` - we'll define it in a while.
 
-```
-#!javascript
+```javascript
 
 class InitialStateStore {
   // ...
@@ -127,8 +124,7 @@ Here we've implementation of our actions.
 * `startLoading` is an action called somewhere in code. It means "start loading all this initial data". I'll not cover implementation of `Api` as it's fairy simple class returning [Promises](http://blog.arkency.com/2015/02/the-beginners-guide-to-jquery-deferred-and-promises-for-ruby-programmers/).
 * `finishedLoading` is an action called after all data is loaded.
 
-```
-#!javascript
+```javascript
 
 class InitialStateActions {
   startLoading() {
@@ -161,8 +157,7 @@ I'll not cover it with code here, as it belongs more to the topic about authenti
 
 Other missing piece is a loading spinner - thanks to Flux we can also pretty much decouple it from the initial state loader. In our case, we've a `LoaderStore` which solely purpose is managing loading spinner. It's so short and simple I can even include it whole below:
 
-```
-#!javascript
+```javascript
 
 class LoaderStore {
   constructor() {

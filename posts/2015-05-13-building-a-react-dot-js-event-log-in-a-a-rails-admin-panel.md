@@ -40,16 +40,14 @@ We start by adding a `rails_event_store` gem to our Gemfile ([installation instr
 Next thing is that we need some events to collect. We have to create an event class representing a user creation.
 To do this we will use the class provided by our gem.
 
-```
-#!ruby
+```ruby
 class UserCreated < RailsEventStore::Event; end
 ```
 
 Now we need to find place to track this event. I thing that `UsersController` will be the best place. In the `create` method we build new User's model.
 As `event_data` we save information about user and some additional data like controller name or IP address.
 
-```
-#!ruby
+```ruby
 class UsersController < ActionController::Base
   after_filter :user_created_event, only: :create
 
@@ -81,8 +79,7 @@ end
 
 The last thing is to implement a simple API to get information about streams and events.
 
-```
-#!ruby
+```ruby
 class StreamBrowsersController < ApplicationController
   def index
   end
@@ -111,8 +108,7 @@ I use coffeescript to build components. As you can see on following example I us
 Recently we launched a great [book](http://blog.arkency.com/rails-react/) about React where you can read more about our experiences with React and coffeescript.
 Of course you could go with JSX as well.
 
-```
-#!coffeescript
+```coffeescript
 define (require) ->
   React = require('react')
   {div, a, li, ul, nav} = React.DOM
@@ -236,8 +232,7 @@ Last thing is to render above components on the view. I created an additional cl
 I implemented it this way because we use the `react-rails` gem in version `0.12`. In newer version you can use `react_component` helper to render component on server side.
 This makes using easier to start with React with Rails views.
 
-```
-#!coffeescript
+```coffeescript
 define (require) ->
   React = require('react')
 
@@ -254,8 +249,7 @@ define (require) ->
       @storage.get_streams(callback)
 ```
 
-```
-#!haml
+```haml
 = content_for :bottom_js do
   :javascript
     $(function() {
@@ -269,8 +263,7 @@ define (require) ->
 
 The last piece of the puzzle is the `Storage` class. This simple class is responsible for calling the API using Ajax.
 
-```
-#!coffeescript
+```coffeescript
 define (require) ->
   class Storage
 

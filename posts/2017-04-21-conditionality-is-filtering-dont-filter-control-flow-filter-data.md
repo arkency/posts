@@ -37,8 +37,7 @@ feature for new events which will only use the new URL structure.
 
 This is the solution.
 
-```
-#!ruby
+```ruby
 EventRedirectDate = Time.new(2017, 4, 28, 14)
 
 EventRedirect = -> (path_params) {
@@ -56,8 +55,7 @@ EventRedirect = -> (path_params) {
 }
 ```
 
-```
-#!ruby
+```ruby
 get '/:id', as: 'short_event', to: (redirect() do |path_params, _req|
   EventRedirect.(path_params)
 end)
@@ -65,8 +63,7 @@ end)
 
 The line that I wanted to show you is:
 
-```
-#!ruby
+```ruby
 [path_params[:locale], "e", slugged].reject(&:blank?).join("/")
 ```
 
@@ -80,8 +77,7 @@ but it works in routing as well if you need it.
 So there is nothing super unusual or fantastic in this line of code,
 except that I originally wanted to write it as:
 
-```
-#!ruby
+```ruby
 if path_params[:locale]
   # ...
 else
@@ -93,8 +89,7 @@ But the tweet which stayed in my mind and the _Don't filter control flow, filter
 made me do it differently. I decided to filter _data_. All data. Even if `"e"` or `slugged` is
 never empty. A bit more in a functional style.
 
-```
-#!ruby
+```ruby
 [path_params[:locale], "e", slugged].reject(&:blank?).join("/")
 ```
 
@@ -107,8 +102,7 @@ avoid a bunch of if-statements. Instead, we can easily filter the data we work o
 
 There is a similar pattern in Redux reducers, especially [when they are combined](http://redux.js.org/docs/api/combineReducers.html).
 
-```
-#!javascript
+```javascript
 import { combineReducers } from 'redux'
 import todos from './todos'
 import counter from './counter'

@@ -469,8 +469,7 @@ for yourself. Open Developer Console to see the error.
 
 Here is the code for this example:
 
-```
-#!js
+```js
 var clicked = function(){
   var node = mountedComponent.refs.popup.getDOMNode();
   $.magnificPopup.open({
@@ -618,8 +617,7 @@ blogpostJQuery(function() {
 <br>
 Here is the code for this example...
 
-```
-#!js
+```js
 var clicked = function(){
   var node = mountedPopup.getDOMNode().parentNode;
   $.magnificPopup.open({
@@ -675,8 +673,7 @@ var mountedPopup = React.renderComponent(
 );
 ```
 
-```
-#!html
+```html
 <div id="reactExampleGoesHere">
   <div></div>
   <div class="mfp-hide"></div>
@@ -808,8 +805,7 @@ blogpostJQuery(function() {
 <br>
 Here is the code for this example...
 
-```
-#!js
+```js
 var clicked = function(){
   mountedPopup.setState({visible: true, pretendStateChanged: Date.now() });
   mountedComponent.setState({pretendStateChanged: Date.now() }) ;
@@ -892,8 +888,7 @@ var mountedPopup = React.renderComponent(
 );
 ```
 
-```
-#!html
+```html
 <div id="reactExampleGoesHere">
   <div></div>
   <div class="mfp-hide"></div>

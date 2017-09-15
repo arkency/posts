@@ -30,8 +30,7 @@ and its ecosystem and how I designed such API in my use-case.
 Probably most well-known example would be Active Record Query API
 used for building SQL statements.
 
-```
-#!ruby
+```ruby
 User.preload(:avatar).where(name: "John").order("id DESC").limit(10)
 ```
 
@@ -45,8 +44,7 @@ pass an object to it for interacting.
 
 Rspec Mocks is another well-known example of fluent API.
 
-```
-#!ruby
+```ruby
 expect(invitation).to receive(:accept).with("John").at_most(3).times.and_return(true)
 ```
 
@@ -57,8 +55,7 @@ I wonder if could say that certain built-in Ruby classes adhere to a fluent inte
 For example `String` or `Enumerable` have plenty of methods that you can chain
 and they return the same class. 
 
-```
-#!ruby
+```ruby
 "Robert Pankowecki".first(7).strip.gsub("b", "B").reverse
 # => "treBoR" 
 ```
@@ -95,8 +92,7 @@ Going back to the fluent interfaces... Here is the code that I used for building
 What we usually display in most cases is _product sold over time_. So that's the default
 configuration we set up in the constructor.
 
-```
-#!ruby
+```ruby
 class QueryBuilder
   def initialize(campaign, merchant_id)
     ids("ga:99990000")
@@ -184,8 +180,7 @@ end
 
 Then we can use the fluent API to change the values easily.
  
-```
-#!ruby
+```ruby
 # For displaying cities from which those customers buy
 builder.dimensions("ga:city,ga:countryIsoCode").dsc_qty
 
@@ -198,15 +193,13 @@ builder.dimensions("ga:source,ga:medium").add_filter("ga:medium==referral").dsc_
 
 The API could be even further refined into:
 
-```
-#!ruby
+```ruby
 builder.add_dimension("source").add_dimension("medium")
 ```
 
 or
 
-```
-#!ruby
+```ruby
 builder.add_filter("medium").equals("referral")
 ```
 
@@ -217,8 +210,7 @@ in total, without a timeline. In that case, we often want to display from most
 to least buying groups. That is a common use-case so we have a dedicated method
 for it.
 
-```
-#!ruby
+```ruby
 def dsc_qty
   sort("-ga:itemQuantity")
 end

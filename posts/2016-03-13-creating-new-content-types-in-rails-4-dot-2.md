@@ -33,8 +33,7 @@ Fortunately this is very simple and Rails creators somehow expected this use cas
 
 All I needed to do here was to register a new content type and name it:
 
-```
-#!ruby
+```ruby
 # Be sure to restart your server when you modify this file.
 
 Mime::Type.register "application/vnd.api+json", :jsonapi
@@ -45,8 +44,7 @@ Mime::Type.register "application/vnd.api+json", :jsonapi
 
 This way I managed to use it with my controllers - `jsonapi` is available as a method of `format` given by the `respond_to` block:
 
-```
-#!ruby
+```ruby
 class EventsController < ApplicationController
   def show
     respond_to do |format|
@@ -64,8 +62,7 @@ end
 
 *That's great!* - I thought and I forgot about the issue. Then during preparations I've created a simple JS client for my API to be used by workshop attendants:
 
-```
-#!javascript
+```javascript
 const { fetch } = window;
 
 function APIClient () {
@@ -107,8 +104,7 @@ Then I've decided to test it...
 
 Since I wanted to be sure that everything works correctly I gave a try to the `APIClient` I've just created. I opened the browser's console and issued the following call:
 
-```
-#!javascript
+```javascript
 APIClient.post("/conferences", { conference: 
                                  { id: UUID.create().toString(), 
                                   name: "My new conference!" } });
@@ -130,8 +126,7 @@ Oh well. I passed my params correctly, but somehow Rails cannot figure how to ha
 
 Apparently there is a Rack middleware that is responsible for parsing params depending on the content type. It is called `ActionDispatch::ParamsParser` and its `initialize` method accepts a Rack app (which every middleware does, honestly) and an optional argument called `parsers`. In fact the constructor is very simple I can copy it here:
 
-```
-#!ruby
+```ruby
 # File actionpack/lib/action_dispatch/middleware/params_parser.rb, line 18
 def initialize(app, parsers = {})
   @app, @parsers = app, DEFAULT_PARSERS.merge(parsers)
@@ -142,8 +137,7 @@ As you can see there is a list of DEFAULT parsers and by populating this optiona
 
 Rails loads this middleware by default without optional parameter set. What you need to do is to unregister the "default" version Rails uses and register it again - this way with your custom code responsible for parsing request parameters. I did it in `config/initializers/mime_types.rb` again:
 
-```
-#!ruby
+```ruby
 # check app name in config/application.rb
 middlewares = YourAppName::Application.config.middleware
 middlewares.swap(ActionDispatch::ParamsParser, ActionDispatch::ParamsParser, {

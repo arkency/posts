@@ -47,8 +47,7 @@ Some time ago I was working on a simple game inspired by [CivClicker](http://dhm
 
 We can *use Rails views* to solve our problem. Only thing we need is to expose empty HTML elements.
 
-```
-#!html
+```html
 
 <!-- app/views/dashboard/dashboard.index.html.erb -->
 <div id="game">
@@ -65,8 +64,7 @@ We can *use Rails views* to solve our problem. Only thing we need is to expose e
 
 And now in each of our application would need code like this:
 
-```
-#!coffeescript
+```coffeescript
 
 App = require('city_infrastructure/app')
 
@@ -80,8 +78,7 @@ We got basic HTML structure covered and empty divs for React to plug-in. It work
 
 Example: we want to show the `City Infrastructure` widget after the player reached the level 2. We can change our code.
 
-```
-#!html
+```html
 
 <!-- app/views/dashboard/dashboard.index.html.erb -->
 <div id="game">
@@ -108,8 +105,7 @@ Let's make a simple JavaScript application that will render empty HTML elements 
 
 Here's the main idea. When all elements get rendered, the global event bus tells all applications about this fact. We will use the `componentDidMount` method from React component's API to achieve this.
 
-```
-#!coffeescript
+```coffeescript
 
 {div} = React.DOM
 EventBus = require('modules/event_bus')
@@ -159,8 +155,7 @@ class DashboardApp
 
 Only thing left to do are event handlers for all applications.
 
-```
-#!coffeescript
+```coffeescript
 class CityInfrastructureApp
   constructor: ->
     # ...

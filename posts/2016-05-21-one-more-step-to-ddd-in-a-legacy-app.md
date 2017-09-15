@@ -20,8 +20,7 @@ Recently I picked up a ticket from support team of one of our clients. Few month
 ## Current state of the app
 This app is a great example of a legacy software. It's successful, earns a lot of money, but have some areas of code which haven't been cleaned yet. There's a concept of an _organization_ in codebase, which represents the given country market. The organization has an attribute called `available_vat_rates` which is simply a serialized attribute, keeping `VatRate` value objects. I won't focus on this object here, since its implementation is not a point of this post. It works in a really simple manner:
 
-```
-#!ruby
+```ruby
 vat_rate = VatRate.new(15)
 # => #<VatRate:0x007fdb8ed50db0 @value=15.0, @code="15">
 
@@ -50,8 +49,7 @@ I simply started with making a plan of this upgrade.
 6. I've run a migration, which has removed old VAT rates (5% & 12%) and published domain facts - **step 3**.
 
 ## Step 1 - adding new VAT rates
-```
-#!ruby
+```ruby
 require 'event_store'
 
 class AddNewVatRatesToNoOrgazation < ActiveRecord::Migration
@@ -94,8 +92,7 @@ Two things worth notice happen here. Event data contain `originator_id`, I simpl
 The amount of products which required change of the VAT rates was so small that I simply used web interface to update them. Normally I would just go with  baking `EventService` with `UpdateTicketTypeCommand` containing all the necessary data.
 
 ## Step 3 - remove deprecated VAT rates
-```
-#!ruby
+```ruby
 require 'event_store'
 
 class RemoveOldVatRatesFromNoOrgazation < ActiveRecord::Migration

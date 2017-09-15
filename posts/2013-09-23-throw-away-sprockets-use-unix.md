@@ -40,36 +40,40 @@ Say I have two files, one called `deep_thought.coffee` and the other one called
 
 __answer.coffee__:
 
-    #!coffeescript
-    answer = 42
+```coffeescript
+answer = 42
 
 I'd like to use the `answer` in the other module of my application. It's really
 simple with the `#import` directive, which includes the dependency only once.
+```
 
 __deep_thought.coffee__:
 
-    #!coffeescript
-    #import "answer.coffee"
+```coffeescript
+#import "answer.coffee"
 
-    console.log "The answer to the Ultimate Question is #{answer}"
+console.log "The answer to the Ultimate Question is #{answer}"
+```
 
 Now let's run the preprocessor and see what happens.
 
-    #!coffeescript
-    $ cpp -P deep_thought.coffee
-    answer = 42
-    console.log "The answer to the Ultimate Question is #{answer}"
+```coffeescript
+$ cpp -P deep_thought.coffee
+answer = 42
+console.log "The answer to the Ultimate Question is #{answer}"
+```
 
 Looks like it's what we need. The only thing that's left to do is to compile
 the file.
 
-    #!javascript
-    $ cpp -P deep_thought.coffee | coffee -s -p
-    (function() {
-      var answer;
-      answer = 42;
-      console.log("The answer to the Ultimate Question is " + answer);
-    }).call(this);
+```javascript
+$ cpp -P deep_thought.coffee | coffee -s -p
+(function() {
+  var answer;
+  answer = 42;
+  console.log("The answer to the Ultimate Question is " + answer);
+}).call(this);
+```
 
 As you can see from the above, there is no magic and even old UNIX tools can
 get this work done properly.
@@ -80,20 +84,22 @@ The short answer is yes. To prove this I resurrected the [hexagonal.js
 implementation of TodoMVC](https://github.com/hexagonaljs/todomvc) and replaced
 `coffee-toaster` with a `Makefile` listed below.
 
-    MAIN=src/todo_app.coffee
-    RELEASE_DIR=release
-    RELEASE_MAIN="$(RELEASE_DIR)/todo_app.js"
+```make
+MAIN=src/todo_app.coffee
+RELEASE_DIR=release
+RELEASE_MAIN="$(RELEASE_DIR)/todo_app.js"
 
-    debug:
-        cpp $(MAIN) | coffee -s -p > $(RELEASE_MAIN)
+debug:
+    cpp $(MAIN) | coffee -s -p > $(RELEASE_MAIN)
 
-    release:
-        cpp $(MAIN) | coffee -s -p | uglifyjs > $(RELEASE_MAIN)
+release:
+    cpp $(MAIN) | coffee -s -p | uglifyjs > $(RELEASE_MAIN)
 
-    clean:
-        rm -f $(RELEASE_DIR)/*
+clean:
+    rm -f $(RELEASE_DIR)/*
 
-    .PHONY: debug release clean
+.PHONY: debug release clean
+```
 
 That's it. There are three targets defined: `debug`, `release` and `clean`. The
 default one is `debug`. `.PHONY` just means that there are no dependencies for

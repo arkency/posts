@@ -29,8 +29,7 @@ _I would opt for A, as it is a more robust solution, future-proof, and most to-t
   
 The author brings very interesting and very good points to the table. I, myself, used a few months ago a callback just like that:
 
-```
-#!ruby
+```ruby
 class Order < ActiveRecord::Base  
   after_commit do |order|  
     Resque.enqueue(IndexOrderJob,  
@@ -53,8 +52,7 @@ So despite undeniable usefulness of those callbacks, let's talk about a couple o
 
 Imagine very similar code such as:
 
-```
-#!ruby
+```ruby
 class Order < ActiveRecord::Base  
   after_save do |order|  
     Elasticsearch::Model.client.index(  
@@ -81,8 +79,7 @@ _These callbacks are useful for interacting with other systems since you will be
 
 So in other words. `after_commit` is a safer choice if use those hook to integrate with 3rd party systems/APIs/DBs . `after_save` and `after_update` are good enough if the sideeffects are stored in SQL db as well.
 
-```
-#!ruby
+```ruby
 class Order < ActiveRecord::Base  
   after_commit do |order|  
     Elasticsearch::Model.client.index(  

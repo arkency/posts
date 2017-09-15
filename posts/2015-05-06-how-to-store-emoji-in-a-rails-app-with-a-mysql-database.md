@@ -57,8 +57,7 @@ As you can see, using `utf8` character set is not enough. You are getting a warn
 
 [MySQL 5.5.3](https://dev.mysql.com/doc/relnotes/mysql/5.5/en/news-5-5-3.html) introduced new character set - `utf8mb4` that maps to _real_ UTF-8 and fully support all Unicode characters, including 4-bytes emoji. It is fully backward compatible, so there should be no data loss during migrating your database. You just need to convert your tables to the new character set and change your connection's settings. You can do it in migration:
 
-```
-#!ruby
+```ruby
 class ConvertDatabaseToUtf8mb4 < ActiveRecord::Migration
   def change
     # for each table that will store unicode execute:
@@ -90,28 +89,26 @@ After changing character set, you may experience the `Mysql2::Error: Specified k
 
 * You can monkey patch `ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter::NATIVE_DATABASE_TYPES` using the following initializer:
 
-  ```
-  #!ruby
-  # config/initializers/mysql_utf8mb4_fix.rb
-  require 'active_record/connection_adapters/abstract_mysql_adapter'
+```ruby
+# config/initializers/mysql_utf8mb4_fix.rb
+require 'active_record/connection_adapters/abstract_mysql_adapter'
 
-  module ActiveRecord
-    module ConnectionAdapters
-      class AbstractMysqlAdapter
-        NATIVE_DATABASE_TYPES[:string] = { :name => "varchar", :limit => 191 }
-      end
+module ActiveRecord
+  module ConnectionAdapters
+    class AbstractMysqlAdapter
+      NATIVE_DATABASE_TYPES[:string] = { :name => "varchar", :limit => 191 }
     end
   end
-  ```
+end
+```
 
 * You can also switch to [`DYNAMIC` MySQL table format](http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html#sysvar_innodb_large_prefix) add add `ROW_FORMAT=DYNAMIC` to your `CREATE TABLE` calls when creating new tables in migrations (that would increase the maximum key length from 767 bytes to 3072 bytes):
 
-  ```
-  #!ruby
-  create_table :table_name, options: 'ROW_FORMAT=DYNAMIC' do |t|
-    # ...
-  end
-  ```
+```ruby
+create_table :table_name, options: 'ROW_FORMAT=DYNAMIC' do |t|
+  # ...
+end
+```
 
 You wouldn't experience this issues when using PostgreSQL, but sometimes you just have to support legacy application that uses MySQL and migrating data to other RDBMS may not be an option.
 

@@ -43,8 +43,7 @@ Nothing fancy here. As the documentation states:
 `USR2` signal for master process - _reexecute the running binary. A separate
 `QUIT` should be sent to the original process once the child is verified to be up and running._
 
-```
-#!ruby
+```ruby
 namespace :deploy do
   task :reload, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
@@ -63,8 +62,7 @@ processes by one with sending `TTOU` signal to master process.
 
 At the end we send `QUIT` so the new master worker can take it place.
 
-```
-#!ruby
+```ruby
 before_fork do |server, worker|
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
@@ -90,8 +88,7 @@ Also we don't want to implement the entire verification procedure algorithm in
 this file. So we extract it into `'./config/deploy/verify'` and require
 inside the task.
 
-```
-#!ruby
+```ruby
 
 require 'securerandom'
 set :deploy_token, SecureRandom.hex(16)
@@ -147,8 +144,7 @@ for the entire procedure to finish. In this time we are hitting our application
 with request every now and then to check whether new workers are serving requests
 or the old ones.
 
-```
-#!ruby
+```ruby
 require 'net/http'
 require 'net/https'
 require 'timeout'
@@ -196,8 +192,7 @@ end
 
 ## config/routes.rb
 
-```
-#!ruby
+```ruby
 
 get "about/deploy"
 ```
@@ -211,8 +206,7 @@ always return the new value written to that file during last deploy.
 Instead it returns the token that is instantiated only once during Rails
 startup process.
 
-```
-#!ruby
+```ruby
 class AboutController < ApplicationController
 
   before_filter :http_basic_authentication
@@ -233,8 +227,7 @@ end
 
 Here you can see that we are storing the token when rails is starting.
 
-```
-#!ruby
+```ruby
 deploy_token_file   = Rails.root.join('TOKEN')
 config.deploy_token = if deploy_token_file.exist?
   deploy_token_file.read

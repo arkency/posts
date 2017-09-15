@@ -40,8 +40,7 @@ scanner/
     └── spec_helper.rb
 ```
 
-```
-#!ruby
+```ruby
 # scanner/scanner.gemspec
 
 lib = File.expand_path('../lib', __FILE__)
@@ -61,8 +60,7 @@ end
 Each gem had its own namespace, reflected in gem's name. In example `Scanner` with `scanner`. It held code related to the scanning context, from the service level to the domain. You were able to run specs related to this particular area in separation.
 In fact, at that time we were just starting to use the term Bounded Context.
 
-```
-#!ruby
+```ruby
 # scanner/lib/scanner.rb
 
 module Scanner
@@ -80,8 +78,7 @@ require 'scanner/event_db'
 
 Yet these gems were not like the others. We did not push them to RubyGems obviously. Neither did we store them on private gem server. They lived among Rails app, at the very top level in the code repository. They're referenced in `Gemfile` using `path:`, like you'd do with vendored dependencies.
 
-```
-#!ruby
+```ruby
 # Gemfile
 
 gem 'scanner', path: 'scanner'
@@ -101,8 +98,7 @@ The solution we're happy with now does not differ drastically from having vendor
 
 What differs is that we no longer have `require` to load files. Instead, we use autoload-friendly `require_dependency`.
 
-```
-#!ruby
+```ruby
 # scanner/lib/scanner.rb
 
 module Scanner
@@ -120,8 +116,7 @@ require_dependency 'scanner/event_db'
 
 With that approach, you also have to make sure that Rails is aware to autoload code from the [path](http://blog.arkency.com/2014/11/dont-forget-about-eager-load-when-extending-autoload/) your Bounded Context lives in.
 
-```
-#!ruby
+```ruby
 # config/application.rb
 
 config.paths.add 'scanner/lib', eager_load: true
@@ -131,8 +126,7 @@ And that's mostly it!
 
 As an example you put `Scanner::Ticket` into `scanner/lib/scanner/ticket.rb` as:
 
-```
-#!ruby
+```ruby
 # scanner/lib/scanner/ticket.rb
 
 module Scaner
@@ -147,8 +141,7 @@ If you wish to painlessly run spec files in the isolated directory there are cer
 
 First, the spec helper should be responsible to correctly load the code.
 
-```
-#!ruby
+```ruby
 # scanner/spec/spec_helper.rb
 
 require_relative '../lib/scanner'
@@ -156,8 +149,7 @@ require_relative '../lib/scanner'
 
 Then the test files should require it appropriately.
 
-```
-#!ruby
+```ruby
 # scanner/spec/scan_tickets_command_spec.rb
 
 require_relative 'spec_helper'
@@ -171,8 +163,7 @@ end
 
 Last but not least — it would be a pity to forget to run specs along the whole application test suite on CI. For this scenario we tend to put following code in app `spec/` directory:
 
-```
-#!ruby
+```ruby
 # spec/scanner_spec.rb
 
 path = Rails.root.join('scanner/spec')

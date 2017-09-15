@@ -42,8 +42,7 @@ Architecture is build with:
 
 You're probably familiar with [use case](http://martinfowler.com/bliki/UseCases.html) term. If you have some experience with DCI (or figured it out different way) you probably know, that use cases can be represented as objects - and this is core idea.
 
-```
-#!coffeescript
+```coffeescript
 class UseCase
   constructor: ->
 
@@ -67,8 +66,7 @@ Our story is quite simple: we want to greet user that uses app - ask for his nam
 
 This sample app has only one adapter, the most basic - GUI. Let's have a look at code of GUI for just first step of UseCase - askForName. ```GUI#showAskForName``` shows simple form and binds to click event of its confirm button. It has no idea about domain objects and doesn't contain any logic.
 
-```
-#!coffeescript
+```coffeescript
 class Gui
   constructor: ->
 
@@ -90,8 +88,7 @@ class Gui
 
 You probably wonder how GUI know what to present and how can it interact with our business logic. hexagonal.js uses Glue objects to glue those two layers:
 
-```
-#!coffeescript
+```coffeescript
 class Glue
   constructor: (@useCase, @gui, @storage)->
     After(@useCase, "askForName", => @gui.showAskForName())
@@ -105,8 +102,7 @@ class Glue
 
 Ok, so this part can be hard, because your don't know what ```After``` means. It's shortcut from [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) library, which can be described by following code:
 
-```
-#!coffeescript
+```coffeescript
 After = (object, methodName, advice) ->
   originalMethod = object[methodName]
   object[methodName] = (args...) ->
@@ -121,8 +117,7 @@ So basically - it adds to original function additional behaviour. There are also
 
 To make it all run we have to implement some booting code, that'll build all required objects: domain, glue, gui and other adapters and start use case. Here's an example from hello-world app.
 
-```
-#!coffeescript
+```coffeescript
 class App
   constructor: ->
     useCase      = new UseCase()

@@ -20,8 +20,7 @@ somewhere, by someone, but I could not find any good reference.
 
 Imagine code like this:
 
-```
-#!ruby
+```ruby
 def start_till_cash_register_session
   cmd = Till::StartNewSession.new(
     uuid: SecureRandom.uuid,
@@ -47,8 +46,7 @@ defaults. What options do we have?
 
 We could use default named arguments:
 
-```
-#!ruby
+```ruby
 def start_till_cash_register_session(
     uuid: SecureRandom.uuid,
     terminal_name: "2nd floor, nr 2103",
@@ -68,8 +66,7 @@ def start_till_cash_register_session(
 end
 ```
 
-```
-#!ruby
+```ruby
 start_till_cash_register_session(employee_name: "Batman")
 ```
 
@@ -89,8 +86,7 @@ the method.
 
 We can use the double splat operator and handle any named arguments.
 
-```
-#!ruby
+```ruby
 def start_till_cash_register_session(**attributes)
   defaults = {
     uuid: SecureRandom.uuid,
@@ -105,8 +101,7 @@ def start_till_cash_register_session(**attributes)
 end
 ```
 
-```
-#!ruby
+```ruby
 start_till_cash_register_session(employee_name: "Batman")
 ```
 
@@ -119,8 +114,7 @@ attributes or not). And you won't get autocomplete.
 
 Here is another approach. One that I wanted to show you.
 
-```
-#!ruby
+```ruby
 def start_till_cash_register_session
   cmd = Till::StartNewSession.new(
     uuid: SecureRandom.uuid,
@@ -138,8 +132,7 @@ end
 Instead of passing the attributes around we are passing the whole
 command object built with defaults by `yield`-ing it to the caller. 
 
-```
-#!ruby
+```ruby
 start_till_cash_register_session{|cmd| cmd.employee_name = "Batman" }
 ```
 
@@ -148,8 +141,7 @@ For me there is certain appeal to this solution.
 And if you use the [fluent interface](/2017/01/fluent-interfaces-in-ruby-ecosystem/)
 as well you could have:
 
-```
-#!ruby
+```ruby
 start_till_cash_register_session do |cmd| 
   cmd.employee_name("Batman").starting_cash_balance("200.00")
 end

@@ -57,8 +57,7 @@ Assume that we got to create a list of books with a dynamic search.
 
 First, we should create a simple book component that represent single book on a list.
 
-```
-#!coffeescript
+```coffeescript
 
 BooksListItem = React.createClass
   render: ->
@@ -70,8 +69,7 @@ To build HTML structure I used built-in React.DOM components, which corresponds 
 Moving on to the full list of Book items
 
 
-```
-#!coffeescript
+```coffeescript
 
 BooksList = React.createClass
   render: ->
@@ -83,8 +81,7 @@ BooksList = React.createClass
 
 Ok, we are able to display list of books. Now it is high time to implement search. Let's modify our *BooksList* component. We need to add form input and handle its changes.
 
-```
-#!coffeescript
+```coffeescript
 
 BooksList = React.createClass
   #Component's API method

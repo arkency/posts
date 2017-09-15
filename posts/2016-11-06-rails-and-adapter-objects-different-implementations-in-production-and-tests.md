@@ -29,8 +29,7 @@ As you see, we have the same implementations in the production/dev environments,
 
 In the Rails controller, you can then initialize the service object with:
 
-```
-#!ruby
+```ruby
 
 def create
   RegisterNewUser.new(Rails.application.config.foo_adapter).call
@@ -40,8 +39,7 @@ end
 
 while in the service object you stay unaware of the difference:
 
-```
-#!ruby
+```ruby
 
 class RegisterNewUser
   def initialize(foo_adapter)

@@ -28,8 +28,7 @@ but turned out to be quite easy.
 Our landing pages contain html that is saved with content editor. It is just html.
 The videos are embeded in a normal way recommended by the providers such as:
 
-```
-#!html
+```html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BBnN5VLuxKw" frameborder="0" allowfullscreen></iframe>
 <iframe src="//player.vimeo.com/video/2854412" width="500" height="311" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ```
@@ -38,8 +37,7 @@ The videos are embeded in a normal way recommended by the providers such as:
 
 Nokogiri for the rescue :)
 
-```
-#!ruby
+```ruby
 
 html = LandingPage.first.content
 
@@ -58,8 +56,7 @@ More about:
 
 [VideoInfo](https://github.com/thibaudgg/video_info/) to the rescue :)
 
-```
-#!ruby
+```ruby
 
 VideoMetadata = Struct.new(
   :title,
@@ -99,8 +96,7 @@ It's harder then you might think.
 
 [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) to the rescue.
 
-```
-#!ruby
+```ruby
 SitemapGenerator::Sitemap.create do
   LandingPage.find_each do |landing_page|
     videos = extracted(landing_page.content).map do |video_metadata|

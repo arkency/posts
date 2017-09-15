@@ -14,8 +14,7 @@ Recently I heard about [`spreadsheet_architect` gem](https://github.com/westonga
 
 What started my curiosity was the API:
 
-```
-#!ruby
+```ruby
 class Post < ActiveRecord::Base
   include SpreadsheetArchitect
 end
@@ -27,15 +26,13 @@ I was like _wow, why would anyone add such a thing to a model_? Why is it a good
 
 But I was like... There must be a way to avoid it. After all, this gem can work with normal classes as well as documented:
 
-```
-#!ruby
+```ruby
 Post.to_xlsx(instances: posts_array)
 ```
 
 or another way:
 
-```
-#!ruby
+```ruby
 headers = ['Col 1','Col 2','Col 3']
 data = [[1,2,3], [4,5,6], [7,8,9]]
 SpreadsheetArchitect.to_xlsx(data: data, headers: headers)
@@ -45,8 +42,7 @@ So probably including `SpreadsheetArchitect` is not mandatory.
 
 I was thinking about checking the code to see how it gets the list of records and implementing a compatible interface inside a different class. I was pretty sure the method was `#to_a` because why not? What else could it be? So I hoped for this kind of workaround:
 
-```
-#!ruby
+```ruby
 class PostsReport
   include SpreadsheetArchitect
 
@@ -58,8 +54,7 @@ end
 
 or
 
-```
-#!ruby
+```ruby
 class PostsReport
   include SpreadsheetArchitect
 
@@ -79,8 +74,7 @@ Then I could define methods such as `def spreadsheet_columns` which configure wh
 
 So I started looking into the code, how it works internally, to confirm my guesses.
 
-```
-#!ruby
+```ruby
 module SpreadsheetArchitect
   module ClassMethods
     def to_csv(opts={})
@@ -90,8 +84,7 @@ module SpreadsheetArchitect
 
 It turned out the logic was implemented in `get_cell_data`. Let's see what inside. It had 80 lines of code including this:
 
-```
-#!ruby
+```ruby
 def self.get_cell_data(options={}, klass)
   # ...
   if !options[:instances] && defined?(ActiveRecord) && klass.ancestors.include?(ActiveRecord::Base)
@@ -117,8 +110,7 @@ Post.method(:to_csv)
 
 * The example shows
 
-```
-#!ruby
+```ruby
 Post.order(name: :asc).to_xlsx
 ```
 
@@ -137,8 +129,7 @@ klass.ancestors.include?(ActiveRecord::Base)
 
 * because
 
-```
-#!ruby
+```ruby
 Post::ActiveRecord_Relation.ancestors.include?(ActiveRecord::Base)
 # => NameError: private constant #<Class:0x0000000478a240>::ActiveRecord_Relation referenced
 # doh...
@@ -152,8 +143,7 @@ Yep, [Ruby has private classes](/2016/02/private-classes-in-ruby/) and they are 
 
 So how can this gem work with relations? Let's try something...
 
-```
-#!ruby
+```ruby
 class Post < ApplicationRecord
   include SpreadsheetArchitect
 
@@ -165,14 +155,12 @@ end
 
 Nothing out of ordinary here:
 
-```
-#!ruby
+```ruby
 Post.bump
 # Post(id: integer, ...)
 ```
 
-```
-#!ruby
+```ruby
 Post.where(id: 1).inspect
 # Post Load (0.6ms)  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 11]]
 # => "#<ActiveRecord::Relation [#<Post id: 1, ...">]>"
@@ -180,8 +168,7 @@ Post.where(id: 1).inspect
 
 But check this out:
 
-```
-#!ruby
+```ruby
 Post.where(id: 1).bump
 # Post(id: integer, ...)
 ```
@@ -200,8 +187,7 @@ Post.where(id: 1).method(:method_missing).source_location
 
 Let's see how this Rails magic works:
 
-```
-#!ruby
+```ruby
 def method_missing(method, *args, &block)
   if @klass.respond_to?(method)
     self.class.delegate_to_scoped_klass(method)
@@ -218,14 +204,12 @@ end
 * as you can see the method `bump` is delegated to the class directly. So that's why `self` is `Post`.
 * But why is only a subset of records used for generating the file, and not all records, when the method is delegated directly to a class? Because `scoping` is used, which works like a global (probably a thread-safe global).
 
-```
-#!ruby
+```ruby
 Post.where(id: 1).method(:scoping).source_location
 # => [".rvm/gems/ruby-2.4.1/gems/activerecord-5.1.2/lib/active_record/relation.rb", 334]
 ```
 
-```
-#!ruby
+```ruby
 
 # Scope all queries to the current scope.
 #

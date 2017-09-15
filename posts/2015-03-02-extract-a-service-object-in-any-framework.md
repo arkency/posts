@@ -32,8 +32,7 @@ The command is called “create-post” and it’s just a convenience function t
 
 Here is the code:
 
-```
-#!ruby
+```ruby
 require 'stringex'
 
 usage       'create-post [options] title'
@@ -81,8 +80,7 @@ It was serving us well for over 3 years without any change. I'm extracting it to
 
 #### After
 
-````
-#!ruby
+````ruby
 require 'stringex'
 
 usage       'create-post [options] title'

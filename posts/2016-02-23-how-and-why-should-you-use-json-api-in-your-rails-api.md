@@ -47,8 +47,7 @@ JSON API is a standard for formatting your responses. It handles concerns like:
 
 JSON API support for AMS comes with the newest unrealeased versions, currently in the RC stage. To install it, you need to include it within your `Gemfile`:
 
-```
-#!ruby
+```ruby
 gem 'active_model_serializers', '0.10.0.rc4'
 ```
 
@@ -60,8 +59,7 @@ With 0.10.x versions of Active Model Serializers uses the idea of [adapters](htt
 
 To configure it, enter this line of code in `config/environments/development.rb`, `config/environments/test.rb` and `config/environments/production.rb`:
 
-```
-#!ruby
+```ruby
 ActiveModelSerializers.config.adapter = :json_api
 ```
 
@@ -79,8 +77,7 @@ The idea of using AMS is pretty simple:
 
 Let's take the simplest example:
 
-```
-#!ruby
+```ruby
 class Conference < ActiveRecord::Base
   include ConferenceErrors
   include Equalizer.new(:id)
@@ -114,8 +111,7 @@ end
 
 This is a piece of code taken from the [backend application written for the React.js workshops](http://blog.arkency.com/2016/02/how-to-teach-react-dot-js-properly-a-quick-preview-of-wroc-love-dot-rb-workshop-agenda/). The `Conference` consists of a `name` and an `id`. There is also a relationship between a `Conference` and `ConferenceDay` in a one-to-many fashion. Let's see the test for an expected response out of such resource. We assume there are no conference days defined (yet!). Also `jsonize` is transforming symbol keys into string keys deeply and `json` is just calling `MultiJson.load(response.body)`:
 
-```
-#!ruby
+```ruby
   def test_planned_conference_listed_on_index
     conference_uuid = next_uuid
     post "/conferences", format: :json, conference: {
@@ -158,8 +154,7 @@ The whole response is wrapped with a `data` field. There are two different "root
 
 So far, so good. But you need the controller code to make asking endpoint possible:
 
-```
-#!ruby
+```ruby
   def index
     conferences_repository.all.tap do |conferences|
       respond_to do |format|
@@ -176,8 +171,7 @@ So far, so good. But you need the controller code to make asking endpoint possib
 
 And, last but not least - a `ConferenceSerializer`:
 
-```
-#!ruby
+```ruby
 class ConferenceDaySerializer < ActiveModel::Serializer
   attributes :label, :from, :to
 end
@@ -198,8 +192,7 @@ Unfortunately for now AMS do not support links on a `relationships` level, makin
 
 ### For meta field:
 
-```
-#!ruby
+```ruby
   def index
     conferences_repository.all.tap do |conferences|
       respond_to do |format|
@@ -233,8 +226,7 @@ Unfortunately for now AMS do not support links on a `relationships` level, makin
 
 ### For links:
 
-```
-#!ruby
+```ruby
   def index
     conferences_repository.all.tap do |conferences|
       respond_to do |format|
@@ -271,8 +263,7 @@ Unfortunately for now AMS do not support links on a `relationships` level, makin
 
 By default JSON API specifies only an information needed to retrieve a related object using a separate HTTP call - `id` and `type`. So for having one day inside a conference the JSON response will look like this:
 
-```
-#!ruby
+```ruby
     jsonize({
       data: [{
         type: "conferences",
@@ -300,8 +291,7 @@ This is because JSON API makes even another separation: **included resources are
 
 To render the response with `days` included, we need to pass an additional option:
 
-```
-#!ruby
+```ruby
   def index
     conferences_repository.all.tap do |conferences|
       respond_to do |format|

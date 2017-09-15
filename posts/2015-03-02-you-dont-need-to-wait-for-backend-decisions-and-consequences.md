@@ -39,8 +39,7 @@ Imagine you have a simple to-do list application - one of its functions is that 
 
 Your `Dispatcher` (`Glue`) class can look like this:
 
-```
-#!coffeescript
+```coffeescript
 
 class Dispatcher
   constructor: (@eventBus, @commands, @readModel, @flashMessages) ->
@@ -59,8 +58,7 @@ Here you wait for your `addTask` command to finish - it basically makes a POST r
 * **Implementation is simple** - there are no special patterns you’d need to introduce.
 * **It aligns well with Rails conventions** - let’s take a small part of the code introduced above:
 
-    ```
-    #!coffeescript
+    ```coffeescript
     (json) =>  @readModel.addTask(json.id, taskText)
     ```
   
@@ -84,9 +82,7 @@ Here you wait for your `addTask` command to finish - it basically makes a POST r
 * If you structure your code using store approach encouraged by Flux, it is good to provide some kind of `UserMessageStore` and `IntermediateStateStore` to centralize your visual feedbacks.
 * You can listen for `ajaxSend` “events” to provide the simplest visual feedback that something is being processed on backend. This is a simple snippet of code you may use to your needs (using jQuery):
 
-    ```
-    #!coffeescript
-
+    ```coffeescript
     UPDATE_TYPES = ['PUT', 'POST', 'DELETE']
     $.activeTransforms = 0
 
@@ -101,8 +97,7 @@ Here you wait for your `addTask` command to finish - it basically makes a POST r
 
     We bind to `ajaxSend` and `ajaxComplete` “events” to keep track of number of active AJAX transactions. You can then query this variable to provide some kind of visual feedback. One of the simplest is to provide an alert when the user wants to leave a page:
 
-    ```
-    #!coffeescript
+    ```coffeescript
       $(window).on 'beforeunload', ->
         if $.activeTransforms
           '''There are some pending network requests which
@@ -121,9 +116,7 @@ There is also a hidden effect of this decision - if you want to be consistent wi
 
 In this simple example there is little you have to do to make implementation with this approach:
 
-```
-#!coffeescript
-
+```coffeescript
 class Dispatcher
   constructor: (@eventBus, @commands, @readModel, @flashMessages, @uuidGenerator) ->
     @eventBus.on('addTask', (taskText) ->
@@ -166,8 +159,7 @@ The most interesting thing is that you can take `@commands` call and move it to 
 
     Here is a little example of this approach:
 
-    ```
-    #!coffeescript
+    ```coffeescript
     class Commands
       constructor: (@readModel) ->
 

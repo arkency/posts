@@ -17,8 +17,7 @@ The first story started when business wanted us to remove one existing feature f
 
 There was something like this in the code.
 
-```
-#!ruby
+```ruby
 
 def analytics_code
   setup_which_is_meant_to_stay_here
@@ -28,8 +27,7 @@ end
 
 The developer looked at the code. It was quite clear that the last call should be removed, so he did that.
 
-```
-#!ruby
+```ruby
 
 def analytics_code
   setup_which_is_meant_to_stay_here
@@ -51,8 +49,7 @@ The second story happened just recently, in my project. There's a place in the U
 
 But then, we've had a need to extend the existing backend code with publishing an event. The code was a typical service object in a Rails app:
 
-```
-#!ruby
+```ruby
 
 class RegisterNewCustomer
   def call
@@ -64,8 +61,7 @@ end
 
 After extending the service object, it looked like this:
 
-```
-#!ruby
+```ruby
 
 class RegisterNewCustomer
   def call
@@ -78,8 +74,7 @@ end
 
 The thing is, this service object was used from a controller, like this:
 
-```
-#!ruby
+```ruby
 
 def create
   customer = RegisterNewCustomer.new.call(customer_params)

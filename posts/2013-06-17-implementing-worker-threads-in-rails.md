@@ -30,8 +30,7 @@ And this might be solution for you and your specific web server. It definitely i
 
 The other possibility is to start our worker thread lazily when it's actually needed for the first time. A naive implementation may look like this:
 
-```
-#!ruby
+```ruby
 class MetricClient
   def initialize
     @queue = Queue.new
@@ -63,8 +62,7 @@ Now that we have lazy loading mechanism we're good to deploy anywhere, right? Wr
 
 Since changing webserver model to threaded we will service several requests in one process concurrently. Each of these threads servicing request will be racing to start the worker in background but we want only one instance of the worker to be present. Thus we have to make worker starting code thread-safe:
 
-```
-#!ruby
+```ruby
 class MetricClient
   def initialize
     @queue = Queue.new

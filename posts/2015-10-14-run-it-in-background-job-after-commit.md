@@ -37,8 +37,7 @@ Here is how it can be achieved and how I figured it out.
 Let's see [`after_commit`](http://api.rubyonrails.org/v4.1.0/classes/ActiveRecord/Transactions/ClassMethods.html#method-i-after_commit)
 implementation in Rails.
 
-```
-#!ruby
+```ruby
 # File activerecord/lib/active_record/transactions.rb, line 225
 def after_commit(*args, &block)
   set_options_for_callbacks!(args)
@@ -51,8 +50,7 @@ Well, this doesn't tell me much on what and how is calling this callback.
 So I looked into [`set_callback`](https://github.com/rails/rails/blob/10ac0155b19ea5b457417244f4f327404b997935/activesupport/lib/active_support/callbacks.rb#L34)
 and there I found in a documentation that such callbacks should be executed with `run_callbacks :commit do`.
 
-```
-#!ruby
+```ruby
 # Example from documentation
 class Record
   include ActiveSupport::Callbacks
@@ -71,8 +69,7 @@ end
 The next step was to investigate what part of ActiveRecord calls `:commit` hook. A simple grep told me the truth.
 Only [one place in code](https://github.com/rails/rails/blob/10ac0155b19ea5b457417244f4f327404b997935/activerecord/lib/active_record/transactions.rb#L295) calling it
 
-```
-#!ruby
+```ruby
 # Call the +after_commit+ callbacks.
 #
 # Ensure that it is not called if the
@@ -88,8 +85,7 @@ end
 Ok, so what calls the method `commited!` ? It is used in
 [`ActiveRecord::ConnectionAdapters::OpenTransaction`](https://github.com/rails/rails/blob/10ac0155b19ea5b457417244f4f327404b997935/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L147):
 
-```
-#!ruby
+```ruby
 def commit_records
   @state.set_state(:committed)
   records.uniq.each do |record|
@@ -104,8 +100,7 @@ end
 
 It is called on every `record` from `records` collection. But how are they added there?
 
-```
-#!ruby
+```ruby
 def add_record(record)
   if record.has_transactional_callbacks?
     records << record
@@ -122,8 +117,7 @@ of `records` tracked by currently open transaction (if there is one).
 
 Here is a class which mimics the small API necessary for things to work correctly:
 
-```
-#!ruby
+```ruby
 class AsyncRecord
   def initialize(*args)
     @args = args
@@ -154,8 +148,7 @@ And here is a piece of code which checks if we are in the middle of an open tran
 If so, we add our `AsyncRecord` to the collection of tracked `records`. When the transaction
 is commited, the new job will be queued in Resque.
 
-```
-#!ruby
+```ruby
 def enqueue(*args)
   if ActiveRecord::Base.connection.transaction_open? && !transaction_test
     ActiveRecord::Base.
@@ -171,8 +164,7 @@ end
 One more thing is important. You might be running some (all?) of your tests inside a database transaction
 that is rolledback at the end of each test. I excluded such tests from this behavior:
 
-```
-#!ruby
+```ruby
 def transaction_test
   Rails.env.test? && 
   defined?(DatabaseCleaner) && 

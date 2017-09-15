@@ -33,8 +33,7 @@ It's **quite common to see CoffeeScript code which is an imperative chain of DOM
 
 Let's see an example code that you may find in (bad written) front-end codebase. It's responsible for loading photos data (via an AJAX call) and displaying it on the screen. After clicking on a photo it should be grayed out:
 
-```
-#!coffeescript
+```coffeescript
 $(document).ready ->
   photoHTML = (photo) =>
     "<li>
@@ -93,8 +92,7 @@ When I work in a Sprockets-based stack I usually create a module definition with
 
 There is a rule of thumb to **always start with domain (or use case)**. In our case it's a tiny part of code that encapsulates grayscale photo URL transformation logic:
 
-```
-#!coffeescript
+```coffeescript
 class Photos.Photo
   constructor: (@id, @url, @alt) ->
  
@@ -113,8 +111,7 @@ Let's proceed with further decomposition of this code. Right now your can create
 
 I mostly **extracted existing implementation here to a method**. Here is how I could create such a class:
 
-```
-#!coffeescript
+```coffeescript
 class Photos.Backend
   fetchPhotos: =>
     request = $.ajax(
@@ -142,8 +139,7 @@ The last step is to create a `Gui` class, which is responsible for rendering and
 
 There is an example implementation that I've written:
 
-```
-#!coffeescript
+```coffeescript
 class Photos.Gui
   constructor: (@dom) ->
  
@@ -180,8 +176,7 @@ It's a really simple code. When you perform this refactoring step-by-step, you'l
 
 This is what such application object could look like:
 
-```
-#!coffeescript
+```coffeescript
 class Photos.App
   constructor: ->
     @gui = new Photos.Gui($("#photos-list"))
@@ -201,8 +196,7 @@ This makes the complete, stand-alone app. You'll notice that you do not run this
 
 Creating such initializer is easy:
 
-```
-#!coffeescript
+```coffeescript
 $(document).ready =>
   # put logic about starting your app here.
   app = new Photos.App()

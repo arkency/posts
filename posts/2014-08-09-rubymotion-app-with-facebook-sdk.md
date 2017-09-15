@@ -46,8 +46,7 @@ In our `Gemfile` we need to uncomment or add the following line:
     
 Then, in `Rakefile` inside `Motion::Project::App.setup` block we should add:
 
-```
-#!ruby
+```ruby
 app.pods do
   pod 'Facebook-iOS-SDK', '~> 3.16.2'
 end
@@ -76,16 +75,14 @@ To be able to be redirected back to our application from Safari, we should regis
 
 Just below `app.pods` in `Rakefile` add:
 
-```
-#!ruby
+```ruby
 FB_APP_ID = '<FB_APP_ID>'
 app.info_plist['CFBundleURLTypes'] = [{ CFBundleURLSchemes: ["fb#{FB_APP_ID}"] }]
 ```
 
 What is more, we have to register our Facebook app ID too:
 
-```
-#!ruby
+```ruby
 app.info_plist['FacebookAppID'] = FB_APP_ID
 ```
 
@@ -96,8 +93,7 @@ Now is the time to build login screen with big blue button.
 In `app/controllers/main_controller.rb` in `vievDidLoad` method add the following line:
 
 
-```
-#!ruby
+```ruby
 @fb_login_button = rmq.append(FBLoginView.new, :fb_login_button).get
 @fb_login_button.delegate = self
 ```
@@ -106,8 +102,7 @@ It tells RMQ to add Facebook login button instance as a subview and apply `fb_lo
 
 We have to create our style yet. For that open `app/stylesheets/main_stylesheet.rb` and add the following code:
 
-```
-#!ruby
+```ruby
 def fb_login_button(st)
   st.frame = { centered: :both }
 end
@@ -117,8 +112,7 @@ That will center FB button.
 
 `AppDelegate` class is entry point to every iOS application. It should manage login state so we need to configure it as follows:
 
-```
-#!ruby
+```ruby
 def application(_, openURL: url, sourceApplication: sourceApplication, annotation: _)
   FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
 end
@@ -138,8 +132,7 @@ Now, run application with `rake`. You should be able to see `login` or `logout` 
 
 We have to handle login state now. On the very beginning we can just set navbar title for our application to be changed when user logs in and out. Let's do it in `MainController` class:
 
-```
-#!ruby
+```ruby
 def loginViewShowingLoggedInUser(_)
   set_title 'User logged in'
 end
@@ -157,8 +150,7 @@ Let's `rake` and play with that.
 
 We can display user info too. Here's how it works:
 
-```
-#!ruby
+```ruby
 def loginViewFetchedUserInfo(_, user: user)
   rmq(@fb_login_button).animate { |btn| btn.move(b: 400) }
   @name_label      = rmq.append(UILabel, :label_name).get
@@ -178,8 +170,7 @@ end
 
 And some styling for that:
 
-```
-#!ruby
+```ruby
 def label_name(st)
   st.frame          = { w: app_width, h: 40, centered: :both }
   st.text_alignment = :center

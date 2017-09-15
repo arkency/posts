@@ -20,8 +20,7 @@ many problems. Maybe even too many?
 Let me remind you some basic facts about `at_exit`. You can skip this section if
 you are already familiar with it.
 
-```
-#!ruby
+```ruby
 puts "start"
 at_exit do
   puts "inside at_exit"
@@ -47,8 +46,7 @@ go further.
 [In ruby you can terminate a script in multiple ways](http://rubysource.com/exit-exit-abort-raise-get-me-outta-here/).
 But what matters most at the for other programms is the exit status code. And `at_exit` block can change it.
 
-```
-#!ruby
+```ruby
 puts "start"
 at_exit do
   puts "inside at_exit"
@@ -70,8 +68,7 @@ inside at_exit
 
 But exit code might get changed in implicit way due to an exception:
 
-```
-#!ruby
+```ruby
 at_exit do
   raise "surprise, exception happend inside at_exit"
 end
@@ -87,8 +84,7 @@ exiting.rb:2:in `block in <main>': surprise, exception happend inside at_exit (R
 
 But there is a catch. It will not change if the exit code was already set:
 
-```
-#!ruby
+```ruby
 at_exit do
   raise "surprise, exception happend inside at_exit"
 end
@@ -112,8 +108,7 @@ in reverse order of registration_](http://www.ruby-doc.org/core-2.0/Kernel.html#
 
 So, can you predict the result of the following code?
 
-```
-#!ruby
+```ruby
 puts "start"
 
 at_exit do
@@ -164,8 +159,7 @@ examples are using `minitest-5.0.5` installed from rubygems.
 
 Here is a simple minitest file:
 
-```
-#!ruby
+```ruby
 # test.rb
 gem "minitest"
 require "minitest/autorun"
@@ -188,8 +182,7 @@ You can see that [rspec is also using `at_exit`](https://github.com/rspec/rspec-
 
 Minitest `at_exit` usage is a little complicated:
 
-```
-#!ruby
+```ruby
 # Registers Minitest to run at process exit
 def self.autorun
   at_exit {
@@ -220,8 +213,7 @@ But why does it need to use `at_exit` hook at all? Is it not some kind of hack?
 Don't know about you, but it certainly feels a little hackish to me. Let's see
 what we can do without `at_exit`?
 
-```
-#!ruby
+```ruby
 gem "minitest"
 require "minitest"
 
@@ -257,8 +249,7 @@ running specs at the end of file with one line and avoid using `at_exit`. But if
 run tests from multiple files situation gets more complicated. You can solve it
 with a little helper:
 
-```
-#!ruby
+```ruby
 gem "minitest"
 require "minitest"
 
@@ -304,8 +295,7 @@ to close a browser](https://github.com/jnicklas/capybara/blob/4772f509f88ba5f2dc
 such as Firefox, when tests are finished. As you can see there is quite
 complicated logic around it:
 
-```
-#!ruby
+```ruby
 def browser
   unless @browser
     @browser = Selenium::WebDriver.for(options[:browser], options.reject { |key,val| SPECIAL_OPTIONS.include?(key) })

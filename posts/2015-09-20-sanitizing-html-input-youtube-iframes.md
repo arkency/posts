@@ -27,8 +27,7 @@ you are a [responsible developer](/responsible-rails/), right?
 
 One of the libraries that you can use for that is the [Sanitize ruby gem](https://github.com/rgrove/sanitize) .
 
-```
-#!ruby
+```ruby
 Sanitize.clean(html)
 ```
 
@@ -57,8 +56,7 @@ But sometimes you want to include or exclude some parts of the HTML conditionall
 you might not want the user to be able to include all `<iframe>`-s but you might want them
 to be able to include youtube videos of cats or ted.com talks.
 
-```
-#!ruby
+```ruby
 class IframeWhiteList
   def initialize(src, attributes)
     @src = src
@@ -118,8 +116,7 @@ Sanitize.clean(@html, Sanitize::Config::RELAXED.merge(transformers: [
 If you forget to escape one character (for example a dot) the attacker can embed
 an iframe from similarly looking domain.
 
-```
-#!ruby
+```ruby
 let(:html) do
   %q{
     <iframe src="//wwwXyoutube.com/embed/IqajIYxbPOI"></iframe>
@@ -131,8 +128,7 @@ it { expect(html_description.sanitized.strip).to eq("") }
 
 And be careful to **write tests for the attributes**:
 
-```
-#!ruby
+```ruby
 let(:html) do
    %q{<iframe width="560" height="315" src="//www.youtube.com/embed/IqajIYxbPOI"
               frameborder="0" allowfullscreen style="box-sizing: border-box;">
@@ -155,8 +151,7 @@ in later versions (which under the hood uses [`loofah` gem](https://github.com/f
 
 Allowing and sanitizing inline styles might be required for your editor to work properly.
 
-```
-#!ruby
+```ruby
 class CssStyleCheck
   class Sanitizer < HTML::WhiteListSanitizer
     self.allowed_css_properties = HTML::WhiteListSanitizer.
@@ -185,16 +180,14 @@ Make sure to test it as well. I usually test that all allowed attributes/styles
 are left unchanged and some of the disallowed (after all the list is infinite...)
 are removed:
 
-```
-#!ruby
+```ruby
 let(:html) do
   %q{<div style="background-color: 1px; border-bottom-color: 1px;"></div>}
 end
 it { expect(html_description.sanitized).to eq(html) }
 ```
 
-```
-#!ruby
+```ruby
 let(:html) do
   %q{<div style="background-color: black; min-width: 10px;
                  mso-pagination:none; box-sizing: border-box;">
@@ -212,8 +205,7 @@ Even though the list of HTML tags and attributes allowed by `Sanitizer` is quite
 might still want to **customize it a bit depending on your needs** and the
 way the editor of your choice works.
 
-```
-#!ruby
+```ruby
 def self.relaxed_config_hash_deep_copy
   Marshal.load(Marshal.dump(Sanitize::Config::RELAXED))
 end

@@ -34,13 +34,11 @@ otherwise we need to get our hands dirty with their Javascript APIs
 
 Let's start with the view:
 
-```
-#!html+erb
+```html+erb
 <%%= link_to _("Set avatar"), "#", :'data-avatar' => "set" %%>
 ```
 
-```
-#!html
+```html
 <a href="#" data-avatar="set">Set avatar</a>
 ```
 
@@ -53,8 +51,7 @@ used `"#"` as URL. Instead of using css classes or id for such link
 First, we need to display Filepicker popup for choosing image when our link is
 clicked.
 
-```
-#!coffeescript
+```coffeescript
 filepicker = window.filepicker
 filepicker.setKey "filepicker api key"
 $(document).ready ->
@@ -84,8 +81,7 @@ just using `console.log`.
 
 Create instance of the editor:
 
-```
-#!coffeescript
+```coffeescript
 featherEditor = new Aviary.Feather(
   apiKey: "key"
   apiVersion: 2
@@ -97,8 +93,7 @@ featherEditor = new Aviary.Feather(
 
 Use it when file picked:
 
-```
-#!coffeescript
+```coffeescript
 images = filepicker.MIMETYPES.IMAGES
 filepicker.getFile images, (url, metadata) ->
   preview = $('[data-avatar="preview"]')[0]
@@ -129,8 +124,7 @@ local machine.
 
 Forwarding ports with `ssh`:
 
-```
-#!bash
+```bash
 ssh user@YOUR_SERVER_IP -R YOUR_SERVER_IP:SOME_SERVER_PORT:127.0.0.1:3000
 ```
 
@@ -140,8 +134,7 @@ tools](http://devblog.avdi.org/2012/04/27/http-forwarding-services-for-local-fac
 
 Launching the editor with `postUrl`:
 
-```
-#!coffeescript
+```coffeescript
 featherEditor.launch
   image: preview
   url: url
@@ -151,8 +144,7 @@ featherEditor.launch
 Let's see the controller that is used when Aviary notifies
 us of the ready image:
 
-```
-#!ruby
+```ruby
 class AviaryController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
@@ -176,15 +168,13 @@ do not need to bother myself with that. You can use it with
 [`mini_magick`](https://github.com/probablycorey/mini_magick)
 or [`vips`](https://github.com/eltiare/carrierwave-vips).
 
-```
-#!ruby
+```ruby
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 end
 ```
 
-```
-#!ruby
+```ruby
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -226,13 +216,11 @@ which user avatar should be changed. Every user will have its own token for
 updating the avatar. Again, we use custom `data-*` (exactly
 `data-avatar-token`) attribute to store the token in HTML.
 
-```
-#!html+erb
+```html+erb
 <%%= link_to _("Set avatar"), "#", :'data-avatar' => "set", :'data-avatar-token' => AvatarToken.new(current_user).token, :'data-avatar-id' => current_user.id %%>
 ```
 
-```
-#!html
+```html
 <a href="#" 
    data-avatar="set"
    data-avatar-token="akzlEoaW9WhV8djhtWJmCLd9vjQ="
@@ -243,8 +231,7 @@ updating the avatar. Again, we use custom `data-*` (exactly
 We use `postData` to store additional metadata that should come with the request
 from Aviary to our App.
 
-```
-#!coffeescript
+```coffeescript
 $(document).ready ->
   $('body').delegate '[data-avatar="set"]', 'click', ->
     self  = $(this)
@@ -264,8 +251,7 @@ $(document).ready ->
 
 Now we can use this data in our controller to verify the request:
 
-```
-#!ruby
+```ruby
 class Users::AvatarsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
@@ -283,8 +269,7 @@ end
 
 And this leaves us with the implementation of AvatarToken class.
 
-```
-#!ruby
+```ruby
 require 'openssl'
 require 'base64'
 
@@ -322,8 +307,7 @@ is to allow users to use only one type of crop ratio and show the crop
 tool as initial one. However, the user can still press
 _"Cancel"_ unfortunately.
 
-```
-#!coffeescript
+```coffeescript
 featherEditor.launch
   cropPresets: ['1:1']
   initTool: 'crop'
@@ -331,8 +315,7 @@ featherEditor.launch
 
 So the whole JS part looks like this:
 
-```
-#!coffeescript
+```coffeescript
 filepicker = window.filepicker
 filepicker.setKey "Filepicker API Key"
 featherEditor = new Aviary.Feather(

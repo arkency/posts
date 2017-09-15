@@ -30,8 +30,7 @@ Now all this functionality is gone. `React.createClass` now just adds some utili
 
 That means your component classes are not renderable as they are. Now you must turn them into 'renderable' form by creating an *element*. Previously you passed `props` and `children` to a component class itself and it created an element behind the scenes. This constructor created by `React.createClass` now needs to be called by you explicitly. You can do it calling `React.createElement` function.
 
-```
-#!coffeescript
+```coffeescript
 
 {div, h1} = React.DOM
 
@@ -52,8 +51,7 @@ React.render(element, realNode)
 
 This is a signature of the `React.createElement` function:
 
-```
-#!coffeescript
+```coffeescript
 
 React.createElement(type, props, children)
 ```
@@ -73,8 +71,7 @@ This is a bit verbose way to create elements from your component classes. It als
 
 React provides us `React.createFactory` function which returns a factory for creating elements from a given component class. It basically allows you to use the 'old' syntax of passing `props` and `children` to your component classes:
 
-```
-#!coffeescript
+```coffeescript
 
 Component = React.createClass
   displayName: 'Component'
@@ -104,8 +101,7 @@ If you want to use class syntax for your React component classes in ES6, it is s
 
 Your old component:
 
-```
-#!coffeescript
+```coffeescript
 
 ExampleComponent = React.createClass
   getInitialState: ->
@@ -120,8 +116,7 @@ ExampleComponent = React.createClass
 
 Becomes:
 
-```
-#!coffeescript
+```coffeescript
 class ExampleComponent extends React.Component
   constructor: (props) ->
     super props

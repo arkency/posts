@@ -64,8 +64,7 @@ During our discussions there even was an idea of performing a **real credit card
 
 Why not the good old [Capybara](https://github.com/teamcapybara/capybara)? Luckily it can run tests against a remote server. Here's a snippet with the base class for the tests:
 
-```
-#!ruby
+```ruby
 require "capybara/dsl"
 require "capybara/poltergeist"
 
@@ -86,8 +85,7 @@ end
 
 Basically, apart from the test cases, the only thing you will need is to add this to the `Rakefile`:
 
-```
-#!ruby
+```ruby
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|

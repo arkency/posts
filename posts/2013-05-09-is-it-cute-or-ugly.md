@@ -23,8 +23,7 @@ so obviously you keep things in `ENV`.
 
 First thought:
 
-```
-#!ruby
+```ruby
 class ApiProvider
   def initialize(login = nil, password = nil)
     login    ||= ENV['APIPROVIDER_LOGIN']
@@ -43,8 +42,7 @@ But in Ruby every class is a factory, so why not use is to our advantage...
 
 ## Introduce Factory
 
-```
-#!ruby
+```ruby
 
 class ApiProvider
   def self.new(login = nil, password = nil)
@@ -66,8 +64,7 @@ So I decided to extract a new, little class.
 
 ## Extract class
 
-```
-#!ruby
+```ruby
 class ApiProvider
   class Credentials < Struct.new(:login, :password)
   end
@@ -92,8 +89,7 @@ But there are coworkers who disagree with me and I wonder what you think.
 
 * Default in method definition
 
-```
-#!ruby
+```ruby
 class ApiProvider
   def self.new(credentials = Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] ))
     super
@@ -114,8 +110,7 @@ Somehow this seems to be less readable to me
 
 * Moving the defaults to `Credentials`
 
-```
-#!ruby
+```ruby
 class ApiProvider
   class Credentials < Struct.new(:login, :password)
     def self.default
@@ -137,8 +132,7 @@ to operate separately on them.
 
 * External context is always responsible for providing the configuration
 
-```
-#!ruby
+```ruby
 api = ApiProvider.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
 api.do_something
 ```
@@ -150,8 +144,7 @@ This leads to repeated code if there are multiple places that need to instantiat
 * The constructor states that `ApiProvider` always requires `credentials`
 as dependency for proper working
 
-```
-#!ruby
+```ruby
 class ApiProvider
   def initialize(credentials)
     @uri = Addressable::URI.parse("http://api.example.org/query")
@@ -163,8 +156,7 @@ end
 * `ApiProvider.new` factory method is responsible for creating `ApiProvider` instance even without
 explicit credentials because defaults can be used.
 
-```
-#!ruby
+```ruby
 class ApiProvider
   def self.new(credentials = nil)
     credentials ||= Credentials.new( ENV['APIPROVIDER_LOGIN'], ENV['APIPROVIDER_PASSWORD'] )
@@ -175,8 +167,7 @@ end
 
 * `Credentials` is just a dumb struct for passing login and password together around the system
 
-```
-#!ruby
+```ruby
 class Credentials < Struct.new(:login, :password)
 end
 ```

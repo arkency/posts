@@ -49,8 +49,7 @@ I didn’t read this output carefully, at first. I assumed that the score option
 
 I assumed that something was broken and went to the mutant sources to find this [here](https://github.com/mbj/mutant/blob/7529b724c4409fdeb73c9a0fe6390ec7b5e4946c/lib/mutant/result.rb#L95):
 
-```
-#!ruby
+```ruby
 
       # Test if run is successful
       #
@@ -80,8 +79,7 @@ BTW, it’s worth mentioning that we only test our code through the public API. 
 
 We were only left with 2 (private) classes that were left uncovered: MigrateGenerator and the EventRepository. Both of them are Rails-related. The MigrateGenerator looks like this:
 
-```
-#!ruby
+```ruby
 
 require 'rails/generators'
 
@@ -111,8 +109,7 @@ At the moment this class is blacklisted from the mutant coverage. How would you 
 
 The second case is `EventRepository`:
 
-```
-#!ruby
+```ruby
 
 module RailsEventStore
   module Repositories
@@ -175,8 +172,7 @@ We use the repository pattern to encapsulate and hide the storage part of our to
 
 In tests, we use an InMemoryRepository:
 
-```
-#!ruby
+```ruby
 
 require 'ostruct'
 

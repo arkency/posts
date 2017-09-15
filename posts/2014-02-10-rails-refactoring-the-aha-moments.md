@@ -39,8 +39,7 @@ I learnt a lot, by moving some pieces of this code into different forms. I knew 
 
 I knew it's responsible for creating time entries, but not much more than that.
 
-```
-#!ruby
+```ruby
 
   def create
     @time_entry ||= TimeEntry.new(
@@ -125,8 +124,7 @@ First, I applied some simple transformations to look at the problem from differe
 
 This turned the code into this:
 
-```
-#!ruby
+```ruby
 def create
   CreateTimeEntryService.new(self).call()
 end
@@ -284,8 +282,7 @@ After some more typical transformations, I ended with:
 - return entity from service object
 
 
-```
-#!ruby
+```ruby
 def create
   if issue_id.present?
     log_time_on_issue
@@ -338,8 +335,7 @@ end
 
 And the service object
 
-```
-#!ruby
+```ruby
 class LogTime < SimpleDelegator
   class AuthorizationError           < StandardError; end
   class NotAuthorizedArchivedProject < StandardError; end

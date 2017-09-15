@@ -14,8 +14,7 @@ Rails scaffold probably taught you.
 
 <!-- more -->
 
-```
-#!ruby
+```ruby
 class PostsController < ApplicationController
   def index
     @posts = Post.all
@@ -69,8 +68,7 @@ section indicating which formats we support.
 You don't even need to pass a block to `html`
 method call.
 
-```
-#!ruby
+```ruby
 class PostsController < ApplicationController
   def index
     @posts = Post.all
@@ -85,8 +83,7 @@ Alternatively, you can go with `respond_to :html`.
 But that itself is not sufficient and requires
 using it together with `respond_with`.
 
-```
-#!ruby
+```ruby
 class PostsController < ApplicationController
   respond_to :html
 

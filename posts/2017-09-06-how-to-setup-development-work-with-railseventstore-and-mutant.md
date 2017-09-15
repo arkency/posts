@@ -32,8 +32,7 @@ If you’re a Mac user, simply `brew install watchman`. More in the [installatio
 
 What’s the **magic** command to use with any part of `RailsEventStore` then?
 
-```
-#!shell
+```bash
 watchman-make -p '**/*_spec.rb' '**/*.rb' 'Makefile' -t mutate
 ```
 

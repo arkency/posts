@@ -27,8 +27,7 @@ To workaround this problem you need to store the file somewhere.
 
 MongoDB allows us to store files smaller than 16MB as a string in DB. We can simply do it by putting all the data in _file\_data_ attribute. 
 
-```
-#!ruby
+```ruby
 class FileContainer
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -60,8 +59,7 @@ _mongoid-grid\_fs_. The lib gives us access to methods such as:
 - grid\_fs.delete(id) - to delete file
 
 
-```
-#!ruby
+```ruby
 require 'mongoid/grid_fs'
 
 class FileContainer

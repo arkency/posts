@@ -27,8 +27,7 @@ If there's a match of `CustomerConfirmedMenu` and `CatererConfirmedMenu` for the
 
 Given the tools from `RailsEventStore` ecosystem I use on a daily basis, the implementation might look more or less like this:
 
-```
-#!ruby
+```ruby
 class CateringMatch
   class State < ActiveRecord::Base
     self.table_name = :catering_match_state
@@ -72,8 +71,7 @@ end
 
 This process manager is then enabled by following `RailsEventStore` instance configuration:
 
-```
-#!ruby
+```ruby
 RailsEventStore::Client.new.tap do |client|
   client.subscribe(CateringMatch.new(command_bus: command_bus),
     [CustomerConfirmedMenu, CatererConfirmedMenu])
@@ -90,8 +88,7 @@ We already know how to persist events — that's what we use `RailsEventStore` f
 
 My first take on event sourced process manager looked something like this:
 
-```
-#!ruby
+```ruby
 require 'aggregate_root'
 
 module EventSourcing
@@ -173,8 +170,7 @@ When process manager is executed, we load already processed events from stream (
 
 In theory that could work, I could already feel that dopamine kick after job well done. In practice, the reality brought me this:
 
-```
-#!sql
+```sql
 Failure/Error: event_store.append_to_stream(event, stream_name: stream_name)
 
 ActiveRecord::RecordNotUnique:
@@ -193,8 +189,7 @@ Given the `RailsEventStore` limitation I had to figure out something else. The i
 
 There's this `RailsEventStore::Projection` mechanism, which let's you traverse multiple streams in search for particular events. When one is found, given lambda is called. Sounds familiar? Let's see it in full shape:
 
-```
-#!ruby
+```ruby
 class CateringMatch
   class State
     def initialize(event_store:, stream_name:)
@@ -244,8 +239,7 @@ Implementation is noticeably shorter (thanks to hidden parts of `RailsEventStore
 I cannot however say I fully like it. The smell for me is that we peek into the stream that does not exclusively belong to the process manager (it does belong to aggregate into whose stream `CustomerConfirmedMenu` and `CatererConfirmedMenu` were published).
 Another culprit comes when testing. Projection can only work with events persisted in streams, so it is not sufficient to only pass an event as an input to process manager. You have to additionally persist it.
 
-```
-#!ruby
+```ruby
 RSpec.describe CateringMatch do
   facts = [
     CustomerConfirmedMenu.new(data: { order_id: '42' }),

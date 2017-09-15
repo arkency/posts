@@ -41,8 +41,7 @@ The thing is, if you just use `system` it's not enough. You need to invoke `bash
 
 So, I ended up with this:
 
-```
-#!ruby
+```ruby
   def open_draft_in_editor
     system("bash", "-lic", "ia #{path}")
   end

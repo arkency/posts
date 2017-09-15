@@ -41,8 +41,7 @@ In [chillout](https://get.chillout.io) we use it to collect and send a number of
 
 The code is very simple and nicely explained in [Sidekiq documentation](https://github.com/mperham/sidekiq/wiki/Middleware) so if you want to build your own logging or monitoring, it's not hard.
 
-```
-#!ruby
+```ruby
 class SidekiqMonitor
   def initialize(options)
     @client = options.fetch(:client)
@@ -102,8 +101,7 @@ Effect (click to enlarge):
 
 Testing middlewares is also easy:
 
-```
-#!ruby
+```ruby
   def setup
     @client = mock("Client")
     Sidekiq::Testing.server_middleware.add SidekiqMonitor,

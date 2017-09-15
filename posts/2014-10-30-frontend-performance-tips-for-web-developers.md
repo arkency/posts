@@ -55,8 +55,7 @@ In this blogpost I'll focus on the following things:
 
 I'd like to focus on how we're loading scripts in our `html` pages. It's usually something like:
 
-```
-#!html
+```html
 <!-- HTML4 and (x)HTML -->
 <script type="text/javascript" src="javascript.js"></script>
 
@@ -68,8 +67,7 @@ It's so called *normal execution*, which is **the default behavior** that pauses
 
 ## `defer`
 
-```
-#!html
+```html
 <script defer src="javascript.js" onload="init()"></script>
 ```
 
@@ -83,8 +81,7 @@ A positive effect of this attribute is that the **DOM will be available for your
 
 ## `async`
 
-```
-#!html
+```html
 <script async src="javascript.js" onload="init()"></script>
 ```
 
@@ -126,8 +123,7 @@ While loading JavaScripts in different ways is pretty *natural*, loading CSS asy
 
 ## `dns-prefetch`
 
-```
-#!html
+```html
 <link rel="dns-prefetch" href="https://api.twitter.com" />
 ```
 
@@ -143,8 +139,7 @@ Prefetching is performed in the background, so that the DNS is likely to already
 
 `preconnect` is used to indicate origins from which resources will be fetched.
 
-```
-#!html
+```html
 <link rel="preconnect" href="//www.example.com">
 ```
 
@@ -154,8 +149,7 @@ You can use `preconnect` to pre-open a new TCP connection so the browser can do 
 
 ## `prefetch`
 
-```
-#!html
+```html
 <!-- full page -->
 <link rel="prefetch" href="http://blog.arkency.com/2014/09/react-dot-js-and-google-charts/" />
 
@@ -174,8 +168,7 @@ Keep in mind that prefetching does work across domains, including pulling cookie
 
 ## `prerender`
 
-```
-#!html
+```html
 <link rel="prerender" href="http://example.org/index.html">
 ```
 
@@ -185,8 +178,7 @@ Prerendering extends the concept of prefetching. Instead of just downloading the
 
 ## `subresource`
 
-```
-#!html
+```html
 <link rel=subresource href="critical/app.js">
 <link rel=subresource href="critical/style.css">
 ```
@@ -199,8 +191,7 @@ Prerendering extends the concept of prefetching. Instead of just downloading the
 - If you use prefetching on your website and the visitor browser do not support prefetching, nothing will happen. It is safe to use prefetching as browsers will either implement it, or completely ignore it.
 - Google Chrome do not use the prefetch attribute and use prerender instead. This means that you have to implement both prefetch and prerender, as shown in the example below:
 
-```
-#!html
+```html
 <link rel="prefetch"  href="http://www.example.com/"> <!-- Firefox -->
 <link rel="prerender" href="http://www.example.com/"> <!-- Chrome  -->
 ```
@@ -220,8 +211,7 @@ GoogleAnalytics provides asynchronous syntax for loading tracking script.
 
 The snippet below represents the minimum configuration needed to track a page asynchronously. It uses `_setAccount` to set the page's web property ID and then calls `_trackPageview` to send the tracking data back to the Google Analytics servers.
 
-```
-#!javascript
+```javascript
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

@@ -21,8 +21,7 @@ Let's think about it for a moment. Imagine we have a `Customer` object
 and we need to keep it somewhere between the restarts of our application (not necessarily Rails application).
 So what do we do ? We use serialization to store it in a file. May it be binary format, JSON, XML or YAML:
 
-```
-#!ruby
+```ruby
 require 'yaml'
 
 class Customer < Struct.new(:first_name, :last_name, :email) # Or ActiveRecord::Base
@@ -74,8 +73,7 @@ Presenter, for me, in API requests has a role similar to the _View_ layer in cla
 We want a layer whose responsibility is to build the response data. And we want it to be separated from our
 domain and most likely contain some presentation logic that should not be in model.
 
-```
-#!ruby
+```ruby
 class CustomerPresenter
   attr_accessor :customer
   delegate :full_name, to: :customer
@@ -95,8 +93,7 @@ end
 You look at that `as_json` method and you know from the first look what is being sent to your API clients.
 How do you use it in a controller ?
 
-```
-#!ruby
+```ruby
 class CustomersController < ApplicationController
   respond_to :json
 
@@ -117,8 +114,7 @@ email of a customer so we might compute Gravatar url and give it the consumer. W
 to write such logic in our model (and it is not that bad idea) but because it is of no use to our app,
 I would prefer to have a method for that in the presenter itself.
 
-```
-#!ruby
+```ruby
 class CustomerPresenter
   attr_accessor :customer
   delegate :full_name, :email, to: :customer
@@ -149,8 +145,7 @@ There is a feature that customer can be notified about promotions and other even
 sending request to URL that we have available under `customer_notification_url` route method in our controller.
 We would like to send it also to the API clients of our app.
 
-```
-#!ruby
+```ruby
 class CustomerPresenter
   attr_accessor :customer, :url_generator
 
@@ -184,8 +179,7 @@ end
 
 And the controller:
 
-```
-#!ruby
+```ruby
 class CustomersController < ApplicationController
   respond_to :json
 
@@ -202,8 +196,7 @@ end
 You can simply have you presenter talk multiple dialects by including
 [`ActiveModel::Serializers`](http://api.rubyonrails.org/classes/ActiveModel/Serializers.html) :
 
-```
-#!ruby
+```ruby
 class CustomerPresenter
 
   include ActiveModel::Serializers::JSON
@@ -253,8 +246,7 @@ end
 
 And embrace it in your controller by responding to multiple mime types:
 
-```
-#!ruby
+```ruby
 class CustomersController < ApplicationController
   respond_to :json, :xml
 
@@ -271,8 +263,7 @@ end
 I am also a big fan of [`decent_exposure`](https://github.com/voxdolo/decent_exposure)
 and love how the controllers look when using it:
 
-```
-#!ruby
+```ruby
 class CustomersController < ApplicationController
   respond_to :json, :xml
 
@@ -299,8 +290,7 @@ end
 It might happen that different usecases demend different presentation. We might need a different value
 or additional field. I heard you like inheritance:
 
-```
-#!ruby
+```ruby
 class Admin::CustomerPresenter < ::CustomerPresenter
   def attributes
     @admin_attributes ||= super.merge(
@@ -318,8 +308,7 @@ end
 
 Or maybe you prefer dynamic mixins ?
 
-```
-#!ruby
+```ruby
 module Admin::CustomerPresenter
   def attributes
     @admin_attributes ||= super.merge(
@@ -340,8 +329,7 @@ presenter.extend(Admin::CustomerPresenter)
 
 Delegation ?
 
-```
-#!ruby
+```ruby
 class Admin::CustomerPresenter
   include ActiveModel::Serializers::JSON
   include ActiveModel::Serializers::Xml

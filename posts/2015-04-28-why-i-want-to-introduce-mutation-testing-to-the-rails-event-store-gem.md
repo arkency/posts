@@ -17,8 +17,7 @@ Let me start with one example. In this example, [mutant](https://github.com/mbj/
 
 In the RailsEventStore (RES) implementation, we use the concept of a Broker. The broker allows subscribing to certain kinds of events. As part of the subscription we pass the subscriber object. In the current implementation, we expect that such a subscriber has a `handle_event` method.
 
-```
-#!ruby
+```ruby
 module RailsEventStore
   module PubSub
     class Broker
@@ -41,8 +40,7 @@ When the `raise MethodNotDefined    unless subscriber.methods.include? :handle_e
 
 Let’s turn this line into this:
 
-```
-#!ruby
+```ruby
 if !subscriber.methods.include? :handle_event
 	raise MethodNotDefined
 end
@@ -95,8 +93,7 @@ My goal is to setup Travis to run the mutation tests on every push. Also, I’d 
 
 This is an [example output](https://travis-ci.org/arkency/rails_event_store/builds/60342041) of the mutant run on a Travis machine. It’s worth looking at, as you can see the full output. Mutant shows us every alive mutation - the ones that don’t break tests. One example:
 
-```
-#!ruby
+```ruby
  def version_incorrect?(stream_name, expected_version)
    unless expected_version.nil?
 -    find_last_event_version(stream_name) != expected_version

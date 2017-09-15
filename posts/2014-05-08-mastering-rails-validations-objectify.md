@@ -30,8 +30,7 @@ our [Fearless Refactoring: Rails Controllers](http://rails-refactoring.com/)
 book as an intermediary step).
 
 
-```
-#!ruby
+```ruby
 class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
@@ -39,8 +38,7 @@ class UserEditedByAdminValidator < SimpleDelegator
 end
 ```
 
-```
-#!ruby
+```ruby
 user = User.find(1)
 user.attributes = {slug: "summertime-blues"}
 
@@ -67,8 +65,7 @@ But let's go one step further and drop the nice DSL-alike
 methods such as [`validates_length_of`](http://api.rubyonrails.org/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_length_of)
 that Rails used to bought us and that we all love, to see what's [beneath them](https://github.com/rails/rails/blob/fe49f432c9a88256de753a3f2263553677bd7136/activemodel/lib/active_model/validations/length.rb#L119).
 
-```
-#!ruby
+```ruby
 class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
@@ -87,8 +84,7 @@ When you dig deeper you can see that one of
 responsibilities is to actually finally [create an **instance** of validation
 rule](https://github.com/rails/rails/blob/bdf9141c039afc7ce56d6c69cfe50b60155e5359/activemodel/lib/active_model/validations/with.rb#L89).
 
-```
-#!ruby
+```ruby
 class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
@@ -103,8 +99,7 @@ Let's create an instance of such rule ourselves and give it a **name**.
 We are going to do it by simply assigning it to a constant.
 That is one, really global name, I guess :)
 
-```
-#!ruby
+```ruby
 SlugMustHaveAtLeastOneCharacter =
   ActiveModel::Validations::LengthValidator.new(
     attributes: [:slug],
@@ -125,8 +120,7 @@ for different contexts.
 
 The rules:
 
-```
-#!ruby
+```ruby
 SlugMustStartWithU =
   ActiveModel::Validations::FormatValidator.new(
     attributes: [:slug],
@@ -148,8 +142,7 @@ SlugMustHaveAtLeastThreeCharacters  =
 
 Validators that are using them:
 
-```
-#!ruby
+```ruby
 class UserEditedByAdminValidator < SimpleDelegator
   include ActiveModel::Validations
 
@@ -176,8 +169,7 @@ or subtract other rules.
 
 Rules definitions:
 
-```
-#!ruby
+```ruby
 
 format_validator = ActiveModel::Validations::FormatValidator
 length_validator = ActiveModel::Validations::LengthValidator
@@ -209,8 +201,7 @@ end
 
 Validators using the rules:
 
-```
-#!ruby
+```ruby
 CommonValidations = [SlugMustStartWithU, SlugMustEndWithZ]
 
 class UserEditedByAdminValidator < SimpleDelegator
@@ -238,8 +229,7 @@ first example, the `#errors` that are filled are defined on the
 validator object.
 
 
-```
-#!ruby
+```ruby
 validator = UserEditedByAdminValidator.new(user)
 unless validator.valid?
   puts validator.errors.full_messages
@@ -251,8 +241,7 @@ But you can easily overwrite the
 by delegating them to the validated object, which in our case
 is `#user`.
 
-```
-#!ruby
+```ruby
 class UserEditedByAdminValidator
   include ActiveModel::Validations
 

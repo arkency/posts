@@ -115,8 +115,7 @@ I could not easily navigate to an interesting place in RubyMine so I just starte
 
 The first place that I felt I am on a known ground was around files in `lib/account_component/messages/commands/` which include commands such as:
 
-```
-#!ruby
+```ruby
 # lib/account_component/messages/commands/deposit.rb
 module AccountComponent
   module Messages
@@ -140,8 +139,7 @@ commands are for telling services/handlers what to do. They're just data structu
 
 In `lib/account_component/handlers/commands.rb` and `lib/account_component/handlers/commands/transactions.rb` you can find handlers and the logic for processing those commands. I won't show the whole code. It's pretty interesting. Just the most important snippets.
 
-```
-#!ruby
+```ruby
 
   category :account
 
@@ -170,15 +168,13 @@ What I recognized immediately was:
 
 * getting account in its current version based on historically stored domain events.
 
-```
-#!ruby
+```ruby
 account, version = store.fetch(account_id, include: :version)
 ```
 
 * saving new domain events in the account stream using optimistic concurrency (we expect the version has not changed since we got it last time)
 
-```
-#!ruby
+```ruby
 write.(opened, stream_name, expected_version: version)
 ```
 
@@ -186,8 +182,7 @@ The other interesting parts are:
 
 * What seems to me like preserving idempotent behavior. Don't do anything if asked to `Open` account when the account is already `open?`
 
-```
-#!ruby
+```ruby
 if account.open?
   return
 end
@@ -195,8 +190,7 @@ end
 
 * building new domain event with all the data
 
-```
-#!ruby
+```ruby
 opened = Opened.follow(open)
 opened.processed_time = time
 ```
@@ -207,8 +201,7 @@ But at that point I could not easily navigate to `follow` method to check its im
 
 Anyway `Opened` is a domain event. Let's see it:
 
-```
-#!ruby
+```ruby
 # lib/account_component/messages/events/opened.rb
 module AccountComponent
   module Messages
@@ -237,8 +230,7 @@ Here is an interesting thing:
 > A handler might also respond (or react) to events by other services, or it might respond to events published by its own service (when a service calls itself).
 
 
-```
-#!ruby
+```ruby
 # lib/account_component/handlers/events.rb
 
   handle Withdrawn do |withdrawn|
@@ -260,8 +252,7 @@ Here is an interesting thing:
 
 Events and commands are messages in EventIDE. Apparently there is also one more class of messages: Replies.
 
-```
-#!ruby
+```ruby
 # lib/account_component/messages/replies/record_withdrawal.rb
 module AccountComponent
   module Messages
@@ -283,8 +274,7 @@ I haven't yet figured out what Replies are used for. It seems interesting.
 
 I wonder where is the logic for changing account balance or checking if the funds are sufficient for withdrawal. Let's find out.
 
-```
-#!ruby
+```ruby
 # lib/account_component/account.rb
 module AccountComponent
   class Account
@@ -330,8 +320,7 @@ end
 
 It's interesting that even though the model is event sourced you don't see it when looking at it. Let's find the place responsible for rebuilding model state based on domain events.
 
-```
-#!ruby
+```ruby
 # lib/account_component/projection.rb
 module AccountComponent
   class Projection
@@ -405,8 +394,7 @@ So far we haven't looked at these files in `controlers` directory. I wonder what
 
 ### Controls
 
-```
-#!ruby
+```ruby
 lib/account_component/controls/commands/close.rb
 module AccountComponent
   module Controls
@@ -422,8 +410,7 @@ module AccountComponent
         end
 ```
 
-```
-#!ruby
+```ruby
 # lib/account_component/controls/events/withdrawn.rb
 module AccountComponent
   module Controls
@@ -444,8 +431,7 @@ module AccountComponent
         end
 ```
 
-```
-#!ruby
+```ruby
 # lib/account_component/controls/account.rb
 module AccountComponent
   module Controls

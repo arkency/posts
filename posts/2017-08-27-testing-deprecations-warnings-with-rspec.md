@@ -27,8 +27,7 @@ What we did:
 
 This is the whole implementation:
 
-```
-#!ruby
+```ruby
  module RubyEventStore
   def self.const_missing(const_name)
     super unless const_name.equal?(:MethodNotDefined)
@@ -48,8 +47,7 @@ We have 3 requirements here:
 
 which nicely turns into this RSpec code:
 
-```
-#!ruby
+```ruby
 
 RSpec.describe "RubyEventStore.const_missing" do
   it "makes sure we use InvalidHandler instead of MethodNotDefined" do
@@ -65,8 +63,7 @@ end
 
 The first spec goes like that:
 
-```
-#!ruby
+```ruby
 
   it "makes sure we use InvalidHandler instead of MethodNotDefined" do
     expect(RubyEventStore::MethodNotDefined).to(eq(RubyEventStore::InvalidHandler))
@@ -75,8 +72,7 @@ The first spec goes like that:
 
 The second spec:
 
-```
-#!ruby
+```ruby
 
   it "still crashes for other missing consts" do
     expect(-> {RubyEventStore::FooBarNotExisting}).to(raise_error(NameError))
@@ -85,8 +81,7 @@ The second spec:
 
 The third one was a bit more complex. We rely on `.warn` method which is built-in in Ruby. Its result is to output a message to $stderr. There are several ways to approach this. We can either mock the `.warn` method, or we can wrap the whole thing with some kind of `UIAdapter` which just happens to have `.warn` as the implementation detail (but we still need to test the new class). The last solution is to make sure the effect is valid - we see some output on $stderr, which can be done by introducing a FakeStdErr class.
 
-```
-#!ruby
+```ruby
 
 class FakeStdErr
   attr_accessor :messages
@@ -103,8 +98,7 @@ end
 
 Then the spec looks like this:
 
-```
-#!ruby
+```ruby
 
 it "warns the developer about the deprecation" do
     begin
@@ -122,8 +116,7 @@ it "warns the developer about the deprecation" do
 
 It's also worth noting, that most developers will rely on the RailsEventStore gem, which is the umbrella gem for all the ecosystem here. However, RailsEventStore is only a simple wrapper over the RubyEventStore gem. In particular it means we wrap the public exceptions with a code like this:
 
-```
-#!ruby
+```ruby
 
 module RailsEventStore
   Event                     = RubyEventStore::Event

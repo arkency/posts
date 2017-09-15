@@ -24,8 +24,7 @@ I won't run into details of konacha installation, but I recommend you to use ```
 
 You shouldn't start with complicated tests of your views or any other hard piece of code. Start with testing small model or value object. Here's how I would test Money value object:
 
-```
-#!coffeescript
+```coffeescript
 #= require money
 
 describe "Money", ->
@@ -63,8 +62,7 @@ Let's get back to assertions. ```#expect``` function wraps result that we want t
 
 Ok, you know how to write tests, but how can you run them? While developing feature it might be useful to run all tests in browser - it will be easier to debug by using ```console.log``` or browser's debugger. You can serve all tests using following command:
 
-```
-#!bash
+```bash
 $ rake konacha:serve
 ```
 
@@ -72,8 +70,7 @@ It will run server on http://localhost:3500/ with mocha.js HTML reporter.
 
 You can also run all tests with command line - you just have to use selenium or any headless browser. Konacha uses capybara as browser driver, so you can use any of provided capybara drivers like webkit, poltergeist etc. To run tests in command line just execute:
 
-```
-#!bash
+```bash
 $ rake konacha:run
 ```
 

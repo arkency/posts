@@ -39,8 +39,7 @@ and the same types of values in them.
 For that I used `classy_hash` gem which raises
 useful exceptions when things don't match.
 
-```
-#!ruby
+```ruby
 class PaymentNeedsMoreTime < RailsEventStore::Event
   SCHEMA = {
     order_id:             Integer,
@@ -67,8 +66,7 @@ So instead when you want to verify the schema (in 97% of cases)
 you should just use the `strict` method to create the event
 instead of `new`.
 
-```
-#!ruby
+```ruby
 stream_name = "payment_#{payment.id}"
 event = PaymentNeedsMoreTime.strict(
   order_id: payment.order_id,

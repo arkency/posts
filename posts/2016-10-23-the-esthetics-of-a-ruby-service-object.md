@@ -17,8 +17,7 @@ You can read the first part of the story in the blogpost where I talked how this
 
 The final result was the following:
 
-```
-#!ruby
+```ruby
 
 class CreateNewPostFromTemplate
 
@@ -50,8 +49,7 @@ Today, I was trying to optimize and automate my blogging flow. This involved:
 
 The code ended up looking like this:
 
-```
-#!ruby
+```ruby
 class PublishNewDraftFromAndrzejTemplate
 
   def initialize(title, date)
@@ -81,8 +79,7 @@ followed by this:
 which got me thinking and inspired to write this blogpost (thanks Paweł!).
 
 
-```
-#!ruby
+```ruby
 
   def call
     create_local_markdown_file_based_on_template
@@ -120,8 +117,7 @@ I'm not aware of all FP techniques, but being explicit with input/output of each
 
 But let's focus on the input arguments part. What if we explicitly add them?
 
-```
-#!ruby
+```ruby
 
   def call(title, date)
     create_local_markdown_file_based_on_template(title, date)

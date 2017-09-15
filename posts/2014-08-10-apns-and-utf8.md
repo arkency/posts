@@ -29,8 +29,7 @@ push notification is easy?
 
 ## Desired payload
 
-```
-#!bash
+```bash
       {
         aps: {
           alert: "'User X' started following you",
@@ -47,8 +46,7 @@ following. The things that are going to vary are user name (_User X_ in our exam
 
 So let's extract the template of the payload into a method. This will come handy later:
 
-```
-#!ruby
+```ruby
   def payload_template(user_name, user_id)
     {
       aps: {
@@ -63,16 +61,14 @@ So let's extract the template of the payload into a method. This will come handy
 
 Remember when I said that we have 256 bytes? We do, but number of useful bytes for our case is even smaller.
 
-```
-#!ruby
+```ruby
 payload_template("", "").to_json.bytesize
 # => 73
 ```
 
 Even when we don't substitute data into our payload we are out of 73 bytes. That means we have only...
 
-```
-#!ruby
+```ruby
   MAX_APS_BYTES = 256
   def payload_arg_max_size
     MAX_APS_BYTES - payload_without_args_size
@@ -99,8 +95,7 @@ the recipient of the notification. So even though its length vary, we can't trun
 We can see that the logic for this is slowly getting more and more complicated. That's why for every push notification
 we have a class that encapsulates the logic of formatting it properly according to APNS rules.
 
-```
-#!ruby
+```ruby
 class StartedFollowing < Struct.new(:user_name, :user_id)
   def payload
     # ...
@@ -136,8 +131,7 @@ use [`String#byteslice`](http://www.ruby-doc.org/core-2.1.2/String.html#method-i
 
 It's all nice and handy if we happen to truncate exactly between characters.
 
-```
-#!ruby
+```ruby
 "łøü".bytes
 # => [197, 130, 195, 184, 195, 188]
 
@@ -147,8 +141,7 @@ It's all nice and handy if we happen to truncate exactly between characters.
 
 But sometimes we won't:
 
-```
-#!ruby
+```ruby
 "łøü".byteslice(0, 3)
  => "ł\xC3"
 ```
@@ -163,16 +156,14 @@ who are stuck with older ruby version, there is backport of it in form of
 So if you ever need to truncate user provided utf-8 string and support international characters `byteslice` + `scrub`
 will do the job for you:
 
-```
-#!ruby
+```ruby
 "łøü".byteslice(0, 3).scrub("")
  => "ł"
 ```
 
 ## Full solution
 
-```
-#!ruby
+```ruby
 require 'string-scrub' unless String.instance_methods.include?(:scrub)
 require 'json'
 
@@ -236,8 +227,7 @@ just to make sure that everything is ok with my approach and catch errors early 
 In my case it turned out my json encoder was using [numeric escape characters](http://stackoverflow.com/questions/583562/json-character-encoding-is-utf-8-well-supported-by-browsers-or-should-i-use-nu),
 so they way I calculated the size of my truncated size was wrong because in JSON it turned out to be bigger:
 
-```
-#!ruby
+```ruby
 puts "łøü".to_json
 # => "łøü"
 "łøü".to_json.bytesize
@@ -246,8 +236,7 @@ puts "łøü".to_json
 
 vs
 
-```
-#!ruby
+```ruby
 irb(main):059:0> puts "łøü".to_json
 # => "\u0142\u00f8\u00fc"
 
@@ -257,8 +246,7 @@ irb(main):059:0> puts "łøü".to_json
 
 So I extracted the code responsible to truncating one string into a class
 
-```
-#!ruby
+```ruby
 class TruncateStringWithMbChars
   def initialize(string_with_mb_chars, maxbytes)
     @string_with_mb_chars = string_with_mb_chars
@@ -301,8 +289,7 @@ for each substituted string in naive implementation. But I wanted the algorithm 
 case when some names are long and some are short. My algorithm for truncating multiple strings so that they
 all use no more than N bytes looks like this:
 
-```
-#!ruby
+```ruby
 class TruncateMultipleStrings
   def initialize(strings, maxjsonbytes)
     @strings      = strings
@@ -341,8 +328,7 @@ Be aware that it doesn't favor any of the String. If they are all very long, the
 be allowed to use same amount of bytes. If any of the strings is short, then the unused bytes are split equally amongst
 the other strings.
 
-```
-#!ruby
+```ruby
 TruncateMultipleStrings.new(
   ["short", "medium medium", "long "*30], 60
 ).call
@@ -373,8 +359,7 @@ TruncateMultipleStrings.new(
 
 Here is an example of class that could be using it
 
-```
-#!ruby
+```ruby
 class GameInvited < Struct.new(:user1, :user2, :game_name, :game_id)
   InvalidPayloadGenerated = Class.new(StandardError)
 

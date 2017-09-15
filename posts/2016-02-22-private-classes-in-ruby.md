@@ -21,8 +21,7 @@ so that others are not tempted to use it? So that it is clear that it is an **im
 I recently noticed that many people don't know that since Ruby 1.9.3 you can make a constant private. And that's
 your answer to _how_.
 
-```
-#!ruby
+```ruby
 class Person
   class Secret
     def to_s
@@ -40,16 +39,14 @@ end
 The `Person` class can use `Secret` freely:
 
 
-```
-#!ruby
+```ruby
 Person.new.show_secret
 # => 1234vW74X&
 ```
 
 But others cannot access it.
 
-```
-#!ruby
+```ruby
 Person::Secret.new.to_s
 # NameError: private constant Person::Secret referenced
 ```

@@ -13,8 +13,7 @@ Using commands is an important part of a DDD/CQRS-influenced architecture. In th
 
 Let's first look at what a command may look like:
 
-```
-#!ruby
+```ruby
 
 class AddCostCode < Dry::Types::Struct
   attribute :code, Types::String
@@ -27,8 +26,7 @@ As you see, it's just a data structure. We've used DryTypes here, but you can us
 
 Now, let's look how it's used from a Rails controller:
 
-```
-#!ruby
+```ruby
 
 class CostCodesController < ApplicationController
   def create
@@ -43,8 +41,7 @@ end
 
 The `execute` method is defined in the `ApplicationController` as it is used from many controllers:
 
-```
-#!ruby
+```ruby
 
 class ApplicationController < ActionController::Base
 
@@ -60,8 +57,7 @@ end
 
 So, there's a `CommandExecutor` class which is responsible for dispatching commands.
 
-```
-#!ruby
+```ruby
 
 class CommandExecutor
   include EventStoreConfiguration
@@ -91,8 +87,7 @@ end
 
 In this case, we declare a dedidacted command handler, called `AddCostCodeHandler`.
 
-```
-#!ruby
+```ruby
 class AddCostCodeHandler < CommandHandler
   attr_reader :repository
 
@@ -111,8 +106,7 @@ end
 
 What is the `CommandHandler` class which we inherit from?
 
-```
-#!ruby
+```ruby
 class CommandHandler
   protected
   def aggregate(aggregate_type, *aggregate_id, &block)
@@ -142,8 +136,7 @@ end
 
 We use a full-CQRS approach here together with event sourcing and aggregates. Let's look at the aggregate here:
 
-```
-#!ruby
+```ruby
 class CompanyCostCentre
   include AggregateRoot::Base
 
@@ -171,8 +164,7 @@ This means, that we're publishing a successful `CostCodeAdded` event, which can 
 
 How are the events then connected?
 
-```
-#!ruby
+```ruby
 module EventStoreConfiguration
   def event_store
     @client ||= RailsEventStore::Client.new.tap do |client|
@@ -182,8 +174,7 @@ module EventStoreConfiguration
 end
 ```
 
-```
-#!ruby
+```ruby
 class BuildCostCodeReadModel
 
   def call(event)
@@ -200,8 +191,7 @@ end
 
 In which, the CompanyCostCode is just a normal ActiveRecord class:
 
-```
-#!ruby
+```ruby
 class CompanyCostCode < ActiveRecord::Base
   def self.all_for_company(company)
     where(company_id: company.id)

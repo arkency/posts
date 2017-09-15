@@ -84,8 +84,7 @@ Gulp operates on tasks. Task can be a function or an array of tasks to be perfor
 
 Let’s create a first task which does nothing:
 
-```
-#!javascript
+```javascript
 var gulp;
 
 gulp = require('gulp');
@@ -107,8 +106,7 @@ $ gulp task
 
 You can now add it to be ran by default by running just `gulp`:
 
-```
-#!javascript
+```javascript
 
 var gulp;
 
@@ -146,8 +144,7 @@ npm install --save-dev gulp-sass
 
 It can be done by creating two tasks - `compile-sass` and `compile-scss` to compile both `sass` and `scss` files:
 
-```
-#!javascript
+```javascript
 
 var gulp, sass;
 
@@ -191,8 +188,7 @@ npm install --save-dev gulp-sourcemaps
 
 Then modify your tasks:
 
-```
-#!javascript
+```javascript
 
 var gulp, sass, sourcemaps;
 
@@ -221,8 +217,7 @@ gulp.task('compile-scss', function() {
 
 Now change your `app/assets/stylesheets/application.css` to `app/assets/stylesheets/application.sass`. For this example:
 
-```
-#!sass
+```sass
 body
   backgroundColor: red
 ```
@@ -264,8 +259,7 @@ npm install --save-dev browserify coffeeify vinyl-source-stream
 
 Then, create a `compile-coffee` task and add it to default list:
 
-```
-#!javascript
+```javascript
 
 var gulp, sass, sourcemaps, browserify, coffeeify, source;
 
@@ -314,8 +308,7 @@ npm install --save-dev jquery
 
 And then in code:
 
-```
-#!coffeescript
+```coffeescript
 
 $ = require('jquery')
 ```
@@ -328,8 +321,7 @@ Ok, so basic compilation of assets is done. But we also need to watch for change
 
 Gulp provides a `gulp.watch` method, which takes a glob path (with `*`) and a task to perform if files change. So here’s how watching for scss/sass change can be made:
 
-```
-#!javascript
+```javascript
 
 gulp.task('watch', ['watch-sass', 'watch-scss']);
 
@@ -355,8 +347,7 @@ npm install --save-dev watchify lodash gulp-util
 
 Then, modify your `Gulpfile`:
 
-```
-#!javascript
+```javascript
 var gulp, sass, sourcemaps, browserify, coffeeify, source, util, watchify, _;
 
 gulp = require('gulp');

@@ -83,8 +83,7 @@ And "fit" version that is as wide as it can be on a tablet in landscape position
 
 The code for doing that is pretty straightforward and uses ImageMagick `convert` binary:
 
-```
-#!ruby
+```ruby
 class Thumbnailize < Nanoc::Filter
   identifier :thumbnailize
   type       :binary
@@ -101,8 +100,7 @@ class Thumbnailize < Nanoc::Filter
 end
 ```
 
-```
-#!ruby
+```ruby
 compile '/assets/images/*/', rep: :thumbnail do
    filter :thumbnailize, :width => '160x160'
 end
@@ -131,8 +129,7 @@ Other nice optimization are yet to be added such as:
 Nothing fancy here, we use good, old [pygments](http://pygments.org/) with
 a [ruby wrapper](https://github.com/tmm1/pygments.rb) .
 
-```
-#!ruby
+```ruby
 compile '/posts/*/' do
   filter :erb
   filter :redcarpet, options: {
@@ -146,8 +143,7 @@ end
 
 Does it look good ? You bet :) Here is an example:
 
-```
-#!ruby
+```ruby
 class AviaryController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
@@ -173,8 +169,7 @@ metadata to every post.
 At the end of post layout file we use custom `#newsletter` helper method to output proper code
 based on the metadata. If we ever decide to change it, we can do so in one place.
 
-```
-#!html+erb
+```html+erb
 <section class='metadata'>
   <p class='date'>
     <time datetime="<%%= post_date(item, :iso) %>" pubdate>
@@ -199,8 +194,7 @@ based on the metadata. If we ever decide to change it, we can do so in one place
 
 Here is the simplified version of the helper:
 
-```
-#!ruby
+```ruby
 module NewsletterHelper
   Newsletters = {
     arkency: {
@@ -245,8 +239,7 @@ Before we publish a new post we first ask for opinion our coworkers. We show the
 deploying to different internal host visible only for those connected via VPN. Nanoc supports
 multiple deployments natively in `config.yaml` :
 
-```
-#!yaml
+```yaml
 deploy:
   default:
     kind: rsync

@@ -60,8 +60,7 @@ If we go with `rails g scaffold Article title:string text:string` we will have a
 structure generated. But it will use `NoBrainer` instead of `ActiveRecord`. Our
 document looks like that:
 
-```
-#!ruby
+```ruby
 class Article
   include NoBrainer::Document
   include NoBrainer::Document::Timestamps
@@ -81,8 +80,7 @@ Instead of using `html & erb` to display an article, we will play with a React c
 When written with CoffeeScript it looks similar to HAML. Of course you could go with
 [JSX](https://facebook.github.io/react/docs/displaying-data.html) if that's your flavor.
 
-```
-#!coffeescript
+```coffeescript
 DOM = React.DOM
 
 window.ShowArticle = React.createClass
@@ -109,8 +107,7 @@ And with `prerender: true` they even render the component server-side
 first and then react.js in a browser handles the lifecycle of that component. And
 interactions with it. And all that stuff that your UX is responsible for.
 
-```
-#!erb
+```erb
 <p id="notice"><%%= notice %%></p>
 
 <div class="well bs-component">
@@ -136,8 +133,7 @@ when the data changes. We are going to use [Server Sent Events](http://www.html5
 for that. It's a browser API for one way, server to browser communication over
 HTTP connection. It even has automatic re-connections built-in.
 
-```
-#!coffeescript
+```coffeescript
 ShowArticleFactory = React.createFactory(ShowArticle)
 
 $ ->
@@ -161,8 +157,7 @@ component in the same place.
 
 This is just a tiny wrapper for formatting data according to SSE spec.
 
-```
-#!ruby
+```ruby
 require 'json'
 
 class JsonSSE
@@ -186,8 +181,7 @@ a great blog-post by [Aaron Patterson where he introduced Live Streaming in 2012
 to get familiar with it.
 Yep, it was that long time ago. And [Rails documentation for `ActionController::Live`](http://api.rubyonrails.org/v4.2.1/classes/ActionController/Live.html)
 
-```
-#!ruby
+```ruby
 class StartController < ApplicationController
   include ActionController::Live
 
@@ -218,8 +212,7 @@ Here we use the feature of [changefeeds](http://rethinkdb.com/docs/changefeeds/r
 You can subscribe to changes from a table, a single document or even a query and be notified every time
 something changed. In our example we subscribe to `changes` from one document, the last Article:
 
-```
-#!ruby
+```ruby
 RethinkDB::RQL.new.table( Article.table_name ).get(Article.last.id)
 ```
 
@@ -268,8 +261,7 @@ achieve similar thing with RethinkDB:
 
 Subscribe to both notifications.
 
-```
-#!ruby
+```ruby
 rql = RethinkDB::RQL.new
 rql.table( Article.table_name ).filter({id: Article.first.id}).union(
   rql.table( "pings" ).filter({id: Process.pid})
@@ -280,8 +272,7 @@ end
 
 Send pings.
 
-```
-#!ruby
+```ruby
 r.db("rethinkapp_development").table("pings").
   insert({id: Process.pid, on: Time.now.to_i, ping: "ping"}).run
 

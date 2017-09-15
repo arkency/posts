@@ -32,8 +32,7 @@ Every change has to be reflected in model's state.
 Events should be named as verb in past tense. The name should represent `Ubiquitous Language` used in project. For example `CustomerCreated`, `OrderAccepted` and so on. 
 Implementation of event it is very simple. Here I have an example created by one of my team-mates in Ruby:
 
-```
-#!ruby
+```ruby
 module Domain
   module Events
     class OrderCreated

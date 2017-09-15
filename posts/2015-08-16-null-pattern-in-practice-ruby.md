@@ -65,8 +65,7 @@ when displaying the preview**.
 The code responsible for the situation (greatly oversimplified)
 looked like this:
 
-```
-#!html+erb
+```html+erb
 # show.html.haml
 = render 'events/tickets', {
     tickets: event.tickets,
@@ -75,8 +74,7 @@ looked like this:
   }
 ```
 
-```
-#!html+erb
+```html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
   = render 'events/ticket', { 
@@ -86,8 +84,7 @@ looked like this:
     }
 ```
 
-```
-#!html+erb
+```html+erb
 # events/_ticket.html.haml
 if !is_preview && ticket_pool.sold_out?
   = "Sold out"
@@ -100,8 +97,7 @@ the availability status of returned `ticket_pool`.
   
 For me it looked like a great case for applying Null Object Pattern.
 
-```
-#!ruby
+```ruby
 class PreviewEventPool
   class PreviewTicketPool
     def sold_out?
@@ -114,8 +110,7 @@ class PreviewEventPool
 end
 ```
 
-```
-#!ruby
+```ruby
 class Controller
   def preview
     event = current_user.events.find( params[:id] )
@@ -132,8 +127,7 @@ class Controller
   end
 ```
 
-```
-#!html+erb
+```html+erb
 # show.html.haml
 = render 'events/tickets', {
     tickets: event.tickets,
@@ -141,8 +135,7 @@ class Controller
   }
 ```
 
-```
-#!html+erb
+```html+erb
 # events/_tickets.html.haml
 - tickets.each do |ticket|
   = render 'events/ticket', { 
@@ -151,8 +144,7 @@ class Controller
     }
 ```
 
-```
-#!html+erb
+```html+erb
 # events/_ticket.html.haml
 if ticket_pool.sold_out?
   = "Sold out"

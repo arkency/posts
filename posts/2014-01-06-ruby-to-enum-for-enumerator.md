@@ -33,8 +33,7 @@ well then maybe external `Enumerator` is your solution.
 If you call the most famous `Array#each` method without a block, you will see that
 you get an enumerator in the response.
 
-```
-#!ruby
+```ruby
 
 e = [1,2,3].each
 # => #<Enumerator: [1, 2, 3]:each> 
@@ -42,8 +41,7 @@ e = [1,2,3].each
 
 You can manually fetch new elemens:
 
-```
-#!ruby
+```ruby
 e.next
 # => 1 
 
@@ -59,8 +57,7 @@ e.next
 
 Or use one of the `Enumerable` method that `Enumerator` gladly provides for you
 
-```
-#!ruby
+```ruby
 
 e = [1,2,3].each
 
@@ -80,8 +77,7 @@ But if you look into MRI implemention you will notice that both `#to_enum` and
 `#enum_for` are implemented in the same way:
 
 
-```
-#!cpp
+```cpp
 rb_define_method(rb_mKernel, "to_enum", obj_to_enum, -1);
 rb_define_method(rb_mKernel, "enum_for", obj_to_enum, -1);
 
@@ -111,8 +107,7 @@ What can `#to_enum` & `#enum_for` do for you? Well, they can create the
 the convention is to create the `Enumerator` based on method `#each`
 (no surprise here).
 
-```
-#!ruby
+```ruby
 a = [1,2,3]
 enumerator = a.to_enum(:each)
 ```
@@ -126,8 +121,7 @@ which I am just gonna paste here:
 
 _Iteration is defined by the given block, in which a “yielder” object, given as block parameter, can be used to yield a value_:
 
-```
-#!ruby
+```ruby
 fib = Enumerator.new do |y|
   a = b = 1
   loop do
@@ -143,8 +137,7 @@ _The optional parameter can be used to specify how to calculate the size in a la
 
 Here is my example:
 
-```
-#!ruby
+```ruby
 polish_postal_codes = Enumerator.new(100_000) do |y|
   100_000.times do |number|
     code    = sprintf("%05d", number)
@@ -174,8 +167,7 @@ Not much actually. Whenever your method `yield`s values, just use `#to_enum`
 `Enumerator` based on the method itself, if block code is not provided.
 Sounds complicated? It is not. Have a look at the example.
 
-```
-#!ruby
+```ruby
 require 'digest/md5'
 
 class UsersWithGravatar
@@ -208,8 +200,7 @@ share the collection without computing all the data.
 
 This might be really usefull, especially when the caller does not need to have it all:
 
-```
-#!ruby
+```ruby
 class PutUsersWithAvatarsOnFrontPage
   def users
     @users ||= UsersWithGravatar.new.each.take(20)
@@ -219,8 +210,7 @@ end
 
 Or when the caller wants to be a bit [`#lazy`](http://ruby-doc.org/core-2.1.0/Enumerable.html#method-i-lazy) :
 
-```
-#!ruby
+```ruby
 UsersWithGravatar.
   new.
   each.
@@ -237,8 +227,7 @@ different [story](http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-
 To be consistent with Ruby Standard Library behavior, please return
 `Enumerator` for your `yield`ing methods when block is not provided. Use this code 
 
-```
-#!ruby
+```ruby
 return enum_for(:your_method_name_which_is_usually_each) unless block_given?`
 ````
 

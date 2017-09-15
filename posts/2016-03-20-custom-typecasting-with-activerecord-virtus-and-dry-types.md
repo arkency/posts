@@ -24,8 +24,7 @@ And let's continue with the simple example of stripped string.
 
 ### Active Record 4.2+
 
-```
-#!ruby
+```ruby
 class StrippedString < ActiveRecord::Type::String
   def cast_value(value)
     value.to_s.strip
@@ -33,15 +32,13 @@ class StrippedString < ActiveRecord::Type::String
 end
 ```
 
-```
-#!ruby
+```ruby
 class Post < ActiveRecord::Base
   attribute :title, StrippedString.new
 end
 ```
 
-```
-#!ruby
+```ruby
 p = Post.new(title: " Use Rails ")
 p.title
 # => "Use Rails"
@@ -49,8 +46,7 @@ p.title
 
 ### Virtus
 
-```
-#!ruby
+```ruby
 class StrippedString < Virtus::Attribute
   def coerce(value)
     value.to_s.strip
@@ -58,8 +54,7 @@ class StrippedString < Virtus::Attribute
 end
 ```
 
-```
-#!ruby
+```ruby
 class Address
   include Virtus.model
   include ActiveModel::Validations
@@ -79,8 +74,7 @@ class Address
 end
 ```
 
-```
-#!ruby
+```ruby
 a = Address.new(city: " Wrocław ")
 a.city
 # => "Wrocław"
@@ -88,23 +82,20 @@ a.city
 
 ### dry-types 0.6
 
-```
-#!ruby
+```ruby
 module Types
   include Dry::Types.module
   StrippedString = String.constructor(->(val){ String(val).strip })
 end
 ```
 
-```
-#!ruby
+```ruby
 class Post < Dry::Types::Struct
   attribute :title, Types::StrippedString
 end
 ```
 
-```
-#!ruby
+```ruby
 p = Post.new(title: " Use dry ")
 p.title
 # => "Use dry"
