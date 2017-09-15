@@ -8,15 +8,15 @@ tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
 newsletter: :arkency_form
 ---
 
-There has been a very interesting discussion today on [\#ruby-rails-ddd slack channel](http://blog.arkency.com/domain-driven-rails/). The topic circulated around bounded contexts and introducing certain "component" solutions to separate them.
+There has been a very interesting discussion today on [\#ruby-rails-ddd community slack channel](http://blog.arkency.com/domain-driven-rails/). The topic circulated around bounded contexts and introducing certain "component" solutions to separate them.
 
 <!-- more -->
 
-There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://shageman.github.io/cbra.info/) were listed among them. It was however the mention of "unbuilt gems" that reminded me of something.
+There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://shageman.github.io/cbra.info/) were listed among them. It was, however, the mention of "unbuilt gems" that reminded me of something.
 
 ## Gem as a code boundary
 
-Back in the day we had an approach in Arkency in which distinct code areas were extracted to gems. They had the typical gem structure with `lib/` and `spec/` and top-level `gemspec` file.
+Back in the day, we had an approach in Arkency in which distinct code areas were extracted to gems. They had the typical gem structure with `lib/` and `spec/` and top-level `gemspec` file.
 
 ```
 # top-level app directory
@@ -58,8 +58,8 @@ Gem::Specification.new do |spec|
 end
 ```
 
-Each gem had it's own namespace, reflected in gem's name. In example `Scanner` with `scanner`. It held code related to the scanning context, from the service level to the domain. You were able to run specs related to this particular area in separation.
-In fact at that time we were just starting to use the term Bounded Context.
+Each gem had its own namespace, reflected in gem's name. In example `Scanner` with `scanner`. It held code related to the scanning context, from the service level to the domain. You were able to run specs related to this particular area in separation.
+In fact, at that time we were just starting to use the term Bounded Context.
 
 ```
 #!ruby
@@ -87,7 +87,7 @@ Yet these gems were not like the others. We did not push them to RubyGems obviou
 gem 'scanner', path: 'scanner'
 ```
 
-That way much of the versioning/pushing hassle was out of the radar. They could change simultaneously with the app that used them (starting in the controllers calling services from gems). Yet they organised cohesive concept in one place. Quite idyllic, isn't it? Well, there was only one problem…
+That way much of the versioning/pushing hassle was out of the radar. They could change simultaneously with the app that used them (starting in the controllers calling services from gems). Yet they organized cohesive concept in one place. Quite idyllic, isn't it? Well, there was only one problem…
 
 ## Rails autoloading and you
 
@@ -97,9 +97,9 @@ Struggle with Rails autoload is real. If you keep losing battles with it — go 
 
 ## Code component without gemspec
 
-The solution we're happy with now does not differ drastically from having vendored gems. There's no gemspec but the namespace and directory structure from gem stay. The gem entry in `Gemfile` is gone. Any runtime dependencies this gem had go to `Gemfile` directly now.
+The solution we're happy with now does not differ drastically from having vendored gems. There's no `gemspec` but the namespace and directory structure from a gem stay. The gem entry in `Gemfile` is gone. Any runtime dependencies this gem had, go into `Gemfile` directly now.
 
-What differs is that we no longer have `require` to load files. Instead we use autoload-friendly `require_dependency`.
+What differs is that we no longer have `require` to load files. Instead, we use autoload-friendly `require_dependency`.
 
 ```
 #!ruby
@@ -118,7 +118,7 @@ require_dependency 'scanner/event'
 require_dependency 'scanner/event_db'
 ```
 
-With that approach you also have to make sure that Rails is aware to autoload code from the [path](http://blog.arkency.com/2014/11/dont-forget-about-eager-load-when-extending-autoload/) your Bounded Context lives.
+With that approach, you also have to make sure that Rails is aware to autoload code from the [path](http://blog.arkency.com/2014/11/dont-forget-about-eager-load-when-extending-autoload/) your Bounded Context lives in.
 
 ```
 #!ruby
@@ -169,7 +169,7 @@ module Scanner
 end
 ```
 
-Last but not least — it would be pity to forget to run specs along the whole application test suite on CI. For this scenario we tend to put following code in app `spec/` directory:
+Last but not least — it would be a pity to forget to run specs along the whole application test suite on CI. For this scenario we tend to put following code in app `spec/` directory:
 
 ```
 #!ruby
