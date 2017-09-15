@@ -4,6 +4,7 @@ created_at: 2017-09-14 18:56:18 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
 newsletter: :skip
 ---
 
@@ -37,7 +38,7 @@ The same as above, but you also separate the repos. This can create some more se
 
 # Rails engines
 
-This is a way, probably most in the spirit of The Rails Way. Which is both good and bad. Technically it can be a rational choice. However it's a tough sell, as usually people who jump into Rails+DDD are not so keen to rely on Rails mechanisms too heavily. Also, many people may think of that separation as at the controllers level, which doesn't have to be the case.
+This is a way, probably most in the spirit of The Rails Way. Which is both good and bad. Technically it can be a rational choice. However, it's a tough sell, as usually people who jump into Rails+DDD are not so keen to rely on Rails mechanisms too heavily. Also, many people may think of that separation as at the controllers level, which doesn't have to be the case.
 
 BTW, splitting at the web/controllers level is an interesting technique of splitting your app/infra layer, but it's less relevant to the "domain" discussions". I like to split the admin web app, as it's usually a separate set of controllers/UI. The same with API. But still, this split is rarely a good split for your domain, that's only the infra layer.
 
@@ -49,9 +50,9 @@ It's worth noting that gems and engines were chosen as the physical separation b
 
 This approach relies on having multiple nodes/microservices for our app. Each one can be a Rails application on its own. It can be that one microservice per bounded context, but it doesn't need to be like that. In my current project, we have 6 microservices, but >15 bounded contexts.
 
-I wasn't a big fan of microservices, as they bring a lot of infrastructure overhead. My opinion has changed after I worked more heavily with Heroku-based setup. The tooling nowadays has improved and a lot is offered by the platform providers.
+I wasn't a big fan of microservices, as they bring a lot of infrastructure overhead. My opinion has changed after I worked more heavily with a Heroku-based setup. The tooling nowadays has improved and a lot is offered by the platform providers.
 
-It's worth noting that you can separate the code among several repos, however you can also keep them in one monorepo. With a heroku-based setup it seems to be simpler to keep them separated, but one repo should also be possible.
+It's worth noting that you can separate the code among several repos. However, you can also keep them in one monorepo. With a heroku-based setup, it seems to be simpler to keep them separated, but one repo should also be possible.
 
 Microservices also allow another separation - at the programming language level. You can write each microservice in different languages, if it makes sense for you. It's an option not possible in previous approaches.
 
@@ -63,7 +64,7 @@ Serverless is quite a revolution happening and they can change a lot in regards 
 What's possible with serverless is to not only separate physically bounded contexts, but also the smaller building blocks, like aggregates, read models, process managers (sagas). 
 
 I'm not yet experienced enough with how to use it with Rails, but I'm excited about this option. As with microservices, this gives an option to use a different programming language, but at a lower scale. While, I'd be scared to implement a whole app in Haskell, I'm super ok, if we implement one read module or one aggregate in Haskell. In the worst case, we can rewrite those 200 LOC.
-Another big deal with serverless is the fact that they handle the http layer for you. Does it mean "good bye Rails"? I'm not sure yet, but possibly it can reduce the http-layer of our codebases to minimum. 
+Another big deal with serverless is the fact that they handle the HTTP layer for you. Does it mean "good bye Rails"? I'm not sure yet, but possibly it can reduce the HTTP-layer of our codebases to a minimum.
 
 # Summary
 
