@@ -129,6 +129,18 @@ config.paths.add 'scanner/lib', eager_load: true
 
 And that's mostly it!
 
+As an example you put `Scanner::Ticket` into `scanner/lib/scanner/ticket.rb` as:
+
+```
+#!ruby
+# scanner/lib/scanner/ticket.rb
+
+module Scaner
+  class Ticket
+  end
+end
+```
+
 ## Dealing with test files
 
 If you wish to painlessly run spec files in the isolated directory there are certain steps to take.
