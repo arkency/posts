@@ -27,7 +27,7 @@ while solving this problem that I think are worth sharing.
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.11.2/react.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/javascripts/move-react-around/jquery.js"></script>
+<script type="text/javascript" src="/assets/javascripts/move-react-around/jquery.magnific-popup.min.js"></script>
 <style>
 /* Magnific Popup CSS */
 .mfp-bg {
