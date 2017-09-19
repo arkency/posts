@@ -8,6 +8,8 @@ tags: [ 'rspec', 'rails' , 'event_store', 'rails_event_store']
 newsletter: :arkency_form
 ---
 
+<%= img_fit("composable-rspec-matchers/caleb-woods-269348.jpg") %>
+
 While developing [RSpec matchers](http://railseventstore.org/docs/rspec/) for [RailsEventStore](http://railseventstore.org/) we figured out that in some cases it would be good to compose multiple matchers together.
 
 <!-- more -->
