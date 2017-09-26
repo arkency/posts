@@ -45,7 +45,7 @@ How does the process of building a read model work in steps?
 
 1. When you update the product, you do it by saving new domain events.
 2. Event handlers are triggered
-    * They can be triggered by a message queue that you pushed the event into, after they are stored
+    * They can be triggered by a message queue that you pushed events into, after they had been stored
         * In simplest case that can be implemented using ActiveJob, in more complex scenarios it can be Kafka, Rabbit or Amazon SQS.
     * Or you have a separate process (a projection) constantly iterating over saved domain events and picking them up for processing.
         * This is very simple when you use [EventStore DB](https://eventstore.org/) for saving domain events.
@@ -82,7 +82,7 @@ And then when you want to display _10 most expensive products_ you can do it bas
 ProductList.order("price DESC").limit(10)
 ```
 
-The write side of your application, the event-sourced `Product` class is about making changes, keeping track of them, and protecting business rules.
+The write-side of your application, the event-sourced `Product` class is about making changes, keeping track of them, and protecting business rules. It's the side responsible for publishing `ProductRegistered` or `ProductPriceChanged`.
 
 ## Find out more
 
