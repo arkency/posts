@@ -3,8 +3,8 @@ title: "Why Event Sourcing basically requires CQRS and Read Models"
 created_at: 2017-09-26 10:02:17 +0200
 kind: article
 publish: false
-author: anonymous
-tags: [ 'foo', 'bar', 'baz' ]
+author: Robert Pankowecki
+tags: [ 'ddd', 'event_sourcing', 'cqrs', 'read models' ]
 newsletter: :arkency_form
 ---
 
@@ -83,3 +83,7 @@ ProductList.order("price DESC").limit(10)
 ```
 
 The write side of your application, the event-sourced `Product` class is about making changes, keeping track of them, and protecting business rules.
+
+## Find out more
+
+Would like to learn more about Event Handlers, Read Models and Event Sourcing? Grab a copy of our [Domain-Driven Rails ebook](/domain-driven-rails/)
