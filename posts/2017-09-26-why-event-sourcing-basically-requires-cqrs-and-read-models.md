@@ -28,7 +28,7 @@ Why?
 
 Because when an Entity/Aggregate is event-sourced, there is only one method you can ask the repository about the object. And that's `find_by_id`. That's it.
 
-You know the Id from somewhere (other entity has a reference to it) or from UI, or from API, or from a request. And you can do:
+You know the `Id` from somewhere ie: other entity has a reference to it, or from UI, or from API, or from a request. And you can do:
 
 ```ruby
 id = params[:id]
@@ -46,9 +46,9 @@ How does the process of building a read model work in steps?
 1. When you update the product, you do it by saving new domain events.
 2. Event handlers are triggered
     * They can be triggered by a message queue that you pushed the event into, after they are stored
-        * In simplest case that can even be an ActiveJob, in more complex scenarios it can be Kafka, Rabbit or Amazon SQS.
+        * In simplest case that can be implemented using ActiveJob, in more complex scenarios it can be Kafka, Rabbit or Amazon SQS.
     * Or you have a separate process (a projection) constantly iterating over saved domain events and picking them up for processing.
-        * This is very simple in [EventStore DB](https://eventstore.org/)
+        * This is very simple when you use [EventStore DB](https://eventstore.org/) for saving domain events.
 3. The event handler updates the read model accordingly based on what happened, what domain event it is processing.
 
 
@@ -87,3 +87,5 @@ The write side of your application, the event-sourced `Product` class is about m
 ## Find out more
 
 Would like to learn more about Event Handlers, Read Models and Event Sourcing? Grab a copy of our [Domain-Driven Rails ebook](/domain-driven-rails/)
+
+<a href="/domain-driven-rails"><img src="<%= src_fit("domain-driven-rails-design/cover7-100.png") %>" width="30%" /></a>
