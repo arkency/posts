@@ -180,7 +180,7 @@ end
 
 At this point you may have figured out that `event_store` dependency that we constantly pass as an argument belongs more to the infrastructure layer than to a domain and business.
 
-What if something above passed a list of events first so we could rebuild the state? After an aggregate action happened we could provide a list of domain events to be published:
+What if something above passed a list of events first so we could rebuild the state? After an aggregate action happened we could provide a list of domain events to be published (`unpublished_events`):
 
 ```ruby
 class Product
@@ -238,11 +238,13 @@ class Product
 end
 ```
 
-More or less this reminds the [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem that is aimed to assist you with event sourced aggregates. The rule of **having two methods when there was previously one** however still holds.
+More or less this reminds the [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem that is aimed to assist you with event sourced aggregates.
+
+The rule of **having two methods when there was previously one** however still holds.
+
+* **The public method** (such as `supply`) corresponds to an **action** we want to take on an aggregate — protects **business rules** and tells what domain event happened if those rules were met.
+* **The private method** (such as `supplied`) maps **consequences of the domain event** that happened to the internal state representation.
 
 There are more code samples and _The Why_ of Event Sourcing in [Rails Meets DDD](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
 
 Have a great day!
-
-
-
