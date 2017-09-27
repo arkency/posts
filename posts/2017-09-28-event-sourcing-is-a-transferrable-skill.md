@@ -15,7 +15,6 @@ Roadmap:
 * event sourcing is a transferrable technique
 * http://verraes.net/2014/05/functional-foundation-for-cqrs-event-sourcing/
 * http://tojans.me/blog/2014/02/26/cqrs-and-functional-programming/
-* https://gist.github.com/pawelpacana/e3f06aa709dd4dcc7e564e3fa555dfe8
 
 <!-- more -->
 
@@ -81,4 +80,62 @@ class Product
   end
 end
 ```
+```haskell
+module Inventory where
 
+type Sku = String
+type StoreId = String
+type Quantity = Integer
+type OrderNumber = String
+
+data Event = ProductRegistered Sku StoreId |
+             ProductSupplied Sku StoreId Quantity |
+             ProductReserved Sku StoreId OrderNumber Quantity
+
+data Command = Register Sku StoreId |
+               Supply Quantity |
+               Reserve Quantity OrderNumber
+
+data Product = Product { sku :: Sku
+                       , storeId :: StoreId
+                       , quantityAvailable :: Quantity
+                       , quantityReserved :: Quantity
+                       }
+
+
+handle :: [Event] -> Command -> [Event]
+handle events command =
+  handle' product command
+  where product = apply events
+
+handle' :: Maybe Product -> Command -> [Event]
+handle' product (Register sku storeId) =
+  [ProductRegistered sku storeId]
+
+handle' (Just product) (Supply quantity) =
+  [ProductSupplied (sku product) (storeId product) quantity]
+
+handle' (Just product) (Reserve quantity orderNumber)
+  | notAvailable = error "quantity not available"
+  | otherwise    = [ProductReserved (sku product) (storeId product) orderNumber quantity]
+  where notAvailable = (quantityAvailable product) < quantity
+
+handle' Nothing _ = error "PEBKAC"
+
+
+apply :: [Event] -> Maybe Product
+apply events = foldl apply' Nothing events
+
+apply' :: Maybe Product -> Event -> Maybe Product
+apply' Nothing (ProductRegistered sku storeId) =
+  Just (Product sku storeId 0 0)
+
+apply' (Just product) (ProductSupplied _ _ quantity) =
+  Just (product { quantityAvailable = (quantityAvailable product) + quantity })
+
+apply' (Just product) (ProductReserved _ _ _ quantity) =
+  Just (product { quantityAvailable = (quantityAvailable product) - quantity
+                , quantityReserved  = (quantityReserved  product) + quantity
+                })
+
+```
