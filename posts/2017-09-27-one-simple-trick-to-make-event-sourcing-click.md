@@ -191,12 +191,12 @@ class Product
     
   def initialize(events)
     @unpublished_events = []
-    events.each { |event| load(event) }
+    events.each { |event| dispatch(event) }
   end
   
   def register(store_id:, sku:)
     raise AlreadyRegistered if @store_id
-    
+
     apply(ProductRegistered.new(data: {
       store_id: store_id,
       sku: sku, 
@@ -214,10 +214,6 @@ class Product
   end
   
   private
-  
-  def load(event)
-    dispatch(event)
-  end
   
   def apply(event)
     dispatch(event)
