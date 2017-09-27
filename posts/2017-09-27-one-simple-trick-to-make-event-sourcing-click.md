@@ -117,7 +117,7 @@ In this step we've drawn the line between making a statement that something happ
 
 Why make such effort and introduce indirection? The reason is simple — if the events are source of truth, we could not only shape internal state for current actions we take but also for the ones that happened in the past.
 
-Instead of loading current state stored in a database, we can take collection of events that happened in scope of this aggregate — in it's stream.
+Instead of loading current state stored in a database, we can take collection of events that happened in scope of this aggregate — in its stream.
 
 ```ruby
 class Product
