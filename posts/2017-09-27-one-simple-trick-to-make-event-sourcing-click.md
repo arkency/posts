@@ -172,7 +172,7 @@ end
 
 At this point you may have figured out that `event_store` dependency that we constantly pass as an argument belongs more to the infrastructure layer than to a domain and business.
 
-What if something above passed a list of events first so we could rebuild the state?. After an aggregate action happened we could provide a list of domain events to be published:
+What if something above passed a list of events first so we could rebuild the state? After an aggregate action happened we could provide a list of domain events to be published:
 
 ```ruby
 class Product
