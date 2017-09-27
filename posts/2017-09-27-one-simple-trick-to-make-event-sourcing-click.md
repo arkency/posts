@@ -172,7 +172,7 @@ end
 
 At this point you may have figured out that `event_store` dependency that we constantly pass as an argument belongs more to the infrastructure layer than to a domain and business.
 
-What if something above passed a list of events first (so we could build a state). After an aggregate action happened we could provide a list of domain events to be published:
+What if something above passed a list of events first so we could rebuild the state?. After an aggregate action happened we could provide a list of domain events to be published:
 
 ```ruby
 class Product
@@ -233,11 +233,7 @@ end
 
 More or less this reminds the [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem that is aimed to assist you with event sourced aggregates. The rule of **having two methods when there was previously one** however still holds.
 
-## You've probably noticed that something is missing… 
-
-I've intentionally mostly skipped some parts related to the database — loading existing and persisting new state. This means that I've also skipped some code that would assist in such operations to declutter examples.
-
-There are better code samples focused solely on this infrastructure part in [Rails Meets DDD](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
+There are more code samples and _The Why_ of Event Sourcing in [Rails Meets DDD](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
 
 Have a great day!
 
