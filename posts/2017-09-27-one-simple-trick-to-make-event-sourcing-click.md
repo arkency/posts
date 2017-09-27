@@ -32,6 +32,7 @@ Below is a typical aggregate root. In the scope of the example there are only tw
 ```ruby
 class Product
   CannotSupply = Class.new(StandardError)
+  AlreadyRegistered = Class.new(StandardError)
     
   def initialize(store_id: nil, sku: nil, quantity_available: 0)
     @store_id = store_id
@@ -40,6 +41,7 @@ class Product
   end
   
   def register(store_id:, sku:, event_store:)
+    raise AlreadyRegistered if @store_id
     @store_id = store_id
     @sku = sku
     
@@ -70,6 +72,7 @@ In event sourcing it is the domain events that are our source of truth. They sta
 ```ruby
 class Product
   CannotSupply = Class.new(StandardError)
+  AlreadyRegistered = Class.new(StandardError)
     
   def initialize(store_id: nil, sku: nil, quantity_available: 0)
     @store_id = store_id
@@ -78,6 +81,8 @@ class Product
   end
   
   def register(store_id:, sku:, event_store:)
+    raise AlreadyRegistered if @store_id
+
     event = ProductRegistered.new(data: {
       store_id: store_id,
       sku: sku, 
@@ -122,6 +127,7 @@ Instead of loading current state stored in a database, we can take collection of
 ```ruby
 class Product
   CannotSupply = Class.new(StandardError)
+  AlreadyRegistered = Class.new(StandardError)
     
   def initialize(store_id: nil, sku: nil, event_store:)
     stream_name = "Product$#{store_id}-#{sku}"
@@ -135,6 +141,8 @@ class Product
   end
   
   def register(store_id:, sku:, event_store:)
+    raise AlreadyRegistered if @store_id
+
     event = ProductRegistered.new(data: {
       store_id: store_id,
       sku: sku, 
@@ -177,6 +185,7 @@ What if something above passed a list of events first so we could rebuild the st
 ```ruby
 class Product
   CannotSupply = Class.new(StandardError)
+  AlreadyRegistered = Class.new(StandardError)
   
   attr_reader :unpublished_events  
     
@@ -186,6 +195,8 @@ class Product
   end
   
   def register(store_id:, sku:)
+    raise AlreadyRegistered if @store_id
+    
     apply(ProductRegistered.new(data: {
       store_id: store_id,
       sku: sku, 
