@@ -137,7 +137,7 @@ So when you try to `expire` an already _expired Order_, we will do nothing. This
 
 So I was wondering if using `state_machine` would make the code more readable and expressive. I didn't even need to make the rules exactly the same. I just wanted to get a feeling how it could look like and If I enjoyed it more or less.
 
-One of the things I learned recently is that the more versions of code I have solving the same problem the better I understand their good and bad sides. I learn what works for me and what not.
+One of the things I noticed recently is that the more versions of code I have solving the same problem the better I understand their good and bad sides. I learn what works for me and what not.
 
 So let's see a version using `state_machine`
 
@@ -216,7 +216,7 @@ It is interesting. If a method can be called in one state only you can define it
   end
 ```
 
-If you try to call it in other state, you will get `NoMethodError`. On the other hand the exception won't be as good as our custom exception which clearly shows line number. It's easier to have a look at that line of code and understand the a method was called in an invalid state than understand a `NoMethodError` without any meaningful info.
+If you try to call it in another state, you will get `NoMethodError`. On the other hand, the exception won't be as good as our custom exception which clearly shows line number. It's easier to have a look at that line of code and understand that a method was called in an invalid state compared to understanding a `NoMethodError` without any meaningful info.
 
 It is possible to define a method in 2 states only:
 
@@ -228,7 +228,7 @@ It is possible to define a method in 2 states only:
   end
 ```
 
-but the benefits are not so big in my opinion. You don't see this method around other methods available for `draft` or `submitted` states and this meta-programming statement is not much better than my custom `if` statement.
+But the benefits are not so big in my opinion. You don't see this method around other methods available for `draft` or `submitted` states and this meta-programming statement is not much better than my custom `if` statement.
 
 I also experimented with:
 
@@ -240,7 +240,7 @@ I also experimented with:
   end
 ```
 
-but that was the worst. Computers can understand that but for humans like me it's unbearable. I can't easily recall all possible states in and remove `expired` and `shipped` from them, to understand where could that method be allowed or not.
+but that was the worst. Computers can understand that but for humans like me, it's unbearable. I can't easily recall all possible states in and remove `expired` and `shipped` from them, to understand where could that method be allowed or not.
 
 Notice that I used only a very small subset of the gem's features. That's on purpose.
 
@@ -264,6 +264,6 @@ But that would set the `state` directly, instead of indirectly via a domain even
     end
 ```
 
-So at the end I decided that it's probably not worth in many use-cases to use this particular gem with our way of writing event sourced entities. The benefits are small and most features of the library cannot be used easily without introducing problems.
+So at the end, I decided that it's probably not worth in many use-cases to use this particular gem with our way of writing event sourced entities. The benefits are small and most features of the library cannot be used easily without introducing problems.
 
-Perhaps there is a different library out there for defining state machines that could play nicer with event sourcing and `aggregate_root`. But I haven't found it yet.
+Perhaps there is a different library out there for defining state machines that could play nicer with event sourcing and `aggregate_root`. But I haven't found it yet. The struggle for a nice code involves a lot failed experiments.
