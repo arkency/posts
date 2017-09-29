@@ -59,3 +59,33 @@ $ which ruby
 /home/rupert/.rvm/rubies/ruby-2.4.1/bin/ruby
 ```
 
+## using `gem env`
+
+If you want to know even more about your current ruby setup, there is a command for that as well!
+
+```
+$ gem env
+RubyGems Environment:
+  - RUBYGEMS VERSION: 2.6.12
+  - RUBY VERSION: 2.4.1 (2017-03-22 patchlevel 111) [x86_64-linux]
+  - INSTALLATION DIRECTORY: /home/rupert/.rvm/gems/ruby-2.4.1
+  - USER INSTALLATION DIRECTORY: /home/rupert/.gem/ruby/2.4.0
+  - RUBY EXECUTABLE: /home/rupert/.rvm/rubies/ruby-2.4.1/bin/ruby
+  - EXECUTABLE DIRECTORY: /home/rupert/.rvm/gems/ruby-2.4.1/bin
+  - SPEC CACHE DIRECTORY: /home/rupert/.gem/specs
+  - SYSTEM CONFIGURATION DIRECTORY: /etc
+  - RUBYGEMS PLATFORMS:
+    - ruby
+    - x86_64-linux
+  - GEM PATHS:
+     - /home/rupert/.rvm/gems/ruby-2.4.1
+     - /home/rupert/.rvm/gems/ruby-2.4.1@global
+  - GEM CONFIGURATION:
+     - :update_sources => true
+     - :verbose => true
+     - :backtrace => false
+     - :bulk_threshold => 1000
+     - "gem" => "--no-document"
+  - REMOTE SOURCES:
+     - https://rubygems.org/
+```
