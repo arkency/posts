@@ -58,6 +58,13 @@ expect(domain_event)
   .to be_an_event(OrderPlaced).with_data(order_id: kind_of(Integer))
 ```
 
+or `include`:
+
+```ruby
+expect(domain_event)
+  .to be_an_event(OrderPlaced).with_data(products: include("Domain Driven Rails Book"))
+```
+
 There a cases where we want to be very precise about domain event data. In such situation, we add `strict` matcher.
 
 ```ruby
