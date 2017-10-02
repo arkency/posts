@@ -4,7 +4,7 @@ created_at: 2017-10-02 09:34:57 +0200
 kind: article
 publish: true
 author: Paweł Pacana
-tags: [ 'ddd', 'event-sourcing', 'aggregate' ]
+tags: [ 'ddd', 'eventsourcing', 'aggregate' ]
 newsletter: :arkency_form
 ---
 
