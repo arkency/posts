@@ -81,7 +81,7 @@ class Product
 end
 ```
 
-This particular one code uses [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem. It's really a detail — most of the implementations in imperative languages look alike. Compare to [this one in C#](https://github.com/gregoryyoung/m-r/blob/master/SimpleCQRS/Domain.cs#L63). 
+This particular code uses [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem. It's really a detail — most of the implementations in imperative languages look alike. Compare to [this one in C#](https://github.com/gregoryyoung/m-r/blob/master/SimpleCQRS/Domain.cs#L63). 
 Once you get the idea right and maybe implement it yourself, you should be able to take this technique with you to a different language. Cool.
 
 How would Event Sourcing look like in a completely different world than Ruby? Let's say — Haskell:
