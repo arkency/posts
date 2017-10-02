@@ -175,6 +175,7 @@ apply events = foldl apply' Nothing events
 ```
 
 Finally, the outcome of an action is just another event.
+
 ```haskell  
 handle :: [Event] -> Command -> [Event]
 ```
