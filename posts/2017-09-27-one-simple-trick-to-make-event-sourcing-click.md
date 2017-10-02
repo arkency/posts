@@ -245,6 +245,6 @@ The rule of **having two methods when there was previously one** however still h
 * **The public method** (such as `supply`) corresponds to an **action** we want to take on an aggregate — protects **business rules** and tells what domain event happened if those rules were met.
 * **The private method** (such as `supplied`) maps **consequences of the domain event** that happened to the internal state representation.
 
-There are more code samples and _The Why_ of Event Sourcing in [Rails Meets DDD](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
+There are more code samples and _The Why_ of Event Sourcing in [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
 
 Have a great day!
