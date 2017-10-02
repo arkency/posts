@@ -53,9 +53,10 @@ Not only me — also [Andrzej](https://www.youtube.com/channel/UCmrGGj6Y_XQuockw
 
 Being honest about a technology or a technique is not only knowing _"the good parts"_ but also what pitfalls to be aware of. 
 
-There is [No Silver Bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet). In the end you'll have to make a judgement — in the context in your application and the business domain it supports. 
+There is [No Silver Bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet). In the end you'll have to make a judgement — in the context of your application and the business domain it supports. 
 
 It is however good to **know your options first** and **what price tag** does each of them comes with.
+
 
 
 
