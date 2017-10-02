@@ -16,7 +16,7 @@ Is this whole Event Sourcing a skill worth learning?
 
 <!-- more -->
 
-Below you'll find an example of Event Sourcing in Ruby. Git it a look.
+Below you'll find an example of Event Sourcing in Ruby. Give it a look.
 
 ```ruby
 class Product
