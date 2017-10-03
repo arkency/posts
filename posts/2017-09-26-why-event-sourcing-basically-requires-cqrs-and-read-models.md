@@ -87,6 +87,8 @@ The write-side of your application, the event-sourced `Product` class is about m
 
 ## Find out more
 
-Would like to learn more about Event Handlers, Read Models and Event Sourcing? Grab a copy of our [Domain-Driven Rails ebook](/domain-driven-rails/)
+Would like to learn more about Event Handlers, Read Models and Event Sourcing? Grab a copy of our recently completed [Domain-Driven Rails ebook](/domain-driven-rails/)!
 
 <a href="/domain-driven-rails"><img src="<%= src_fit("domain-driven-rails-design/cover7-100.png") %>" width="30%" /></a>
+
+Get it now **25% off** with **HIGH5EVENTSOURCING** coupon. Hurry up, it's time-limited offer.
