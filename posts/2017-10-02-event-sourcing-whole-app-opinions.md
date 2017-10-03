@@ -18,7 +18,7 @@ I had — just recently, on a [Rails DDD training](https://blog.arkency.com/ddd-
 
 No surprise that the original quote comes from the godfather of CQRS, **Greg Young**:
 
-> The single biggest bad thing that Young has seen during the last ten years is the common anti-pattern of building a whole system based on Event sourcing. That is a really big failure, effectively creating an event sourced monolith. CQRS and Event sourcing are not top-level architectures and normally they should be applied selectively just in few places. 
+> The single biggest bad thing that Young has seen during the last ten years is the common anti-pattern of building a whole system based on Event sourcing. That is a really big failure, effectively creating an event sourced monolith. CQRS and Event sourcing are not top-level architectures and normally they should be applied selectively just in few places.
 
 The above [except](https://www.infoq.com/news/2016/04/event-sourcing-anti-pattern) is extracted specifically from [A Decade of DDD, CQRS, Event Sourcing](https://www.youtube.com/watch?v=LDW0QWie21s) that Greg gave at DDD Europe 2016.
 
@@ -51,18 +51,10 @@ Not only me — also [Andrzej](https://www.youtube.com/channel/UCmrGGj6Y_XQuockw
 
 ## Recap
 
-Being honest about a technology or a technique is not only knowing _"the good parts"_ but also what pitfalls to be aware of. 
+Being honest about a technology or a technique is not only knowing _"the good parts"_ but also what pitfalls to be aware of.
 
-There is [No Silver Bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet). In the end you'll have to make a judgement — in the context of your application and the business domain it supports. 
+There is [No Silver Bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet). In the end you'll have to make a judgement — in the context of your application and the business domain it supports.
 
 It is however good to **know your options first** and **what price tag** does each of them comes with.
 
-
-
-
-
-
-
-
-
-
+By the way, you can now learn Event Sourcing from [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) book. We've just added 50 new pages about this technique. To celebrate, use **HIGH5EVENTSOURCING** coupon with **25% off**.
