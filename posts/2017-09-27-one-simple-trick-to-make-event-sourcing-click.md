@@ -9,7 +9,7 @@ newsletter: :arkency_form
 ---
 
 Event Sourcing is like having two methods when previously there was one. There — I've said it.
- 
+
 <!-- more -->
 
 But it isn't my idea at all.
@@ -33,29 +33,29 @@ Below is a typical aggregate root. In the scope of the example there are only tw
 class Product
   CannotSupply = Class.new(StandardError)
   AlreadyRegistered = Class.new(StandardError)
-    
+
   def initialize(store_id: nil, sku: nil, quantity_available: 0)
     @store_id = store_id
     @sku = sku
     @quantity_available = quantity_available
   end
-  
+
   def register(store_id:, sku:, event_store:)
     raise AlreadyRegistered if @store_id
     @store_id = store_id
     @sku = sku
-    
+
     event_store.publish_event(ProductRegistered.new(data: {
       store_id: @store_id,
-      sku: @sku, 
+      sku: @sku,
     }))
   end
-  
+
   def supply(quantity, event_store:)
     raise CannotSupply unless @store_id && @sku
-    
+
     @quantity_available += quantity
-  
+
     event_store.publish_event(ProductSupplied.new(data: {
       store_id: @store_id,
       sku: @sku,
@@ -65,7 +65,7 @@ class Product
 end
 ```
 
-## Aggregate with Event Sourcing 
+## Aggregate with Event Sourcing
 
 In event sourcing it is the domain events that are our source of truth. They state what happened. What we need to do is to make them a bit more useful and convenient for decision making. This is the **sourcing** part.
 
@@ -73,44 +73,44 @@ In event sourcing it is the domain events that are our source of truth. They sta
 class Product
   CannotSupply = Class.new(StandardError)
   AlreadyRegistered = Class.new(StandardError)
-    
+
   def initialize(store_id: nil, sku: nil, quantity_available: 0)
     @store_id = store_id
     @sku = sku
     @quantity_available = quantity_available
   end
-  
+
   def register(store_id:, sku:, event_store:)
     raise AlreadyRegistered if @store_id
 
     event = ProductRegistered.new(data: {
       store_id: store_id,
-      sku: sku, 
+      sku: sku,
     })
-    
+
     event_store.publish_event(event)
     registered(event)
   end
-  
+
   def supply(quantity, event_store:)
     raise CannotSupply unless @store_id && @sku
-    
+
     event = ProductSupplied.new(data: {
       store_id: @store_id,
       sku: @sku,
       quantity: quantity,
     })
-    
+
     event_store.publish_event(event)
     supplied(event)
   end
-  
+
   private
-  
+
   def supplied(event)
     @quantity_available += event.data.fetch(:quantity)
   end
-  
+
   def registered(event)
     @sku = event.data.fetch(:sku)
     @store_id = event.data.fetch(:store_id)
@@ -128,7 +128,7 @@ Instead of loading current state stored in a database, we can take collection of
 class Product
   CannotSupply = Class.new(StandardError)
   AlreadyRegistered = Class.new(StandardError)
-    
+
   def initialize(store_id: nil, sku: nil, event_store:)
     stream_name = "Product$#{store_id}-#{sku}"
     events = event_store.read_all_events_forward(stream_name)
@@ -139,38 +139,38 @@ class Product
       end
     end
   end
-  
+
   def register(store_id:, sku:, event_store:)
     raise AlreadyRegistered if @store_id
 
     event = ProductRegistered.new(data: {
       store_id: store_id,
-      sku: sku, 
+      sku: sku,
     })
-    
+
     event_store.publish_event(event)
     registered(event)
   end
-  
+
   def supply(quantity, event_store:)
     raise CannotSupply unless @store_id && @sku
-    
+
     event = ProductSupplied.new(data: {
       store_id: @store_id,
       sku: @sku,
       quantity: quantity,
     })
-    
+
     event_store.publish_event(event)
     supplied(event)
   end
-  
+
   private
-  
+
   def supplied(event)
     @quantity_available += event.data.fetch(:quantity)
   end
-  
+
   def registered(event)
     @sku = event.data.fetch(:sku)
     @store_id = event.data.fetch(:store_id)
@@ -186,51 +186,51 @@ What if something above passed a list of events first so we could rebuild the st
 class Product
   CannotSupply = Class.new(StandardError)
   AlreadyRegistered = Class.new(StandardError)
-  
+
   attr_reader :unpublished_events  
-    
+
   def initialize(events)
     @unpublished_events = []
     events.each { |event| dispatch(event) }
   end
-  
+
   def register(store_id:, sku:)
     raise AlreadyRegistered if @store_id
 
     apply(ProductRegistered.new(data: {
       store_id: store_id,
-      sku: sku, 
+      sku: sku,
     }))
   end
-  
+
   def supply(quantity)
     raise CannotSupply unless @store_id && @sku
-    
+
     apply(ProductSupplied.new(data: {
       store_id: @store_id,
       sku: @sku,
       quantity: quantity,
     }))
   end
-  
+
   private
-  
+
   def apply(event)
     dispatch(event)
     @unpublished_events << event
   end
-  
+
   def dispatch(event)
     case event
     when ProductRegistered then registered(event)
     when ProductSupplied then supplied(event)
     end
   end
-  
+
   def supplied(event)
     @quantity_available += event.data.fetch(:quantity)
   end
-  
+
   def registered(event)
     @sku = event.data.fetch(:sku)
     @store_id = event.data.fetch(:store_id)
@@ -245,6 +245,6 @@ The rule of **having two methods when there was previously one** however still h
 * **The public method** (such as `supply`) corresponds to an **action** we want to take on an aggregate — protects **business rules** and tells what domain event happened if those rules were met.
 * **The private method** (such as `supplied`) maps **consequences of the domain event** that happened to the internal state representation.
 
-There are more code samples and _The Why_ of Event Sourcing in [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) which I fully recommend.
+There are more code samples and _The Why_ of Event Sourcing in [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) which I fully recommend. With **HIGH5EVENTSOURCING** you can [get it now](https://blog.arkency.com/domain-driven-rails/) with **25% off**. 
 
 Have a great day!
