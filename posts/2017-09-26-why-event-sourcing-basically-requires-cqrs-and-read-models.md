@@ -91,4 +91,4 @@ Would like to learn more about Event Handlers, Read Models and Event Sourcing? G
 
 <a href="/domain-driven-rails"><img src="<%= src_fit("domain-driven-rails-design/cover7-100.png") %>" width="30%" /></a>
 
-Get it now **25% off** with **HIGH5EVENTSOURCING** coupon. Hurry up, it's time-limited offer.
+Get it now **25% off** with **HIGH5EVENTSOURCING** coupon. Hurry up, it's time-limited offer valid until Friday, October 6th.
