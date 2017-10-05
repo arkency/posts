@@ -30,7 +30,7 @@ Usually my use-case is about taking something out of a hash or putting into a ha
 
 ```ruby
 {"foo" => 1}[:foo] == 1 # true
-{foo: 1}[":foo"] == 1   # true
+{foo: 1}["foo"]    == 1 # true
 ```
 
 That would make my life easier :)
@@ -97,7 +97,7 @@ I would love:
 
 ```ruby
 {"foo" => 1}[:foo] == 1 # true
-{foo: 1}[":foo"] == 1   # true
+{foo: 1}["foo"]    == 1 # true
 ```
 
 And for that we would need:
