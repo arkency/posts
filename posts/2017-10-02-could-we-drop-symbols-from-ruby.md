@@ -2,7 +2,7 @@
 title: "Could we drop Symbols from Ruby?"
 created_at: 2017-10-02 17:55:44 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'symbols' ]
 newsletter: :arkency_form
@@ -23,9 +23,9 @@ It's hard for me to describe a solution very well in long paragraphs. So I thoug
 :foo == "foo" # true
 ```
 
-This is what I started with. My goal. I don't want to care anymore if I have a string or symbol. Of course nothing is that easy. We need more properties (test cases) to fully imagine how that could work.
+This is what I started with. My goal. I don't want to care anymore if I have a string or symbol. Of course, nothing is that easy. We need more properties (test cases) to fully imagine how that could work.
 
-Usually my usecase is about taking something out of a hash or putting into a hash. Let's express it.
+Usually my use-case is about taking something out of a hash or putting into a hash. Let's express it.
 
 ```ruby
 {"foo" => 1}[:foo] == 1 # true
@@ -62,7 +62,7 @@ hash[a] # => "text"
 hash[b] # => nil
 ```
 
-You defined a Value Object. A class that is defined by it's attributes (one or many) and which uses them for comparison. But because we haven't implemented `hash` method, Ruby doesn't know they can be used interchangeable as Hash keys.
+You defined a Value Object. A class that is defined by its attributes (one or many) and which uses them for comparison. But because we haven't implemented `hash` method, Ruby doesn't know they can be used interchangeably as Hash keys.
 
 ```ruby
 a.hash
@@ -72,7 +72,7 @@ b.hash
 # => 2882203462531734027
 ```
 
-If two objects return the same `hash` on the other hand that does not mean they are equal. There is limited number of hashes available so conflicts can rarely occur. But if two objects are equal, they should return the same hash.
+If two objects return the same `hash` on the other hand that does not mean they are equal. There is a limited number of hashes available so conflicts can rarely occur. But if two objects are equal, they should return the same hash.
 
 ```ruby
 class Something
@@ -83,7 +83,7 @@ class Something
 end
 ```
 
-Usually you compute the hash as hash of array of all attributes XORed with a big random value to avoid conflicts with that exact array of all attributes. In other words we want
+Usually, you compute the hash as hash of array of all attributes XORed with a big random value to avoid conflicts with that exact array of all attributes. In other words, we want:
 
 ```ruby
 Something.new(1).hash != 1.hash
@@ -105,7 +105,7 @@ And for that we would need:
 :foo.hash == "foo".hash # true
 ```
 
-But here is the thing. It might be that [computing a String's hash is 2-3 times faster than Symbols hash right now](https://gist.github.com/hubertlepicki/dc7b69b457d9187033d0e0d7c79b19fd). I don't know why. Maybe Symbols, which are immutable have a pre-computed hash or can have a memoized hash value because it won't change. I am not sure. But if that's the reason, I can imagine that frozen, immutable Strings could have lazy-computed, memoized hash value as well.
+But here is the thing. It might be that [computing a Symbols's hash is 2-3 times faster than a String's hash right now](https://gist.github.com/hubertlepicki/dc7b69b457d9187033d0e0d7c79b19fd). I don't know why. Maybe Symbols, which are immutable have a pre-computed hash or can have a memoized hash value because it won't change. I am not sure. But if that's the reason, I can imagine that frozen, immutable Strings could have lazy-computed, memoized hash value as well.
 
 I believe there is a lot of libraries and apps out there that rely on that fact:
 
@@ -113,9 +113,9 @@ I believe there is a lot of libraries and apps out there that rely on that fact:
 :foo.object_id == :foo.object_id
 ```
 
-So obviously the should be preserved. But I believe if symbols were strings, but Ruby would internally keep a unique list of them, just like doing today for us string, it would work without a problem.
+So obviously the should be preserved. But I believe if symbols were strings, but Ruby would internally keep a unique list of them, just like doing today for us, it would work without a problem.
 
-After all the fact that you always get the same symbol is just a mapping somewhere in Ruby implementation from
+After all, the fact that you always get the same symbol is just a mapping somewhere in Ruby implementation from
 
 ```ruby
 {"foo" => Symbol.new("foo")}
@@ -140,7 +140,7 @@ Let's continue this journey. Here is a problematic area:
 
 ```ruby
 foo = "foo"
-foo.equal?(foo.to_s)
+foo.equal?(foo.to_s) # true
 ```
 
 `String#to_s` basically returns `self` in Ruby. So if Symbols were frozen strings this would break:
@@ -182,7 +182,7 @@ would be true. But...
 
 would also be true.
 
-The difference could be that `Symbol#to_s` would be re-defined to return new, identical, unfrozen String instead of the same one.
+The difference could be that `Symbol#to_s` would be redefined to return new, identical, unfrozen String instead of the same one.
 
 So maybe something like that.
 
@@ -205,4 +205,4 @@ end
 
 I doubt that's gonna happen. Probably too many corner cases right now to introduce such a change. But if we could drop `Fixnum` and `Bignum`, maybe we can drop `Symbol`?
 
-Would we even want to? What's your opinion. Do you need `Symbol` class in your code? Or do you just like the symbol notation?
+Would we even want to? What's your opinion? Do you need `Symbol` class in your code? Or do you just like the symbol notation?
