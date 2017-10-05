@@ -114,7 +114,7 @@ I believe there is a lot of libraries and apps out there that rely on that fact:
 :foo.object_id == :foo.object_id
 ```
 
-So obviously the should be preserved. But I believe if symbols were strings, but Ruby would internally keep a unique list of them, just like doing today for us, it would work without a problem.
+So obviously the should be preserved. But I believe if symbols were strings and Ruby would internally keep a unique list of them, just like doing it today for us, everything would work without a problem.
 
 After all, the fact that you always get the same symbol is just a mapping somewhere in Ruby implementation from
 
