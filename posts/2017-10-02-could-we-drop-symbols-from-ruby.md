@@ -170,13 +170,13 @@ And another option. Make `Symbol` inherit from `String` so `Symbol < String`.
 
 With that
 
-```
+```ruby
 :foo.is_a?(Symbol)
 ```
 
 would be true. But...
 
-```
+```ruby
 :foo.is_a?(String)
 ```
 
