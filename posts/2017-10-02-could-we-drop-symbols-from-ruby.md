@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'symbols' ]
 newsletter: :arkency_form
+img: "ruby-symbols-strings/drop-symbols.jpeg"
 ---
 
 Don't know about you, but I personally have been hit a least a dozen times by bugs caused by strings vs symbols distinction. That happened in my own code, and it happened when using some other libraries as well. I like how symbols look in the code, but I don't like the specific distinction that is made between them and strings. In my (perhaps controversial opinion) they introduce more problems than they solve.
