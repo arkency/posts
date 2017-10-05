@@ -165,7 +165,7 @@ end
 
 I was thinking how to solve it... How could we distinguish `:foo` from `"foo"` if we really needed.
 
-I see two options. Make `Symbol` work like `String` without making it a `String`.
+I see two options. Make `Symbol` work like `String` without making it a `String` (either by adding all the methods or making it an alias `Symbol = String`).
 And another option. Make `Symbol` inherit from `String` so `Symbol < String`.
 
 With that
