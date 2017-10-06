@@ -12,6 +12,8 @@ Let's say you have a model in Rails with certain attributes and columns. When yo
 
 <!-- more -->
 
+## to_json ? Use as_json instead
+
 In the simplest way you can define the `as_json` method on your model. You can call `super` to get the standard behavior from `ActiveRecord::Base` and then add or remove more attributes on that result.
 
 Imagine that you have `Event` class. And initially the JSON looks like.
