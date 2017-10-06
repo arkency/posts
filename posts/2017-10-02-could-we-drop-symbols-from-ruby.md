@@ -211,3 +211,7 @@ Would we even want to? What's your opinion? Do you need `Symbol` class in your c
 I will leave you with a [quote by Matz](https://bugs.ruby-lang.org/issues/7792)
 
 > Symbols are taken from Lisp symbols, and they has been totally different beast from strings. They are not nicer (and faster) representation of strings. But as Ruby stepped forward its own way, the difference between symbols and strings has been less recognized by users.
+
+P.S.
+
+If you enjoyed this and you work on big Rails apps, you will enjoy reading [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/) .
