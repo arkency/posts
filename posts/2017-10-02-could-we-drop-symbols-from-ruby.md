@@ -207,3 +207,7 @@ end
 I doubt that's gonna happen. Probably too many corner cases right now to introduce such a change. But if we could drop `Fixnum` and `Bignum`, maybe we can drop `Symbol`?
 
 Would we even want to? What's your opinion? Do you need `Symbol` class in your code? Or do you just like the symbol notation?
+
+I will leave you with a [quote by Matz](https://bugs.ruby-lang.org/issues/7792)
+
+> Symbols are taken from Lisp symbols, and they has been totally different beast from strings. They are not nicer (and faster) representation of strings. But as Ruby stepped forward its own way, the difference between symbols and strings has been less recognized by users.
