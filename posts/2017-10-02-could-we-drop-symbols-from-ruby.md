@@ -212,6 +212,18 @@ I will leave you with a [quote by Matz](https://bugs.ruby-lang.org/issues/7792)
 
 > Symbols are taken from Lisp symbols, and they has been totally different beast from strings. They are not nicer (and faster) representation of strings. But as Ruby stepped forward its own way, the difference between symbols and strings has been less recognized by users.
 
+And if you think that would be a bad idea, let me tell you that he tried but failed.
+
+<blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">We tried &amp; failed. <br>Link:  Could we drop Symbols from Ruby? | Arkency Blog <a href="https://t.co/um0xnWSpcQ">https://t.co/um0xnWSpcQ</a></p>&mdash; Yukihiro Matsumoto (@yukihiro_matz) <a href="https://twitter.com/yukihiro_matz/status/916083723589656576?ref_src=twsrc%5Etfw">October 5, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I guess too many libraries out there rely on checking if an object is Symbol or not.
+
+And in Smalltalk Symbols inherit from Strings:
+
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">Hey, Just a comment on the article: In Smalltalk, Symbols actually do inherit from string: <a href="https://t.co/YtQO91N0p7">pic.twitter.com/YtQO91N0p7</a></p>&mdash; Tobias (@krono) <a href="https://twitter.com/krono/status/916402697183535106?ref_src=twsrc%5Etfw">October 6, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 P.S.
 
 If you enjoyed this and you work on big Rails apps, you will enjoy reading [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/) .
