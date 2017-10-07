@@ -70,7 +70,7 @@ ActiveRecord::Schema.define do
 end
 ```
 
-Set `verbose` to `false` if you don't want to see the output.
+Set `verbose` to `false` if you don't want to see the output of SQL statements creating those tables.
 
 ## Logger
 
