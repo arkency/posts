@@ -236,14 +236,10 @@ to just do that.
 Your class does not always need to be `Enumerable`. It is ok if it just
 returns `Enumerator`.
 
-## Don't miss our next blog post
+## Would you like to continue learning more?
 
-If you enjoyed the article, 
-[follow us on Twitter](https://twitter.com/arkency)
-[and Facebook](https://www.facebook.com/pages/Arkency/107636559305814), 
-or [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always
-the first one to get the knowledge that you might find useful in your
-everyday programmer job. Content is mostly focused on (but not limited to)
-Rails, Webdevelopment and Agile.
+If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your everyday Rails programmer job.
 
-Make sure to [check our books and videos](/products)
+Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.

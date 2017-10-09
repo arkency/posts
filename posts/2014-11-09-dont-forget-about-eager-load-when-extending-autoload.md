@@ -313,13 +313,10 @@ Don't confuse _eager loading of code_ with _eager loding of active record object
 which [we also happen to have an article about](/2013/12/rails4-preloading/).
 The numenclature they use is similar but they mean completely different things.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+## Would you like to continue learning more?
 
-Did you like this article? You might find [our Rails books interesting as well](/products) .
+If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your everyday Rails programmer job.
 
-<a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>
+Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails applications.

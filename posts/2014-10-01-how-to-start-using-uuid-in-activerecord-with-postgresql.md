@@ -296,18 +296,18 @@ PostgreSQL offers many more extensions and types out of the box, that [are compa
 
 The rest will be covered in further blogposts very soon.
 
+## Would you like to continue learning more?
+
+If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your
+everyday Rails programmer job.
+
+Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
+
 ## References
 
 - http://www.postgresql.org/docs/9.4/static/extend.html
 - http://www.postgresql.org/docs/9.4/static/extend-extensions.html
 - http://www.postgresql.org/docs/9.4/static/sql-createextension.html
 - http://decomplecting.org/rails4-postgres/
-
-Did you like this article? You might find [our Rails books interesting as well](/products) .
-
-<a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

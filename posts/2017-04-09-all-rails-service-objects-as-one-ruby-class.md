@@ -147,6 +147,13 @@ If the app itself sounds interesting to you, it's free to use at  [http://fuckup
 
 If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://controllers.rails-refactoring.com).
 
-If you're interested in the events/DDD style of coding, please consider attending our [Rails DDD workshop](http://blog.arkency.com/ddd-training/) in Lviv, Ukraine, 25-26 May, 2017. There's still some time to decide, but first slots (of the maximum 20) are already sold.
-
 <div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/lmpPfTy-Tvw?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+
+## Would you like to continue learning more?
+
+If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your
+everyday Rails programmer job.
+
+Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
