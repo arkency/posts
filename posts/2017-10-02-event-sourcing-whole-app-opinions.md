@@ -1,8 +1,8 @@
 ---
 title: "Event-sourcing whole app — opinions"
-created_at: 2017-10-02 23:12:35 +0200
+created_at: 2017-10-10 17:12:35 +0200
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'event sourcing' ]
 newsletter: :arkency_form
@@ -27,9 +27,9 @@ Main takeaways:
 - you have to think about corrections in event sourced system (i.e. fixing typo in the data) — not that straightforward with immutable events as it was with CRUD
 - it's a different style of problem analysis and it can be more expensive
 - there are times it actually becomes easier to event-source but as rule you really don’t want to event-source everything
-- it should not be your top-level architecture (it should be sone kind of event-driven though)
+- it should not be your top-level architecture (it should be some kind of event-driven though)
 
-After learning from Greg, let's examine what **Udi Dahan** has to say on [similar topic](http://udidahan.com/2011/04/22/when-to-avoid-cqrs/):
+After learning from Greg, let's examine what **Udi Dahan** says on [similar topic](http://udidahan.com/2011/04/22/when-to-avoid-cqrs/):
 
 > Most people using CQRS (and Event Sourcing too) shouldn’t have done so.
 
