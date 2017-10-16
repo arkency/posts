@@ -77,7 +77,7 @@ end
 
 ActiveRecord library has a nice helper method called [`assert_queries`](https://github.com/rails/rails/blob/e986cb49c8a475c48819cee451c73dbd005904c4/activerecord/test/cases/test_case.rb#L49) which is part of `ActiveRecord::TestCase`. Unfortunately, `ActiveRecord::TestCase` is not shipped as part of ActiveRecord. It is only available in rails internal tests to verify its behavior. We can however quite easily emulate it for our needs.
 
-Imagine a scenario in which you operate on a graph of Active Record objects but you don't return them. You just return a computed values. How can your verify it in such case that you don't have N+1 problem? There are no observable side-effects, no returned records to check if they are `loaded?`. But aren't they?
+Imagine a scenario in which you operate on a graph of Active Record objects but you don't return them. You just return a computed values. How can your verify it in such case that you don't have the N+1 problem? There are no observable side-effects, no returned records to check if they are `loaded?`. But... aren't they really?
 
 ```ruby
 class Order < ActiveRecord::Base
@@ -142,9 +142,9 @@ RSpec.describe Order, type: :model do
 end
 ```
 
-If you go that way make sure to create enough records to detect potential issues with eager loading. One order with one line is not enough because with and without the eager loading the number of queries would be the same. In this case only when you have 2 order lines you can see the difference in number of queries with preloading (2, one for all orders and one for all lines) vs without preloading (3, one for all orders and one for every line separately). Always make sure your test is failing before fixing it :)
+If you go that way make sure to create enough records to detect potential issues with eager loading. One order with one line is not enough because with and without the eager loading the number of queries would be the same. In this case only when you have 2 order lines you can see the difference in a number of queries with preloading (2, one for all orders and one for all lines) vs without preloading (3, one for all orders and one for every line separately). Always make sure your test is failing before fixing it :)
 
-While using this approach is possible, it tells me that it could be nice to split the responsibilities into two smaller methods. One responsible for extracting the right records from database (so IO-related) and one for transforming the data and doing the computations (no IO, side-effect free).
+While using this approach is possible, it tells me that it could be nice to split the responsibilities into two smaller methods. One responsible for extracting the right records from a database (IO-related) and one for transforming the data and doing the computations (no IO, side-effect free).
 
 ### Would you like to continue learning more?
 
