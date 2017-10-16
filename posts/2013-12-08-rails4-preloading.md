@@ -468,6 +468,10 @@ which Rails 3 has been missing for years:
 * [`#preload`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-preload)
 * [`#eager_load`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-eager_load)
 
+## Testing
+
+Check out how you can [test eager-loading the associations](/two-ways-for-testing-preloading-eager-loading-of-activerecord-association-in-rails/) and make sure the code actually makes as many queries as you expected.
+
 ## Summary
 
 There are 3 ways to do eager loading in Rails:
