@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active_record' ]
 newsletter: :arkency_form
+img: testing-association-preloaded-eager-loaded-rails-active-record/association-tested-rspec-minitest.jpeg
 ---
 
 As a developer who cares about performance you know to [avoid N+1 queries by using `#includes`, `#preload` or `#eager_load` methods](/2013/12/rails4-preloading/) . But is there a way of checking out that you are doing your job correctly and making sure that the associations you expect to be preloaded are indeed? How can you test it? There are two ways.
