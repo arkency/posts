@@ -146,6 +146,8 @@ If you go that way make sure to create enough records to detect potential issues
 
 While using this approach is possible, it tells me that it could be nice to split the responsibilities into two smaller methods. One responsible for extracting the right records from a database (IO-related) and one for transforming the data and doing the computations (no IO, side-effect free).
 
+You can check out [db-query-matchers gem](https://github.com/brigade/db-query-matchers) for RSpec matchers to help you with that kind of testing.
+
 ### Would you like to continue learning more?
 
 If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your everyday Rails programmer job. Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring.
