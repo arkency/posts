@@ -296,3 +296,9 @@ But I realized one thing. I don't need to use relative testing which checks that
 When you get stuck in testing (especially if you want to make sure the last 5% keeps working as expected as well) it might be a sign that you hit the wall with your current approach. You might have been testing only using Relative Testing or only using Absolute Testing. Stop for a moment and consider if the other approach makes it easier to achieve your goal.
 
 I usually try to not cross the boundaries, not test too much implementation details because that makes refactorings harder. I prefer [testing units over classes](http://blog.arkency.com/2014/09/unit-tests-vs-class-tests/) (remember: [_There is no such rule that there should be one test class per class_](http://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html)). But sometimes when all you have is relative, it might be good to introduce more specificity. And vice-versa.
+
+### Would you like to continue learning more?
+
+If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your everyday Rails programmer job. Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring.
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
