@@ -2,7 +2,7 @@
 title: "Relative Testing vs Absolute Testing"
 created_at: 2017-10-19 09:46:13 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'testing' ]
 newsletter: :arkency_form
