@@ -279,8 +279,10 @@ I don't recommend doing a lot of those tests. I usually try to design my tests s
 This example is similar to the previous one. Imagine that inside `read_stream_events_forward` you have code similar to:
 
 ```ruby
-def read_stream_events_forward(read_stream_events_forward)
-  events = Event.where(stream_name: stream_name).order("position ASC")
+def read_stream_events_forward(stream_name)
+  events = Event.
+    where(stream_name: stream_name).
+    order("position ASC")
   # ...
 end
 ```
