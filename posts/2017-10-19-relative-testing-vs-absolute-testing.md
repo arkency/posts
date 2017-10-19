@@ -129,7 +129,7 @@ The event's `hash` does not collide with the hash of an Array keeping event's cl
   ].hash)
 ```
 
-Thanks to proper implementation I can put events into `Set` or `Hash` and it they are properly recognized even if I don't use the same instance but rather a new instance with identical values.
+Thanks to proper implementation I can put events into `Set` or `Hash` and they are properly recognized even if I don't use the same instance but rather a new instance with identical values.
 
 ```ruby
   expect({
@@ -173,7 +173,7 @@ It's just a random, big value that I generated. You could change a random bit in
 
 If you have an experience with [mutation testing](/2015/06/how-good-are-your-ruby-tests-testing-your-tests-with-mutant/) you know that it routinely checks for off-by-one errors by mutating numbers in your code to a bigger or lower number and checking whether the code fails.
 
-But if you mutate `BIG_VALUE` to `BIG_VALUE -1` or `BIG_VALUE +1` the code still works and no test fails. All of those values are as good as any other. What does it mean? I have not explanation for my test why I want this number over other number.
+But if you mutate `BIG_VALUE` to `BIG_VALUE -1` or `BIG_VALUE +1` the code still works and no test fails. All of those values are as good as any other. What does it mean? I have no explanation for my tests why I want this number over another number.
 
 What am I missing? One absolute test.
 
@@ -183,7 +183,7 @@ expect(
 ).to eq(8061336739304082551)
 ```
 
-You might scream _🙀🙀 but that test has no value 😱😱_. Run it on your computer, CI, ruby 1.9 - ruby 2.5, jruby, rubinius and the value might differ and your test can fail. What could that tell you? Maybe, whether your hashing function is stable in a distributed, heterogeneous environment.
+You might scream _🙀🙀 but that test has no value 😱😱_. Run it on your computer, CI, ruby 1.9 - ruby 2.5, JRuby, Rubinius and the value might differ and your test can fail. What could that tell you? Maybe, whether your hashing function is stable in a distributed, heterogeneous environment.
 
 ## Example 2
 
@@ -224,9 +224,9 @@ Event.create!(
 )
 ```
 
-that makes our events in stream indexed from 0. So first event's position is 0, next ones is 1, and then there is 2...
+that makes our events in stream indexed from 0. So first event's position is 0, next one is 1, and then there is 2...
 
-Here is the thing. From the point of our API it does not matter how they are internally numbered and stored in the database.
+Here is the thing. From the point of our API, it does not matter how they are internally numbered and stored in the database.
 
 ```ruby
 events = client.read_stream_events_forward("Order-dd00859a")
@@ -240,13 +240,13 @@ position = read_last_position || -8
 position += 1
 ```
 
-it would work equally well and the tests would be still passing. Our data would be indexed from -7 which sounds silly but for computers it works. So yeah. What's the difference 😉 ?
+it would work equally well and the tests would be still passing. Our data would be indexed from -7 which sounds silly, but for computers, it works. So yeah. What's the difference 😉 ?
 
-Why does the test still work? Because your tests are relative. They compare the order of written events and the read order of read events and make sure they are identical. Write A,B to X. Read X and get A,B.
+Why does the test still work? Because your tests are relative. They compare the order of written events and the order of read events and make sure they are identical. Write `A, B` to `X`. Read `X` and get `A, B` back.
 
-Why did I choose to have the numbers indexed from 0? Because I am used to? Because that usually the default (in most languages). Because of aesthetics, I guess...
+Why did I choose to have the numbers indexed from 0? Because I am used to? Because that is usually the default (in most languages). Because of aesthetics, I guess...
 
-So how can I justify this code?
+So how can I justify this `-1` in the code?
 
 ```ruby
 position = read_last_position || -1
@@ -269,9 +269,9 @@ client.publish_event(event, stream_name: "Order-dd00859a")
 client.read_stream_events_forward("Order-dd00859a")
 ```
 
-And you might scream _🙀🙀 but that test has no value 😱😱_. But these kind of things matter when you want your code to use the same convention between multiple releases/versions. If some data is written in previous version of the code and some data is written in the next version of the code they might be inconsistent. So even though this implementation detail (exact `position` number) is not exposed to the clients of this API, you might still want to pinpoint it to a single specific number.
+And you might scream _🙀🙀 but that test has no value 😱😱_. But this kind of things matters when you want your code to use the same convention between multiple releases/versions. If some data is written in a previous version of the code and some data is written in the next version of the code they might be inconsistent. So even though this implementation detail (exact `position` number) is not exposed to the clients of this API, you might still want to pinpoint it to a single specific number and keep consistent between releases.
 
-I don't recommend doing a lot of those tests. I usually try to design my tests so that they operate on the same layer for setup/preparation and for verification. But checking the implementation detail of one layer below in this case can be beneficial because these values get persisted forever.
+I don't recommend doing a lot of those tests. I usually try to design my tests so that they operate on the same layer for setup/preparation and for verification. But checking the implementation detail of one layer below, in this case, can be beneficial because these values get persisted forever.
 
 ## Example 3
 
@@ -284,7 +284,7 @@ def read_stream_events_forward(read_stream_events_forward)
 end
 ```
 
-but mutation testing tells you that if you remove `order("position ASC")` the code still works and returns the rows in proper order. That's usually the case because with small amount of data the DB will often return those records in the same order they were inserted. But you don't want to rely on that (p.s. even messing with auto-incremented IDs saved on DB might not help you because DBs will often use internal row ids).
+but mutation testing tells you that if you remove `order("position ASC")` the code still works and returns the rows in proper order. That's usually the case because with a small amount of data, the DB will often return those records in the same order they were inserted. But you don't want to rely on that (p.s. even messing with auto-incremented IDs saved on DB might not help you because DBs will often use internal row ids).
 
 You want to be explicit. You know you are doing the right thing by explicitly specifying the order but it might be hard for you to create a test setup presenting the situation in which not providing the order fails the tests. Damn DBs.
 
