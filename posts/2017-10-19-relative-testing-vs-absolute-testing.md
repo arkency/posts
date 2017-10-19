@@ -6,6 +6,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'testing' ]
 newsletter: :arkency_form
+img: "relative-absolute-testing-in-ruby-and-rails/title.jpeg"
 ---
 
 Recently I had one of these small _aha! moments_ when something strikes you and a concept clarifies in your head. This time it was about testing. I am not even sure if this is something new or obvious. I know it's something that so far I haven't been paying attention to consciously and it made testing unnecessarily harder for me. This recognition of the difference between both approaches comes purely thanks to using mutation testing. When you really try hard to make sure every part of code is tested properly it makes you think twice sometimes.
