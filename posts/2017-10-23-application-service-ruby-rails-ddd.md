@@ -518,4 +518,6 @@ Here are some links worth reading to see other author's perspective on services:
 
 If you still have some questions and doubts, leave them in a comment or [buy our book and join the Rails/DDD community](http://blog.arkency.com/domain-driven-rails/#book___code___exercises___community_access____99) to discuss with other Ruby devs doing DDD.
 
-We wrote many articles about doing [DDD in Ruby and Rails](/tags/ddd/) such as [When DDD clicked for me](http://blog.arkency.com/when-ddd-clicked-for-me/) or [My fruitless, previous attempts at not losing history of changes in Rails apps](http://blog.arkency.com/my-fruitless-previous-attempts-at-not-loosing-history-of-changes-in-rails-apps/) which show our journey into better, prettier code that can handle complex Rails apps. For a free weekly content about DDD and working with big apps [join our newsletter](http://arkency.com/newsletter).
+We wrote many articles about doing [DDD in Ruby and Rails](/tags/ddd/) such as [When DDD clicked for me](http://blog.arkency.com/when-ddd-clicked-for-me/) or [My fruitless, previous attempts at not losing history of changes in Rails apps](http://blog.arkency.com/my-fruitless-previous-attempts-at-not-loosing-history-of-changes-in-rails-apps/) which show our journey into better, prettier code that can handle complex Rails apps.
+
+For a free weekly content about DDD and working with big apps [join our newsletter](http://arkency.com/newsletter).
