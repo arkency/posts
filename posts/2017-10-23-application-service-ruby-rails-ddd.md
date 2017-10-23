@@ -325,3 +325,181 @@ end
 ## What's the difference between Application Service and Command Handler
 
 I believe there is none, really. It's just the names comes from 2 different communities (DDD vs CQRS) but they represent a similar concept. However, Command Handler is more likely to handle just one command :)
+
+## What should the Application Service return?
+
+Ideally, nothing. The reason most Application Services return anything is because the higher layer needs the ID of the created record. But if you go with client-side generated (JS fronted or in a controller) UUIDs then the only thing the controller needs to know is whether the operation succeeded. This can be expressed with domain events and/or exceptions.
+
+## Should the Application Service contain business logic?
+
+Nope. That should stay in your Aggregates and Domain Services.
+
+## Can the application service handle more than 1 operation at the same time?
+
+Yes, although I am not yet sure what's the best approach for it. I consider a separate command vs a commands container for a batch of smaller commands.
+
+Handling many smaller operations can be useful when there are multiple clients with various needs or when you need to handle less granular (compared to standard UI operations) updates provided via CSV/XLS/XLSX/XML files.
+
+### A separate command
+
+```ruby
+class SetDeliveryMethodAndConfirmCommand
+  attr_accessor :order_number,
+                :delivery_method
+end
+
+
+class OrdersService
+  def call(command)
+    case command
+    when SetDeliveryMethodAndConfirmCommand
+      delivery_and_confirm(command)
+    when ConfirmCommand
+      confirm(command)
+    when SetDeliveryMethodCommand
+      set_delivery(command)
+    # ...
+    else
+      raise ArgumentError
+    end
+  end
+
+  private
+
+  def delivery_and_confirm(command)
+    with_order(command.order_number) do |order|
+      order.set_delivery_method(command.delivery_method)
+      order.confirm
+    end
+  end
+
+  # ...
+end
+```
+
+### General commands container
+
+```ruby
+class BatchOfCommands
+  attr_reader :commands
+
+  def initialize
+    @commands = []
+  end
+
+  def add_command(cmd)
+    commands << cmd
+    self
+  end
+end
+
+
+class OrdersService
+  def call(command)
+    case command
+    when BatchOfCommands
+      batch(command.commands)
+    when ConfirmCommand
+      confirm(command)
+    when SetDeliveryMethodCommand
+      set_delivery(command)
+    # ...
+    else
+      raise ArgumentError
+    end
+  end
+
+  private
+
+  def batch(commands)
+    commands.each{|cmd| call(cmd) }
+  end
+
+  # ...
+end
+
+batch = BatchOfCommands.new
+batch.
+  add_command(SetDeliveryMethodCommand.new(...)).
+  add_command(ConfirmCommand.new(...))
+
+OrdersService.new.call(batch)
+```
+
+However, this naive approach can lead to a poor performance (reading and writing the same object multiple times) and it does not guarantee processing all commands transactionally. It will be up to your implementation to balance transactionality and performance and choose the model which best covers your application requirements (including non-functional ones). Generally you can choose from:
+
+* one transaction per one operation
+  * simplest to implement
+  * worst performance
+  * short locks on objects
+* one transaction per one object
+  * balanced performance and lock time
+  * guaranteed a whole record processed or skipped (in case of crash in the middle of the process)
+* one transaction per whole batch
+  * very long lock on many objects which might affect many other operations occurring at the same time
+  * guaranteed all or none records processed
+
+Here is an example on how the balanced _one transaction per one object_ approach can be implemented.
+
+```ruby
+class OrdersService
+  def call(command)
+    case command
+    when BatchOfCommands
+      batch(command.commands)
+    when ConfirmCommand
+      confirm(command)
+    when SetDeliveryMethodCommand
+      set_delivery(command)
+    # ...
+    else
+      raise ArgumentError
+    end
+  end
+
+  private
+
+  def batch(commands)
+    groupped_commands = commands.group_by(&:order_number)
+    groupped_commands.each do |order_number, order_commands|
+      with_order(number) do
+        order_commands.each{|cmd| call(cmd) }
+      end
+    end
+  end
+
+  def confirm(command)
+    with_order(command.order_number) do |order|
+      order.confirm
+    end
+  end
+
+  def with_order(number)
+    if @order && @order.number == number
+      yield @order
+    elsif @order && @order.number != number
+      raise "not supported"
+    else
+      begin
+        order_repository.transaction do
+          @order = order_repository.find(number, lock: true)
+          yield @order
+          order_repository.save(@order)
+        end
+      ensure
+        @order = nil
+      end
+    end
+  end
+
+end
+
+batch = BatchOfCommands.new
+batch.
+  add_command(SetDeliveryMethodCommand.new(...)).
+  add_command(ConfirmCommand.new(...))
+
+OrdersService.new.call(batch)
+```
+
+No matter which approach you go with, it can be beneficial when transforming your UI from bunch of fields sent together into more Task Based UI.
