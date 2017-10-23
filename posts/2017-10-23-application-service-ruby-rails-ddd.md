@@ -443,7 +443,7 @@ However, this naive approach can lead to a poor performance (reading and writing
   * very long lock on many objects which might affect many other operations occurring at the same time
   * guaranteed all or none records processed
 
-Here is an example of how the balanced _one transaction per one object_ approach can be implemented.
+Here is an example of how the balanced _one transaction per one object_ approach can be implemented by grouping commands related to the same object.
 
 ```ruby
 class OrdersService
