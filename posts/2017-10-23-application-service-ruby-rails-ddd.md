@@ -194,7 +194,7 @@ end
 
 Because of Ruby's duck-typing mechanism, this can work but, due to the lack of interfaces, it is not easy for the `ApplicationService` to describe the exact format it expects the data from the command. For simple commands that's not a big issue, but the bigger they get and the more nested attributes they include the harder it is.
 
-One thing I considered as a substitute for interface was... linters :) Such as [rack linter](http://www.rubydoc.info/gems/rack/Rack/Lint) or [this](https://github.com/RailsEventStore/rails_event_store/blob/master/ruby_event_store/lib/ruby_event_store/spec/event_repository_lint.rb) In other words shared examples distributed as parts of the lower layer (implementing an Application Service) that could be executed in the tests of the higher layer (controller).
+One thing I considered as a substitute for interface was... linters :) Such as [rack linter](http://www.rubydoc.info/gems/rack/Rack/Lint) or [this](https://github.com/RailsEventStore/rails_event_store/blob/master/ruby_event_store/lib/ruby_event_store/spec/event_repository_lint.rb). In other words shared examples distributed as parts of the lower layer (implementing an Application Service) that could be executed in the tests of the higher layer (controller).
 
 ```ruby
 RSpec.describe Controller::MyCommand do
