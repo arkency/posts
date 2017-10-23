@@ -8,7 +8,7 @@ tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :arkency_form
 ---
 
-In DDD-flavored applications your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role. Let's dissect them a bit.
+In DDD-flavored applications your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our domain objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role but not the only one. Let's dissect them a bit.
 
 <!-- more -->
 
@@ -76,10 +76,11 @@ Repository is often just one of the dependencies that our code need. Others can 
 ```ruby
 class OrdersAddProductService
   def call(order_number, product_id, quantity)
+    prices_adapter = ProductPricesApiAdapter.new
     order_repository.transaction do
       order = order_repository.find(order_number, lock: true)
       order.add_product(
-        ProductPricesApiAdapter.new,
+        prices_adapter,
         product_id,
         quantity
       )
@@ -310,6 +311,16 @@ class OrdersService
   end
 end
 ```
+
+## What should the command contain?
+
+* The id/uuid of related entities which should be changed
+* The data necessary for performing those changes
+* Verified id of the user performing current action
+  * `current_user_id` coming from the controller
+    * usually based on session, cookies or tokens
+* The user id on behalf of whom the action is executed in case that's not the same as the user performing current action
+  * Scenario: An Admin executes an operation on behalf of an user who called customer support and asked for help.
 
 ## What's the difference between Application Service and Command Handler
 
