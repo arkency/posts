@@ -1,5 +1,5 @@
 ---
-title: "Application Service Ruby Rails DDD"
+title: "Application Services - 10 common doubts"
 created_at: 2017-10-23 09:35:44 +0200
 kind: article
 publish: true
