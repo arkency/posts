@@ -1,5 +1,5 @@
 ---
-title: "Application Services - 10 common doubts"
+title: "Application Services - 10 common doubts answered"
 created_at: 2017-10-23 09:35:44 +0200
 kind: article
 publish: true
