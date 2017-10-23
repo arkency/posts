@@ -2,13 +2,15 @@
 title: "Application Service Ruby Rails DDD"
 created_at: 2017-10-23 09:35:44 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'ddd', 'application service' ]
 newsletter: :arkency_form
 ---
 
-In DDD-flavored applications your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our domain objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role but not the only one. Let's dissect them a bit.
+You might have heard about the Domain-Driven Design approach to building applications. In this approach there is this horizontal layer called **Application Service. But what does it do? What arguments does it take? How many operations can it perform? How does it cooperate with other parts of our application such as controllers and models?** So many questions, not so many answers. So I decided to write down what I imagine this layer to look like based on the books and articles that I've read and also based on my personal feelings after years of experimenting.
+
+In DDD-flavored applications your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our domain objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role but not the only one. Let's dissect Application Services.
 
 <!-- more -->
 
@@ -340,7 +342,7 @@ Yes, although I am not yet sure what's the best approach for it. I consider a se
 
 Handling many smaller operations can be useful when there are multiple clients with various needs or when you need to handle less granular (compared to standard UI operations) updates provided via CSV/XLS/XLSX/XML files.
 
-### A separate command
+#### A separate command
 
 ```ruby
 class SetDeliveryMethodAndConfirmCommand
@@ -377,7 +379,7 @@ class OrdersService
 end
 ```
 
-### General commands container
+#### General commands container
 
 ```ruby
 class BatchOfCommands
@@ -503,3 +505,15 @@ OrdersService.new.call(batch)
 ```
 
 No matter which approach you go with, it can be beneficial when transforming your UI from bunch of fields sent together into more Task Based UI.
+
+## Get more
+
+Here are some links worth reading to see other author's perspective on services:
+
+* http://gorodinski.com/blog/2012/04/14/services-in-domain-driven-design-ddd/
+* https://buildplease.com/pages/fpc-10/
+* http://enterprisecraftsmanship.com/2016/09/08/domain-services-vs-application-services/
+
+If you still have some questions and doubts, leave them in a comment or [buy our book and join the Rails/DDD community](http://blog.arkency.com/domain-driven-rails/#book___code___exercises___community_access____99) to discuss with other Ruby devs doing DDD.
+
+We wrote many articles about doing [DDD in Ruby and Rails](/tags/ddd/) such as [When DDD clicked for me](http://blog.arkency.com/when-ddd-clicked-for-me/) or [My fruitless, previous attempts at not losing history of changes in Rails apps](http://blog.arkency.com/my-fruitless-previous-attempts-at-not-loosing-history-of-changes-in-rails-apps/) which show our journey into better, prettier code that can handle complex Rails apps. For a free weekly content about DDD and working with big apps [join our newsletter](http://arkency.com/newsletter).
