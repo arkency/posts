@@ -8,9 +8,9 @@ tags: [ 'ddd', 'application service' ]
 newsletter: :arkency_form
 ---
 
-You might have heard about the Domain-Driven Design approach to building applications. In this approach there is this horizontal layer called **Application Service. But what does it do? What arguments does it take? How many operations can it perform? How does it cooperate with other parts of our application such as controllers and models?** So many questions, not so many answers. So I decided to write down what I imagine this layer to look like based on the books and articles that I've read and also based on my personal feelings after years of experimenting.
+You might have heard about the Domain-Driven Design approach to building applications. In this approach, there is this horizontal layer called **Application Service. But what does it do? What arguments does it take? How many operations can it perform? How does it cooperate with other parts of our application such as controllers and models?** So many questions, not so many answers. So I decided to write down what I imagine this layer to look like based on the books and articles that I've read and also based on my personal feelings after years of experimenting.
 
-In DDD-flavored applications your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our domain objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role but not the only one. Let's dissect Application Services.
+In DDD-flavored applications, your domain logic lives mostly in the form of aggregates (and some bits in domain services). But that logic and object's behavior is usually persistence-agnostic. It means that it is not our domain objects responsibility to worry how they are persisted. So where does it happen? In Application Services. That's their primary role but not the only one. Let's dissect Application Services.
 
 <!-- more -->
 
@@ -47,7 +47,7 @@ class OrderExpirationService
 end
 ```
 
-One of the simplest rule that you can follow to make your code more testable and easier to refactor in the future is to avoid calling `save!` (or `save`) from your models.
+One of the simplest rules that you can follow to make your code more testable and easier to refactor in the future is to avoid calling `save!` (or `save`) from your models.
 
 Don't:
 
@@ -68,7 +68,7 @@ So even if you use ActiveRecord, just don't call `save!` from within the class. 
 
 ## Other responsibilities
 
-Repository is often just one of the dependencies that our code need. Others can be
+The repository is often just one of the dependencies that our code need. Others can be
 
 * adapters
 * message bus
@@ -118,7 +118,7 @@ There is also a fraction claiming that the 2nd object should not be another aggr
 It is not recommended as it increases coupling between objects (aggregates) that are being updated at the same time. Potential issues to consider:
 
 * the operation takes longer
-* the objects have different lifecycle (one can be updated rarely and by one person, the other can be updated multiple times per second by various users). So the high-throughput nature of one object can cause deadlocks and prevent whole operation from happening. Or the the fact that the operation is longer and both objects remain locked in DB can lower the throughput of the object which is more often edited.
+* the objects have a different lifecycle (one can be updated rarely and by one person, the other can be updated multiple times per second by various users). So the high-throughput nature of one object can cause deadlocks and prevent the whole operation from happening. Or the fact that the operation is longer and both objects remain locked in DB can lower the throughput of the object which is more often edited.
 * the objects might be persisted in different DBs so the change is not transactional anyway
 
 ## What should the application service receive as an argument?
@@ -147,15 +147,15 @@ end
 
 Having commands can be beneficial if you want to easily see what's supposed to be provided. It is more explicit, and it makes it more visible. The more attributes are provided by a form or API the more likely having this layer can be valuable. Also, the more complicated/nested/repeated the attributes are, the more grateful you will be for having commands.
 
-Commands can perform simple validations that don't require any business knowledge. Usually this is just a trivial thing like making sure a value is present, properly formatted, included in a list of allowed values, etc.
+Commands can perform simple validations that don't require any business knowledge. Usually, this is just a trivial thing like making sure a value is present, properly formatted, included in a list of allowed values, etc.
 
 The interesting aspect of defining a closed (not allowing every possible value) structure is that it also increases security and basically acts similar to `strong_parameters`.
 
 ### Where should the command be instantiated?
 
-I think, the controller fits nicely to the rule. It has access to all the data from HTTP layer such as currently logged user id (from session or a token), routing parameters, form post parameters etc. And from all that they it can build a command by passing the necessary values.
+I think the controller fits nicely to the responsibility. It has access to all the data from HTTP layer such as currently logged user id (from a session or a token), routing parameters, form post parameters etc. And from all that, it can build a command by passing the necessary values.
 
-### Should the command be implemented in same layer as application service or a higher layer (above it)
+### Should the command be implemented in the same layer as application service or a higher layer (above it)
 
 Ideally, I believe the layer which contains application service should define the interface of the command and a higher layer could implement it. What's the difference?
 
@@ -192,7 +192,7 @@ class Controller < ApplicationController
 end
 ```
 
-Because of Ruby's duck-typing mechanism this can work but, due to the lack of interfaces, it is not easy for the `ApplicationService` to describe the exact format it expects the data from the command. For simple commands that's not a big issue, bug the bigger they get and the more nested attributes they include the harder it is.
+Because of Ruby's duck-typing mechanism, this can work but, due to the lack of interfaces, it is not easy for the `ApplicationService` to describe the exact format it expects the data from the command. For simple commands that's not a big issue, but the bigger they get and the more nested attributes they include the harder it is.
 
 One thing I considered as a substitute for interface was... linters :) Such as [rack linter](http://www.rubydoc.info/gems/rack/Rack/Lint) or [this](https://github.com/RailsEventStore/rails_event_store/blob/master/ruby_event_store/lib/ruby_event_store/spec/event_repository_lint.rb) In other words shared examples distributed as parts of the lower layer (implementing an Application Service) that could be executed in the tests of the higher layer (controller).
 
@@ -214,9 +214,11 @@ class TestMeme < Minitest::Test
 end
 ```
 
+But I didn't find this separation worthy and I never went that way. I would in a language with interfaces where defining the structure without implementation is pretty fast.
+
 #### Command implemented in the same layer as the service
 
-In this version, the controller must copy the necessary data to a provided implementation of the command, which might be less convenient when there is more arguments.
+In this version, the controller must copy the necessary data to a provided implementation of the command, which might be less convenient when there are more arguments.
 
 ```ruby
 class Controller < ApplicationController
@@ -247,7 +249,7 @@ end
 
 ## Can the application service handle more than 1 operation?
 
-I think it can and I would even say that it's often beneficial to group many operations together in one Application Service instead of scattering them across multiple classes. Because usually the use-cases need the same dependencies to finish and have a similar workflow.
+I think it can and I would even say that it's often beneficial to group many operations together in one Application Service instead of scattering them across multiple classes. Because usually, the use-cases need the same dependencies to finish and have a similar workflow.
 
 ```ruby
 class OrdersService
@@ -330,7 +332,7 @@ I believe there is none, really. It's just the names comes from 2 different comm
 
 ## What should the Application Service return?
 
-Ideally, nothing. The reason most Application Services return anything is because the higher layer needs the ID of the created record. But if you go with client-side generated (JS fronted or in a controller) UUIDs then the only thing the controller needs to know is whether the operation succeeded. This can be expressed with domain events and/or exceptions.
+Ideally, nothing. The reason most Application Services return anything is that the higher layer needs the ID of the created record. But if you go with client-side generated (JS fronted or in a controller) UUIDs then the only thing the controller needs to know is whether the operation succeeded. This can be expressed with domain events and/or exceptions.
 
 ## Should the Application Service contain business logic?
 
@@ -428,7 +430,7 @@ batch.
 OrdersService.new.call(batch)
 ```
 
-However, this naive approach can lead to a poor performance (reading and writing the same object multiple times) and it does not guarantee processing all commands transactionally. It will be up to your implementation to balance transactionality and performance and choose the model which best covers your application requirements (including non-functional ones). Generally you can choose from:
+However, this naive approach can lead to a poor performance (reading and writing the same object multiple times) and it does not guarantee processing all commands transactionally. It will be up to your implementation to balance transactionality and performance and choose the model which best covers your application requirements (including non-functional ones). Generally, you can choose from:
 
 * one transaction per one operation
   * simplest to implement
@@ -437,11 +439,11 @@ However, this naive approach can lead to a poor performance (reading and writing
 * one transaction per one object
   * balanced performance and lock time
   * guaranteed a whole record processed or skipped (in case of crash in the middle of the process)
-* one transaction per whole batch
+* one transaction per the whole batch
   * very long lock on many objects which might affect many other operations occurring at the same time
   * guaranteed all or none records processed
 
-Here is an example on how the balanced _one transaction per one object_ approach can be implemented.
+Here is an example of how the balanced _one transaction per one object_ approach can be implemented.
 
 ```ruby
 class OrdersService
@@ -504,7 +506,7 @@ batch.
 OrdersService.new.call(batch)
 ```
 
-No matter which approach you go with, it can be beneficial when transforming your UI from bunch of fields sent together into more Task Based UI.
+No matter which approach, you go with, it can be beneficial when transforming your UI from a bunch of fields sent together into more Task Based UI.
 
 ## Get more
 
