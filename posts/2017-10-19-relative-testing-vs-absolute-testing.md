@@ -213,7 +213,7 @@ events = client.read_stream_events_forward("Order-dd00859a")
 expect(events).to eq([event0, event1])
 ```
 
-Now imagine that somewhere in the implementation of `#publish_event` methods there are lines such as:
+Now imagine that somewhere in the implementation of `#publish_event` method there are lines such as:
 
 ```ruby
 position = read_last_position || -1
