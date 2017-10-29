@@ -8,7 +8,7 @@ tags: [ 'bugs', 'tests', 'testing' ]
 newsletter: :skip
 ---
 
-As we all know, there are some bugs that only appear under certain circumstances. Today was a day I've got one of those.
+As we all know, there are some bugs that only appear under certain circumstances. Today was the day I've got one of those.
 
 <!-- more -->
 
