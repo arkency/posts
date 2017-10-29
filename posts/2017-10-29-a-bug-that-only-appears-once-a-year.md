@@ -1,6 +1,6 @@
 ---
 title: "A bug that only appears once a year"
-created_at: 2017-10-29 03:03:26 +0300
+created_at: 2017-10-28 22:03:26 +0200
 kind: article
 publish: true
 author: Anton Paisov
@@ -23,7 +23,7 @@ raise DeadlinePassed  if deadline_passed?(event)
 ```ruby
 def deadline_passed?(event)
   if FT.on?(:extended_tickets_transfer_deadline, organizer_id: event.user_id)
-    event.ends_at   < Time.current
+    event.ends_at < Time.current
   else
     event.starts_at < Time.current.advance(days: 1)
   end
