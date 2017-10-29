@@ -2,13 +2,13 @@
 title: "A bug that only appears once a year"
 created_at: 2017-10-29 03:03:26 +0300
 kind: article
-publish: false
+publish: true
 author: Anton Paisov
 tags: [ 'bugs', 'tests', 'testing' ]
 newsletter: :skip
 ---
 
-As we all know, there are some bugs that only appear under certain circumstances. Today was the day I've got one of those.
+There are some bugs that only appear under certain circumstances. Today was the day I've got one of those.
 
 <!-- more -->
 
