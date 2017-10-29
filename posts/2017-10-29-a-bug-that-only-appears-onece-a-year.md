@@ -12,8 +12,6 @@ As we all know, there are some bugs that only appear under certain circumstances
 
 <!-- more -->
 
-As we all know, there are some bugs that only appear under certain circumstances. Today was a day I've got one of those.
-
 I pushed a small change and got a red build as a result. I already had the corresponding test fixed so red build was not something I was expecting.
 An exception I've got was from a check in `TicketTransferPolicy` which had nothing at all to do with my changes. And so the investigation began.
 
