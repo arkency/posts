@@ -8,7 +8,7 @@ tags: [ 'bugs', 'tests', 'testing' ]
 newsletter: :skip
 ---
 
-There are some bugs that only appear under certain circumstances. Today was the day I've got one of those.
+There are some bugs that only appear under certain circumstances. Today was the day I've got one of those (there is a hint in this sentence).
 
 <!-- more -->
 
