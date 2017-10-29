@@ -1,5 +1,5 @@
 ---
-title: "A bug that only appears onece a year"
+title: "A bug that only appears once a year"
 created_at: 2017-10-29 03:03:26 +0300
 kind: article
 publish: false
