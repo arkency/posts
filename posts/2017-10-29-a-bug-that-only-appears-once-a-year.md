@@ -40,6 +40,6 @@ event = test_organizer.create_published_event(starts_at: 25.hours.from_now)
 
 This was an instant 'aha' moment when I've realized, today's the day when we have 25 hours in the day.
 
-Obviously, the solution here was to change `25` to `26`.
+Obviously, the solution here was either to change `25` hours to `26` or to set `starts_at` to `Time.current.advance(days: 1, hours: 1)`.
 
 Thanks, DST :P
