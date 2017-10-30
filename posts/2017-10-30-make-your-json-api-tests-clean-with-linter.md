@@ -14,8 +14,7 @@ Recently, one of our customers requested that mobile devices should communicate 
 
 We used [JSON Schema](http://jsonapi.org/faq/#is-there-a-json-schema-describing-json-api) describing JSON API as a part of custom RSpec matcher. To be sure that both request and response body are following the schema.
 
-```
-#!ruby
+```ruby
 RSpec::Matchers.define :be_valid_jsonapi_document do
   def schema_path
     Rails.root.join("spec/support/schema.json").to_s
@@ -33,8 +32,7 @@ end
 
 As you might notice, [`json-schema`](https://github.com/ruby-json-schema/json-schema) gem was used to validate the schema, but that's an implementation detail. Let's take a look at the test:
 
-```
-#!ruby
+```ruby
 RSpec.describe "Customers endpoint", type: :request do
   specify "registering customer" do
     json_data = JSON.dump({
@@ -73,13 +71,14 @@ This test is a bit cluttered, don't you think? Wouldn't it be better to make sch
 The spec above is a [request](https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec) type of spec. _Request specs provide a thin wrapper around Rails' integration tests, and are designed to drive behaviour through the full stack, including routing (provided by Rails) and without stubbing (that's up to you)._ If it's a full stack test, probably we can get access to the Rails app via `app` method. `#<UsersApp::Application:0x007fc86503cc7... >`. Yes, we can.
 
 Let's write a middleware which wraps the Rails app instantiated in a spec example to validate request & response. We can do this since [Rails application is a Rack object](http://guides.rubyonrails.org/rails_on_rack.html). According to _[Rack](https://rack.github.io)_ documentation, it _provides a minimal interface between webservers that support Ruby and Ruby frameworks. To use Rack, provide an "app": an object that responds to the call method, taking the environment hash as a parameter, and returning an Array with three elements:_
+
 _- The HTTP response code_
 _- A Hash of headers_
 _- The response body, which must respond to each_
 
 Linter implementation:
-```
-#!ruby
+
+```ruby
 class JsonApiLint
   class InvalidContentType < StandardError
     def initialize(content_type)
@@ -143,8 +142,8 @@ end
 Linter wraps Rails app, takes `env` hash as input to the `call` method and then performs checks. At first glance it verifies `Content-Type` header whether one matches `application.vnd.api+json`. Then it verifies request body whether it's compliant with JSON Schema, same goes for the response. If any deviation occurs, an exception with RSpec look-a-like error is raised. If everything goes fine, the response is returned so we can check other expectations in our spec example.
 
 To make linter working, `app` method has to be overridden as I mentioned before:
-```
-#!ruby
+
+```ruby
 def app
   JsonApiLint.new(super)
 end
@@ -152,8 +151,7 @@ end
 
 Our complete spec now looks like:
 
-```
-#!ruby
+```ruby
 RSpec.describe "Customers endpoint", type: :request do
   specify "registering customer" do
     json_data = JSON.dump({
