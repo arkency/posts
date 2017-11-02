@@ -6,6 +6,7 @@ publish: true
 author: Anton Paisov
 tags: [ 'bugs', 'tests', 'testing' ]
 newsletter: :skip
+img: "ruby-rails-dst-timezone-change-bug-once-a-year/header-glass-time-watch-x.png"
 ---
 
 There are some bugs that only appear under certain circumstances. Today was the day I've got one of those (there is a hint in this sentence).
