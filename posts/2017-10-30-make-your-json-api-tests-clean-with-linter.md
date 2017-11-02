@@ -193,9 +193,9 @@ If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/news
 
 You might enjoy reading:
 
+* [How and why should you use JSON API in your Rails API?](/2016/02/how-and-why-should-you-use-json-api-in-your-rails-api/)
 * [inject vs each_with_object](/inject-vs-each-with-object/)
 * [The === (case equality) operator in Ruby explained](/the-equals-equals-equals-case-equality-operator-in-ruby/)
-* [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - the mentioned test is only using relative time in a setup. It could be nice to have 3 absolute tests checking a normal day, DST started day and DST ended day.
 
 If you want to learn how to support JSON API standard in your Rails application, try our [_Frontend Friendly Rails Book_](http://blog.arkency.com/frontend-friendly-rails/).
 
