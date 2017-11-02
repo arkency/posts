@@ -41,7 +41,7 @@ event = test_organizer.create_published_event(starts_at: 25.hours.from_now)
 
 This was an instant 'aha' moment when I've realized, today's the day when we have 25 hours in the day.
 
-In my opinion, the best solution here is to use `Time.current.advance(days: 1, hours: 1)` instead of `25.hours.from_now`, this approach is more consistent with the code we're testing.
+In my opinion, the best solution here is to use `Time.current.advance(days: 1, hours: 1)` in the test instead of `25.hours.from_now`, this approach is more consistent with the code we're testing.
 Changing `25` to `26` would also work ;)
 
 Thanks, [DST](https://www.timeanddate.com/time/dst/) :P
