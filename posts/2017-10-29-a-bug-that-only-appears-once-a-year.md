@@ -44,3 +44,15 @@ In my opinion, the best solution here is to use `Time.current.advance(days: 1, h
 Changing `25` to `26` would also work ;)
 
 Thanks, [DST](https://www.timeanddate.com/time/dst/) :P
+
+### Would you like to continue learning more?
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our every day struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+You might enjoy reading:
+
+* [inject vs each_with_object](/inject-vs-each-with-object/)
+* [The === (case equality) operator in Ruby explained](/the-equals-equals-equals-case-equality-operator-in-ruby/)
+* [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/)
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
