@@ -20,7 +20,7 @@ If you wonder how it works I can provide you a very quick tour based on the [The
 
 1. First, arriving data is written to a WAL (Write Ahead Log). The WAL is a write-optimized storage format that allows for writes to be durable, but not easily queryable. Writes to the WAL are appended to segments of a fixed size.
 
-    The WAL is organized as a bunch of files that look like _000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches a certain size, it is closed and a new one is opened.
+    The WAL is organized as a bunch of files that look like \_000001.wal. The file numbers are monotonically increasing and referred to as WAL segments. When a segment reaches a certain size, it is closed and a new one is opened.
 
 2. The database has an in-memory cache of all the data written to WAL. In a case of a crash and restart this cache is recreated from scratch based on the data written to WAL file.
 
