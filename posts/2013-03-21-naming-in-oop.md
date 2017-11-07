@@ -12,7 +12,7 @@ There is a well known cite on naming in our industry:
 
 > "There are only two hard things in Computer Science: cache invalidation and naming things." Phil Karlton
 
-To be honest it's not Computer Science specific issue, but common problem for whole science. History of science is composed of discoveries and evolution of definitions. Every math theorem is based on some definitions - I would call it "theorem dictionary". There is also huge branch of philosophy aiming to figure out how our language infleunce on our thoughts. So I asked myself - how naming can influence my design. What can I learn from bad names?
+To be honest it's not Computer Science specific issue, but common problem for whole science. History of science is composed of discoveries and evolution of definitions. Every math theorem is based on some definitions - I would call it "theorem dictionary". There is also huge branch of philosophy aiming to figure out how our language influence on our thoughts. So I asked myself - how naming can influence my design. What can I learn from bad names?
 
 <!-- more -->
 

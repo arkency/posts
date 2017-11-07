@@ -18,7 +18,7 @@ this little piece of code. Let's start with the beginning.
 ## Obvious way
 
 The story is simple. You are writing code to communicate with external api. You are
-thoughtful programmer so you don't store credentials in the code. You deploy to heroku
+thoughtful programmer so you don't store credentials in the code. You deploy to Heroku
 so obviously you keep things in `ENV`.
 
 First thought:

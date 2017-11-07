@@ -19,7 +19,7 @@ very small task as the primary tool to assign and track work.
 
 ## The Pain
 
-It's the middle of the Wednesday. You tought it is gonna be such a good week.
+It's the middle of the Wednesday. You thought it is gonna be such a good week.
 You started coding your task on Monday, and you still keep working on it.
 Your boss keeps asking for status update. Customer would
 also like to know how things are going. It's the third day of working on
