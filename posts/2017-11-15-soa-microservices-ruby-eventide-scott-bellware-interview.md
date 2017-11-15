@@ -1,14 +1,15 @@
 ---
-title: "soa-microservices-ruby-eventide-scott-bellware-interview"
+title: "Interview with Scott Bellware (Eventide co-creator) about micro-services in Ruby, event sourcing, autonomous services, SOA, dumb pipes, EventStore and mis-representation of terms in IT"
 created_at: 2017-11-15 17:20:56 +0100
 kind: article
 publish: false
 author: Robert Pankowecki
 tags: [ 'SOA', 'microservices', 'ruby', 'eventide', 'scott', 'bellware', 'interview' ]
 newsletter: :arkency_form
+img: soa-microservices-ruby-eventide/scott-bellware-interview-ruby.png
 ---
 
-
+Are you confused about micro-services? Don't worry, you are not the only one. In this interview with Scott Bellware (the co-creator of Eventide), I am trying to shed some light on this complex topic.
 
 <!-- more -->
 
@@ -80,7 +81,7 @@ Microservices is a style that’s predicated on the recognition that message tra
 
 The only things that really need to be considered when evaluating an architecture are the foundational principles. If you don’t know what they are, then getting familiar with them and comfortable with them is the first step. And unfortunately, because there is so much more misinformation available on the web now, it’s a much more difficult proposition.
 
-The architecture is a result of considering and employing the principles. If those principles and their application is unknown, then developers and architects are largely guessing at what a service architecture might be. It’s better to clean up the monolith and introduce the separation, separation, and partitioning that should have been in the monolith from the start.
+The architecture is a result of considering and employing the principles. If those principles and their application is unknown, then developers and architects are largely guessing at what a service architecture might be. It’s better to clean up the monolith and introduce the separation, and partitioning that should have been in the monolith from the start.
 
 Service architecture is not an answer to a monolith that was left to run wild with shortcuts and undisciplined hacking. If you can’t build a monolith that you don’t end up wanting to replace, you should be very concerned about pursuing a service architecture.
 
@@ -176,7 +177,7 @@ If you follow this to its logical conclusion, then you’ll arrive at event sour
 
 That whole aspect of developing, operating, and maintaining the transactional side of systems is simply eliminated. That a tremendous simplification of the part of the system that makes decisions and does things.
 
-But that simplification comes with some tradeoffs. Simplicity is harder to accomplish that complexity. You know this because of how complexity can be achieved entirely by accident.
+But that simplification comes with some tradeoffs. Simplicity is harder to accomplish than complexity. You know this because of how complexity can be achieved entirely by accident.
 
 There are requirements for building read-only data views that are used for displaying data when you’re doing event sourcing. And that can seem daunting at the outset. But once you learn it, it’s no longer as intimidating as something that is utterly unfamiliar.
 
