@@ -21,7 +21,7 @@ Eventide is a toolkit for building microservices. Specifically, it’s a toolkit
 
 I had some background in SOA and had been working in Ruby for a number of years. I wanted to continue working with Ruby, but I wanted to remove the limitations on design that the predominant Ruby web development frameworks imposed. I would say that I had “Rails Fatigue”. I was tired of the framework getting in the way of letting me respect some of the most basic and fundamental design principles.
 
-### There is a ton of advices in the Internet around micro-services? Many times it’s conflicting: Use message bus, don’t use message bus, use stream processing etc, no just use HTTP. What’s your advice?
+### There is a ton of advice on the Internet around micro-services? Many times it’s conflicting: Use message bus, don’t use message bus, use stream processing etc, no just use HTTP. What’s your advice?
 
 “Microservices” as an architectural style came into existence because of how misinterpreted, misrepresented, and mistakenly-applied “Service-Oriented Architecture” had become. Now it’s the knowledge of microservices that has been muddied and rendered unusable.
 
