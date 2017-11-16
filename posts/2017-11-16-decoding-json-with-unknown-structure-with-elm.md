@@ -4,7 +4,7 @@ created_at: 2017-11-16 18:00:09 +0100
 kind: article
 publish: false
 author: Anton Paisov
-tags: [ 'elm', 'json ]
+tags: [ 'elm', 'json' ]
 newsletter: :skip
 ---
 
