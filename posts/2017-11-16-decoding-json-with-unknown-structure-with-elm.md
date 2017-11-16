@@ -39,12 +39,19 @@ As a result, there is no schema that we could describe statically and we _just_ 
 But it's not that simple, because there's not basic type `json`. Here's the solution we've ended up with:
 
 ```elm
+getEvent : String -> Cmd Msg
+getEvent eventId =
+    let
+        decoder =
+            Decode.andThen eventWithDetailsDecoder rawEventDecoder
+    in
+        Http.send EventDetails (Http.get "/event.json" decoder)
+
 rawEventDecoder : Decoder ( Decode.Value, Decode.Value )
 rawEventDecoder =
     Decode.map2 (,)
         (field "data" value)
         (field "metadata" value)
-
 
 eventWithDetailsDecoder : ( Decode.Value, Decode.Value ) -> Decode.Decoder EventWithDetails
 eventWithDetailsDecoder ( data, metadata ) =
@@ -55,3 +62,5 @@ eventWithDetailsDecoder ( data, metadata ) =
         (field "metadata" (Decode.succeed (toString metadata)))
 
 ```
+
+The solution is fairly self-explanatory and is possible thanks to [`andThen`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode#andThen) function which creates decoders that depend on previous results.
