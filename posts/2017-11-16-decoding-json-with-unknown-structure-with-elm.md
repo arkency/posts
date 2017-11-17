@@ -34,7 +34,7 @@ First lets examine how you could decode JSON with a known structure:
 
 ```json
 {
-  name: "Order$42"
+  "name": "Order$42"
 }
 ```
 
