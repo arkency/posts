@@ -35,7 +35,7 @@ It means that every service in the architecture is a single point of failure tha
 
 The implication of “dumb pipes” means that microservices are of an era when we’ve moved beyond brokers and have accepted the realities of distributed systems, and the physical impossibility of a messaging technology to guarantee “exactly-once delivery”.
 
-In the microservices world, the job of ensuring that a message is not delivered more than once is the job of application logic.
+In the microservices world, the job of ensuring that a message is not “processed” more than once is the job of application logic. Trying to achieve this with delivery guarantees of transports is a dead end.
 
 It’s the developer’s responsibility to understand the laws of distributed systems - especially the fallacies of distributed systems - and make allowances for them in the service code.
 
@@ -65,7 +65,7 @@ SOA and Microservices became misrepresented and muddied because geeks chose to m
 
 Microservices was an attempt to reclaim the core meaning of SOA, and to formalize the progress beyond brokers and other smart pipe technology that reflects where we are in 2015 rather than where we were in 2005. But it was subjected to the same corrosive insecurity impulses of tech community that made SOA largely irrelevant.
 
-The good news is that SOA remains well-defined, and the Microservices builds upon the SOA foundation. And if you can set aside the geek impulse to lower the bar rather than raise yourself up, SOA and Microservices can still be learned, understood, and practiced. And they can still be used effectively to achieve the qualities and characteristics of software systems and software development that SOA and Microservices promise.
+The good news is the that “good parts” of SOA remains well-defined, and the “good parts” of Microservices build upon the SOA foundation. And if you can set aside the geek impulse to lower the bar rather than raise yourself up, SOA and Microservices can still be learned, understood, and practiced. And they can still be used effectively to achieve the qualities and characteristics of software systems and software development that SOA and Microservices promise.
 
 The promise of SOA and Microservices is still available - as long as the impulse to take shortcuts to perceived glory is eradicated. And this is one of the reasons why Microservices is not for everyone and every team, and can be as harmful in the wrong hands as it can be productive in the right hands.
 
@@ -75,13 +75,13 @@ If you’re not careful, you will go through the whole cycle of breaking up a mo
 
 The primary concern for a service architecture is both autonomy and understanding for any service whether its messages must arrive at their destinations, or if losing messages is acceptable.
 
-If you don’t have a background in distributed systems, then the first thing you need to do is learn how easy it is to get tricked into believing that a broker, rather than application code, can guarantee anything about message delivery. As tempting as that belief is, it’s the most dangerous indulgence that a developer or architect can make. It’s the thing that will lead to malfunctions like putting more money into a customer’s account than they’ve deposited, or taking away more money than they’ve withdrawn, or not processing any operations at all.
+If you don’t have a background in distributed systems, then the first thing you need to do is learn how easy it is to get tricked into believing that a broker, rather than applicative code, can guarantee anything about message delivery. As tempting as that belief is, it’s the most dangerous indulgence that a developer or architect can make. It’s the thing that will lead to malfunctions like putting more money into a customer’s account than they’ve deposited, or taking away more money than they’ve withdrawn, or not processing any operations at all.
 
-Microservices is a style that’s predicated on the recognition that message transports - no matter how elaborate - cannot guarantee anything but the fundamental physics of messaging: 1) Messages will be delivered more than once, and 2) Messages will not be delivered at all.
+Microservices is a style that’s predicated on the recognition that message transports - no matter how elaborate - cannot guarantee anything but the fundamental physics of messaging: 1) Messages will be delivered more than once, and 2) Messages will not be delivered at all. And in many cases, that messages will not arrive in the order that you expected them to be in.
 
 The only things that really need to be considered when evaluating an architecture are the foundational principles. If you don’t know what they are, then getting familiar with them and comfortable with them is the first step. And unfortunately, because there is so much more misinformation available on the web now, it’s a much more difficult proposition.
 
-The architecture is a result of considering and employing the principles. If those principles and their application is unknown, then developers and architects are largely guessing at what a service architecture might be. It’s better to clean up the monolith and introduce the separation, and partitioning that should have been in the monolith from the start.
+The architecture is a result of considering and employing the principles. If those principles and their application is unknown, then developers and architects are largely guessing at what a service architecture might be. It can be a better use of time to clean up the monolith and introduce the separation, and partitioning that should have been in the monolith from the start.
 
 Service architecture is not an answer to a monolith that was left to run wild with shortcuts and undisciplined hacking. If you can’t build a monolith that you don’t end up wanting to replace, you should be very concerned about pursuing a service architecture.
 
@@ -151,7 +151,7 @@ Service implementations go bad within the first few minutes of a service project
 
 Services are not organized around data, the way that ORM-based apps are. Services are organized around behavior and processes. If the design implications of this are not understood, even the enforcement of the “no queries” constraint won’t keep the project from undesirable outcomes.
 
-You’ll can end up with a distributed monolith, and you’ll end up using pub-sub to affect CRUD operations rather than business process operations. And that is simply the same kind of tight coupling that made your monolith unsurvivable to begin with. Except now you’ll also have all the complications of distributed systems to deal with.
+You can end up with a distributed monolith, and you’ll end up using pub-sub to affect CRUD operations rather than business process operations. And that is simply the same kind of tight coupling that made your monolith unsurvivable to begin with. Except now you’ll also have all the complications of distributed systems to deal with.
 
 To make services as autonomous as possible, you have to ween yourself off of the fixation on data and “models” that dominate your attention when doing ORM+MVC, and train yourself to focus on business processes and behavior.
 
@@ -175,7 +175,7 @@ If you have pub-sub of events, then you have events. If you’re doing Microserv
 
 If you follow this to its logical conclusion, then you’ll arrive at event sourcing. You don’t need to be retrieving, modifying, and re-saving database rows based on the handling of events.
 
-That whole aspect of developing, operating, and maintaining the transactional side of systems is simply eliminated. That a tremendous simplification of the part of the system that makes decisions and does things.
+That whole aspect of developing, operating, and maintaining the transactional side of systems is simply eliminated. That’s a tremendous simplification of the part of the system that makes decisions and does things.
 
 But that simplification comes with some tradeoffs. Simplicity is harder to accomplish than complexity. You know this because of how complexity can be achieved entirely by accident.
 
@@ -201,7 +201,7 @@ Because those two $1 deposit events have been created at some point in the past,
 
 That handler is part of the architecture often referred to as “data aggregation”. In an event-sourced world, it means that pre-computed “materialized views” of data used for display is kept up-to-date based on the events that are flowing through the system.
 
-So, you have one process for processing the commands, and another process for keeping read only, view data up-to-date based on the events that are the result of processing the commands.
+So, you have one process for processing the commands, and another process for keeping read only views data up-to-date based on the events that are the result of processing the commands.
 
 The data used to decide whether to process a command and the data used for display are kept separate.
 
