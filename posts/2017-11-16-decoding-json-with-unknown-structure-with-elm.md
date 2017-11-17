@@ -32,7 +32,7 @@ import Json.Decode as D exposing (Decoder, Value, field, list, string, at, value
 
 First lets examine how you could decode JSON with a known structure:
 
-```JSON
+```json
 {
   name: "Order$42"
 }
@@ -54,13 +54,13 @@ what we receive from decoder is `Stream "Order$42"`.
 
 It gets more interesting when we want to decode an event.
 
-```JSON
+```json
 {
   "event_type": "OrderPlaced",
   "event_id": "f6c96c3c-c138-4ee2-b228-bfe363004ee4",
   "data": {
     "order_id": 42,
-    "net_value": 999,
+    "net_value": 999
   },
   "metadata": {
     "timestamp": "2017-11-14 23:21:04 UTC",
