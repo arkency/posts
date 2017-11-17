@@ -2,7 +2,7 @@
 title: "Event Sourcing is a transferable skill"
 created_at: 2017-09-28 00:56:41 +0200
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'event sourcing', 'fp' ]
 newsletter: :arkency_form
@@ -184,4 +184,4 @@ In my opinion functional programming makes even sweeter foundation to implement 
 
 The key point is however that **Event Sourcing is a transferable skill**. You can learn it once. The principles behind it still make sense after technology change. It's a technique in your toolbox much broader than — let's say ActiveRecord callbacks.
 
-You can learn more about implementing Event Sourcing in Ruby from a chapter of [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) book. [Get it now](https://blog.arkency.com/domain-driven-rails/) using **HIGH5EVENTSOURCING** coupon for **25% discount**. 
+You can learn more about implementing Event Sourcing in Ruby from a chapter of [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) book.
