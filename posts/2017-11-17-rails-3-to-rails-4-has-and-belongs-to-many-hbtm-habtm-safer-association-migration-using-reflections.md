@@ -2,13 +2,13 @@
 title: "Safely migrating has_and_belongs_to_many association to Rails 4"
 created_at: 2017-11-17 10:54:27 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'rails', 'upgrade', 'activerecord' ]
 newsletter: :arkency_form
 ---
 
-In a recent days I've been migrating a _senior_ Rails application from Rails 3 to Rails 5. As part of the process I was dealing with `has_and_belongs_to_many` associations.
+During recent days I've been migrating a _senior_ Rails application from Rails 3 to Rails 5. As part of the process, I was dealing with `has_and_belongs_to_many` associations.
 
 <!-- more -->
 
@@ -32,12 +32,14 @@ The application that I was working on has around 50 `has_and_belongs_to_many` as
 
 I decided to use built-in Rails reflection mechanism for associations and check it. Here is how:
 
-* I temporairly set the code to eager load in `config/development.rb`
+* I temporarily (for the time of running next script) set the code to eager load in `config/development.rb`
 
     ```ruby
     config.cache_classes = true
     config.eager_load = true
     ```
+
+    It was necessary for `ActiveRecord::Base.descendants` to find out all descending classes. They needed to be loaded.
 
 * I executed the same script on Rails 3 and Rails 4 and saved its output in `rails3.txt` and `rails4.txt` file.
 
@@ -92,7 +94,7 @@ If you are interested in the ability to dynamically examine the associations and
 
 If you need help with your Rails app, we are [available for one project](/assets/misc/How-can-Arkency-help-you.pdf) since November, 27th.
 
-If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our every day struggles and solutions for building maintainable Rails apps which don't surprise you.
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our everyday struggles and solutions for building maintainable Rails apps which don't surprise you.
 
 Also worth reading:
 
