@@ -2,25 +2,27 @@
 title: "Decoding JSON with unknown structure with Elm"
 created_at: 2017-11-16 18:00:09 +0100
 kind: article
-publish: false
+publish: true
 author: Anton Paisov
 tags: [ 'elm', 'json' ]
 newsletter: :skip
 ---
 
-When you need to write a
+A
 [decoder](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode)
-Elm in order to map JSON to a corresponding Model.
+is what turns JSON values into Elm values.
 
 <!-- more -->
 
-Paweł and I been working on a mountable web interface for
-[RailsEventStore](https://railseventstore.org) recently. The purpose of it is to
-display events and event streams without launching rails console for that. This
-web interface is written in Elm and hopefully will be a part of the next
-RailsEventStore release.
+[Paweł](/by/pacana/) and I have been working recently on a web interface for
+[RailsEventStore](https://railseventstore.org). The main goal is to have a
+dashboard in which one could examine stream contents and look for particular
+events. It may serve as an audit log browser available to you out of the box.
 
-Now back to the main topic of this post.
+It is written in Elm and soon will be an integral part of the RailsEventStore
+solution.
+
+## Decoding JSON
 
 For the purpose of this post here's how we imported `Json.Decode`.
 
@@ -28,23 +30,73 @@ For the purpose of this post here's how we imported `Json.Decode`.
 import Json.Decode as D exposing (Decoder, Value, field, list, string, at, value)
 ```
 
-Now here's how a basic Elm JSON decoder for our event stream looks like:
+First lets examine how you could decode JSON with a known structure:
+
+```JSON
+{
+  name: "Order$42"
+}
+```
+
+Here is how a corresponding Elm JSON decoder looks like:
 
 ```elm
-streamDecoder : Decoder Item
+type Stream = Stream String
+
+streamDecoder : Decoder Stream
 streamDecoder =
     D.map Stream
         (field "name" string)
 ```
 
-It gets more interesting when we want to decode an individual event. In
-RailsEventStore user decides what will go in `data` and in `metadata` for a
-particular type of event. As a result, there is no schema that we could describe
-statically and we _just_ want to map `data` and `metadata` as strings in our
-event decoder. But you can't pass JSON subtree as a string. Here's the solution
-we've ended up with:
+We transform value of the attribute `name` into Elm `String` first. In the end
+what we receive from decoder is `Stream "Order$42"`.
+
+It gets more interesting when we want to decode an event.
+
+```JSON
+{
+  "event_type": "OrderPlaced",
+  "event_id": "f6c96c3c-c138-4ee2-b228-bfe363004ee4",
+  "data": {
+    "order_id": 42,
+    "net_value": 999,
+  },
+  "metadata": {
+    "timestamp": "2017-11-14 23:21:04 UTC",
+    "remote_ip": "1.2.3.4"
+  }
+}
+```
+
+We cannot assume what exact structure will `data` and `metadata` have. It can be
+different for each event type. For example an event published from background
+job process will not record `remote_ip` in `metadata`.
+
+There is no event schema that we could parse and generate decoder from it. So we
+fallback to mapping `data` and `metadata` as strings in our event decoder.
+
+What seemed fairly easy ended not so well in `elm-repl`:
 
 ```elm
+> sampleData = "{ \"data\": { \"order_id\": 42 } }"
+> D.decodeString (field "data" string) sampleData
+
+Err "Expecting a String at _.data but instead got: {\"order_id\":42}"
+    : Result.Result String String
+```
+
+You can't _just_ pass JSON subtree and expect it to be decoded with `string`.
+Here's the solution we've ended up with:
+
+```elm
+type alias EventWithDetails =
+    { eventType : String
+    , eventId : String
+    , data : String
+    , metadata : String
+    }
+
 getEvent : String -> Cmd Msg
 getEvent eventId =
     let
@@ -70,6 +122,17 @@ eventWithDetailsDecoder ( data, metadata ) =
         (field "metadata" (D.succeed (toString metadata)))
 ```
 
-The solution is fairly self-explanatory and is possible thanks to
+First we've replaced `string` with `value`.
+[Documentation](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode#value)
+on this states:
+
+> Do not do anything with a JSON value, just bring it into Elm as a Value. This
+> can be useful if you have particularly crazy data that you would like to deal
+> with later. Or if you are going to send it out a port and do not care about
+> its structure.
+
+Once we decoded `data` and `metadata` into a generic `Value` we needed a way to
+fit it into `EventWithDetails` record. This is where
 [`andThen`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode#andThen)
-function which creates decoders that depend on previous results.
+helped us. It allowed us to combine two decoders together with a second one
+taking result from previous.
