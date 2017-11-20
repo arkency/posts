@@ -14,6 +14,8 @@ is what turns JSON values into Elm values.
 
 <!-- more -->
 
+_This post has been updated after I have received some valuable feedback._
+
 [Paweł](/by/pacana/) and I have been working recently on a web interface for
 [RailsEventStore](https://railseventstore.org). The main goal is to have a
 dashboard in which one could examine stream contents and look for particular
@@ -136,3 +138,31 @@ fit it into `EventWithDetails` record. This is where
 [`andThen`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode#andThen)
 helped us. It allowed us to combine two decoders together with a second one
 taking result from previous.
+
+
+### Update
+
+_After submitting this post to Elmlang slack, Ilias Van Peer suggested an even better solution with a following comment:_
+
+> cool. Might be a little more safe if you `Json.Encode.encode 0` the value; otherwise you’ll get some pretty weird looking strings for stuff like json arrays
+> (`toString` on a value isn’t stringifying the json)
+> And safer towards the future, where `toString` will move to the `Debug` module and will behave differently in production
+> So essentially you could replace the entire thing like so:
+
+```elm
+eventDetailedDecoder : Decoder EventWithDetails
+eventDetailedDecoder =
+    D.map4 EventWithDetails
+        (field "event_type" string)
+        (field "event_id" string)
+        (field "data" (value |> D.map (encode 0)))
+        (field "metadata" (value |> D.map (encode 0)))
+```
+
+With this solution we don't need `rawEventDecoder` and for it to work we would also need to expose `encode` from `Json.Encode` like this:
+
+```elm
+import Json.Encode exposing (encode)
+```
+
+Thank you Ilias :)
