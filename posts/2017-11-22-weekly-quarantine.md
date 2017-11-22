@@ -1,5 +1,5 @@
 ---
-title: "Quarantine your non-deterministic tests"
+title: "Quarantine your non-deterministic tests with a time limit"
 created_at: 2017-11-22 10:02:37 +0100
 kind: article
 publish: true
