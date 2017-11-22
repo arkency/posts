@@ -5,6 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: :skip
+tags: ['testing']
 ---
 
 One of the things that can negatively impact a team morale is random builds - builds where sometimes some tests are failing.

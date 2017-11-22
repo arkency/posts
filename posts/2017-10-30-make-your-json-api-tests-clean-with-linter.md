@@ -4,7 +4,7 @@ created_at: 2017-10-30 21:47:28 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
-tags: [ 'rails', 'json', 'api' ]
+tags: [ 'rails', 'json', 'api', 'testing']
 newsletter: :arkency_form
 ---
 

@@ -6,7 +6,7 @@ publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 newsletter_inside: :fearless_refactoring_course_instantiating
-tags: []
+tags: ['testing']
 img: "unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG"
 ---
 <p>

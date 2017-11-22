@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jan Filipowski
 newsletter: :react_books
-tags: [ 'TDD', 'ATDD', 'CoffeeScript' ]
+tags: [ 'TDD', 'ATDD', 'CoffeeScript', 'testing']
 ---
 
 <img src="<%= src_fit("coffee-acceptance/coffeescript_acceptance_tests.png") %>" width="100%">

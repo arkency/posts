@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jan Filipowski
 newsletter: :react_books
-tags: [ 'TDD', 'CS', 'Rails' ]
+tags: [ 'TDD', 'CS', 'Rails', 'testing']
 ---
 
 You may know this pain too well - you've created rich client-side in you Rails app and when your try to test CoffeeScript features it consumes much time to run all test scenarios with capybara and any of browser drivers (selenium, webkit, phantomjs). Let's apply painkiller then - move responsibility of testing front-end to... front-end.

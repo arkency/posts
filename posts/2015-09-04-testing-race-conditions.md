@@ -4,7 +4,7 @@ created_at: 2015-09-04 09:22:03 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'rails', 'race conditions' ]
+tags: [ 'rails', 'race conditions', 'testing']
 newsletter: :skip
 img: "race-conditions-rails-active-record/race-rails2.jpg"
 ---

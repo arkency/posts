@@ -4,7 +4,7 @@ created_at: 2017-01-13 13:16:56 +0100
 kind: article
 publish: true
 author: Tomasz Wróbel
-tags: [ 'tests', 'integration', 'microservices' ]
+tags: [ 'tests', 'integration', 'microservices', 'testing']
 newsletter: :arkency_form
 ---
 

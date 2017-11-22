@@ -4,6 +4,7 @@ created_at: 2017-08-27 14:04:06 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['testing']
 newsletter: :skip
 ---
 

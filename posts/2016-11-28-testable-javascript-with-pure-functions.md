@@ -4,7 +4,7 @@ created_at: 2016-11-28 20:11:51 +0200
 kind: article
 publish: true
 author: Anton Paisov
-tags: [ 'javascript', 'testing', 'mocha' ]
+tags: [ 'javascript', 'testing', 'mocha', 'testing']
 newsletter: :skip
 ---
 

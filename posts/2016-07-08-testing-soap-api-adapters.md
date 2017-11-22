@@ -4,7 +4,7 @@ created_at: 2016-07-18 16:51:03 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'SOAP', 'API', 'ruby' ]
+tags: [ 'SOAP', 'API', 'ruby', 'testing']
 newsletter: :arkency_form
 ---
 
