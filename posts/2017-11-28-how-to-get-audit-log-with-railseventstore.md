@@ -8,7 +8,7 @@ tags: [ 'rails_event_store' ]
 newsletter: :skip
 ---
 
-Did you know you can already get an audit log with RailsEventStore for free?
+Did you know you can already get an audit log with [RailsEventStore](https://railseventstore.org) for free?
 
 <!-- more -->
 
