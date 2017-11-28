@@ -87,9 +87,7 @@ Guess what — we’ve already build one! So how can you use it today?
 
 Having managed to fulfill those steps, this is what you should see:
 
-<%= img_fit 'res-browser-howto/res-browser-streams.png' %>
-<%= img_fit 'res-browser-howto/res-browser-events.png' %>
-<%= img_fit 'res-browser-howto/res-browser-event.png' %>
+<div style="width:100%;height:0;padding-bottom:65%;position:relative;"><iframe src="https://giphy.com/embed/3o6fJacEiYvOPRK8CI" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/rails-event-store-3o6fJacEiYvOPRK8CI">via GIPHY</a></p>
 
 
 Isn’t it lovely and rewarding?
