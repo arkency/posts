@@ -2,7 +2,7 @@
 title: "How to get an audit log with RailsEventStore today"
 created_at: 2017-11-28 20:20:20 +0100
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store' ]
 newsletter: :skip
