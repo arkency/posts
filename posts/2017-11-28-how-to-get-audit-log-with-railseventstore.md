@@ -1,6 +1,6 @@
 ---
 title: "How to get an audit log with RailsEventStore today"
-created_at: 2017-11-28 00:12:18 +0100
+created_at: 2017-11-28 20:20:20 +0100
 kind: article
 publish: false
 author: Paweł Pacana
@@ -99,8 +99,8 @@ By the way, we can’t hide the fact that we’ve [used Elm to make it and we’
 
 ## Free is not completely for free
 
-You can tell by number of steps that it’s not that super effortless to get an audit lot yet. On the other hand the hardest part has been already solved — you have events and you have a decent UI to dig through them.
+You can tell by number of steps that it’s not that super effortless to get an audit log yet. On the other hand the hardest part has been already solved — you have events and you have a decent UI to dig through them.
 
-What we’re planning is a complete Rails Engine so that you mount a web interface for domain events and forget about the rest.
+What we’re planning next is a complete [Rails engine](http://guides.rubyonrails.org/engines.html) so that you mount a web interface for domain events and forget about the rest.
 
 If you can’t wait, you can already reap all the benefits of a RailsEventStore browser today. Follow the steps and learn the secrets of your application event streams.
