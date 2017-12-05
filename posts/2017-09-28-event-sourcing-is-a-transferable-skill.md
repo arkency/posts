@@ -146,9 +146,9 @@ apply' (Just product) (ProductReserved _ _ _ quantity) =
 
 ```
 
-Not bad, even given my so-so Haskell skills. There are different   building blocks — sure. It will look alien at first sight if you've been only programming Ruby.
+Not bad, even given my so-so Haskell skills. Huge thanks to [Tom Janssens](http://tojans.me/blog/2014/02/26/cqrs-and-functional-programming/) for influence! There are different building blocks — sure. It will look alien at first sight if you've been only programming Ruby.
 
-Still the idea is about taking action (described as Command), protected by the business rules (conditions).   
+Still the idea is about taking action (described as Command), protected by the business rules (conditions).
 
 ```haskell
 handle' (Just product) (Reserve quantity orderNumber)
@@ -164,19 +164,19 @@ data Product = Product { sku :: Sku
                        , storeId :: StoreId
                        , quantityAvailable :: Quantity
                        , quantityReserved :: Quantity
-                       }                       
+                       }
 ```
 
 State is constructed from facts in the past (described as Event).
 
 ```haskell
 apply :: [Event] -> Maybe Product
-apply events = foldl apply' Nothing events  
+apply events = foldl apply' Nothing events
 ```
 
 Finally, the outcome of an action is just another event.
 
-```haskell  
+```haskell
 handle :: [Event] -> Command -> [Event]
 ```
 
