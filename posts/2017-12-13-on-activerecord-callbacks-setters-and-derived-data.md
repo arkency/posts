@@ -6,6 +6,7 @@ publish: false
 author: Robert Pankowecki
 tags: ['ddd', 'setters', 'rails', 'ruby', 'derived', 'active record']
 newsletter: :arkency_form
+img: "rails-active-record-derrived-data-columns-attributes/dervied.png"
 ---
 
 We've already written in Arkency [a few times](/2016/01/drop-this-before-validation-and-use-method/) [about callbacks](/2016/02/using-anonymous-modules-and-prepend-to-work-with-generated-code/) [alternatives in Rails](/2016/05/domain-events-over-active-record-callbacks/) and what kind of [problems you can expect from them](https://medium.com/planet-arkency/the-biggest-rails-code-smell-you-should-avoid-to-keep-your-app-healthy-a61fd75ab2d3). But I still see them being used in the wild in many scenarios so why not write about this topic a bit one more time with different examples.
