@@ -1,5 +1,5 @@
 ---
-title: "using ruby parser and AST tree to find deprecated syntax"
+title: "Using ruby parser and AST tree to find deprecated syntax"
 created_at: 2017-12-22 11:32:22 +0100
 kind: article
 publish: false
@@ -8,7 +8,7 @@ tags: [ 'ruby', 'parser', 'AST', 'rails', 'upgrade' ]
 newsletter: :arkency_form
 ---
 
-Sometimes we doing large refactoring or upgrades we would like to find places in code for which `grep` or Rubymine search is not good enough. These are usually case where you would like to use something more powerful. And we can do that.
+Sometimes we doing large refactoring or upgrades we would like to find places in the code for which `grep` or Rubymine search is not good enough. These are usually cases where you would like to use something more powerful. And we can do that.
 
 <!-- more -->
 
@@ -24,7 +24,7 @@ end
 
 > This behavior was never intentionally supported. Due to a change in the internals of `ActiveSupport::Callbacks`, this is no longer allowed in Rails 4.1. Using a return statement in an inline callback block causes a `LocalJumpError` to be raised when the callback is executed.
 
-Of course the same code could look like:
+Of course, the same code could look like:
 
 ```ruby
 class Model < ActiveRecord::Base
@@ -34,7 +34,9 @@ class Model < ActiveRecord::Base
 end
 ```
 
-I did not want to look over all possible files and callbacks to figure out whether there is a statement like that or not. I decided to use [a ruby parser](https://github.com/whitequark/parser) and check the AST for blocks which have a return statement.
+or be even more complex/nested.
+
+I did not want to look at all possible files and callbacks to figure out whether there is a statement like that or not. I decided to use [a ruby parser](https://github.com/whitequark/parser) and check the AST for blocks which have a return statement.
 
 I am not super skilled in using this gem or its binaries. I know it can be used for [rewriting Ruby in Ruby](https://whitequark.org/blog/2013/04/26/lets-play-with-ruby-code/) because my coworkers used it for doing big rewrites across big Rails apps. But I've never played with it before myself. This was my first approach. And I think it went fine :)
 
@@ -122,7 +124,7 @@ def look_for_return(ast)
     return true
   else                            # if this is not a return
     ast.children.map do |child|
-      look_for_return(child)      # maybe it is somehwere deeper
+      look_for_return(child)      # maybe it is somewhere deeper
     end.any?
   end
 end
@@ -196,9 +198,9 @@ class Controller
           redirect_to cart_path and return
 ```
 
-All of them had a `return` statement inside a block. But in the end none of them were callbacks so I didn't have to change anything.
+All of them had a `return` statement inside a block. But in the end, none of them were callbacks, so I didn't have to change anything.
 
-BTW, all of that - not not needed if you have very good code coverage and you can just rely on test failures to bring broken code to your attention after Rails upgrade.
+BTW, all of that - not needed if you have very good code coverage and you can just rely on test failures to bring broken code to your attention after Rails upgrade.
 
 ## Read more
 
