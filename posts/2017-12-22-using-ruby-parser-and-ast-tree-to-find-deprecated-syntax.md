@@ -199,3 +199,16 @@ class Controller
 All of them had a `return` statement inside a block. But in the end none of them were callbacks so I didn't have to change anything.
 
 BTW, all of that - not not needed if you have very good code coverage and you can just rely on test failures to bring broken code to your attention after Rails upgrade.
+
+## Read more
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our everyday struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+Also worth reading:
+
+* [Could we drop Symbols from Ruby?](/could-we-drop-symbols-from-ruby/) - one of the most controversial posts of 2017, don't know why ;)
+* [Why we follow the Rails repo structure in Rails Event Store](/why-we-follow-rails-repo-structure-in-rails-event-store/) - how we started using monorepo approach for our gems which work together.
+* [That one time I used recursion to solve a problem](/that-one-time-i-used-recursion-to-solve-a-problem/) - today I showed you a solution using a recursion. I once used such approach also for calculating reminders.
+* [inject vs each_with_object](/inject-vs-each-with-object/) - are you just starting your Ruby journey? Make sure to get the difference between `inject` and `each_with_object`. They are both useful methods you should know.
+
+And don't forget to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
