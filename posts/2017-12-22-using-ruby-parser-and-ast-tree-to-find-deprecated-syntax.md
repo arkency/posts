@@ -9,7 +9,7 @@ newsletter: :arkency_form
 img: "ast-ruby-tree-find-deprecated-rails-syntax/ruby-ast-parse-gem.png"
 ---
 
-Sometimes we doing large refactoring or upgrades we would like to find places in the code for which `grep` or Rubymine search is not good enough. These are usually cases where you would like to use something more powerful. And we can do that.
+Sometimes when doing large refactoring or upgrades we would like to find places in the code for which `grep` or Rubymine search is not good enough. These are usually cases where you would like to use something more powerful. And we can do that.
 
 <!-- more -->
 
