@@ -148,6 +148,6 @@ Isn't it funny that as creators we mostly learn about new people using what we'v
 
 We'd love to hear from you when things are going well too 😅
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1NnRMIanTCEhFRbRR0Kjp4emqcPeEpprrj4dLT7yEgN-KsQ/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładuję...</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1NnRMIanTCEhFRbRR0Kjp4emqcPeEpprrj4dLT7yEgN-KsQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładuję...</iframe>
 
 
