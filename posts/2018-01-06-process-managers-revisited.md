@@ -1,10 +1,10 @@
 ---
 title: "Process Managers revisited"
-created_at: 2018-01-06 16:12:41 +0100
+created_at: 2018-01-09 21:00:00 +0100
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
-tags: [ 'process', 'manager', 'rails_event_store' ]
+tags: [ 'process', 'manager', 'rails_event_store', 'ddd' ]
 newsletter: :none
 ---
 # Process Managers revisited
