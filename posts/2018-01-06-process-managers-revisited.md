@@ -77,7 +77,7 @@ It was quite a [big change along v0.19.0 release](https://github.com/RailsEventS
 
 - [interim streams](https://blog.scooletz.com/2016/11/21/event-sourcing-and-interim-streams/)
 
-How would our process manager look like with `link_to_stream` then? Below you'll find `EventSourcing` module with `#store` method which takes advantage of it.
+How would our process manager look like with `link_to_stream` then? Below you'll find `store` method which takes advantage of it.
 
 ```ruby
 class CateringMatch
