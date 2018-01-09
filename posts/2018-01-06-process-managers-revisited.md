@@ -107,14 +107,14 @@ class CateringMatch
       stream_name = loaded_from_stream_name,
       event_store: default_event_store
     )
-	    event_store.link_to_stream(
+      event_store.link_to_stream(
         unpublished_events.map(&:event_id),
         stream_name: stream_name,
         expected_version: version
       )
-	    @version += unpublished_events.size
-	    @unpublished_events = nil
-	  end  
+      @version += unpublished_events.size
+      @unpublished_events = nil
+    end  
   end
   private_constant :State
 
