@@ -71,7 +71,7 @@ It was quite a [big change along v0.19.0 release](https://github.com/RailsEventS
 
 > What you can do is repartition your streams utilizing projections to help provide for a specific reader. As an example let’s say that a reader was interested in all the InventoryItemCreated and InventoryItemDeactivated events but was not interested in all the other events in the system.
 
-> Its important to remember that the way you write to your streams does not have to match the way you want to read from your streams. You can quite easily choose a different parititoning for a given reader.
+> Its important to remember that the way you write to your streams does not have to match the way you want to read from your streams. You can quite easily choose a different partitioning for a given reader.
 
 - [indexing events by type](https://github.com/RailsEventStore/rails_event_store/issues/72)
 
@@ -166,8 +166,8 @@ A [stream browser](http://railseventstore.org/docs/browser/) that now ships with
 
 ## Tell us your RailsEventStore story
 
-Isn't it funny that as creators we mostly learn about new people using what we've created when we break something or make it harder than necessary?
+Isn't it funny that as creators we mostly learn about new people using what we've created from [github issues](https://github.com/RailsEventStore/rails_event_store/issues) when we break something or make it harder than necessary?
 
-We'd love to hear from you when things are going well too 😅
+We'd love to [hear from you](https://goo.gl/forms/uidZdxzxjibLG0a92) when things are going well too 😅
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1NnRMIanTCEhFRbRR0Kjp4emqcPeEpprrj4dLT7yEgN-KsQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładuję...</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1NnRMIanTCEhFRbRR0Kjp4emqcPeEpprrj4dLT7yEgN-KsQ/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Ładuję...</iframe>
