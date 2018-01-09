@@ -14,7 +14,7 @@ I've been telling my story with process managers [some time ago](https://blog.ar
 Let's remind ourselves what was the original problem to solve:
 
 >  You’re an operations manager. Your task is to suggest your customer a menu they’d like to order and at the same time you have to confirm that caterer can deliver this particular menu (for given catering conditions). In short you wait for `CustomerConfirmedMenu` and `CatererConfirmedMenu`. Only after both happened you can proceed further. You’ll likely offer several menus to the customer and each of them will need a confirmation from corresponding caterers.
->  If there’s a match of `CustomerConfirmedMenu` and `CatererConfirmedMenu` for the same `order_id` you cheer and trigger `ConfirmOrder` command to push things forward. 
+>  If there’s a match of `CustomerConfirmedMenu` and `CatererConfirmedMenu` for the same `order_id` you cheer and trigger `ConfirmOrder` command to push things forward.
 
 The issue manifested when I was about to "publish" events that process manager subscribed to and eventually received:
 
@@ -28,7 +28,7 @@ I wanted to group those events in a short, dedicated stream from which they coul
 
 ## Linking events to the rescue
 
-Recently released RailsEventStore v0.22.0 finally brings long-awaited `link_to_stream` API. This method would simply make reference to a published event in a given stream. It does not duplicate the domain event -- it is the same fact but indexed in another collection.
+Recently released RailsEventStore v0.22.0 finally brings long-awaited `link_to_stream` API. This method would simply make reference to a published event in a given stream. It does not duplicate the domain event — it is the same fact but indexed in another collection.
 
 From the outside it looks quite similar to `publish_event` you may already know. It accepts stream name and [expected version](http://railseventstore.org/docs/expected_version/) of an event in that stream. The difference is that you can only link published events so it takes event ids instead of events as a first argument:
 
@@ -41,8 +41,8 @@ specify 'link events' do
   second_event  = TestEvent.new
 
   client.append_to_stream(
-	  [first_event, second_event], 
-	  stream_name: 'stream'
+    [first_event, second_event],
+    stream_name: 'stream'
   )
   client.link_to_stream(
     [first_event.event_id, second_event.event_id],
@@ -53,7 +53,7 @@ specify 'link events' do
     [first_event.event_id],
     stream_name: 'cars',
   )
-  
+
   expect(client.read_stream_events_forward('flow')).to eq([first_event, second_event])
   expect(client.read_stream_events_forward('cars')).to eq([first_event])
 end
@@ -61,15 +61,15 @@ end
 
 Just like when publishing, you cannot link same event twice in a stream.
 
-Now you may be wondering why is that this API wasn't present before and just now became possible. From the inside we've changed how events are persisted -- the layout of database tables in `RailsEventStoreActiveRecord` is a bit different. There's a single table for domain events (`event_store_events`) and another table to maintain links in streams (`event_store_events_in_streams`). 
+Now you may be wondering why is that this API wasn't present before and just now became possible. From the inside we've changed how events are persisted — the layout of database tables in `RailsEventStoreActiveRecord` is a bit different. There's a single table for domain events (`event_store_events`) and another table to maintain links in streams (`event_store_events_in_streams`).
 
 It was quite a [big change along v0.19.0 release](https://github.com/RailsEventStore/rails_event_store/releases/tag/v0.19.0) and a challenging one to do it right. Overall, our goal was to make streams cheap. This opens a range of possibilities:
 
 - [partitioning for particular reader](https://eventstore.org/blog/20130210/the-cost-of-creating-a-stream/index.html):
 
-> Generally when people are wanting only a few streams its because they want to read things out in a certain way for a particular type of reader. 
+> Generally when people are wanting only a few streams its because they want to read things out in a certain way for a particular type of reader.
 
-> What you can do is repartition your streams utilizing projections to help provide for a specific reader. As an example let’s say that a reader was interested in all the InventoryItemCreated and InventoryItemDeactivated events but was not interested in all the other events in the system. 
+> What you can do is repartition your streams utilizing projections to help provide for a specific reader. As an example let’s say that a reader was interested in all the InventoryItemCreated and InventoryItemDeactivated events but was not interested in all the other events in the system.
 
 > Its important to remember that the way you write to your streams does not have to match the way you want to read from your streams. You can quite easily choose a different parititoning for a given reader.
 
@@ -77,12 +77,59 @@ It was quite a [big change along v0.19.0 release](https://github.com/RailsEventS
 
 - [interim streams](https://blog.scooletz.com/2016/11/21/event-sourcing-and-interim-streams/)
 
-How would our process manager look like with `link_to_stream` then? With "acceptable hack" of method overloading for the purpose of this post:
+How would our process manager look like with `link_to_stream` then? Below you'll find `EventSourcing` module with `#store` method which takes advantage of it.
 
 ```ruby
+module EventSourcing
+  def apply(*events)
+    events.each do |event|
+      apply_strategy.(self, event)
+      unpublished << event
+    end
+  end
+
+  def load(stream_name, event_store:)
+    events = event_store.read_stream_events_forward(stream_name)
+    events.each do |event|
+      apply(event)
+    end
+    @version = events.size - 1
+    @unpublished_events = nil
+    self
+  end
+
+  def store(stream_name, event_store:)
+    event_store.link_to_stream(
+      unpublished_events.map(&:event_id),
+      stream_name: stream_name,
+      expected_version: version
+    )
+    @version += unpublished_events.size
+    @unpublished_events = nil
+  end
+
+  def unpublished_events
+    unpublished.each
+  end
+
+  private
+
+  def unpublished
+    @unpublished_events ||= []
+  end
+
+  def version
+    @version ||= -1
+  end
+
+  def apply_strategy
+    DefaultApplyStrategy.new
+  end
+end
+
 class CateringMatch
   class State
-    include AggregateRoot
+    include EventSourcing
 
     def initialize
       @caterer_confirmed  = false
@@ -100,21 +147,6 @@ class CateringMatch
     def complete?
       caterer_confirmed? && customer_confirmed?
     end
-    
-    # Overloading to change behavior of AggregateRoot#store
-    # from publish_event to link_to_stream
-    def store(
-      stream_name = loaded_from_stream_name,
-      event_store: default_event_store
-    )
-      event_store.link_to_stream(
-        unpublished_events.map(&:event_id),
-        stream_name: stream_name,
-        expected_version: version
-      )
-      @version += unpublished_events.size
-      @unpublished_events = nil
-    end  
   end
   private_constant :State
 
@@ -151,10 +183,8 @@ A [stream browser](http://railseventstore.org/docs/browser/) that now ships with
 
 ## Tell us your RailsEventStore story
 
-Isn't it funny that as creators we mostly learn about new people using what we've created when we break something or make it harder than necessary? 
+Isn't it funny that as creators we mostly learn about new people using what we've created when we break something or make it harder than necessary?
 
 We'd love to hear from you when things are going well too 😅
 
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1NnRMIanTCEhFRbRR0Kjp4emqcPeEpprrj4dLT7yEgN-KsQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładuję...</iframe>
-
-
