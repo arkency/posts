@@ -80,72 +80,55 @@ It was quite a [big change along v0.19.0 release](https://github.com/RailsEventS
 How would our process manager look like with `link_to_stream` then? Below you'll find `EventSourcing` module with `#store` method which takes advantage of it.
 
 ```ruby
-module EventSourcing
-  def apply(*events)
-    events.each do |event|
-      apply_strategy.(self, event)
-      unpublished << event
-    end
-  end
-
-  def load(stream_name, event_store:)
-    events = event_store.read_stream_events_forward(stream_name)
-    events.each do |event|
-      apply(event)
-    end
-    @version = events.size - 1
-    @unpublished_events = nil
-    self
-  end
-
-  def store(stream_name, event_store:)
-    event_store.link_to_stream(
-      unpublished_events.map(&:event_id),
-      stream_name: stream_name,
-      expected_version: version
-    )
-    @version += unpublished_events.size
-    @unpublished_events = nil
-  end
-
-  def unpublished_events
-    unpublished.each
-  end
-
-  private
-
-  def unpublished
-    @unpublished_events ||= []
-  end
-
-  def version
-    @version ||= -1
-  end
-
-  def apply_strategy
-    DefaultApplyStrategy.new
-  end
-end
-
 class CateringMatch
   class State
-    include EventSourcing
-
     def initialize
       @caterer_confirmed  = false
       @customer_confirmed = false
+      @version = -1
+      @event_ids_to_link = []
     end
 
-    def apply_caterer_confirmed_menu(_)
+    def apply_caterer_confirmed_menu
       @caterer_confirmed = true
     end
 
-    def apply_customer_confirmed_menu(_)
+    def apply_customer_confirmed_menu
       @customer_confirmed = true
     end
 
     def complete?
       caterer_confirmed? && customer_confirmed?
+    end
+
+    def apply(*events)
+      events.each do |event|
+        case event
+        when CatererConfirmedMenu  then apply_caterer_confirmed_menu
+        when CustomerConfirmedMenu then apply_customer_confirmed_menu
+        end
+        @event_ids_to_link << event.id
+      end
+    end
+
+    def load(stream_name, event_store:)
+      events = event_store.read_stream_events_forward(stream_name)
+      events.each do |event|
+        apply(event)
+      end
+      @version = events.size - 1
+      @event_ids_to_link = []
+      self
+    end
+
+    def store(stream_name, event_store:)
+      event_store.link_to_stream(
+        @event_ids_to_link,
+        stream_name: stream_name,
+        expected_version: @version
+      )
+      @version += @event_ids_to_link.size
+      @event_ids_to_link = []
     end
   end
   private_constant :State
