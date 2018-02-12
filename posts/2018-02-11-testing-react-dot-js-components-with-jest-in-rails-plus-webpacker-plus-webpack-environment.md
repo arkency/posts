@@ -8,11 +8,11 @@ tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :arkency_form
 ---
 
-Around a month ago, I worked on a task, which required a more dynamic frontend behavior. It worked on a component with 2 selects and 2 date pickers and depending on what was selected where the other pickers or select inputs had to be updated based on some relatively simple business rules. I decided to implement it using React.js and it was fun and pretty straight-forward to finish it. Also, working with http://airbnb.io/react-dates/ turned out to be a very pleasureful experience. But that's not what this post is about.
+Around a month ago, I worked on a task, which required a more dynamic frontend behavior. I worked on a component with 2 selects and 2 date pickers and depending on what was selected where the other pickers or select inputs had to be updated based on some relatively simple business rules. I decided to implement it using React.js and it was fun and pretty straight-forward to finish it. Also, working with http://airbnb.io/react-dates/ turned out to be a very pleasureful experience. But that's not what this post is about.
 
 <!-- more -->
 
-I wanted to test my component. The integration between Rails asset pipeline (which you can find in almost all legacy Rails apps) and Webpack (which is what anyone wants to use nowadays) is called [Webpacker](https://github.com/rails/webpacker). Thanks to it you can organize, manage, compile your new JavaScript code with Webpack and have it nicely integrated into whole Rails app deployment process. For testing I wanted to use Jest, which I prefer more than its alternatives.
+I wanted to test my component. The integration between Rails asset pipeline (which you can find in almost all legacy Rails apps) and Webpack (which is what anyone wants to use nowadays) is called [Webpacker](https://github.com/rails/webpacker). Thanks to it you can organize, manage, compile your new JavaScript code with Webpack and have it nicely integrated into whole Rails app deployment process. For testing, I wanted to use Jest, which I prefer more than its alternatives.
 
 There are [already guides on how to achieve that](https://medium.com/@kylefox/how-to-setup-javascript-testing-in-rails-5-1-with-webpacker-and-jest-ef7130a4c08e) and that's what I started with. But it was not good enough for me to end up with a working solution. I had to do much more manual work and googling than I expected. So I decided to document the process hoping that it will make other people's life a bit easier.
 
@@ -118,7 +118,7 @@ which disables transpilation of ES modules. So we need to overwrite the configur
 }
 ```
 
-Why by default (webpacker's default) the configuration says `"modules": false` and what does it mean? That's a really long story... It is necessary for tree shaking, webpack 2 can do it only with ES6 modules syntax. What is tree shaking? It's [eliminating unused code that is not imported](http://2ality.com/2015/12/webpack-tree-shaking.html). Wait, there are many modules syntaxes? Yes, [there are](http://2ality.com/2015/12/babel-commonjs.html) and only some of them are statically analyzable. I guess you know that and it is obvious if you come from JS community but coming from Ruby community I really needed to educate myself as to what and why to understand what I am doing here. 
+Why by default (webpacker's default) does the configuration say `"modules": false` and what does it mean? That's a really long story... It is necessary for tree shaking, webpack 2 can do it only with ES6 modules syntax. What is tree shaking? It's [eliminating unused code that is not imported](http://2ality.com/2015/12/webpack-tree-shaking.html). Wait, there are many modules syntaxes? Yes, [there are](http://2ality.com/2015/12/babel-commonjs.html) and only some of them are statically analyzable. I guess you know that and it is obvious if you come from JS community but coming from Ruby community I really needed to educate myself as to what and why to understand what I am doing here. 
 
 Also, there is no need to use `babel-preset-es2015` as recommended in some articles.
 
@@ -209,7 +209,7 @@ For testing react components I like to use Enzyme
 yarn -add enzyme enzyme-adapter-react-16 jest-enzyme
 ```
 
-More on that in: http://airbnb.io/enzyme/docs/installation/ and https://github.com/airbnb/enzyme/blob/master/docs/guides/jest.md and https://github.com/FormidableLabs/enzyme-matchers/tree/master/packages/jest-enzyme#setup
+More on that in http://airbnb.io/enzyme/docs/installation/ and https://github.com/airbnb/enzyme/blob/master/docs/guides/jest.md and https://github.com/FormidableLabs/enzyme-matchers/tree/master/packages/jest-enzyme#setup
 
 In `package.json` I added
 
@@ -221,14 +221,15 @@ In `package.json` I added
 }
 ```
 
+No idea, why this line is needed.
+
 That was not enough yet for testing my React components though. I still had some failures.
 
 ## Handle CSS in testing React component
 
-Based on https://facebook.github.io/jest/docs/en/webpack.html#handling-static-assets
-    instructions. I didn't go with https://facebook.github.io/jest/docs/en/webpack.html#mocking-css-module
+Based on [webpack instructions](https://facebook.github.io/jest/docs/en/webpack.html#handling-static-assets) instructions. I didn't go with [Mocking CSS modules](https://facebook.github.io/jest/docs/en/webpack.html#mocking-css-module). That was not necessary for me.
 
-We configure Jest to gracefully handle asset files such as stylesheets and images. Usually, these files aren't particularly useful in tests so we can safely mock them out.
+Let's configure Jest to gracefully handle asset files such as stylesheets and images. Usually, these files aren't particularly useful in tests so we can safely mock them out.
 
 In `package.json` we add:
 
@@ -409,7 +410,7 @@ after a couple of other problems that we discovered later and had to handle as w
 
 ## Bonus - running JS tests on CircleCI 2.0
 
-This also turned out to be a bit more tricky than I expected. The reason for that is that running assets precompilation (asset pipeline+webpack via webpacker integration) or running tests uninstalled `devDependencies` and then we could not run `jest` because there was no such binary. I totally did not expect that behavior.
+This also turned out to be a bit more tricky than I expected. The reason for that is that running assets pre-compilation (asset pipeline+webpack via webpacker integration) or running tests uninstalled `devDependencies` and then we could not run `jest` because there was no such binary. Rails probably called `yarn` with some options which lead to uninstalling `jest`. I totally did not expect that behavior.
 
 Here is our current config:
 
@@ -479,6 +480,10 @@ jobs:
             yarn test
 ```
 
-I think eventually I will either move JS testing before assets procompilation and rails testing. Alternatively I am going to split this one long job into a workflow with a 2 separate jobs. Especially considering that 90% of commands (some not listed) do not affect JS testing at all.
+I think eventually I will either move JS testing before assets pre-compilation and rails testing. Alternatively, I am going to split this one long job into a workflow with two separate jobs. Especially considering that 90% of commands (some not listed for clarity) do not affect JS testing at all.
 
-Another thing that trolled me a little was setting `NODE_ENV` globally to `production`. This caused more issues than problems that it solved.
+Another thing that trolled me a little was setting `NODE_ENV` globally to `production`, which I tried in the beginning. This caused more issues than problems that it solved. Do no do it 😉
+
+That's it folks. Please test your JavaScript.
+
+P.S. I hope at least some of those configs won't be necessary with [Webpack 4 more configless approach](https://twitter.com/jdalton/status/951250082791227392).
