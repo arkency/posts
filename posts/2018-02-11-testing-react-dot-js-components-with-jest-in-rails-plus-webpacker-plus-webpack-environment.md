@@ -2,9 +2,9 @@
 title: "Testing React.js components with Jest in Rails+Webpacker+Webpack environment"
 created_at: 2018-02-11 12:34:04 +0100
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'react', 'jest', 'rails', 'webpack', 'webpacker' ]
 newsletter: :arkency_form
 ---
 
@@ -484,6 +484,19 @@ I think eventually I will either move JS testing before assets pre-compilation a
 
 Another thing that trolled me a little was setting `NODE_ENV` globally to `production`, which I tried in the beginning. This caused more issues than problems that it solved. Do no do it 😉
 
-That's it folks. Please test your JavaScript.
+That's it folks. Please **test your JavaScript**.
 
 P.S. I hope at least some of those configs won't be necessary with [Webpack 4 more configless approach](https://twitter.com/jdalton/status/951250082791227392).
+
+## Read more
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our everyday struggles and solutions for building maintainable Rails and React apps which don't surprise you.
+
+Also worth reading:
+
+* [How we've updated React by Example from React 0.13 to 16.0](http://reactkungfu.com/2017/11/how-weve-updated-react-by-example-from-react-0-dot-13-to-16-dot-0/) - React by Example as a book is focused on 12 different examples of UI widgets. Every chapter is a walkthrough on implementing such component, whether it’s a password strength meter or article list with voting. Some time ago we updated its code to React 16.
+* [Diving into ant-design internals: Button](http://reactkungfu.com/2017/03/diving-into-ant-design-internals-button/) - Check out how ant, one of the biggest collection of cohesive React components, implemented interesting features in their buttons.
+* [Dynamic JSX tags](http://reactkungfu.com/2016/11/dynamic-jsx-tags/) - very quick protip how to achieve conditional JSX tags with much shorter syntax.
+* [Mapping declarative React components to imperative external API.](http://reactkungfu.com/2016/02/mapping-declarative-react-components-to-imperative-external-api/) - Did you like Netflix article on _Integrating imperative APIs into a React application_? Check out our similar approach to a similar problem.
+
+And don't forget to check out our React books [Rails meets React](https://blog.arkency.com/rails-react/) and [React.js by example](http://reactkungfu.com/react-by-example/). Both helped thousands of React and Rails developers.
