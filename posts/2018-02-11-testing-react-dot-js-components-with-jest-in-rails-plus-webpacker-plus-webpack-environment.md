@@ -408,3 +408,77 @@ and almost full `package.json`:
 after a couple of other problems that we discovered later and had to handle as well.
 
 ## Bonus - running JS tests on CircleCI 2.0
+
+This also turned out to be a bit more tricky than I expected. The reason for that is that running assets precompilation (asset pipeline+webpack via webpacker integration) or running tests uninstalled `devDependencies` and then we could not run `jest` because there was no such binary. I totally did not expect that behavior.
+
+Here is our current config:
+
+```yaml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.2.7-node
+        environment:
+          RAILS_ENV: test
+      - image: circleci/mysql:5.5
+        environment:
+          - MYSQL_ROOT_PASSWORD=ubuntu
+          - MYSQL_DATABASE=myapp-test
+      - image: elasticsearch:1.4.5
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run: mkdir -p tmp/
+      - run: mkdir -p ~/ftp/
+
+      - restore_cache:
+          keys:
+          - v2-project-{{ checksum "Gemfile.lock" }}
+          - v2-project-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path bundled-gems
+
+      - save_cache:
+          paths:
+            - bundled-gems
+          key: v2-project-{{ checksum "Gemfile.lock" }}
+
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run: bundle exec rake assets:precompile
+
+      - run:
+          name: run tests
+          command: |
+            ./bin/rails t
+
+      - restore_cache:
+          keys:
+          - yarn-npm-packages-2-{{ checksum "yarn.lock" }}
+          - yarn-npm-packages-2-
+
+      - run:
+          name: install js dependencies
+          command: |
+            yarn install --cache-folder ~/.cache/yarn --production=false
+
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-npm-packages-2-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: run js tests
+          command: |
+            yarn test
+```
+
+I think eventually I will either move JS testing before assets procompilation and rails testing. Alternatively I am going to split this one long job into a workflow with a 2 separate jobs. Especially considering that 90% of commands (some not listed) do not affect JS testing at all.
+
+Another thing that trolled me a little was setting `NODE_ENV` globally to `production`. This caused more issues than problems that it solved.
