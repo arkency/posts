@@ -4,7 +4,7 @@ created_at: 2018-02-14 03:12:45 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'search', 'algolia', 'rails' ]
 newsletter: :arkency_form
 ---
 
