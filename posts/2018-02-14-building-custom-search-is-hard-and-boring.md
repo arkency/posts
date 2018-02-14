@@ -1,8 +1,8 @@
 ---
 title: "Building custom search is hard and boring"
-created_at: 2018-02-14 03:12:45 +0200
+created_at: 2018-02-14 06:00:00 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails' ]
 newsletter: :arkency_form
