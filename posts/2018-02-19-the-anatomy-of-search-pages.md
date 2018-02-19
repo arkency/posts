@@ -8,13 +8,9 @@ tags: [ 'foo', 'bar', 'baz' ]
 newsletter: :arkency_form
 ---
 
-FIXME: Place post lead here.
+What kind of components do we need to use to make a great search page? Let's have a look.
 
 <!-- more -->
-
-The anatomy of search pages
-
-What kind of components do we need to use to make a great search page?
 
 ## Text Search
 
@@ -40,11 +36,11 @@ What kind of components do we need to use to make a great search page?
 
 <%= img_original("ruby-rails-anatomy-search-page-algolia/filter_by_price_ranges_react_rails.png") %>
 
-https://www.dropbox.com/s/tjbzexep8ruohio/Screenshot%202018-01-07%2012.30.15.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/multi_select_categories_with_count_badges_react_rails_algolia_search_filter.png") %>
 
-https://www.dropbox.com/s/m06qtmctu2jzoub/Screenshot%202018-01-07%2012.33.44.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/stars_ranges_brans_categories_filter_in_react_rails_algolia_search.png") %>
 
-Custom components
+## Custom components
 
 https://www.dropbox.com/s/4nj2yjcorzvgsb4/Screenshot%202018-01-07%2012.27.10.png?dl=0
 
@@ -54,7 +50,7 @@ https://www.dropbox.com/s/taqpeknqsjra5o6/Screenshot%202018-01-07%2012.38.00.png
 
 https://www.dropbox.com/s/q2lldzj2t4ujirq/Screenshot%202018-01-07%2012.55.38.png?dl=0
 
-Sorting components
+## Sorting components
 
 https://www.dropbox.com/s/nl0m5dis72o2kri/Screenshot%202018-01-07%2012.31.12.png?dl=0
 
