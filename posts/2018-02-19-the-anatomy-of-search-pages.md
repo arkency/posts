@@ -60,9 +60,9 @@ What kind of components do we need to use to make a great search page? Let's hav
 
 ## Pagination and results summary
 
-https://www.dropbox.com/s/xsap9c00t9mvikt/Screenshot%202018-01-07%2012.23.08.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/pagination_react.png") %>
 
-https://www.dropbox.com/s/54670bbr2rq378x/Screenshot%202018-01-07%2012.23.30.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/pagination_with_stats_search_react.png") %>
 
 I gathered some examples of the most typical components. How long do you think it would take your team to implement all of them. At the beginning, the task does not seem to be quite daunting. But the complexity comes from the fact that many of those components influence the search query, search results, and other components. As an example when a user keeps writing the search query, the list of categories (and their counters) is refreshed to reflect only those categories which contain search results limited to the query.
 
