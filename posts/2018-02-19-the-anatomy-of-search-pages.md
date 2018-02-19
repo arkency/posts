@@ -16,15 +16,15 @@ The anatomy of search pages
 
 What kind of components do we need to use to make a great search page?
 
-Text Search
+## Text Search
 
-https://www.dropbox.com/s/rzode8jr6czlxcg/Screenshot%202018-01-07%2012.18.31.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/text_search_box_component.png") %>
 
-Search results
+## Search results
 
-https://www.dropbox.com/s/1r6kjy3cfaikh8q/Screenshot%202018-01-07%2012.19.46.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/search_results_compoent.png") %>
 
-https://www.dropbox.com/s/e8yh53yjrkvh69y/Screenshot%202018-01-07%2012.28.42.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/search_results_algolia_ikea_ruby_rails_react.png") %>
 
 https://www.dropbox.com/s/bhtj1imn6qjj8z3/Screenshot%202018-01-07%2012.36.13.png?dl=0
 
