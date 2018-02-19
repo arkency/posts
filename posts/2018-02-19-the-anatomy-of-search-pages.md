@@ -26,15 +26,15 @@ What kind of components do we need to use to make a great search page?
 
 <%= img_original("ruby-rails-anatomy-search-page-algolia/search_results_algolia_ikea_ruby_rails_react.png") %>
 
-https://www.dropbox.com/s/bhtj1imn6qjj8z3/Screenshot%202018-01-07%2012.36.13.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/react_search_algolia_results_amazon.png") %>
 
-Filters
+## Filters
 
-https://www.dropbox.com/s/wxa5cyfzn5drv68/Screenshot%202018-01-07%2012.20.21.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/search_filter_by_stars_popular_component_in_react_rails_algolia_ruby.png") %>
 
-https://www.dropbox.com/s/arggs2p8xwv1vec/Screenshot%202018-01-07%2012.21.29.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/rails_react_filter_by_date_range_and_price_range.png") %>
 
-https://www.dropbox.com/s/wzo9j7zbd9zg496/Screenshot%202018-01-07%2012.22.04.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/react_rails_search_filter_by_categories_algolia.png") %>
 
 https://www.dropbox.com/s/n80nogsjwsr996h/Screenshot%202018-01-07%2012.29.17.png?dl=0
 
