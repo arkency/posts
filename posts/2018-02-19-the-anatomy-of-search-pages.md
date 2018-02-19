@@ -36,9 +36,9 @@ What kind of components do we need to use to make a great search page?
 
 <%= img_original("ruby-rails-anatomy-search-page-algolia/react_rails_search_filter_by_categories_algolia.png") %>
 
-https://www.dropbox.com/s/n80nogsjwsr996h/Screenshot%202018-01-07%2012.29.17.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/filter_nested_categories_tree_react_algolia_search.png")%>
 
-https://www.dropbox.com/s/jr6ycd0wih2i5wa/Screenshot%202018-01-07%2012.29.43.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/filter_by_price_ranges_react_rails.png") %>
 
 https://www.dropbox.com/s/tjbzexep8ruohio/Screenshot%202018-01-07%2012.30.15.png?dl=0
 
