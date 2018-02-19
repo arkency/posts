@@ -52,13 +52,13 @@ What kind of components do we need to use to make a great search page? Let's hav
 
 ## Sorting components
 
-https://www.dropbox.com/s/nl0m5dis72o2kri/Screenshot%202018-01-07%2012.31.12.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/sort_by_index_custom.png") %>
 
-https://www.dropbox.com/s/0ma57c0fofggh8t/Screenshot%202018-01-07%2012.32.05.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/price_ascending_descending_asc_desc_sorting_component_react_rails_search.png") %>
 
-https://www.dropbox.com/s/nwe1c6put4p4lkc/Screenshot%202018-01-07%2012.33.01.png?dl=0
+<%= img_original("ruby-rails-anatomy-search-page-algolia/sort_by_selector_component_react_search.png") %>
 
-Pagination and results summary
+## Pagination and results summary
 
 https://www.dropbox.com/s/xsap9c00t9mvikt/Screenshot%202018-01-07%2012.23.08.png?dl=0
 
