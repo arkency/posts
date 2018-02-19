@@ -28,4 +28,4 @@ Now, separately these features are usually not that hard, but the challenge come
 
 For quite some time I also struggled with this conundrum on how to build great search pages quickly and painlessly for our customers.
 
-to be continued...
+[to be continued...](/the-anatomy-of-search-pages/)
