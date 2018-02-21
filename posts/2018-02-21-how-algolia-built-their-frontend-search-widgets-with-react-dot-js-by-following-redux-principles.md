@@ -1,8 +1,8 @@
 ---
 title: "How Algolia built their frontend search widgets with React.js by following redux principles"
-created_at: 2018-02-21 17:00:25 +0200
+created_at: 2018-02-21 17:00:00 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
 newsletter: :arkency_form
