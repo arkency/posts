@@ -1,6 +1,6 @@
 ---
 title: "How Algolia built their frontend search widgets with React.js by following redux principles"
-created_at: 2018-02-21 16:30:25 +0200
+created_at: 2018-02-21 17:00:25 +0200
 kind: article
 publish: false
 author: Robert Pankowecki
@@ -199,7 +199,7 @@ Connectors are higher order components. They encapsulate the logic for a specifi
 
 You can use them when you want to customize the UI or display some components using a different toolkit or library like [Material UI](http://www.material-ui.com/#/) or [Antd](https://ant.design/docs/react/introduce). For example if you you don't like that fact that `<Hits>` widget creates a `<div>` tag to wrap all results into, you can create a custom component to render the search results which uses `<ul>` tag and use the `customHits` connector to subscribe for data changes to update when there are new search results available.
 
-```javascript
+```jsx
 const CustomHits = connectHits(({ hits }) =>
 <ul>
   {hits.map(hit =>
@@ -259,7 +259,7 @@ That's just React and Redux you already know and like.
 
 And all together the code looks this way at the end:
 
-```javascript
+```jsx
 const App = ({indexName}) => {
   return <InstantSearch
     appId="..."
