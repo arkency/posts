@@ -1,8 +1,8 @@
 ---
 title: "Your search index is a read model (and API ;) in the Searching bounded context"
-created_at: 2018-02-23 18:00:00 +0200
+created_at: 2018-02-23 16:00:00 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
 newsletter: :arkency_form
