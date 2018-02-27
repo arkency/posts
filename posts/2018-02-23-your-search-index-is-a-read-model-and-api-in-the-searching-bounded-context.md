@@ -30,3 +30,5 @@ It means that the frontend team working on the search would probably need very l
 You can even decide on the index schema up front, fill a test index with some fake data and start working separately on it. The frontend team on building a wonderful search experience and a pretty design. The backend team on reacting to data changes in your app which should lead to updating the index. As a result, both teams can work in parallel.
 
 And that's what you get out of the box when using Algolia. Your mobile or JS client (written in React.js or React Native) can use an API token to obtain search results from allowed search indexes and it does not even need to communicate with the backend. It can talk directly to Algolia, which is hosting your search data in their data-centers.
+
+_Are you also feeling the pain of building search pages from scratch every time? Or maybe you just want to learn how to deal with it upfront? We have a [video course](https://blog.arkency.com/search-rails/) that can help :)_

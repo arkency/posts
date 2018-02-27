@@ -29,3 +29,5 @@ Now, separately these features are usually not that hard, but the challenge come
 For quite some time I also struggled with this conundrum on how to build great search pages quickly and painlessly for our customers.
 
 [to be continued...](/the-anatomy-of-search-pages/)
+
+_Are you also feeling the pain of building search pages from scratch every time? Or maybe you just want to learn how to deal with it upfront? We have a [video course](https://blog.arkency.com/search-rails/) that can help :)_

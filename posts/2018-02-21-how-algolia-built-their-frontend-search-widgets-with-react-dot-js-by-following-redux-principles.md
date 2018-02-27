@@ -284,3 +284,5 @@ const App = ({indexName}) => {
   </InstantSearch>
 };
 ```
+
+_Are you also feeling the pain of building search pages from scratch every time? Or maybe you just want to learn how to deal with it upfront? We have a [video course](https://blog.arkency.com/search-rails/) that can help :)_
