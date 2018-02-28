@@ -224,6 +224,8 @@ class Event < ApplicationRecord
     end
 ```
 
+That's the 1st step to decoupling this code from ActiveRecord.
+
 ### Integrate using domain events and handlers
 
 Now we need something to use instead of ActiveRecord callbacks to trigger indexing of our records.
