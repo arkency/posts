@@ -14,7 +14,7 @@ In my [video course](https://blog.arkency.com/search-rails/), I present using Al
 
 But Algolia made a good decision by splitting their solution into 2 gems. There is algoliasearch gem written in Ruby and not coupled at all to Rails. And there is `algoliasearch-rails` which integrates with the Rails ecosystem and `ActiveRecord::Base` in particular. And you are free to just not use it :) You don't like Rails magic? You can opt out from it. I like it!
 
-## Use algoliasearch gem instead of algoliasearch-rails
+### Use algoliasearch gem instead of algoliasearch-rails
 
 https://github.com/algolia/algoliasearch-client-ruby
 
@@ -224,7 +224,7 @@ class Event < ApplicationRecord
     end
 ```
 
-## Integrate using domain events and handlers
+### Integrate using domain events and handlers
 
 Now we need something to use instead of ActiveRecord callbacks to trigger indexing of our records.
 
