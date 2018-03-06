@@ -219,3 +219,15 @@ We have some other interesting ideas on how to make the code using Rails Event S
 
 * [We are working on improving the API for reading events](https://github.com/RailsEventStore/rails_event_store/issues/184)
 * [and on streamlining the configuration](https://github.com/RailsEventStore/rails_event_store/issues/153)
+
+## Read more
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our everyday struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+Also worth reading:
+
+* [Why Event Sourcing basically requires CQRS and Read Models](/why-event-sourcing-basically-requires-cqrs-and-read-models/) - Event sourcing is a nice technique with certain benefits. But it has a big limitation. As there is no concept of easily available current state, you can’t easily get an answer to a query such as _give me all products with available quantity lower than 10_.
+* [Application Services - 10 common doubts answered](/application-service-ruby-rails-ddd/) - You might have heard about the Domain-Driven Design approach to building applications. In this approach, there is this horizontal layer called Application Service. But what does it do?
+* [On ActiveRecord callbacks, setters and derived data](/on-activerecord-callbacks-setters-and-derived-data/) - Callbacks are still being used in the wild in many scenarios, so why not write about this topic a bit one more time with different examples.
+
+And don't forget to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
