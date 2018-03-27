@@ -222,4 +222,4 @@ Also worth reading:
 * [When DDD clicked for me](/when-ddd-clicked-for-me/) - It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such “aha” moments.
 * [Application Services - 10 common doubts answered](/application-service-ruby-rails-ddd/) - You might have heard about the Domain-Driven Design approach to building applications. In this approach, there is this horizontal layer called Application Service. But what does it do?
 
-Support us by buying our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
+Support us by buying our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially recommended for reading if you work with big, complex Rails apps.
