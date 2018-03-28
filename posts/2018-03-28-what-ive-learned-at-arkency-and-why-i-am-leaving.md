@@ -2,7 +2,7 @@
 title: "What I've learned at Arkency and why I am leaving"
 created_at: 2018-03-28 12:53:24 +0200
 kind: article
-publish: false
+publish: true
 author: Piotr Macuk
 tags: [ 'async', 'remote', 'ddd', 'tools' ]
 newsletter: :arkency_form
