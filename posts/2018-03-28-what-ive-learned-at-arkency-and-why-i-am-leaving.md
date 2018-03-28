@@ -22,7 +22,7 @@ There are at least two interesting and important habits I've learned at Arkency.
 
 The second habit is [starting from the middle approach](/2015/03/blogging-start-from-the-middle/) (thanks [Andrzej](/by/andrzejkrzywda/)). It's like [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) for every task. The work should be time-boxed, shippable and done with next iterations in mind. There is a proverb for this approach: "done is better than perfect" :)
 
-So the question is why am I leaving such great company? As I said at the beginning my plan was to enhance and diverse income sources. After 3 years and around 2.500 hours of work, I had to decide what should be my next step. I had two challenging projects to work on and both projects need more and more attention. Additionally, I've started to practice Aikido a few months ago and feel more need to no rush myself and have some time to develop my inner peace.
+So the question is why am I leaving such great company? As I said at the beginning my plan was to enhance and diverse income sources. After 3 years and around 2.500 hours of work, I had to decide what should be my next step. I had two challenging projects to work on and both projects need more and more attention. Additionally, I've started to practice [Aikido](https://en.wikipedia.org/wiki/Aikido) a few months ago and feel more need to no rush myself and have some time to develop my inner peace.
 
 I've decided to go full time with my own SaaS business [Konfeo](https://www.konfeo.com/en/) which is profitable more and more each month. Is the decision good? Time will show...
 
