@@ -124,3 +124,18 @@ end.to change{ object.counter }.from(0).to(1)
 but I admire the `assert_changes` implementation which uses `UNTRACKED` object.
 
 Although, it's kind of similar to using boolean arguments, which often is an indicator that 2 separate methods should be defined. So instead of `foo(1, true)` and `foo(1, false)`, it is often argued it's better to just have `foo(1)` and `bar(1)` and I usually agree with this guideline. However, in case of `assert_changes` the usage of named arguments and singleton object seems OK to me.
+
+### Would you like to continue learning more?
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our every day struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+You might enjoy reading:
+
+* [Composable RSpec matchers](/composable-rspec-matchers/) - how to implement nice RSpec matchers `expect(domain_event).to be_an_event(OrderPlaced).with_data(order_id: 42).strict`
+* [inject vs each_with_object](/inject-vs-each-with-object/) - 2 very popular ruby methods, what's the difference between them
+* [The === (case equality) operator in Ruby explained](/the-equals-equals-equals-case-equality-operator-in-ruby/) - Meet the power of `===` operator
+* [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - 2 modes of testing that you can switch between to make writing tests easier.
+* [Using ruby parser and AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) - when grep is not enough for your refactorings.
+
+
+Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
