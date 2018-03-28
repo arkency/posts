@@ -12,7 +12,7 @@ Sometimes you would like to define a method which takes an optional argument, bu
 
 <!-- more -->
 
-The usual solution for default value is to define them as `nil` or other empty/zero values which makes sense such as 0 or empty string, empty array, etc. 
+The usual solution for default value is to define them as `nil` or other empty/zero values which makes sense such as 0 or an string, an empty array, etc. 
 
 ```ruby
 class Foo
@@ -65,6 +65,8 @@ Foo.new.bar(1, two: 2)
 2
 ```
 
+You could use a symbol (`:not_provided`) or number or anything else that's unique in ruby, but in general methods (such as `assert_changes` described below) they could be valid objects to be provided as an argument. So the best way to solve it, is to use a unique object that nobody can pass as an argument. 
+
 Here is how Rails is using it to implement `assert_changes`:
 
 ```ruby
@@ -111,7 +113,7 @@ def assert_changes(expression, message = nil, from: UNTRACKED, to: UNTRACKED, &b
 end
 ```
 
-I guess, I prefer the rspec approach
+I guess I prefer the rspec approach
 
 ```ruby
 expect do
