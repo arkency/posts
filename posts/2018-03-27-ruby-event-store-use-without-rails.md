@@ -2,7 +2,7 @@
 title: "Ruby Event Store - use without Rails"
 created_at: 2018-03-27 18:22:15 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'ruby', 'rails', 'res', 'event_store' ]
 newsletter: :arkency_form
