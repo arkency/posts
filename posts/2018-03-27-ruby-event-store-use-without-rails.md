@@ -42,7 +42,7 @@ As you are not using rails and its generators, please create required database t
 You can now use RES in your app.
 
 ```ruby
-equire 'active_record'
+require 'active_record'
 require 'rails_event_store_active_record'
 require 'ruby_event_store'
 
