@@ -76,4 +76,4 @@ Usually we use named routes such as `edit_admin_exercise` which are available vi
 
 Did you like this article? You will find [our Rails books interesting as well](/products).
 
-<a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="35%" />
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="35%" />
