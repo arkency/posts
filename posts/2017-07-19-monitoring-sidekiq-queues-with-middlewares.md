@@ -12,7 +12,7 @@ Sidekiq, similarly to Rack, has a concept of middlewares. A list of wrappers aro
 
 <!-- more -->
 
-In [chillout](https://get.chillout.io) we use it to collect and send a number of metrics:
+In [chillout](http://chillout.io) we use it to collect and send a number of metrics:
 
 * how long did it take to process a job
 

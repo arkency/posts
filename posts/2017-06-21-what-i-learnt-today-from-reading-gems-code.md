@@ -9,7 +9,7 @@ newsletter: :arkency_form
 img: sidekiq-active_support-chillout-rails-metrics/pexels-photo-225769.jpeg
 ---
 
-Today I was working on [chillout.io](http://get.chillout.io/) [client](https://github.com/chilloutio/chillout) and while I was debugging some parts, I had a look at some Ruby gems. This is always an interesting experience because you can learn how other developers design their API and how different it can be from your approach.
+Today I was working on [chillout.io](http://chillout.io/) [client](https://github.com/chilloutio/chillout) and while I was debugging some parts, I had a look at some Ruby gems. This is always an interesting experience because you can learn how other developers design their API and how different it can be from your approach.
 
 <!-- more -->
 
@@ -160,7 +160,7 @@ So the `configure_server` method yields the block only when the if-statement eva
 
 `server_middleware` yields for nicer readability, I believe. Especially in the case of many middlewares.
 
-BTW. [chillout.io](http://get.chillout.io/) [client](https://github.com/chilloutio/chillout) uses a middleware to schedule sending metrics when a background job is done.
+BTW. [chillout.io](http://chillout.io/) [client](https://github.com/chilloutio/chillout) uses a middleware to schedule sending metrics when a background job is done.
 
 ## ActiveSupport
 

@@ -10,7 +10,7 @@ img: ruby-influxdb-chillout/pdfs_orders2.png
 
 InfluxDB is an open-source time series database, written in Go. It is optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics, and real-time analytics.
 
-We use it in [chillout](https://get.chillout.io) for storing business and performance metrics sent by our [collector](https://github.com/chilloutio/chillout).
+We use it in [chillout](http://chillout.io) for storing business and performance metrics sent by our [collector](https://github.com/chilloutio/chillout).
 
 <!-- more -->
 

@@ -27,7 +27,7 @@ Here are your options:
 
 * Lower your timeouts
 
-    Keep monitoring averages and percentiles of how long it takes to finish a certain job in your system (using [chillout](https://get.chillout.io) or any other metric collector). This will give you a better insight into how long is normal for this task to take and what timeout you should set.
+    Keep monitoring averages and percentiles of how long it takes to finish a certain job in your system (using [chillout](http://chillout.io) or any other metric collector). This will give you a better insight into how long is normal for this task to take and what timeout you should set.
 
     Prefer using [configurable, lower-level network timeouts provided directly by libraries](http://www.mikeperham.com/2015/05/08/timeout-rubys-most-dangerous-api/) over `Timeout` module.
 

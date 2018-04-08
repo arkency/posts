@@ -13,7 +13,7 @@ When you work in big Rails application sometimes you would like to remove certai
 
 <!-- more -->
 
-With [chillout.io](http://get.chillout.io/) and other monitoring solutions that's easy. Just introduce a new metric in the place of code you are unsure about.
+With [chillout.io](http://chillout.io/) and other monitoring solutions that's easy. Just introduce a new metric in the place of code you are unsure about.
 
 ```ruby
 class SocialSharesController < ApplicationController
