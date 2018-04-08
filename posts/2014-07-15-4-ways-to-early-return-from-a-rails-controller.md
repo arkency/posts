@@ -199,6 +199,6 @@ pre-conditions from http concerns.
 ## More
 
 Did you like this article? Learn how to make your Rails controllers pretty,
-refactor to Service Objects and much more from our [Fearless Refactorin: Rails controllers](http://controllers.rails-refactoring.com)
+refactor to Service Objects and much more from our [Fearless Refactorin: Rails controllers](http://rails-refactoring.com)
 
-<a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
+<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>

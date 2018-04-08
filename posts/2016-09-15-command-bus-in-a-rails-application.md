@@ -203,6 +203,6 @@ And on the read side of the application, it's used from a controller, as any oth
 
 ## PS
 
-* Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://controllers.rails-refactoring.com/)
+* Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
 
-    <a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
+    <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>

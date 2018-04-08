@@ -14,7 +14,7 @@ img: "service_object_with_simple_delegate.png"
 	</figure>
 </p>
 
-It's now more than 1 year since I released the first beta release (the final release was ready in December 2014) of the ["Fearless Refactoring: Rails controllers" book](http://controllers.rails-refactoring.com). Many of the readers were pointing to the one technique which was especially useful to them - extracting a service object using SimpleDelegator.
+It's now more than 1 year since I released the first beta release (the final release was ready in December 2014) of the ["Fearless Refactoring: Rails controllers" book](http://rails-refactoring.com). Many of the readers were pointing to the one technique which was especially useful to them - extracting a service object using SimpleDelegator.
 
 This technique has also been very popular in our Arkency team. It gives you a nice way of extracting a service object immediately, within minutes. It is based on a bit of a hack, though. The idea is to treat this hack as a temporary solution to make the transition to the service object more easy.
 

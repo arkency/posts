@@ -145,7 +145,7 @@ And here is an example test at the app layer:
 
 If the app itself sounds interesting to you, it's free to use at  [http://fuckups.arkency.com/](http://fuckups.arkency.com/).
 
-If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://controllers.rails-refactoring.com).
+If you like this style of organizing the Rails code, then you may like my book: ["Fearless Refactoring: Rails controllers"](http://rails-refactoring.com).
 
 <div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/lmpPfTy-Tvw?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 

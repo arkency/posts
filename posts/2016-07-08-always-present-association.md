@@ -83,4 +83,4 @@ same time, then why not.
 
 * Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
 
-    <a href="http://controllers.rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
+    <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>

@@ -169,7 +169,7 @@ end
 
 ```
 
-We use the repository pattern to encapsulate and hide the storage part of our tool. If you want to read more about the repository pattern, [I wrote a book](http://controllers.rails-refactoring.com) which explains why it’s worth using and how to introduce this pattern to the existing Rails application.
+We use the repository pattern to encapsulate and hide the storage part of our tool. If you want to read more about the repository pattern, [I wrote a book](http://rails-refactoring.com) which explains why it’s worth using and how to introduce this pattern to the existing Rails application.
 
 In tests, we use an InMemoryRepository:
 

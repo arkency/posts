@@ -29,7 +29,7 @@ Another typical problem is the tests taking ages to run (and often fail for rand
 
 This is exactly why we came up with the book called: "Fearless Refactoring: Rails Controllers".
 
-<a href="http://controllers.rails-refactoring.com"><img style="display:block; margin: 0 auto;" src="<%= src_fit("fearless-refactoring.png") %>" width="40%" /></a>
+<a href="http://rails-refactoring.com"><img style="display:block; margin: 0 auto;" src="<%= src_fit("fearless-refactoring.png") %>" width="40%" /></a>
 
 Thanks to this book, you'll be able to improve your Rails codebase with more confidence. You will become fluent with new abstractions, like service objects, repositories, adapters.
 Your tests will run faster, saving you and your team a lot of time (and money!).

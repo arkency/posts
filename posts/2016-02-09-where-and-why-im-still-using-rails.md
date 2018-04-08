@@ -76,7 +76,7 @@ Yes, the Rails patterns make the code difficult to maintain in the long run. But
 
 **My approach of starting with Rails is based on the understanding that code is not set in stone**. You can change it later.
 
-You can decouple your app from the framework step by step and [I wrote a whole book about it](http://controllers.rails-refactoring.com).
+You can decouple your app from the framework step by step and [I wrote a whole book about it](http://rails-refactoring.com).
 
 You can gradually separate the frontend and go into React.js (recommended!) and/or Redux. We wrote a book how to use [React.js with Rails](http://blog.arkency.com/rails-react/), but we also wrote a book full of examples (and +10 repos!) [how to start with React.js](http://blog.arkency.com/rails-react/). We have [a huge list of Arkency React.js resources](http://blog.arkency.com/2015/11/arkency-react-dot-js-resources/). I see the React/Redux movement as my frontend future.
 
