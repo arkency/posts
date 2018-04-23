@@ -1,8 +1,8 @@
 ---
 title: "Using singleton objects as default arguments in Ruby"
-created_at: 2018-03-28 16:33:02 +0200
+created_at: 2018-04-23 16:33:02 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails' ]
 newsletter: :arkency_form
