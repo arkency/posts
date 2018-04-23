@@ -12,7 +12,7 @@ Sometimes you would like to define a method which takes an optional argument, bu
 
 <!-- more -->
 
-The usual solution for default value is to define them as `nil` or other empty/zero values which makes sense such as 0 or an string, an empty array, etc. 
+The usual solution for default value is to define them as `nil` or other empty/zero values which makes sense such as 0 or a string, an empty array, etc. 
 
 ```ruby
 class Foo
