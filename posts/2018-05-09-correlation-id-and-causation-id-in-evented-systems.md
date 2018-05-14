@@ -102,3 +102,17 @@ I hope that in the future we can automate all of it when some of the upcoming Ru
 * [Metadata-driven streams](https://github.com/RailsEventStore/rails_event_store/issues/221)
 * [Storing Commands](https://github.com/RailsEventStore/rails_event_store/issues/340)
 
+### Would you like to continue learning more?
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our every day struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+You might enjoy reading:
+
+* [Ruby Event Store - use without Rails](/ruby-event-store-use-without-rails/) - did you know you can use RailsEventStore without Rails by going with RubyEventStore :)
+* [When DDD clicked for me](/when-ddd-clicked-for-me/) - It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such “aha” moments.
+* [Why Event Sourcing basically requires CQRS and Read Models](/why-event-sourcing-basically-requires-cqrs-and-read-models/) - Event sourcing is a nice technique with certain benefits. But it has a big limitation. As there is no concept of easily available current state, you can’t easily get an answer to a query such as _give me all products with available quantity lower than 10_. What can be done about it?
+* [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - 2 modes of testing that you can switch between to make writing tests easier.
+* [Using ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) - when grep is not enough for your refactorings.
+
+**Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
+
