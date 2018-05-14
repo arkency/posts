@@ -4,7 +4,7 @@ created_at: 2018-05-14 23:35:00 +0200
 kind: article
 publish: false
 author: Paweł Pacana
-tags: [ ]
+tags: [ 'ruby', 'parser', 'AST', 'rails_event_store' ]
 newsletter: :arkency_form
 
 ---
@@ -222,7 +222,7 @@ You might enjoy reading:
 
 * [Using Ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) -- when `grep` is just not good enough
 
-* [One simple trick to make Event Sourcing click](https://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/) --
+* [One simple trick to make Event Sourcing click](https://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/) -- the curious case of explaining Event Sourcing with Aggregate Root
 
 * [Process Managers revisited](https://blog.arkency.com/process-managers-revisited/) -- how coordinate events over time and put a barrier that breaks as soon as they all happened
 
