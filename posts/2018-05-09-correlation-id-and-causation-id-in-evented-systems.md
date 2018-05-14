@@ -28,12 +28,12 @@ In [Rails/Ruby Event Store](https://railseventstore.org/) this is also possible.
 
 ```ruby
 class MyEventHandler
-  def call(occured_event)
+  def call(event)
     event_store.with_metadata(
-      correlation_id: occured_event.metadata[:correlation_id] || occured_event.event_id,
-      causation_id:   occured_event.event_id
+      correlation_id: event.metadata[:correlation_id] || 
+                      event.event_id,
+      causation_id:   event.event_id
     ) do
-    
       # do something which triggers another event(s)
       event_store.publish_event(MyEvent.new(data: {foo: 'bar'}))   
     end
@@ -51,13 +51,14 @@ of course, if you don't publish many events, it might be easier to apply it manu
 
 ```ruby
 class MyEventHandler
-  def call(occured_event)
+  def call(event)
     # do something which triggers another event
     event_store.publish_event(MyEvent.new(
       data: {foo: 'bar'},
       metadata: {
-        correlation_id: occured_event.metadata[:correlation_id] || occured_event.event_id,
-        causation_id:   occured_event.event_id
+        correlation_id: event.metadata[:correlation_id] ||
+                        event.event_id,
+        causation_id:   event.event_id
       }
     ))   
   end
