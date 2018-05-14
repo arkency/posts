@@ -45,6 +45,7 @@ end
 ```
 
 It is however more burdensome for the end-user than it looks on first sight:
+
 * more often it several usages over codebase
 * you'd have to exercise all involved code paths to get that deprecation warnings
 * not all usages are equal (different keyword arguments to reader methods) and you'd have to account for default values (like limit being 100 implicitly)
@@ -57,7 +58,7 @@ gem ins parser
 
 It all begins with analyzing how the code we want to replace looks like in AST. Consider the aforementioned example:
 
-```
+```ruby
 $ ruby-parse -e "client.read_events_backward('Order$1', limit: 5, start: :head)"         
 
 (send
@@ -85,7 +86,7 @@ replace(range, content)
 
 What are its arguments? Content stands for string with code. In our case that would be `client.read.stream('Order$1').from(:head).limit(5).backward.each.to_a`. With `range` it's a bit more complicated. Let's use `ruby-parse -L` to reveal more secrets:
 
-```
+```ruby
 ruby-parse -L -e 'client.read_events_backward(\'Order$1\', limit: 5, start: :head)'
 
 s(:send,
@@ -150,7 +151,8 @@ client.read_events_backward('Order$1', limit: 5, start: :head)
 With `-L` switch `ruby-parse` was kind enough to describe to us those ranges in each AST node. We can use them to refer to particular locations in parsed code.
 
 For example following description teaches us that `node.location.selector` refers to area between `client.` and `('Order$1', limit: 5, start: :head)`.
-```
+
+```ruby
 s(:send,
   s(:send, nil, :client), :read_events_backward,
   s(:str, "Order$1"),
@@ -204,7 +206,8 @@ RSpec.describe DeprecatedReadAPIRewriter do
   end
 
   specify 'take it easy' do
-    expect(rewrite("client.read_events_backward('Order$1', limit: 5, start: :head)")).to eq("read.stream('Order$1').from(:head).limit(5).backward.each.to_a") }
+    expect(rewrite("client.read_events_backward('Order$1', limit: 5, start: :head)"))
+      .to eq("read.stream('Order$1').from(:head).limit(5).backward.each.to_a")
   end
 end
 ```
