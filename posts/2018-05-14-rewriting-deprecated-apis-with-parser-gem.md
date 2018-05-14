@@ -216,7 +216,7 @@ end
 
 To recap, we've learned how to read parsed Ruby code in AST and how to use this knowledge in order to transform it to something new. And that's just the tip of the iceberg!
 
-Full `DeprecatedReadAPIRewriter` [script](https://github.com/RailsEventStore/rails_event_store/blob/master/ruby_event_store/lib/ruby_event_store/deprecated_read_api_rewriter.rb) with [specs](https://github.com/RailsEventStore/rails_event_store/blob/540d1822d29017d0010562e1f1a112a2adc0fc72/ruby_event_store/spec/deprecated_spec_api_rewriter_spec.rb) to study in Rails Event Store [repository]().
+Full `DeprecatedReadAPIRewriter` [script](https://github.com/RailsEventStore/rails_event_store/blob/master/ruby_event_store/lib/ruby_event_store/deprecated_read_api_rewriter.rb) with [specs](https://github.com/RailsEventStore/rails_event_store/blob/540d1822d29017d0010562e1f1a112a2adc0fc72/ruby_event_store/spec/deprecated_spec_api_rewriter_spec.rb) to study in Rails Event Store [repository](https://github.com/RailsEventStore/rails_event_store/).
 
 
 ### Hungry for more?
