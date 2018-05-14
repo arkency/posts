@@ -4,12 +4,12 @@ created_at: 2018-05-14 23:35:00 +0200
 kind: article
 publish: false
 author: Paweł Pacana
-tags: [ 'ruby', 'parser', 'AST', 'rails_event_store' ]
+tags: ['ruby', 'parser', 'AST', 'rails_event_store' ]
 newsletter: :arkency_form
 
 ---
 
-In upcoming [Rails Event Store](https://railsevenstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface -- popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
+In upcoming [Rails Event Store](https://railsevenstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface — popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
 
 <!-- more -->
 
@@ -31,7 +31,7 @@ spec.each do |event|
 end
 ```
 
-Deprecating APIs seems easy -- issue warning on old method call, maybe suggest new usage:
+Deprecating APIs seems easy — issue warning on old method call, maybe suggest new usage:
 
 ```ruby
 specify do
@@ -45,11 +45,11 @@ end
 ```
 
 It is however more burdensome for the end-user than it looks on first sight:
-- more often it several usages over codebase
-- you'd have to exercise all involved code paths to get that deprecation warnings
-- not all usages are equal (different keyword arguments to reader methods) and you'd have to account for default values (like limit being 100 implicitly)
+* more often it several usages over codebase
+* you'd have to exercise all involved code paths to get that deprecation warnings
+* not all usages are equal (different keyword arguments to reader methods) and you'd have to account for default values (like limit being 100 implicitly)
 
-Grepping codebase for usage and manual replace or maybe some `sed` trickery would help, sure. The thing is we can do better. We can rewrite Ruby, using Ruby. Enter excellent `parser` gem:
+Digging though codebase for usage and manual replace or maybe some `sed` trickery would help, sure. The thing is we can do better. We can rewrite Ruby, using Ruby. Enter excellent `parser` gem:
 
 ```
 gem ins parser
@@ -220,10 +220,10 @@ If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/news
 
 You might enjoy reading:
 
-* [Using Ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) -- when `grep` is just not good enough
+* [Using Ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) — when `grep` is just not good enough
 
-* [One simple trick to make Event Sourcing click](https://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/) -- the curious case of explaining Event Sourcing with Aggregate Root
+* [One simple trick to make Event Sourcing click](https://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/) — the curious case of explaining Event Sourcing with Aggregate Root
 
-* [Process Managers revisited](https://blog.arkency.com/process-managers-revisited/) -- how coordinate events over time and put a barrier that breaks as soon as they all happened
+* [Process Managers revisited](https://blog.arkency.com/process-managers-revisited/) — how coordinate events over time and put a barrier that breaks as soon as they all happened
 
 **Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
