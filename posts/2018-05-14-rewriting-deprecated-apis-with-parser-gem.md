@@ -222,8 +222,8 @@ You might enjoy reading:
 
 * [Using Ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) — when `grep` is just not good enough
 
-* [One simple trick to make Event Sourcing click](https://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/) — the curious case of explaining Event Sourcing with Aggregate Root
+* [One simple trick to make Event Sourcing click](/one-simple-trick-to-make-event-sourcing-click/) — the curious case of explaining Event Sourcing with Aggregate Root
 
-* [Process Managers revisited](https://blog.arkency.com/process-managers-revisited/) — how coordinate events over time and put a barrier that breaks as soon as they all happened
+* [Process Managers revisited](/process-managers-revisited/) — how coordinate events over time and put a barrier that breaks as soon as they all happened
 
 **Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
