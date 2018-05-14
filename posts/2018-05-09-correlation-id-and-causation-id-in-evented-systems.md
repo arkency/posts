@@ -1,10 +1,10 @@
 ---
 title: "correlation id and causation id in evented systems"
-created_at: 2018-05-09 18:28:57 +0200
+created_at: 2018-05-14 18:28:57 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'correlation', 'causation', 'ddd', 'events' ]
 newsletter: :arkency_form
 ---
 
@@ -12,7 +12,7 @@ Debugging can be one of the challenges when building asynchronous, evented syste
 
 <!-- more -->
 
-For that you can use 2 metadata attributes associated with the even you are going to publish.
+For that, you can use 2 metadata attributes associated with events you are going to publish.
 
 Let's hear what Greg Young says about `correlation_id` and `causation_id`:
 
@@ -34,7 +34,7 @@ class MyEventHandler
       causation_id:   occured_event.event_id
     ) do
     
-      # do something which triggers another event
+      # do something which triggers another event(s)
       event_store.publish_event(MyEvent.new(data: {foo: 'bar'}))   
     end
   end
@@ -47,7 +47,7 @@ class MyEventHandler
 end
 ```
 
-of course if you don't publish many events, it might be easier to apply it manually, once.
+of course, if you don't publish many events, it might be easier to apply it manually, once.
 
 ```ruby
 class MyEventHandler
@@ -66,7 +66,7 @@ end
 
 Now, keeping that correlation and causation IDs in events' metadata is one thing. That's beneficial and if you want to check why event `X` happened you can just easily do it, but it's not where the story ends.
 
-Imagine that you have a global handler registered which reacts to every event occuring in your system and building two projections by linking the events to certain streams:
+Imagine that you have a global handler that registered which reacts to every event occurring in your system and building two projections by linking the events to certain streams:
 
 ```ruby
 class BuildCorrelationCausationStreams
