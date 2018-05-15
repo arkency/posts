@@ -48,9 +48,9 @@ end
 
 It is however more burdensome for the end-user than it looks on first sight:
 
-* more often it several usages over codebase
-* you'd have to exercise all involved code paths to get that deprecation warnings
-* not all usages are equal (different keyword arguments to reader methods) and you'd have to account for default values (like limit being 100 implicitly)
+* more often it's several usages over codebase
+* you'd have to exercise all involved code paths to see deprecation warnings
+* not all usages are equal (different keyword arguments to reader methods) and you'd have to account for default values (like limit being set to 100 implicitly)
 
 Digging though codebase for usage and manual replace or maybe some `sed` trickery would help, sure. The thing is we can do better. We can rewrite Ruby, using Ruby. Enter excellent `parser` gem:
 
@@ -61,7 +61,7 @@ gem ins parser
 It all begins with analyzing how the code we want to replace looks like in AST. Consider the aforementioned example:
 
 ```ruby
-$ ruby-parse -e "client.read_events_backward('Order$1', limit: 5, start: :head)"         
+ruby-parse -e "client.read_events_backward('Order$1', limit: 5, start: :head)"         
 
 (send
  (send nil :client) :read_events_backward
