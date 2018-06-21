@@ -81,7 +81,9 @@ module InheritedResources
 end
 ```
 
-As you can see, each time one of the methods is used, I get notification on Honeybadger, with exact controller and action where it is used. One could now use [automatic rewrites using parser gem](/rewriting-deprecated-apis-with-parser-gem/) to add the necessary code, but in my case it was only a few actions where it was used, so it was not worth it. After few weeks of this code in production, I've removed the code and safely removed the gem :)
+As you can see, each time one of the methods is used, I get notification on Honeybadger, with exact controller and action where it is used. One could now use [automatic rewrites using parser gem](/rewriting-deprecated-apis-with-parser-gem/) to add the necessary code, but in my case it was only a few actions where it was used, so it was not worth it. I've just manually wrote couple lines of controller code and respectively changed the views in order to not use byzantine `@resource` variable name.
+
+After few weeks of this code in production, I've removed the code and safely removed the gem :)
 
 ### Enjoyed reading?
 
