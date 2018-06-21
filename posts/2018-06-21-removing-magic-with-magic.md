@@ -10,7 +10,6 @@ img: "removing_magic_with_magic.jpg"
 ---
 
 <%= img_fit("removing_magic_with_magic.jpg") %>
-blabla
 
 Some gems, like InheritedResources, help us by reducing the lines of code we have to write by providing definitions automatically. However, depending on how the gem is written, it can be done "magically". In some cases, we want to remove such gems.
 
