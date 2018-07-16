@@ -200,3 +200,13 @@ Going even further in that direction, we could split our Product into two classe
 Our write model does not need `is_buyable` or `is_visible` at all. But, it's very beneficial for the read-model which can live as a separate table in the SQL DB, or it could be in the already mentioned Elastic Search.
 
 However, usually when working with `ActiveRecord`, we mix those two models together. In more complex apps, it might be a good idea to separate them.
+
+## 12-weeks Rails Events video class
+
+[Subscribe to our mailing list](http://arkency.com/newsletter) to be notified about our upcoming 12-weeks Rails Events video class.
+
+You might also enjoy reading:
+
+* [Ruby Event Store - use without Rails](/ruby-event-store-use-without-rails/) - did you know you can use Rails Event Store without Rails by going with RubyEventStore :)
+* [When DDD clicked for me](/when-ddd-clicked-for-me/) - It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such “aha” moments.
+* [Conditionality is filtering. Don't filter control flow, filter data.](/2017/04/conditionality-is-filtering-dont-filter-control-flow-filter-data/) - a short example for how to start getting rid of if-statements in your code.
