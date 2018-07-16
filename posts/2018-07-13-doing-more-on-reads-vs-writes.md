@@ -2,9 +2,9 @@
 title: "Doing more on reads vs writes"
 created_at: 2018-07-13 15:55:44 +0200
 kind: article
-publish: false
+publish: true
 author: Robert Pankowecki
-tags: [ 'foo', 'bar', 'baz' ]
+tags: [ 'ruby', 'rails' ]
 newsletter: :arkency_form
 ---
 
@@ -207,6 +207,6 @@ However, usually when working with `ActiveRecord`, we mix those two models toget
 
 You might also enjoy reading:
 
-* [Ruby Event Store - use without Rails](/ruby-event-store-use-without-rails/) - did you know you can use Rails Event Store without Rails by going with RubyEventStore :)
+* [Ruby Event Store - use without Rails](/ruby-event-store-use-without-rails/) - did you know you can use RailsEventStore without Rails by going with RubyEventStore :)
 * [When DDD clicked for me](/when-ddd-clicked-for-me/) - It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such “aha” moments.
 * [Conditionality is filtering. Don't filter control flow, filter data.](/2017/04/conditionality-is-filtering-dont-filter-control-flow-filter-data/) - a short example for how to start getting rid of if-statements in your code.
