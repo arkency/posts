@@ -11,7 +11,7 @@ img: "rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_p
 
 <%= img_fit("rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg") %>
 
-In upcoming [Rails Event Store](https://railsevenstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface — popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
+In upcoming [Rails Event Store](https://railseventstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface — popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
 
 <!-- more -->
 
@@ -61,7 +61,7 @@ gem ins parser
 It all begins with analyzing how the code we want to replace looks like in AST. Consider the aforementioned example:
 
 ```ruby
-ruby-parse -e "client.read_events_backward('Order$1', limit: 5, start: :head)"         
+ruby-parse -e "client.read_events_backward('Order$1', limit: 5, start: :head)"
 
 (send
  (send nil :client) :read_events_backward
@@ -102,17 +102,17 @@ s(:send,
       s(:sym, :start),
       s(:sym, :head))))
 client.read_events_backward('Order$1', limit: 5, start: :head)
-      ~ dot                         
+      ~ dot
        ~~~~~~~~~~~~~~~~~~~~ selector                         ~ end
-                           ~ begin                                       
+                           ~ begin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ expression
 s(:send, nil, :client)
 client.read_events_backward('Order$1', limit: 5, start: :head)
-~~~~~~ selector  
+~~~~~~ selector
 ~~~~~~ expression
 s(:str, "Order$1")
 client.read_events_backward('Order$1', limit: 5, start: :head)
-                            ~ begin ~ end       
+                            ~ begin ~ end
                             ~~~~~~~~~ expression
 s(:hash,
   s(:pair,
@@ -127,7 +127,7 @@ s(:pair,
   s(:sym, :limit),
   s(:int, 5))
 client.read_events_backward('Order$1', limit: 5, start: :head)
-                                            ~ operator    
+                                            ~ operator
                                        ~~~~~~~~ expression
 s(:sym, :limit)
 client.read_events_backward('Order$1', limit: 5, start: :head)
@@ -139,14 +139,14 @@ s(:pair,
   s(:sym, :start),
   s(:sym, :head))
 client.read_events_backward('Order$1', limit: 5, start: :head)
-                                                      ~ operator        
+                                                      ~ operator
                                                  ~~~~~~~~~~~~ expression
 s(:sym, :start)
 client.read_events_backward('Order$1', limit: 5, start: :head)
                                                  ~~~~~ expression
 s(:sym, :head)
 client.read_events_backward('Order$1', limit: 5, start: :head)
-                                                        ~ begin         
+                                                        ~ begin
                                                         ~~~~~ expression
 ```
 
@@ -166,9 +166,9 @@ s(:send,
       s(:sym, :start),
       s(:sym, :head))))
 client.read_events_backward('Order$1', limit: 5, start: :head)
-      ~ dot                         
+      ~ dot
        ~~~~~~~~~~~~~~~~~~~~ selector                         ~ end
-                           ~ begin                                       
+                           ~ begin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ expression
 ```
 
