@@ -1,8 +1,8 @@
 ---
-title: "Use channels, not direct messages"
-created_at: 2018-08-29 21:59:52 +0200
+title: "Use channels, not direct messages - 9 tips"
+created_at: 2018-09-02 12:59:52 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -35,52 +35,52 @@ The second type is the **"just" tasks**, "Hey, could you **just** fix the sortin
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Please repeat after me:<br><br>Slack DMs do not replace GitHub issues/google docs<br>Slack DMs shouldn&#39;t be for private tasklists from other folks nor should it be a place for feature requests.<br><br>Thanks for coming to my TED talk.</p>&mdash; corey hobbs (@chobberoni) <a href="https://twitter.com/chobberoni/status/1034502969969000448?ref_src=twsrc%5Etfw">August 28, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
-The third type, I'm aware of is **when a developer is clearly assigned to a part of the application** and it's only him dealing with it. In this case, the communication is usually specifying the details of the next bugfixes/features.
-
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">(Using email)<br><br>You have one inbox.<br><br>(Sign up for Slack)<br><br>You have 30 inboxes.<br><br>(Slack adds threads feature)<br><br>Your inboxes have inboxes.</p>&mdash; Henning Koch (@triskweline) <a href="https://twitter.com/triskweline/status/1035073193550249984?ref_src=twsrc%5Etfw">August 30, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+The third type, I'm aware of is **when a developer is clearly assigned to a part of the application** and it's only him dealing with it. In this case, the communication is usually specifying the details of the next bugfixes/features. The problems here are quite subtle - other people don't know what is going on in this area. They are not able to participate. The whole project doesn't feel like a collaboration anymore.
 
 # How to reduce the number of direct messages
 
 The basic tips are the following:
 
-## Be the role model - Never initiate work conversations on direct message
+### 1. Be the role model - Never initiate work conversations on direct message
 
 Instead, initiate the conversation on channel - even if it's clear that for now only you and 1 other person would be involved. It helps to have dedicated channels (open to everybody) where certain topics are discused. General channels are not a good place for that
 
-## When asked on direct message - ask if it's something that you can reply on channel, as others may benefit from it
+### 2. When asked on direct message - ask if it's something that you can reply on channel, as others may benefit from it
 
 If it's a status question - you can take the 2 minutes to reply on the #standup channel and just link in the DM saying "Hey, I thought others would benefit from knowing my status, so I posted there, I hope it's fine".
 
-## Don't open Slack when your current task requires deep focus
+### 3. Don't open Slack when your current task requires deep focus
 
-I recently listened to the audiobook ["Deep Work"](http://calnewport.com/books/deep-work/). There are more such async-friendly advices. In short, the author recommends approach where you schedule "internet-time" instead of the more popular "offline-time". 
+I recently listened to the audiobook ["Deep Work"](http://calnewport.com/books/deep-work/). There are more such async-friendly advices. In short, the author recommends approach where you schedule "internet-time" instead of the more popular  (reversed) approach of scheduling "offline-time". 
 
-## Disable notifications for direct messages
+### 4. Disable notifications for direct messages
 
 Instead, you can schedule in your own backlog/plan when you review your messages. Others would learn quickly that grabbing your attention this way is not effective. It's important thought that you do reply to questions (ideally on channels) systematically.
 
-## Keep your own Inbox/Backlog
+### 5. Keep your own Inbox/Backlog
 
 Your project has a backlog, but you can have one too. Schedule and prioritize your tasks, so that you have time for deep work, but also for communication. I use Nozbe for that. Todoist was also a good experience. 
 
-## Over-communicate your work so that others don't need to query your status
+### 6. Over-communicate your work so that others don't need to query your status
 
 The simplest way is to post to #standup frequently. But sometimes if your current task goes slowly - keep overcommunicating on the channel about what problems you're encountering. It's a varation of the rubber duck as we all know  it.
 
-## Make quick progress with the backlog, small stories, so that managers/product owners can trust that they can add something important to the top.
+### 7. Make quick progress with the backlog, small stories, so that managers/product owners can trust that they can add something important to the top.
 
 This is the big one. Project managers need to trust your process. If you ask them to always add tasks to the backlog, show they would be handled quickly. Otherwise, they would look for tricks and they would be right. Our developers freedom to have a deep work should be accompanied by quick progress. The best way to do it is to improve the skill of extracting smaller stories and the "start from the middle" techniques. At Arkency we promote the idea of 1-size user stories. It's a bit idealistic and sometimes hard to achieve but that's the goal worth aspiring to.
 
-## Avoid assigning tasks/silos to specific developers.
+### 8. Avoid assigning tasks/silos to specific developers.
 
 Our culture of work assumes that each developer can work on any part of the application. This is sometimes called collective ownership. It's especially important for the kind of projects we work on - projects where we're involved for several years (we almost never work on 3-months projects).
 If you're the developer who gets assigned to one part only, try to explain why it's risky for the team and what implications it has on you (big pressure, hard to go for vacation?).
 Even if you're not that developer - look around. Is someone in the team always assigned to one part? Do they enjoy it? Do you both think it's healthy for the project? Reach out to them and ask if you can help them. BTW, this is the kind of conversation where I would find it OK to do on direct message, even though it's project-related. Just don't keep it secret for too long. Aim for actions/discussions how to resolve the issue and move on.
 
-## Create more channels with clear topic/name
+### 9. Create more channels with clear topic/name
 
 Maybe it's #projectfoo-UI, #projectfoo-invoices or #projectfoo-performance - you name it, whatever makes sense in your context. This helps deciding where to start the conversation.
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">(Using email)<br><br>You have one inbox.<br><br>(Sign up for Slack)<br><br>You have 30 inboxes.<br><br>(Slack adds threads feature)<br><br>Your inboxes have inboxes.</p>&mdash; Henning Koch (@triskweline) <a href="https://twitter.com/triskweline/status/1035073193550249984?ref_src=twsrc%5Etfw">August 30, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 Do you know other techniques how to deal with the problem? Feel free to share in the comments.
 
