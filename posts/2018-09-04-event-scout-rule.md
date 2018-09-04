@@ -44,4 +44,16 @@ But still, it's just adding one line of code in certain places, maybe passing
 I said before that you will see the benefits of the technique after about a year, but actually it can be much faster. If you are working on one area for most of the time, perhaps you will be able to see the benefits in one month’s time, which means the technique can bring short-term benefits as well.
 I hope you like this technique. 
 
+# REScon
+
+If you like this topic of adding events to legacy (Ruby) applications, then attending [REScon](https://mailchi.mp/arkency/rescon/) might be a good idea. We'll show more advanced techniques how to gradually get out of the existing Rails Way architecture and turn it inot loosely-coupled event-driven application. As part of REScon we have 3 events (each can be attended/bought separately):
+
+- 1-day Rails/DDD workshop - $200
+- 1-day conference (talks about using DDD/events with Rails and [RailsEventStore](http://railseventstore.org)) - $200
+- 1-day hackathon - FREE
+
+All in beatiful Wrocław, Poland.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tCiLgbHGhnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 Happy event publishing! 
