@@ -37,12 +37,40 @@ And it's the same with events: always leave the place with more events, so tha
 
 This will be the first feature built fully in the event-driven way. And that's the goal. But we have to remember that events will not add themselves, right? You have to add them, even though people will not see the benefits right away. Maybe it will also make the life of code reviewers a little bit harder. 
 
-# It's just one line
+# It's just a few lines line
 
-But still, it's just adding one line of code in certain places, maybe passing the dependency to the event store or event bus. Sometimes, you will have to add human factor to the process, as it may turn out necessary to discuss why you are doing this. But once you start doing it and people start to see its value, all doubts will disappear and you can continue doing it every day, every week, every month.
+But still, it's just adding a few lines of code in certain places, maybe passing the dependency to the event store or event bus. Sometimes, you will have to add human factor to the process, as it may turn out necessary to discuss why you are doing this. But once you start doing it and people start to see its value, all doubts will disappear and you can continue doing it every day, every week, every month.
 
 I said before that you will see the benefits of the technique after about a year, but actually it can be much faster. If you are working on one area for most of the time, perhaps you will be able to see the benefits in one month’s time, which means the technique can bring short-term benefits as well.
-I hope you like this technique. 
+
+```ruby
+class CancelOrdersService
+  def call(order_id, user_id)
+    order = Order.find_by!(
+      customer_id: user_id,
+      order_id: order_id,
+    )
+    order.cancel!
+    publish_event(order)
+  end
+
+  private
+
+  def publish_event(order)
+    event_store.publish(
+      OrderCancelled.new(data: {
+        order_id: order.id,
+        customer_id: order.customer_id,
+      }),
+      stream_name: "Order-#{order.id}"
+    )
+  end
+  
+  def event_store
+    Rails.configuration.event_store
+  end
+end
+```
 
 # REScon
 
