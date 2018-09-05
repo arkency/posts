@@ -2,7 +2,7 @@
 title: "Command sourcing - why I am considering it"
 created_at: 2018-09-05 09:03:27 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
