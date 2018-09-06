@@ -76,7 +76,7 @@ end
 
 If you like this topic of adding events to legacy (Ruby) applications, then attending [REScon](https://mailchi.mp/arkency/rescon/) might be a good idea. We'll show more advanced techniques how to gradually get out of the existing Rails Way architecture and turn it inot loosely-coupled event-driven application. As part of REScon we have 3 events (each can be attended/bought separately):
 
-- 1-day Rails/DDD workshop - $200
+- 1-day Rails/DDD workshop - $400
 - 1-day conference (talks about using DDD/events with Rails and [RailsEventStore](http://railseventstore.org)) - $200
 - 1-day hackathon - FREE
 
