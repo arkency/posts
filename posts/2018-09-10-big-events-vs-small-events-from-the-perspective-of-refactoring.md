@@ -2,7 +2,7 @@
 title: "Big events vs Small events - from the perspective of refactoring"
 created_at: 2018-09-10 08:10:49 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -21,8 +21,8 @@ class EmployeeRegistered < Event
       { 
         company_id:    STRING_ID,
         employee_id:   STRING_ID,
-        first_name:     String,
-        last_name:      String,
+        first_name:    String,
+        last_name:     String,
         department_id: STRING_ID
         manager_id:    STRING_ID
         resume_id:     STRING_ID
