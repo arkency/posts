@@ -76,7 +76,7 @@ If you like this topic of events in Ruby applications, then attending [REScon](h
 
 October 4-6th, 2018
 
-- 1-day Rails/DDD workshop - $200
+- 1-day Rails/DDD workshop - $400
 - 1-day conference (talks about using DDD/events with Rails and [RailsEventStore](http://railseventstore.org)) - $200
 - 1-day hackathon - FREE
 
