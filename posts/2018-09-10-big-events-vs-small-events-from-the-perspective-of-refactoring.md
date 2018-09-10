@@ -19,10 +19,10 @@ To give you a sense of what I mean, here’s one example of a problem that I fin
 class EmployeeRegistered < Event
     def self.schema
       { 
-        company_id:   STRING_ID,
-        employee_id:    STRING_ID,
-        first_name:   String,
-        last_name:    String,
+        company_id:    STRING_ID,
+        employee_id:   STRING_ID,
+        first_name:     String,
+        last_name:      String,
         department_id: STRING_ID
         manager_id:    STRING_ID
         resume_id:     STRING_ID
