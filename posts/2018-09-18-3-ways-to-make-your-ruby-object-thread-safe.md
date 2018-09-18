@@ -165,7 +165,9 @@ class Subscribers
   end
   
   def notify
-    @subscribers.each(&:call)
+    @semaphore.synchronize do
+      @subscribers.each(&:call)
+    end
   end
   
   def remove_subscriber(subscriber)
@@ -178,7 +180,7 @@ end
 SUBSCRIBERS = Subscribers.new
 ```
 
-Although to be honest, I am not sure if `synchronize` is needed for a method which does not change the state such as `notify`...
+Although to be honest, I am not sure if `synchronize` is needed for a method which does not change the state such as `notify`... ([discussion on reddit](https://www.reddit.com/r/ruby/comments/9gvn48/3_ways_to_make_your_ruby_object_threadsafe/e67cemw/))
 
 But instead of going that way, you might prefer to use already existing classes such as [`Concurrent::Array`](http://ruby-concurrency.github.io/concurrent-ruby/master/Concurrent/Array.html) and going with the previous method.
 
