@@ -141,7 +141,7 @@ end
 SUBSCRIBERS = Subscribers.new
 ```
 
-`Subscribers` can be used from within different threads because its state is different for every thread that uses it. `@subscribers.value` is a different `Array` for every thread. This might be useful and what you want/expect. But it also might not.
+`SUBSCRIBERS` can be used from within different threads because its state is different for every thread that uses it. `@subscribers.value` is a different `Array` for every thread. This might be useful and what you want/expect. But it also might not.
 
 In [RailsEventStore](http://railseventstore.org/) we use this pattern to keep a list of short-term handlers interested in events published by current thread. For example an import process can collect stats about the number of `ProductImported` and `ProductImportErrored` events that occur when parsing and processing an XLSX file.
 
