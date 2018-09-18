@@ -236,3 +236,17 @@ CMD_HANDLER = -> (cmd) { MyCommandHandler.new(Repository.new, Adapter.new).call(
 Here, in case our application threads use `CMD_HANDLER.call(...)` then we don't need to worry about thread-safety because every time we need `MyCommandHandler`, we instantiate a new object with the whole dependency tree. The dependencies (`repository, adapter`) can use any of the mentioned techniques to be thread-safe as well, or they can be new instances as well.
 
 And here lies the reason that many classes are not thread-safe in Ruby by default. They are simply not expected to be used from multiple threads. The authors did not imagine such use-case for them. That's OK. The bigger issue, in my opinion, is that it's often hard to find info about classes coming from some gems about their thread-safety.
+
+### Would you like to continue learning more?
+
+If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our every day struggles and solutions for building maintainable Rails apps which don't surprise you.
+
+You might enjoy reading:
+
+* [Ruby Event Store - use without Rails](/ruby-event-store-use-without-rails/) - did you know you can use RailsEventStore without Rails by going with RubyEventStore :)
+* [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - 2 modes of testing that you can switch between to make writing tests easier.
+* [Using ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) - when grep is not enough for your refactorings.
+* [Big events vs Small events - from the perspective of refactoring](/big-events-vs-small-events-from-the-perspective-of-refactoring/) - _after working for several years in an event sourced system, Andrew noticed many problems connected with big events_
+
+**Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
+
