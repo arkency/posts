@@ -64,6 +64,6 @@ Btw. if you wish to get featured on [Community](https://railseventstore.org/comm
 
 If you haven't seen it live already, I'd recommend watching Andrzej's keynote on The Vision of Rails Event Store!
 
-<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FArkencyCom%2Fvideos%2F2187126198226563%2F&show_text=0&width=560" width="100%" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FArkencyCom%2Fvideos%2F2187126198226563%2F&show_text=0&width=560" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
 
 This also makes a good moment to announce next year's edition — there will definitely be one. Can you imagine where RES will be `12.months.from_now?`. If you want to make sure you don't miss it, [subscribe here](http://eepurl.com/doIcqP).
