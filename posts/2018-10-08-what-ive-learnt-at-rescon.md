@@ -17,11 +17,11 @@ Without schemas you rely on thorough test coverage.
 
 On hackathon I've seen a tool to show focused diff of schema changes over time. High five to Ania and Mariusz!
 
-The topics that circulated where how to handle event versioning, the promise of upcasting in future RES versions and how to make JSON a default serializer (with little help of schemas).
+The topics that circulated were how to handle event versioning, the promise of upcasting in future RES versions and how to make JSON a default serializer (with a little help of schemas).
 
 ## NServiceBus has a decent UI to debug message flows
 
-One of our guests was [Szymon Pobiega](https://twitter.com/SzymonPobiega) who works daily on NServiceBus. He was kind enough to run a quick demo of it's dashboard. In the app you could drill down what messages were recorded in a system, how they connect together and visualize the whole business processes. That gave me much inspiration what could land in `RES::Browser` some day.
+One of our guests was [Szymon Pobiega](https://twitter.com/SzymonPobiega) who works daily on NServiceBus. He was kind enough to run a quick demo of it's dashboard. In the app you could drill down what messages were recorded in a system, how they connect together and visualize the whole business processes. That gave me much inspiration what could land in [Browser](https://railseventstore.org/docs/browser/) some day.
 
 ## The concept of a stream is not that familiar
 
@@ -37,7 +37,7 @@ There are philosophical difficulties when considering sending past message to yo
 
 ## Metronome is a really cool name for time-related events module
 
-David shared a joy for finding a good name and I would totally use that one as well.
+[David](https://twitter.com/davidsaitta) shared a joy for finding a good name and I would totally use that one as well.
 
 ## There are many RES versions in the wild and not necessarily the newest
 
