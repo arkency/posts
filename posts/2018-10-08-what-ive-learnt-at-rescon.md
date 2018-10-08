@@ -6,9 +6,14 @@ publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store', 'rescon' ]
 newsletter: :arkency_form
+img: rescon_andrzej_thinking.jpg
 ---
 
+<%= img_fit("rescon_andrzej_thinking.jpg") %>
+
 During 4–6 October 2018 I had a pleasure to organize and participate in [RESCON](https://rescon.arkency.com). It was an opportunity to show and share what I've learned over the years. I've met new people that are into this topics and that gave me new perspective on things I work on. Without further ado, below are things I’ve learnt on first ever RailsEventStore conference.
+
+<!-- more -->
 
 ## People love event schemas
 
