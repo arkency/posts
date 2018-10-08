@@ -2,7 +2,7 @@
 title: "What I've learnt at RESCON"
 created_at: 2018-10-08 12:14:17 +0200
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store', 'rescon' ]
 newsletter: :arkency_form
