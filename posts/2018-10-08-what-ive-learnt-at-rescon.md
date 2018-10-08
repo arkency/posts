@@ -8,7 +8,7 @@ tags: [ 'rails_event_store', 'rescon' ]
 newsletter: :arkency_form
 ---
 
-During 4–6 October 2018 I had a pleasure to organize and participate in RESCON. It was an opportunity to show and share what I've learned over the years. I've met new people that are into this topics and that gave me new perspective on things I work on.
+During 4–6 October 2018 I had a pleasure to organize and participate in [RESCON](https://rescon.arkency.com). It was an opportunity to show and share what I've learned over the years. I've met new people that are into this topics and that gave me new perspective on things I work on.
 
 ## Things I’ve learnt on first ever RailsEventStore conference
 
@@ -23,11 +23,11 @@ The topics that circulated where how to handle event versioning, the promise of 
 
 2.  NServiceBus has a decent UI to debug message flows
 
-One of our guests was Szymon Pobiega who works daily on NServiceBus. He was kind enough to run a quick demo of it's dashboard. In the app you could drill down what messages were recorded in a system, how they connect together and visualize the whole business processes. That gave me much inspiration what could land in RES::Browser some day.
+One of our guests was [Szymon Pobiega](https://twitter.com/SzymonPobiega) who works daily on NServiceBus. He was kind enough to run a quick demo of it's dashboard. In the app you could drill down what messages were recorded in a system, how they connect together and visualize the whole business processes. That gave me much inspiration what could land in `RES::Browser` some day.
 
 3.  The concept of a stream is not that familiar
 
-A stream is a simple grouping of events under one name. Simple yet powerful as it allows partitioning for a particular reader. And organizing events in streams is quite cheap now with link operation.
+A stream is a simple grouping of events under one name. Simple yet powerful as it allows [partitioning for a particular reader](https://eventstore.org/blog/20130210/the-cost-of-creating-a-stream/index.html). And organizing events into streams in RES is quite cheap now with link operation.
 
 You will primarily use a stream per aggregate but you're not limited to. We use streams to manage process manager state — by linking the events process is reacting to into it's stream. We also started using it for different projections — grouping events by correlation id or collecting events to be processed for particular read model, that is a report.
 
@@ -45,15 +45,17 @@ David shared a joy for finding a good name and I would totally use that one as w
 
 I've learned about deployments of different RES versions and the struggles to keep it up-to-date. It is especially tricky if you implement a lot of custom extensions on top of such moving target.
 
-That's the downside of current before-1.0-release situation and we're aligned to make it better soon.
+That's the downside of current [before-1.0-release](https://github.com/RailsEventStore/rails_event_store/milestone/3) situation and we're aligned to make it better soon.
 
 7.  There are many extensions on top of RES
 
-It was not the first time I've seen such extensions. That keeps me convinced RES is a great base to extend (when stable), yet we might miss some conventions to keep you more productive from day one like Rails does.
+It was [not the first time](https://www.youtube.com/watch?v=cdwX1ZU623E) I've seen such extensions. That keeps me convinced RES is a great base to extend (when stable), yet we might miss some conventions to keep you more productive from day one like Rails does.
 
 It seems the choice nowadays is to lean on dry-rb ecosystem. That usually comes with a sentiment that Virtus was much more pleasant to work with.
 
 Some of the extensions fill the void of RES not having first-class command support — it really seems to be the missing part.
+
+Btw. if you wish to get featured on [Community](https://railseventstore.org/community/) send me a link to your article or code and I'll make sure it gets there!
 
 ## The promise
 
