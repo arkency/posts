@@ -4,6 +4,7 @@ created_at: 2018-09-10 08:10:49 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: [ 'ddd' ]
 newsletter: :skip
 ---
 
