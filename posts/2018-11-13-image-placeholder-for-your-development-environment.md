@@ -79,7 +79,7 @@ end
 3. If yes, make a get request to a service like [placeholder.com](placeholder.com) and modify response with image from it
 4. Otherwise, just return standard response
 
-Our initial version used [Fill Murray](https://fillmurray.com) which brought us smile every time we launched products catalog to do some work on. You can go with [Steven Seagal eating a carrot](https://www.stevensegallery.com) or [Nicolas Cage](https://https://www.placecage.com) if you would like to. Just add `host` option to middleware use:
+Our initial version used [Fill Murray](https://fillmurray.com) which brought us smile every time we launched products catalog to do some work on. You can go with [Steven Seagal eating a carrot](https://www.stevensegallery.com) or [Nicolas Cage](https://www.placecage.com) if you would like to. Just add `host` option to middleware use:
 
 ```ruby
 # config/environments/development.rb
