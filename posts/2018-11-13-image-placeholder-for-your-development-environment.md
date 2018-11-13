@@ -121,7 +121,7 @@ use ImagePlaceholder::Middleware, size_pattern: { /.*/ => '320/320' }, host: 'fi
 run YourRackApp
 ```
 
-To start using it, put `gem image_placeholder` into your `Gemfile`. If you would like to contribute or read more, visit `https://github.com/arkency/image_placeholder`
+To start using it, put `gem image_placeholder` into your `Gemfile`. If you would like to contribute or read more, visit [https://github.com/arkency/image_placeholder](https://github.com/arkency/image_placeholder)
 
 Enjoy!
 
