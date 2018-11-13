@@ -81,7 +81,7 @@ end
 
 Our initial version used [Fill Murray](https://fillmurray.com) which brought us smile every time we launched products catalog to do some work on.
 
-<img src="/assets/images/fill_murray.png" alt="Fill Murray" />
+<img src="<%= src_fit('fill_murray.png') %>" width="100%" />
 
 You can go with [Steven Seagal eating a carrot](https://www.stevensegallery.com) or [Nicolas Cage](https://www.placecage.com) if you would like to. Just add `host` option to middleware use:
 
