@@ -2,7 +2,7 @@
 title: "I was a CRUDoholic"
 created_at: 2018-11-20 17:41:40 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 tags: ['ddd', 'rails']
