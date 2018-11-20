@@ -5,6 +5,8 @@ kind: article
 publish: false
 author: Andrzej Krzywda
 newsletter: :skip
+tags: ['ddd', 'rails']
+img: rescon_andrzej_thinking.jpg
 ---
 
 Imagine one of your non-IT friends. Yeah, the “normal”.
@@ -48,6 +50,8 @@ Who cares about too many responsibilities in that object, when it’s still just
 Who cares about breaking the Law of Demeter, when Ruby has those nice delegates “macros” and it’s so short and easy to do so?
  
 Then it hit me - the Rails projects I worked on became bigger and bigger. The testing became painful (hard to unit test the monolith, so let’s go for browser tests). The build was slow and unreliable. My communication with the clients became robot-like, where the robot is limited to just four verbs.
+ 
+<%= img_fit("rescon_andrzej_thinking.jpg") %> 
  
 **Yep, I became the CRUD-oholic.**
  
