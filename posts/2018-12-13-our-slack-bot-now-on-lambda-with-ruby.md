@@ -4,7 +4,7 @@ created_at: 2018-12-13 14:00:00 +0100
 kind: article
 publish: false
 author: Paweł Pacana
-tags: [ 'aws', 'lambda', 'serverless' ]
+tags: [ 'aws', 'lambda', 'serverless', 'slack' ]
 newsletter: :arkency_form
 ---
 
@@ -12,9 +12,9 @@ We love sharing knowledge at Arkency. Education is in our DNA. We're happy when 
 
 ## Pandas and sales
 
-SlackProxy, which is the name of our application, notifies us whenever we make a sale from our e-commerce solution, that is DPD. This is an extremely rewarding experience when launching a new product but also a reminder to keep up improving existing ones.
+SlackProxy, which is the name of our application, notifies us whenever we make a sale from our e-commerce solution, that is [DPD](https://arkency.dpdcart.com). This is an extremely rewarding experience when launching a new product but also a reminder to keep up improving existing ones.
 
-[insert panda image here]
+<%= img_fit "serverless/sale_panda.png" %>
 
 Initially SlackProxy was a Rails application deployed on our internal infrastructure, then moved to Heroku. Technically it is nothing more than a proxy that transforms incoming webhooks from DPD into formatted messages posted on dedicated Slack channel.
 
@@ -75,17 +75,17 @@ When AWS announced Lambda support for Ruby [I was really excited about the possi
 
 In fact the way traffic shapes for SlackProxy [is an ideal candidate](https://servers.lol) for a Lambda deployment — huge spikes for several launch days and more peaceful pings on other days. Nothing latency–critical as well.
 
-Lambda functions may be triggered by several AWS events. Be it a repository event from CodeCommit, an upload to S3 or and update from SQS. For us, web developers, a request coming to an API Gateway sounds most familiar. It is a good entry point to explore Lambda. 
+Lambda functions may be triggered by several AWS events. Be it a repository event from CodeCommit, an upload to S3 or and update from SQS. For us, web developers, a request coming to an API Gateway sounds most familiar. It is a good entry point to explore Lambda.
 
-[image of triggers on UI here]
+<%= img_fit "serverless/lambda_trigger.png" %>
 
 I figured that an "API Gateway to Rack" adapter would be a natural glue for any Ruby web application and was relieved to [find it contributed by AWS](https://github.com/aws-samples/serverless-sinatra-sample/blob/master/lambda.rb). After all, Rails application is just a an elaborate mechanisms to turn `env` into `[status, headers, body]`.
 
-Some resistance against Lambda has formed around the opinion that "you cannot run this in development". I find it hard to defend when the boundary of you application ends on Rack. We already manage that well with existing tooling. And [in production](link here) you may need different set of checks anyway.
+Some resistance against Lambda has formed around the opinion that "you cannot run this in development". I find it hard to defend when the boundary of you application ends on Rack. We already manage that well with existing tooling. And [in production](https://blog.arkency.com/2017/01/run-your-tests-on-production/) you may need different set of checks anyway.
 
 ## Serverless Panda
 
-Without any further ado here's a rewrite of a notifier in form of a simplest Rack application:
+Without any further ado here's a rewrite of a notifier in form of a simplest [Rack](https://rack.github.io) application:
 
 ```ruby
 require 'slack-notifier'
@@ -159,5 +159,3 @@ First option is fine for exploring the environment. It gets you up to speed with
 The biggest obstacle for me so far was getting familiar with AWS services involved (IAM, API Gateway, Certificate Manager) and making sense out of the documentation. That is not something Lambda specific and I guess you'd have to face it when dealing with any AWS service. This was far for me from the Heroku-like experience.
 
 What could be also problematic for particular deployments is getting some [required dependencies](https://www.reddit.com/r/ruby/comments/a3e7a1/postgresql_on_aws_lambda_ruby/). It might be more desirable to lean on AWS ecosystem more deeply in that case (i.e. consider Dynamo storage).
-
-
