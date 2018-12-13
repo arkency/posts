@@ -159,3 +159,5 @@ First option is fine for exploring the environment. It gets you up to speed with
 The biggest obstacle for me so far was getting familiar with AWS services involved (IAM, API Gateway, Certificate Manager) and making sense out of the documentation. That is not something Lambda specific and I guess you'd have to face it when dealing with any AWS service. This was far for me from the Heroku-like experience.
 
 What could be also problematic for particular deployments is getting some [required dependencies](https://www.reddit.com/r/ruby/comments/a3e7a1/postgresql_on_aws_lambda_ruby/). It might be more desirable to lean on AWS ecosystem more deeply in that case (i.e. consider Dynamo storage).
+
+Should you try AWS Lambda with Ruby after all? Yes, go explore it!
