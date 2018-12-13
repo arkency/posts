@@ -1,8 +1,8 @@
 ---
-title: "Serverless Slack bot on Lambda with Ruby"
+title: "Serverless Slack bot on Lambda with Ruby (and what’s the less pleasant part about it)"
 created_at: 2018-12-13 14:00:00 +0100
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'aws', 'lambda', 'serverless', 'slack' ]
 newsletter: :arkency_form
@@ -136,7 +136,7 @@ end
 
 This comes with a handy `config.ru` that [rack-lambda](https://github.com/arkency/slack_proxy/blob/843442a7722e4aed40dcfec130011d8a2a81fb58/lambda.rb#L21) handler expects:
 
-```ruby  
+```ruby
 $LOAD_PATH << File.join(__dir__, 'lib')
 require 'slack_proxy'
 
