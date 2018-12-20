@@ -15,7 +15,7 @@ Learning new ideas can be a real struggle. Getting familiar with new concepts, n
 <%= img_fit 'clock_mechanism.jpg' %>
 
 I remember a nice discussion we had over burgers during wroc_love.rb conference in 2015. Folks shared their experiences of getting through [The Blue](https://domainlanguage.com/ddd/) and [The Red](http://www.informit.com/store/implementing-domain-driven-design-9780321834577?ranMID=24808) books — what was the most difficult to grasp and what made a breakthrough for them.
-For me the turning point was a chapter on Domain Events. This is when it all made sense. When I shared this experience, Alberto Brandolini who was sitting next to me silently nodded.
+For me the turning point was a chapter on Domain Events. This is when it all made sense. When I shared this experience, [Alberto Brandolini](https://twitter.com/ziobrando) who was sitting next to me silently nodded.
 
 [Eventstorming](https://www.eventstorming.com) is a technique for collaborative exploration of complex business domains. I was lucky to participate in a few of such workshops, including the one Alberto facilitated after his [wroc_love.rb talk](https://www.youtube.com/watch?v=veTVAN0oEkQ). Events, as the name suggests, play a key role in this discovery process. An event, in this context, represents a fact. Something that has had already happened in the domain. Thus we name it in past tense and in the language of the business (Ubiquitous Language).
 
@@ -170,7 +170,7 @@ it 'cancels edition when minimum limit not reached 2 weeks before start' do
 end
 ```
 
-With this technique we can model the process completely with just events and commands. No scheduling infrastructure not time mocking is required.
+With this technique we can model the process completely with just events and commands. No scheduling infrastructure nor time mocking is required.
 For correctness we'd like to add an integration test later that verifies no drift with infrastructure. That one however serves different purpose than being a driver for design.
 
 What amazes me the most in learning is that how others can influence us and expand what we already know. Take it further on a foundation we have. I had a pleasure to participate in [RESCON](https://rescon.arkency.com) conference where [Szymon Pobiega](https://twitter.com/szymonpobiega) in a self-describing talk [Sending Messages Into The Future](https://szymonpobiega.github.io/SendingMessagesToTheFuture/) explored the ideas I wrote about even more with great examples and a proposition of a RabbitMQ scheduling infrastructure. And a day after, on a RailsEventStore hackathon, [David Saita](https://twitter.com/davidsaitta) presented his take on an Metronome calendar-like bounded context.
