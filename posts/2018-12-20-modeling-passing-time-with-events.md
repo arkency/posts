@@ -2,7 +2,7 @@
 title: "Modeling passing time with events"
 created_at: 2018-12-20 12:43:22 +0100
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'process manager' ]
 newsletter: :arkency_form
