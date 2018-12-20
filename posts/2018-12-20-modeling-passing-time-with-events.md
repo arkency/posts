@@ -148,7 +148,7 @@ def register_participant_for_edition
 end
 ```
 
-That is already a good looking test. But wow do we simulate time in a way that the infrastructure doesn't interfere with a domain? I think you already know where this is going...
+That is already a good looking test. But how do we simulate time in a way that the infrastructure doesn't interfere with a domain? I think you already know where this is going...
 
 ```ruby
 def two_weeks_before_start_date_reached
