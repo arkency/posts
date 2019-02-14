@@ -172,7 +172,22 @@ Nothing surprising here. It is just the matter of realization, that if operation
 
 All of the previous examples were based on updating the read model. What about creating the record for it? For example, what will happen if we will have some creation fact processed twice? It would be a shame to create two different records in that case, because further queries and updates will use one of the records, and we probably don't really know which one.
 
-However again, solution is simple -- having unique index on a field generated before running a handler (like frontend generated UUID), will cause database to throw an error. Usually we want our handler to be idempotent in that case, and just ignore such error (but only this, very specific one).
+Again, solution is simple -- having unique index on a field generated before running a handler (like frontend generated UUID), will cause database to throw an error. Usually we want our handler to be idempotent in that case, and just ignore such error (but only this, very specific one).
+
+Second problem is when the read model is particularly short lived, and we will process the events in following order:
+
+```ruby
+SomethingCreated.new(1, data: ...)
+# Record for read model created in DB
+
+SomethingDeleted.new(2, data: ...)
+# Record for read model deleted from DB
+
+SomethingCreated.new(1, data: ...)
+# It is the same fact as in the first line! It was just processed again, because background system failed to ACK the completed job.
+```
+
+The bad thing is, that the second processing of the `SomethingCreated` fact, added the row for the second time. Logically, there should be none, because the read model was created and deleted afterwards. The solution is to use soft-deletes, meaning, instead of removing the record from the database, just anonymize them and set `deleted` boolean flag to true. That way, second processing of first fact will again raise error due to uniqueness violation and unwanted record won't be created.
 
 These patterns were meant to be taken under consideration in a legacy system with at-least-once delivery, but without order guarantee. Not always there's a need for that. Sometimes we can get order guarantee by having [linearized writes](https://railseventstore.org/docs/repository/#using-pglinearizedeventrepository-for-linearized-writes) and remembering last processed position or having a queue infrastructure with only at most one consumer processing element from given queue at the time. This poses challenges on its own, but all I wanted to show is that read-models are not so trivial and in reality there are some nuances in their implementation.
 
