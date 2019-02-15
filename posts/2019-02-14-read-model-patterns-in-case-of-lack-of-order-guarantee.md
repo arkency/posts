@@ -144,29 +144,6 @@ end
 In that case, we need to remember two fields, for each value. We can think of it of course as two columns in the database table, but it can also be some kind of compound value in blob storage.
 First one remembers actual newest value. The second keeps track of the timestamp, for which that value was definitely true. Now, if we want to remember only the newest one, we just always have to check whether the domain event we are processing have really some newer data than we actually already have.
 
-## Operations which are associative and commutative
-
-Last but not least, sometimes the value is always computed out of the operations, which are commutative and associative to each other. Well, by definition, if associative and commutative operations are executed in different order, it doesn't bother us. For example, we can look at the sum of some accounting ledger entries:
-
-```ruby
-# Events:
-Ordering::OrderPaid.new(1, data: { amount: 123 })
-Ordering::OrderPaid.new(2, data: { amount: 256 })
-
-def perform(domain_event)
-  case domain_event
-  ...
-  when Ordering::OrderPaid
-    state = State.find_by(domain_event.data[:user_id]).lock!
-    state.lifetime_paid += domain_event.data[:amount]
-    state.save!
-  end
-  else raise
-  end
-end
-```
-
-Nothing surprising here. It is just the matter of realization, that if operations follows these rules, we may be sure that the result is correct.
 
 ## Read model creation
 
