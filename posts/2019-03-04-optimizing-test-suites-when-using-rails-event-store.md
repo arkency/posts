@@ -2,7 +2,7 @@
 title: "Optimizing test suites when using Rails Event Store"
 created_at: 2019-03-04 17:24:55 +0100
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'testing', 'rspec' ]
 newsletter: :arkency_form
