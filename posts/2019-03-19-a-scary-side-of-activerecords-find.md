@@ -2,7 +2,7 @@
 title: "A scary side of ActiveRecord's find"
 created_at: 2019-03-19 10:10:33 +0100
 kind: article
-publish: false
+publish: true
 author: Jakub Kosiński
 tags: [ 'activerecord', 'find' ]
 newsletter: :arkency_form
