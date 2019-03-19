@@ -7,6 +7,7 @@ author: Jakub Kosiński
 tags: [ 'activerecord', 'find' ]
 newsletter: :arkency_form
 ---
+<%= img_fit("scary_record/hacker.jpg") %>
 
 Recently I was refactoring a part of one our projects to add more domain events to the Identity bounded context so that we can have better audit logs of certain actions performed on identities in our system. I started from extracting a service that was responsible for consuming commands. I started with something like this:
 
@@ -20,7 +21,7 @@ end
 
 class IdentityService
   # ...
-  
+
   def update_personal_settings(command)
     Identity.find(command.identity_id) do |identity|
       identity.email = command.email
@@ -37,12 +38,12 @@ class IdentityService
       )
     end
   end
-  
+
   # ...
 end
 ```
 
-At first sights, everything looked OK. I had some tests that was verifying the intended behaviour so I deployed the code to the test environment. Then I realized that something is wrong - when I was trying to update the name of my test account, I received a uniqueness validation error on the email field. 
+At first sights, everything looked OK. I had some tests that was verifying the intended behaviour so I deployed the code to the test environment. Then I realized that something is wrong - when I was trying to update the name of my test account, I received a uniqueness validation error on the email field.
 
 <!-- more -->
 
@@ -100,7 +101,7 @@ That `super` was really interesting, so I started the console and just run the f
 => nil
 ```
 
-Now I realized what was going on - my code was just iterating over all records in the DB table and try to evaluate given block on each record. Thankfully validations have detected this behaviour on the test environment quickly, but it might be really dangerous if the code would be run on production and there would be no uniqueness validation - I would just update all reacords in DB.  
+Now I realized what was going on - my code was just iterating over all records in the DB table and try to evaluate given block on each record. Thankfully validations have detected this behaviour on the test environment quickly, but it might be really dangerous if the code would be run on production and there would be no uniqueness validation - I would just update all reacords in DB.
 The other thing is that my test cases were also not smart enough to detect this issue - I should just create more than one identity in tests & try to update at least two of them.
 
 You might ask what was the solution? The solution was really obvious - I just forgot to add `tap` to my `find` call:
@@ -108,7 +109,7 @@ You might ask what was the solution? The solution was really obvious - I just fo
 ```ruby
 class IdentityService
   # ...
-  
+
   def update_personal_settings(command)
     Identity.find(command.identity_id).tap do |identity|
       identity.email = command.email
@@ -125,7 +126,7 @@ class IdentityService
       )
     end
   end
-  
+
   # ...
 end
 ```
