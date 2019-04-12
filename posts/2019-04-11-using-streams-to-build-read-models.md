@@ -2,7 +2,7 @@
 title: "Using streams to build read models"
 created_at: 2019-04-11 16:23:35 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read models', 'rails_event_store' ]
 newsletter: :arkency_form
