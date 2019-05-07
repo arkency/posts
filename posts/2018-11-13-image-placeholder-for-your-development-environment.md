@@ -76,7 +76,7 @@ end
 
 1. Check whether image is requested
 2. Check if status is 404
-3. If yes, make a get request to a service like [placeholder.com](placeholder.com) and modify response with image from it
+3. If yes, make a get request to a service like [placeholder.com](https://placeholder.com) and modify response with image from it
 4. Otherwise, just return standard response
 
 Our initial version used [Fill Murray](https://fillmurray.com) which brought us smile every time we launched products catalog to do some work on.
