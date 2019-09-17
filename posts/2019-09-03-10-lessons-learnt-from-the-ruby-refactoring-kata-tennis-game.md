@@ -157,9 +157,9 @@ end
 
 ## Lessons learnt
 
-1. Don’t trust the tests
+## 1. Don’t trust the tests
 
-At first, I thought that the tests five me enough coverage, that I can do the initial refactoring safely. However, it’s only over time that I learnt what are the drawbacks of the current tests design. The main problem is this code:
+At first, I thought that the tests give me enough coverage, that I can do the initial refactoring safely. However, it’s only over time that I learnt what are the drawbacks of the current tests design. The main problem is this code:
 
 ```ruby
   def play_game(tennisGameClass, p1Points, p2Points, p1Name, p2Name)
@@ -181,9 +181,9 @@ For certain implementations this might be a correct suite of tests, but if we sw
 
 I consider refactoring a process of learning. It’s learning of the domain, of the code and of the tests. When you look at it this way, maybe it was alright - I started refactoring and through this process I learnt about the problems with tests. However, this is only valid, if I don’t push my changes before I learn the lessons. If I do, I risk introducing breaking changes.
 
-2. Learn at least some basics of the domain
+## 2. Learn at least some basics of the domain
 
-I’m not a big fan of tennis, but I thought I knew enough about it work on this code.
+I’m not a big fan of tennis, but I thought I knew enough about it to work on this code.
 
 In practice, this was hard. I kept forgetting what’s the meaning of `Love`, I had to constantly look up the possible results.
 
@@ -195,7 +195,7 @@ In this kata, I clearly failed at it. I wasted some time, because I couldn’t v
 
 My domain vocabulary was very poor here - I kept using the words: `game`, `score`, `result` without learning some more.
 
-3. Merciless refactoring can be a nice learning technique
+## 3. Merciless refactoring can be a nice learning technique
 
 Let me quote the extreme programming definition of what I mean here:
 
@@ -212,6 +212,164 @@ In this Refactoring Kata, you can see my initial attempts to actually understand
 <<VIDEO 1>>
 
 Even though, I don’t understand the domain yet - I’m following the typical code smells to restructure the code. It’s purely technical at this stage. I have no idea what the code really does (I’m trying to guess) but I know that certain technical transformations will keep the behaviour the same, while allow me to look at the code from a different angle.
+
+## 4. Extract method is a no-brainer refactoring with a good IDE support
+
+As you can see in the initial videos, I'm very aggressive in using the extract method technique. There are several reasons but the main one is to make the main algorithm, the main scenario as consice and clear as possible. This way I have the main method which represents the algorithm in an abstract way, but everything stays at the same level of abstraction. All the details are left to the other methods or even classes to be extracted.
+
+I use RubyMine and I learnt to trust its Extract Method tooling. It's just an alt-cmd-m keystroke, type the new name and it's done.
+
+## 5. Preserve the public API if you have no control on the client calls
+
+I like to use modules to package my code. Sometimes, I don't have control on the client calls, though. In such cases, I leave the public API untouched, but then delegate everything to the code behind modules. This is like building a facade/wall in front of my "well-packaged" code.
+
+The name `TennisGame1` remained untouched in my initial commits, even though it's a terrible name. However, over time, I moved more code into the `Tennis` module.
+
+```ruby
+class TennisGame1
+
+  def initialize(player1Name, player2Name)
+    @player1Name = player1Name
+    @player2Name = player2Name
+    @p1points = 0
+    @p2points = 0
+  end
+        
+  def won_point(playerName)
+    if playerName == "player1"
+      @p1points += 1
+    else
+      @p2points += 1
+    end
+  end
+  
+  def score
+    return draw_result              if (@p1points==@p2points)
+    return advantage_or_win_result  if (@p1points>=4 or @p2points>=4)
+    return ongoing_result
+  end
+
+  private
+
+  def ongoing_result
+    Tennis::OngoingResult.new(@p1points, @p2points).score
+  end
+
+  def draw_result
+    Tennis::DrawResult.new(@p1points).score
+  end
+end
+```
+
+## 6. Extracting new classes helped my encapsulate concepts like Draw or Win
+
+Similarly as Extract Method, I found Extract Class useful. I usually follow the same pattern, where I create a constructor method which sets the state and then 1 or 2 public methods to retrieve the data. In a way, this is a function and can be implemented as a function too. However, what I learnt is that often those objects are just a temporary thing. They're not the final result of the refactoring, more like a step in-between. 
+
+```ruby
+module Tennis
+  class DrawResult
+    def initialize(points)
+      @points = points
+    end
+
+    def score
+      {
+        0 => "Love-All",
+        1 => "Fifteen-All",
+        2 => "Thirty-All",
+      }.fetch(@points, "Deuce")
+    end
+  end
+
+  class OngoingResult
+    def initialize(points_1, points_2)
+      @points_1 = points_1
+      @points_2 = points_2
+    end
+
+    def score
+      "#{ongoing_result_names[@points_1]}-#{ongoing_result_names[@points_2]}"
+    end
+
+    private
+
+    def ongoing_result_names
+      {
+        0 => "Love",
+        1 => "Fifteen",
+        2 => "Thirty",
+        3 => "Forty",
+      }
+    end
+  end
+end
+```
+
+## 7. Simplify if conditions with Guards
+
+There's something about if conditions that I dislike. They often hide some important logic and I feel like ifs are sometimes a too primitive way of encapsulating this logic (often some state machines).
+
+The most dangerous code I usually see are the nested if statements. 
+
+"No one ever got fired for adding the n+1 if statement, right"?
+
+When I saw this initial code, trying to simplify it was my main goal:
+
+```ruby
+  def score
+    result = ""
+    tempScore=0
+    if (@p1points==@p2points)
+      result = {
+          0 => "Love-All",
+          1 => "Fifteen-All",
+          2 => "Thirty-All",
+      }.fetch(@p1points, "Deuce")
+    elsif (@p1points>=4 or @p2points>=4)
+      minusResult = @p1points-@p2points
+      if (minusResult==1)
+        result ="Advantage player1"
+      elsif (minusResult ==-1)
+        result ="Advantage player2"
+      elsif (minusResult>=2)
+        result = "Win for player1"
+      else
+        result ="Win for player2"
+      end
+    else
+      (1...3).each do |i|
+        if (i==1)
+          tempScore = @p1points
+        else
+          result+="-"
+          tempScore = @p2points
+        end
+        result += {
+            0 => "Love",
+            1 => "Fifteen",
+            2 => "Thirty",
+            3 => "Forty",
+        }[tempScore]
+      end
+    end
+    result
+  end
+```
+
+Here is the result after Extract Method, Extract Class and Replace If with Guard:
+
+```ruby
+  
+  def score
+    return draw_result              if (@p1points==@p2points)
+    return advantage_or_win_result  if (@p1points>=4 or @p2points>=4)
+    return ongoing_result
+  end
+```
+
+Obviously the ugliness of nested ifs didn't disappear, but starting from the top-level code allowed me to make the main algorithm more clear and let me deal with other nested ifs in more localized methods/objects.
+
+## 8. 
 
 ## TODO
 
