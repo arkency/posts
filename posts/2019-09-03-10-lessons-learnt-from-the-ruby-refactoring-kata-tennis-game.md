@@ -1,6 +1,6 @@
 ---
 title: "10 lessons learnt from the Ruby Refactoring Kata - Tennis Game"
-created_at: 2019-09-03 17:55:30 +0200
+created_at: 2019-09-18 17:55:30 +0200
 kind: article
 publish: false
 author: Andrzej Krzywda
@@ -209,13 +209,13 @@ The above definition makes most sense when applied to a situation when you think
 
 In this Refactoring Kata, you can see my initial attempts to actually understand what the code does, by changing the code.
 
-<<VIDEO 1>>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XzaGHzTJoe0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Even though, I don’t understand the domain yet - I’m following the typical code smells to restructure the code. It’s purely technical at this stage. I have no idea what the code really does (I’m trying to guess) but I know that certain technical transformations will keep the behaviour the same, while allow me to look at the code from a different angle.
 
 ## 4. Extract method is a no-brainer refactoring with a good IDE support
 
-As you can see in the initial videos, I'm very aggressive in using the extract method technique. There are several reasons but the main one is to make the main algorithm, the main scenario as consice and clear as possible. This way I have the main method which represents the algorithm in an abstract way, but everything stays at the same level of abstraction. All the details are left to the other methods or even classes to be extracted.
+As you can see in the initial videos, I'm very aggressive in using the extract method technique. There are several reasons but the main one is to make the main algorithm, the main scenario as concise and clear as possible. This way I have the main method which represents the algorithm in an abstract way, but everything stays at the same level of abstraction. All the details are left to the other methods or even classes to be extracted.
 
 I use RubyMine and I learnt to trust its Extract Method tooling. It's just an alt-cmd-m keystroke, type the new name and it's done.
 
