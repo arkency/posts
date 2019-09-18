@@ -11,6 +11,10 @@ Over the last ~2 months, I’ve been scheduling some time to work on a specific 
 
 Those exercises are called Refactoring Katas. The one I picked up is called Tennis Game.
 
+I've had around 20 coding sessions with this specific kata and I have recorded all the session on our Arkency YouTube channel. There's a whole playlist of all the videos for this kata.
+
+This blogpost is a written summary of my lessons, thoughts, observations after those 20 coding/refactoring sessions.
+
 <!-- more -->
 
 # 23 things I learnt from the Ruby Refactoring Kata - Tennis Game
@@ -157,7 +161,33 @@ end
 
 ## Lessons learnt
 
-## 1. Don’t trust the tests
+## 1. Merciless refactoring can be a nice learning technique
+
+Let me quote the extreme programming definition of what I mean here:
+
+```
+Refactor mercilessly to keep the design simple as you go and to avoid needless clutter and complexity. Keep your code clean and concise so it is easier to understand, modify, and extend. Make sure everything is expressed once and only once. In the end it takes less time to produce a system that is well groomed.
+￼
+There is a certain amount of Zen to refactoring. It is hard at first because you must be able to let go of that perfect design you have envisioned and accept the design that was serendipitously discovered for you by refactoring. You must realize that the design you envisioned was a good guide post, but is now obsolete.
+```
+
+The above definition makes most sense when applied to a situation when you think you know what is the perfect design and then you try to apply it. Usually, the code would tell you why your vision may not be so perfect. The solution is to follow the code.
+
+In this Refactoring Kata, you can see my initial attempts to actually understand what the code does, by changing the code.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/swokhWHKDmc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Even though, I don’t understand the domain yet - I’m following the typical code smells to restructure the code. It’s purely technical at this stage. I have no idea what the code really does (I’m trying to guess) but I know that certain technical transformations will keep the behaviour the same, while allow me to look at the code from a different angle.
+
+## 2. After Red/Green comes the Refactor phase
+
+Another refactoring lesson was the reminder that TDD (which I try to practice) is not only Red/Green, it's also Refactor after the Green part.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KdBpPsvLA5Q" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+
+## 3. Don’t trust the tests
 
 At first, I thought that the tests give me enough coverage, that I can do the initial refactoring safely. However, it’s only over time that I learnt what are the drawbacks of the current tests design. The main problem is this code:
 
@@ -181,7 +211,7 @@ For certain implementations this might be a correct suite of tests, but if we sw
 
 I consider refactoring a process of learning. It’s learning of the domain, of the code and of the tests. When you look at it this way, maybe it was alright - I started refactoring and through this process I learnt about the problems with tests. However, this is only valid, if I don’t push my changes before I learn the lessons. If I do, I risk introducing breaking changes.
 
-## 2. Learn at least some basics of the domain
+## 4. Learn at least some basics of the domain
 
 I’m not a big fan of tennis, but I thought I knew enough about it to work on this code.
 
@@ -195,31 +225,13 @@ In this kata, I clearly failed at it. I wasted some time, because I couldn’t v
 
 My domain vocabulary was very poor here - I kept using the words: `game`, `score`, `result` without learning some more.
 
-## 3. Merciless refactoring can be a nice learning technique
-
-Let me quote the extreme programming definition of what I mean here:
-
-```
-Refactor mercilessly to keep the design simple as you go and to avoid needless clutter and complexity. Keep your code clean and concise so it is easier to understand, modify, and extend. Make sure everything is expressed once and only once. In the end it takes less time to produce a system that is well groomed.
-￼
-There is a certain amount of Zen to refactoring. It is hard at first because you must be able to let go of that perfect design you have envisioned and accept the design that was serendipitously discovered for you by refactoring. You must realize that the design you envisioned was a good guide post, but is now obsolete.
-```
-
-The above definition makes most sense when applied to a situation when you think you know what is the perfect design and then you try to apply it. Usually, the code would tell you why your vision may not be so perfect. The solution is to follow the code.
-
-In this Refactoring Kata, you can see my initial attempts to actually understand what the code does, by changing the code.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XzaGHzTJoe0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-Even though, I don’t understand the domain yet - I’m following the typical code smells to restructure the code. It’s purely technical at this stage. I have no idea what the code really does (I’m trying to guess) but I know that certain technical transformations will keep the behaviour the same, while allow me to look at the code from a different angle.
-
-## 4. Extract method is a no-brainer refactoring with a good IDE support
+## 5. Extract method is a no-brainer refactoring with a good IDE support
 
 As you can see in the initial videos, I'm very aggressive in using the extract method technique. There are several reasons but the main one is to make the main algorithm, the main scenario as concise and clear as possible. This way I have the main method which represents the algorithm in an abstract way, but everything stays at the same level of abstraction. All the details are left to the other methods or even classes to be extracted.
 
 I use RubyMine and I learnt to trust its Extract Method tooling. It's just an alt-cmd-m keystroke, type the new name and it's done.
 
-## 5. Preserve the public API if you have no control on the client calls
+## 6. Preserve the public API if you have no control on the client calls
 
 I like to use modules to package my code. Sometimes, I don't have control on the client calls, though. In such cases, I leave the public API untouched, but then delegate everything to the code behind modules. This is like building a facade/wall in front of my "well-packaged" code.
 
@@ -261,7 +273,7 @@ class TennisGame1
 end
 ```
 
-## 6. Extracting new classes helped my encapsulate concepts like Draw or Win
+## 7. Extracting new classes helped my encapsulate concepts like Draw or Win
 
 Similarly as Extract Method, I found Extract Class useful. I usually follow the same pattern, where I create a constructor method which sets the state and then 1 or 2 public methods to retrieve the data. In a way, this is a function and can be implemented as a function too. However, what I learnt is that often those objects are just a temporary thing. They're not the final result of the refactoring, more like a step in-between. 
 
@@ -305,7 +317,11 @@ module Tennis
 end
 ```
 
-## 7. Simplify if conditions with Guards
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/33rfX6bUo3w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+## 8. Simplify if conditions with Guards
 
 There's something about if conditions that I dislike. They often hide some important logic and I feel like ifs are sometimes a too primitive way of encapsulating this logic (often some state machines).
 
@@ -369,17 +385,23 @@ Here is the result after Extract Method, Extract Class and Replace If with Guard
 
 Obviously the ugliness of nested ifs didn't disappear, but starting from the top-level code allowed me to make the main algorithm more clear and let me deal with other nested ifs in more localized methods/objects.
 
-## 8. 
+## 9. Code as data sounded more exciting in theory than in practice
 
-## TODO
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G2s2GlENGZM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-2. Extreme Refactoring requires extreme test coverage
 
-3. It was easy for me to experiment with different designs/models for the code
+## 10. Mutation testing
 
-4. It was hard for me to change the design of the tests
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ey431Gi1050" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The existing tests are a bit “creative”. For some reason I didn’t touch the tests design. Maybe I just wasn’t confident enough without some mutation testing (tests for tests)?
-Still, the original shape of the tests remained the same, till the end (if there’s any end).
+## Summary
 
-5. 
+Those lessons are not all, I just picked the ones I thought were the most important.
+
+It was a nice experience overall and I learnt a lot from doing the kata. I have recorded the YouTube videos along the way and it was nice to receive feedback from the audience which of my changes could be better (thank you everyone!).
+
+The sad thing is that I'm still not satisfied with the end result code, but on the more optimistic side is that I like the current solution better than the initial one.
+
+Such katas are a wonderful way of practicing outside of our commercial projects, while the lessons can be incorporated into our daily coding sessions.
+
+If you'd like to follow my next such coding sessions and/or watch my other software/Ruby/DDD/TDD-related thoughts, follow us on the Arkency YouTube channel, thank you!
