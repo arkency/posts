@@ -17,8 +17,6 @@ This blogpost is a written summary of my lessons, thoughts, observations after t
 
 <!-- more -->
 
-# 23 things I learnt from the Ruby Refactoring Kata - Tennis Game
-
 ## Introduction
 
 The responsibility of this code is to return a string with a Tennis game result. The input comes as sequential calls to the `won_point` method. The result is returned via `score` method. Those 2 methods create the public API of the TennisGame1 object.
@@ -389,10 +387,20 @@ Obviously the ugliness of nested ifs didn't disappear, but starting from the top
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G2s2GlENGZM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+I've been always excited by the idea of treating code as data. What I mean here is that some code doesn't need to be code, because it's actually data. In the video above you can see that I started refactoring some of the code (state machine transitions between possible results) into "code like data" direction. However, I never really finished it. It felt very "primitive" to represent those concepts as pure data without any behaviour. 
+
+This is a topic I need to think more about. Maybe this example wasn't a good fit. Or maybe the idea isn't as good as I thought. Maybe I'm just missing some skills here.
 
 ## 10. Mutation testing
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ey431Gi1050" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+This lesson came too late ;)
+
+In my next refactoring kata I will try to "hire" mutant to check my tests earlier than I did here.
+Somehow, I connect mutant with some "big deal", while in fact it's very easy to start with, especially in such katas. Mutant shows very nicely that the tests are far from perfect and that my merciless refactoring attempts might be too brave sometimes.
+
+
 
 ## Summary
 
