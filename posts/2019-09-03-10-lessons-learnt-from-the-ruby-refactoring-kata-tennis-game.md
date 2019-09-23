@@ -1,8 +1,8 @@
 ---
 title: "10 lessons learnt from the Ruby Refactoring Kata - Tennis Game"
-created_at: 2019-09-18 17:55:30 +0200
+created_at: 2019-09-23 10:55:30 +0200
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
@@ -401,6 +401,14 @@ In my next refactoring kata I will try to "hire" mutant to check my tests earlie
 Somehow, I connect mutant with some "big deal", while in fact it's very easy to start with, especially in such katas. Mutant shows very nicely that the tests are far from perfect and that my merciless refactoring attempts might be too brave sometimes.
 
 ## The "final" code
+
+The final code is not really that final. It's more like a result of the most recent code experiment and I don't consider it perfect in any way. Far from that.
+
+The last experiment was treating the tennis game as a state machine. Each state is another object (data structure maybe?). Each state knows which is the next state, depending on who won the next point.
+
+The nodes in the state machine don't track the actual points count, instead it's part of their identity/name to know what is the result. 
+
+Each state does know (possible a smell?) what is their String representation, but the actual formatting (plus interpolation) happens at the `TennisGame1#score` method.
 
 ```ruby
 class TennisGame1
