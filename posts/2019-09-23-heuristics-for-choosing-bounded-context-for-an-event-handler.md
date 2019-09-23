@@ -88,9 +88,14 @@ In this case, we have an event handler in the same BC as published domain event,
 
 The other suggestion given by Andrzej was: none of them.
 Instead of scheduling `PrepareShipment` command in either one of these bounded contexts, we can extract a process manager which manages the whole "order flow".
+
 Why would we like to do that?
+
 Firstly, you end up with no coupling between `Ordering` and `Shipping` (at least when it comes to that particular flow). The whole coupling is in the `OrderFlow` process manager, and this is a place you want to go when you want to understand how the whole flow is working.
-Secondly, as told nicely [in a talk by Bernd Rucker about process managers](https://skillsmatter.com/skillscasts/9853-long-running-processes-in-ddd), it allows you to achieve less coupled code in more complex scenarios. Imagine that you want to add pretty packaging if the buyer had a "vip status".
+
+Secondly, as told nicely [in a talk by Bernd Rucker about process managers](https://skillsmatter.com/skillscasts/9853-long-running-processes-in-ddd), it allows you to achieve less coupled code in more complex scenarios.
+
+Imagine that you want to add pretty packaging if the buyer had a "vip status".
 In that case, you either need to have an information about which buyers are VIP in the `Shipping` BC (which sounds like a lot of work to do and additional complexity only to make one conditional work) or you add a conditional in handler, like so:
 
 ```ruby
