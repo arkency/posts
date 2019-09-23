@@ -413,3 +413,7 @@ The sad thing is that I'm still not satisfied with the end result code, but on t
 Such katas are a wonderful way of practicing outside of our commercial projects, while the lessons can be incorporated into our daily coding sessions.
 
 If you'd like to follow my next such coding sessions and/or watch my other software/Ruby/DDD/TDD-related thoughts, follow us on the Arkency YouTube channel, thank you!
+
+<script src="https://apis.google.com/js/platform.js"></script>
+
+<div class="g-ytsubscribe" data-channelid="UCL8YpXFH1-y3AaELb0H7c3Q" data-layout="full" data-count="default"></div>
