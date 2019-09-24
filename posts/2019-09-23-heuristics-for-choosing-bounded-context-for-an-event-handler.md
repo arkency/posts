@@ -7,8 +7,8 @@ author: Rafał Łasocha
 newsletter: :skip
 ---
 
-Some time ago I was implementing a feature. As part of this, I was of course writing a bunch of event handlers.
-At some point I've realized I didn't put much thought when choosing the bounded context to which the event handlers should belong. It was mostly driven by intuition or or some mechanical routine that upfront design.
+Some time ago I was implementing a feature. As part of this I was, of course, writing a bunch of event handlers.
+At some point, I've realized I didn't put much thought when choosing the bounded context to which the event handlers should belong. It was mostly driven by intuition or some mechanical routine that upfront design.
 
 <!-- more -->
 
@@ -16,7 +16,7 @@ At some point I've realized I didn't put much thought when choosing the bounded 
 
 Let's consider the popular example, of "Order with shipping" and few different approaches.
 
-Of course, the one solution is:
+Of course, one solution is:
 
 ```ruby
 module Shipping
@@ -55,15 +55,15 @@ end
 ```
 
 Which one to choose?
-Both fact and commands are something we usually consider a "public API" (where by public, I of course mean public for bounded contexts within organization, not public to the whole world. Or published language, how some would probably call it).
+Both fact and commands are something we usually consider a "public API" (by a public, I mean public for bounded contexts within an organization, not public to the whole world. Or published language, how some would probably call it).
 
 ## Context maps
 
-First suggestion of my colleagues was: do what your context map tells you.
+The first suggestion of my colleagues was: do what your context map tells you.
 In that popular case of some eCommerce, there's a high chance that `Ordering` and `Shipping` are in upstream-downstream relation, `Ordering` being upstream one.
 Therefore, the Shipping should "adjust" to Ordering, so it makes sense that the handler is in the `Shipping` bounded context.
 
-On the other hand, we can imagine that we want refund the order when we receive information from shipping company that the package was destroyed, so we make a handler:
+On the other hand, we can imagine that we want refund the order when we receive information from the shipping company that the package was destroyed, so we make a handler:
 
 ```ruby
 module Shipping
@@ -95,8 +95,8 @@ Firstly, you end up with no coupling between `Ordering` and `Shipping` (at least
 
 Secondly, as told nicely [in a talk by Bernd Rucker about process managers](https://skillsmatter.com/skillscasts/9853-long-running-processes-in-ddd), it allows you to achieve less coupled code in more complex scenarios.
 
-Imagine that you want to add pretty packaging if the buyer had a "vip status".
-In that case, you either need to have an information about which buyers are VIP in the `Shipping` BC (which sounds like a lot of work to do and additional complexity only to make one conditional work) or you add a conditional in handler, like so:
+Imagine that you want to add pretty packaging if the buyer had a "VIP status".
+In that case, you either need to have information about which buyers are VIP in the `Shipping` BC (which sounds like a lot of work to do and adding complexity only to make one conditional work) or you add a conditional in the handler, like so:
 
 ```ruby
 module Shipping
@@ -125,15 +125,15 @@ end
 
 As a result, you end up with domain logic in the event handler (which is sometimes fine, but it's always best to have as little of it as possible in the handlers).
 
-By having a process manager for the order flow, process manager of course have to know about the VIP status of the buyer, but it sounds far more reasonable than forcing `Shipping` to know it (especially that there can be some additional actions in the other BCs done only if the buyer is a VIP).
+By having a process manager for the order flow, process manager have to know about the VIP status of the buyer, but it sounds far more reasonable than forcing `Shipping` to know it (especially that there can be some additional actions in the other BCs done only if the buyer is a VIP).
 
 ## Other ...?
 
 Having said that, these were two heuristics, there are possibly more.
-What are your heuristics when deciding about a place where given event handler resides?
+What are your heuristics when deciding about a place where a given event handler resides?
 Do you use the ones mentioned above?
 Share your opinion :)
 
 
-_Thanks to [@pawelpacana](https://twitter.com/pawelpacana/), [@fidel](https://twitter.com/szymonfiedler/) and [@andrzejkrzywda](https://twitter.com/andrzejkrzywda/) for the discussion_
+_Thanks to [@pawelpacana](https://twitter.com/pawelpacana/), [@szymonfiedler](https://twitter.com/szymonfiedler/), and [@andrzejkrzywda](https://twitter.com/andrzejkrzywda/) for the discussion_
 
