@@ -2,7 +2,7 @@
 title: "Heuristics for choosing bounded context for an event handler"
 created_at: 2019-09-23 10:55:30 +0200
 kind: article
-publish: false
+publish: true
 author: Rafał Łasocha
 newsletter: :skip
 ---
