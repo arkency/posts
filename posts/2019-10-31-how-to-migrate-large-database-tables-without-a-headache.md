@@ -24,8 +24,11 @@ At that time we used MySQL and we had no other option than to deal with it. You 
 Thew are a few problem with millions of rows and hundreds of gigabytes all in a single database table:
 
 * some schema changes involve making a copy of existing table, i.e. when changing the type of used column and having to convert existing data
+
 * some schema changes do not happen online, in-place and may lock your table making it inaccessible for some time, the longer the bigger this table is
+
 * being aware of what happens when your database node runs out of free space while performing the operation you wanted and how does it reclaim that allocated space on failure
+
 * being able to estimate how long the process will take and what is current progress of it — that is being in control
 
 
@@ -34,10 +37,15 @@ See more: [Online DDL operations on MySQL](https://dev.mysql.com/doc/refman/5.6/
 We knew we'd not be able to stop the world, perform the migration and resume like nothing happened. Instead we settled on small steps performed on a living organism.
 
 The plan was more or less as follows:
+
 * create new, empty database table with the schema you wished to have
+
 * add a database trigger which constantly copies new records to this new database table — this component is responsible for reshaping the inserted or updated data so that it fits new schema
+
 * with the trigger handling new records, start backfilling old records in the background — there are several hacks to make this process fast
+
 * once the copy is done — remove the trigger, switch the tables and the code operating on them, possibly within a short downtime to avoid race conditions
+
 * after successful switch all that is left is removing the now-old database table (as one would expect that is not as easy as it sounds)
 
 The devil is the details. We've learned a few by making the mistakes you can avoid. 
@@ -52,10 +60,10 @@ BEGIN
     INSERT INTO event_store_events_res (id, event_id, event_type, metadata, data, stream, version, created_at) VALUES  (new.id, @event_id, new.event_type, new.metadata, new.data, new.stream, new.version, @created_at);
 
     IF new.stream = '$' THEN
-    INSERT INTO event_store_events_in_streams (stream, event_id, created_at) VALUES ('all', @event_id, @created_at);
+        INSERT INTO event_store_events_in_streams (stream, event_id, created_at) VALUES ('all', @event_id, @created_at);
     ELSE
-    INSERT INTO event_store_events_in_streams (stream, position, event_id, created_at) VALUES (new.stream, new.version, @event_id, @created_at);
-    INSERT INTO event_store_events_in_streams (stream, event_id, created_at) VALUES ('all', @event_id, @created_at);
+        INSERT INTO event_store_events_in_streams (stream, position, event_id, created_at) VALUES (new.stream, new.version, @event_id, @created_at);
+        INSERT INTO event_store_events_in_streams (stream, event_id, created_at) VALUES ('all', @event_id, @created_at);
     END IF;
 END
 ```
@@ -77,23 +85,23 @@ MAX_ID     = ARGV[1].to_i
 BATCH_SIZE = (ARGV[2] || 1000).to_i
 
 class EventV2 < ActiveRecord::Base
-    self.primary_key = :id
-    self.table_name  = 'event_store_events_res'
+  self.primary_key = :id
+  self.table_name  = 'event_store_events_res'
 end
 
 class StreamV2 < ActiveRecord::Base
-    self.primary_key = :id
-    self.table_name  = 'event_store_events_in_streams'
+  self.primary_key = :id
+  self.table_name  = 'event_store_events_in_streams'
 end
 
 progress =
-    ProgressBar.create(
+  ProgressBar.create(
     title: "event_store_events_res",
     format: "%a %b\u{15E7}%i %e %P% Processed: %c from %C",
     progress_mark: ' ',
     remainder_mark: "\u{FF65}",
     total: MAX_ID - MIN_ID,
-    )
+  )
 
 streams_with_position     = []
 ignore_position_in_steams = []
@@ -101,32 +109,32 @@ stream_id = StreamV2.where('id < 340000000').order(:id).last&.id || 0
 
 
 (MIN_ID...MAX_ID).each_slice(BATCH_SIZE) do |range|
-    ActiveRecord::Base.transaction do
+  ActiveRecord::Base.transaction do
     events  = []
     streams = []
     EventStore::Repository::Event
-        .where('id >= ? AND id <= ?', range.first, range.last)
-        .each do |event|
-            event_id = SecureRandom.uuid
-            timestamp = YAML.load(event.metadata).fetch(:timestamp)
+      .where('id >= ? AND id <= ?', range.first, range.last)
+      .each do |event|
+           event_id = SecureRandom.uuid
+           timestamp = YAML.load(event.metadata).fetch(:timestamp)
 
-            events << EventV2.new(event.attributes.merge(event_id: event_id, created_at: timestamp))
+           events << EventV2.new(event.attributes.merge(event_id: event_id, created_at: timestamp))
 
-            if event.stream == "$"
-                stream_id += 1
-                streams << StreamV2.new(id: stream_id, stream: 'all', position: nil, event_id: event_id, created_at: timestamp)
-            else
-                position = event.version if streams_with_position.any?{|s| event.stream.starts_with?(s)} && !ignore_position_in_steams.include?(event.stream)
-                stream_id += 1
-                streams << StreamV2.new(id: stream_id, stream: event.stream, position: position, event_id: event_id, created_at: timestamp)
-                stream_id += 1
-                streams << StreamV2.new(id: stream_id, stream: 'all', position: nil, event_id: event_id, created_at: timestamp)
-            end
+           if event.stream == "$"
+             stream_id += 1
+             streams << StreamV2.new(id: stream_id, stream: 'all', position: nil, event_id: event_id, created_at: timestamp)
+           else
+             position = event.version if streams_with_position.any?{|s| event.stream.starts_with?(s)} && !ignore_position_in_steams.include?(event.stream)
+             stream_id += 1
+             streams << StreamV2.new(id: stream_id, stream: event.stream, position: position, event_id: event_id, created_at: timestamp)
+             stream_id += 1
+             streams << StreamV2.new(id: stream_id, stream: 'all', position: nil, event_id: event_id, created_at: timestamp)
+           end
     end
     EventV2.import(events)
     StreamV2.import(streams)
     progress.progress += range.size
-    end
+  end
 end
 ```
     
@@ -151,10 +159,10 @@ With all events in the new tables we were able to do the switch. In order to avo
 
 ```ruby
 class DropEventStoreEventsResTrigger < ActiveRecord::Migration[5.2]
-    def change
+  def change
     # Intentionally non-live, we have to disable trigger before switching code to RES::Client
     execute 'DROP TRIGGER migrate_bes'
-    end
+  end
 end
 ```    
     
