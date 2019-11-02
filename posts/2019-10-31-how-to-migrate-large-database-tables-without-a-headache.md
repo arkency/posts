@@ -21,7 +21,7 @@ What do you do when you realize you made some mistakes in the past and have to c
 
 At that time we used MySQL and we had no other option than to deal with it. You may be in a more fortunate situation, i.e. on Postgres :)
 
-Thew are a few problem with millions of rows and hundreds of gigabytes all in a single database table:
+There are a few problems with millions of rows and hundreds of gigabytes all in a single database table:
 
 * some schema changes involve making a copy of existing table, i.e. when changing the type of used column and having to convert existing data
 
