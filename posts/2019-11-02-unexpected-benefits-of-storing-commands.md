@@ -15,12 +15,12 @@ You probably know that Rails Event Store, like the name suggests, is meant to st
 You can achieve some makeshift command storage in RES in different ways, with varying levels of sophistication. The most naive way to do it (just to move along with our PoC) was to store an "event" named CommandIssued with `command_type` && `command_data` attributes:
 
 ```ruby
-class OrderPlaced < RailsEventStore::Event
+class CommandIssued < RailsEventStore::Event
 end
 
 # ...
 
-event_store.publish(OrderPlaced.new(data: {
+event_store.publish(CommandIssued.new(data: {
   command_type: command_type,
   command_data: command_data,
 }))
