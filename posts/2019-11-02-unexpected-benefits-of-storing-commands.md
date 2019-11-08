@@ -67,6 +67,9 @@ puts CommandDumper.new.call(123)
 execute(AddTenant.new({:tenant_id=>123}))
 execute(AddContact.new({:tenant_id=>123, :author_id=>1}))
 execute(AddProject.new({:tenant_id=>123, :project_id=>2}))
+# ...
+# Possibly a waaaaaay longer list of commands
+# ...
 execute(CloseMonth.new({:tenant_id=>123, :month=>"2019-01"}))
 execute(CloseMonth.new({:tenant_id=>123, :month=>"2019-01"}))
 execute(CloseMonth.new({:tenant_id=>123, :month=>"2019-01"}))
@@ -129,7 +132,7 @@ def test_scenario_123
 end
 ```
 
-Once you've gotten to a fairly simple scenario, it should be way more comfortable to work on the bug itself. You can then can change the assertion to positive, and TDD your way to victory!
+Once you've gotten to a fairly simple scenario, it should be way more comfortable to work on the bug itself. You can then can change the assertion to positive, and **TDD your way to victory**!
 
 ```ruby
 assert_equal expected_result, actual_result
@@ -147,10 +150,10 @@ Interestingly, what made the `CommandDumper` almost a one-liner is the nice prop
 
 You may be wondering: there are definitelly some pitfalls when it comes to making sure that stored commands are indeed what happened in the system. I won't cover this in detail, but you wanna be careful about:
 
-- attemted vs succeeded vs failed commands
+- attempted vs succeeded vs failed commands
 - db transactions when storing the commands
 
-But it's interesting to realize, that for this particular purpose, we didn't even need to have it all sorted out beforehand - the "MVP" still provided us some value, because we only cared about being able to reproduce the bug. If we reproduced it, it didn't matter if there was a command that was wrongly stored.
+But it's interesting to realize, that for this particular purpose, we didn't even need to have it all sorted out beforehand - the "MVP" still provided us with some value, because we only cared about being able to reproduce the bug. If we reproduced it, it didn't matter if there was a command that was wrongly stored.
 
 Another potential pitfall could matter if you happen to publish commands eg. in response to some events (possibly in process managers), ie. not as a direct result of user action. You may wanna differentiate between them, otherwise you may end up executing them twice in the test. In our case we made the distinction basing on *causation_id*. Read more: [correlation id and causation id in evented systems](https://blog.arkency.com/correlation-id-and-causation-id-in-evented-systems/).
 
