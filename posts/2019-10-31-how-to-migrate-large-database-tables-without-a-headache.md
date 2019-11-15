@@ -165,6 +165,6 @@ class DropEventStoreEventsResTrigger < ActiveRecord::Migration[5.2]
 end
 ```    
     
-Last but not least — removing the leftovers. We've learned, the hard way, it [worked best with batches](https://github.com/rails/rails/pull/35077).
+Last but not least — removing the leftovers. We've learned, the hard way, it [worked best with batches](http://mysql.rjweb.org/doc.php/deletebig).
 
 Dealing with large database tables is definitely a different beast. Nevertheless this skill can be practiced and mastered like any else. Know your database engine better, execute in small steps and profit :)
