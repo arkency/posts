@@ -167,4 +167,6 @@ end
     
 Last but not least — removing the leftovers. We've learned, the hard way, it [worked best with batches](http://mysql.rjweb.org/doc.php/deletebig).
 
-Dealing with large database tables is definitely a different beast. Nevertheless this skill can be practiced and mastered like any else. Know your database engine better, execute in small steps and profit :)
+Dealing with large database tables is definitely a different beast. Nevertheless this skill can be practiced and mastered like any else. Know your database engine better, execute in small steps and profit.
+
+Have you been in a similar situation? What did you do and which tools made your task easier?
