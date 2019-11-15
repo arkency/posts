@@ -160,7 +160,6 @@ With all events in the new tables we were able to do the switch. In order to avo
 ```ruby
 class DropEventStoreEventsResTrigger < ActiveRecord::Migration[5.2]
   def change
-    # Intentionally non-live, we have to disable trigger before switching code to RES::Client
     execute 'DROP TRIGGER migrate_bes'
   end
 end
