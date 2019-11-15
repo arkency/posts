@@ -28,7 +28,7 @@ event_store.publish(CommandIssued.new(data: {
 # You may wanna add it to a specific stream
 ```
 
-We're thinking about supporting command storage in RES ecosystem, thereby unifying RES & Arkency Command Bus, but there's no clear way forward yet. If you wanna be a part of the conversation feel free to [contribute to the RES project](https://github.com/RailsEventStore/rails_event_store) or join us on [Rails Architect Conference](https://rescon.arkency.com) (formerly RESCon).
+We're thinking about supporting command storage in RES ecosystem, thereby unifying RES & Arkency Command Bus, but there's no clear way forward yet. If you wanna be a part of the conversation feel free to [contribute to the RES project](https://github.com/RailsEventStore/rails_event_store).
 
 Our primary reason to try command storage was to experiment with replaying current state from commands. We didn't get there yet, but in the meantime, we just stored the commands. It obviously gave us additional auditability. But what else?
 
