@@ -2,7 +2,7 @@
 title: "OOP Refactoring: from a god class to smaller objects"
 created_at: 2019-11-30 15:41:49 +0100
 kind: article
-publish: false
+publish: true
 author: Andrzej Krzywda
 newsletter: :skip
 ---
