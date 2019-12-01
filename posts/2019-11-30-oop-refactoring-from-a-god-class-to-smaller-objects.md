@@ -13,8 +13,6 @@ However, at the beginning, my OOP code resulted in a god class - a class that kn
 
 <!-- more -->
 
-Just a short note, before we start. Over time, as Arkency, we were documenting our Ruby/OOP lessons in the form of ebooks and video classes. Only during this weekend, you can buy 8 books and 2 videos classes for $99 instead of $900.
-[Buy here](https://arkency.dpdcart.com/cart/add?product_id=188891&method_id=204500)
 
 Let’s say I work on a Project Management app. Usually my User class and Project class would be big, like this:
 
@@ -276,7 +274,3 @@ To my taste it’s better. Apart from the offensive `Resource` part, but hey, th
 There are techniques which may help us even further, but for the scope of this article, I think that’s enough. 
 
 Did you like this?
-
-You will find dozens if not hundreds of such techniques in our books and courses. Only now, we have a huge discount. Instead of paying ~$900, you can buy our 8 books and 2 video classes for just $99.
-
-[Buy here](https://arkency.dpdcart.com/cart/add?product_id=188891&method_id=204500)
