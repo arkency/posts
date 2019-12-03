@@ -95,11 +95,11 @@ Let’s look at Rubinius - the Ruby implementation of Ruby.
       elsif exc.kind_of? String
         exc = RuntimeError.exception exc
       else
-        Kernel.raise TypeError, ‘exception class/object expected’
+        Kernel.raise TypeError, 'exception class/object expected'
       end
 
       if $DEBUG
-        STDERR.puts “Exception: #{exc.message} (#{exc.class})”
+        STDERR.puts "Exception: #{exc.message} (#{exc.class})"
       end
 
       if self == Thread.current
