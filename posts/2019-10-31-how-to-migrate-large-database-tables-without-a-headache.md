@@ -1,10 +1,10 @@
 ---
 title: "How to migrate large database tables without a headache"
-created_at: 2019-10-31 13:54:37 +0100
+created_at: 2020-01-08 12:12:12 +0100
 kind: article
-publish: false
+publish: true
 author: Paweł Pacana
-tags: [ 'rails_event_store', 'mysql', 'database' ]
+tags: ["rails_event_store", "mysql", "database"]
 newsletter: :arkency_form
 ---
 
@@ -12,8 +12,7 @@ This is the story how we once migrated an in-house event store, that reached its
 
 <!-- more -->
 
-
-My client used to say that the reward you get for achieving success is having to deal with even more complexity afterwards. 
+My client used to say that the reward you get for achieving success is having to deal with even more complexity afterwards.
 
 That couldn't be more true even if only applied to the ever-accumulating database tables when your venture gets traction. One very specific aspect of this success was reaching the count of several hundred millions domain events describing what happened in this business over time.
 
@@ -23,14 +22,13 @@ At that time we used MySQL and we had no other option than to deal with it. You 
 
 There are a few problems with millions of rows and hundreds of gigabytes all in a single database table:
 
-* some schema changes involve making a copy of existing table, i.e. when changing the type of used column and having to convert existing data
+- some schema changes involve making a copy of existing table, i.e. when changing the type of used column and having to convert existing data
 
-* some schema changes do not happen online, in-place and may lock your table making it inaccessible for some time, the longer the bigger this table is
+- some schema changes do not happen online, in-place and may lock your table making it inaccessible for some time, the longer the bigger this table is
 
-* being aware of what happens when your database node runs out of free space while performing the operation you wanted and how does it reclaim that allocated space on failure
+- being aware of what happens when your database node runs out of free space while performing the operation you wanted and how does it reclaim that allocated space on failure
 
-* being able to estimate how long the process will take and what is current progress of it — that is being in control
-
+- being able to estimate how long the process will take and what is current progress of it — that is being in control
 
 See more: [Online DDL operations on MySQL](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html#online-ddl-column-operations).
 
@@ -38,17 +36,17 @@ We knew we'd not be able to stop the world, perform the migration and resume lik
 
 The plan was more or less as follows:
 
-* create new, empty database table with the schema you wished to have
+- create new, empty database table with the schema you wished to have
 
-* add a database trigger which constantly copies new records to this new database table — this component is responsible for reshaping the inserted or updated data so that it fits new schema
+- add a database trigger which constantly copies new records to this new database table — this component is responsible for reshaping the inserted or updated data so that it fits new schema
 
-* with the trigger handling new records, start backfilling old records in the background — there are several hacks to make this process fast
+- with the trigger handling new records, start backfilling old records in the background — there are several hacks to make this process fast
 
-* once the copy is done — remove the trigger, switch the tables and the code operating on them, possibly within a short downtime to avoid race conditions
+- once the copy is done — remove the trigger, switch the tables and the code operating on them, possibly within a short downtime to avoid race conditions
 
-* after successful switch all that is left is removing the now-old database table (as one would expect that is not as easy as it sounds)
+- after successful switch all that is left is removing the now-old database table (as one would expect that is not as easy as it sounds)
 
-The devil is the details. We've learned a few by making the mistakes you can avoid. 
+The devil is the details. We've learned a few by making the mistakes you can avoid.
 
 Long story short — we moved from a single table storing domain events to the schema that consists of two. The exact code of the trigger that translated custom event store schema into RES:
 
@@ -137,24 +135,25 @@ stream_id = StreamV2.where('id < 340000000').order(:id).last&.id || 0
   end
 end
 ```
-    
+
 Key takeaways:
 
-* `find_in_batches` API has not been used deliberately
+- `find_in_batches` API has not been used deliberately
 
-    Iterating with OFFSET and LIMIT on MySQL just does not meet any reasonable performance expectations on large tables. Scoping batches on `id` scaled pretty well on the other hand.  
-    
-* it is better to have fewer `INSERT` statements, which carry more rows to be added
+  Iterating with OFFSET and LIMIT on MySQL just does not meet any reasonable performance expectations on large tables. Scoping batches on `id` scaled pretty well on the other hand.  
 
-    One `INSERT` adding 1000 rows works faster than 1000 inserts each with one row. It is also worth noting there is a point in which having larger inserts does not help. You have to find a value that works for you best.
-    Using `activerecord-import` is one option. Another is the bulk import which arrived with [Rails 6](https://github.com/rails/rails/pull/35077).
-    
-* the less constrains and indexes during import, the faster it is
 
-    Don't forget to finally add them though. You may find yourself in a situations where a query that does full table scan on a table with several hundreds millions of rows ;)
-    
+- it is better to have fewer `INSERT` statements, which carry more rows to be added
+
+  One `INSERT` adding 1000 rows works faster than 1000 inserts each with one row. It is also worth noting there is a point in which having larger inserts does not help. You have to find a value that works for you best.
+  Using `activerecord-import` is one option. Another is the bulk import which arrived with [Rails 6](https://github.com/rails/rails/pull/35077).
+
+- the less constrains and indexes during import, the faster it is
+
+  Don't forget to finally add them though. You may find yourself in a situations where a query that does full table scan on a table with several hundreds millions of rows ;)
+
 Plan how much disk space you will need to fit a copy of such a large table over an extended period of time. You may be surprised to actually need more than the old table due to different indexes. In case you run out if that precious disk space, be prepared to [reclaim](https://www.percona.com/blog/2013/09/25/how-to-reclaim-space-in-innodb-when-innodb_file_per_table-is-on/) [it](https://www.cyberciti.biz/faq/what-is-mysql-binary-log/) and it does not happen immediately.
-    
+  
 With all events in the new tables we were able to do the switch. In order to avoid any race conditions we have decided on a deployment with barely noticeable downtime:
 
 ```ruby
@@ -163,8 +162,8 @@ class DropEventStoreEventsResTrigger < ActiveRecord::Migration[5.2]
     execute 'DROP TRIGGER migrate_bes'
   end
 end
-```    
-    
+```
+
 Last but not least — removing the leftovers. We've learned, the hard way, it [worked best with batches](http://mysql.rjweb.org/doc.php/deletebig).
 
 Dealing with large database tables is definitely a different beast. Nevertheless this skill can be practiced and mastered like any else. Know your database engine better, execute in small steps and profit.
