@@ -9,6 +9,8 @@ newsletter: :skip
 
 If you ever wondered how to make 3rd party API call from Aggregate and not clutter it with dependencies, you may find this post interesting.
 
+<!-- more -->
+
 Some time ago I faced that problem while implementing `Payment` aggregate. Everything looked quite simple until the time a real request to payment gateway had to be performed.
 
 I started wondering what is the right spot for that operation? Initially, I tried to do it in command handler. Let's take a look at the snippet below.
