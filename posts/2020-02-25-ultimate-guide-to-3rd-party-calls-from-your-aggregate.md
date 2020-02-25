@@ -17,14 +17,14 @@ I started wondering what is the right spot for that operation? Initially, I trie
 class Payment
   include AggregateRoot
 
-  CreditCardChargedAlready = Class.new(Error)
+  CreditCardAlreadyCharged = Class.new(Error)
 
   def initialize(id)
     @id = id
   end
 
   def charge_credit_card(amount)
-    raise CreditCardChargeAlready if charged?
+    raise CreditCardAlreadyCharged if charged?
     apply(CreditCardCharged.new(data: { payment_id: @id, amount: amount })
   end
 
@@ -46,7 +46,7 @@ class OnChargeCreditCard
       with_aggregate(Payment, cmd.payment_id) do |payment|
         payment.charge_credit_card(cmd.total_amount)
       end
-    rescue Payment::CreditCardChargedAlready => doh
+    rescue Payment::CreditCardAlreadyCharged => doh
       handle_disaster(doh)
     rescue PaymentGateway::Error => doh
       handle_payment_error(doh)
@@ -68,17 +68,17 @@ def call(cmd)
 end
 ```
 
-This looks good at first sight. But what if payment doesn't get accepted because of invalid credit card data or random network error appear? We already applied an event, event handlers started processing it. In effect user has received e-mail about successful payment, he got link to download virtual products, etc. We could make compensating operation, of course. But it is additional complexity which we may not a possibility to deal with right now.
+This looks good at first sight. But what if payment doesn't get accepted because of invalid credit card data or random network error appear? We already applied an event, event handlers started processing it. In effect user has received e-mail about successful payment, he got link to download virtual products, etc. We could make compensating operation, of course. The question is if there's a possibility to do so.
 
-We could other way around and expose `Payment` internal state via `charged?` method to command handler and make the decision there. Even more, `CreditCardCharged` event could be published from command handler too. Introduction of aggregate wouldn't make any sense in such approach, it would be obsolete.
+We could try to do it other way around. Let's expose `Payment` internal state via `charged?` method to command handler and make the decision there. Even more, `CreditCardCharged` event could be published from command handler too. Introduction of aggregate wouldn't make any sense in such approach, it would be obsolete.
 
-Passing gateway as a dependency and calling it inside Payment aggregate sounds tempting, let's see:
+What about passing gateway as a dependency and calling it inside `Payment` aggregate? Sounds tempting, let's see:
 
 ```ruby
 class Payment
   include AggregateRoot
 
-  CreditCardChargedAlready = Class.new(Error)
+  CreditCardAlreadyCharged = Class.new(Error)
   CreditCardChargeFailed   = Class.new(Error)
 
   def initialize(id, gateway)
@@ -87,7 +87,7 @@ class Payment
   end
 
   def charge_credit_card(amount, credit_card)
-    raise CreditCardChargeAlready if charged?
+    raise CreditCardAlreadyCharged if charged?
     @gateway.purchase(Integer(amount * 100), credit_card, { payment_id: @id })
     apply(CreditCardCharged.new(data: { payment_id: @id, amount: amount })
   rescue PaymentGateway::Error => doh
@@ -111,7 +111,7 @@ class OnChargeCreditCard
       with_aggregate(Payment, cmd.payment_id, gateway) do |payment|
         payment.charge_credit_card(cmd.total_amount, cmd.credit_card)
       end
-    rescue Payment::CreditCardChargedAlready => doh
+    rescue Payment::CreditCardAlreadyCharged => doh
       handle_disaster(doh)
     rescue Payment::CreditCardChargeFailed => doh
       handle_payment_failure(doh)
@@ -126,7 +126,7 @@ end
 class Payment
   include AggregateRoot
 
-  CreditCardChargedAlready = Class.new(Error)
+  CreditCardAlreadyCharged = Class.new(Error)
   CreditCardChargeFailed   = Class.new(Error)
 
   def initialize(id)
@@ -134,7 +134,7 @@ class Payment
   end
 
   def charge_credit_card(amount, request)
-    raise CreditCardChargeAlready if charged?
+    raise CreditCardAlreadyCharged if charged?
     response = request.()
     if response.success?
       apply(CreditCardCharged.new(data: { payment_id: @id, amount: amount })
@@ -160,7 +160,7 @@ class OnChargeCreditCard
       with_aggregate(Payment, cmd.payment_id) do |payment|
         payment.charge_credit_card(cmd.total_amount, cmd.credit_card, request)
       end
-    rescue Payment::CreditCardChargedAlready => doh
+    rescue Payment::CreditCardAlreadyCharged => doh
       handle_disaster(doh)
     rescue Payment::CreditCardChargeFailed => doh
       handle_payment_failure(doh)
