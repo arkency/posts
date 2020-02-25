@@ -2,7 +2,7 @@
 title: "Ultimate guide to 3rd party calls from your Aggregate"
 created_at: 2020-02-25 14:13:02 +0100
 kind: article
-publish: false
+publish: true
 author: Szymon Fiedler
 newsletter: :skip
 ---
