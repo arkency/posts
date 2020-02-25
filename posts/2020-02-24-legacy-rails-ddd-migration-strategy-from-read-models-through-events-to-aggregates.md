@@ -88,4 +88,4 @@ class RegisteredUser
 class BannedUser
 ```
 
-See more aggregates flavours examples in our [aggregates](https://github.com/arkency/aggregates) repo: 
+See more aggregates flavours examples in our [aggregates](https://github.com/arkency/aggregates) repo.
