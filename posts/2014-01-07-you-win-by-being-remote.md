@@ -4,12 +4,10 @@ created_at: 2014-01-09 12:21:00 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
-tags: ['identity', 'team']
+tags: ['identity', 'team', 'remote']
 newsletter: :async_remote_main
 stories: ['async-remote']
 ---
-
-<img src="<%= src_fit("fidelski/samojebka.jpg") %>" width="100%">
 
 There is such moment in developer's life when you start looking for a new job, sooner or later. You can observe that even in Poland, there are plenty of Ruby on Rails job offers, often in very perspective companies. I probably could find interesting job in Poznań, where I live, but there were some presumptions which pushed me to apply to Arkency.
 
