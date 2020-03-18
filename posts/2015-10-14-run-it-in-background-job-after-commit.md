@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active_record', 'background', 'job', 'after commit' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 ---
 
 There is this problem that when you schedule a background job from inside of a running

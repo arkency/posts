@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'consulting' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "hourly_billing_is_nuts/billing_clock.jpg"
 ---
 

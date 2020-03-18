@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'event_sourcing', 'cqrs', 'read models' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "event_sourcing-cqrs-read_models-together-must-have/event_sourcing_ruby_loves_read_models_cqrs.png"
 ---
 

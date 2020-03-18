@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'migrations' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rails-migrations-large-online-big-data/large-hadron-migrator.jpg"
 ---
 

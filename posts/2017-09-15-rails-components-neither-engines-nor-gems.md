@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 There has been a very interesting discussion today on [\#ruby-rails-ddd community slack channel](http://blog.arkency.com/domain-driven-rails/). The topic circulated around bounded contexts and introducing certain "component" solutions to separate them.

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rack', 'middleware' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Some time ago I was working together with [Paweł](https://twitter.com/pawelpacana) on one of our clients web application. We used copy of products catalog coming from production server on our development machines. What we were lacking were product photos, causing application layout to look poorly and making any css job hard. We tried to find a smart solution for that case.

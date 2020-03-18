@@ -4,8 +4,8 @@ created_at: 2014-10-12 18:14:39 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :skip
-newsletter_inside: :fearless_refactoring_course_instantiating
+newsletter: skip
+newsletter_inside: fearless_refactoring_course_instantiating
 tags: [ 'ruby', 'rails', 'service', 'objects', 'instantiate' ]
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Wiktor Mociun
 tags: [ 'front-end', 'react.js', 'javascript' ]
-newsletter: :react_books
+newsletter: react_books
 ---
 
 <p>

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'testing', 'actors', 'personas' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "actors-personas-ruby-rails-testing/actors_in_ruby_testing.jpeg"
 ---
 

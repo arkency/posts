@@ -4,8 +4,8 @@ created_at: 2013-12-08 12:05:29 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :skip
-newsletter_inside: :arkency_short
+newsletter: skip
+newsletter_inside: arkency_short
 img: "preloading/header.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 description: "There are 3 ways to do Eager Loading in Rails: #includes, #preload, #eager_load. Want to know more about it? #CLICK HERE to visit Arkency Blog !!!"

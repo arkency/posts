@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'spreadsheet_architect' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently I heard about [`spreadsheet_architect` gem](https://github.com/westonganger/spreadsheet_architect) and I wondered a few things after reading its README. It all lead me to look into its code and wonder...

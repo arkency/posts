@@ -4,7 +4,7 @@ created_at: 2019-09-23 10:55:30 +0200
 kind: article
 publish: true
 author: Rafał Łasocha
-newsletter: :skip
+newsletter: skip
 ---
 
 Some time ago I was implementing a feature. As part of this I was, of course, writing a bunch of event handlers.

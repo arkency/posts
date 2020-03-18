@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Just yesterday, I finished reading [Understanding the Four Rules of Simple Design](https://leanpub.com/4rulesofsimpledesign)

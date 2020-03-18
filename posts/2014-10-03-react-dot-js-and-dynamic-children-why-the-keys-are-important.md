@@ -6,8 +6,8 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 img: "react-keys-getinitial-state/react_children_keys.jpg"
-newsletter: :skip
-newsletter_inside: :react_books
+newsletter: skip
+newsletter_inside: react_books
 ---
 
 <%= img_fit("react-keys-getinitial-state/react_children_keys.jpg") %>

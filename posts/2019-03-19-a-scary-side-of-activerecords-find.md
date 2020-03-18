@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'activerecord', 'find' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 <%= img_fit("scary_record/hacker.jpg") %>
 

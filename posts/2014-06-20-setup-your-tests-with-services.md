@@ -4,8 +4,8 @@ created_at: 2014-06-31 12:00:20 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :skip
-newsletter_inside: :fearless_refactoring_1
+newsletter: skip
+newsletter_inside: fearless_refactoring_1
 tags: [ 'service_objects', 'rails', 'testing']
 ---
 

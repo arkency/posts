@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'schema', 'rails_event_store' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 When we started three years ago publishing Domain Events

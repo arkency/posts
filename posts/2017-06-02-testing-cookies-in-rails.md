@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'rails', 'cookies', 'testing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: testing-cookies-in-rails/top.jpeg
 ---
 

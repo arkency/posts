@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'messaging' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: reliable-messaging-notifications-between-two-apps-micoservices-api/queue.png
 ---
 

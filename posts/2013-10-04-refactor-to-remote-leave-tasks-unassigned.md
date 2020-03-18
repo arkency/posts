@@ -4,7 +4,7 @@ created_at: 2013-10-04 10:11:54 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :aar_newsletter
+newsletter: aar_newsletter
 tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'stories', 'unassgined' ]
 stories: ['async-remote']
 ---

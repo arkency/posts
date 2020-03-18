@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'tdd', 'ddd', 'mutant', 'video', 'class' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 [Get the Rails TDD video class now](https://vimeo.com/ondemand/arkencyruby)

@@ -4,7 +4,7 @@ created_at: 2020-02-25 14:13:02 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
-newsletter: :skip
+newsletter: skip
 ---
 
 If you ever wondered how to make 3rd party API call from Aggregate and not clutter it with dependencies, you may find this post interesting.

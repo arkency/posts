@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active_record', 'migrations', 'default' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 You probably know that you can easily set a **default** when adding a new column in an Active Record migration.

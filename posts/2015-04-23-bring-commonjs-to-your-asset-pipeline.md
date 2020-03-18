@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'rails', 'browserify', 'commonjs', 'browserify-rails', 'sprockets', 'assets', 'javascript' ]
-newsletter: :react_books
+newsletter: react_books
 img: "bring-commonjs-to-your-asset-pipeline/browserify-rails.png"
 ---
 

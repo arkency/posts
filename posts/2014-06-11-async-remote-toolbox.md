@@ -4,7 +4,7 @@ created_at: 2014-06-11 20:16:56 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :async_remote_main
+newsletter: async_remote_main
 tags: [ 'async', 'remote' ]
 stories: ['async-remote']
 ---

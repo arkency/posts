@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Sometimes you would like to define a method which takes an optional argument, but the programmer might pass `nil`. And your code needs to distinguish between the value not being provided (default value) and `nil`. How can it be achieved?

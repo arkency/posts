@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'feature toggle' ]
-newsletter: :fearless_refactoring_1
+newsletter: fearless_refactoring_1
 img: "simple-feature-toggle-for-rails-app/header.jpg"
 ---
 

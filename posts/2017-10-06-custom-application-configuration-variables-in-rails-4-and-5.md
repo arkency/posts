@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'configuration' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 You probably know that you can configure Rails in `config/application.rb` and `config/environments/development.rb` etc. But you can also leverage that for configuring your own custom settings for your application.

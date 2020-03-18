@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Have you ever had to implement a search page for your client? I did and I've gotta say it's often one of the most boring tasks. Not always, but often. There is a big list of features that the client usually expects other similar pages have. Especially when it comes to e-commerce websites. It needs to be fast, it needs to allow filtering, grouping and limiting by various attributes. On the backend side that usually means building sophisticated SQL queries, which is never a fun task when the search is highly dynamic and based on a variety of options available in the UI. Alternatively, you can use ElasticSearch or Lucene/Solr, but I've realized that while they are often super fast there is a lot of quirks that you need to learn when you would like them to just work.

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sitemap', 'video', 'ruby' ]
-newsletter: :coaching
+newsletter: coaching
 img: "sitemap-video-ruby-rails/sitemap.jpeg"
 ---
 

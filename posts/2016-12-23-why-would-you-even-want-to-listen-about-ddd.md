@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rails-ddd-listen/why-ddd-rails.png"
 ---
 

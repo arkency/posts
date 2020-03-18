@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'front-end', 'javascript', 'refactoring' ]
-newsletter: :skip
-newsletter_inside: :frontend_course 
+newsletter: skip
+newsletter_inside: frontend_course 
 ---
 
 <p>

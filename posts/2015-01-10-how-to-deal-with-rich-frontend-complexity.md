@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Marcin Grzywaczewski 
 tags: [ 'frontend', 'coffeescript', 'oop', 'architecture' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Frontend part of many modern Rails' apps goes way beyond server-side served parts of HTML and CSS. Sophisticated UX solutions surround you even if you're a die-hard backend developer - I'm sure you've used or heard about tools like [GitHub](https://github.com), [Trello](https://trello.com) or [Discourse](http://www.discourse.org). Such tools makes your day-to-day work easier and it's often that your clients want the same level of experience. It's often hard to achieve though - **frontend development can be really different than traditional Rails development and it's easy to turn your code [into the big ball of mud](http://blog.arkency.com/2014/07/6-front-end-techniques-for-rails-developers-part-i-from-big-ball-of-mud-to-separated-concerns/)**. While you may find it very unpleasant, it's often the consequence of bad design - but how you can design in such different environment?

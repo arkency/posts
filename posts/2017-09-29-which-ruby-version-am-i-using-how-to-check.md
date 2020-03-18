@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'version', 'check' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Are you not sure which Ruby version you are using right now? Wondering how to check it? Say no more. Here are two simple ways to check for it.

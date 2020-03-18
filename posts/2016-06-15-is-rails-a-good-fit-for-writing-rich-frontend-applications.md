@@ -3,7 +3,7 @@ title: "Is Rails a good fit for writing rich frontend applications?"
 created_at: 2016-06-15 15:56:22 +0200
 kind: article
 publish: true
-newsletter: :skip
+newsletter: skip
 author: Marcin Grzywaczewski
 ---
 

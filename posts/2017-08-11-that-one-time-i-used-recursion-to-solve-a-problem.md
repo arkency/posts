@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'recursion' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "recursion-recursive-function-method-ruby-rails/recursion_ruby.png"
 ---
 

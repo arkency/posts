@@ -3,7 +3,7 @@ title: "The biggest obstacle to start with Continuous Deployment - database migr
 created_at: 2014-04-13 19:28:23 +0200
 kind: article
 publish: true
-newsletter: :aar_newsletter
+newsletter: aar_newsletter
 author: Robert Pankowecki
 tags: [ 'continuous', 'deployment', 'rails', 'database', 'migrations' ]
 stories: ['async-remote']

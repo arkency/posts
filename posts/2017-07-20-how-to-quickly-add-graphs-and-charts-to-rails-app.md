@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'graphs', 'chart', 'Rails' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 When how to visualize data in your Rails app there are certain factors that you need to consider.

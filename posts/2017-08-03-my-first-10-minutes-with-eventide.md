@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'eventide' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently I find out about Eventide project and it looked really nice for me based on the initial documentation so I wanted have a small look inside. Here is what I found in a first few minutes without knowing anything about Eventide so far.

@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rethinkdb', 'react.js', 'rails' ]
-newsletter: :skip
-newsletter_inside: :react_books
+newsletter: skip
+newsletter_inside: react_books
 img: "rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails.png"
 ---
 

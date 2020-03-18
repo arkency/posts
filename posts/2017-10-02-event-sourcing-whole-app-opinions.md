@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'event sourcing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 You might have heard the _"Event-sourcing your whole app in an anti-pattern"_ meme. It's not uncommon to get exposed to it once you find yourself speaking with another practitioner of this technique.

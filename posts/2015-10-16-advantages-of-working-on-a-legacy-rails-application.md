@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'legacy', 'rails' ]
-newsletter: :fearless_refactoring_main
+newsletter: fearless_refactoring_main
 ---
 
 Are there any advantages of working on such an application?

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'state_machine', 'event sourcing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Our event sourced aggregates usually have a lifecycle and they need to protect some business rules. Often they start with guard statements checking if performing given action is even allowed. I was wondering if there was a nice way to remove those conditional and make the code more explicit. I wanted to experiment with porting the code from our book to use `state_machine` gem and see if the results are promising.

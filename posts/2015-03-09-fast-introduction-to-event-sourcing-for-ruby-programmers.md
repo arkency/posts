@@ -4,7 +4,7 @@ created_at: 2015-03-09 23:41:01 +0100
 kind: article
 publish: true
 author: Tomasz Rybczyński
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'domain', 'event' ]
 img: "events/events.jpg"
 ---

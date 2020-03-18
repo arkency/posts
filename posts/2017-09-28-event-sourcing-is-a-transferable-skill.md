@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'event sourcing', 'haskell' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 As developers we're constantly learning to keep our axes sharp. Getting to know new concepts, patterns or paradigms broadens our horizons. It may eventually result in having new perspective how to solve business problems we're facing.

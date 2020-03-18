@@ -3,7 +3,7 @@ title: "The Beginners Guide to jQuery.Deferred and Promises for Ruby programmers
 created_at: 2015-02-24 19:30:23 +0100
 kind: article
 publish: true
-newsletter: :react_books
+newsletter: react_books
 author: Marcin Grzywaczewski
 tags: [ 'jquery', 'frontend', 'promise', 'case-study' ]
 ---

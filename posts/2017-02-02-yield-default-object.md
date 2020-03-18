@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'yield', 'default' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-yield-default-object/title.jpeg"
 ---
 

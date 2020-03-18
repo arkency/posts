@@ -4,8 +4,8 @@ created_at: 2014-07-01 09:49:36 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: :skip
-newsletter_inside: :mobile
+newsletter: skip
+newsletter_inside: mobile
 tags: [ 'android', 'ios', 'rubymotion', 'mobile' ]
 stories: ['rubymotion']
 ---

@@ -4,7 +4,7 @@ created_at: 2015-09-03 13:30:46 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 img: "books-benefits/books.jpg"
 ---
 

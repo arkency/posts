@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sidekiq' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 I saw [a great question on reddit](https://www.reddit.com/r/rails/comments/6mp1fi/help_how_to_handle_sidekiq_processing_when_one/) which I am gonna quote and try to provide a few possible answers.

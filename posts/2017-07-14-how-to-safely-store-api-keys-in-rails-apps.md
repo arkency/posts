@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'security', 'rails', 'api' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-store-api/api-keys-rails.png"
 ---
 

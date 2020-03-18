@@ -4,7 +4,7 @@ created_at: 2017-05-25 13:49:31 +0300
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 tags: ['domain events', 'ddd']
 ---
 

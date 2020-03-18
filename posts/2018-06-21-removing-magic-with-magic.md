@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'legacy', 'removing code' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "removing_magic_with_magic.jpg"
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
-newsletter: :skip
+newsletter: skip
 img: workshop_app/order_history.png
 ---
 

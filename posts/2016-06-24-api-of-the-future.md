@@ -3,7 +3,7 @@ title: "API of the future"
 created_at: 2016-06-24 15:42:00 +0200
 kind: article
 publish: true
-newsletter: :skip
+newsletter: skip
 author: Marcin Grzywaczewski
 tags: ["frontend-friendly-rails"]
 img: "frontend-friendly-rails/ffr-cover.png"

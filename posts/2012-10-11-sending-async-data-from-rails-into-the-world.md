@@ -4,7 +4,7 @@ created_at: 2012-10-17 11:04:22 +0200
 kind: article
 publish: true
 author: "Robert Pankowecki"
-newsletter: :react_books
+newsletter: react_books
 tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process', 'exceptions']
 ---
 

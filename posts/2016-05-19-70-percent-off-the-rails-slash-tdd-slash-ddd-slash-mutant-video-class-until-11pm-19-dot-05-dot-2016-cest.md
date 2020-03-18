@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'tdd', 'ddd', 'mutant', 'video', 'class', 'course' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Hi,

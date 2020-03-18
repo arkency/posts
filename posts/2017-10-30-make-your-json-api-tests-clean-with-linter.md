@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'json', 'api', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently, one of our customers requested that mobile devices should communicate with backend via [JSON API](http://jsonapi.org). We started implementing an endpoint for registering customers.

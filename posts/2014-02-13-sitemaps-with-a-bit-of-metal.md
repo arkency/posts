@@ -4,7 +4,7 @@ created_at: 2014-02-13 22:06:47 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'seo', 'rails', 'sitemap', 'actioncontroller::metal' ]
 ---
 

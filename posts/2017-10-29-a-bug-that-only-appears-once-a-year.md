@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Anton Paisov
 tags: [ 'bugs', 'tests', 'testing' ]
-newsletter: :skip
+newsletter: skip
 img: "ruby-rails-dst-timezone-change-bug-once-a-year/header-glass-time-watch-x.png"
 ---
 

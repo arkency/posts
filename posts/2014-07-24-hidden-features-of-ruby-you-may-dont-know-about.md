@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Kamil Lelonek
 tags: [ 'ruby', 'tips', 'tricks' ]
-newsletter: :skip
-newsletter_inside: :frontend_course
+newsletter: skip
+newsletter_inside: frontend_course
 ---
 
 <p>

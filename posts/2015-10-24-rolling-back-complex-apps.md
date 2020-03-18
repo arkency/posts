@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rollback', 'deployment' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 One of the customers of [Responsible Rails ebook](/responsible-rails) has

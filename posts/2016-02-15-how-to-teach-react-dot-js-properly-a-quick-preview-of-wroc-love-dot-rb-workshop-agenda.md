@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'react.js', 'redux', 'wroc_love.rb' ]
-newsletter: :react_books
+newsletter: react_books
 img: "reactjs-workshop-blogpost-agenda/header.jpg"
 ---
 <p>

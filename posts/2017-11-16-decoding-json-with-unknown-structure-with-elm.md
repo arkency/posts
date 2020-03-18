@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Anton Paisov
 tags: [ 'elm', 'json' ]
-newsletter: :skip
+newsletter: skip
 ---
 
 A

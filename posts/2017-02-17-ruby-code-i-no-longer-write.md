@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'refactoring' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-code-no-longer-write/ruby_code_puppy_banner.jpg"
 ---
 

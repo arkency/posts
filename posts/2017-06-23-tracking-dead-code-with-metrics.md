@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'custom metrics', 'dead code' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: ruby-rails-metrics-for-detecting-unused-code/chillout-io-grafana-alert-unused-code2.jpg
 ---
 

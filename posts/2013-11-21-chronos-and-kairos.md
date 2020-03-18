@@ -4,7 +4,7 @@ created_at: 2013-11-21 17:18:19 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :async_remote_main
+newsletter: async_remote_main
 tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
 stories: ['async-remote']
 ---

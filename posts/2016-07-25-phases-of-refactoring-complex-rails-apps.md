@@ -4,7 +4,7 @@ created_at: 2016-07-25 12:59:37 +0200
 kind: article
 publish: true
 author: Marcin Grzywaczewski
-newsletter: :skip
+newsletter: skip
 ---
 
 

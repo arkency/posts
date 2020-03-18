@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 When Algolia built their first version of Frontend Search Component called Instantsearch.js I was not particularly fond of this solution.

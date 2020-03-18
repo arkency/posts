@@ -4,7 +4,7 @@ created_at: 2015-05-03 12:28:14 +0200
 kind: article
 publish: false
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "haskell-helloworld.png"
 ---
 

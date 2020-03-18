@@ -4,7 +4,7 @@ created_at: 2015-03-02 15:10:14 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 Extracting a service object is a natural step in any kind of framework-dependent application. In this blog post, I’m showing you an example from Nanoc, a blogging framework.

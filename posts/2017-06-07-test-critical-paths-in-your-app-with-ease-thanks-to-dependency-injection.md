@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rspec', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Dependency Injection is one of my favorite programming patterns. In this short blogpost, I’ll present you how it helps testing potentially untestable code.

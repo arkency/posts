@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing', 'mutant']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 ## New-feature-bugs vs regression-bugs

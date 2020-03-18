@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'flux', 'altjs' ]
-newsletter: :react_books
+newsletter: react_books
 img: "loading-all-data-when-starting-flux-spa/header.jpg"
 ---
 

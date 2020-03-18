@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: ['identity', 'team', 'remote']
-newsletter: :async_remote_main
+newsletter: async_remote_main
 stories: ['async-remote']
 ---
 

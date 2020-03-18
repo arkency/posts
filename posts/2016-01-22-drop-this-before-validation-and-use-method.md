@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'validations', 'aspects', 'ruby' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 ---
 
 In many projects you can see code such as:

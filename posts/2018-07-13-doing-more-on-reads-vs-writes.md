@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 What do you like more in your application? Handling complexity when reading the data or when updating it?

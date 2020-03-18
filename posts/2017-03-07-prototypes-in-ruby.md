@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby','rails','prototypes' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "prototypes-in-ruby-rails-active-record-dup-clone/prototypes_in_ruby_rails_header.png"
 ---
 

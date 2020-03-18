@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'association', 'has_one', 'belongs_to', 'rails', 'super' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently my colleague showed my a little trick

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such "aha" moments.

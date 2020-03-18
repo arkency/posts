@@ -5,7 +5,7 @@ kind: article
 publish: true
 tags: ['testing']
 author: Andrzej Krzywda
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 We have recently released the [RailsEventStore](https://github.com/arkency/rails_event_store) project. Its goal is to make it easier for Rails developers to introduce events into their applications.

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski 
 tags: [ 'book', 'react', 'frontend', 'rails' ]
-newsletter: :react_books
+newsletter: react_books
 img: "react-for-rails/cover.png"
 ---
 

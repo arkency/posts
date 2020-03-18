@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'aws', 'lambda', 'serverless', 'slack' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 We love sharing knowledge at Arkency. Education is in our DNA. We're happy when our readers and customers are benefiting from that as well. And we've set a Slack bot celebrate on each such occasion!

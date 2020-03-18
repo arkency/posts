@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'mysql', 'unicode', 'emoji', 'rails', 'utf8mb4' ]
-newsletter_inside: :arkency_short
+newsletter_inside: arkency_short
 img: "how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emoji.png"
 ---
 

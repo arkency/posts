@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 tags: [ 'optimization', 'optimization', 'speed', 'load', 'frontend', 'css', 'html', 'js', 'javascript' ]
-newsletter: :react_books
+newsletter: react_books
 ---
 
 <p>

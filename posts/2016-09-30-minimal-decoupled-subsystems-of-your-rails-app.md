@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'active job', 'ddd', 'eventual consistency', 'messaging' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "decoupled-bounded-contexts-async-rails/two_rails_bounded_contexts.png"
 ---
 

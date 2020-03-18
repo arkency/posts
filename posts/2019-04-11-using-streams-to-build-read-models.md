@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read models', 'rails_event_store' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <%= img_fit("using_streams_to_build_read_models/streams.jpg") %>

@@ -4,7 +4,7 @@ created_at: 2016-10-23 20:55:15 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 A service object in Ruby has some typical elements. There are some minor difference which I noted in the way people implement them. Let's look at one example.

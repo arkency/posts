@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: ['ruby', 'parser', 'AST', 'rails_event_store' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg"
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'refactoring']
-newsletter: :fearless_refactoring_main
+newsletter: fearless_refactoring_main
 ---
 
 Have you ever been stuck with some code? Looking at it for minutes, hours, feeling the code smells, but not being able to fix it?

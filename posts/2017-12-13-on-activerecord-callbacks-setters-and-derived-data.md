@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: ['ddd', 'setters', 'rails', 'ruby', 'derived', 'active record']
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rails-active-record-derrived-data-columns-attributes/dervied.png"
 ---
 

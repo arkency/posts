@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Rybczyński
 tags: [ 'cqrs', 'ddd', 'read_model' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "cqrs-example/photo.jpeg"
 ---
 

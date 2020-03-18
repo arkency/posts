@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'event_store', 'mutant', 'ddd' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <%= img_fit("development-work-with-res-and-mutant/rita-morais-108397.jpg") %>

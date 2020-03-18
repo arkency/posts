@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'enumerable' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-inject-each_with_object-comparison-vs/kitty-compares-inject-ruby-each_with_object.jpg"
 ---
 

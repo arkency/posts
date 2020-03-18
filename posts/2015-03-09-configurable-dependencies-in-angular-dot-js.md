@@ -6,7 +6,7 @@ publish: true
 author: Marcin Grzywaczewski
 tags: [ 'angularjs', 'frontend' ]
 img: "angular-configurable-di/img.jpg"
-newsletter: :react_books
+newsletter: react_books
 ---
 
 <p>

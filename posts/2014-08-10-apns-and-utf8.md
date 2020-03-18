@@ -4,8 +4,8 @@ created_at: 2014-08-13 12:20:33 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :skip
-newsletter_inside: :mobile
+newsletter: skip
+newsletter_inside: mobile
 tags: [ 'apns', 'push', 'notifications', 'apple', 'utf8', 'truncate' ]
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'nix', 'nixos', 'ruby', 'devops' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "packaging-ruby-programs-in-nixos/hammer-sledgehammer-mallet-tool.jpg"
 ---
 

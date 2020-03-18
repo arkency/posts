@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'private', 'class' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 ---
 
 One of the most common way to make some part of your code more understandable and explicit is to extract a class.

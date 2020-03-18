@@ -4,7 +4,7 @@ created_at: 2017-01-20 23:16:16 +0100
 kind: article
 publish: true
 author: Richard Eng
-newsletter: :skip
+newsletter: skip
 img: "smalltalk-ruby/smalltalk-ruby.jpg"
 ---
 

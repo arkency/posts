@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Paweł Pacana
 tags: [ 'rails_event_store', 'rails', 'engine' ]
-newsletter: :skip
+newsletter: skip
 ---
 
 FIXME: Place post lead here.

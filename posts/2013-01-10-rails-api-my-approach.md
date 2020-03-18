@@ -4,7 +4,7 @@ created_at: 2013-01-10 18:30:12 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'rails', 'api' ]
 ---
 

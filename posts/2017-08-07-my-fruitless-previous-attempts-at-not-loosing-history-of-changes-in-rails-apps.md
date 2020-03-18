@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'rails' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Some time ago I was implementing a simple Inventory with products that could be available, reserved and sold in certain quantities.

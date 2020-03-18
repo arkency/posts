@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'SOA', 'microservices', 'ruby', 'eventide', 'scott', 'bellware', 'interview' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: soa-microservices-ruby-eventide/scott-bellware-interview-ruby.png
 ---
 

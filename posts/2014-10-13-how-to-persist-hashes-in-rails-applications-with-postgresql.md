@@ -4,8 +4,8 @@ created_at: 2014-10-13 10:27:16 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: :skip
-newsletter_inside: :arkency_form
+newsletter: skip
+newsletter_inside: arkency_form
 tags: [ 'ActiveRecord', 'PostgreSQL', 'Postgres', 'AR', 'Hash' ]
 ---
 

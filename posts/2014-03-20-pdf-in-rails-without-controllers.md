@@ -4,7 +4,7 @@ created_at: 2014-03-20 10:43:25 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'rails', 'pdf', 'background', 'job' ]
 ---
 

@@ -4,7 +4,7 @@ created_at: 2018-11-20 17:41:40 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 tags: ['ddd', 'rails']
 img: rescon_andrzej_thinking.jpg
 ---

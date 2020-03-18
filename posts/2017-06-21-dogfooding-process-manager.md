@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'saga', 'process_manager', 'event_store', 'projection' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: dogfooding-process-manager/dogfooding.jpg
 ---
 

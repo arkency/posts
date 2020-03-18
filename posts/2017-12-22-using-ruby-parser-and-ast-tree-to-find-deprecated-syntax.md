@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'parser', 'AST', 'rails', 'upgrade' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ast-ruby-tree-find-deprecated-rails-syntax/ruby-ast-parse-gem.png"
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'ddd', 'rails', 'active record', 'migration' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 <p>
     <figure>

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'ruby', 'rails', 'res', 'event_store' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rails-event-store-ruby-event-store-v0-27/rails_event_store_ruby_event_store.png"
 ---
 

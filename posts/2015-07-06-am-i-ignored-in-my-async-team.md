@@ -4,7 +4,7 @@ created_at: 2015-07-06 09:19:01 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :async_remote_main
+newsletter: async_remote_main
 ---
 
 When we work in async teams, we have many benefits from it - people not blocked on each other, freedom of place, freedom of time.

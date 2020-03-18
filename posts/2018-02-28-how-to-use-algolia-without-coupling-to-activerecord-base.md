@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 In my [video course](https://blog.arkency.com/search-rails/), I present using Algolia with Rails using the more direct integration provided by `algoliasearch-rails` gem. Like many gems in Rails ecosystem, the integration relies on `ActiveRecord::Base` and its callbacks. And while it certainly can be very convenient and fast to add to your app, there is also a certain amount of magic involved. Ie, when your classes are loaded, they send HTTP request to Algolia with the index settings. And for me, that's a big no-no. I prefer the more explicit approach in which I treat those settings as database schema and update it in migrations so there is a history in the code.

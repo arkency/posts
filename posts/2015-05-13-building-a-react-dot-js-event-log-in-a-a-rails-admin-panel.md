@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Rybczyński
 tags: [ 'event', 'store' ]
-newsletter: :react_books
+newsletter: react_books
 img: "events/blue-bricks.jpg"
 ---
 

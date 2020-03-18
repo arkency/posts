@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'sanitize', 'html', 'security' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "rails-sanitize-html-inpute-iframe-embed-youtube-ted/editor-problem.jpg"
 ---
 

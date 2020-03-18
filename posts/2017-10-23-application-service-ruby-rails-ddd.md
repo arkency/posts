@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'application service' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "application-services-ruby-rails-explained/questions-answered-application-service-g.png"
 ---
 

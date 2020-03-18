@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'oop', 'ruby' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: fluent-interface-api-ruby-rails/title.jpeg
 ---
 

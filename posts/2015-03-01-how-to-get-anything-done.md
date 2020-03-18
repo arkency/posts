@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle', 'coaching', 'motivation', 'blogging' ]
-newsletter: :coaching
+newsletter: coaching
 img: "how-to-get-anything-done/best-time-for-action-is-now.jpg"
 ---
 

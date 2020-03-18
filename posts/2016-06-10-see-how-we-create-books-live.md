@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Wiktor Mociun
 tags: [ 'rails', 'react', 'frontend', 'livestream' ]
-newsletter: :react_books
+newsletter: react_books
 ---
 
 <iframe width="665" height="374" src="https://www.youtube.com/embed/Mqz3b02-CpE?rel=0" frameborder="0" allowfullscreen></iframe>

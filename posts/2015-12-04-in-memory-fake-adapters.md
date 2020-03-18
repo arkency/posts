@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'adapters', 'in-memory', 'rails' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 img: "fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters.jpg"
 ---
 

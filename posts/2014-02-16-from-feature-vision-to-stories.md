@@ -4,7 +4,7 @@ created_at: 2014-02-28 22:45:56 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :aar_newsletter
+newsletter: aar_newsletter
 tags: [ ]
 stories: ['async-remote']
 ---

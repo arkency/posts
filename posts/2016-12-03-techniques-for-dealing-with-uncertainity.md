@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'DDD', 'networking' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 In programming we are often dealing with an uncertainity. We don't know,

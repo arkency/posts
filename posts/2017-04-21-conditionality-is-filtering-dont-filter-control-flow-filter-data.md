@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'fp' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: control-flow-filter-data-ruby-feathers/quote.jpg
 ---
 

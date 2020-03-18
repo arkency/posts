@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'permutation', 'rspec', 'tests', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-permutation/permutation-cube.jpg"
 ---
 

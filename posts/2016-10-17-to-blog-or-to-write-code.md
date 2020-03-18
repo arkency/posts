@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'blogging' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Four years ago when I started writing first posts on Arkency blog, I didn't have many expectations. I knew I wanted to **share my knowledge and thoughts. Not much beyond that.**

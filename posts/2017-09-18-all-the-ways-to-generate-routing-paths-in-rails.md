@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'routing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Have you ever considered how many ways there are to generate a routing path in Rails? Plenty. Let's see.

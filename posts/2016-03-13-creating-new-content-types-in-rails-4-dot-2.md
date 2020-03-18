@@ -5,7 +5,7 @@ kind: article
 publish: true 
 author: Marcin Grzywaczewski
 tags: [ 'rails', 'jsonapi', 'paramsparser' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "creating-custom-types/header.jpg"
 ---
 

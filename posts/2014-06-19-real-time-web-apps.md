@@ -4,7 +4,7 @@ created_at: 2014-06-19 22:04:18 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'real-time', 'websockets', 'eventsource', 'web apps' ]
 ---
 

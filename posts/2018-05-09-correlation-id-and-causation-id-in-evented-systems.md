@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'correlation', 'causation', 'ddd', 'events' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "correlation_id_causation_id_rails_ruby_event/CorrelationAndCausationEventsCommands.png"
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Szymon Fiedler"
 tags: [ 'rspec', 'rails' , 'event_store', 'rails_event_store']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <%= img_fit("composable-rspec-matchers/caleb-woods-269348.jpg") %>

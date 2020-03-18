@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle' ]
-newsletter: :aar_newsletter
+newsletter: aar_newsletter
 ---
 
 We work from wherever we want and we ship it.

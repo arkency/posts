@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Mutation testing is another form of checking the test coverage. As such it makes sense to put it as part of our Continuous Delivery process. In this blog post I’ll show you how we started using mutant together with TravisCI in the [RailsEventStore](https://github.com/arkency/rails_event_store) project.

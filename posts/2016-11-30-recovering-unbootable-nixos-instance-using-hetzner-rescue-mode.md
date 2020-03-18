@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'nix', 'nixos', 'hetzner', 'devops' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Some time ago we had a small fuckup with one of our CI build machines. One of the devs was changing sizes of the file system partitions and he forgot to commit new NixOS configuration to the git repository where we synchronize it. After some time, I've uploaded NixOS config from git repo (which had, like I said, outdated configuration) to the machine and run `nixos-rebuild --switch` which essentialy made system into unbootable state because of wrong UUIDs in `/etc/fstab`.

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "events/blue-bulbs.jpeg"
 ---
 

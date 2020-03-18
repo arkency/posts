@@ -4,7 +4,7 @@ created_at: 2014-06-13 18:39:02 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :async_remote_main
+newsletter: async_remote_main
 tags: [ 'remote', 'async', 'communication' ]
 stories: ['async-remote']
 ---

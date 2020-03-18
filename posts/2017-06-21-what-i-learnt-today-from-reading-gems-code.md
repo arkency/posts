@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'sidekiq', 'gems', 'activesupport' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: sidekiq-active_support-chillout-rails-metrics/pexels-photo-225769.jpeg
 ---
 

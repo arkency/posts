@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'eventsourcing', 'aggregate' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Event Sourcing is like having two methods when previously there was one. There — I've said it.

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'resque', 'honeybadger', 'at_exit', 'threads' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-honeybadger-resque-slow/cpu.jpg"
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'bounded contexts' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 There are dozens of small or bigger problems that we can have in our code. Like diseases, they affect our applications and make them harder to maintain, expand and enjoy. They give us a headache and they give bugs to our customers. As a result, we (programmers) read a lot to find out more about the symptoms (code smells) and treatment (refactoring techniques, other languages, other architectures).

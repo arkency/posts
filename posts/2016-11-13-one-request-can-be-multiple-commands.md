@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'commands' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 It took me many years to understand the simple truth. One HTTP request

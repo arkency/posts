@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Wróbel
 tags: [ 'tests', 'integration', 'microservices', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Running your tests on "production"? On the real, live system?

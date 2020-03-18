@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Bartosz Krajka
 tags: [ 'framewrok', 'emergency', 'fuckup', 'responsible rails' ]
-newsletter: :skip
-newsletter_inside: :responsible_rails
+newsletter: skip
+newsletter_inside: responsible_rails
 img: "framework-for-handling-emergencies/header.jpg"
 ---
 

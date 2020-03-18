@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 ---
 
 In [Drop this before validation and just use a setter method](/2016/01/drop-this-before-validation-and-use-method/)

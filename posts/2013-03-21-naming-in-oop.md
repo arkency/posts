@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jan Filipowski
 tags: [ 'OOP', 'OOD', 'mostly obious' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 There is a well known cite on naming in our industry:

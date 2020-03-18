@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'to_json', 'as_json', 'rails', 'active_record']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Let's say you have a model in Rails with certain attributes and columns. When you serialize it with `to_json`, by default Rails will include all columns. How can you add one more or remove some from now appearing there?

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'react', 'frontend', 'coffeescript' ]
-newsletter: :react_books
+newsletter: react_books
 ---
 
 One of the big advantages of React components is that they are easy to write. You create an [object literal](http://blog.arkency.com/2012/10/javascript-objects-philosophy) and provide functions as fields of your object. They you pass this object to a `React.createClass` function.

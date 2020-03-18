@@ -4,7 +4,7 @@ created_at: 2020-02-24 15:08:12 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 How to migrate legacy Rails apps into DDD/CQRS in a relatively safe way?

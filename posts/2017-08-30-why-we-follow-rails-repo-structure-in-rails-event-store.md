@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'rails', 'event_store' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 

@@ -4,7 +4,7 @@ created_at: 2014-01-18 14:41:04 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
 ---
 

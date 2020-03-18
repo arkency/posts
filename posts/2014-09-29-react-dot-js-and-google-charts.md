@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'google charts' ]
-newsletter: :skip
-newsletter_inside: :react_books
+newsletter: skip
+newsletter_inside: react_books
 ---
 
 <p>

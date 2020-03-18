@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails', 'active_record' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Let's say you have a Ruby script and you would like to use `ActiveRecord` library inside it. Is it possible without Rails? Is it hard? It's possible and not hard at all.

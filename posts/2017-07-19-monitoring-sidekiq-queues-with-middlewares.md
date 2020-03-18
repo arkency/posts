@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'sidekiq', 'middleware' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Sidekiq, similarly to Rack, has a concept of middlewares. A list of wrappers around its processing logic that you can use to include custom behavior.

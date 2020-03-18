@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Wróbel
 tags: [ 'tmux', 'microservices', 'tools', 'workflow', 'productivity' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <%= img_fit("making-tmux-work-for-you/niv-rozenberg-356666.jpg") %>

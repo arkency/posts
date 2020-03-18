@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'upgrade', 'activerecord' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 During recent days I've been migrating a _senior_ Rails application from Rails 3 to Rails 5. As part of the process, I was dealing with `has_and_belongs_to_many` associations.

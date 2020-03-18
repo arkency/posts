@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 What kind of components do we need to use to make a great search page? Let's have a look.

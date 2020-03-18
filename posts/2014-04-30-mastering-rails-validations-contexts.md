@@ -4,7 +4,7 @@ created_at: 2014-04-30 18:29:47 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'custom', 'validation', 'context', 'rails', 'activemodel', 'activerecord' ]
 meta_title: "→ Mastering Rails Validations: Contexts"
 description: "Here's a Quick Introduction to Custom Validation Contexts in Rails. #LEARN MORE about it on Arkency Blog !!!"

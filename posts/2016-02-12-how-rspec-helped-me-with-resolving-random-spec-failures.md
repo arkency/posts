@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rspec', 'test' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <p>

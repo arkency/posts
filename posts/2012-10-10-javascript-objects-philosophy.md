@@ -4,7 +4,7 @@ created_at: 2012-10-12 11:30:38 +0200
 kind: article
 publish: true
 author: "Jan Filipowski"
-newsletter: :react_books
+newsletter: react_books
 tags: [ 'javascript', 'oop' ]
 ---
 

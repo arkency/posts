@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store', 'rescon' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: rescon_andrzej_thinking.jpg
 ---
 

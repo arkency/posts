@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'equality' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently I've been working on adding more exercises to [DevMemo.io](https://devmemo.io) about Ruby's Enumerable module. And I try to balance learning most popular APIs (which you might already know) with some less popular but very useful.

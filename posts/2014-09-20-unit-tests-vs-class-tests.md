@@ -4,8 +4,8 @@ created_at: 2014-10-12 19:06:17 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
-newsletter_inside: :fearless_refactoring_course_instantiating
+newsletter: skip
+newsletter_inside: fearless_refactoring_course_instantiating
 tags: ['testing']
 img: "unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG"
 ---

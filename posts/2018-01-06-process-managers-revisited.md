@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'process', 'manager', 'rails_event_store', 'ddd' ]
-newsletter: :none
+newsletter: none
 ---
 # Process Managers revisited
 

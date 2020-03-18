@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'thread-safe' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Let's say you have an object and you know or suspect it might be used (called) from many threads. What can you do to make it safe to use in such a way?

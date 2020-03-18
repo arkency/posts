@@ -4,7 +4,7 @@ created_at: 2017-10-16 16:12:56 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 For the last year, I've been using Rails (as I do for the last 10 years), but last year it was almost exclusively Rails "Not the Rails Way". We have successfully combined Rails with Domain-Driven Design, CQRS and Event Sourcing. Over the last year, most of the business logic state in my apps was persisted using events, not the "let's just store the last state and forget the history" ;)

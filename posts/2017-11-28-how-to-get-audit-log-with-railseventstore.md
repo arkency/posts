@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store' ]
-newsletter: :skip
+newsletter: skip
 ---
 
 Did you know you can already get an audit log with [RailsEventStore](https://railseventstore.org) for free?

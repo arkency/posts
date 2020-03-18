@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails_event_store', 'ruby_event_store', 'ddd', 'release' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 [Rails Event Store v0.26](https://github.com/RailsEventStore/rails_event_store/releases/tag/v0.26) is here with new, nicer APIs. Let's have a look at some of those changes:

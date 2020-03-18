@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Robert Pankowecki"
 tags: [ 'ruby2.1', 'service objects', 'form objects' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 enclosure:
   identifier: "/assets/sounds/rails-refactoring1.ogg"
   type: "audio/ogg"

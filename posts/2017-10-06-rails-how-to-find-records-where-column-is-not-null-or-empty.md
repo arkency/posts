@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active_record' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 We all know that especially in legacy applications sometimes our database columns are not that well maintained. So we need to query for, or exclude rows containing `nil`/`NULL` and empty strings (`""`) as well. How can we do it in ActiveRecord?

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read models', 'background jobs' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 When we focus on the model in CQRS architecture, we put most effort into write model.

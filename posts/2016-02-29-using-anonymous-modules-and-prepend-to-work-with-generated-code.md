@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'meta-programming', 'prepend', 'anonymous-modules' ]
-newsletter: :skip
-newsletter_inside: :clean
+newsletter: skip
+newsletter_inside: clean
 ---
 
 In my previous blog-post [about using setters](/2016/01/drop-this-before-validation-and-use-method/)

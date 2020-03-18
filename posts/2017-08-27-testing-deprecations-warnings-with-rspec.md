@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
-newsletter: :skip
+newsletter: skip
 ---
 
 Recently at Arkency we've been doing quite a lot of work around the [RailsEventStore](https://railseventstore.org) ecosystem. We see RailsEventStore as the way to help Rails teams start doing DDD without needing to build the infrastructure for CQRS/ES. 

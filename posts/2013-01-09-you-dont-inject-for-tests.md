@@ -4,7 +4,7 @@ created_at: 2013-01-09 14:49:03 +0100
 kind: article
 publish: true
 author: Jan Filipowski
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'Ruby drama', 'dependency injection', 'OOD', 'mostly obvious', 'testing']
 ---
 

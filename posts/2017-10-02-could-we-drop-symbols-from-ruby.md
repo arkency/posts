@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'symbols' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "ruby-symbols-strings/drop-symbols.jpeg"
 ---
 

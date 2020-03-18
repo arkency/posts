@@ -4,7 +4,7 @@ created_at: 2015-03-09 15:21:13 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :blogging_book
+newsletter: blogging_book
 tags: [ 'blog', 'blogging']
 ---
 

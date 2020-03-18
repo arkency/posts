@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Wróbel
 tags: [ 'rails_event_store', 'testing', 'commands' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <%= img_fit("command_dumper.jpg") %>

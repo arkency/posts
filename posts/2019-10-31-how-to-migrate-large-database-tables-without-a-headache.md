@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Paweł Pacana
 tags: ["rails_event_store", "mysql", "database"]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 This is the story how we once migrated an in-house event store, that reached its limits, to Rails Event Store.

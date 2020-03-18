@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Tomasz Patrzek"
 tags: [ 'react', 'frontend', 'es6', 'jsx', 'refactoring', 'porting' ]
-newsletter: :react_books
+newsletter: react_books
 ---
 
 We are working on a new version of our bestseller book - [Rails meets React.js](http://blog.arkency.com/rails-react/). Currently, the book is based in CoffeeScript and we want to port it to ES6. The update will be free for everyone, who bought the CoffeeScript version

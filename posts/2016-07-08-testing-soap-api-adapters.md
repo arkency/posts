@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'SOAP', 'API', 'ruby', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 The bigger your application, the more likely you will need

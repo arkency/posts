@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
-newsletter: :skip
+newsletter: skip
 ---
 
 When you start your journey with DDD, it's quite easy to apply DDD in a fresh app. It's a bit more complicated for existing, legacy apps.

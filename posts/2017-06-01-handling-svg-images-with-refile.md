@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'svg', 'refile', 'imgix' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 My colleague Tomek today was responsible for changing a bit how we

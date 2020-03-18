@@ -4,8 +4,8 @@ created_at: 2015-02-27 16:56:10 +0100
 kind: article
 publish: true
 author: Tomasz Rybczyński
-newsletter: :skip
-newsletter_inside: :react_books
+newsletter: skip
+newsletter_inside: react_books
 tags: [ 'rails', 'routes' ]
 img: "routes/splitting-routes.jpg"
 ---

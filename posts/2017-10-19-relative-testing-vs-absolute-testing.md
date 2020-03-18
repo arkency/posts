@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'testing' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "relative-absolute-testing-in-ruby-and-rails/title.jpeg"
 ---
 

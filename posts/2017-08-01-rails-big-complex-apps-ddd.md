@@ -5,7 +5,7 @@ kind: article
 publish: false
 author: Robert Pankowecki
 tags: [ 'rails', 'ddd' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 For years Rails was praised as a great tool for new apps, startups and building prototypes. And I still believe it is. But is it a good fit for complex apps with lots of non-trivial logic? Notice that I didn't mention just big apps. Some apps are big and have tons of functionality but they are rather wide than deep. I am talking about complex apps where almost every feature needs to work nicely with every other feature and they can be combined together in tons of different combinations.

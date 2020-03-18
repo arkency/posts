@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'inheritance', 'module', 'constructor', 'mutation testing','mutant' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 This is a short story which starts with being very surprised by mutation testing results and trying to figure out how to deal with it.

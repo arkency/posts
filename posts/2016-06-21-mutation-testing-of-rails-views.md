@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
-newsletter: :skip
+newsletter: skip
 ---
 
 Thanks to mutation testing we can get much higher confidence while working with Ruby/Rails apps. There is one area, though, where I've been struggling to make mutant to work - the Rails views. People use erb or haml and they're both not a proper Ruby code, they're templating languages.

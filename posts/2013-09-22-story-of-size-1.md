@@ -4,7 +4,7 @@ created_at: 2013-09-23 20:17:43 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :aar_newsletter
+newsletter: aar_newsletter
 tags: [ 'story', 'size', 'one', 'remote', 'work', 'project', 'management' ]
 stories: ['async-remote']
 ---

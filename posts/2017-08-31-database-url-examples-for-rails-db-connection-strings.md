@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'travis', 'rails', 'database_url', 'connection string' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Recently I've been configuring [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) to run tests on many

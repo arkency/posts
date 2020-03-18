@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'story', 'chillout', 'activesupport' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "tracking-down-unused-templates/countryside-fence-field.jpg"
 ---
 

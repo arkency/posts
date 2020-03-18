@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'to_enum', 'enumerator', 'enumerable' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 <img src="<%= src_fit("enumerator/each.png") %>" width="100%">

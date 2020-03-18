@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Krzysztoforski
 tags: [ 'heroku', 'mongodb', 'import data' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "why-saving-data-using-mongohq-takes-so-long/img.jpg"
 ---
 

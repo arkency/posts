@@ -6,7 +6,7 @@ publish: true
 author: Jakub Kosiński
 tags: [ 'i18n', 'i18next', 'translations', 'react', 'rails', 'gettext' ]
 img: "use-your-gettext-translations-in-your-react-components/flags.jpg"
-newsletter: :react_books
+newsletter: react_books
 ---
 
 <p>

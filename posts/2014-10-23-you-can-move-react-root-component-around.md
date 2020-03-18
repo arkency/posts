@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
-newsletter: :skip
-newsletter_inside: :react_books
+newsletter: skip
+newsletter_inside: react_books
 ---
 
 <p>

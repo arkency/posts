@@ -6,7 +6,7 @@ publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'health check', 'ops' ]
 canonical: "/2016/02/the-smart-way-to-check-health-of-a-rails-app/"
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 <p>
     <figure>

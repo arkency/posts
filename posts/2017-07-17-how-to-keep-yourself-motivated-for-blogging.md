@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle', 'coaching', 'motivation', 'blogging' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: "motivation-programming-blog/how-to-keep-motivated-blogging.jpeg"
 ---
 

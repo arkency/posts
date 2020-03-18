@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'consulting', 'manual' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 img: freelancer/angry.gif
 ---
 

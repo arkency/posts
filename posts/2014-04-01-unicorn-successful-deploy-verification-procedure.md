@@ -4,7 +4,7 @@ created_at: 2014-04-01 16:21:18 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: :arkency_form
+newsletter: arkency_form
 tags: [ 'rails', 'ruby', 'unicorn', 'deploy', 'verification' ]
 ---
 

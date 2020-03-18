@@ -4,7 +4,7 @@ created_at: 2016-07-22 19:53:41 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 Yesterday I was contacted by a developer through our [Post Rails Book Bundle](http://www.railsbookbundle.com) intercom. He wasn't sure about whether the bundle is right to him. I quickly jumped to a phone call (how old-school!) with him and it turned into a very interesting discussion!

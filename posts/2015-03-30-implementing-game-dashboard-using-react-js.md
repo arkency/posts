@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Wiktor Mociun
 tags: [ 'javascript', 'eventbus', 'reactjs' ]
-newsletter: :react_books
+newsletter: react_books
 img: "game-dashboard-react/front.jpg"
 ---
 

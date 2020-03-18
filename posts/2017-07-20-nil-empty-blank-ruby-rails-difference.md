@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'nil', 'empty', 'blank' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 There are plenty of options available. Let's evaluate their usefulness and potential problems that they bring to the table.

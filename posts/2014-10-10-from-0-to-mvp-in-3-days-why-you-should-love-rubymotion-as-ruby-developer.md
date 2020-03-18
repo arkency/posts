@@ -4,8 +4,8 @@ created_at: 2014-10-10 03:13:30 +0200
 kind: article
 publish: false
 author: Marcin Grzywaczewski
-newsletter: :skip
-newsletter_inside: :mobile
+newsletter: skip
+newsletter_inside: mobile
 tags: [ 'ruby', 'ios', 'rubymotion', 'mobile' ]
 stories: ['rubymotion']
 ---

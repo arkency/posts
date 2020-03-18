@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sergii', 'makagon', 'hanami', 'ddd', 'interview' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 You might not have heard about Sergii but he got my attention some time ago. Because, you see... In one year Sergii wrote about 40 articles on http://rubyblog.pro/ and I started to see them mentioned in various places.

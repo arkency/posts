@@ -4,7 +4,7 @@ created_at: 2019-07-10 12:01:51 +0200
 kind: article
 publish: false
 author: Andrzej Krzywda
-newsletter: :skip
+newsletter: skip
 ---
 
 Ruby Refactoring preview

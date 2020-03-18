@@ -5,8 +5,8 @@ kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' , 'testing']
-newsletter: :skip
-newsletter_inside: :rails_event_store
+newsletter: skip
+newsletter_inside: rails_event_store
 img: "events/black-and-white-car-vehicle-vintage.jpg"
 ---
 

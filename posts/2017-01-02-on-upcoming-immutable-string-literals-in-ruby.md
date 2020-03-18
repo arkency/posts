@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'immutable', 'string' ]
-newsletter: :arkency_form
+newsletter: arkency_form
 ---
 
 Today I checked one of the solutions made by our [Junior Rails Developer class](/junior-rails-developer/)

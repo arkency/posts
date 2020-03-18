@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active_record', 'testing']
-newsletter: :arkency_form
+newsletter: arkency_form
 img: testing-association-preloaded-eager-loaded-rails-active-record/association-tested-rspec-minitest.jpeg
 ---
 
