@@ -86,7 +86,7 @@ class Post
       created_at: #{@date}
       author: #{@author}
       tags: [ 'foo', 'bar', 'baz' ]
-      newsletter: arkency_form
+      newsletter: skip
       kind: article
       publish: false
       ---
@@ -96,6 +96,11 @@ class Post
       <!-- more -->
 
       FIXME: Place post body here.
+
+      ```ruby
+      Person.new.show_secret
+      # => 1234vW74X&
+      ```
     EOT
   end
 end
