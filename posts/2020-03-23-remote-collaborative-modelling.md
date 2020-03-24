@@ -8,9 +8,9 @@ kind: article
 publish: false
 ---
 
-Being remote means you not always have a face to face contact with your customers, with the domain experts or with the right people who really know you the business you try to model works.
+Being remote means you not always have a face to face contact with your customers, with the domain experts or with the right people who know you the business you try to model works.
 
-This must not be an excuse to skip the modeling part. Actually, it is even more important to have a good shared understanding of the domain and the problem you try to solve, to build & use the ubiquitous language.
+This must not be an excuse to skip the modeling part. It is even more important to have a good shared understanding of the domain and the problem you try to solve, to build & use the ubiquitous language.
 
 <!-- more -->
 
@@ -34,7 +34,7 @@ The Event Storming has hit the DDD community a few years ago. It has changed the
 
 But the Event Storming is the hardest one to use online. According to [Alberto Brandolini](https://twitter.com/ziobrando), there is no good way to do it online, the same way you do not organize "toga party" online.
 
-There have been some attempts to make remote/virtual Event Storming but my feeling is all of them miss some important energy we get when standing together under an unlimited modeling space, working in a chaotic way. The remote Event Sourcing misses the chaos, and in this case, it's a bad thing.
+There have been some attempts to make remote/virtual Event Storming but my feeling is all of them miss some important energy we get when standing together under an unlimited modeling space, working chaotically. The remote Event Sourcing misses the chaos, and in this case, it's a bad thing.
 
 However things change... maybe you will find a good way to use it, maybe you could think of some new tools that will "embrace chaos" and allow you to get back that energy.
 I've tried... but I've failed. Some said that it was a success. Try it for yourself. Share the experiences. Let's learn from each other because you know... "we're learners"!
@@ -46,7 +46,7 @@ It relies on a fact that telling stories is a fundamental way of human communica
 actors (usually named with a role identifier), work objects and activities to visualize the stories told by domain experts.
 Domain Stories are told from the perspective of actors, which play an active role in the Domain Story. Actors create, work with, and exchange work objects such as documents, physical items, and digital objects.
 
-The modeler should focus on true stories, no abstract generalizations, no hypotheticals, just concrete examples of what is actually happening in a domain.
+The modeler should focus on true stories, no abstract generalizations, no hypotheticals, just concrete examples of what is happening in a domain.
 
 > Sometimes three good examples are more helpful to understand the requirements than a bad abstraction.
 
@@ -65,7 +65,7 @@ Remote work gives you an opportunity to avoid sync meetings. Yes, sometimes this
 
 Embracing async is not easy, it will cause some friction and misunderstandings but don't let it stop you. With time your understanding of domain will grow, also you will learn how to work better with your domain experts and they will learn how to share the domain knowledge with you.
 
-Async modeling has also some advantages. It's is slower. And that is a good thing. You actually have time to think about your model, about what really is important and about examples you are working with.
+Async modeling has also some advantages. It's is slower. And that is a good thing. You have time to think about your model, about what is important and about examples you are working with.
 
 ## There is more, give it a try!
 
