@@ -5,7 +5,7 @@ author: Mirosław Pragłowski
 tags: [ 'ddd', 'remote' ]
 newsletter: skip
 kind: article
-publish: false
+publish: true
 ---
 
 Being remote means you not always have a face to face contact with your customers, with the domain experts or with the right people who know you the business you try to model works.
