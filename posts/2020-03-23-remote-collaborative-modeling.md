@@ -6,6 +6,7 @@ tags: [ 'ddd', 'remote' ]
 newsletter: skip
 kind: article
 publish: true
+cta: 'ddd'
 ---
 
 Being remote means you not always have a face to face contact with your customers, with the domain experts or with the right people who know you the business you try to model works.
@@ -79,7 +80,3 @@ I've shown you only a few techniques here, but there is more. To name a few:
 * Specification by Example
 
 Go check them. Find the one suitable for your needs. Start using it. Share your experiences. Help others to understand good and bad parts of the techniques, but remember your mileage may vary :)
-
-
-
-Are You having troubles introducing Domain Driven Design in your organization? Check the [Domain Driven Design Mentoring](https://products.arkency.com/ddd-mentoring/) offer. See how we could help you!
