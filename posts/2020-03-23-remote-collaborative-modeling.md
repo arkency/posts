@@ -35,7 +35,7 @@ The Event Storming has hit the DDD community a few years ago. It has changed the
 
 But the Event Storming is the hardest one to use online. According to [Alberto Brandolini](https://twitter.com/ziobrando), there is no good way to do it online, the same way you do not organize "toga party" online.
 
-There have been some attempts to make remote/virtual Event Storming but my feeling is all of them miss some important energy we get when standing together under an unlimited modeling space, working chaotically. The remote Event Sourcing misses the chaos, and in this case, it's a bad thing.
+There have been some attempts to make remote/virtual Event Storming but my feeling is all of them miss some important energy we get when standing together under an unlimited modeling space, working chaotically. The remote Event Storming misses the chaos, and in this case, it's a bad thing.
 
 However things change... maybe you will find a good way to use it, maybe you could think of some new tools that will "embrace chaos" and allow you to get back that energy.
 I've tried... but I've failed. Some said that it was a success. Try it for yourself. Share the experiences. Let's learn from each other because you know... "we're learners"!
