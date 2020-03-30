@@ -2,7 +2,7 @@
 
 Blogposts featured on [blog.arkency.com](https://blog.arkency.com).
 
-## Improving exitsitng content
+## Improving existing content
 
 Found a typo? Code not working? Submit a pull-request.
 
