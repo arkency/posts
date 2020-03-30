@@ -1,6 +1,6 @@
 # Posts
 
-Blogposts featured on [blog.arkency.com](https://blog.arkency.com).
+Blogposts featured on [blog.arkency.com](https://blog.arkency.com). This content is fetched with [nanoc-github](https://github.com/pawelpacana/nanoc-github).
 
 ## Improving existing content
 
