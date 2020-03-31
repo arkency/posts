@@ -9,7 +9,7 @@ publish: true
 cta: 'ddd'
 ---
 
-Being remote means you not always have a face to face contact with your customers, with the domain experts or with the right people who know you the business you try to model works.
+Being remote means you don't always have face-to-face contact with your customers, with the domain experts, or with the right people who know how the business you're trying to model works.
 
 This must not be an excuse to skip the modeling part. It is even more important to have a good shared understanding of the domain and the problem you try to solve, to build & use the ubiquitous language.
 
