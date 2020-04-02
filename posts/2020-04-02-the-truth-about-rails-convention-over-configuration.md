@@ -8,7 +8,7 @@ kind: article
 publish: false
 ---
 
-This blogpost is a work in progress. It's also a call for collaboration to Arkency friends (via pull requests) if the goal of this blogpost resonates with you.
+This blogpost is a work in progress. It's also a call for collaboration to Arkency friends (via pull requests - [https://github.com/arkency/posts/edit/master/posts/2020-04-02-the-truth-about-rails-convention-over-configuration.md](https://github.com/arkency/posts/edit/master/posts/2020-04-02-the-truth-about-rails-convention-over-configuration.md) ) if the goal of this blogpost resonates with you.
 
 The goal of this post is to:
 
@@ -21,6 +21,8 @@ The goal of this post is to:
 * conclude that Rails Convention over Configuration may lead and often leads to technical debt
 * explain ideas behind Architecture over Convention
 * provide alternative solutions to the listed Rails conventions - link to other blogposts/resources, including Arkency ones, but not limited to them
+
+Feel free to help with any of the points here, just create a section and contribute. Probably the easiest contributions (but helpful!) would be listing more examples of Rails conventions.
 
 Once the goals are accomplished, this blogpost will be published, linked from Arkency blog index and linked from the sitemap. Before it happens, it has its own URL which you can send to other potential collaborators - [https://blog.arkency.com/the-truth-about-rails-convention-over-configuration](https://blog.arkency.com/the-truth-about-rails-convention-over-configuration)
  
