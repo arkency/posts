@@ -85,7 +85,7 @@ class Post
       title: "#{@title}"
       created_at: #{@date}
       author: #{@author}
-      tags: [ 'foo', 'bar', 'baz' ]
+      tags: []
       newsletter: skip
       kind: article
       publish: false
