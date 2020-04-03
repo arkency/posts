@@ -4,7 +4,7 @@ created_at: 2016-02-29 11:41:56 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'ruby', 'meta-programming', 'prepend', 'anonymous-modules' ]
+tags: [ 'ruby', 'metaprogramming', 'prepend', 'anonymous-modules' ]
 newsletter: skip
 newsletter_inside: clean
 ---
