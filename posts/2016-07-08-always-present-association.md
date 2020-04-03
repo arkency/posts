@@ -4,7 +4,7 @@ created_at: 2016-07-12 17:42:41 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'association', 'has_one', 'belongs_to', 'rails', 'super' ]
+tags: [ 'rails', 'active record' ]
 newsletter: arkency_form
 ---
 
