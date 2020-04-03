@@ -4,7 +4,7 @@ created_at: 2017-09-18 22:45:53 +0200
 kind: article
 publish: true
 author: "Szymon Fiedler"
-tags: [ 'rspec', 'rails' , 'event_store', 'rails_event_store']
+tags: [ 'rspec', 'rails' , 'rails_event_store']
 newsletter: arkency_form
 ---
 

@@ -4,7 +4,7 @@ created_at: 2018-03-27 18:22:15 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'ddd', 'ruby', 'rails', 'res', 'event_store' ]
+tags: [ 'ddd', 'ruby', 'rails', 'rails_event_store' ]
 newsletter: arkency_form
 img: "rails-event-store-ruby-event-store-v0-27/rails_event_store_ruby_event_store.png"
 ---
