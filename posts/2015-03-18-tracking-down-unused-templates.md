@@ -4,7 +4,7 @@ created_at: 2015-03-18 03:23:22 +0100
 kind: article
 publish: true
 author: Rafał Łasocha
-tags: [ 'story', 'chillout', 'activesupport' ]
+tags: [ 'story', 'chillout', 'active support' ]
 newsletter: arkency_form
 img: "tracking-down-unused-templates/countryside-fence-field.jpg"
 ---

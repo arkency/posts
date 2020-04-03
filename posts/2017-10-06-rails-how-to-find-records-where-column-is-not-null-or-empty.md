@@ -4,7 +4,7 @@ created_at: 2017-09-04 16:11:04 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'rails', 'active_record' ]
+tags: [ 'rails', 'active _record' ]
 newsletter: arkency_form
 ---
 
