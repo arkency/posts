@@ -4,7 +4,7 @@ created_at: 2013-03-21 11:52:19 +0100
 kind: article
 publish: true
 author: Jan Filipowski
-tags: [ 'OOP', 'OOD', 'mostly obious' ]
+tags: [ 'OOP', 'OOD', 'mostly obvious' ]
 newsletter: arkency_form
 ---
 
