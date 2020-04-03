@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: aar_newsletter
-tags: [ 'agile', 'developers', 'oriented', 'project', 'management' ]
+tags: [ 'agile', 'async remote' ]
 ---
 
 <p>

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: async_remote_main
-tags: [ 'chronos', 'kairos', 'developers', 'oriented', 'project', 'management' ]
+tags: [ 'chronos', 'kairos', 'async remote' ]
 stories: ['async-remote']
 ---
 
