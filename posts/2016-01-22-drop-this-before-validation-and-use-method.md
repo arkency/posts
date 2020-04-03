@@ -4,7 +4,7 @@ created_at: 2016-01-29 10:02:10 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'validations', 'aspects', 'ruby' ]
+tags: [ 'validations', 'aop', 'ruby' ]
 newsletter: skip
 newsletter_inside: clean
 ---
