@@ -4,7 +4,7 @@ created_at: 2014-10-23 21:59:29 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'react.js', 'root', 'sortable', 'magnificPopup' ]
+tags: [ 'react', 'root', 'sortable', 'magnificPopup' ]
 newsletter: skip
 newsletter_inside: react_books
 ---

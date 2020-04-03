@@ -4,7 +4,7 @@ created_at: 2014-10-03 10:55:02 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'react.js', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
+tags: [ 'react', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 img: "react-keys-getinitial-state/react_children_keys.jpg"
 newsletter: skip
 newsletter_inside: react_books

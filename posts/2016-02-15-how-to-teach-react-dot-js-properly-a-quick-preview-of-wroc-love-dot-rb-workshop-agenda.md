@@ -4,7 +4,7 @@ created_at: 2016-02-15 18:47:24 +0100
 kind: article
 publish: true
 author: Marcin Grzywaczewski
-tags: [ 'react.js', 'redux', 'wroc_love.rb' ]
+tags: [ 'react', 'redux', 'wroc_love.rb' ]
 newsletter: react_books
 img: "reactjs-workshop-blogpost-agenda/header.jpg"
 ---
