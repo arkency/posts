@@ -4,7 +4,7 @@ created_at: 2016-05-20 12:30:29 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-tags: [ 'rails', 'tdd', 'ddd', 'mutant', 'video', 'class' ]
+tags: [ 'rails', 'tdd', 'ddd', 'mutation testing', 'video class' ]
 newsletter: arkency_form
 ---
 

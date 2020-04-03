@@ -4,7 +4,7 @@ created_at: 2017-09-13 14:40:07 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'ruby', 'inheritance', 'module', 'constructor', 'mutation testing','mutant' ]
+tags: [ 'ruby', 'inheritance', 'module', 'constructor', 'mutation testing' ]
 newsletter: arkency_form
 ---
 

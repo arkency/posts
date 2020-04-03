@@ -4,7 +4,7 @@ created_at: 2016-05-19 09:57:12 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-tags: [ 'tdd', 'ddd', 'mutant', 'video', 'class', 'course' ]
+tags: [ 'tdd', 'ddd', 'mutation testing', 'video class', 'course' ]
 newsletter: arkency_form
 ---
 

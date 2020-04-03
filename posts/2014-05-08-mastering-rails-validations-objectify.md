@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
-tags: [ 'objectify', 'validation', 'context', 'rails', 'active model', 'active record' ]
+tags: [ 'objectify', 'validations', 'context', 'rails', 'active model', 'active record' ]
 ---
 
 <p>

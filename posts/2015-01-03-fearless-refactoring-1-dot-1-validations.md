@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: skip
-tags: [ 'validations' ]
+tags: [ 'rails', 'validations' ]
 img: "validations-categories/157H.jpg"
 ---
 

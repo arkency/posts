@@ -4,7 +4,7 @@ created_at: 2015-06-10 11:10:11 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-tags: ['testing', 'mutant']
+tags: ['testing', 'mutation testing', 'tdd']
 newsletter: arkency_form
 ---
 
