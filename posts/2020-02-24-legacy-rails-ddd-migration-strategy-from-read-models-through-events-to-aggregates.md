@@ -4,7 +4,7 @@ created_at: 2020-02-24 15:08:12 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-tags: ['ddd', 'legacy', 'aggregate', 'service object', 'read model', 'domain events']
+tags: ['ddd', 'legacy', 'aggregate', 'service object', 'read model', 'domain event']
 newsletter: skip
 ---
 

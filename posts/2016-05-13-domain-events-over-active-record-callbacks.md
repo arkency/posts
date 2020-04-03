@@ -4,7 +4,7 @@ created_at: 2016-05-13 17:02:23 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'domain events', 'active record', 'callbacks', 'ddd', 'rails' ]
+tags: [ 'domain event', 'active record', 'callbacks', 'ddd', 'rails' ]
 newsletter: arkency_form
 ---
 

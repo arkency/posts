@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: skip
-tags: ['domain events', 'ddd']
+tags: ['domain event', 'ddd']
 ---
 
 Today, while sitting on our [Rails/DDD workshops](http://blog.arkency.com/ddd-training/) led by Robert in Lviv, I was thinking/preparing a design of the new aggregates in my project. Robert was just explaining aggregates and how they can communicate (with events).
