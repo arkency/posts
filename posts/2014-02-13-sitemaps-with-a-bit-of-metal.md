@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Szymon Fiedler
 newsletter: arkency_form
-tags: [ 'seo', 'rails', 'sitemap', 'actioncontroller::metal' ]
+tags: [ 'rails', 'seo', 'sitemap', 'action controller' ]
 ---
 
 <p>
