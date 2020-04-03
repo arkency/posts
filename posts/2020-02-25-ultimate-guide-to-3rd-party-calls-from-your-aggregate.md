@@ -4,6 +4,7 @@ created_at: 2020-02-25 14:13:02 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
+tags: [ 'ddd', 'aggregate', 'api' ]
 newsletter: skip
 ---
 
