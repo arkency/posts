@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: 'Jan Filipowski'
 newsletter: arkency_form
-tags: [ 'ruby', 'storage', 'repository pattern', 'orm' ]
+tags: [ 'ruby', 'storage', 'ddd', 'orm' ]
 ---
 
 You've probably already read that [we don't use Rails](http://blog.arkency.com/2012/11/not-rails/) or any other framework to build [chillout.io](http://chillout.io). Having that said I must add we neither use ORM.
