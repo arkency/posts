@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Tomasz Rybczyński
 newsletter: arkency_form
-tags: [ 'domain', 'event' ]
+tags: [ 'domain event' ]
 img: "events/events.jpg"
 ---
 

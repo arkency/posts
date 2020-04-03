@@ -4,7 +4,7 @@ created_at: 2015-05-13 17:57:16 +0200
 kind: article
 publish: true
 author: Tomasz Rybczyński
-tags: [ 'event', 'store' ]
+tags: [ 'domain event', 'store' ]
 newsletter: react_books
 img: "events/blue-bricks.jpg"
 ---

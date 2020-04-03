@@ -4,7 +4,7 @@ created_at: 2015-03-10 21:35:01 +0100
 kind: article
 publish: true
 author: Mirosław Pragłowski
-tags: [ 'domain', 'event', 'eventsourcing' ]
+tags: [ 'domain event', 'event sourcing' ]
 newsletter: skip
 newsletter: arkency_form
 img: "events/eventsourcing.jpg"

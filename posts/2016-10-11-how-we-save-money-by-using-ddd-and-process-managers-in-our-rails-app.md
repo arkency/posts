@@ -4,7 +4,7 @@ created_at: 2016-10-11 16:43:59 +0200
 kind: article
 publish: true
 author: Jakub Rozmiarek
-tags: [ 'events', 'ddd', 'rails_event_store', 'payments', 'e-commerce' ]
+tags: [ 'domain event', 'ddd', 'rails_event_store', 'payments', 'e-commerce' ]
 newsletter: skip
 ---
 

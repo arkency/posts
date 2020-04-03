@@ -4,7 +4,7 @@ created_at: 2015-05-14 18:20:44 +0200
 kind: article
 publish: true
 author: Rafał Łasocha
-tags: [ 'rails_event_store', 'read model', 'event', 'event sourcing' ]
+tags: [ 'rails_event_store', 'read model', 'domain event', 'event sourcing' ]
 newsletter: fearless_refactoring_main
 img: "introducing-read-models-in-your-legacy-application/books.jpg"
 ---

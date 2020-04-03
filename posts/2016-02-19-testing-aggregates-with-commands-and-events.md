@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: skip
-tags: ['ddd', 'aggregate', 'events', 'testing']
+tags: ['ddd', 'aggregate', 'domain event', 'testing']
 ---
 
 Once you start switching to using aggregates in your system (as opposed to say, ActiveRecord objects), you will need to find good ways of testing those aggregate objects. This blogpost is an attempt to explore one of the possible ways.

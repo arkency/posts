@@ -4,7 +4,7 @@ created_at: 2015-03-12 13:58:01 +0100
 kind: article
 publish: true
 author: Tomasz Rybczyński
-tags: [ 'event', 'eventstore', 'greg' ]
+tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/store.jpg"
 description: "Event Store is a domain specific database for people who use the Event Sourcing pattern in their apps. #LEARN MORE about it on Arkency Blog !!!"

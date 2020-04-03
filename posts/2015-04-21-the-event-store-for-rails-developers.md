@@ -4,7 +4,7 @@ created_at: 2015-04-21 18:15:55 +0200
 kind: article
 publish: true
 author: Tomasz Rybczyński
-tags: [ 'event', 'eventstore' ]
+tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/city-people.jpg"
 ---

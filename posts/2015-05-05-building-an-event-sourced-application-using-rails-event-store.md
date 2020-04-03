@@ -4,7 +4,7 @@ created_at: 2015-05-05 09:26:18 +0200
 kind: article
 publish: true
 author: Mirosław Pragłowski
-tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
+tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]
 newsletter: skip
 newsletter: arkency_form
 img: "events/eventstore.jpg"

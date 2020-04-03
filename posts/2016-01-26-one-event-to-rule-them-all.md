@@ -4,7 +4,7 @@ created_at: 2016-01-26 23:04:06 +0100
 kind: article
 publish: true
 author: Mirosław Pragłowski
-tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD' ]
+tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'tests', 'TDD' ]
 newsletter: skip
 newsletter_inside: rails_event_store
 img: "events/cars-traffic-street-new-york.jpg"

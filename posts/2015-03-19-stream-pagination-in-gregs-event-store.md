@@ -4,7 +4,7 @@ created_at: 2015-03-24 19:28:05 +0100
 kind: article
 publish: true
 author: Tomasz Rybczyński
-tags: [ 'event', 'eventstore', 'greg' ]
+tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/pages.jpg"
 ---

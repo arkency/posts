@@ -4,7 +4,7 @@ created_at: 2015-06-12 09:19:01 +0200
 kind: article
 publish: true
 author: Mirosław Pragłowski
-tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing' ]
+tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]
 newsletter: skip
 newsletter_inside: rails_event_store
 img: "events/hitbythebus.jpg"

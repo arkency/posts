@@ -4,7 +4,7 @@ created_at: 2015-07-07 13:32:09 +0200
 kind: article
 publish: true
 author: Mirosław Pragłowski
-tags: [ 'rails_event_store', 'domain', 'event', 'event sourcing', 'tests', 'TDD', 'testing']
+tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'tests', 'TDD', 'testing']
 newsletter: skip
 newsletter_inside: rails_event_store
 img: "events/car-vehicle-motion-power.jpg"

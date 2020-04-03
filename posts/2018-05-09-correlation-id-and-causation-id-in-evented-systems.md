@@ -4,7 +4,7 @@ created_at: 2018-05-14 18:28:57 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'correlation', 'causation', 'ddd', 'events' ]
+tags: [ 'correlation', 'causation', 'ddd', 'domain event' ]
 newsletter: arkency_form
 img: "correlation_id_causation_id_rails_ruby_event/CorrelationAndCausationEventsCommands.png"
 ---
