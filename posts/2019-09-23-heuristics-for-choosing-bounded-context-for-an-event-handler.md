@@ -4,6 +4,7 @@ created_at: 2019-09-23 10:55:30 +0200
 kind: article
 publish: true
 author: Rafał Łasocha
+tags: ['bounded context', 'process manager', 'ddd']
 newsletter: skip
 ---
 
