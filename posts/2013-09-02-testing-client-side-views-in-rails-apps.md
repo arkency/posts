@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Jan Filipowski
 newsletter: frontend_course
-tags: [ 'TDD', 'CS', 'Rails', 'testing']
+tags: [ 'TDD', 'coffeescript', 'Rails', 'testing']
 ---
 
 In previous post I've only showed you [how to implement most basic tests](http://blog.arkency.com/2013/07/coffeescript-tests-for-rails-apps/) for your front-end code. Now I want to show you how to unit test your views and, what's more important, how to make your views testable.
