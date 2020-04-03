@@ -4,7 +4,7 @@ created_at: 2014-01-09 12:21:00 +0100
 kind: article
 publish: true
 author: Szymon Fiedler
-tags: ['identity', 'team', 'remote']
+tags: ['identity', 'team', 'async remote']
 newsletter: async_remote_main
 stories: ['async-remote']
 ---

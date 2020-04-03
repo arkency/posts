@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter
-tags: [ 'happiness', 'remote', 'organized', 'project' ]
+tags: [ 'happiness', 'async remote', 'organized', 'project' ]
 stories: ['async-remote']
 ---
 

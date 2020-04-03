@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter
-tags: [ 'remote', 'refactor', 'project', 'management', 'tasks', 'story' ]
+tags: [ 'async remote', 'refactor', 'project', 'management', 'tasks', 'story' ]
 stories: ['async-remote']
 ---
 
