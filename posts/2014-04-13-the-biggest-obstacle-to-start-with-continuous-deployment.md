@@ -5,7 +5,7 @@ kind: article
 publish: true
 newsletter: aar_newsletter
 author: Robert Pankowecki
-tags: [ 'continuous', 'deployment', 'rails', 'database', 'migrations' ]
+tags: [ 'continuous', 'deployment', 'rails', 'database', 'migration' ]
 stories: ['async-remote']
 ---
 

@@ -4,7 +4,7 @@ created_at: 2016-12-23 10:21:22 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'migrations' ]
+tags: [ 'migration' ]
 newsletter: arkency_form
 img: "rails-migrations-large-online-big-data/large-hadron-migrator.jpg"
 ---
