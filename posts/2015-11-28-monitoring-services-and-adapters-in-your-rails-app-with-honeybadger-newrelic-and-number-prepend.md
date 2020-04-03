@@ -4,7 +4,7 @@ created_at: 2015-11-28 21:06:10 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'monitoring', 'instrumentation', 'rails', 'apps', 'new relic', 'honeybadger', 'prepend' ]
+tags: [ 'monitoring', 'instrumentation', 'rails', 'web application', 'new relic', 'honeybadger', 'prepend' ]
 newsletter: skip
 newsletter_inside: clean
 img: "ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app.jpg"

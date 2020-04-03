@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
-tags: [ 'real-time', 'websockets', 'eventsource', 'web apps' ]
+tags: [ 'real-time', 'websockets', 'eventsource', 'web application' ]
 ---
 
 <p>
