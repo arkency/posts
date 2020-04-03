@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: 'Jan Filipowski'
 newsletter: arkency_form
-tags: [ 'ATDD', 'testing', 'ruby' ]
+tags: [ 'TDD', 'ATDD', 'testing', 'ruby' ]
 ---
 
 [Chillout.io](http://chillout.io/) architecture is distributed - currently just as few processes on same production server. As professionals we decided to prepare integration tests for each of application (maybe in terms of their business we could call them acceptance tests), but that wasn't enough - _we wanted to expose business scenarios that we're actually aiming in_. We achieved that with fully black-box tests. Curious how we did that? Read on.
