@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Robert Pankowecki"
 newsletter: react_books
-tags: [ 'async', 'rails', 'zmq', 'business metrics', 'process', 'exceptions']
+tags: [ 'rails', 'zmq', 'business metrics', 'process', 'exceptions' ]
 ---
 
 Exceptions and business metrics. These are two common use cases involving

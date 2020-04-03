@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: "Robert Pankowecki"
 newsletter: react_books
-tags: [ 'async', 'rails', 'exceptions', 'business metrics', 'thin', 'eventmachine', 'threads']
+tags: [ 'rails', 'exceptions', 'business metrics', 'thin', 'eventmachine', 'threads']
 ---
 
 In this series of blog posts we discuss possible implementation options for
