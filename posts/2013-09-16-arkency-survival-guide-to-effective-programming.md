@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter
-tags: [ 'ebook', 'pdf', 'guide', 'effective', 'programming' ]
+tags: [ 'async remote', 'ebook', 'pdf', 'guide', 'effective', 'programming' ]
 ---
 
 Working remotely is still a relatively new thing compared to going to an office,
