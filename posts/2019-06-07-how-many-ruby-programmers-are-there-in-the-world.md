@@ -4,6 +4,7 @@ created_at: 2019-06-07 12:01:51 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ruby', 'rubymine', 'video']
 newsletter: skip
 ---
 
