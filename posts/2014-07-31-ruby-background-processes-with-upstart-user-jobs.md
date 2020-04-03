@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
-tags: [ 'upstart', 'background', 'process' ]
+tags: [ 'upstart', 'background process' ]
 ---
 
 <p>

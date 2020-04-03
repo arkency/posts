@@ -4,7 +4,7 @@ created_at: 2015-10-24 21:05:24 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'rails', 'active record', 'background', 'job', 'after commit' ]
+tags: [ 'rails', 'active record', 'background job', 'after commit' ]
 newsletter: skip
 newsletter_inside: clean
 ---

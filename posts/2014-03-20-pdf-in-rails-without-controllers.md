@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
-tags: [ 'rails', 'pdf', 'background', 'job' ]
+tags: [ 'rails', 'pdf', 'background job' ]
 ---
 
 <p>
