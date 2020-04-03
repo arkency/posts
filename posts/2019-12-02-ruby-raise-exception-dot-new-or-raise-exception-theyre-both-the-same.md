@@ -4,6 +4,7 @@ created_at: 2019-12-02 18:45:01 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
+tags: ['ruby', 'exceptions']
 newsletter: skip
 ---
 
