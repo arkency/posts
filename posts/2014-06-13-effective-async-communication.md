@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: async_remote_main
-tags: [ 'remote', 'async', 'communication' ]
+tags: [ 'async remote', 'communication' ]
 stories: ['async-remote']
 ---
 

@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: async_remote_main
-tags: [ 'async', 'remote' ]
+tags: [ 'async remote' ]
 stories: ['async-remote']
 ---
 

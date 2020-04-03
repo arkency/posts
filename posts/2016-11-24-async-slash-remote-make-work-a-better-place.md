@@ -4,7 +4,7 @@ created_at: 2016-11-24 17:01:51 +0200
 kind: article
 publish: true
 author: Anton Paisov
-tags: [ 'async', 'remote', 'work', 'lifestyle' ]
+tags: [ 'async remote', 'work', 'lifestyle' ]
 newsletter: skip
 ---
 

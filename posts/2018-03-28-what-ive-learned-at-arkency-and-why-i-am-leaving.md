@@ -4,7 +4,7 @@ created_at: 2018-03-28 12:53:24 +0200
 kind: article
 publish: true
 author: Piotr Macuk
-tags: [ 'async', 'remote', 'tools' ]
+tags: [ 'async remote', 'tools' ]
 newsletter: arkency_form
 ---
 
