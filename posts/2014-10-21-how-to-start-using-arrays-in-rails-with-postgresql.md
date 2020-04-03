@@ -6,7 +6,7 @@ publish: true
 author: Kamil Lelonek
 newsletter: skip
 newsletter_inside: arkency_short
-tags: [ 'Active Record', 'PostgreSQL', 'Postgres', 'AR', 'Array' ]
+tags: [ 'Active Record', 'PostgreSQL', 'Array' ]
 ---
 
 <p>
