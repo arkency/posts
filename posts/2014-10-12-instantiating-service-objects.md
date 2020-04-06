@@ -6,7 +6,7 @@ publish: true
 author: Robert Pankowecki
 newsletter: skip
 newsletter_inside: fearless_refactoring_course_instantiating
-tags: [ 'ruby', 'rails', 'service', 'objects', 'instantiate' ]
+tags: [ 'ruby', 'rails', 'service objects', 'instantiate' ]
 ---
 
 <p>

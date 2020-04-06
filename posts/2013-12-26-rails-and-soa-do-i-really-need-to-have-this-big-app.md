@@ -4,7 +4,7 @@ created_at: 2013-12-26 14:15:56 +0100
 kind: article
 publish: true
 author: Marcin Grzywaczewski
-tags: [ 'architecture', 'rails', 'service', 'multiapp', 'soa' ]
+tags: [ 'architecture', 'rails', 'service objects', 'multiapp', 'soa' ]
 newsletter: arkency_form
 ---
 
