@@ -4,7 +4,7 @@ created_at: 2015-03-09 15:09:17 +0100
 kind: article
 publish: true 
 author: Marcin Grzywaczewski
-tags: [ 'angularjs', 'frontend' ]
+tags: [ 'angularjs', 'front end' ]
 img: "angular-configurable-di/img.jpg"
 newsletter: react_books
 ---

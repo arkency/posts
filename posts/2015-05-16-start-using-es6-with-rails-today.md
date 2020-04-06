@@ -4,7 +4,7 @@ created_at: 2015-05-16 16:00:00 +0100
 kind: article
 publish: true
 author: Wiktor Mociun
-tags: [ 'es6', 'frontend', 'javascript' ]
+tags: [ 'es6', 'front end', 'javascript' ]
 newsletter: arkency_form
 img: "start-using-es6/lead.jpg"
 ---

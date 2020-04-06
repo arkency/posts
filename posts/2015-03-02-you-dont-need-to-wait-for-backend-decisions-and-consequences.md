@@ -4,7 +4,7 @@ created_at: 2015-03-02 17:15:52 +0100
 kind: article
 publish: true 
 author: Marcin Grzywaczewski
-tags: [ 'frontend', 'architecture' ]
+tags: [ 'front end', 'architecture' ]
 img: "you-dont-need-to-wait-for-backend-decisions-and-consequences/img.jpg"
 newsletter: react_books
 ---

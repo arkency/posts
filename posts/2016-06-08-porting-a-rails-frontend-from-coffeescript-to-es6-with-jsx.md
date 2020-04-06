@@ -4,7 +4,7 @@ created_at: 2016-06-09 00:08:29 +0200
 kind: article
 publish: true
 author: "Tomasz Patrzek"
-tags: [ 'react', 'frontend', 'es6', 'jsx', 'refactoring', 'porting' ]
+tags: [ 'react', 'front end', 'es6', 'jsx', 'refactoring', 'porting' ]
 newsletter: react_books
 ---
 

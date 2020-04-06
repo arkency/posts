@@ -4,7 +4,7 @@ created_at: 2015-10-27 19:01:22 +0100
 kind: article
 publish: true
 author: Marcin Grzywaczewski
-tags: [ 'frontend', 'assets', 'sprockets' ]
+tags: [ 'front end', 'assets', 'sprockets' ]
 newsletter: react_books
 img: "creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header.png"
 ---

@@ -4,7 +4,7 @@ created_at: 2015-01-04 15:28:14 +0100
 kind: article
 publish: false
 author: Marcin Grzywaczewski 
-tags: [ 'frontend', 'coffeescript', 'oop', 'architecture' ]
+tags: [ 'front end', 'coffeescript', 'oop', 'architecture' ]
 newsletter: arkency_form
 ---
 

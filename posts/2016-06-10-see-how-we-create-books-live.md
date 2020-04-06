@@ -4,7 +4,7 @@ created_at: 2016-06-10 03:30:00 +0200
 kind: article
 publish: true
 author: Wiktor Mociun
-tags: [ 'rails', 'react', 'frontend', 'livestream' ]
+tags: [ 'rails', 'react', 'front end', 'livestream' ]
 newsletter: react_books
 ---
 
