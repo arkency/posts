@@ -14,7 +14,7 @@ How to migrate legacy Rails apps into DDD/CQRS in a relatively safe way?
 
 Recently, I was answering a question on our [Rails Architect Masterclass](https://arkency.com/masterclass/) Slack channel. The question was related to a video which explained the strategy of extracting read models as the first step. The part which wasn't clear enough was on the topic how the read models extraction can help in designing aggregates. Here's my written attempt to explain this strategy:
 
-# introduce a Service objects layer (aka application layer)
+# Introduce a Service objects layer (aka application layer)
 
 
 ```ruby
