@@ -6,7 +6,6 @@ tags: [ 'ddd', 'async remote' ]
 newsletter: skip
 kind: article
 publish: true
-cta: 'ddd'
 ---
 
 Being remote means you don't always have face-to-face contact with your customers, with the domain experts, or with the right people who know how the business you're trying to model works.
