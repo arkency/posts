@@ -176,8 +176,6 @@ In previous versions of Rails we may encounter some weird behavior:
 
 What happened here? Why subjects array wasn't updated?
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
-
 ### Dirty tracking
 
 [`ActiveModel::Dirty` module](http://api.rubyonrails.org/classes/ActiveModel/Dirty.html) provides a way to track changes in your objects. Sometimes our record does not know that underlying object properties have been changed and that's why we have to point this explicitly.

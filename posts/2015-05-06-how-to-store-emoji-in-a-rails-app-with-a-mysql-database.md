@@ -81,8 +81,6 @@ production:
 
 Now you are ready to handle emoji 👍
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
-
 # Rails, why you don't like `utf8mb4`?
 
 After changing character set, you may experience the `Mysql2::Error: Specified key was too long; max key length is 767 bytes: CREATE UNIQUE INDEX` error when performing `rake db:migrate` task. It is related to the InnoDB maximum index length described in previous section. There is [a fix](https://github.com/rails/rails/commit/8744632fb5649cf26cdcd1518a3554ece95a401b) for `schema_migrations` table in Rails 4+, however you still can experience this error on tables created by yourself. As far as I am concerned this is still not fixed in Rails 4.2. You can resolve this issue in two ways:

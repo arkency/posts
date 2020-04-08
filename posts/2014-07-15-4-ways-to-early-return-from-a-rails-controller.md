@@ -107,8 +107,6 @@ If you decide to go with this type of refactoring you must remember to add `retu
 end of the extracted method. However the good side is that all your `redirect_to and return` lines
 can remain unchanged.
 
-<%= inner_newsletter(item[:newsletter_inside]) %>
-
 ## 3. extracted_method{ return }
 
 ```ruby
