@@ -4,7 +4,7 @@ created_at: 2019-03-19 10:10:33 +0100
 kind: article
 publish: true
 author: Jakub Kosiński
-tags: [ 'active record', 'find' ]
+tags: [ 'rails', 'active record', 'find' ]
 newsletter: arkency_form
 ---
 <%= img_fit("scary_record/hacker.jpg") %>
