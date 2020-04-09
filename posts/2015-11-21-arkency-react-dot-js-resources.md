@@ -3,6 +3,7 @@ title: "Arkency React.js resources"
 created_at: 2015-11-21 11:00:53 +0100
 kind: article
 publish: true
+tags: [ 'rails', 'react' ]
 author: Andrzej Krzywda
 newsletter: skip
 ---
