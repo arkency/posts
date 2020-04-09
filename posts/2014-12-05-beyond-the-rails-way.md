@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: fearless_refactoring_main
-tags: ['rails way']
+tags: [ 'rails', 'rails way' ]
 ---
 
 <p>
