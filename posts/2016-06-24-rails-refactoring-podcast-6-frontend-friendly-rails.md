@@ -5,7 +5,7 @@ kind: article
 publish: true
 newsletter: skip
 author: Wiktor Mociun
-tags: ["podcast"]
+tags: [ "rails", "refactoring", "podcast"]
 ---
 
 In this episode of Rails Refactoring Podcast, Wiktor and Marcin are discussing
