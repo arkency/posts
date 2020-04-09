@@ -4,7 +4,7 @@ created_at: 2017-06-01 14:00:39 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'svg', 'refile', 'imgix' ]
+tags: [ 'rails', 'svg', 'refile', 'imgix' ]
 newsletter: arkency_form
 ---
 
