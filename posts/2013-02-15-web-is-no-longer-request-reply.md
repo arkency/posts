@@ -5,7 +5,7 @@ kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: react_books
-tags: [ 'web', 'servers', 'patterns' ]
+tags: [ 'rails', 'web', 'servers', 'patterns' ]
 ---
 
 In the old times everything was simple. You received a request, did some computation (or not in case of static page)
