@@ -4,7 +4,7 @@ created_at: 2017-08-18 11:59:07 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-tags: [ 'spreadsheet_architect' ]
+tags: [ 'rails', 'spreadsheet_architect' ]
 newsletter: arkency_form
 ---
 
