@@ -66,11 +66,7 @@ def call(cmd)
     with_aggregate(Payment, cmd.payment_id) do |payment|
       payment.charge_credit_card(cmd.total_amount)
     end
-    gateway.purchase(
-      Integer(cmd.amount * 100),
-      cmd.credit_card,
-      { payment_id: cmd.payment_id }
-    )
+    gateway.purchase(Integer(cmd.amount * 100), cmd.credit_card, { payment_id: cmd.payment_id })
   end
 end
 ```
@@ -188,14 +184,7 @@ Lambda gives us great possibility of currying arguments and getting some from in
 
 ```ruby
 def request
-  lambda do |transaction_id|
-    gateway.capture(
-      transaction_id,
-      Integer(cmd.amount * 100),
-      cmd.credit_card,
-      { payment_id: cmd.payment_id }
-    )
-  end
+  ->(transaction_id) { gateway.capture(transaction_id, Integer(cmd.amount * 100), cmd.credit_card, { payment_id: cmd.payment_id }) }
 end
 ```
 
@@ -205,16 +194,14 @@ As a bonus, you get nice and clean aggregate tests without messing with mocks, V
 class PaymentTest < ActiveSupport::TestCase
   def test_credit_card_charge_succeeded
     payment_id = SecureRandom.uuid
-    payment = Payment.new(payment_id)
+    payment    = Payment.new(payment_id)
     payment.charge_credit_card(amount, credit_card, successful_request)
 
-    assert_changes(
-      payment.unpublished_events,
-      [
+    assert_changes(payment.unpublished_events, [
         CreditCardPaymentCharged.new(
           data: {
-            payment_id: payment_id,
-            amount: BigDecimal('123.45'),
+            payment_id:     payment_id,
+            amount:         BigDecimal("123.45"),
             transaction_id: '53433'
           }
         )
@@ -233,17 +220,17 @@ class PaymentTest < ActiveSupport::TestCase
   private
 
   def amount
-    BigDecimal('123.45')
+    BigDecimal("123.45")
   end
 
   def credit_card
     {
-      name: 'Jane Doe',
-      number: '4111 1111 1111 1111',
-      month: 1,
-      year: 2028,
+      name:               'Jane Doe',
+      number:             '4111 1111 1111 1111',
+      month:              1,
+      year:               2028,
       verification_value: 123,
-      brand: 'visa'
+      brand:              'visa'
     }
   end
 
@@ -252,11 +239,11 @@ class PaymentTest < ActiveSupport::TestCase
   end
 
   def successful_request
-    ->(*) { Struct.new(:success?, :transaction_id).new(true, transaction_id) }
+    ->(*) {Struct.new(:success?, :transaction_id).new(true, transaction_id)}
   end
 
   def failure_request
-    ->(*) { Struct.new(:success?, :transaction_id).new(false, transaction_id) }
+    ->(*) {Struct.new(:success?, :transaction_id).new(false, transaction_id)}
   end
 end
 ```
