@@ -5,7 +5,7 @@ kind: article
 publish: true
 newsletter: skip
 author: Marcin Grzywaczewski
-tags: ["frontend-friendly-rails"]
+tags: [ "rails", "react", "api", "frontend-friendly-rails"]
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
 
