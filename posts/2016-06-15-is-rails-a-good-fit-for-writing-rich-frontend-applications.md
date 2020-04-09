@@ -4,6 +4,7 @@ created_at: 2016-06-15 15:56:22 +0200
 kind: article
 publish: true
 newsletter: skip
+tags: [ 'rails', 'api' ]
 author: Marcin Grzywaczewski
 ---
 
