@@ -4,7 +4,7 @@ created_at: 2018-12-13 14:00:00 +0100
 kind: article
 publish: true
 author: Paweł Pacana
-tags: [ 'aws', 'lambda', 'serverless', 'slack' ]
+tags: [ 'ruby', 'aws', 'lambda', 'serverless', 'slack' ]
 newsletter: arkency_form
 ---
 
