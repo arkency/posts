@@ -1,7 +1,6 @@
 ---
 title: "Rails Refactoring Podcast #6 - Frontend Friendly Rails"
 created_at: 2016-06-24 03:05:00 +0200
-kind: article
 publish: true
 author: Wiktor Mociun
 tags: [ "rails", "refactoring", "podcast"]

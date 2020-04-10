@@ -1,7 +1,6 @@
 ---
 title: "The quotes from the Post Rails Book Bundle books"
 created_at: 2016-07-20 14:36:28 +0200
-kind: article
 publish: true
 tags: [ 'rails', 'book' ]
 author: Andrzej Krzywda

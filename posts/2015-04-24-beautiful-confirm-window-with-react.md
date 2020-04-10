@@ -1,7 +1,6 @@
 ---
 title: "Beautiful confirm window with React"
 created_at: 2015-04-24 11:25:01 +0200
-kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]

@@ -1,7 +1,6 @@
 ---
 title: "Mutation testing of Rails views"
 created_at: 2016-06-21 21:55:37 +0200
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']

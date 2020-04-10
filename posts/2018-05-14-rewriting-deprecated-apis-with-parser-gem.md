@@ -1,7 +1,6 @@
 ---
 title: "Rewriting deprecated APIs with parser gem"
 created_at: 2018-05-14 23:35:00 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: ['ruby', 'parser', 'AST', 'rails_event_store' ]

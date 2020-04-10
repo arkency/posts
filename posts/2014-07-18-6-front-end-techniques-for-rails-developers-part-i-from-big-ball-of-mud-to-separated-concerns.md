@@ -1,7 +1,6 @@
 ---
 title: "6 front-end techniques for Rails developers. Part I: From big ball of mud to separated concerns"
 created_at: 2014-07-18 19:58:54 +0200
-kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'front end', 'javascript', 'refactoring' ]

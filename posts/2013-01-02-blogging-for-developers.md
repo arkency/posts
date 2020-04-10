@@ -1,7 +1,6 @@
 ---
 title: "Blogging for developers"
 created_at: 2013-01-02 10:11:52 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: react_books

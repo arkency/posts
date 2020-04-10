@@ -1,7 +1,6 @@
 ---
 title: "The easiest posts to write for a programming blog"
 created_at: 2017-07-14 10:25:06 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'blogging' ]

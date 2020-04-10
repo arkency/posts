@@ -1,7 +1,6 @@
 ---
 title: "Service objects as a way of testing Rails apps (without factory_girl)"
 created_at: 2014-06-31 12:00:20 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: fearless_refactoring_1

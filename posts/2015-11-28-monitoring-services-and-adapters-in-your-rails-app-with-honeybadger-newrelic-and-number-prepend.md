@@ -1,7 +1,6 @@
 ---
 title: "Monitoring services and adapters in your Rails app with Honeybadger, NewRelic and #prepend"
 created_at: 2015-11-28 21:06:10 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'monitoring', 'instrumentation', 'rails', 'web application', 'new relic', 'honeybadger', 'prepend' ]

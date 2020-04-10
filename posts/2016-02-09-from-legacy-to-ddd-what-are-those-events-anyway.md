@@ -1,7 +1,6 @@
 ---
 title: "From legacy to DDD: What are those events anyway?"
 created_at: 2016-02-09 23:48:04 +0100
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']

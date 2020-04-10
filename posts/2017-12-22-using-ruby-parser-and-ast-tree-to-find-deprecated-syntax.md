@@ -1,7 +1,6 @@
 ---
 title: "Using ruby parser and AST tree to find deprecated syntax"
 created_at: 2017-12-22 11:32:22 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'parser', 'AST', 'rails' ]

@@ -1,7 +1,6 @@
 ---
 title: "Reliable notifications between two apps or microservices"
 created_at: 2017-04-09 11:30:18 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'messaging' ]

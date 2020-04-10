@@ -1,7 +1,6 @@
 ---
 title: "Tracking dead code in Rails apps with metrics"
 created_at: 2017-06-23 15:57:39 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'custom metrics', 'dead code' ]

@@ -1,7 +1,6 @@
 ---
 title: "respond_to |format| is useful even without multiple formats"
 created_at: 2016-07-21 16:39:29 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'respond_to', 'format' ]

@@ -1,7 +1,6 @@
 ---
 title: "Code style matters"
 created_at: 2014-07-14 06:18:38 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter_inside: fearless_refactoring_1

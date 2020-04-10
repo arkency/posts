@@ -1,7 +1,6 @@
 ---
 title: "Command bus in a Rails application"
 created_at: 2016-09-15 08:26:38 +0200
-kind: article
 publish: true
 tags: [ 'ddd', 'cqrs', 'commands' ]
 author: Andrzej Krzywda

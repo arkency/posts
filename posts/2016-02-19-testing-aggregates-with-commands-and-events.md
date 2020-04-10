@@ -1,7 +1,6 @@
 ---
 title: "Testing aggregates with commands and events"
 created_at: 2016-02-19 07:26:59 +0100
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'aggregate', 'domain event', 'testing']

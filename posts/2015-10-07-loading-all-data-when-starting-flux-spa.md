@@ -1,7 +1,6 @@
 ---
 title: "Loading all data when starting Flux SPA"
 created_at: 2016-01-22 13:39:27 +0200
-kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'react', 'flux', 'altjs' ]

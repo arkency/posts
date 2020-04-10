@@ -1,7 +1,6 @@
 ---
 title: "RubyMine basic navigation features (that make you move around code fast)"
 created_at: 2014-07-09 10:10:42 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: fearless_refactoring_1

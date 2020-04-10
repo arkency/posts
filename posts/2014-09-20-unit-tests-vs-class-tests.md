@@ -1,7 +1,6 @@
 ---
 title: "Unit tests vs class tests"
 created_at: 2014-10-12 19:06:17 +0200
-kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter_inside: fearless_refactoring_course_instantiating

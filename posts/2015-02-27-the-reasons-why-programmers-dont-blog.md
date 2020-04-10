@@ -1,7 +1,6 @@
 ---
 title: "The reasons why programmers don't blog"
 created_at: 2015-02-27 10:05:53 +0100
-kind: article
 publish: true
 author: Andrzej Krzywda
 newsletter: blogging_book

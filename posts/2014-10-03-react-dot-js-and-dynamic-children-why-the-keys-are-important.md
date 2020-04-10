@@ -1,7 +1,6 @@
 ---
 title: "React.js and Dynamic Children - Why the Keys are Important"
 created_at: 2014-10-03 10:55:02 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'dynamic children', 'keys', 'state', 'getinitialstate' ]

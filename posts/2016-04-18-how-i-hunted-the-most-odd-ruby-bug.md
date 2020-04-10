@@ -1,7 +1,6 @@
 ---
 title: "How I hunted the most odd ruby bug"
 created_at: 2016-04-18 09:59:28 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'resque', 'honeybadger', 'at_exit', 'threads' ]

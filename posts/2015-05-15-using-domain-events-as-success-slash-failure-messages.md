@@ -1,7 +1,6 @@
 ---
 title: "Using domain events as success/failure messages"
 created_at: 2015-05-15 12:59:51 +0200
-kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]

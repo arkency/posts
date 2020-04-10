@@ -1,7 +1,6 @@
 ---
 title: "Mastering Rails Validations - Objectify"
 created_at: 2014-05-08 20:05:51 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form

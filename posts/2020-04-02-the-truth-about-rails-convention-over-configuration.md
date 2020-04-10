@@ -3,7 +3,6 @@ title: "The truth about Rails Convention over Configuration"
 created_at: 2020-04-02 10:24:17 +0200
 author: Andrzej Krzywda
 tags: [ 'rails', 'architecture' ]
-kind: article
 publish: false
 ---
 

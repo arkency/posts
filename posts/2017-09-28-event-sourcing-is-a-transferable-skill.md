@@ -1,7 +1,6 @@
 ---
 title: "Event Sourcing is a transferable skill"
 created_at: 2017-11-28 20:40:20 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'event sourcing', 'haskell' ]

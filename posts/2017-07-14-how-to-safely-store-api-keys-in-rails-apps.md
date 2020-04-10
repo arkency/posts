@@ -1,7 +1,6 @@
 ---
 title: "How to safely store API keys in Rails apps"
 created_at: 2017-07-14 13:48:33 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'security', 'rails', 'api' ]

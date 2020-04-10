@@ -1,7 +1,6 @@
 ---
 title: "Could we drop Symbols from Ruby?"
 created_at: 2017-10-02 17:55:44 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'symbols' ]

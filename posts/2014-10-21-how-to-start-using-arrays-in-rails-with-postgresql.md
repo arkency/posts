@@ -1,7 +1,6 @@
 ---
 title: "How to start using Arrays in Rails with PostgreSQL"
 created_at: 2014-10-21 21:05:52 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter_inside: arkency_short

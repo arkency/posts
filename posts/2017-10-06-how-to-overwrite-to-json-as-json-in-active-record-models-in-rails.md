@@ -1,7 +1,6 @@
 ---
 title: "How to overwrite to_json (as_json) in Active Record models in Rails"
 created_at: 2017-09-26 11:44:52 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'to_json', 'as_json', 'rails', 'active record']

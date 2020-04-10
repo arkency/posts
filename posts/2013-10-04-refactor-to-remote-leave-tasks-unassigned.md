@@ -1,7 +1,6 @@
 ---
 title: "Developers oriented project management: Leave tasks unassigned"
 created_at: 2013-10-04 10:11:54 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter

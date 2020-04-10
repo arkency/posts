@@ -1,7 +1,6 @@
 ---
 title: "On ActiveRecord callbacks, setters and derived data"
 created_at: 2017-12-13 16:02:52 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: ['ddd', 'setters', 'rails', 'ruby', 'derived', 'active record']

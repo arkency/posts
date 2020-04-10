@@ -1,7 +1,6 @@
 ---
 title: "Adapters 101"
 created_at: 2014-08-24 09:50:10 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: fearless_refactoring_course

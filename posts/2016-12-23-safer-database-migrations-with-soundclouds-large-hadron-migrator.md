@@ -1,7 +1,6 @@
 ---
 title: "Safer Rails database migrations with Soundcloud's Large Hadron Migrator"
 created_at: 2016-12-23 10:21:22 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'migration' ]

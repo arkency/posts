@@ -1,7 +1,6 @@
 ---
 title: "Why we don't use ORM"
 created_at: 2012-12-03 11:25:59 +0100
-kind: article
 publish: true
 author: 'Jan Filipowski'
 newsletter: arkency_form

@@ -1,7 +1,6 @@
 ---
 title: "The anatomy of Domain Event"
 created_at: 2016-05-09 18:59:04 +0200
-kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]

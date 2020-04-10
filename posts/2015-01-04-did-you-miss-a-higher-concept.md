@@ -1,7 +1,6 @@
 ---
 title: "It's easy to miss a higher level concept in an app"
 created_at: 2015-01-04 15:28:14 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby' ]

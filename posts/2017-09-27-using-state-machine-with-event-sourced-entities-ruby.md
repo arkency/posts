@@ -1,7 +1,6 @@
 ---
 title: "Using state_machine with event sourced entities"
 created_at: 2017-10-15 13:09:06 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'state_machine', 'event sourcing' ]

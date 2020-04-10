@@ -1,7 +1,6 @@
 ---
 title: "How to setup development work with RailsEventStore and mutant"
 created_at: 2017-09-06 12:39:16 +0200
-kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rails_event_store', 'mutation testing', 'ddd' ]

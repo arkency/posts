@@ -1,7 +1,6 @@
 ---
 title: "One year of React.js in Arkency"
 created_at: 2015-05-10 20:11:11 +0200
-kind: article
 publish: true
 author: Marcin Grzywaczewski 
 tags: [ 'react', 'front end', 'book' ]

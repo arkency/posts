@@ -1,7 +1,6 @@
 ---
 title: "Patterns for dealing with uncertainty"
 created_at: 2016-12-04 15:55:49 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'DDD', 'networking' ]

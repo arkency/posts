@@ -1,7 +1,6 @@
 ---
 title: "Hourly Billing is Nuts"
 created_at: 2016-10-20 18:21:38 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'consulting' ]

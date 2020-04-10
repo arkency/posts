@@ -1,7 +1,6 @@
 ---
 title: "How to keep yourself motivated for blogging?"
 created_at: 2017-07-17 10:40:39 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle', 'coaching', 'motivation', 'blogging' ]

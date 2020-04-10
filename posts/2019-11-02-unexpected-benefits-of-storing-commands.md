@@ -1,7 +1,6 @@
 ---
 title: "Unexpected benefits of storing commands"
 created_at: 2019-11-02 15:49:06 +0100
-kind: article
 publish: true
 author: Tomasz Wróbel
 tags: [ 'rails_event_store', 'testing', 'commands' ]

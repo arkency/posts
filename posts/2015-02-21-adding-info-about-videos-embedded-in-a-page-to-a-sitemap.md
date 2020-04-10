@@ -1,7 +1,6 @@
 ---
 title: "Adding videos embedded in a page to a sitemap"
 created_at: 2015-02-21 21:50:58 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sitemap', 'video', 'ruby' ]

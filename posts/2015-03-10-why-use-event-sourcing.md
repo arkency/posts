@@ -1,7 +1,6 @@
 ---
 title: "Why use Event Sourcing"
 created_at: 2015-03-10 21:35:01 +0100
-kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'domain event', 'event sourcing' ]

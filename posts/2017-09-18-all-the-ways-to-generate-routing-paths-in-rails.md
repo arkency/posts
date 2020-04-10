@@ -1,7 +1,6 @@
 ---
 title: "All the ways to generate routing paths in Rails"
 created_at: 2017-09-18 10:17:05 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'routing' ]

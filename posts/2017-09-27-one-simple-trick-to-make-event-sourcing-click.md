@@ -1,7 +1,6 @@
 ---
 title: "One simple trick to make Event Sourcing click"
 created_at: 2017-10-02 09:34:57 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'event sourcing', 'aggregate' ]

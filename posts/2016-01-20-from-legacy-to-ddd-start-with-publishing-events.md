@@ -1,7 +1,6 @@
 ---
 title: "From legacy to DDD: Start with publishing events"
 created_at: 2016-01-20 13:55:18 +0100
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']

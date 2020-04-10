@@ -1,7 +1,6 @@
 ---
 title: "Rails Refactoring: the aha! moments"
 created_at: 2014-02-10 18:21:35 +0100
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'refactoring']

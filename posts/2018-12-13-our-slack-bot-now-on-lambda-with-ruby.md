@@ -1,7 +1,6 @@
 ---
 title: "Serverless Slack bot on Lambda with Ruby (and what’s the less pleasant part about it)"
 created_at: 2018-12-13 14:00:00 +0100
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ruby', 'aws', 'lambda', 'serverless', 'slack' ]

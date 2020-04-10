@@ -1,7 +1,6 @@
 ---
 title: "Testing cookies in Rails"
 created_at: 2017-06-02 22:31:25 +0200
-kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'rails', 'cookies', 'testing' ]

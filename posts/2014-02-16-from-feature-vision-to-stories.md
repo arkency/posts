@@ -1,7 +1,6 @@
 ---
 title: "2 ways to deal with big and complicated features"
 created_at: 2014-02-28 22:45:56 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter

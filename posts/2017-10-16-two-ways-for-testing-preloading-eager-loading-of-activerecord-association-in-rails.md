@@ -1,7 +1,6 @@
 ---
 title: "Two ways for testing preloading/eager-loading of ActiveRecord associations in Rails"
 created_at: 2017-10-16 12:42:18 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'testing']

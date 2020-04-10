@@ -1,7 +1,6 @@
 ---
 title: "Concurrency patterns in RubyMotion"
 created_at: 2014-08-19 08:23:34 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter_inside: mobile

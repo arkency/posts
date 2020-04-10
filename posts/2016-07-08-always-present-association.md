@@ -1,7 +1,6 @@
 ---
 title: "Always present association"
 created_at: 2016-07-12 17:42:41 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]

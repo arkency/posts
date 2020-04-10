@@ -1,7 +1,6 @@
 ---
 title: "A bug that only appears once a year"
 created_at: 2017-10-28 22:03:26 +0200
-kind: article
 publish: true
 author: Anton Paisov
 tags: [ 'bugs', 'testing' ]

@@ -1,7 +1,6 @@
 ---
 title: "Event sourced domain objects in less than 150 LOC"
 created_at: 2016-12-30 17:58:23 +0100
-kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]

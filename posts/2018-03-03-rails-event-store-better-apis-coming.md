@@ -1,7 +1,6 @@
 ---
 title: "Rails Event Store - better APIs coming"
 created_at: 2018-03-03 12:08:25 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails_event_store', 'ruby_event_store', 'ddd', 'release' ]

@@ -1,7 +1,6 @@
 ---
 title: "How to find records where column is not null or empty in Rails 4 or 5"
 created_at: 2017-09-04 16:11:04 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]

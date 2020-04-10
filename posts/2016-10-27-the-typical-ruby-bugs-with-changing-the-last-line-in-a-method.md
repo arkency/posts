@@ -1,7 +1,6 @@
 ---
 title: "The typical Ruby bugs with changing the last line in a method"
 created_at: 2016-10-27 23:00:34 +0200
-kind: article
 publish: true
 tags: [ 'ruby', 'service objects' ]
 author: Andrzej Krzywda

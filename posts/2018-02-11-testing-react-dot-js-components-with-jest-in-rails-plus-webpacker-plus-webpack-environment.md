@@ -1,7 +1,6 @@
 ---
 title: "Testing React.js components with Jest in Rails+Webpacker+Webpack environment"
 created_at: 2018-02-11 12:34:04 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'jest', 'rails', 'webpack', 'webpacker' ]

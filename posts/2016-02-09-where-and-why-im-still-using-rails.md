@@ -1,7 +1,6 @@
 ---
 title: "Where and why I'm still using Rails"
 created_at: 2016-02-09 11:50:16 +0100
-kind: article
 publish: true
 tags: [ 'rails', 'wrocloverb' ]
 author: Andrzej Krzywda

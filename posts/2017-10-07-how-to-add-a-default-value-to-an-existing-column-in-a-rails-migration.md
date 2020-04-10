@@ -1,7 +1,6 @@
 ---
 title: "How to add a default value to an existing column in a Rails migration"
 created_at: 2017-08-03 13:16:47 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'migration' ]

@@ -1,7 +1,6 @@
 ---
 title: "The Event Store for Rails developers"
 created_at: 2015-04-21 18:15:55 +0200
-kind: article
 publish: true
 author: Tomasz Rybczyński
 tags: [ 'domain event', 'event store' ]

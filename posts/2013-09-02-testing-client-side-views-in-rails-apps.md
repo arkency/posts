@@ -1,7 +1,6 @@
 ---
 title: "Testing client-side views in Rails apps"
 created_at: 2013-09-02 13:05:51 +0200
-kind: article
 publish: true
 author: Jan Filipowski
 newsletter: frontend_course

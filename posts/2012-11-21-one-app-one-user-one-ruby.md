@@ -1,7 +1,6 @@
 ---
 title: "One app, one user, one ruby"
 created_at: 2012-11-21 12:40:51 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form

@@ -1,7 +1,6 @@
 ---
 title: "The smart way to check health of a Rails app"
 created_at: 2016-02-26 17:05:19 +0100
-kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'health check', 'ops' ]

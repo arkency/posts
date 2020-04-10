@@ -1,7 +1,6 @@
 ---
 title: "Passive aggresive events - code smell"
 created_at: 2017-05-25 13:49:31 +0300
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['domain event', 'ddd']

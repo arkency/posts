@@ -1,7 +1,6 @@
 ---
 title: "Pretty, short urls for every route in your Rails app"
 created_at: 2014-01-18 14:41:04 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form

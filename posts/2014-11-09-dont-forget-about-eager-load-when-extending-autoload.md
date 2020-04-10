@@ -1,7 +1,6 @@
 ---
 title: "Don't forget about eager_load when extending autoload paths"
 created_at: 2014-11-09 11:39:06 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'autoload', 'code', 'production', 'development' ]

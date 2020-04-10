@@ -1,7 +1,6 @@
 ---
 title: "The categories of validations"
 created_at: 2015-01-03 15:07:05 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'validations' ]

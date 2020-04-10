@@ -1,7 +1,6 @@
 ---
 title: "Handle sidekiq processing when one job saturates your workers and the rest queue up"
 created_at: 2017-07-14 18:25:06 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'sidekiq' ]

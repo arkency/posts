@@ -1,7 +1,6 @@
 ---
 title: "Null Object pattern in practice"
 created_at: 2015-08-16 15:02:24 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'null', 'object', 'pattern', 'ruby' ]

@@ -1,7 +1,6 @@
 ---
 title: "How RSpec helped me with resolving random spec failures"
 created_at: 2016-02-12 01:10:19 +0100
-kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rspec', 'test' ]

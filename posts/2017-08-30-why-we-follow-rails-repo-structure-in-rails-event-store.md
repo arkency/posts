@@ -1,7 +1,6 @@
 ---
 title: "Why we follow the Rails repo structure in Rails Event Store"
 created_at: 2017-08-30 18:47:00 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'rails', 'rails_event_store' ]

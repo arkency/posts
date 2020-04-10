@@ -1,7 +1,6 @@
 ---
 title: "Using anonymous modules and prepend to work with generated code"
 created_at: 2016-02-29 11:41:56 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'prepend', 'anonymous-modules' ]

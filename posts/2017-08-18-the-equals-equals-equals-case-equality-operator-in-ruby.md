@@ -1,7 +1,6 @@
 ---
 title: "The === (case equality) operator in Ruby"
 created_at: 2017-08-23 10:34:16 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'equality' ]

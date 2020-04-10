@@ -1,7 +1,6 @@
 ---
 title: "Bring CommonJS to your asset pipeline"
 created_at: 2015-04-23 10:15:12 +0200
-kind: article
 publish: true
 author: Jakub Kosiński
 tags: [ 'rails', 'browserify', 'commonjs', 'browserify-rails', 'sprockets', 'assets', 'javascript' ]

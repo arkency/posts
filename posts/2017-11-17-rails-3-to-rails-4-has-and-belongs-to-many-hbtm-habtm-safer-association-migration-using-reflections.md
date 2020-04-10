@@ -1,7 +1,6 @@
 ---
 title: "Safely migrating has_and_belongs_to_many associations to Rails 4"
 created_at: 2017-11-17 10:54:27 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]

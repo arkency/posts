@@ -1,7 +1,6 @@
 ---
 title: "The anatomy of search pages"
 created_at: 2018-02-19 16:16:01 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]

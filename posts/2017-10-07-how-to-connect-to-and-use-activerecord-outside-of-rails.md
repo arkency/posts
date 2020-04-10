@@ -1,7 +1,6 @@
 ---
 title: "How to connect to and use ActiveRecord outside of Rails?"
 created_at: 2017-08-19 19:42:19 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails', 'active record' ]

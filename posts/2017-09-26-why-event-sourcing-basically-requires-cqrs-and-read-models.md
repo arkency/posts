@@ -1,7 +1,6 @@
 ---
 title: "Why Event Sourcing basically requires CQRS and Read Models"
 created_at: 2017-11-28 20:45:00 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'event sourcing', 'cqrs', 'read model' ]

@@ -1,7 +1,6 @@
 ---
 title: "Introducing hexagonal.js"
 created_at: 2013-02-18 12:10:11 +0100
-kind: article
 publish: true
 author: Jan Filipowski
 newsletter: react_books

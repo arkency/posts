@@ -1,7 +1,6 @@
 ---
 title: "Implementing worker threads in Rails"
 created_at: 2013-06-17 10:47:05 +0200
-kind: article
 publish: true
 newsletter: arkency_form
 author: Paweł Pacana

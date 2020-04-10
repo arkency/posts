@@ -1,7 +1,6 @@
 ---
 title: "Advantages of working on a legacy application"
 created_at: 2015-10-20 11:17:21 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'legacy', 'rails' ]

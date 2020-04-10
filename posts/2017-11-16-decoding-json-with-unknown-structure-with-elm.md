@@ -1,7 +1,6 @@
 ---
 title: "Decoding JSON with unknown structure with Elm"
 created_at: 2017-11-16 18:00:09 +0100
-kind: article
 publish: true
 author: Anton Paisov
 tags: [ 'elm', 'json' ]

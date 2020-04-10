@@ -1,7 +1,6 @@
 ---
 title: "inject vs each_with_object"
 created_at: 2017-08-29 13:30:53 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'enumerable' ]

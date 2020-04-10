@@ -1,7 +1,6 @@
 ---
 title: "Testing an Event Sourced application"
 created_at: 2015-07-07 13:32:09 +0200
-kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'TDD', 'testing']

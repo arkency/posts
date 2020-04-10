@@ -1,7 +1,6 @@
 ---
 title: "Your solid tool for event sourcing - EventStore examples"
 created_at: 2015-03-12 14:01:17 +0100
-kind: article
 publish: true
 author: Tomasz Rybczyński
 tags: [ 'domain event', 'event store' ]

@@ -1,7 +1,6 @@
 ---
 title: "Private classes in Ruby"
 created_at: 2016-02-22 11:49:07 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'private', 'class' ]

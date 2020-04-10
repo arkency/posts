@@ -1,7 +1,6 @@
 ---
 title: "You don't need to wait for your backend: Decisions and Consequences"
 created_at: 2015-03-02 17:15:52 +0100
-kind: article
 publish: true 
 author: Marcin Grzywaczewski
 tags: [ 'front end', 'architecture' ]

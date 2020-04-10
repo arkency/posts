@@ -1,7 +1,6 @@
 ---
 title: "Are we abusing at_exit?"
 created_at: 2013-06-22 18:05:22 +0200
-kind: article
 publish: true
 newsletter: arkency_form
 author: Robert Pankowecki

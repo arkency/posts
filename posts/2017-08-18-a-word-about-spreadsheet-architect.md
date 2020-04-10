@@ -1,7 +1,6 @@
 ---
 title: "What I learned from reading spreadsheet_architect code"
 created_at: 2017-08-18 11:59:07 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'spreadsheet_architect' ]

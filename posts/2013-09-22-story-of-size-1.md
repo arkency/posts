@@ -1,7 +1,6 @@
 ---
 title: "Developers oriented project management: Story of size 1"
 created_at: 2013-09-23 20:17:43 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter

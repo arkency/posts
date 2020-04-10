@@ -1,7 +1,6 @@
 ---
 title: "On my radar: RethinkDB + React.js + Rails"
 created_at: 2015-04-30 09:50:31 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rethinkdb', 'react', 'rails' ]

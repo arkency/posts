@@ -1,7 +1,6 @@
 ---
 title: "What I learnt today from reading gems' code"
 created_at: 2017-06-23 08:11:27 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'sidekiq', 'gems', 'active support' ]

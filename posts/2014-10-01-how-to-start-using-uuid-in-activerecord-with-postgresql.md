@@ -1,7 +1,6 @@
 ---
 title: "How to start using UUID in ActiveRecord with PostgreSQL"
 created_at: 2014-10-02 23:58:11 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter_inside: arkency_short

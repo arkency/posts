@@ -1,7 +1,6 @@
 ---
 title: "Testing race conditions in your Rails app"
 created_at: 2015-09-04 09:22:03 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'race conditions', 'testing']

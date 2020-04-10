@@ -1,7 +1,6 @@
 ---
 title: "My fruitless, previous attempts at not losing history of changes in Rails apps"
 created_at: 2017-08-07 15:56:21 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'rails' ]

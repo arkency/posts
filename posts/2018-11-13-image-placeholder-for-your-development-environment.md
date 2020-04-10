@@ -1,7 +1,6 @@
 ---
 title: "Image Placeholder for your development environment"
 created_at: 2018-11-13 19:09:29 +0100
-kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rack', 'middleware' ]

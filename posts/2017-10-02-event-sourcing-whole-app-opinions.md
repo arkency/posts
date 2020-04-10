@@ -1,7 +1,6 @@
 ---
 title: "Event-sourcing whole app — opinions"
 created_at: 2017-10-10 17:12:35 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'event sourcing' ]

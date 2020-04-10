@@ -1,7 +1,6 @@
 ---
 title: "Porting a Rails frontend from CoffeeScript to ES6 and JSX - examples"
 created_at: 2016-06-09 00:08:29 +0200
-kind: article
 publish: true
 author: "Tomasz Patrzek"
 tags: [ 'react', 'front end', 'es6', 'jsx', 'refactoring', 'porting' ]

@@ -1,7 +1,6 @@
 ---
 title: "Zero uptime deploy"
 created_at: 2014-04-01 16:21:18 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form

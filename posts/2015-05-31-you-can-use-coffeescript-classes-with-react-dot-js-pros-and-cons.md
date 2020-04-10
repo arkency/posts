@@ -1,7 +1,6 @@
 ---
 title: "You can use CoffeeScript classes with React - pros and cons"
 created_at: 2015-05-31 18:37:00 +0200
-kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'react', 'front end', 'coffeescript' ]

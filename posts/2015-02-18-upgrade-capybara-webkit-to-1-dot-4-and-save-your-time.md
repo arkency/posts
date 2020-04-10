@@ -1,7 +1,6 @@
 ---
 title: "upgrade capybara-webkit to 1.4 and save your time"
 created_at: 2015-02-18 18:58:10 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: coaching

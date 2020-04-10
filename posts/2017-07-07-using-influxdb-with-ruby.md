@@ -1,7 +1,6 @@
 ---
 title: "Using influxdb with ruby"
 created_at: 2017-07-10 17:12:05 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'influxdb' ]

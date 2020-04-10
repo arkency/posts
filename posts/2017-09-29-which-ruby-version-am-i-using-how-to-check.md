@@ -1,7 +1,6 @@
 ---
 title: "Which ruby version am I using? - how to check"
 created_at: 2017-09-29 11:22:09 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'version', 'check' ]

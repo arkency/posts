@@ -1,7 +1,6 @@
 ---
 title: "DATABASE_URL examples for Rails DB connection strings"
 created_at: 2017-08-31 10:04:49 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'travis', 'rails', 'database_url', 'connection string' ]

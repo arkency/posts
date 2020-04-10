@@ -1,7 +1,6 @@
 ---
 title: "In-Memory Fake Adapters"
 created_at: 2015-12-04 12:30:32 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'adapters', 'in-memory', 'rails' ]

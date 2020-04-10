@@ -1,7 +1,6 @@
 ---
 title: "How to persist hashes in Rails applications with PostgreSQL"
 created_at: 2014-10-13 10:27:16 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter_inside: arkency_form

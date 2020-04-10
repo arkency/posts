@@ -1,7 +1,6 @@
 ---
 title: "Removing magic with magic"
 created_at: 2018-06-21 16:34:39 +0200
-kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'legacy', 'removing code' ]

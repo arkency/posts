@@ -1,7 +1,6 @@
 ---
 title: "Three most telling files in legacy Rails apps"
 created_at: 2015-08-17 20:34:48 +0200
-kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'legacy', 'rails', 'techniques', 'ruby' ]

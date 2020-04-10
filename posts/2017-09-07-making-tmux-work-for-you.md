@@ -1,7 +1,6 @@
 ---
 title: "Making tmux work for you"
 created_at: 2017-09-07 09:44:03 +0200
-kind: article
 publish: true
 author: Tomasz Wróbel
 tags: [ 'tmux', 'microservices', 'tools', 'workflow', 'productivity' ]

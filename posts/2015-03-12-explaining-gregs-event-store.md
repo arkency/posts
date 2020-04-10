@@ -1,7 +1,6 @@
 ---
 title: "Explaining Greg's Event Store"
 created_at: 2015-03-12 13:58:01 +0100
-kind: article
 publish: true
 author: Tomasz Rybczyński
 tags: [ 'domain event', 'event store' ]

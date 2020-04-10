@@ -1,7 +1,6 @@
 ---
 title: "Developers oriented project management: What our new book is all about?"
 created_at: 2013-10-14 17:08:51 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter

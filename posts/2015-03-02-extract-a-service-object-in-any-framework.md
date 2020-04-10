@@ -1,7 +1,6 @@
 ---
 title: "Extract a service object in any framework"
 created_at: 2015-03-02 15:10:14 +0100
-kind: article
 publish: true
 tags: [ 'rails', 'refactoring', 'service objects' ]
 author: Andrzej Krzywda
@@ -57,7 +56,6 @@ run do |opts, args, cmd|
 ---
 title: "#{title}"
 created_at: #{date}
-kind: article
 publish: false
 author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]
@@ -136,7 +134,6 @@ class CreateNewPostFromTemplate
 ---
 title: "#{title}"
 created_at: #{date}
-kind: article
 publish: false
 author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]

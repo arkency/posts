@@ -1,7 +1,6 @@
 ---
 title: "How to start a new Rails app and not end in legacy"
 created_at: 2015-12-08 12:25:37 +0100
-kind: article
 publish: false
 author: Andrzej Krzywda
 ---

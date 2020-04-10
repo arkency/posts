@@ -1,7 +1,6 @@
 ---
 title: "How to teach React.js properly? A quick preview of wroc_love.rb workshop agenda"
 created_at: 2016-02-15 18:47:24 +0100
-kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'react', 'redux', 'wroc_love.rb' ]

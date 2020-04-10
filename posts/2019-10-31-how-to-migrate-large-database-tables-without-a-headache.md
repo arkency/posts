@@ -1,7 +1,6 @@
 ---
 title: "How to migrate large database tables without a headache"
 created_at: 2020-01-08 12:12:12 +0100
-kind: article
 publish: true
 author: Paweł Pacana
 tags: ["rails_event_store", "mysql", "database"]

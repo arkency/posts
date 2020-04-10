@@ -1,7 +1,6 @@
 ---
 title: "correlation id and causation id in evented systems"
 created_at: 2018-05-14 18:28:57 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'correlation', 'causation', 'ddd', 'domain event' ]

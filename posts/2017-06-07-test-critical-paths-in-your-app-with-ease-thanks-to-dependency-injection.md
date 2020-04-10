@@ -1,7 +1,6 @@
 ---
 title: "Test critical paths in your app with ease thanks to Dependency Injection"
 created_at: 2017-06-07 23:05:46 +0200
-kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rspec', 'testing']

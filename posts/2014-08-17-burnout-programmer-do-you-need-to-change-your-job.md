@@ -1,7 +1,6 @@
 ---
 title: "Burnout - do you need to change your job?"
 created_at: 2014-08-17 15:07:31 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter: async_remote_main

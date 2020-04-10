@@ -1,7 +1,6 @@
 ---
 title: "3 ways to make your ruby object thread-safe"
 created_at: 2018-09-18 11:38:49 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'thread-safe' ]

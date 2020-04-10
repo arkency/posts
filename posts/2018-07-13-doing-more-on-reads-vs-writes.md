@@ -1,7 +1,6 @@
 ---
 title: "Doing more on reads vs writes"
 created_at: 2018-07-13 15:55:44 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails' ]

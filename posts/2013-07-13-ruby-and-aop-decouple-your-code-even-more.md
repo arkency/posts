@@ -1,7 +1,6 @@
 ---
 title: "Ruby and AOP: Decouple your code even more"
 created_at: 2013-07-13 17:16:03 +0200
-kind: article
 publish: true
 newsletter: arkency_form
 author: Marcin Grzywaczewski

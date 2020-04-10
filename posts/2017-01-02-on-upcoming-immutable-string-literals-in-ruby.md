@@ -1,7 +1,6 @@
 ---
 title: "On upcoming immutable string literals in Ruby"
 created_at: 2017-01-02 11:23:52 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'immutable', 'string' ]

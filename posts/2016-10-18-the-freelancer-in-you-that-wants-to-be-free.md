@@ -1,7 +1,6 @@
 ---
 title: "The freelancer in you that wants to be FREE"
 created_at: 2016-10-18 23:06:26 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'consulting', 'manual' ]

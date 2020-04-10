@@ -1,7 +1,6 @@
 ---
 title: "To blog or to write code?"
 created_at: 2016-10-17 20:48:53 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'blogging' ]

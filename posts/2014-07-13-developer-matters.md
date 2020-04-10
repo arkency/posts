@@ -1,7 +1,6 @@
 ---
 title: "Developer matters"
 created_at: 2014-07-13 23:31:31 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 newsletter: aar_newsletter

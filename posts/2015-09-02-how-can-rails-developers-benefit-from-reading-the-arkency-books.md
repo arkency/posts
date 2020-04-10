@@ -1,7 +1,6 @@
 ---
 title: "How can Rails developers benefit from reading the Arkency books?"
 created_at: 2015-09-03 13:30:46 +0200
-kind: article
 publish: true
 tags: [ 'rails', 'book' ]
 author: Andrzej Krzywda

@@ -1,7 +1,6 @@
 ---
 title: "Patterns for asynchronous read models in infrastructure without order guarantee"
 created_at: 2019-02-14 13:57:44 +0100
-kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read model', 'background job' ]

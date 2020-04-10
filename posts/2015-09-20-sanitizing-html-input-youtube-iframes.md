@@ -1,7 +1,6 @@
 ---
 title: "Sanitizing html input: youtube iframes, css inline styles and customization"
 created_at: 2015-09-20 13:00:07 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'sanitize', 'html', 'security' ]

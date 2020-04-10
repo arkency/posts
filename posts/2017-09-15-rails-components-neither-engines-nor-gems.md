@@ -1,7 +1,6 @@
 ---
 title: "Rails components — neither engines nor gems"
 created_at: 2017-09-15 01:26:21 +0200
-kind: article
 publish: true
 author: Paweł Pacana
 tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]

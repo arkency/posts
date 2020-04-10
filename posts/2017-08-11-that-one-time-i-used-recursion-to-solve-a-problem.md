@@ -1,7 +1,6 @@
 ---
 title: "That one time I used recursion to solve a problem"
 created_at: 2017-08-11 13:17:27 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'recursion' ]

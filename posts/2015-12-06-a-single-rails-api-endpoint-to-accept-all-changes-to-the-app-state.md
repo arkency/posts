@@ -1,7 +1,6 @@
 ---
 title: "A single Rails API endpoint to accept all changes to the app state"
 created_at: 2015-12-06 02:45:55 +0100
-kind: article
 publish: true
 tags: [ 'rails', 'cqrs', 'commands' ]
 author: Andrzej Krzywda

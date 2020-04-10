@@ -1,7 +1,6 @@
 ---
 title: "Run it in a background job, after a commit, from a service object"
 created_at: 2015-10-24 21:05:24 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'background job', 'after commit' ]

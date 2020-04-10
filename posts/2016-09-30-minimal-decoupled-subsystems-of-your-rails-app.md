@@ -1,7 +1,6 @@
 ---
 title: "Minimal decoupled subsystems in your rails app"
 created_at: 2016-09-30 09:49:59 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'active job', 'ddd', 'eventual consistency', 'messaging' ]

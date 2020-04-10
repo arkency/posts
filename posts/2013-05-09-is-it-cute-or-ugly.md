@@ -1,7 +1,6 @@
 ---
 title: "Is it cute or ugly?"
 created_at: 2013-05-09 13:07:49 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'refactoring', 'factory', 'dependency' ]

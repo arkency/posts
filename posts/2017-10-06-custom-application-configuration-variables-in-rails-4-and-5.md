@@ -1,7 +1,6 @@
 ---
 title: "Custom application configuration variables in Rails 4 and 5"
 created_at: 2017-09-16 12:39:49 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'configuration' ]

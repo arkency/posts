@@ -1,7 +1,6 @@
 ---
 title: "Fast introduction to Event Sourcing for Ruby programmers"
 created_at: 2015-03-09 23:41:01 +0100
-kind: article
 publish: true
 author: Tomasz Rybczyński
 newsletter: arkency_form

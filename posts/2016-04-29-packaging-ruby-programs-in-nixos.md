@@ -1,7 +1,6 @@
 ---
 title: "Packaging ruby programs in NixOS"
 created_at: 2016-04-29 00:28:12 +0200
-kind: article
 publish: true
 author: Rafał Łasocha
 tags: [ 'infra', 'nixos', 'ruby', 'devops' ]

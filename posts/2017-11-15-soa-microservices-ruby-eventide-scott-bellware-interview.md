@@ -1,7 +1,6 @@
 ---
 title: "Interview with Scott Bellware (Eventide co-creator) about micro-services in Ruby, event sourcing, autonomous services, SOA, dumb pipes, EventStore and mis-representation of terms in IT"
 created_at: 2017-11-15 17:20:56 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'SOA', 'microservices', 'ruby', 'eventide', 'scott', 'bellware', 'interview' ]

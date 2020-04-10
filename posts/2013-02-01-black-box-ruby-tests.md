@@ -1,7 +1,6 @@
 ---
 title: "Black-box Ruby tests"
 created_at: 2013-02-01 16:45:58 +0100
-kind: article
 publish: true
 author: 'Jan Filipowski'
 newsletter: arkency_form

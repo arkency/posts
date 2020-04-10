@@ -1,7 +1,6 @@
 ---
 title: "Extract a service object using SimpleDelegator"
 created_at: 2015-05-04 14:57:53 +0200
-kind: article
 publish: true
 tags: [ 'rails', 'refactoring', 'service objects' ]
 author: Andrzej Krzywda

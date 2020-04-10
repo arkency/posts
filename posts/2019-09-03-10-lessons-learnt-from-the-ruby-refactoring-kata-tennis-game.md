@@ -1,7 +1,6 @@
 ---
 title: "10 lessons learnt from the Ruby Refactoring Kata - Tennis Game"
 created_at: 2019-09-23 10:55:30 +0200
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ruby', 'refactoring']

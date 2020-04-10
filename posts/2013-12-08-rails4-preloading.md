@@ -1,7 +1,6 @@
 ---
 title: "3 ways to do eager loading (preloading) in Rails&nbsp;3&nbsp;&&nbsp;4&nbsp;&&nbsp;5"
 created_at: 2013-12-08 12:05:29 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: arkency_short

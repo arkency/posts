@@ -1,7 +1,6 @@
 ---
 title: "Ruby code I no longer write"
 created_at: 2017-02-17 09:16:33 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'refactoring' ]

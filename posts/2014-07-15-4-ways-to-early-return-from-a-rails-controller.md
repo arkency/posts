@@ -1,7 +1,6 @@
 ---
 title: "4 ways to early return from a rails controller"
 created_at: 2014-07-15 12:53:01 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: arkency_short

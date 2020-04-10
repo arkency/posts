@@ -1,7 +1,6 @@
 ---
 title: "Monitoring Sidekiq queues with middlewares"
 created_at: 2017-07-19 13:28:16 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'sidekiq', 'middleware' ]

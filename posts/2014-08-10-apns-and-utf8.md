@@ -1,7 +1,6 @@
 ---
 title: "Truncating UTF8 Input For Apple Push Notifications (APNS) in Ruby"
 created_at: 2014-08-13 12:20:33 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 newsletter_inside: mobile

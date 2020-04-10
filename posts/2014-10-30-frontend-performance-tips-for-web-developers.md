@@ -1,7 +1,6 @@
 ---
 title: "Frontend performance tips for web developers"
 created_at: 2014-10-30 22:25:00 +0200
-kind: article
 publish: true
 author: Kamil Lelonek
 tags: [ 'optimization', 'speed', 'front end', 'css', 'html', 'javascript' ]

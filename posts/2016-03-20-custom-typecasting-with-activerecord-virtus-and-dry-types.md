@@ -1,7 +1,6 @@
 ---
 title: "Custom type-casting with ActiveRecord, Virtus and dry-types"
 created_at: 2016-03-20 12:38:50 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]

@@ -1,7 +1,6 @@
 ---
 title: "Acceptance testing using actors/personas"
 created_at: 2017-06-07 17:25:36 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'testing', 'actors', 'personas' ]

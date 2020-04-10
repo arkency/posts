@@ -1,7 +1,6 @@
 ---
 title: "How to use Algolia without coupling to ActiveRecord::Base"
 created_at: 2018-02-28 19:30:00 +0200
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]

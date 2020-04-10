@@ -1,7 +1,6 @@
 ---
 title: "Use channels, not direct messages - 9 tips"
 created_at: 2018-09-02 12:59:52 +0200
-kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'async remote' ]

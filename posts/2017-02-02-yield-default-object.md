@@ -1,7 +1,6 @@
 ---
 title: "yield default object"
 created_at: 2017-02-02 10:23:01 +0100
-kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'yield' ]

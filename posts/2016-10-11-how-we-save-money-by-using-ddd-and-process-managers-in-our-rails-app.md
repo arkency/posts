@@ -1,7 +1,6 @@
 ---
 title: "How we save money by using DDD and Process Managers in our Rails app"
 created_at: 2016-10-11 16:43:59 +0200
-kind: article
 publish: true
 author: Jakub Rozmiarek
 tags: [ 'domain event', 'ddd', 'rails_event_store', 'payments', 'e-commerce' ]
