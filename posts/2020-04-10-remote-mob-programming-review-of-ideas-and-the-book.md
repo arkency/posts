@@ -1,8 +1,8 @@
 ---
-title: "REMOTE MOB PROGRAMMING - REVIEW OF IDEAS AND THE BOOK"
+title: "Remote Mob Programming - review of ideas and the book"
 created_at: 2020-04-10 15:50:12 +0200
-author: Andrej Krzywda
-tags: [ 'foo', 'bar', 'baz' ]
+author: Andrzej Krzywda
+tags: [ 'async remote', 'mob programming' ]
 publish: false
 ---
 
