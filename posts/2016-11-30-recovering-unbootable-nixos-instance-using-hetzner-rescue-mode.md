@@ -4,7 +4,7 @@ created_at: 2016-11-30 19:37:19 +0100
 kind: article
 publish: true
 author: Rafał Łasocha
-tags: [ 'nixos', 'hetzner', 'devops' ]
+tags: [ 'nixos', 'infra', 'hetzner', 'devops' ]
 newsletter: arkency_form
 ---
 
