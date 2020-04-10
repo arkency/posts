@@ -3,6 +3,7 @@ title: "Arkency goes React"
 created_at: 2015-07-02 09:19:01 +0200
 publish: true
 author: Andrzej Krzywda
+tags: ['react']
 newsletter: kung_fu
 ---
 
