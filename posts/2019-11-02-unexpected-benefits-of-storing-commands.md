@@ -209,7 +209,5 @@ It might be about time to start :) There's a lot of benefits. A couple starting 
 * Blogpost: [Command bus in a Rails application](https://blog.arkency.com/2016/09/command-bus-in-a-rails-application/)
 * Ebook: [Domain Driven Rails](https://blog.arkency.com/domain-driven-rails/)
 
-### Let's meet!
 
-We believe it's great when the community comes together. We believe there are lots of Rails developers strongly interested in serious architecture. That's why we hold another edition of [Rails Architect Conference](https://rescon.arkency.com) (formerly REScon). For those who want to catch up, there are [workshops & online masterclass](https://arkency.com/masterclass/) in one package!
 
