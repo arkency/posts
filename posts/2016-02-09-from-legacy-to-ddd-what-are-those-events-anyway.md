@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
-newsletter: skip
 ---
 
 [In one of my previous posts](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/), I've suggested to start with publishing events. It sounds easy in theory, but in practice it's not always clear what is an event.

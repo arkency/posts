@@ -4,7 +4,6 @@ created_at: 2015-10-28 15:45:05 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: skip
 tags: [ 'blog', 'blogging']
 ---
 

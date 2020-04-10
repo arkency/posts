@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Rafał Łasocha
 tags: ['bounded context', 'process manager', 'ddd']
-newsletter: skip
 ---
 
 Some time ago I was implementing a feature. As part of this I was, of course, writing a bunch of event handlers.

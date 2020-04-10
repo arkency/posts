@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'aggregate', 'ruby', 'event sourcing', 'domain event']
-newsletter: skip
 ---
 
 For the last year, I've been using Rails (as I do for the last 10 years), but last year it was almost exclusively Rails "Not the Rails Way". We have successfully combined Rails with Domain-Driven Design, CQRS and Event Sourcing. Over the last year, most of the business logic state in my apps was persisted using events, not the "let's just store the last state and forget the history" ;)

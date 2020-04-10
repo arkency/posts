@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ruby', 'rubymine', 'video']
-newsletter: skip
 ---
 
 According to JetBrains research (as of 2019), there is 300.000 professional Ruby programmers, while there is over a 1.000.000 programmers who use Ruby.

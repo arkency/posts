@@ -3,7 +3,6 @@ title: "REMOTE MOB PROGRAMMING - REVIEW OF IDEAS AND THE BOOK"
 created_at: 2020-04-10 15:50:12 +0200
 author: Andrej Krzywda
 tags: [ 'foo', 'bar', 'baz' ]
-newsletter: skip
 kind: article
 publish: false
 ---

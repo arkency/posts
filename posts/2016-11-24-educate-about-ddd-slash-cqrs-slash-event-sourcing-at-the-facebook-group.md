@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
-newsletter: skip
 ---
 
 There's more and more places where people interested in DDD can learn more. One of those places is the [DDD/CQRS google group](https://groups.google.com/forum/#!forum/dddcqrs), from which I learnt a lot!

@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'ruby', 'exceptions' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 How slow are Ruby exceptions as compared to other frequent actions we may be doing in Rails apps. Like for example, as compared to ActiveRecord::Base#create

@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Jakub Rozmiarek
 tags: [ 'domain event', 'ddd', 'rails_event_store', 'payments', 'e-commerce' ]
-newsletter: skip
 ---
 
 It's obvious that e-commerce businesses depend on an ability to sell goods or services. If an e-commerce platform is unable to sell, even temporarily, it becomes useless. It suffers from short-term revenue loss, but also it appears as untrustworthy to both it's customers and merchants.

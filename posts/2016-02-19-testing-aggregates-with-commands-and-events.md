@@ -4,7 +4,6 @@ created_at: 2016-02-19 07:26:59 +0100
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: skip
 tags: ['ddd', 'aggregate', 'domain event', 'testing']
 ---
 

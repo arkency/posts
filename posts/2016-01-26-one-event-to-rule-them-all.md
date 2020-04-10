@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'TDD' ]
-newsletter: skip
 newsletter_inside: rails_event_store
 img: "events/cars-traffic-street-new-york.jpg"
 ---

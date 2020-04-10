@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'refactoring' ]
 author: Marcin Grzywaczewski
-newsletter: skip
 ---
 
 

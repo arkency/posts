@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'root', 'sortable', 'magnificPopup' ]
-newsletter: skip
 newsletter_inside: react_books
 ---
 

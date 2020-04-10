@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'prepend', 'anonymous-modules' ]
-newsletter: skip
 newsletter_inside: clean
 ---
 

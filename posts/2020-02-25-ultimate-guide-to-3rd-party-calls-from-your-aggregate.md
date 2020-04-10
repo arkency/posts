@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Szymon Fiedler
 tags: [ 'ddd', 'aggregate', 'api' ]
-newsletter: skip
 ---
 
 If you ever wondered how to make 3rd party API call from Aggregate and not clutter it with dependencies, you may find this post interesting.

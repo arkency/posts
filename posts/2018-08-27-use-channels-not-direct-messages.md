@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'async remote' ]
-newsletter: skip
 ---
 
 There's something about using direct messages (project related) that developers find uncomfortable. At Arkency, we avoid them at all costs, but we also see how hard is to change our client teams habits, sometimes. 

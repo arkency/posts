@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'ruby', 'service objects' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 A service object in Ruby has some typical elements. There are some minor difference which I noted in the way people implement them. Let's look at one example.

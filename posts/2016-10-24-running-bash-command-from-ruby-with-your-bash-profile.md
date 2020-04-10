@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'ruby' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 Whenever I try to automate some of my daily tasks, I end up with a mix of Ruby and Bash scripts. This is the time when I look up to the differences between `system`, `exec`, `%x`, backticks and others.

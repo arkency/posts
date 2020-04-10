@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'domain event', 'event sourcing' ]
-newsletter: skip
 newsletter: arkency_form
 img: "events/eventsourcing.jpg"
 meta_title: "→ Event Sourcing - The Reasons Why To Use It"

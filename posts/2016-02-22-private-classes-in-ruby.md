@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'private', 'class' ]
-newsletter: skip
 newsletter_inside: clean
 ---
 

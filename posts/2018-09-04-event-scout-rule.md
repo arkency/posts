@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'ddd' ]
-newsletter: skip
 ---
 
 Recently I came up with a new name for an existing technique that I have been suggesting over the last few years. It is connected with applying domain-driven design, event sourcing or event-driven architecture to various existing applications. 

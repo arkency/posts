@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'react' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 It has been some time (almost 2 years?) since we started using React.js at Arkency. It quickly propagated to all of our projects. Along the way, we've been blogging a lot about what we learnt.

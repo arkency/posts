@@ -4,7 +4,6 @@ created_at: 2015-07-02 09:19:01 +0200
 kind: article
 publish: true
 author: Andrzej Krzywda
-newsletter: skip
 newsletter_inside: kung_fu
 ---
 

@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'rails', 'jsonapi', 'api' ]
-newsletter: skip
 img: "json-api-rails-ams/header.jpg"
 ---
 

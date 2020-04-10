@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'validations', 'aop', 'ruby', 'rails' ]
-newsletter: skip
 newsletter_inside: clean
 ---
 

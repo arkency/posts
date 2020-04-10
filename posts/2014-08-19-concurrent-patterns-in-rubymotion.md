@@ -4,7 +4,6 @@ created_at: 2014-08-19 08:23:34 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: skip
 newsletter_inside: mobile
 tags: [ 'concurrency', 'parallelism', 'gdc', 'ruby', 'rubymotion', 'ios', 'mobile' ]
 stories: ['rubymotion']

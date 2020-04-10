@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
-newsletter: skip
 ---
 
 I've been just following an interesting discussion within our [Rails/DDD community](http://blog.arkency.com/domain-driven-rails/). The particular topic which triggered me was a debate what kind of separation is possible within a Rails app which aims to be more in the DDD spirit.

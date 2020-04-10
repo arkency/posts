@@ -4,7 +4,6 @@ created_at: 2014-08-10 13:00:20 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: skip
 newsletter_inside: fearless_refactoring_1
 tags: [ 'authentication', 'ssh', 'security' ]
 ---

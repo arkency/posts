@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Richard Eng
 tags: [ 'ruby', 'smalltalk' ]
-newsletter: skip
 img: "smalltalk-ruby/smalltalk-ruby.jpg"
 ---
 

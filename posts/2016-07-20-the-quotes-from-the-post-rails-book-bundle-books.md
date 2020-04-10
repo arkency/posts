@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'book' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 Given that I now looked at all the [Post Rails Book Bundle](http://www.railsbookbundle.com) (Psst, the offer ends on Friday!) books, I've decided to pick some quotes which may shed more light into the whole message. This may help you understand the different points of views reflected by each author. 

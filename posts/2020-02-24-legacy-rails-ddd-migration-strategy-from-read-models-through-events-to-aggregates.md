@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'legacy', 'aggregate', 'service object', 'read model', 'domain event']
-newsletter: skip
 ---
 
 How to migrate legacy Rails apps into DDD/CQRS in a relatively safe way?

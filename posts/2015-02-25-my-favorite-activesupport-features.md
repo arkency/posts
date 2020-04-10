@@ -4,7 +4,6 @@ created_at: 2015-02-25 11:36:56 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: skip
 newsletter_inside: react_books
 tags: [ 'rails', 'active support' ]
 img: "active-support/favorite-ruby-active-support.jpg"

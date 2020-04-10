@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ruby', 'exceptions']
-newsletter: skip
 ---
 
 TLDR: You can use `raise Exception` and `raise Exception.new` - they’re identical as a result and it’s 4 characters less.

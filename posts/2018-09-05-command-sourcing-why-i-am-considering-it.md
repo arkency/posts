@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: [ 'ddd' ]
-newsletter: skip
 ---
 
 If you've been following me over the last years, you know that recently I've been very interested in event sourcing. Command sourcing sounds very similar and indeed there are similarities. But on the other hand, it's something completely different. We have been trying to introduce command sourcing to one of our projects and it requires us to address so many different aspects of it. 

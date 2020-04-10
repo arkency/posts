@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
-newsletter: skip
 ---
 
 Let's say you have such a class:

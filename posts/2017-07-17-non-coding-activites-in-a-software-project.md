@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'async remote' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 Recently in our project, we came up with a list of non-coding activities. Those are the tasks that need be done quite regularly and might be easy to be forgotten.

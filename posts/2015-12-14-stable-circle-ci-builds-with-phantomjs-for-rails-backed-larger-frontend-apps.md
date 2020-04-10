@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Marcin Domański
 tags: [ 'circleci', 'react', 'phantomjs', 'rails' ]
-newsletter: skip
 img: "stable-circle-ci-builds-with-phantomjs-for-rails-backed-larger-frontend-apps/header.jpg"
 ---
 

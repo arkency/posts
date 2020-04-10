@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'architecture' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 Yesterday I was contacted by a developer through our [Post Rails Book Bundle](http://www.railsbookbundle.com) intercom. He wasn't sure about whether the bundle is right to him. I quickly jumped to a phone call (how old-school!) with him and it turned into a very interesting discussion!

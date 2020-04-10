@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ruby', 'refactoring']
-newsletter: skip
 ---
 
 Over the last ~2 months, I’ve been scheduling some time to work on a specific Ruby code which is designed to be a good starting point for a refactoring.

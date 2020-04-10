@@ -4,7 +4,6 @@ created_at: 2014-08-24 09:50:10 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: skip
 newsletter_inside: fearless_refactoring_course
 tags: [ 'ruby', 'rails', 'adapters' ]
 ---

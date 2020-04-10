@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'ruby', 'service objects' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 In Ruby, we don't have to type `return` at the end of the method. As many other things in our favourite language, this is implicit, not explicit. The value of the last line in a method is also automatically the value of the whole method. Which is a good thing as it helps making the code less verbose and more poem-like. But it also has some dangers.

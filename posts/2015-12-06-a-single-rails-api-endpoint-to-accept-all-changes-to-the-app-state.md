@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'cqrs', 'commands' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 This idea is heavily influenced by CQRS and its way of applying changes to the app via commands objects. In this blogpost we're showing how it could work with Rails.

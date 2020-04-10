@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'autoload', 'code', 'production', 'development' ]
-newsletter: skip
 newsletter_inside: arkency_form
 img: "eager_load_autoload_paths/rails_path.jpg"
 ---

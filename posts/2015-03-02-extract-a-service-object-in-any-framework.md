@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'refactoring', 'service objects' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 Extracting a service object is a natural step in any kind of framework-dependent application. In this blog post, I’m showing you an example from Nanoc, a blogging framework.

@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Anton Paisov
 tags: [ 'javascript', 'testing', 'mocha', 'testing']
-newsletter: skip
 ---
 
 What if I told you that covering javascript code with tests can be easy and pleasant experience?

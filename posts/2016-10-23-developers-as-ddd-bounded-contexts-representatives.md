@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
-newsletter: skip
 ---
 
 Recently, I've been preparing to my webinar about introducing DDD to existing projects/teams.

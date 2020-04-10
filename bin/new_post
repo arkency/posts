@@ -86,7 +86,6 @@ class Post
       created_at: #{@date}
       author: #{@author}
       tags: []
-      newsletter: skip
       kind: article
       publish: false
       ---

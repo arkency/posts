@@ -4,7 +4,6 @@ created_at: 2014-08-09 22:16:53 +0200
 kind: article
 publish: true
 author: Kamil Lelonek
-newsletter: skip
 newsletter_inside: mobile
 tags: [ 'facebook', 'sdk', 'ruby', 'rubymotion', 'ios', 'mobile' ]
 stories: ['rubymotion']

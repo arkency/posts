@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
-newsletter: skip
 ---
 
 If you work with service objects in Rails apps, very quickly you need to have the dependency being passed to the service object constructor. Which usually means, that the Rails controller needs to do it. This blogpost describes how to have a different implementation being passed in the production environment and an in-memory one in the tests.

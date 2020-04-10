@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'null', 'object', 'pattern', 'ruby' ]
-newsletter: skip
 newsletter_inside: fearless_refactoring_1
 img: "null/null-object-ruby-pattern-fowler.jpg"
 ---

@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 [In the last blog post](http://blog.arkency.com/2016/02/where-and-why-im-still-using-rails/) I explained my approach to using Rails  to quickly start a new app. In short - I'm starting with Rails but I also learnt how to gradually escape from the framework and separate the frontend.

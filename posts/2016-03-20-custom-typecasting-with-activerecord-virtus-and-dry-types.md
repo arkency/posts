@@ -5,7 +5,6 @@ kind: article
 publish: true
 author: Robert Pankowecki
 tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]
-newsletter: skip
 newsletter_inside: clean
 ---
 

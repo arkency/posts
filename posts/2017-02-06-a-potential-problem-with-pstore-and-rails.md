@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 

@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'wrocloverb' ]
 author: Andrzej Krzywda
-newsletter: skip
 ---
 
 I've had many interesting conversations with experienced Ruby/Rails programmers recently. One of the topics that often pops up is when it makes sense (for us) to still use Rails, given the variety of other choices. This blogpost aims to summarize some of the views here. 

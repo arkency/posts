@@ -4,7 +4,6 @@ created_at: 2014-07-15 12:53:01 +0200
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: skip
 newsletter_inside: arkency_short
 tags: [ 'controllers', 'rails' ]
 ---

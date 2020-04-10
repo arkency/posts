@@ -5,7 +5,6 @@ kind: article
 publish: true
 tags: [ 'rails', 'book' ]
 author: Andrzej Krzywda
-newsletter: skip
 img: "books-benefits/books.jpg"
 ---
 

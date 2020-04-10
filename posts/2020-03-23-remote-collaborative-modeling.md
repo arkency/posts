@@ -3,7 +3,6 @@ title: "Remote collaborative modeling"
 created_at: 2020-03-23 14:11:18 +0100
 author: Mirosław Pragłowski
 tags: [ 'ddd', 'async remote' ]
-newsletter: skip
 kind: article
 publish: true
 ---

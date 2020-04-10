@@ -4,7 +4,6 @@ created_at: 2015-01-03 15:07:05 +0100
 kind: article
 publish: true
 author: Robert Pankowecki
-newsletter: skip
 tags: [ 'rails', 'validations' ]
 img: "validations-categories/157H.jpg"
 ---
