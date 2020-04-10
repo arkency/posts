@@ -2,7 +2,7 @@
 title: "Rails connections, pools and handlers"
 created_at: 2020-04-10 16:21:08 +0200
 author: Tomasz Wróbel
-tags: []
+tags: ['rails']
 newsletter: skip
 kind: article
 publish: false
