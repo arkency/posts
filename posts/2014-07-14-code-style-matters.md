@@ -3,7 +3,7 @@ title: "Code style matters"
 created_at: 2014-07-14 06:18:38 +0200
 publish: true
 author: Kamil Lelonek
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 tags: [ 'ruby', 'code', 'style', 'clean', 'syntax' ]
 ---
 
@@ -129,7 +129,7 @@ How to use them? It might be hard just to remember and use this new code style o
 
 If you think that it's important topic in your daily work and you are willing to improve your code style I'd recommend you to start from some useful resources guiding you by small steps that will make your code better. **Start with small steps**, not with everything together. Make a **little changes continuously** introducing more and more new elements. You're probably using a few languages at one time so pick one you want to improve and focus on it to avoid too much changes together and decrease new things to remember. Finally, if you want to know our opinion, take the most from Rails Refactoring book.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ### More useful books that will help you keep your code clean:
 1. [Clean code](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)

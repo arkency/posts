@@ -3,7 +3,7 @@ title: "Arkency goes React"
 created_at: 2015-07-02 09:19:01 +0200
 publish: true
 author: Andrzej Krzywda
-newsletter_inside: kung_fu
+newsletter: kung_fu
 ---
 
 From its beginnings in 2007, Arkency was connected to Ruby and Rails. We’re still most active in those technologies.
@@ -39,7 +39,7 @@ When we worked on Koans, before the launching day - we were often discussing int
 
 Long story short - we’re opening a new chapter in the Arkency history. We’re announcing the React.js Kung Fu. We’re going to teach more and educate even more, about React.js. We’re no longer limiting ourselves to the Ruby audience with this message. We’ll be releasing a new book about React.js very soon. This time, the book doesn’t require any Rails background. We’ll be releasing more screencasts and blogposts. We’re also opening a new mailing list, that will be mostly about React.js and JS frontends.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 We’re still in the Ruby community, though. We are working on a new update to the [Rails Refactoring book](http://rails-refactoring.com).
 
@@ -54,6 +54,6 @@ The practices define us - not the specific technologies or syntaxes.
 
 React.js deserves to be listed as one of the R-technologies in our toolbox. Open this new chapter with us - subscribe to the new mailing list and stay up to date with what we’re cooking.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 Thanks for being with us!

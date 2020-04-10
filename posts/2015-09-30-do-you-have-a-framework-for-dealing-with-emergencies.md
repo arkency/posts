@@ -4,7 +4,7 @@ created_at: 2015-09-30 10:00:00 +0200
 publish: true
 author: Bartosz Krajka
 tags: [ 'framewrok', 'emergency', 'fuckup', 'responsible rails' ]
-newsletter_inside: responsible_rails
+newsletter: responsible_rails
 img: "framework-for-handling-emergencies/header.jpg"
 ---
 

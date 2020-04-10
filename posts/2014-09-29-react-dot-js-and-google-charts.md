@@ -4,7 +4,7 @@ created_at: 2014-09-29 21:40:19 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'google charts' ]
-newsletter_inside: react_books
+newsletter: react_books
 ---
 
 <p>

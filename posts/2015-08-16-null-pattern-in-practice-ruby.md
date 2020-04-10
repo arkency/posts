@@ -4,7 +4,7 @@ created_at: 2015-08-16 15:02:24 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'null', 'object', 'pattern', 'ruby' ]
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 img: "null/null-object-ruby-pattern-fowler.jpg"
 ---
 
@@ -164,4 +164,4 @@ we only eliminated it for the related part of code.
 
 Did you like the blogpost? Join our newsletter to receive more goodies.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

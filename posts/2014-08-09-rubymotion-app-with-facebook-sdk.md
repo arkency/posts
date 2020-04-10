@@ -3,7 +3,7 @@ title: "RubyMotion app with Facebook SDK"
 created_at: 2014-08-09 22:16:53 +0200
 publish: true
 author: Kamil Lelonek
-newsletter_inside: mobile
+newsletter: mobile
 tags: [ 'facebook', 'sdk', 'ruby', 'rubymotion', 'ios', 'mobile' ]
 stories: ['rubymotion']
 ---
@@ -180,7 +180,7 @@ end
 
 And that's it. I'm happy that you went through this article. In case you need ready code, I created [repository with example application](https://github.com/KamilLelonek/ruby-motion-facebook). Enjoy!
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 For now, stay tuned for more mobile blogposts!
 

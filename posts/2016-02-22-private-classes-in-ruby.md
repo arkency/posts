@@ -4,7 +4,7 @@ created_at: 2016-02-22 11:49:07 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'private', 'class' ]
-newsletter_inside: clean
+newsletter: clean
 ---
 
 One of the most common way to make some part of your code more understandable and explicit is to extract a class.
@@ -59,7 +59,7 @@ that your clients are going to use. That way your tests won't be brittle and **d
 
 That's it. That's the entire, small lesson. If you want more, subscribe to our mailing list below or [buy Fearless Refactoring](http://rails-refactoring.com).
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## More
 

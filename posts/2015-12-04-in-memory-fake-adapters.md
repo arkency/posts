@@ -4,7 +4,7 @@ created_at: 2015-12-04 12:30:32 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'adapters', 'in-memory', 'rails' ]
-newsletter_inside: clean
+newsletter: clean
 img: "fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters.jpg"
 ---
 
@@ -297,5 +297,5 @@ show you useful techniques for handling larger Rails codebases.
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 

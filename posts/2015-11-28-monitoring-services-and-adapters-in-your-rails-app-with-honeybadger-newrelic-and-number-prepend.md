@@ -4,7 +4,7 @@ created_at: 2015-11-28 21:06:10 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'monitoring', 'instrumentation', 'rails', 'web application', 'new relic', 'honeybadger', 'prepend' ]
-newsletter_inside: clean
+newsletter: clean
 img: "ruby-rails-new-relic-honeybadger-custom-metrics-monitoring-instrumentation/firefighter-for-your-app.jpg"
 ---
 
@@ -201,5 +201,5 @@ show you how to handle fuckups and be a more responsible developer.
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 

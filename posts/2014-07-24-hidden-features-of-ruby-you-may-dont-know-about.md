@@ -4,7 +4,7 @@ created_at: 2014-07-24 19:54:59 +0200
 publish: true
 author: Kamil Lelonek
 tags: [ 'ruby', 'tips', 'tricks' ]
-newsletter_inside: frontend_course
+newsletter: frontend_course
 ---
 
 <p>
@@ -520,4 +520,4 @@ Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good
 
 If you have your favourite tricks, you can share them in the comments below.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

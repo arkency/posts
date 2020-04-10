@@ -5,7 +5,7 @@ publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 img: "react-keys-getinitial-state/react_children_keys.jpg"
-newsletter_inside: react_books
+newsletter: react_books
 ---
 
 <%= img_fit("react-keys-getinitial-state/react_children_keys.jpg") %>
@@ -379,4 +379,4 @@ for stateful components proper key is a must have!**
 
 If you liked this blogpost you might enjoy our books about React.js .
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

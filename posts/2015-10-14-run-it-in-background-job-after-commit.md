@@ -4,7 +4,7 @@ created_at: 2015-10-24 21:05:24 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'background job', 'after commit' ]
-newsletter_inside: clean
+newsletter: clean
 ---
 
 There is this problem that when you schedule a background job from inside of a running
@@ -175,4 +175,4 @@ This is dependent on your testing infrastructure so it might differ in your proj
 If enjoyed this article and would like to **keep getting free Rails tips** in the future, subscribe
 to our mailing list below:
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

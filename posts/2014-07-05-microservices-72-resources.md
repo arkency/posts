@@ -3,7 +3,7 @@ title: "Microservices - 72 resources"
 created_at: 2014-07-05 10:20:25 +0200
 publish: true
 author: Paweł Pacana
-newsletter_inside: microservices
+newsletter: microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
 ---
 
@@ -329,7 +329,7 @@ allow yourself to experiment and try.
 * http://microsvcs.io/
 * https://www.youtube.com/watch?v=ZFBvvUlqQ6w
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## Summary
 

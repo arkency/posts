@@ -3,7 +3,7 @@ title: "My favorite ActiveSupport features"
 created_at: 2015-02-25 11:36:56 +0100
 publish: true
 author: Robert Pankowecki
-newsletter_inside: react_books
+newsletter: react_books
 tags: [ 'rails', 'active support' ]
 img: "active-support/favorite-ruby-active-support.jpg"
 ---
@@ -302,4 +302,4 @@ That's it. You can browse entire ActiveSupport codebase quickly and easily at [g
 
 If you liked it, you may also enjoy [Hidden features of Ruby you may not know about](/2014/07/hidden-features-of-ruby-you-may-dont-know-about/)
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

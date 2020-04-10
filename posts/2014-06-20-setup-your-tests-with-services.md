@@ -3,7 +3,7 @@ title: "Service objects as a way of testing Rails apps (without factory_girl)"
 created_at: 2014-06-31 12:00:20 +0200
 publish: true
 author: Robert Pankowecki
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 tags: [ 'service_objects', 'rails', 'testing']
 ---
 
@@ -291,7 +291,7 @@ class_creation = ClassCreation.new(
 So with this kind of test setup you are way more flexible and less constrained. Having data in db is no longer your only
 option.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## TL;DR;
 

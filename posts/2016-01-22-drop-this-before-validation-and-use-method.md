@@ -4,7 +4,7 @@ created_at: 2016-01-29 10:02:10 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'validations', 'aop', 'ruby', 'rails' ]
-newsletter_inside: clean
+newsletter: clean
 ---
 
 In many projects you can see code such as:
@@ -80,4 +80,4 @@ I especially like to impose such cleaning rules on objects used for crossing bou
 
 That's it. That's the entire, small lesson. If you want more, subscribe to our mailing list below or [buy Fearless Refactoring](http://rails-refactoring.com).
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

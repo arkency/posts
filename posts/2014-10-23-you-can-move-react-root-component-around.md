@@ -4,7 +4,7 @@ created_at: 2014-10-23 21:59:29 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'root', 'sortable', 'magnificPopup' ]
-newsletter_inside: react_books
+newsletter: react_books
 ---
 
 <p>
@@ -903,4 +903,4 @@ ingerate inside it.
 If you ever want to change your solution to pure react or something else, it
 will be localized to that one component.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

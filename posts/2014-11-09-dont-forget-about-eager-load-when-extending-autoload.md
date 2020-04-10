@@ -4,7 +4,7 @@ created_at: 2014-11-09 11:39:06 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'autoload', 'code', 'production', 'development' ]
-newsletter_inside: arkency_form
+newsletter: arkency_form
 img: "eager_load_autoload_paths/rails_path.jpg"
 ---
 

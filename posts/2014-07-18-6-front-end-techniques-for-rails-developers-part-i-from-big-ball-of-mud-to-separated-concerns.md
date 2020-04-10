@@ -4,7 +4,7 @@ created_at: 2014-07-18 19:58:54 +0200
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'front end', 'javascript', 'refactoring' ]
-newsletter_inside: frontend_course 
+newsletter: frontend_course 
 ---
 
 <p>
@@ -217,7 +217,7 @@ This post is a part of the 6-day course about front-end techniques for Rails dev
 * Designing your front-end as a **many small apps** rather than a big one to **improve maintainability** of your code.
 * Easily make actions on reaction for a domain change, in a **dependency-free way** using **reactive programming** with RxJS.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## Resources
 

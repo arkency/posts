@@ -4,7 +4,7 @@ created_at: 2016-02-29 11:41:56 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'prepend', 'anonymous-modules' ]
-newsletter_inside: clean
+newsletter: clean
 ---
 
 In my previous blog-post [about using setters](/2016/01/drop-this-before-validation-and-use-method/)
@@ -164,7 +164,7 @@ end
 
 That's it. That's the entire lesson. If you want more, subscribe to our mailing list below or [buy Fearless Refactoring](http://rails-refactoring.com).
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## More
 

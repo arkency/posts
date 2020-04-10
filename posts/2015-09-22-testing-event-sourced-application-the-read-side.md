@@ -4,7 +4,7 @@ created_at: 2015-09-22 09:19:36 +0200
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'TDD' , 'testing']
-newsletter_inside: rails_event_store
+newsletter: rails_event_store
 img: "events/black-and-white-car-vehicle-vintage.jpg"
 ---
 

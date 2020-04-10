@@ -3,7 +3,7 @@ title: "RubyMine basic navigation features (that make you move around code fast)
 created_at: 2014-07-09 10:10:42 +0200
 publish: true
 author: Robert Pankowecki
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 tags: [ 'rubymine' ]
 ---
 
@@ -26,4 +26,4 @@ tags: [ 'rubymine' ]
 
 <iframe width="640" height="360" src="//www.youtube.com/embed/uRh2uetV4_I" frameborder="0" allowfullscreen></iframe>
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

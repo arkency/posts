@@ -4,7 +4,7 @@ created_at: 2015-06-12 09:19:01 +0200
 publish: true
 author: Mirosław Pragłowski
 tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]
-newsletter_inside: rails_event_store
+newsletter: rails_event_store
 img: "events/hitbythebus.jpg"
 ---
 
@@ -125,5 +125,5 @@ Naming is important! If we do not use _convention_ but instead _implicit assumpt
 ## Make implicit explicit!
 By coding the subscriptions one by one, maybe grouping them in some functional areas (bounded context) and clearly defining dependencies you could have more clear code, less _"magic"_ and it should be easier to reason how things work.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 

@@ -4,7 +4,7 @@ created_at: 2016-03-20 12:38:50 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]
-newsletter_inside: clean
+newsletter: clean
 ---
 
 In [Drop this before validation and just use a setter method](/2016/01/drop-this-before-validation-and-use-method/)
@@ -117,7 +117,7 @@ how to improve your Rails codebase, subscribe to our mailing list below.
 We will regularly send you valuable tips and tricks. 3200 developers already
 trusted us.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## More
 

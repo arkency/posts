@@ -3,7 +3,7 @@ title: "Services - what are they and why we need them?"
 created_at: 2013-09-26 01:12:28 +0200
 publish: true
 author: Marcin Grzywaczewski
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 tags: [ 'rails', 'oop', 'design' ]
 ---
 
@@ -182,7 +182,7 @@ It's much more concise. Also, all the knowledge about process are gone from it -
 
 You can easily test your service using a simple unit testing, mocking your PaymentAdapter and Logger. Also, when testing controller you can stub `trip_reservation_service` method to easily test it. That's a huge improvement - in a previous version you would've been used a tool like Capybara or Selenium - both are very slow and makes tests very implicit - it's a 1:1 user experience after all!
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## Conclusion
 

@@ -3,7 +3,7 @@ title: "Adapters 101"
 created_at: 2014-08-24 09:50:10 +0200
 publish: true
 author: Robert Pankowecki
-newsletter_inside: fearless_refactoring_course
+newsletter: fearless_refactoring_course
 tags: [ 'ruby', 'rails', 'adapters' ]
 ---
 
@@ -605,7 +605,7 @@ Interchangeability**.
 
 ![](<%= src_fit("rails-ruby-adapter/adapter_client_adaptee.png") %>)
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ##### Images with CC license
 

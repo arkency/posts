@@ -3,7 +3,7 @@ title: "SSH authentication in 4 flavors"
 created_at: 2014-08-10 13:00:20 +0200
 publish: true
 author: Kamil Lelonek
-newsletter_inside: fearless_refactoring_1
+newsletter: fearless_refactoring_1
 tags: [ 'authentication', 'ssh', 'security' ]
 ---
 
@@ -161,7 +161,7 @@ As I described before, the basic benefit of using SSH agents is to protect your 
 
 Now you see how authentication works and what are the ways to set it up. You may choose any configuration based on your needs, it's advantages and drawbacks. Let's secure your server without any fear now. Hope you find this useful.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## Resources
 - http://www.unixwiz.net/techtips/ssh-agent-forwarding.html

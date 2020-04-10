@@ -3,7 +3,7 @@ title: "From Rails to RubyMotion: basic toolkit"
 created_at: 2014-07-01 09:49:36 +0200
 publish: true
 author: Kamil Lelonek
-newsletter_inside: mobile
+newsletter: mobile
 tags: [ 'android', 'ios', 'rubymotion', 'mobile' ]
 stories: ['rubymotion']
 ---
@@ -72,4 +72,4 @@ We encourage every ruby developer to **try RubyMotion**. It's a great way to **g
 For now, stay tuned for more mobile blogposts!
 
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

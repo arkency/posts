@@ -4,7 +4,7 @@ created_at: 2015-04-30 09:50:31 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rethinkdb', 'react', 'rails' ]
-newsletter_inside: react_books
+newsletter: react_books
 img: "rethinkdb-react-js-rails-sse/rethink-db-release-banner-react-rails.png"
 ---
 
@@ -288,4 +288,4 @@ end
 Despite many dragons I have a feeling that there is a big potential in RethinkDB.
 I will keep it on my radar and explore more deeply.
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>

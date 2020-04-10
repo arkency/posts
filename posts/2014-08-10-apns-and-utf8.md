@@ -3,7 +3,7 @@ title: "Truncating UTF8 Input For Apple Push Notifications (APNS) in Ruby"
 created_at: 2014-08-13 12:20:33 +0200
 publish: true
 author: Robert Pankowecki
-newsletter_inside: mobile
+newsletter: mobile
 tags: [ 'apns', 'push', 'notifications', 'apple', 'utf8', 'truncate' ]
 ---
 
@@ -416,7 +416,7 @@ notif.payload
 # :path=>"appnameios://games/123457890123"}
 ```
 
-<%= show_product_inline(item[:newsletter_inside]) %>
+<%= show_product_inline(item[:newsletter]) %>
 
 ## Urban Airship
 
