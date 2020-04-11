@@ -1,5 +1,5 @@
 ---
-title: "Use channels, not direct messages - 9 tips"
+title: "Use channels, not direct messages — 9 tips"
 created_at: 2018-09-02 12:59:52 +0200
 publish: true
 author: Andrzej Krzywda
@@ -18,7 +18,7 @@ In this post, I'm focusing mostly on project-related communication - where I bel
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">remote teams rule nr 1<br><br>no direct/private messages related to work, use channels</p>&mdash; Andrzej Krzywda (@andrzejkrzywda) <a href="https://twitter.com/andrzejkrzywda/status/1033053721905831936?ref_src=twsrc%5Etfw">August 24, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
-# Why is this a problem?
+## Why is this a problem?
 
 The main thing is the problem with **transparent communication**. 
 
@@ -26,7 +26,7 @@ Whatever happens in direct/private messages is not visible to others in the team
 
 The second problem is **the ASAP nature of DM** which make them feel like requests. We talk a lot about the reasons for going async in [Async Remote](https://blog.arkency.com/async-remote/) but to TLDR it here - async allows choosing the most effective time for a developer to work on difficult tasks. By allowing async work we send a clear message to the team that we trust them. Obviously not all kind of messages need to be treated as bad/sync, but the way they're presented by default (notifications) is often making it sound like something to react to ASAP. Direct messages are the evolutionary kids of phone calls. Which developers usually also hate, by the way.
 
-# The types of direct messages
+## The types of direct messages
 
 One type is asking for the **status update**. "Hey, how is it going with X feature?". 
 
@@ -36,7 +36,7 @@ The second type is the **"just" tasks**, "Hey, could you **just** fix the sortin
 
 The third type, I'm aware of is **when a developer is clearly assigned to a part of the application** and it's only him dealing with it. In this case, the communication is usually specifying the details of the next bugfixes/features. The problems here are quite subtle - other people don't know what is going on in this area. They are not able to participate. The whole project doesn't feel like a collaboration anymore.
 
-# How to reduce the number of direct messages
+## How to reduce the number of direct messages
 
 The basic tips are the following:
 
