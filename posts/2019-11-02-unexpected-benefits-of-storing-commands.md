@@ -5,9 +5,8 @@ publish: true
 author: Tomasz Wróbel
 tags: [ 'rails_event_store', 'testing', 'commands' ]
 newsletter: arkency_form
+cover_image: command_dumper.jpg
 ---
-
-<%= img_fit("command_dumper.jpg") %>
 
 You probably know that [Rails Event Store](https://railseventstore.org), like the name suggests, is meant to store events. Commands are a different concept, but they're very similar in structure - after all it's just a set of attributes. So in one of our projects we slightly abused RES and made it store commands alongside with events.
 
