@@ -39,7 +39,7 @@ I've tried... but I've failed. Some said that it was a success. Try it for yours
 
 ## Domain Storytelling
 
-Domain StoryTellings is a collaborative modeling method developed by [Henning Schwentner](https://twitter.com/hschwentner) and [Stefan Hofer](https://twitter.com/hofstef).
+Domain Storytelling is a collaborative modeling method developed by [Henning Schwentner](https://twitter.com/hschwentner) and [Stefan Hofer](https://twitter.com/hofstef).
 It relies on a fact that telling stories is a fundamental way of human communication and business experts are the storytellers (at least most of them). It uses a simple pictographic language with three essential types of symbols:
 actors (usually named with a role identifier), work objects and activities to visualize the stories told by domain experts.
 Domain Stories are told from the perspective of actors, which play an active role in the Domain Story. Actors create, work with, and exchange work objects such as documents, physical items, and digital objects.
@@ -50,12 +50,12 @@ The modeler should focus on true stories, no abstract generalizations, no hypoth
 
 Start with drawing the default/happy case, model important variations and error cases as separate Domain Stories.
 
-Telling the stories are natural for humans so this method is easy to explain to your collaborators. It's easy to understand, easy to follow and very easy to do it remotely. There is a dedicated online tool where you could draw Domain Stories [https://www.wps.de/modeler](https://www.wps.de/modeler) but this is not the only one option. Anything that works for you and is easy to share will work. You could read [more about Domain Storytelling here](https://domainstorytelling.org/#dst-explained).
+Telling the stories are natural for humans so this method is easy to explain to your collaborators. It's easy to understand, easy to follow and very easy to do it remotely. There is a dedicated online tool where you could draw Domain Stories [https://www.wps.de/modeler](https://www.wps.de/modeler) but this is not the only one option. Anything that works for you and is easy to share will work. You could read more about Domain Storytelling [here](https://domainstorytelling.org/#dst-explained).
 
 ## Story Storming
 
-Another technique is the Story Storming created by [Martin Schimak](https://twitter.com/martinschimak). It is influenced by Domain StoryTelling and Event Storming but also by other ways to map business requirements like Event Modelling and User Story Mapping. It starts with very simple, easy to explain notation. You use tree kinds of post-its: Subject, Verb and Object. And like in any language you build simple sentences. You describe the domain story with these simple sentences, using very specific, concrete examples. As a modeler you have to focus on language, the simplicity of the sentences enables domain experts to tell their stories in a natural manner. No need to learn a new technique, no barriers to start using it, no need for technical background.
-Learn [more about Story Storming here.](https://medium.com/plexiti/story-storming-191756f57387).
+Another technique is the Story Storming created by [Martin Schimak](https://twitter.com/martinschimak). It is influenced by Domain Storytelling and Event Storming but also by other ways to map business requirements like Event Modelling and User Story Mapping. It starts with very simple, easy to explain notation. You use tree kinds of post-its: Subject, Verb and Object. And like in any language you build simple sentences. You describe the domain story with these simple sentences, using very specific, concrete examples. As a modeler you have to focus on language, the simplicity of the sentences enables domain experts to tell their stories in a natural manner. No need to learn a new technique, no barriers to start using it, no need for technical background.
+Learn more about Story Storming [here](https://medium.com/plexiti/story-storming-191756f57387).
 
 ## Sync vs Async
 
