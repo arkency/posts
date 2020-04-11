@@ -5,6 +5,7 @@ publish: true
 author: Jakub Kosiński
 tags: [ 'rails', 'active record', 'find' ]
 newsletter: arkency_form
+cover_image: scary_record/hacker.jpg
 ---
 <%= img_fit("scary_record/hacker.jpg") %>
 
