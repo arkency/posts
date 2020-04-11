@@ -37,7 +37,7 @@ There have been some attempts to make remote/virtual Event Storming but my feeli
 However things change... maybe you will find a good way to use it, maybe you could think of some new tools that will "embrace chaos" and allow you to get back that energy.
 I've tried... but I've failed. Some said that it was a success. Try it for yourself. Share the experiences. Let's learn from each other because you know... "we're learners"!
 
-## Domain StoryTelling
+## Domain Storytelling
 
 Domain StoryTellings is a collaborative modeling method developed by [Henning Schwentner](https://twitter.com/hschwentner) & [Stefan Hofer](https://twitter.com/hofstef).
 It relies on a fact that telling stories is a fundamental way of human communication and business experts are the storytellers (at least most of them). It uses a simple pictographic language with three essential types of symbols:
