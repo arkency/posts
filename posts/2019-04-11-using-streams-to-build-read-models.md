@@ -5,9 +5,8 @@ publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read model', 'cqrs', 'rails_event_store' ]
 newsletter: arkency_form
+cover_image: using_streams_to_build_read_models/streams.jpg
 ---
-
-<%= img_fit("using_streams_to_build_read_models/streams.jpg") %>
 
 Building read models sometimes pose a technical challenge, especially if given infrastructure doesn't provide order guarantee and the model has to be eventually consistent. Read models are considered the easy part, so we would like to be able to implement them quickly and move to the more interesting tasks. One of the simplest ways to ensure order is to use dedicated read model streams. Thanks to them, we will be able to spare ourselves a migration of data, so our implementation will be ready as soon as we will finish the code.
 
