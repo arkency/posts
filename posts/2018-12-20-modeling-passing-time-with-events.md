@@ -5,13 +5,10 @@ publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'process manager' ]
 newsletter: arkency_form
+cover_image: clock_mechanism.jpg
 ---
 
-# Modeling passing time with events
-
 Learning new ideas can be a real struggle. Getting familiar with new concepts, nomenclature and understanding the context in which this new skills can be applied takes time. When it finally clicks and you've connected all the dots — the joy is tremendous.
-
-<%= img_fit 'clock_mechanism.jpg' %>
 
 I remember a nice discussion we had over burgers during wroc_love.rb conference in 2015. Folks shared their experiences of getting through [The Blue](https://domainlanguage.com/ddd/) and [The Red](http://www.informit.com/store/implementing-domain-driven-design-9780321834577?ranMID=24808) books — what was the most difficult to grasp and what made a breakthrough for them.
 For me the turning point was a chapter on Domain Events. This is when it all made sense. When I shared this experience, [Alberto Brandolini](https://twitter.com/ziobrando) who was sitting next to me silently nodded.
