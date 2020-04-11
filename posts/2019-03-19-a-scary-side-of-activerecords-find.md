@@ -7,7 +7,6 @@ tags: [ 'rails', 'active record', 'find' ]
 newsletter: arkency_form
 cover_image: scary_record/hacker.jpg
 ---
-<%= img_fit("scary_record/hacker.jpg") %>
 
 Recently I was refactoring a part of one our projects to add more domain events to the Identity bounded context so that we can have better audit logs of certain actions performed on identities in our system. I started from extracting a service that was responsible for consuming commands. I started with something like this:
 
