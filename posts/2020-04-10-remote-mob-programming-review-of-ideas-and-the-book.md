@@ -45,4 +45,5 @@ We came to realize that mob programming is superior to anything we’ve ever tri
 Mob programming is certainly an idea to consider. At Arkency we might combine the different modes of working and try to mix some of the ideas of remote async work, mob programming and even live streaming. There’s definitely a lot to explore in this area. The lockdown has forced us to seek new effective ways of working and enhanced our creativity.
 
 Check out more and follow us on the Arkency YouTube channel, thank you!
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HizKk3M7AdA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
