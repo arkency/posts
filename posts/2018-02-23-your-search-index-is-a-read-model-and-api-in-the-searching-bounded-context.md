@@ -1,5 +1,5 @@
 ---
-title: "Your search index is a read model (and API ;) in the Searching bounded context"
+title: "Your search index is a read model (and API 😉) in the Searching bounded context"
 created_at: 2018-02-23 16:00:00 +0200
 publish: true
 author: Robert Pankowecki
