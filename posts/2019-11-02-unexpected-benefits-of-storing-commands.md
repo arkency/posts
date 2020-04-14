@@ -12,7 +12,7 @@ You probably know that [Rails Event Store](https://railseventstore.org), like th
 
 <!-- more -->
 
-You can achieve command storage in RES in different ways, with varying levels of sophistication. The most naive way to do it (just to move along with our story) would be to store an "event" named `CommandIssued` with `command_type` && `command_data` attributes:
+You can achieve command storage in RES in different ways, with varying levels of sophistication. The most naive way to do it (just to move along with our story) would be to store an "event" named `CommandIssued` with `command_type` and `command_data` attributes:
 
 ```ruby
 class CommandIssued < RailsEventStore::Event
