@@ -5,10 +5,8 @@ publish: true
 author: Rafał Łasocha
 tags: [ 'rails', 'cookies', 'testing' ]
 newsletter: arkency_form
-img: testing-cookies-in-rails/top.jpeg
+cover_image: testing-cookies-in-rails/top.jpeg
 ---
-
-<%= img_fit("testing-cookies-in-rails/top.jpeg") %>
 
 Recently at Arkency I was working on a task, on which it was very important to 
 ensure that the right cookies are saved with the specific expiration time. Obiovusly 
@@ -16,7 +14,7 @@ I wanted to test this code to prevent regressions in the future.
 
 <!-- more -->
 
-# Controller tests?
+## Controller tests
 
 Firstly I thought about [controller tests](https://relishapp.com/rspec/rspec-rails/v/3-6/docs/controller-specs), but you can use only one controller in
 one test (at least without strong hacks) and in this case it was important to check
@@ -71,13 +69,13 @@ My cookie is: some value!
 **Therefore, it is not a good tool to test cookies when you want to test cookies
 expiring.**
 
-# Feature specs?
+## Feature specs
 
 My second thought was [feature specs](https://relishapp.com/rspec/rspec-rails/v/3-6/docs/feature-specs/feature-spec), but that's capybara and we prefer to avoid capybara if we can
 and use it only in very critical parts of our applications, so I wanted to use something lighter than that.
 It would probably work, but as you can already guess, there's better solution.
 
-# Request specs
+## Request specs
 
 There's another kind of specs, [request specs](https://relishapp.com/rspec/rspec-rails/v/3-6/docs/request-specs/request-spec), which is less popular than previous two, but in this
 case it is very interesting for us. Let's take a look at this test:
