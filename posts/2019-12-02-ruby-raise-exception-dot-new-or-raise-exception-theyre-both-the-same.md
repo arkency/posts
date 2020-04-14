@@ -1,5 +1,5 @@
 ---
-title: "Ruby's raise Exception.new or raise Exception —— they're both the same"
+title: "Ruby's raise Exception.new or raise Exception — they're both the same"
 created_at: 2019-12-02 18:45:01 +0100
 publish: true
 author: Andrzej Krzywda
