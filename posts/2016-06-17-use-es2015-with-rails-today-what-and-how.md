@@ -7,7 +7,7 @@ author: Marcin Grzywaczewski
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
 
-> This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](http://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **`FF_RAILS_BLOG`** to get 40% discount on the book, which you can [buy here](https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386).
+> This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](https://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **`FF_RAILS_BLOG`** to get 40% discount on the book, which you can [buy here](https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386).
 
 ECMAScript 2015 is the new standard of JavaScript, popularised mostly by communities around [React.js](https://facebook.github.io/react/) view library. While Angular people chose [TypeScript](https://www.typescriptlang.org/) for their language of choice and Ember is (mostly) unopinionated about it, React people tend to use ES2015 extensively.
 
@@ -163,7 +163,7 @@ window.x; // NaN
 
 In this case calling `fn` set the context to default one - so `window`. Since `window.x` is `undefined` and the number is added here, the result is `NaN`.
 
-Specifying context works [different than in most languages](http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/) that are using _lexical binding_ of context.
+Specifying context works [different than in most languages](https://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/) that are using _lexical binding_ of context.
 
 This is also the reason of the pattern you may often see in jQuery code:
 
@@ -421,7 +421,7 @@ And you can buy it now.
 <a href="https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386">
   <%= img_fit("frontend-friendly-rails/ffr-cover.png") %>
 </a>
-<a href="http://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
+<a href="https://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
 
 Finally I managed to write this book :). It’s a set of good practices and techniques I’ve worked during my work on couple of projects I’ve worked so far. This book is about making Rails more friendly to your frontend, making it easier and faster to write, as well as more powerful and maintainable.
 
@@ -434,7 +434,7 @@ It’s the beta version of the book. If you buy it now, you’ll get all updates
 Book has 97 pages of exclusive content now + bonus chapters, so it’s 154 pages in total. If you don’t like it, we have an eternal no-questions-asked refund policy - just drop us an e-mail and you’ll get refunded.
 
 <a href="https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386" style="display: block; margin: 1em 0; text-align: center; font-size: 2em;">Click here to buy the book!</a>
-<a href="http://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
+<a href="https://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
 
 The following topics are covered in the book:
 
@@ -450,14 +450,14 @@ I’m available to you for all questions about this book. Just drop me a comment
 Techniques I’ve described in the book made my work better and allowed me to write better Rails API applications. I hope you’ll find the book as useful as I’m finding those techniques.
 
 <a href="https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386" style="display: block; margin: 1em 0; text-align: center; font-size: 2em;">Click here to buy the book!</a>
-<a href="http://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
+<a href="https://blog.arkency.com/assets/misc/frontend-friendly-rails/ff-rails-sample.pdf" style="display: block; margin: 1em 0; text-align: center; font-size: 1.5em">Download the free chapter</a>
 
 ## Listen to the podcast
 
 Is listening a your kind of consuming content? You can grab a 30-minute podcast where we discuss what you can find inside the book and what were our motives to write it:
 
 <audio controls="">
-  <source id="mp3-source" src="http://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3" type="audio/mpeg">
+  <source id="mp3-source" src="https://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3" type="audio/mpeg">
 </audio>
 
-You can also download it in the [mp3 format](http://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3) and [see the shownotes here](http://rails-refactoring.com/podcast/).
+You can also download it in the [mp3 format](https://rails-refactoring.com/podcast/rails-refactoring.com_06.mp3) and [see the shownotes here](https://rails-refactoring.com/podcast/).
