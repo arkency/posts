@@ -1,6 +1,6 @@
 ---
 title: "How to work remotely and not get crazy"
-created_at: 2020-04-17 18:22:48 +0200
+created_at: 2020-04-20 13:22:48 +0200
 author: Andrzej Krzywda
 tags: ['async remote']
 publish: false
