@@ -123,7 +123,7 @@ We described ours in _Responsible Rails_ book.
     </ul>
   </div>
 
-  <div class="product-bottom text-center fond-bold py-2">
+  <div class="product-bottom text-center font-bold py-2">
   <a href="https://arkency.dpdcart.com/cart/add?product_id=116819&amp;method_id=123459">Grab your copy!</a>
   </div>
 </section>
