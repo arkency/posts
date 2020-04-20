@@ -168,5 +168,3 @@ And because all state is a result of events checking what have been produced has
 Remember that any command may end up with an error. There could be various reasons, technical ones (oh no! regression again?), or error could be just a result of some business rules validations.
 
 Complete code sample for blog post could be found [here](https://github.com/mpraglowski/cqrs-es-sample-with-res).
-
-<%= show_product_inline(item[:newsletter]) %>

@@ -41,7 +41,7 @@ Each authentication method requires some setup on the very beginning. Once it's 
 
 ## Public key access
 
-Prerequisites are that **user creates a pair of public and private keys**. 
+Prerequisites are that **user creates a pair of public and private keys**.
 
 > Private keys are often stored in an encrypted form at the client host, and the user must supply a passphrase before the signature can be generated. Even if they are not, the signing operation involves some expensive computation.
 <br><small> From: http://tools.ietf.org/html/rfc4252#page-9 </small>
@@ -151,7 +151,7 @@ What is worth to know, there are to versions (v1 and v2) of SSH standard. Accord
 
 > Protocol 1 and protocol 2 keys are separated because of the differing cryptographic usage: protocol 1 private RSA keys are used to decrypt challenges that were encrypted with the corresponding public key, whereas protocol 2 RSA private keys are used to sign challenges with a private key for verification with the corresponding public key. It is considered unsound practice to use the same key for signing and encryption.
 
-Note that **private key belongs only to you** and is **never** shared anywhere. 
+Note that **private key belongs only to you** and is **never** shared anywhere.
 
 ## Possible threats
 
@@ -160,8 +160,6 @@ As I described before, the basic benefit of using SSH agents is to protect your 
 ## Summary
 
 Now you see how authentication works and what are the ways to set it up. You may choose any configuration based on your needs, it's advantages and drawbacks. Let's secure your server without any fear now. Hope you find this useful.
-
-<%= show_product_inline(item[:newsletter]) %>
 
 ## Resources
 - http://www.unixwiz.net/techtips/ssh-agent-forwarding.html

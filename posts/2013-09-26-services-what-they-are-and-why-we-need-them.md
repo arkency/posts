@@ -7,7 +7,7 @@ newsletter: fearless_refactoring_1
 tags: [ 'rails', 'oop', 'design' ]
 ---
 
-Model-View-Controller is a design pattern which absolutely dominated web frameworks. 
+Model-View-Controller is a design pattern which absolutely dominated web frameworks.
 On the first look it provides a great and logical separation between our application components. When we apply some basic principles (like 'fat models, slim controllers') to our application, we can live happily very long with this basic fragmentation.
 
 However, when our application grows, our skinny controllers become not so skinny over time. We can't test in isolation, because we're highly coupled with the framework. To fix this problem, we can use service objects as a new layer in our design.
@@ -87,7 +87,7 @@ class TripReservationsController < ApplicationController
     end
 
     begin
-      receipt = payment_adapter.pay(trip.price)  
+      receipt = payment_adapter.pay(trip.price)
       reservation.receipt_id = receipt.uuid
 
       unless reservation.save
@@ -126,7 +126,7 @@ class TripReservationService
     raise NoTicketError.new unless trip.has_free_tickets?
 
     begin
-      receipt = payment_adapter.pay(trip.price)  
+      receipt = payment_adapter.pay(trip.price)
       reservation.receipt_id = receipt.uuid
 
       unless reservation.save
@@ -182,11 +182,8 @@ It's much more concise. Also, all the knowledge about process are gone from it -
 
 You can easily test your service using a simple unit testing, mocking your PaymentAdapter and Logger. Also, when testing controller you can stub `trip_reservation_service` method to easily test it. That's a huge improvement - in a previous version you would've been used a tool like Capybara or Selenium - both are very slow and makes tests very implicit - it's a 1:1 user experience after all!
 
-<%= show_product_inline(item[:newsletter]) %>
-
 ## Conclusion
 
 Services in Rails can greatly improve our overall design as our application grow. We used this pattern  combined with service-based architecture and repository objects in [Chillout.io](http://chillout.io/) to improve maintainability even more. Our payment controllers heavy uses services to handle each situation - like payment renewal, initial payments etc. Results are excellent and we can be (and we are!) proud of Chillout's codebase. Also, we use Dependor and AOP to simplify and decouple our services even more. But that's a topic for another post.
 
 What are your patterns to increase maintainability of your Rails applications? Do you stick with your framework, or try to escape from it? I wait for your comments!
-

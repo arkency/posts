@@ -416,8 +416,6 @@ notif.payload
 # :path=>"appnameios://games/123457890123"}
 ```
 
-<%= show_product_inline(item[:newsletter]) %>
-
 ## Urban Airship
 
 Remember that if you are using Urban Airship you should be in total using even less than 256 bytes so they can provide

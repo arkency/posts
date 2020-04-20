@@ -154,5 +154,3 @@ this is still the same domain event.
       created_at: Tue, 26 Jan 2016 23:33:48 UTC +00:00,
       updated_at: Tue, 26 Jan 2016 23:33:48 UTC +00:00>]
 ```
-
-<%= show_product_inline(item[:newsletter]) %>

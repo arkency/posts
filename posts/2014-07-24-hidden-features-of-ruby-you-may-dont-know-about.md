@@ -317,7 +317,7 @@ end
 
 ## Nest some stuff
 ```ruby
-[47] pry(main)> 
+[47] pry(main)>
 nested_hash = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 => {}
 [48] pry(main)> nested_hash[:x][:y][:z] = :xyz
@@ -413,7 +413,7 @@ require 'uri'
 
 require 'active_support/core_ext/object/to_query'
 
-[60] pry(main)> 
+[60] pry(main)>
 "http://www.arkency.com?" + { language: "ruby", status: "professional" }.to_query
 => "http://www.arkency.com?language=ruby&status=professional"
 
@@ -427,7 +427,7 @@ require 'cgi'
 ```ruby
 require 'active_support/core_ext/hash/indifferent_access'
 
-[62] pry(main)> 
+[62] pry(main)>
 rgb = { black: '#000000', white: '#FFFFFF' }.with_indifferent_access
 => {"black"=>"#000000", "white"=>"#FFFFFF"}
 [63] pry(main)> rgb[:black]
@@ -519,5 +519,3 @@ nil
 Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good too, because you learned something new today and I hope you find this useful.
 
 If you have your favourite tricks, you can share them in the comments below.
-
-<%= show_product_inline(item[:newsletter]) %>

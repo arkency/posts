@@ -45,8 +45,6 @@ While reviewing the `Gemfile`, you should take a great focus about those things:
 * Custom vendor gems. If they aren't simple they are first candidates to be discussed with the previous team or technical people on your client's side.
 * Gems changing the programming model of the application like `event_machine`. They require different commitment and care while testing and refactoring - so you need to take this into consideration.
 
-<%= show_product_inline(:fearless_refactoring_1) %>
-
 ## Take a look at `db/schema.rb`
 
 Your applications usually are all about the data you store and process. Since by default Rails apps use relational databases, they maintain a _schema_. It is a great help when restoring the database structure on a new workplace. But it can also have benefits when it comes to analyzing legacy applications.

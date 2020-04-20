@@ -89,7 +89,7 @@ class InitialStateStore {
     })
     this.checkIfDataLoaded()
   }
-  
+
   //...
 }
 ```
@@ -109,12 +109,10 @@ class InitialStateStore {
       })
     }
   }
-  
+
   //...
 }
 ```
-
-<%= show_product_inline(:kung_fu) %>
 
 ## The Actions
 

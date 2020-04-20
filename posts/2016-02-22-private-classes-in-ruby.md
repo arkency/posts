@@ -59,8 +59,6 @@ that your clients are going to use. That way your tests won't be brittle and **d
 
 That's it. That's the entire, small lesson. If you want more, subscribe to our mailing list below or [buy Fearless Refactoring](http://rails-refactoring.com).
 
-<%= show_product_inline(item[:newsletter]) %>
-
 ## More
 
 Did you like this article? You might find [our Rails books interesting as well](/products) .

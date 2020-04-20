@@ -43,7 +43,7 @@ many features:
 So as a service provider they do a lot for us that we don't need to do ourselves.
 
 On the other hand, a lot of those things are UI/Networking related. And it does not affect the core business logic
-which is pretty simple: 
+which is pretty simple:
 
 * _Don't let two people to buy the same seat_
 * _Don't let customers to buy too many standing places, in a General Admission area_.
@@ -81,7 +81,7 @@ seats_adapter.add_event(event_key: "concert")
 seats_adapter.add_general_admission(event_key: "concert", section_name: "Sector 1", quantity: 2)
 
 organizer.import_season_pass(
-  name: "John Doe",  
+  name: "John Doe",
   pass_type: :standing,
   section_name: "Sector 1"
 )
@@ -190,7 +190,7 @@ class FakeClient
 
   def add_general_admission(event_key:, section_name:, quantity:)
     @events[event_key].add_general_admission(
-      section_name: section_name, 
+      section_name: section_name,
       quantity: quantity
     )
   end
@@ -237,9 +237,9 @@ RSpec.shared_examples "TweeterAdapters" do |twitter_db_class|
       status: 200, body: "[{text:"Hello world"}]"
     )
     twitter.tweet("Hello world")
-    
+
     stub_request(
-      :get, 
+      :get,
       'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=pankowecki&count=1'
     ).to_return(
       status: 200, body: '[{text:"Hello world"}]'
@@ -296,6 +296,3 @@ show you useful techniques for handling larger Rails codebases.
 
 If you liked reading this you can subscribe to our newsletter below and keep getting more
 useful tips.
-
-<%= show_product_inline(item[:newsletter]) %>
-

@@ -31,7 +31,7 @@ Firstly, we have to generate RubyMotion application. We will use awesome [RMQ ge
     cd ruby-motion-facebook
     bundle
     rake
-    
+
 Our application is up and running.
 
 ## Integrate Facebook SDK
@@ -41,7 +41,7 @@ Now it's time to include FB pod in our project. [Pods](http://cocoapods.org/) ar
 In our `Gemfile` we need to uncomment or add the following line:
 
     gem 'motion-cocoapods'
-    
+
 Then, in `Rakefile` inside `Motion::Project::App.setup` block we should add:
 
 ```ruby
@@ -55,7 +55,7 @@ After all that let's install all dependencies:
     bundle              # to install motion-cocoapods
     pod setup           # to setup pods repository
     rake pod:install    # to fetch FB SDK
-    
+
 That installs Facebook SDK for iOS in our RubyMotion project. We can now build all logic as we want.
 
 ## Prerequisites
@@ -179,8 +179,6 @@ end
 ## Summary
 
 And that's it. I'm happy that you went through this article. In case you need ready code, I created [repository with example application](https://github.com/KamilLelonek/ruby-motion-facebook). Enjoy!
-
-<%= show_product_inline(item[:newsletter]) %>
 
 For now, stay tuned for more mobile blogposts!
 

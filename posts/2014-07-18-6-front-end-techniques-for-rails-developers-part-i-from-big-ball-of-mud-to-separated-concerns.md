@@ -4,7 +4,7 @@ created_at: 2014-07-18 19:58:54 +0200
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'front end', 'javascript', 'refactoring' ]
-newsletter: frontend_course 
+newsletter: frontend_course
 ---
 
 <p>
@@ -39,7 +39,7 @@ $(document).ready ->
          <img src='#{photo.url}' alt='#{photo.alt}' />
        </a>
     </li>"
- 
+
   $.ajax
     url: '/photos'
     type: 'GET'
@@ -47,10 +47,10 @@ $(document).ready ->
     onSuccess: (response) =>
       for photo in response.photos
         node = $(photoHTML(photo)).appendTo($("#photos-list"))
- 
+
         node.on('click', (e) =>
           e.preventDefault()
-          node.find('img').prop('src', 
+          node.find('img').prop('src',
             photo.url + '.grayscaled.jpg')
         )
     onFailure: =>
@@ -68,7 +68,7 @@ There are several problems with this code:
 * **SRP is cleanly violated**. You have data fetching, DOM manipulation and domain logic (creating grayscaled photo's URL), event binding - all in one place. There are too many reasons to edit this code at all.
 * Code is not revealing intentions. It's not a problem now. But think about further features that can be introduced. It can be a real problem when you expand this code to about 50-100 lines.
 
-Fortunately, you can easily refactor this code. 
+Fortunately, you can easily refactor this code.
 
 ## Let's do this!
 
@@ -80,7 +80,7 @@ As I've mentioned before, **this code has several responsibilities**:
 * Logic of creating grayscaled photo URL
 * Binding handlers to DOM events
 
-**Your first step should be to create classes with its responsibilities**. In our projects it's quite usual that we have `Gui` class (often it is composed of a few smaller classes), `Backend` class (which fetches data from Rails backend and pre-processes them) and `UseCase` class (which contains business logic within, operating on domain objects). Since this example does not contain much business logic at all, you can stick with only `Backend` and `Gui` classes. 
+**Your first step should be to create classes with its responsibilities**. In our projects it's quite usual that we have `Gui` class (often it is composed of a few smaller classes), `Backend` class (which fetches data from Rails backend and pre-processes them) and `UseCase` class (which contains business logic within, operating on domain objects). Since this example does not contain much business logic at all, you can stick with only `Backend` and `Gui` classes.
 
 Since there is a business rule that is worth to be contained in an intention revealing interface, it's a good decision to create a `Photo` domain object.
 
@@ -93,10 +93,10 @@ There is a rule of thumb to **always start with domain (or use case)**. In our c
 ```coffeescript
 class Photos.Photo
   constructor: (@id, @url, @alt) ->
- 
+
   grayscaledURL: =>
     @url + ".grayscaled.jpg"
- 
+
   @fromJSON: (json) ->
     new Photos.Photo(json.id, json.url, json.alt)
 ```
@@ -130,7 +130,7 @@ You can argue that responsibility of backend is not to encapsulate JSON in a dom
 
 ## Make it visible
 
-The last step is to create a `Gui` class, which is responsible for rendering and binding events to the DOM objects. There are different approaches here - in Arkency we're using Handlebars for templating or React.js for creating the whole `Gui` part. You can use whatever technology you want - but **be careful to not extend responsibilities**. The rules of thumb are: 
+The last step is to create a `Gui` class, which is responsible for rendering and binding events to the DOM objects. There are different approaches here - in Arkency we're using Handlebars for templating or React.js for creating the whole `Gui` part. You can use whatever technology you want - but **be careful to not extend responsibilities**. The rules of thumb are:
 
 * When the change hits DOM, it's Gui (or another objects that Gui is composed of) responsibility to handle DOM manipulation.
 * When an event from UI invokes domain action, Gui should only delegate it to the domain object, not perform it by itself.
@@ -140,26 +140,26 @@ There is an example implementation that I've written:
 ```coffeescript
 class Photos.Gui
   constructor: (@dom) ->
- 
+
   photoRow: (photo) =>
     $("<li>
          <a id='photo_#{photo.id}' href='#{photo.url}'>
            <img src='#{photo.url}' alt='#{photo.alt}' />
          </a>
        </li>")
- 
+
   addPhoto: (photo) =>
     photoNode = @photoRow(photo).appendTo(@dom)
     @linkClickHandlerToPhoto(photoNode, photo)
- 
+
   linkClickHandlerToPhoto: (photoNode, photo) =>
     photoNode.on('click', (e) =>
       e.preventDefault()
       @switchPhotoToGrayscaled(photoNode, photo)
-      
+
   switchPhotoToGrayscaled: (photoNode, photo) =>
     photoNode.find('img').prop('src', photo.grayscaledURL())
- 
+
   fetchPhotosFailed: =>
     $("<li>Failed to fetch photos.</li>").appendTo(@dom)
 ```
@@ -179,7 +179,7 @@ class Photos.App
   constructor: ->
     @gui = new Photos.Gui($("#photos-list"))
     @backend = new Photos.Backend()
- 
+
   start: =>
     @backend.fetchPhotos()
       .done(
@@ -212,16 +212,13 @@ Creating a stand-alone application is a **first step to create robust and rich f
 This post is a part of the 6-day course about front-end techniques for Rails developers. It's **absolutely free** - just register to our newsletter (using a box below) and we'll teach you 6 techniques we're using in a day-to-day work, including:
 
 * Using **React.js** to **ship your Gui faster** code and **make it easily composable**.
-* Techniques we use to **prototype front-end without backend** to **make your clients happier** and **tighten the feedback loop**. 
+* Techniques we use to **prototype front-end without backend** to **make your clients happier** and **tighten the feedback loop**.
 * Why you should **segregating apps by its purpose, not its placement** - and how to achieve it in an easy way.
 * Designing your front-end as a **many small apps** rather than a big one to **improve maintainability** of your code.
 * Easily make actions on reaction for a domain change, in a **dependency-free way** using **reactive programming** with RxJS.
-
-<%= show_product_inline(item[:newsletter]) %>
 
 ## Resources
 
 * [Hexagonal architecture](http://hexagonaljs.com) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
 * [Sugar.js](http://sugarjs.com) - a library which provides us great stdlib extensions to work with domain code within our stand-alone apps. We're heavily using it in Arkency.
 * [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - little library which introduces aspect-oriented programming to JavaScript - a great way to provide communication between application objects without specifying dependencies at all. You create a glue class to 'stitch' all your adapters and a use case / domain objects together. Neat!
-

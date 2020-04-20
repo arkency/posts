@@ -14,7 +14,7 @@ tags: [ 'soa', 'microservices', 'architecture' ]
 </p>
 
 
-Microservices - everyone talks about them nowadays. There's no common understanding however what they are. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos.  
+Microservices - everyone talks about them nowadays. There's no common understanding however what they are. I've been researching this topic for a while, gathering and evaluating articles, presentations and conference videos.
 
 <!-- more -->
 
@@ -328,8 +328,6 @@ allow yourself to experiment and try.
 * http://plainoldobjects.com/presentations/decomposing-applications-for-deployability-and-scalability/
 * http://microsvcs.io/
 * https://www.youtube.com/watch?v=ZFBvvUlqQ6w
-
-<%= show_product_inline(item[:newsletter]) %>
 
 ## Summary
 

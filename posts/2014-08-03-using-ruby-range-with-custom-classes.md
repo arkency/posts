@@ -119,7 +119,7 @@ a Date (_January 1st, 2014_) to deal with Years **does not taste me**.
 **What does my boss say? 😉**He says that knowing about things such as next and previous month is not the responsibility
 of `YearMonth` class but rather something above (conceptually higher) like a `Calendar`. It's not that `May 2014` knows
 that the next month in a year is `June 2014` but rather the calendar knows about it. I find it an interesting point
-of view. What do you think? 
+of view. What do you think?
 
 ## `YearMonth`
 
@@ -163,11 +163,11 @@ This was used as a **Value Object attribute** in my AR class:
 ```ruby
 class ReportingConfiguration < ActiveRecord::Base
   composed_of :start,
-    class_name: YearMonth.name, 
+    class_name: YearMonth.name,
     mapping: [ %w(start_year year), %w(start_month month) ]
-    
+
   composed_of :end,
-    class_name: YearMonth.name, 
+    class_name: YearMonth.name,
     mapping: [ %w(end_year year), %w(end_month month) ]
 
   def each_month
@@ -326,8 +326,6 @@ All this can be summarized in a few examples:
 
 So `Range` will give always you the ability to check if something is in the range, but it only **might** give you the
 ability to iterate.
-
-<%= show_product_inline(item[:newsletter]) %>
 
 ## Resources
 

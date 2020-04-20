@@ -117,8 +117,6 @@ how to improve your Rails codebase, subscribe to our mailing list below.
 We will regularly send you valuable tips and tricks. 3200 developers already
 trusted us.
 
-<%= show_product_inline(item[:newsletter]) %>
-
 ## More
 
 Did you like this article? You will definitely find [our Rails books interesting as well](/products) .

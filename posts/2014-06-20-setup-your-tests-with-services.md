@@ -16,7 +16,7 @@ tags: [ 'service_objects', 'rails', 'testing']
 There's been recently an interesting discussion about setting up the initial state of your tests. Some are in favor of
 using built-in Rails fixtures (because of speed and simplicity). Others are in favor of using *factory_girl* or similar
 gems. I can't provide definite numbers but judging  based on the apps that we review, **in terms of adoption,
-*factory_girl* seems to have won**. 
+*factory_girl* seems to have won**.
 
 I would like to present you a third alternative "**Setting up tests with services**" (the same ones you use in your
 production code, not ones crafted specifically for tests) and compare it to *factory_girl*
@@ -25,14 +25,14 @@ to show where it might be beneficial to go with such approach.
 <!-- more -->
 
 Let's start with a little background from an imaginary application for teaching languages in schools.
- 
+
 There is a school in our system which decided to use our software and buy a license. Teacher can create classes to
 teach a language (or use existing one created by someone else). During the procedure multiple pupils can be imported
 from file or added manually on the webui. The teacher will be teaching a class. The school is
 having a native language and the class is learning a foreign language. Based on that we provide them with access
 to school dictionaries suited to kids' needs.
 
-## Everything is ok 
+## Everything is ok
 
 Let's think about our tests for a moment.
 
@@ -42,18 +42,18 @@ let!(:klass)      { create(:klass, school: school) }
 let!(:pupil)      { create(:pupil, klass: klass) }
 
 let!(:teacher)    { create(:teacher,
-  school:    school, 
+  school:    school,
   languages: %w(fr it),
 ) }
 
-let!(:dictionary) { create(:dictionary, 
-  native_language:   "en", 
+let!(:dictionary) { create(:dictionary,
+  native_language:   "en",
   learning_language: "fr",
 ) }
 
-let!(:assignment) { create(:assignment, 
-  klass:      klass, 
-  teacher:    teacher, 
+let!(:assignment) { create(:assignment,
+  klass:      klass,
+  teacher:    teacher,
   dictionary: dictionary,
 ) }
 
@@ -74,7 +74,7 @@ learning the language anymore. In other words in our domain once pupils are assi
 French it is very unlikely that at some point they stopped learning French (at least in that educational system which
 domain we are trying to reflect in our code). It might be that the class no longer has a french teacher for a moment
 (ex. before the school finds replacement for her/him) but that doesn't mean they no longer learn French.
- 
+
 Because we try to not delete data (soft delete all the way) we could have keep getting this knowledge about dictionaries
 from _Assignments_. But since **we determined very useful piece of knowledge domain (_the fact of learning a language is
 not directly connected to the fact of having teacher assigned_) we decided to be explicit about it** on our code. So we
@@ -90,14 +90,14 @@ Our tests fail because we must add one more piece of data to them. The `KlassLan
 
 ```ruby
 let!(:klass_language) { create(:klass_language,
-  klass: klass, 
+  klass: klass,
   dictionary: dictionary,
 ) }
 ```
 
 Imagine adding that to dozens or hundred tests that you already wrote. No fun. It would be as if **almost all those tests
 that you wrote discouraged you from refactorings instead of begin there for you so you can feel safely improving your
-code**. 
+code**.
 
 Consider that after introducing our change to code, **some tests are not even properly testing what they used
 to test**. Like imagine you had a test like this:
@@ -105,8 +105,8 @@ to test**. Like imagine you had a test like this:
 ```ruby
 
 let!(:assignment) { create(:assignment,
-  klass:      klass, 
-  teacher:    teacher, 
+  klass:      klass,
+  teacher:    teacher,
   dictionary: french_dictionary
 ) }
 
@@ -134,15 +134,15 @@ and verify its correctness.
 
 class Stack
   Empty = Class.new(StandardError)
-  
+
   def initialize
     @collection = []
   end
-  
+
   def push(obj)
     @collection.push(obj)
   end
-  
+
   def pop
     @colllection.empty? and raise Empty
     @collection.pop
@@ -157,7 +157,7 @@ So you put something on the stack, you take it back and you verify that it is in
 describe Stack do
   subject(:stack) { described_class.new }
   specify "last put element is first to pop" do
-    stack.push(pushed = Object.new)    
+    stack.push(pushed = Object.new)
     expect(popped = stack.pop).to eq(pushed)
   end
 end
@@ -166,7 +166,7 @@ end
 Why am I talking about this?
 
 Because I think that **what many rails projects started doing with *factory_girl* is no longer similar to our
-basic TDD technique**. 
+basic TDD technique**.
 
 I cannot but think we started to turn our test more into something like:
 
@@ -191,11 +191,11 @@ through set of interactions that happened to system **we tried to build the stat
 
 With factories we build the state as we know/imagine it to be at the very moment of writing the test. And **we rarely tend
 to revisit them later with the intent to verify the setup and fix it**. Given enough time  it might be even hard to imagine
-what sequence of events in system the original test author imagined leading to a state described in a test. 
+what sequence of events in system the original test author imagined leading to a state described in a test.
 
 This means that we are not protected in any way against changes to the internal implementation that happen in the future.
 Same way you can't just rename `@collection` in the stack example because the test is fragile.
- 
+
 In other words, **we introduced a third element into _Command/Query_ separation model** for our tests. Instead of issuing
 _Commands_ and testing the result with _Queries_ we issue commands and test what's in db. And for _Queries_ we set state
 in db and then we run _Queries_. But we usually have no way to ensure synchronization of those test. We are not sure
@@ -212,8 +212,8 @@ registration = SchoolRegistration.new
 registration.call(SchoolRegistration::Input.new.tap do |i|
   i.school_attributes  = attributes(:school, native_language: "en")
   i.teacher_attributes = teacher_attributes = attributes(:teacher,
-    id: "f154cc85-0f0d-4c5a-9be1-f71aa217b2c0", 
-    languages: %w(fr it) 
+    id: "f154cc85-0f0d-4c5a-9be1-f71aa217b2c0",
+    languages: %w(fr it)
   )
 end)
 
@@ -241,7 +241,7 @@ This setup is way longer because in some places we decided to go with longer syn
 (although) we didn't have to. This example mixes two approaches so you can see how you can do things *longer-way* and
 *shorter-way* (by using attributes). We didn't take a single step to refactor it into shorter expression and to be more reusable in
 multiple tests because I wanted you to see a full picture of it. **But extracting it into smaller test helpers, so that the
-test setup would be as short and revealing in our factory girl example would be trivial**. For now let's keep focus on our case. 
+test setup would be as short and revealing in our factory girl example would be trivial**. For now let's keep focus on our case.
 
 What can we see from this test setup? **We can see the interactions that led to the state of the system**. There were 3 of
 them and are similar to how I described the entire story for you. First teacher registered (first teacher creates the school
@@ -282,8 +282,8 @@ explicitly passed in constructor.
 ```ruby
 teaching = Teaching.new
 class_creation = ClassCreation.new(
-  teaching, 
-  double(:accounting), 
+  teaching,
+  double(:accounting),
   double(:licensing)
 )
 ```
@@ -291,13 +291,11 @@ class_creation = ClassCreation.new(
 So with this kind of test setup you are way more flexible and less constrained. Having data in db is no longer your only
 option.
 
-<%= show_product_inline(item[:newsletter]) %>
-
 ## TL;DR;
 
 In some cases you might wanna consider setting up the state of your system using Services/Commands instead of directly
 on DB using *factory_girl*. The benefit will be that it will allow you to more **freely change the internal implementation
-of your system without much hassle for changing your tests**. 
+of your system without much hassle for changing your tests**.
 
 For me one of the main selling points for having services is the **knowledge of what can happen in my app**. Maybe
 there are 10 things that the user can do in my app, maybe 100 or maybe 1000. But I know all of them and I can mix and
@@ -308,4 +306,4 @@ state that way that would not have happened in your real app, because you are ju
 
 This is an excerpt from <%= service_landing_link %> . For our blog post and newsletter we end up here but in the book there will be a
 following discussion about shortening the setup. We will also talk about the value of setting UUIDs and generating them
-on frontend. As well why it is worth to have an `Input` class that keeps the incoming data for your service (usually user input). 
+on frontend. As well why it is worth to have an `Input` class that keeps the incoming data for your service (usually user input).

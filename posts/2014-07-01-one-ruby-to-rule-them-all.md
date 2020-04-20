@@ -57,7 +57,7 @@ From the many [videocasts](http://bigbinary.com/videos/learn-rubymotion), [sourc
 2. **Styling** (with emphasize on SweetKit)
  - [SweetKit](https://github.com/motion-kit/sweet-kit) ([MotionKit](https://github.com/motion-kit/motion-kit) + SugarCube) - layout and styling gem
  - [SweetTea](https://github.com/colinta/sweettea) ([Teacup](https://github.com/colinta/teacup) + SugarCube) - CSS styling, it's seriously awesome, but not [officially maintained yet](https://github.com/motion-kit/motion-kit#goodbye-teacup)<p/>
- 
+
 3. **Models**
  - [Core Data Query](https://github.com/infinitered/cdq) -  manage your Core Data stack with data model file
  - [Motion Model](https://github.com/sxross/MotionModel) - DSL for Core Data with validation and mixins<p/>
@@ -70,6 +70,3 @@ From the many [videocasts](http://bigbinary.com/videos/learn-rubymotion), [sourc
 We encourage every ruby developer to **try RubyMotion**. It's a great way to **go into mobile** even if you don't know (and like) Java or Objective-C. We are impressed the **RubyMotion great support**, tools and community despite it's a standard as befits the Ruby world.
 
 For now, stay tuned for more mobile blogposts!
-
-
-<%= show_product_inline(item[:newsletter]) %>

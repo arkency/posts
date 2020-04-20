@@ -164,8 +164,8 @@ that is rolledback at the end of each test. I excluded such tests from this beha
 
 ```ruby
 def transaction_test
-  Rails.env.test? && 
-  defined?(DatabaseCleaner) && 
+  Rails.env.test? &&
+  defined?(DatabaseCleaner) &&
   DatabaseCleaner::ActiveRecord::Transaction === DatabaseCleaner.connections.first.strategy
 end
 ```
@@ -174,5 +174,3 @@ This is dependent on your testing infrastructure so it might differ in your proj
 
 If enjoyed this article and would like to **keep getting free Rails tips** in the future, subscribe
 to our mailing list below:
-
-<%= show_product_inline(item[:newsletter]) %>
