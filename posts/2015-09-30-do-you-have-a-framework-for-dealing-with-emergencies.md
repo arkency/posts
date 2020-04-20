@@ -103,7 +103,30 @@ You should have your own _framework_ for such cases. Otherwise you are exposed t
 
 We described ours in _Responsible Rails_ book.
 
-<%= show_product_inline(:responsible_rails) %>
+<section class="product product-responsible_rails">
+  <div class="text-left">
+    <a href="https://arkency.dpdcart.com/cart/add?product_id=116819&amp;method_id=123459" data-event-category="product" data-event-action="responsible_rails" data-event-label="after post">
+      <h1 class="text-center my-8">Responsible Rails</h1>
+    </a>
+    <a href="https://products.arkency.com/responsible-rails">
+      <img src="/assets/images/responsible-rails/cover.png" alt="" style="float: left; max-width: 220px; margin-right: 3em; margin-bottom: 1em">
+    </a>
+    <p>Tired of weekend works? Missing a framework for handling emergencies? Looking for advice how to mitigate the number of production accidents?</p>
+    <p><strong>Try Responsible Rails!</strong> The book contains:</p>
+    <ul class="list-inside">
+      <li>over 100 pages</li>
+      <li>anwsers to the most crucial questions about being a responsible Rails developer</li>
+      <li>Arkency’s step-by-step execution on how to act when accident happens</li>
+      <li>13 real-life stories writen by different authors</li>
+      <li>discussion about the stories, from diverse points of view</li>
+      <li>a portion of advice how to avoid emergencies as much as possible</li>
+    </ul>
+  </div>
+
+  <div class="product-bottom text-center fond-bold py-2">
+  <a href="https://arkency.dpdcart.com/cart/add?product_id=116819&amp;method_id=123459">Grab your copy!</a>
+  </div>
+</section>
 
 ## Summary
 
