@@ -31,7 +31,7 @@ Another important matter that needs to be considered in the context of remote wo
 Remote and async work is different than office-based work, more things are put in writing and more discipline is required. It's good to have a set of tools (e.g. Nozbe, Todoist), which allow us to record things that need to be done later. Also, asking questions in the async environment works a bit different than in the traditional office settings. We can’t expect that our questions will be answered straightaway, so we have to be respectful and let other people decide when to answer. Unfortunately, this sometimes may cause us to feel ignored within a team, as no one responds to our inquiries. If we feel frustrated because there is no one replying, it may mean that it’s time to review the techniques used. Although we shouldn’t expect an immediate answer, if our question is more or less valid, we have every right to expect that someone (be it another developer or a project manager), will finally provide us with an answer. There has to be a clear policy in place on how this problem will be dealt with. In healthy situations, however, the number of questions between team members should be reduced because more and more information is available - everyone has access to everything specification, documents, wireframes, etc.
 
 
-Check out more and follow us on the Arkency YouTube channel, thank you!
+Check out more and follow us on the [Arkency YouTube channel](https://www.youtube.com/channel/UCL8YpXFH1-y3AaELb0H7c3Q), thank you!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RjSte_rP2Ew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
