@@ -105,7 +105,7 @@ The `Index::PushArticleToIndex` is asynchronous event handler. It is inherited f
 
 ### 2nd: beware of transaction rollbacks!
 
-By default Rails uses database to enqueue background jobs. But this might not always be the case. Some background jobs gems use Redis to store information about scheduled jobs. That's why we should change default dispatcher in Rails Event Store client to `RailsEventStore::AfterCommitAsyncDispatcher`. It ensures that the async handlers will be scheduled only after commit of current database transaction. Your handlers won't be triggered when transaction is rolled back.
+Some background jobs adapters (i.e. Sidekiq) use Redis to store information about scheduled jobs. That's why we should change default dispatcher in Rails Event Store client to `RailsEventStore::AfterCommitAsyncDispatcher`. It ensures that the async handlers will be scheduled only after commit of current database transaction. Your handlers won't be triggered when transaction is rolled back.
 
 ### 3rd: subscribing to async handers is different
 
@@ -113,7 +113,7 @@ Rails Event Store uses `call(event)` method to invoke an event handler's logic. 
 
 ## Where is the drawback?
 
-This solution has some drawback. Let's imagine that your blogging platform becomes extremely popular and you need to handle hundreds of blog posts per second. Thanks to async processing you might even be able to cope with that. But then, after some time, your index provider announced it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
+This solution has some drawback. Let's imagine that your blogging platform become extremely popular and you need to handle hundreds of blog posts per second. That's to async processing you might event be able to cope with that. But then your index provider accounted it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
 
 ## Making things differently
 
@@ -122,7 +122,8 @@ It could be a separate process, maybe even on separate node which we will spin o
 
 ### First things first
 
-The catchup subscription is fairly easy to implement when you read from a single stream. But your `Blogging` context should not put all events into single stream. In this case we could use [linking to stream](https://railseventstore.org/docs/link/) feature in Rails Event Store.
+The catchup subscription is easy to implement when you read from a single stream. But your `Blogging` context should not put all events into single stream. That's obvious.
+In this case we could use [linking to stream](https://railseventstore.org/docs/link/) feature in Rails Event Store.
 
 Change file: ./config/initializers/rails_event_store.rb
 
