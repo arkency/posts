@@ -8,7 +8,13 @@ kind: article
 publish: false
 ---
 
-Speaking of connections in Active Record, we actually deal with three things: connections, connection pools and connection handlers. Here's how they relate to each other.
+Speaking of connections in Active Record, there are three objects you may deal with:
+
+1. Connection
+2. Connection pool
+3. Connection handler
+
+Here's how they relate to each other.
 
 <!-- more -->
 
@@ -24,8 +30,10 @@ ActiveRecord::Base.connection.execute("select 1 as x").to_a
 If you're on PostgreSQL and inspect `connection`'s class, here's what you get:
 
 ```ruby
-ActiveRecord::Base.connection.class            # => ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
-ActiveRecord::Base.connection.class.superclass # => ActiveRecord::ConnectionAdapters::AbstractAdapter
+ActiveRecord::Base.connection.class
+# => ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+ActiveRecord::Base.connection.class.superclass
+# => ActiveRecord::ConnectionAdapters::AbstractAdapter
 ```
 
 ## Connection pool
@@ -70,14 +78,19 @@ ActiveRecord::Base.connection_pool.connections.size     # => 2
 
 Note: you may want to read about `with_connection` method. 
 
+
 ## Connection handler
+
+Now a plot twist: you can have many connection pools in your Rails app. Connection handler manages them.
 
 ```ruby
 ActiveRecord::Base.connection_handler.class
 # => ActiveRecord::ConnectionAdapters::ConnectionHandler
 ```
 
-You can use it to get hold of all your pools:
+When can there be multiple connection pools? For example when there's an AR model which makes its own `establish_connection` - usually to another database. Note: each connection pool has its own max pool size.
+
+You can use connection handler to get hold of all your pools:
 
 ```ruby
 ActiveRecord::Base.connection_handler.connection_pools
@@ -87,24 +100,19 @@ ActiveRecord::Base.connection_handler.connection_pools
 So if you wanna traverse the whole hierarchy, you end up with:
 
 ```ruby
-ActiveRecord::Base.connection_handler.connection_pools.first.connections.first.execute("select 1 as a")
+ActiveRecord::Base
+  .connection_handler
+  .connection_pools.first
+  .connections.first
+  .execute("select 'please do not execute SQL on random connections' as helpful_warning").to_a
+# => [{"helpful_warning"=>"please do not execute SQL on random connections"}]
 ```
 
-When can there be another connection pool? For example, when an AR model has it's own `establish_connection`:
+## Want to contribute to this blogpost?
 
-```ruby
-# TODO: example
-```
+You can do it [right here](https://github.com/arkency/posts/edit/master/posts/2020-04-10-rails-connections-pools-and-handlers.md)!
 
-TODOs
+### Todos
 
-* `establish_connection` on AR subclasses; can be a problem especially when it's connected to the same database, because assumptions
-* threads, max connections, exception, RAILS_MAX_THREADS
-* rails version
-* check in check out
-* on fork
-* counting number of threads
-* when connection shows up in the list
-* code create a thread and see another connection 
-* code: create a thread and get pool exception
-* spec.name
+* forking processes
+* adjusting pool size
