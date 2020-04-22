@@ -113,7 +113,7 @@ Rails Event Store uses `call(event)` method to invoke an event handler's logic. 
 
 ## Where is the drawback?
 
-This solution has some drawback. Let's imagine that your blogging platform become extremely popular and you need to handle hundreds of blog posts per second. That's to async processing you might event be able to cope with that. But then your index provider accounted it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
+This solution has some drawback. Let's imagine that your blogging platform become extremely popular and you need to handle hundreds of blog posts per second. Thanks to async processing you might event be able to cope with that. But then your index provider accounted it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
 
 ## Making things differently
 
