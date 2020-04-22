@@ -3,7 +3,7 @@ title: "Catchup subscriptions with Rails Event Store"
 created_at: 2020-04-22 17:25:51 +0200
 author: Mirosław Pragłowski
 tags: ['ddd', 'events', 'rails event store']
-publish: false
+publish: true
 ---
 
 The usual way of handling domain events in Rails Event Store is using the included pub-sub mechanism. And in most cases, especially when you have majestic monolith application it is enough. It is also easiest to grasp by the team and use in legacy applications implemented using Rails Way. But sometimes it is not enough, sometimes this way of handling events become an obstacle.
