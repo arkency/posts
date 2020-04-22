@@ -17,53 +17,58 @@ Speaking of connections in Active Record, we actually deal with three things: co
 This is what you most often directly interact with. You can get hold of it via `ActiveRecord::Base.connection` and, for example, use it to execute raw SQL:
 
 ```ruby
-ActiveRecord::Base.connection.execute("select 1 as a").to_a
-# => [{"a"=>1}]
+ActiveRecord::Base.connection.execute("select 1 as x").to_a
+# => [{"x"=>1}]
 ```
 
 If you're on PostgreSQL and inspect `connection`'s class, here's what you get:
 
 ```ruby
-ActiveRecord::Base.connection.class
-# => ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
-ActiveRecord::Base.connection.class.superclass
-# => ActiveRecord::ConnectionAdapters::AbstractAdapter
+ActiveRecord::Base.connection.class            # => ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+ActiveRecord::Base.connection.class.superclass # => ActiveRecord::ConnectionAdapters::AbstractAdapter
 ```
 
 ## Connection pool
 
-A bag with connections. You can access it via `ActiveRecord::Base.connection_pool`. It's class:
+Connection pool is a bag with connections. Why do we need one? If you're using threads (e.g. on Puma server), every thread needs a separate db connection. Otherwise their conversations with the db could mix up. On the other hand, you want to control the number of db connections, because it typically increases the resources needed on the db server. That's why there's a pool of connections. If a thread wants to use AR, it gets a connection from the pool. If pool size is exceeded, `ActiveRecord::ConnectionTimeoutError` is raised.
+
+You can get hold of it via `ActiveRecord::Base.connection_pool`. It's class:
 
 ```ruby
 ActiveRecord::Base.connection_pool.class
 # => ActiveRecord::ConnectionAdapters::ConnectionPool
 ```
 
-You can, for example, list all your active connections:
+You can list all your active connections:
 
 ```ruby
 ActiveRecord::Base.connection_pool.connections
 # => (an array with all active connections)
 ```
 
-This gives you your max number of connections (as defined by `pool` in `database.yml`, or `ENV["RAILS_MAX_THREADS"]`):
+Note: this array can be empty - this can happen for example when you just started a console session and haven't yet interacted with AR.
+
+Max pool size is controlled by the `pool` option in `config/database.yml`. By default it can be overridden by `ENV["RAILS_MAX_THREADS"]`. You can check max pool size via:
 
 ```ruby
-ActiveRecord::Base.connection_pool.size
-# => 5
+ActiveRecord::Base.connection_pool.size                 # => 5
 ```
 
-This, on the other hand, gives you the number of connections currently in use:
+This number is not to be confused with the number of currently active connections:
 
 ```ruby
-ActiveRecord::Base.connection_pool.connections.size
-# => 1
-# It can be `0` too - for example when you haven't yet interacted with AR
+ActiveRecord::Base.connection_pool.connections.size     # => 1
 ```
 
-Why do we need a connection pool? If you're using threads, every one of them needs a separate db connection (otherwise their conversations with the db could mix up. On the other hand, you want to control the number of db connections, because it typically increases the resources needed on the db server.
+When there's another connection in the pool? Open up a thread and talk to AR:
 
-TODO: when there's another connection in the pool? Open up a thread.
+```ruby
+User.count
+Thread.new { User.count }
+ActiveRecord::Base.connection_pool.connections.size     # => 2
+```
+
+Note: you may want to read about `with_connection` method. 
 
 ## Connection handler
 
