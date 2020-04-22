@@ -34,7 +34,7 @@ ActiveRecord::Base.connection.class.superclass
 
 A bag with connections. You can access it via `ActiveRecord::Base.connection_pool`. It's class:
 
-```
+```ruby
 ActiveRecord::Base.connection_pool.class
 # => ActiveRecord::ConnectionAdapters::ConnectionPool
 ```
@@ -47,12 +47,14 @@ ActiveRecord::Base.connection_pool.connections
 ```
 
 This gives you your max number of connections (as defined by `pool` in `database.yml`, or `ENV["RAILS_MAX_THREADS"]`):
+
 ```ruby
 ActiveRecord::Base.connection_pool.size
 # => 5
 ```
 
 This, on the other hand, gives you the number of connections currently in use:
+
 ```ruby
 ActiveRecord::Base.connection_pool.connections.size
 # => 1
@@ -84,12 +86,13 @@ ActiveRecord::Base.connection_handler.connection_pools.first.connections.first.e
 ```
 
 When can there be another connection pool? For example, when an AR model has it's own `establish_connection`:
+
 ```ruby
 # TODO: example
 ```
 
-
 TODOs
+
 * `establish_connection` on AR subclasses; can be a problem especially when it's connected to the same database, because assumptions
 * threads, max connections, exception, RAILS_MAX_THREADS
 * rails version
