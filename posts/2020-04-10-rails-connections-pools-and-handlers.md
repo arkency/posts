@@ -5,10 +5,10 @@ author: Tomasz Wróbel
 tags: ['rails']
 newsletter: skip
 kind: article
-publish: false
+publish: true
 ---
 
-Speaking of connections in Active Record, there are three objects you may deal with:
+Speaking of connections in Active Record, there are three things you may deal with:
 
 1. Connection
 2. Connection pool
@@ -78,7 +78,6 @@ ActiveRecord::Base.connection_pool.connections.size     # => 2
 
 Note: you may want to read about `with_connection` method. 
 
-
 ## Connection handler
 
 Now a plot twist: you can have many connection pools in your Rails app. Connection handler manages them.
@@ -104,13 +103,17 @@ ActiveRecord::Base
   .connection_handler
   .connection_pools.first
   .connections.first
-  .execute("select 'please do not execute SQL on random connections' as helpful_warning").to_a
-# => [{"helpful_warning"=>"please do not execute SQL on random connections"}]
+  .execute("select 'Do not execute SQL on random connections' as helpful_hint")
 ```
 
-## Want to contribute to this blogpost?
+### Want to contribute to this blogpost?
 
 You can do it [right here](https://github.com/arkency/posts/edit/master/posts/2020-04-10-rails-connections-pools-and-handlers.md)!
+
+### More resources
+
+* [How rails sharding connection handling works](https://github.com/hsgubert/rails-sharding/wiki/How-rails-sharding-connection-handling-works)
+* [Rails Connection Pool API doc](https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/ConnectionPool.html)
 
 ### Todos
 
