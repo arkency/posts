@@ -81,8 +81,7 @@ module Index
   class PushArticleToIndex < ActiveJob::Base
     prepend RailsEventStore::AsyncHandler
 
-    def initialize(index_adapter
-      = Rails.configuration.index_adapter)
+    def initialize(index_adapter = Rails.configuration.index_adapter)
       @index = index_adpater
     end
 
