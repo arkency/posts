@@ -12,7 +12,7 @@ The usual way of handling domain events in Rails Event Store is using the includ
 
 Let me define the domain problem. The feature we want to implement is described by requirements:
 
-* every time a blog post is published it's metadata (slug, title, time of creation, author, tags) should be sent to external system to index our articles
+* every time a blog post is published its metadata (slug, title, time of creation, author, tags) should be sent to external system to index our articles
 * when blogpost is updated the metadata in external index must be also updated
 
 At the beginning it looks very simple. And a first, naive, implementation of this requirements could look like:
