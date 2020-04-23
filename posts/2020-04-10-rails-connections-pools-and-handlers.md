@@ -37,7 +37,9 @@ ActiveRecord::Base.connection.class.superclass
 
 ## Connection pool
 
-Connection pool is a bag with connections. Why do we need one? If you're using threads (e.g. on Puma server), every thread needs a separate db connection. Otherwise their conversations with the db could mix up. On the other hand, you want to control the number of db connections, because it typically increases the resources needed on the db server. That's why there's a pool of connections. If a thread wants to use AR, it gets a connection from the pool. If pool size is exceeded, `ActiveRecord::ConnectionTimeoutError` is raised.
+Connection pool is a bag with connections. Why do we need one? If you're using threads (e.g. on Puma server), every thread needs a separate db connection. Otherwise their conversations with the db could mix up.
+
+On the other hand, you want to control the number of db connections, because it typically increases the resources needed on the db server. That's why there's a pool of connections. If a thread wants to use AR, it gets a connection from the pool. If pool size is exceeded, `ActiveRecord::ConnectionTimeoutError` is raised. See [Object pool pattern](https://en.wikipedia.org/wiki/Object_pool_pattern).
 
 You can get hold of it via `ActiveRecord::Base.connection_pool`. It's class:
 
