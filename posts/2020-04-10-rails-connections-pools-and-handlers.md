@@ -114,7 +114,8 @@ You can do it [right here](https://github.com/arkency/posts/edit/master/posts/20
 * [How rails sharding connection handling works](https://github.com/hsgubert/rails-sharding/wiki/How-rails-sharding-connection-handling-works)
 * [Rails Connection Pool API doc](https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/ConnectionPool.html)
 
-### Todos
-
+<!--
+Todos
 * forking processes
 * adjusting pool size
+-->
