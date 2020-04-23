@@ -32,7 +32,7 @@ rails generate bounded_context:bounded_context index
 
 Next, we need to define domain events, implement the blogging logic (omitted here because that's different topic for another post):
 
-File ./blogging/lib/blogging.rb
+File `./blogging/lib/blogging.rb`:
 
 ```ruby
 module Blogging
@@ -48,7 +48,7 @@ end
 
 Define subscriptions, to connect our domain events to handlers:
 
-File: ./config/initializers/rails_event_store.rb
+File `./config/initializers/rails_event_store.rb`:
 
 ```ruby
 Rails.configuration.to_prepare do
@@ -101,7 +101,7 @@ end
 
 ### 1st: embrace async!
 
-The `Index::PushArticleToIndex` is asynchronous event handler. It is inherited from `ActiveJob::Base` and implements `perform(event)` method. This will allow to use it by `RailsEventStore::ActiveJobScheduler` and schedule sending to an index asynchronously, without blocking the execution of main logic. Because we do not want to fail publishing our new article just because indexing service is down :)
+The `Index::PushArticleToIndex` is an asynchronous event handler. It is inherited from `ActiveJob::Base` and implements `perform(event)` method. This will allow to use it by `RailsEventStore::ActiveJobScheduler` and schedule sending to an index asynchronously, without blocking the execution of main logic. Because we do not want to fail publishing our new article just because indexing service is down :)
 
 ### 2nd: beware of transaction rollbacks!
 
@@ -113,19 +113,19 @@ Rails Event Store uses `call(event)` method to invoke an event handler's logic. 
 
 ## Where is the drawback?
 
-This solution has some drawback. Let's imagine that your blogging platform become extremely popular and you need to handle hundreds of blog posts per second. That's to async processing you might event be able to cope with that. But then your index provider accounted it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
+This solution has a drawback. Let's imagine that your blogging platform becomes extremely popular and you need to handle hundreds of blogposts per second. Thanks to async processing you might even be able to cope with that. But then your index provider announced it has ended his "amazing journey" and you need to move your index to a new one. Do I have to mention that your paying customers expect the platform will work 24/7 ? ;)
 
 ## Making things differently
 
 Catchup subscription is a subscription where client defines a starting point and a size of dataset to handle. Basically it's a while loop reading through a stream of events with defined chunk size.
-It could be a separate process, maybe even on separate node which we will spin on only to handle incoming events and push the articles to the external index provider.
+It could be a separate process, maybe even on separate node which we will spin up only to handle incoming events and push the articles to the external index provider.
 
 ### First things first
 
 The catchup subscription is easy to implement when you read from a single stream. But your `Blogging` context should not put all events into single stream. That's obvious.
 In this case we could use [linking to stream](https://railseventstore.org/docs/link/) feature in Rails Event Store.
 
-Change file: ./config/initializers/rails_event_store.rb
+Change file `./config/initializers/rails_event_store.rb`:
 
 ```ruby
 Rails.configuration.to_prepare do
@@ -149,7 +149,7 @@ Rails.configuration.to_prepare do
 end
 ```
 
-And instead of file: ./index/lib/index/publish_article_to_index.rb use ./index/lib/index/link_to_index.rb:
+And instead of file: `./index/lib/index/publish_article_to_index.rb` use `./index/lib/index/link_to_index.rb`:
 
 ```ruby
 module Index
@@ -165,7 +165,7 @@ module Index
 end
 ```
 
-This time we will use simple synchronous handler. Thanks to `RubyEventStore::ComposedDispatcher` we do not need to change anything. It won't match the handlers handled by `RailsEventStore::ActiveJobScheduler` so default `RubyEventStore::Dispatcher` will trigger the event handler.
+This time we will use a simple synchronous handler. Thanks to `RubyEventStore::ComposedDispatcher` we do not need to change anything. It won't match the handlers handled by `RailsEventStore::ActiveJobScheduler` so the default `RubyEventStore::Dispatcher` will trigger the event handler.
 
 ## Implementing catchup subscription
 
@@ -214,7 +214,7 @@ module Index
 end
 ```
 
-### Why separate process?
+### Why a separate process?
 
 Let's start with cons of this solution. The obvious one is you need a separate process :) Maybe with separate deployment, separate CI etc. Probably more time will pass between publication of article and indexing it. So why bother?
 
@@ -222,8 +222,8 @@ Let's start with cons of this solution. The obvious one is you need a separate p
 
 The external index is basically a read model of your articles metadata. Tailor made, aligned with capabilities of external index provider. **Recreateable.**
 
-This is what make a difference here. To rebuild an index from scratch all you need to do is to remove stored starting point for the catchup subscription and wait some time. The indexing will start from beginning and will go though all published articles until index will be up to date.
+This is what makes a difference here. To rebuild an index from scratch all you need to do is to remove the stored starting point for the catchup subscription and wait some time. The indexing will start from beginning and will go though all published articles until index will be up to date.
 
 ### But there is more!
 
-I've mention before a scenario where you change external index provider. Using catchup subscription it will be quite easy. Just create new instance of the subscription process with different index adapter. Run it and wait until it catch up and index all published articles. And then just switch your application to new external index and drop old subscription.
+I've mentioned a scenario where you change your external index provider. Using a catchup subscription it will be quite easy. Just create new instance of the subscription process with different index adapter. Run it and wait until it catches up and indexes all the published articles. And then just switch your application to new external index and drop the old subscription.
