@@ -2,7 +2,7 @@
 title: "Catchup subscriptions with Rails Event Store"
 created_at: 2020-04-22 17:25:51 +0200
 author: Mirosław Pragłowski
-tags: ['ddd', 'events', 'rails event store']
+tags: ['ddd', 'rails event store', 'cqrs', 'read model']
 publish: true
 ---
 
