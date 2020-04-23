@@ -5,12 +5,13 @@ author: Tomasz Wróbel
 tags: ['rails']
 kind: article
 publish: true
-cover_image: rails-connections-john-barkiple-l090uFWoPaI-unsplash.jpg
 ---
 
 In Active Record there are db connections, connection pools and handlers. To put it shortly:
 
 **Connection Handler** _has many_ **Connection Pools** _has many_ **Connections**
+
+![Photo by John Barkiple on Unsplash](rails-connections-john-barkiple-l090uFWoPaI-unsplash.jpg)
 
 <!-- more -->
 
