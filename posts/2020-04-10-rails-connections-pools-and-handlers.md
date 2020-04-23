@@ -11,7 +11,7 @@ In Active Record there are db connections, connection pools and handlers. To put
 
 **Connection Handler** _has many_ **Connection Pools** _has many_ **Connections**
 
-![Photo by John Barkiple on Unsplash](rails-connections-john-barkiple-l090uFWoPaI-unsplash.jpg)
+<%= img_fit("rails-connections-john-barkiple-l090uFWoPaI-unsplash.jpg") %>
 
 <!-- more -->
 
