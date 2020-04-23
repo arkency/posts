@@ -7,13 +7,9 @@ kind: article
 publish: true
 ---
 
-Speaking of connections in Active Record, there are three things you may deal with:
+In Active Record there are db connections, connection pools and handlers. To put it shortly:
 
-1. Connection
-2. Connection pool
-3. Connection handler
-
-Here's how they relate to each other.
+**Connection Handler** _has many_ **Connection Pools** _has many_ **Connections**
 
 <!-- more -->
 
