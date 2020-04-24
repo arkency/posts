@@ -29,17 +29,7 @@ There is also another problem that command sourcing solves as a side effect. If 
 Consequently, you end up with two different events. Obviously there are ways to deal with it, so it's not the end of the world. You can convert those events into new versions of the events during loading or some other techniques. There's a fantastic book by Greg Young called "Event Versioning." I think it's free when you read it online, so you can easily google it. 
 When you end up with those different versions of events and you have command sourcing, you can always rebuild the system from the commands, and as a result, have the events in their newest version. Indeed this is a nice side effect, but it can actually have a significant impact on the time and ease of development. So that's one reason why we want to do it. But of course there are more and I will cover them later. For now, I hope I managed to explain to you what command sourcing is generally about. Thanks for reading!
 
-# REScon
 
-If you like this topic of adding events to legacy (Ruby) applications, then attending [REScon](https://mailchi.mp/arkency/rescon/) might be a good idea. We'll show more advanced techniques how to gradually get out of the existing Rails Way architecture and turn it inot loosely-coupled event-driven application. As part of REScon we have 3 events (each can be attended/bought separately):
-
-- 1-day Rails/DDD workshop - $400
-- 1-day conference (talks about using DDD/events with Rails and [RailsEventStore](http://railseventstore.org)) - $200
-- 1-day hackathon - FREE
-
-All in beatiful Wrocław, Poland.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tCiLgbHGhnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
  
 
