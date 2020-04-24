@@ -6,7 +6,7 @@ tags: []
 publish: false
 ---
 
-Also: top reasons why people love to work here.
+Also: top reasons why people love to work with us.
 
 TODO: perhaps too 🔥🔥🔥- not sure whether to eventually publish, but I wanna write it up somewhere.
 
@@ -16,4 +16,13 @@ TODO: perhaps too 🔥🔥🔥- not sure whether to eventually publish, but I wa
 4. Don't do refactoring sprints. Always refactor.
 5. Tell don't ask.
 6. Don't send private messages. Use channels.
-7. ...
+7. Don't mention unless someone's attention really needed.
+8. Don't `@here`.
+9. Don't estimate.
+10. Meetings are a huge waste of time in most cases.
+11. Avoid communication proxies.
+12. Share communication/knowledge/accesses as broadly as possible.
+
+Maybe:
+- You're responsible.
+- More on meetings: Meetings are a waste of time especially if they're regularly scheduled status updates, compulsory, or more than 2 attendees. Ad hoc, voluntary meetings with clear goal are cool. Recording, sharing & summarizing meetings is great.
