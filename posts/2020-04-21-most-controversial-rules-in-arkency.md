@@ -25,6 +25,7 @@ TODO: perhaps too 🔥🔥🔥- not sure whether to eventually publish, but I wa
 13. Best story size is one.
 14. Single backlog.
 15. Always pick the first task from the top of the backlog.
+16. Always record meetings so that others can catch-up async if they want to.
 
 Maybe:
 - You're responsible.
