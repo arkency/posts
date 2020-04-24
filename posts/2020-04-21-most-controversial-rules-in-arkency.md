@@ -22,6 +22,9 @@ TODO: perhaps too 🔥🔥🔥- not sure whether to eventually publish, but I wa
 10. Meetings are a huge waste of time in most cases.
 11. Avoid communication proxies.
 12. Share communication/knowledge/accesses as broadly as possible.
+13. Best story size is one.
+14. Single backlog.
+15. Always pick the first task from the top of the backlog.
 
 Maybe:
 - You're responsible.
