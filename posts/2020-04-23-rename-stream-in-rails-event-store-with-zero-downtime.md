@@ -229,6 +229,12 @@ current stream. Notice that it uses the synchronized block to avoid race conditi
 The same lock is used by `catchup` method to avoid race condition where we read source stream
 and - if there is no more events to link - do the change of current stream.
 
+I've used a `Mutex` class here to synchronize critical operations - but this is only experimental code,
+**not production ready**. In real life scenario the lock should depend on what kind of `EventRepository`
+you are using in your system. If you store tour domain events in SQL database consider named locks to implement
+a synchronization.
+
+
 ## The result
 
 Here sample execution for `PER_TIME_UNIT = 10.0`:
