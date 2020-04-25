@@ -16,7 +16,7 @@ It's a very good question which made me realize how much knowledge there is yet 
 
 ## Bootstrap
 
-Subscription in Rails Event Store is a way to connect an event handler with the events it responds to. Whenever an event is published all its registered handlers are called. We require such handlers to respond to `#call` method, taking the instance of an event as an argument. By convention we recommend to start with a single file to hold these subscriptions. Usually this is an initializer:
+Subscription in Rails Event Store is [a way to connect]( https://railseventstore.org/docs/subscribe/) an event handler with the events it responds to. Whenever an event is published all its registered handlers are called. We require such handlers to respond to `#call` method, taking the instance of an event as an argument. By convention we recommend to start with a single file to hold these subscriptions. Usually this is an initializer:
 
 ```ruby
 # config/initializers/rails_event_store.rb
