@@ -2,13 +2,20 @@
 title: Managing Rails Event Store Subscriptions — How To
 created_at: 2020-04-24T21:10:56.807Z
 author: Paweł Pacana
-tags: []
+tags: ['rails event store']
 publish: false
 ---
 
+Recently we got asked about patterns to manage subscriptions in Rails Event Store:
 
-Subscription in Rails Event Store is a way to connect an event handler with the events it responds to. Whenever an event is published all its registered handlers are called. We require such handlers to respond to `#call` method, taking the instance of an event as an argument. By convention we recommend to start with a single file to hold these subscriptions. Usually this is an [initializer](https://github.com/RailsEventStore/cqrs-es-sample-with-res/blob/a32e18a79b0aaa8e21a9b361aac62df4876b8f49/config/initializers/rails_event_store.rb):
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/arkency?ref_src=twsrc%5Etfw">@arkency</a> Hiya, do you have any patterns for managing lots of subscriptions? <br>i.e. adding to initializers file only scales for short time!</p>&mdash; Ian Vaughan (@IanVaughan) <a href="https://twitter.com/IanVaughan/status/1253318752977907714?ref_src=twsrc%5Etfw">April 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+It's a very good question which made me realize how much knowledge there is yet to share from my everyday work. I took as as opportunity to gather knowledge in one place — chances are this question will return, thus a blog post as a response.
+
+
+## Bootstrap
+
+Subscription in Rails Event Store is a way to connect an event handler with the events it responds to. Whenever an event is published all its registered handlers are called. We require such handlers to respond to `#call` method, taking the instance of an event as an argument. By convention we recommend to start with a single file to hold these subscriptions. Usually this is an initializer:
 
 ```ruby
 # config/initializers/rails_event_store.rb
@@ -24,8 +31,6 @@ module Sample
   end
 end
 ```
-
-## Bootstrap
 
 The idea for such glue file came straight from one on my favourite keynotes. Greg Young in his ["8 Lines of Code"](https://www.infoq.com/presentations/8-lines-code-refactoring/) talk presents a concept of a bootstrap method, which ties together various dependencies. It is a single place to look at to understand the relationships between collaborators. There is no "magic" in it, it is a boilerplate code. And such is best kept out of the code that really matters.
 
@@ -176,7 +181,7 @@ FIXME: actually helpful code sample from RES that yet does not exist xD
 
 ## Different perspectives for different problems
 
-An ability to look on subscriptions not only from handler-to-events but also event-to-handlers comes handy in some situations, most notably when debugging. We don't yet have a tool yet in RES ecosystem to help in such use cases. However my colleague [Rafał](https://blog.arkency.com/authors/rafal-lasocha/) however made a following script to generate both mappings. Consider this a quick spike. With RubyMine code analysis and its "jump to definition" this actually becomes very handy when navigating the code.
+An ability to look on subscriptions not only from handler-to-events but also event-to-handlers comes handy in some situations, most notably when debugging. We don't yet have a tool yet in RES ecosystem to help in such use cases. However my [colleague](https://blog.arkency.com/authors/rafal-lasocha/) made a following script to generate both mappings. Consider this to be a quick spike. With RubyMine code analysis and its _Jump to Definition_ this actually becomes very handy when navigating the code.
 
 ```ruby
 class GenerateFiles
@@ -270,3 +275,14 @@ script = GenerateFiles.new
 script.generate_event_to_handlers
 script.generate_handler_to_events
 ```
+
+I would very much welcome this or simillar tool in Rails Event Store for a broader audience. Something like `rails routes` but for subscriptions. Either in the console or in the [browser](https://railseventstore.org/docs/browser/). 
+
+Who knows, maybe that could be **your** [contribution](https://github.com/RailsEventStore/rails_event_store)? 🙂
+
+## Not only events
+
+So far the code examples circulated around events. The very same ideas can be applied to commands and command handlers, with liTtle help of [command bus](https://github.com/arkency/command_bus#command-bus).
+
+
+
