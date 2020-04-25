@@ -3,7 +3,7 @@ title: Managing Rails Event Store Subscriptions — How To
 created_at: 2020-04-24T21:10:56.807Z
 author: Paweł Pacana
 tags: ['rails event store']
-publish: false
+publish: true
 cover_image: 'iker-urteaga-TL5Vy1IM-uA-unsplash.jpg'
 ---
 
