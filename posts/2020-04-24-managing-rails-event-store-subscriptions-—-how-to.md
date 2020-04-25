@@ -38,14 +38,13 @@ At some point in project lifecycle the dependencies will differ in production as
 
 Having a different bootstrap method for test environment has an additional benefit of the possibility to [disable particular handlers](https://blog.arkency.com/optimizing-test-suites-when-using-rails-event-store/). Or quite the opposite — very selectively enable them for the subset of integration tests when they're most needed.
 
-Here we extracted map of subscriptions to `ApplicationSubscriptions`: 
+Here we extracted a map of subscriptions to `ApplicationSubscriptions` bootstrap: 
 
 ```ruby
 module Sample
   class Application < Rails::Application
     config.to_prepare do
       Rails.configuration.event_store = event_store = RailsEventStore::Client.new
-  
       ApplicationSubscriptions.new.call(event_store)
     end
   end
