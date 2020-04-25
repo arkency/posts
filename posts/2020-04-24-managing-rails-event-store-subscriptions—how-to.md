@@ -277,7 +277,7 @@ script.generate_handler_to_events
 
 I would very much welcome this or simillar tool in Rails Event Store for a broader audience. Something like `rails routes` but for subscriptions. Either in the console or in the [browser](https://railseventstore.org/docs/browser/). 
 
-Who knows, maybe that could be **your** [contribution](https://github.com/RailsEventStore/rails_event_store)? 🙂
+Who knows, maybe that could be [your contribution](https://github.com/RailsEventStore/rails_event_store)? 🙂
 
 ## Not only events
 
