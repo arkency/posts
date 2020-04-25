@@ -181,7 +181,9 @@ update msg model =
             ( model, Cmd.none )
 ```
 
-Translating this example to Ruby and RES. First the event from different bounded context, i.e. ordering:
+Translating above example to Ruby and RES:
+
+1. The event from different bounded context, i.e. `Ordering`, we will be subscribing to it
 
 ```ruby
 module Ordering
@@ -189,14 +191,14 @@ module Ordering
 end
 ```
 
-Then an event handler. Reacts to completed order and makes appropriate changes within insurance related to this order: 
+2. An event handler which reacts to `Ordering::OrderCompleted` and applies changes withing `Insuring`
 
 ```ruby
 module Insuring
-  class OrderCompleted
+  class OrderCompleted < ActiveJob::Base
     prepend RailsEventStore::AsyncHandler
 
-    def call(fact)
+    def perform(event)
       order_id = fact.data.fetch(:order_id)
       ApplicationRecord.transaction do
         completion = InsuranceCompletion.lock.find_by_billing_order_id(order_id)
@@ -207,7 +209,7 @@ module Insuring
 end
 ```
 
-The last part is the actual glue code. Bootstrap method in a module to subscribe any `Insurance` handlers to events from external contexts and `ApplicationSubscriptions` collecting all module subscriptions it knows about.
+3. The actual glue code. Bootstrap method in a module to subscribe any `Insurance` handlers to events from external contexts and `ApplicationSubscriptions` collecting all module subscriptions it knows about
 
 ```ruby
 module Insuring
