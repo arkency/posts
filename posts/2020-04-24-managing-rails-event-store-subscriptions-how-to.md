@@ -233,7 +233,7 @@ That is the gist of it. I can imagine one could make module subscriptions to be 
 
 ## Different perspectives for different problems
 
-An ability to look on subscriptions not only from handler-to-events but also event-to-handlers comes handy in some situations, most notably when debugging. We don't yet have a tool yet in RES ecosystem to help in such use cases. However my [colleague](https://blog.arkency.com/authors/rafal-lasocha/) made a following script to generate both mappings. Consider this to be a quick spike. With RubyMine code analysis and its _Jump to Definition_ this actually becomes very handy when navigating the code.
+An ability to look on subscriptions not only as a handler-to-events but also as an event-to-handlers comes handy in some situations, most notably when debugging. We don't yet have a tool yet in Rails Event Store ecosystem to help in such use cases. However my [colleague](https://blog.arkency.com/authors/rafal-lasocha/) made a following script to generate both mappings. Consider this to be a quick spike. With RubyMine code analysis and its _Jump to Definition_ this actually becomes very handy when navigating the code.
 
 ```ruby
 class GenerateFiles
