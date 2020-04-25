@@ -324,7 +324,7 @@ Who knows, maybe that could be [your contribution](https://github.com/RailsEvent
 
 ## Not only events
 
-So far the code examples circulated around events. The very same ideas can be applied to commands and command handlers, with liTtle help of [command bus](https://github.com/arkency/command_bus#command-bus).
+So far the code examples circulated around events. The very same ideas can be applied to commands and command handlers, with little help of [command bus](https://github.com/arkency/command_bus#command-bus).
 
 
 
