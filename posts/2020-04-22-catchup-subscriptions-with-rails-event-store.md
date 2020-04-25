@@ -32,9 +32,10 @@ rails generate bounded_context:bounded_context index
 
 Next, we need to define domain events, implement the blogging logic (omitted here because that's different topic for another post):
 
-File `./blogging/lib/blogging.rb`:
-
 ```ruby
+# ./blogging/lib/blogging.rb
+
+
 module Blogging
   class ArticlePublished < RailsEventStore::Event
     # ... the schema of events should be defined here
@@ -48,9 +49,10 @@ end
 
 Define subscriptions, to connect our domain events to handlers:
 
-File `./config/initializers/rails_event_store.rb`:
-
 ```ruby
+# ./config/initializers/rails_event_store.rb
+
+
 Rails.configuration.to_prepare do
   Rails.configuration.event_store = RailsEventStore::Client.new(
     dispatcher: RubyEventStore::ComposedDispatcher.new(
@@ -74,9 +76,11 @@ end
 
 And finally our handler to send articles to external indexing service:
 
-File: ./index/lib/index/publish_article_to_index.rb
 
 ```ruby
+# ./index/lib/index/publish_article_to_index.rb
+
+
 module Index
   class PushArticleToIndex < ActiveJob::Base
     prepend RailsEventStore::AsyncHandler
@@ -125,9 +129,12 @@ It could be a separate process, maybe even on separate node which we will spin u
 The catchup subscription is easy to implement when you read from a single stream. But your `Blogging` context should not put all events into single stream. That's obvious.
 In this case we could use [linking to stream](https://railseventstore.org/docs/link/) feature in Rails Event Store.
 
-Change file `./config/initializers/rails_event_store.rb`:
+Change the Rails Event Store initializer:
 
 ```ruby
+# ./config/initializers/rails_event_store.rb
+
+
 Rails.configuration.to_prepare do
   Rails.configuration.event_store = RailsEventStore::Client.new(
     dispatcher: RubyEventStore::ComposedDispatcher.new(
@@ -149,9 +156,12 @@ Rails.configuration.to_prepare do
 end
 ```
 
-And instead of file: `./index/lib/index/publish_article_to_index.rb` use `./index/lib/index/link_to_index.rb`:
+And instead of `PublishArticleToIndex` use `LinkToIndex`:
 
 ```ruby
+# ./index/lib/index/link_to_index.rb
+
+
 module Index
   class LinkToIndex
     def initialize(event_store)
@@ -174,6 +184,9 @@ When started, the catchup subscription should start reading from the last proces
 Here a sample implementation:
 
 ```ruby
+# ./index/lib/index/push_articles_to_index.rb
+
+
 module Index
   class PushArticlesToIndex
     def initialize(event_store, index_adapter, chunk_size = 1000)
