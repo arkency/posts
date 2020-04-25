@@ -183,7 +183,7 @@ update msg model =
 
 Translating above example to Ruby and RES:
 
-- there is na event from different bounded context, i.e. `Ordering`, we will be subscribing to it
+- there is an event from different bounded context, i.e. `Ordering`, we will be subscribing to it
 
 ```ruby
 module Ordering
