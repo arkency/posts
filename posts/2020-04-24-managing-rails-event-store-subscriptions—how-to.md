@@ -4,6 +4,7 @@ created_at: 2020-04-24T21:10:56.807Z
 author: Paweł Pacana
 tags: ['rails event store']
 publish: false
+cover_image: 'iker-urteaga-TL5Vy1IM-uA-unsplash.jpg'
 ---
 
 Recently we got asked about patterns to manage subscriptions in Rails Event Store:
