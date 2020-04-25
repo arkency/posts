@@ -9,7 +9,7 @@ cover_image: 'iker-urteaga-TL5Vy1IM-uA-unsplash.jpg'
 
 Recently we got asked about patterns to manage subscriptions in Rails Event Store:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/arkency?ref_src=twsrc%5Etfw">@arkency</a> Hiya, do you have any patterns for managing lots of subscriptions? <br>i.e. adding to initializers file only scales for short time!</p>&mdash; Ian Vaughan (@IanVaughan) <a href="https://twitter.com/IanVaughan/status/1253318752977907714?ref_src=twsrc%5Etfw">April 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet mx-auto"><p lang="en" dir="ltr"><a href="https://twitter.com/arkency?ref_src=twsrc%5Etfw">@arkency</a> Hiya, do you have any patterns for managing lots of subscriptions? <br>i.e. adding to initializers file only scales for short time!</p>&mdash; Ian Vaughan (@IanVaughan) <a href="https://twitter.com/IanVaughan/status/1253318752977907714?ref_src=twsrc%5Etfw">April 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 It's a very good question which made me realize how much knowledge there is yet to share from my everyday work. I took it as an opportunity to gather knowledge in one place — chances are this question will be asked again in the future, thus a blog post in response.
 
@@ -42,6 +42,8 @@ Having a different bootstrap method for test environment has an additional benef
 Here we extracted a map of subscriptions to `ApplicationSubscriptions` bootstrap: 
 
 ```ruby
+# config/initializers/rails_event_store.rb
+
 module Sample
   class Application < Rails::Application
     config.to_prepare do
@@ -53,6 +55,8 @@ end
 ```
 
 ```ruby
+# lib/application_subscriptions.rb
+
 class ApplicationSubscriptions
   def global_handlers
     [
@@ -87,6 +91,8 @@ end
 Single file for subscriptions or a bootstrap method takes you this far. With sufficiently complex applications you will eventually discover many bounded contexts. Speaking of code, one way of representing bounded contexts in a monolithic application may be via [modules](https://blog.arkency.com/rails-components-neither-engines-nor-gems/). Below are some events from insuring context, defined in its own module. 
 
 ```ruby
+# insuring/lib/insuring.rb
+
 module Insuring
   OrderInsured                      = Class.new(RailsEventStore::Event)
   FilledIn                          = Class.new(RailsEventStore::Event)
