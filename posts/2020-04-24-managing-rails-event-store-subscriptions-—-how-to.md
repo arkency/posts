@@ -7,8 +7,6 @@ publish: false
 ---
 
 
-# Managing Rails Event Store Subscriptions — How To
-
 Subscription in Rails Event Store is a way to connect an event handler with the events it responds to. Whenever an event is published all its registered handlers are called. We require such handlers to respond to `#call` method, taking the instance of an event as an argument. By convention we recommend to start with a single file to hold these subscriptions. Usually this is an [initializer](https://github.com/RailsEventStore/cqrs-es-sample-with-res/blob/a32e18a79b0aaa8e21a9b361aac62df4876b8f49/config/initializers/rails_event_store.rb):
 
 
