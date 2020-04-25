@@ -10,7 +10,7 @@ Recently we got asked about patterns to manage subscriptions in Rails Event Stor
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/arkency?ref_src=twsrc%5Etfw">@arkency</a> Hiya, do you have any patterns for managing lots of subscriptions? <br>i.e. adding to initializers file only scales for short time!</p>&mdash; Ian Vaughan (@IanVaughan) <a href="https://twitter.com/IanVaughan/status/1253318752977907714?ref_src=twsrc%5Etfw">April 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-It's a very good question which made me realize how much knowledge there is yet to share from my everyday work. I took as as opportunity to gather knowledge in one place — chances are this question will return, thus a blog post as a response.
+It's a very good question which made me realize how much knowledge there is yet to share from my everyday work. I took it as an opportunity to gather knowledge in one place — chances are this question will be asked again in the future, thus a blog post in response.
 
 
 ## Bootstrap
