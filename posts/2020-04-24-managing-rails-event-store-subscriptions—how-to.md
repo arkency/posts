@@ -175,9 +175,51 @@ update msg model =
             ( model, Cmd.none )
 ```
 
+Translating this example to Ruby and RES. First the event from different bounded context, i.e. ordering:
 
-FIXME: actually helpful code sample from RES that yet does not exist xD
+```ruby
+module Ordering
+  OrderCompleted = Class.new(RailsEventStore::Event)
+end
+```
 
+Then an event handler. Reacts to completed order and makes appropriate changes within insurance related to this order: 
+
+```ruby
+module Insuring
+  class OrderCompleted
+    prepend RailsEventStore::AsyncHandler
+
+    def call(fact)
+      order_id = fact.data.fetch(:order_id)
+      ApplicationRecord.transaction do
+        completion = InsuranceCompletion.lock.find_by_billing_order_id(order_id)
+        # and the boring rest ;)
+      end
+    end
+  end
+end
+```
+
+The last part is the actual glue code. Bootstrap method in a module to subscribe any `Insurance` handlers to events from external contexts and `ApplicationSubscriptions` collecting all module subscriptions it knows about.
+
+```ruby
+module Insuring
+  def subscribe(event_store)
+    event_store.subscribe(OrderCompleted, to: [::Ordering::OrderCompleted])
+  end
+  module_function :subscribe
+end
+
+class ApplicationSubscriptions
+  def call(event_store)
+    Insuring.subscribe(event_store)
+    # ...
+  end
+end
+```
+
+That is the gist of it. I can imagine one could make module subscriptions to be discovered dynamically but the general idea is more or less the same. 
 
 ## Different perspectives for different problems
 
