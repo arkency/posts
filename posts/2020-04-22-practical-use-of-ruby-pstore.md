@@ -10,7 +10,7 @@ Arkency blog has undergone several improvements over recent weeks. One of such c
 
 For years this blog has been driven by [nanoc](https://nanoc.ws), which is a static-site generator. One of its prominent features is [data sources](https://nanoc.ws/doc/data-sources/). One could render content not only from a local filesystem. With appropriate adapter posts, pages or other data items can be fetched from 3rd party API. Like SQL database. Or Github!
 
-Choosing Github as a backend for posts was no-brainer. Developers are familiar with it. It has quite nice and integrated web editor with Markdown preview — this gives in-place editing. Pull requests create the space for discussion. Last but not least there is [octokit gem](https://github.com/octokit/octokit.rb) for API interaction, taking much of the implementation burden out of our shoulders.
+Choosing Github as a backend for posts was no-brainer. Developers are familiar with it. It has quite a nice integrated web editor with Markdown preview — this gives in-place editing. Pull requests create the space for discussion. Last but not least there is [octokit gem](https://github.com/octokit/octokit.rb) for API interaction, taking much of the implementation burden out of our shoulders.
 
 An initial data adapter looked like this:
 
