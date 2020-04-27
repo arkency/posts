@@ -26,8 +26,8 @@ module Sample
     config.to_prepare do
       Rails.configuration.event_store = event_store = RailsEventStore::Client.new
       
-        event_store.subscribe(InvoiceReadModel.new, to: [InvoiceCreated, InvoiceUpdated])
-        event_store.subscribe(send_invoice_email,to: [InvoiceAccepted])
+      event_store.subscribe(InvoiceReadModel.new, to: [InvoiceCreated, InvoiceUpdated])
+      event_store.subscribe(send_invoice_email, to: [InvoiceAccepted])
     end
   end
 end
@@ -209,7 +209,7 @@ module Insuring
 end
 ```
 
-- finally theres is an actual glue code
+- finally there's is an actual glue code
 
   Bootstrap method in a module to subscribe any `Insurance` handlers to events from external contexts and `ApplicationSubscriptions` collecting all module subscriptions it knows about
 
