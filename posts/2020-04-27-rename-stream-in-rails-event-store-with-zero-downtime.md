@@ -1,6 +1,6 @@
 ---
 title: "Rename stream in Rails Event Store with zero downtime"
-created_at: 2020-04-23 17:16:09 +0200
+created_at: 2020-04-27 10:06:09 +0200
 author: Mirosław Pragłowski
 tags: ['ddd', 'rails event store', 'domain event']
 publish: false
