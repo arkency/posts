@@ -104,7 +104,7 @@ def publish(stream)
   while(true) do
     stream.publish(FooEvent.new(data: {index: index}))
     puts "#{index} published to stream: #{stream}"
-    sleep(Random.rand(1.1) / PER_TIME_UNIT)
+    sleep(Random.rand(1.1) / TIME_UNIT)
     index += 1
   end
 end
@@ -126,7 +126,7 @@ def catchup(stream)
       puts "#{event.data[:index]} linked to stream: target"
     end
     processed = events.last.event_id
-    sleep(Random.rand(1.0) / PER_TIME_UNIT)
+    sleep(Random.rand(1.0) / TIME_UNIT)
   end
 end
 ```
@@ -139,27 +139,27 @@ Please notice the difference in:
 
 ```ruby
 # publish
-    sleep(Random.rand(1.1) / PER_TIME_UNIT)
+    sleep(Random.rand(1.1) / TIME_UNIT)
 
 # catchup
-    sleep(Random.rand(1.0) / PER_TIME_UNIT)
+    sleep(Random.rand(1.0) / TIME_UNIT)
 ```
 
 To give a catchup process a chance to finally catchup with source stream it must process
 events a little faster then they are published by publisher.
-A `PER_TIME_UNIT` is just a constant to define how fast you want this experiment to process events.
+A `TIME_UNIT` is just a constant to define how fast you want this experiment to process events.
 
 ```ruby
-wait_for = 0.5
+WAIT_TIME = 0.5
 publish = Thread.new {publish(stream)}
-sleep(wait_for)
+sleep(WAIT_TIME)
 puts "Starting catchup thread"
 catchup = Thread.new {catchup(stream)}
 
 
 catchup.join
 puts "Catchup thread done"
-sleep(wait_for)
+sleep(WAIT_TIME)
 publish.exit
 puts "Publish thread done"
 
@@ -237,7 +237,7 @@ a synchronization.
 
 ## The result
 
-Here sample execution for `PER_TIME_UNIT = 10.0`:
+Here sample execution for `TIME_UNIT = 10.0`:
 
 ```bash
 ~/arkency$ ruby rename-stream.rb
@@ -274,7 +274,7 @@ Target stream:
 DONE - now remove source stream
 ```
 
-Looks very simple. But play a bit with it. It looks much more interesting when `PER_TiME_UNIT = 100000.0`.
+Looks very simple. But play a bit with it. It looks much more interesting when `TiME_UNIT = 100000.0`.
 
 Now you could finally remove the source stream:
 
@@ -285,3 +285,8 @@ event_store.delete_stream("source")
 BTW Neither `link` nor `delete_stream` does not affect any domain event in any way.
 Stream is just a grouping mechanism for domain events. Once you write domain event to event store
 it could not be deleted (at least not without use of rails console :P).
+
+
+# Make your own experiments
+
+Code is fun! Go play with it! Here is the [source of code spike](https://github.com/RailsEventStore/rails_event_store/blob/master/contrib/scripts/rename-stream.rb) for this blog post.
