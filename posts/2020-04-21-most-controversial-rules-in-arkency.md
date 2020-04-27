@@ -45,7 +45,7 @@ Of course most of these rules have their own:
 
 ## Should we elaborate?
 
-Do you find any of these _rules_ particularly exciting, outraging or confusing? **Let us know** via twitter or email. We appreciate your input.
+Do you find any of these _rules_ particularly exciting, outraging or confusing? **Let us know** via email or twitter (you can reply to [this tweet](https://twitter.com/arkency/status/1254784379190038534)). We appreciate your input.
 
 We'd like to keep **elaborating** on these points in coming blogposts. If you wanna **stay in the loop** [subscribe to our newsletter](https://arkency.com/newsletter/). We believe these guidelines are very valuable and we'd like our prospective clients and teammates to be aware of the way we like to work. 
 
