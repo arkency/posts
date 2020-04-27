@@ -274,7 +274,7 @@ Target stream:
 DONE - now remove source stream
 ```
 
-Looks very simple. But play a bit with it. It looks much more interesting when `TiME_UNIT = 100000.0`.
+Looks very simple. But play a bit with it. It looks much more interesting when `TIME_UNIT = 100000.0`.
 
 Now you could finally remove the source stream:
 
