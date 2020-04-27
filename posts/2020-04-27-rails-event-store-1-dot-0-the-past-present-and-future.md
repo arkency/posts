@@ -6,8 +6,8 @@ tags: ['rails event store']
 publish: false
 ---
 
-# How it all started
+## How it all started
 
-# What is it means to be 1.0
+## What is it means to be 1.0
 
-# The roadmap
+## The roadmap
