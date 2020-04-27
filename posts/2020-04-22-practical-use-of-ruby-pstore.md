@@ -8,7 +8,7 @@ publish: false
 
 Arkency blog has undergone several improvements over recent weeks. One of such changes was opening [the source of blog articles](https://github.com/arkency/posts). We've have concluded that having posts in the open would shorten the feedback loop and allow our readers to [collaborate](https://github.com/arkency/posts/pull/3#issuecomment-611449023) and make [the](https://github.com/arkency/posts/pull/1) [articles](https://github.com/arkency/posts/pull/2) [better](https://github.com/arkency/posts/pull/3) for all.
 
-# Nanoc + Github
+## Nanoc + Github
 
 For years this blog has been driven by [nanoc](https://nanoc.ws), which is a static-site generator. One of its prominent features is [data sources](https://nanoc.ws/doc/data-sources/). One could render content not only from a local filesystem. With appropriate adapter posts, pages or other data items can be fetched from 3rd party API. Like SQL database. Or Github!
 
