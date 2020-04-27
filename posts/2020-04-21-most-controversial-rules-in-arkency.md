@@ -45,6 +45,8 @@ Of course most of these rules have their own:
 * **alternatives** - namely what do we do instead, for example: record & summarize meetings to let others skip them and remain on the same page
 * **costs** - which we still choose to pay
 
+## Could you elaborate?
+
 We'd like to **elaborate** on these points in coming blogposts. If you wanna **stay in the loop** [subscribe to our newsletter](https://arkency.com/newsletter/). We believe these guidelines are very valuable and we'd like our prospective clients and teammates to be aware of the way we prefer to work. 
 
 We already **covered** most of these topics in [The Book](https://arkency.dpdcart.com/product/71091) or in our [26 other blogposts about async/remote](https://blog.arkency.com/tags/async-remote/).
