@@ -229,10 +229,18 @@ current stream. Notice that it uses the synchronized block to avoid race conditi
 The same lock is used by `catchup` method to avoid race condition where we read source stream
 and - if there is no more events to link - do the change of current stream.
 
+
+### Real life problems
+
 I've used a `Mutex` class here to synchronize critical operations - but this is only experimental code,
 **not production ready**. In real life scenario the lock should depend on what kind of `EventRepository`
-you are using in your system. If you store tour domain events in SQL database consider named locks to implement
+you are using in your system. If you store your domain events in SQL database consider named locks to implement
 a synchronization.
+
+
+There is still a race condition that some events may be skipped or added out of order
+when there are the events currently published in other transactions,
+which has not yet finished when catchup process has went through them.
 
 
 ## The result
