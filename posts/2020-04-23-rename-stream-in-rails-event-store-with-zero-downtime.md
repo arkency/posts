@@ -287,6 +287,8 @@ Stream is just a grouping mechanism for domain events. Once you write domain eve
 it could not be deleted (at least not without use of rails console :P).
 
 
-# Make your own experiments
+
+
+## Make your own experiments
 
 Code is fun! Go play with it! Here is the [source of code spike](https://github.com/RailsEventStore/rails_event_store/blob/master/contrib/scripts/rename-stream.rb) for this blog post.
