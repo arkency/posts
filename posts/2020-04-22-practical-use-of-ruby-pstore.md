@@ -170,6 +170,8 @@ class Source < Nanoc::DataSource
     end
     Octokit.middleware = stack
   end
+  
+  # ...
 end 
 ```
 
