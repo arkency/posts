@@ -1,6 +1,6 @@
 ---
 title: Practical use of Ruby PStore
-created_at: 2020-04-22T21:27:22.797Z
+created_at: 2020-04-28T20:00:00.000Z
 author: Paweł Pacana
 tags: ['ruby', 'nanoc']
 publish: true
