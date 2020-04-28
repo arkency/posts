@@ -9,7 +9,7 @@ publish: true
 In random order:
 
 1. Don't **comment** the code.
-0. Don't use **branches**. Commit to master.
+0. Don't use **branches**. Commit to master, push often, don't break stuff.
 0. Let **developers manage** the project.
 0. No **refactoring** sprints. Always refactor.
 0. Don't send **private messages**. Use channels.
