@@ -122,12 +122,14 @@ Notice two main additions:
 - `up` method used by nanoc when spinning the data source, which introduces cache middleware
 - `Concurrent::FixedThreadPool` from `ruby-concurrency` gem for parallel requests (which are mostly I/O)
 
-If only that cache worked... Faraday ships in-memory cache, which is useless for the flow of work one has with nanoc. We'd like to persist the cache across compile process runs. Documentation shows how one could switch cache backend to one from Rails, which is not helpful advice in nanoc context either. 
+If only that cache worked... Faraday ships with in-memory cache, which is useless for the flow of work one has with nanoc. We'd like to persist the cache across runs of the compile process. Documentation indeed shows how one could switch cache backend to one from Rails but that is not helpful advice in nanoc context either. You probably wouldn't like to start Redis or Memcache instance just to compile a bunch of HTML.
 
-Time to roll-up sleeves again. Documenation [clarifies]() what API is expected from such cache backend. And there little-known standard library gem we could use to free ourselves of reimplementing the basics again.
+Time to roll-up sleeves again. Knowing what API is expected, we can build file-based cache backend. And there little-known standard library gem we could use to free ourselves of reimplementing the basics again.
 
 
 ## Enter PStore
+
+PStore is a file based persistence mechanism based on a Hash. We can store Ruby objects — they're serialized using Marshal before being dumped on disk. It has support for transactional behaviour and can be made thread safe. Sounds perfect!
 
 ```ruby
 class Cache
@@ -152,6 +154,8 @@ class Cache
 end
 ```
 
+In the end that cache store turned out to be merely a wrapper on pstore. How convenient! Thread safety is achieved here by using Mutex internaly around `transaction` block.
+
 ```ruby
 class Source < Nanoc::DataSource
   identifier :github
@@ -169,8 +173,27 @@ class Source < Nanoc::DataSource
 end 
 ```
 
+With persistent cache store plugged into Faraday we can now reap benefits of cached responses. Subsequent requests to Github API are skipped — responses are being served directly from local files. That is, as long as the cache stays fresh. 
 
+Cache validity can be controled by several headers. In case of Github it is `Cache-Control: max-age 60;`. Together with `Date` header this roughly means that the content will be valid for 60 seconds since the response was received. Is it much? For frequently changed content — probably. For blog articles I'd prefer something longer...
 
+And that is how we arrive with last piece of nanoc-github. Faraday middleware to allow extending cache time. It is quite primitive middleware that substitutes max-age value to the desired one. For my particular needs I set to 3600s. The idea is that we modify HTTP responses from API before they hit the cache. Then the cache middleware examines cache validity based on modified age, rather than original one. Simple and good enough here. Just be careful to add this to middleware stack in correct order 😅
 
+```ruby
+class ModifyMaxAge < Faraday::Middleware
+  def initialize(app, time:)
+    @app  = app
+    @time = Integer(time)
+  end
 
+  def call(request_env)
+    @app.call(request_env).on_complete do |response_env|
+      response_env[:response_headers][:cache_control] = "public, max-age=#{@time}, s-maxage=#{@time}"
+    end
+  end
+end
+```
 
+I hope you found this article useful and learned a bit or two. Drop me a line on my twitter or leave a star on this project.
+
+Happy hacking!
