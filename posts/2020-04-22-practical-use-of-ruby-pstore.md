@@ -194,6 +194,10 @@ class ModifyMaxAge < Faraday::Middleware
 end
 ```
 
-I hope you found this article useful and learned a bit or two. Drop me a line on my twitter or leave a star on this project.
+I hope you found this article useful and learned a bit or two. Drop me a line on [my twitter](https://twitter.com/pawelpacana) or leave a star on this project:
+
+<div class="github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
 
 Happy hacking!
