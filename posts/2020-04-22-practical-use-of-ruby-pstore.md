@@ -3,18 +3,18 @@ title: Practical use of Ruby PStore
 created_at: 2020-04-22T21:27:22.797Z
 author: Paweł Pacana
 tags: ['ruby', 'nanoc']
-publish: false
+publish: true
 ---
 
 Arkency blog has undergone several improvements over recent weeks. One of such changes was opening [the source of blog articles](https://github.com/arkency/posts). We've have concluded that having posts in the open would shorten the feedback loop and allow our readers to [collaborate](https://github.com/arkency/posts/pull/3#issuecomment-611449023) and make [the](https://github.com/arkency/posts/pull/1) [articles](https://github.com/arkency/posts/pull/2) [better](https://github.com/arkency/posts/pull/3) for all.
 
 ## Nanoc + Github
 
-For years this blog has been driven by [nanoc](https://nanoc.ws), which is a static-site generator. One of its prominent features is [data sources](https://nanoc.ws/doc/data-sources/). One could render content not only from a local filesystem. With appropriate adapter posts, pages or other data items can be fetched from 3rd party API. Like SQL database. Or Github!
+For years the blog has been driven by [nanoc](https://nanoc.ws), which is a static-site generator. You put a bunch of markdown files in, drop a layout and on the other side out of it comes the HTML. Let's call this magic "compilation". One of nanoc prominent features is [data sources](https://nanoc.ws/doc/data-sources/). With it one could render content not only from a local filesystem. Given appropriate adapter posts, pages or other data items can be fetched from 3rd party API. Like SQL database. Or Github!
 
-Choosing Github as a backend for posts was no-brainer. Developers are familiar with it. It has quite a nice integrated web editor with Markdown preview — this gives in-place editing. Pull requests create the space for discussion. Last but not least there is [octokit gem](https://github.com/octokit/octokit.rb) for API interaction, taking much of the implementation burden out of our shoulders.
+Choosing Github as a backend for our posts was no-brainer. Developers are familiar with it. It has quite a nice integrated web editor with Markdown preview — which gives in-place editing. Pull requests create the space for discussion. Last but not least there is [octokit gem](https://github.com/octokit/octokit.rb) for API interaction, taking much of the implementation burden out of our shoulders.
 
-An initial data adapter looked like this:
+An initial data adapter looked like this to fetch articles looked like this:
 
 ```ruby
 class Source < Nanoc::DataSource
@@ -47,9 +47,9 @@ For a repository with 100 markdown files we will have to make 100 + 1 HTTP reque
 - it takes time and becomes annoying when you're in the change-layout-recompile-content cycle of the work on the site 
 - there is an API request limit per hour (slightly bigger when using token but still present)
 
-Making those requests parallel will only make the process of hitting request quota faster. Something has to be done to limit number of requests we need. 
+Making those requests parallel will only make the process of hitting request quota faster. Something has to be done to limit number of requests that are needed. 
 
-Luckily enough octokit gem used faraday library for HTTP interaction and some kind souls [documented](https://github.com/octokit/octokit.rb#caching) how one could leverage faraday-http-cache middleware.
+Luckily enough octokit gem used [faraday](https://github.com/lostisland/faraday) library for HTTP interaction and some kind souls [documented](https://github.com/octokit/octokit.rb#caching) how one could leverage [faraday-http-cache](https://github.com/sourcelevel/faraday-http-cache) middleware.
 
 ```ruby
 class Source < Nanoc::DataSource
@@ -117,19 +117,19 @@ class Source < Nanoc::DataSource
 end
 ```
 
-Notice two main additions:
+Notice two main additions here:
 
-- `up` method used by nanoc when spinning the data source, which introduces cache middleware
-- `Concurrent::FixedThreadPool` from `ruby-concurrency` gem for parallel requests (which are mostly I/O)
+- the `up` method, used by nanoc when spinning the data source, which introduces cache middleware
+- `Concurrent::FixedThreadPool` from [concurrent-ruby](https://github.com/ruby-concurrency/concurrent-ruby) gem for concurrent requests in multiple threads
 
-If only that cache worked... Faraday ships with in-memory cache, which is useless for the flow of work one has with nanoc. We'd like to persist the cache across runs of the compile process. Documentation indeed shows how one could switch cache backend to one from Rails but that is not helpful advice in nanoc context either. You probably wouldn't like to start Redis or Memcache instance just to compile a bunch of HTML.
+If only that cache worked... Faraday ships with in-memory cache, which is useless for the flow of work one has with nanoc. We'd very much like to persist the cache across runs of the compile process. Documentation indeed shows how one could switch cache backend to one from Rails but that is not helpful advice in nanoc context either. You probably wouldn't like to start Redis or Memcache instance just to compile a bunch of HTML!
 
-Time to roll-up sleeves again. Knowing what API is expected, we can build file-based cache backend. And there little-known standard library gem we could use to free ourselves of reimplementing the basics again.
+Time to roll-up sleeves again. Knowing what API is expected, we can build file-based cache backend. And there little-known standard library gem we could use to free ourselves of reimplementing the basics again. So much for standing on the shoulders of giants again.
 
 
 ## Enter PStore
 
-PStore is a file based persistence mechanism based on a Hash. We can store Ruby objects — they're serialized using Marshal before being dumped on disk. It has support for transactional behaviour and can be made thread safe. Sounds perfect!
+PStore is a file based persistence mechanism based on a Hash. We can store Ruby objects — they're serialized using Marshal before being dumped on disk. It has support for transactional behaviour and can be made thread safe. Sounds perfect for the job!
 
 ```ruby
 class Cache
@@ -173,11 +173,12 @@ class Source < Nanoc::DataSource
 end 
 ```
 
-With persistent cache store plugged into Faraday we can now reap benefits of cached responses. Subsequent requests to Github API are skipped — responses are being served directly from local files. That is, as long as the cache stays fresh. 
+With persistent cache store plugged into Faraday we can now reap benefits of cached responses. Subsequent requests to Github API are skipped. Responses are being served directly from local files. That is, as long as the cache stays fresh..
 
-Cache validity can be controled by several headers. In case of Github it is `Cache-Control: max-age 60;`. Together with `Date` header this roughly means that the content will be valid for 60 seconds since the response was received. Is it much? For frequently changed content — probably. For blog articles I'd prefer something longer...
+Cache validity can be controlled by several [HTTP headers](https://www.keycdn.com/blog/http-cache-headers). In case of Github API it is the `Cache-Control: private, max-age=60, s-maxage=60` that matters. Together with `Date` header this roughly means that the content will be valid for 60 seconds since the response was received. Is it much? For frequently changed content — probably. For blog articles I'd prefer something more long-lasting…
 
-And that is how we arrive with last piece of nanoc-github. Faraday middleware to allow extending cache time. It is quite primitive middleware that substitutes max-age value to the desired one. For my particular needs I set to 3600s. The idea is that we modify HTTP responses from API before they hit the cache. Then the cache middleware examines cache validity based on modified age, rather than original one. Simple and good enough here. Just be careful to add this to middleware stack in correct order 😅
+And that is how we arrive to the last piece of [nanoc-github](https://github.com/pawelpacana/nanoc-github). A faraday middleware to allow extending cache time. It is a quite primitive piece of code that substitutes max-age value to the desired one. For my particular needs I set this value 3600 seconds. 
+The general idea is that we modify HTTP responses from API before they hit the cache. Then the cache middleware examines cache validity based on modified age, rather than original one. Simple and good enough. Just be careful to add this to middleware stack in correct order 😅
 
 ```ruby
 class ModifyMaxAge < Faraday::Middleware
@@ -194,7 +195,7 @@ class ModifyMaxAge < Faraday::Middleware
 end
 ```
 
-I hope you found this article useful and learned a bit or two. Drop me a line on [my twitter](https://twitter.com/pawelpacana) or leave a star on this project:
+And that's it! I hope you found this article useful and learned a bit or two. Drop me a line on [my twitter](https://twitter.com/pawelpacana) or leave a star on this project:
 
 <div class="github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
 <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
