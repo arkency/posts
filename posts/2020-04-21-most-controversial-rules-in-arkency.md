@@ -2,7 +2,7 @@
 title: Most controversial rules in Arkency
 created_at: 2020-04-27T12:17:09.240Z
 author: Tomasz Wróbel
-tags: []
+tags: ['async remote']
 publish: true
 ---
 
