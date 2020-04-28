@@ -32,3 +32,4 @@ TODO: "In fact, in 35% of the catastrophic failures, the faults in the error han
 https://www.usenix.org/conference/osdi14/technical-sessions/presentation/yuan
 https://arkency.slack.com/archives/C0E40RKUG/p1583089578000800
 
+https://arkency.slack.com/archives/CF4S8LZFV/p1588079546005000
