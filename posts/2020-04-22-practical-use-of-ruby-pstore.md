@@ -122,7 +122,7 @@ Notice two main additions here:
 - the `up` method, used by nanoc when spinning the data source, which introduces cache middleware
 - `Concurrent::FixedThreadPool` from [concurrent-ruby](https://github.com/ruby-concurrency/concurrent-ruby) gem for concurrent requests in multiple threads
 
-If only that cache worked... Faraday ships with in-memory cache, which is useless for the flow of work one has with nanoc. We'd very much like to persist the cache across runs of the compile process. Documentation indeed shows how one could switch cache backend to one from Rails but that is not helpful advice in nanoc context either. You probably wouldn't like to start Redis or Memcache instance just to compile a bunch of HTML!
+If only that cache worked... Faraday ships with in-memory cache, which is useless for the flow of work one has with nanoc. We'd very much like to persist the cache across runs of the compile process. Documentation indeed shows how one could switch cache backend to [one from Rails](https://github.com/sourcelevel/faraday-http-cache#usage-and-configuration) but that is not helpful advice in nanoc context either. You probably wouldn't like to start Redis or Memcache instance just to compile a bunch of HTML!
 
 Time to roll-up sleeves again. Knowing what API is expected, we can build file-based cache backend. And there little-known standard library gem we could use to free ourselves of reimplementing the basics again. So much for standing on the shoulders of giants again.
 
@@ -197,8 +197,10 @@ end
 
 And that's it! I hope you found this article useful and learned a bit or two. Drop me a line on [my twitter](https://twitter.com/pawelpacana) or leave a star on this project:
 
-<div class="mt-4 github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
+<div class="mb-4"></div>
+
+<div class="github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
 <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 
 
-Happy hacking!
+**Happy hacking!**
