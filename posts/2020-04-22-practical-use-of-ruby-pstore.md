@@ -129,7 +129,7 @@ Time to roll-up sleeves again. Knowing what API is expected, we can build file-b
 
 ## Enter PStore
 
-PStore is a file based persistence mechanism based on a Hash. We can store Ruby objects — they're serialized using Marshal before being dumped on disk. It has support for transactional behaviour and can be made thread safe. Sounds perfect for the job!
+[PStore](https://ruby-doc.org/stdlib-2.7.0/libdoc/pstore/rdoc/PStore.html) is a file based persistence mechanism based on a Hash. We can store Ruby objects — they're serialized with [Marshal](https://ruby-doc.org/core-2.7.0/Marshal.html) before being dumped on disk. It supports transactional behaviour and can be made [thread safe](https://blog.arkency.com/3-ways-to-make-your-ruby-object-thread-safe/). Sounds perfect for the job!
 
 ```ruby
 class Cache
@@ -197,7 +197,7 @@ end
 
 And that's it! I hope you found this article useful and learned a bit or two. Drop me a line on [my twitter](https://twitter.com/pawelpacana) or leave a star on this project:
 
-<div class="github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
+<div class="mt-4 github-card" data-github="pawelpacana/nanoc-github" data-width="400" data-height="" data-theme="default"></div>
 <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 
 
