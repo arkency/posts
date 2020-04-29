@@ -33,3 +33,13 @@ https://www.usenix.org/conference/osdi14/technical-sessions/presentation/yuan
 https://arkency.slack.com/archives/C0E40RKUG/p1583089578000800
 
 https://arkency.slack.com/archives/CF4S8LZFV/p1588079546005000
+
+because they're ugly
+
+https://arkency.slack.com/archives/C1LNH6UR1/p1588163647003600
+
+to justify some bad code
+to track an issue instead of a tracker
+to not fix something you saw
+
+
