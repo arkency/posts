@@ -23,7 +23,7 @@ In random order:
 0. Share **accesses** with the whole team. Everyone should be able to do anything without asking others.
 0. Best **story size** is 1.
 0. There should be **one backlog**.
-0. Don't attach certain people to certain types of tasks. Always pick the **first task from the top** of a prioritized backlog.
+0. Don't attach certain people to certain types of tasks. Always pick the **first task from the top** of a prioritized backlog. Always have 1 ticket assigned.
 0. Don't expect anyone to read or respond to your message immediately.
 0. Avoid **blocking** (other people to wait on you - or - yourself to wait on others).
 
