@@ -18,7 +18,7 @@ The process of the upgrade between versions is always described in [release note
 
 ## The Ancient Era - versions: .. 0.1.0
 
-Here is nothing to update. No known (public) historical sources. No changelog. The origins of Rails Event Store are hidden in a private repository of one of our customers. It was born as a small tool to help to integrate with 3rd party systems. We've started publishing domain events, have some subscribers that have been reacting to the published events. And most important we have started to store the published domain events. All in only 283 lines of code.
+Here is nothing to update. No known (public) historical sources. No changelog. The origins of Rails Event Store are hidden in a private repository of one of our customers. It was born as a small tool to help to integrate with 3rd party systems. We've started publishing domain events, have some subscribers that have been reacting to the published events. And most important we have started to store the published domain events. All in only 248 lines of code.
 
 
 ## The Medieval Period - versions: 0.1.1 .. 0.14.5
