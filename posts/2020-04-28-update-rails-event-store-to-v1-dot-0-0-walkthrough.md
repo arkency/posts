@@ -175,6 +175,7 @@ Version `0.31.0`:
 * Breaking: `RailsEventStore::Client#initialize` signature. Out is `event_broker:`, in `subscriptions:` and `dispatcher:`. A dispatcher is no longer an event broker dependency.
 
 Version `0.28.0`:
+
 * Change: Mappers (and serializers) now operate above the repository layer. If you have a custom mapper or serializer move its configuration.
 * Breaking: Metadata keys are limited to symbols. Metadata values are limited to `[String, Integer, Float, Date, Time, TrueClass, FalseClass]`. Using `Hash`, `Array`, or custom objects is no longer supported.
 * Breaking: Using protobuf mapper requires adding `protobuf_nested_struct` gem.
@@ -187,6 +188,7 @@ Version `0.27.0`:
 Version `0.19.0`:
 
 * Breaking: `delete_stream` no longer removes events.
+
 
 
 
