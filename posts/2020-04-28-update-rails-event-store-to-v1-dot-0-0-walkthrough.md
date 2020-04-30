@@ -10,7 +10,7 @@ Recently I've posted a tweet:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We are updating <a href="https://twitter.com/RailsEventStore?ref_src=twsrc%5Etfw">@RailsEventStore</a> in our workshop reference app (and a base for exercises for Domain-Driven Rails book). Who knows what&#39;s coming next :) <br><br>You could purchase the book &amp; get access here <a href="https://t.co/cKiPFfMio0">https://t.co/cKiPFfMio0</a> <a href="https://t.co/o60o8CyoMC">pic.twitter.com/o60o8CyoMC</a></p>&mdash; Arkency (@arkency) <a href="https://twitter.com/arkency/status/1250130514603839489?ref_src=twsrc%5Etfw">April 14, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Since then we have published 2 more Rails Event Store versions. And we have finally reached a 1.0.0 milestone!
+Since then we have published 2 more [Rails Event Store](http://railseventstore.org) versions. And we have finally [reached a 1.0.0 milestone](https://github.com/RailsEventStore/rails_event_store/releases/tag/v1.0.0)!
 
 The process of the upgrade between versions is always described in [release notes](https://github.com/RailsEventStore/rails_event_store/releases), but here I've decided to summarise all changes required and to emphasize the most important ones.
 
