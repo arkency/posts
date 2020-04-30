@@ -56,9 +56,6 @@ After solving these issues the first version of the workshop application with th
 
 The next noticeable difference (remember I update versions one by one) was `0.26.0`. With this version, I've to change how subscriptions to events are defined because API has been changed. Also, I've started using a new API that allows passing a proc/lambda as a subscriber.
 
-    * Replaced deprecated use of `subscribe(handler, array_of_event_types)`
-      with `subscribe(handler, to: event_types)`
-    * Use new API that allows passing a subscriber as proc
 
 I've replaced:
 
