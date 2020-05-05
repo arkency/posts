@@ -13,3 +13,7 @@ PgBouncer
 Statefullness
 
 Rails-schemas impedance
+
+Other
+
+* row level security https://www.postgresql.org/docs/9.5/ddl-rowsecurity.html
