@@ -41,6 +41,18 @@ as always we share our experiences on [Arkency's blog](https://blog.arkency.com/
 
 ## What is it means to be 1.0
 
+It's just a milestone. In Rails Event Store we are using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and
+we follow the versioning guidelines defined by it. We have reached the point where the answer for question
+[How do I know when to release 1.0.0?](https://semver.org/spec/v2.0.0.html#how-do-i-know-when-to-release-100)
+was "ups, we should have done that some time ago". Rails Event Store is already used in production, not only by us
+(there is no simple project in Arkency where Rails Event Store is not part of the solution) but also for other
+companies & software houses working on theirs projects. The API is stable and with each release we worry not to
+break other projects that use Rails Event Store as a dependency.
+
+
+This does not mean we will stop making changes. We will implemnent new things, also the ones
+that will change the public API. We will follow the SemVer versioning guidelines and we will
+describe the changes in the release notes (as it is done for a long time already).
 
 
 ## The roadmap
