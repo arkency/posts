@@ -55,3 +55,21 @@ end
 **What is the role of the default schema?**. Which is `public`.
 
 **How do you write the tests**. Mind: setting up a tenant in every test can be a costly operation. Perhaps there are other approaches.
+
+**Do you in-memory cache/memoize anything that needs to be invalidated on tenant switch?**. Apartment already deals with clearing AR's query cache. But we had other app-specific things memoized in memory. You can use apartment callbacks for it:
+
+```ruby
+module Apartment
+  module Adapters
+    class AbstractAdapter
+      set_callback :switch, :after do
+        invalidate_my_cache
+      end
+    end
+  end
+end
+```
+
+Another solution would be to scope the cache per tenant and serve it with regards to the current tenant.
+
+**Make sure to install the middleware above anything interacting with ActiveRecord**. We used AR session store so we had to put the middleware above `ActionDispatch::Session::ActiveRecordStore`.
