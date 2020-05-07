@@ -32,7 +32,7 @@ class AGlobalMigration < ActiveRecord::Migration[5.2]
 end
 ```
 
-**PgBouncer transaction mode doesn't let you use search_path**. Got PgBouncer in your stack? If you're using a managed database (like on Digital Ocean), PgBouncer might be there by default. You need to set the pool mode to _Session_ (which has its own consequences) to use any PostgresSQL session features - search_path being one of them. Otherwise you can end up with tenants mixed up.
+**PgBouncer transaction mode doesn't let you use search_path**. Got PgBouncer in your stack? If you're using a managed database (like on Digital Ocean), PgBouncer might part of the default setup. It has [3 pool modes](https://www.pgbouncer.org/features.html). You need to set the pool to _Session Mode_ (which has its own consequences) to use any PostgresSQL session features - search_path being one of them. If you run on _Transaction Mode_ you can end up with tenants mixed up.
 
 **Other db connections need to be dealt with**. Do you do another `establish_connection` to your multitenanted db? Why would anyone do that? You know, in legacy codebases there are weird things done for weird reasons. If that's the case - you need to account for it when switching the tenant. 
 
@@ -73,3 +73,20 @@ end
 Another solution would be to scope the cache per tenant and serve it with regards to the current tenant.
 
 **Make sure to install the middleware above anything interacting with ActiveRecord**. We used AR session store so we had to put the middleware above `ActionDispatch::Session::ActiveRecordStore`.
+
+
+## Comparison of approaches to multitenancy
+
+| PG schemas (schema-level) | Filtering (row-level) |
+|------------|-----------|
+| Slower migrations | Normal migrations |
+| Slower tenant setup | Quicker tenant setup |
+| Easier to avoid data leaks | Data leaks more likely |
+| Easier to dump single tenant's data | |
+| No tenant_id keys everywhere | |
+| Sometimes at odds with Rails assumptions | Standard Rails |
+
+* A lot of tenants? consider row-level. Especially if a lot of low-value tenants (like abandoned accounts or free tiers)
+* Data isolation crucial (no leaks). Consider schema-level.
+
+
