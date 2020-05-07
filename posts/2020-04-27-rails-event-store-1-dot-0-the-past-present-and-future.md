@@ -54,7 +54,7 @@ was "oops, we should have done that some time ago". Rails Event Store is already
 companies and software houses in their ventures. The API is stable and with each release we worry not to
 break other projects that use Rails Event Store as a dependency.
 
-This does not mean we now stop introducing changes. We will implemnent new things, also the ones
+This does not mean we now stop introducing changes. We will implement new things, also the ones
 that will change the public API. We will be following the SemVer versioning guidelines and preparing comprehensive changelogs — business as usual.
 
 
