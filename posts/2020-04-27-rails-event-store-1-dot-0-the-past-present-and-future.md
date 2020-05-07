@@ -9,10 +9,10 @@ publish: false
 ## How it all started
 
 It all is a part of "My Ruby Story". I've joined Arkency in 2014 after a long time working as .NET developer.
-It was a complete new environment for me. At that time I've not known Ruby, I've heard something about Ruby On Rails,
+It was a completely new environment for me. At that time I've not known Ruby. I've heard something about Ruby On Rails,
 but I've never have any experience with dynamic languages.
 
-You migth ask how I was able to join experienced Ruby/Rails developers in Arkency?
+You might ask how I was able to join experienced Ruby/Rails developers in Arkency?
 It is the same way you could join us now. By bringing other valuable experiences,
 or knowledge that will make our work more efficient.
 
@@ -23,8 +23,7 @@ of DDD and in more details the Event Sourcing pattern. Two beers later I've beco
 
 The Rails Event Store prototype was "born" on one of our customer's project. It was a way to solve the
 business problem. It was very "naive" implementation, with a lot of problems. But the job has been done.
-It has been working in production for a long time, gradually replaced by Rails Event Store components until,
-finally, it has been replaced by Rails Event Store some time ago. The learnings from that migration have been
+It has been working in production for a long time, gradually replaced by various Rails Event Store components. Piece by piece, until finally it has been replaced by Rails Event Store as a whole completely. The learnings from that migration have been
 described by Paweł in [a blogpost](https://blog.arkency.com/how-to-migrate-large-database-tables-without-a-headache/).
 
 
