@@ -7,7 +7,7 @@ publish: true
 ---
 
 
-[Rails Event Store](https://railseventstore.org) is a Ruby library to persist, retrieve, publish and organize application architecture around domain events in an event-driven fashion. It's not a database itself, building on top of and existing (typically an SQL) data store in the application. It makes a great foundation for CQRS, Event Sourcing and loosely coupled components in applications driven by domain events.
+[Rails Event Store](https://railseventstore.org) is a Ruby library to persist, retrieve, publish and organize application architecture around domain events in an event-driven fashion. It's not a database itself — it is built on top of an existing (typically SQL) data store in the application. It makes a great foundation for CQRS, Event Sourcing and loosely coupled components in applications driven by domain events.
 
 We've just reached [1.0 milestone](https://github.com/RailsEventStore/rails_event_store/releases/tag/v1.0.0)!
 
