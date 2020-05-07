@@ -17,7 +17,21 @@ a series of blogposts?
 * performance
 -->
 
-**PostgreSQL extensions can no longer reside in public schema** - if you use any extensions (like `pgcrypto`, `ltree`, `hstore`) you need to put them to a separate schema - e.g. `extensions` and always have it in the search_path (alongside the chosen tenant). It's because of three conditions: (1) PG extensions have to be installed in a specific schema - normally you put them to `public`. Actually the extension is global, but its objects (like functions) need to belong to a specific schema. (2) It can only be one schema. (3) In order to use an extension, current `search_path` must include the schema which hosts this extension.
+**PostgreSQL extensions can no longer reside in public schema** - if you use any extensions (like `pgcrypto`, `ltree`, `hstore`) you need to put them to a separate schema - e.g. `extensions` and always have it in the search_path (alongside the chosen tenant). In Apartment you do this via:
+
+```ruby
+Apartment.configure do |config|
+  config.persistent_schemas = ["extensions"]
+end
+```
+
+This is needed because of three conditions:
+
+1. PG extensions have to be installed in a specific schema - normally you put them to `public`. Actually the extension is global, but its objects (like functions) need to belong to a specific schema.
+2. It can only be one schema.
+3. In order to use an extension, current `search_path` must include the schema which hosts this extension.
+
+You can temporarily work it around by adding `public` to `persistent_schemas` which is obviously bad, but perhaps useful for a quick PoC. It won't take you very far - Rails will complain when making a migration which creates an index (Rails checks if the index already exists in the search path and it'll refuse to create it the tenant's schema).
 
 **Every migration needs to run for each tenant separately**. Probably not a problem if you have 10 tenants. Brace yourself if you have 1000 tenants. Also the default behaviour in Apartment is that when a migrations fails for a tenant the next ones are not attempted, and previous stay migrated (they're not reverted and not wrapped in a transaction - not even sure if it's possible to have a cross schema transaction. TODO: check).
 
@@ -87,6 +101,7 @@ Another solution would be to scope the cache per tenant and serve it with regard
 | Sometimes at odds with Rails assumptions | Standard Rails |
 
 * A lot of tenants? consider row-level. Especially if a lot of low-value tenants (like abandoned accounts or free tiers)
+* Less tenants (especially high-value) - schema-level more viable.
 * Data isolation crucial (no leaks). Consider schema-level.
 
 
