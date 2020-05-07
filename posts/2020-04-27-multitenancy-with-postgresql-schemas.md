@@ -23,10 +23,12 @@ a series of blogposts?
 
 **Other db connections need to be dealt with**. Do you do another `establish_connection` to your multitenanted db? Why would anyone do that? You know, in legacy codebases there are weird things done for weird reasons. If that's the case - you need to account for it when switching the tenant. 
 
-```ruby
-# TODO: example
-```
+**Where do you put Delayed Jobs**. Sure, not everyone uses Delayed Job with Active Record backend, but if you do, an interesting issue arises: where do you put the table with the jobs. In each tenants schema? This would mean you need to have a worker for every tenant. Or to hack the backend to keep polling tables from all schemas. The other solution is to put it to a shared table, for example in the `public` schema. Apartment facilitates shared tables by using qualified table names (`set_table_name` to `public.delayed_jobs` under the hood - which you can do by hand). You also need to specify the tenant in job's metadata. Initially we wanted to avoid shared tables (because KISS), but we eventually went for the 2nd solution.
 
-**Rails vs PG schemas impedance**. Rails is not really meant to be used with multiple schemas. On the surface it looks fine, but then there little nuances coming up. For example `db/structure.sql`.
+**Where do you store your tenant list**. A lot of people might wanna put it to the db to be able to manipulate it just as the rest of the models. But which schema? If you put it to `public`, all of your tenants' schemas will also have the tenants table (hopefully empty). Probably not a problem, but it's a little unsettling. If you think about it more, tenant management is logically a separate application and shouldn't be handled by the same Rails codebase, but a lot of people will do it for convenience reasons. Just beware of accruing to many hacks around that. It's related to the _Rails vs PG schemas impedance_ issue.
+
+**Rails vs PG schemas impedance**. Rails is not really meant to be used with multiple schemas. On the surface it looks fine, but then there little nuances coming up. For example `db/structure.sql`. 
 
 **The main disadvantage with search_path is its statefullness**. PG schemas are one thing. The other thing is how to switch them. The standard way is to use `search_path` - which is stateful (state resides in PG session), which brings about many of these pitfalls. Perhaps stateless schema-switching could be viable by using qualified table names: `SELECT * FROM my_schema.my_table`, which could be somehow hacked into AR's `set_table_name`. We haven't tried it, but it might be worth exploring. Apartments `exclude_models` relies on this to facilitate tables shared between tenants.
+
+**Remember you have to multitenantize other 3rd party services**. SQL DB is not everything.
