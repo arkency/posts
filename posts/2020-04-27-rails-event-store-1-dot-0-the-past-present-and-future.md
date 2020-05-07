@@ -42,31 +42,28 @@ as always we share our experiences on [Arkency's blog](https://blog.arkency.com/
 
 It's just a milestone. In Rails Event Store we are using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and
 we follow the versioning guidelines defined by it. We have reached the point where the answer for question
-[How do I know when to release 1.0.0?](https://semver.org/spec/v2.0.0.html#how-do-i-know-when-to-release-100)
-was "ups, we should have done that some time ago". Rails Event Store is already used in production, not only by us
-(there is no simple project in Arkency where Rails Event Store is not part of the solution) but also for other
-companies & software houses working on theirs projects. The API is stable and with each release we worry not to
+["How do I know when to release 1.0.0"](https://semver.org/spec/v2.0.0.html#how-do-i-know-when-to-release-100)
+was "oops, we should have done that some time ago". Rails Event Store is already used in production. Not only by us
+— there is no trivial project in Arkency where Rails Event Store is not part of the solution. Also by other
+companies and software houses in their ventures. The API is stable and with each release we worry not to
 break other projects that use Rails Event Store as a dependency.
 
-
-This does not mean we will stop making changes. We will implemnent new things, also the ones
-that will change the public API. We will follow the SemVer versioning guidelines and we will
-describe the changes in the release notes (as it is done for a long time already).
+This does not mean we now stop introducing changes. We will implemnent new things, also the ones
+that will change the public API. We will be following the SemVer versioning guidelines and preparing comprehensive changelogs — business as usual.
 
 
 ## The roadmap
 
-The project philosophy will not change. We work on client's projects. We will implement features we need.
-We will avoid to have features that are not widely used in production systems.
+The project philosophy does not change. Arkency is a consulting agency. We implement ourselves the features we need the most for successful client projects. And we're hesitant when adding the ones not widely used in production systems.
 
-But this is not only for our projects now. Rails Event Store is [used by dozens of companies](https://railseventstore.org/),
-working on theirs internal projects or theirs customer's projects. Any contribution is welcomed.
+However Rails Event Store is bigger than us and is already [used by dozens of companies](https://railseventstore.org/). It is not uncommon to see other gems building on top of RES as well. We welcome any contribution that makes the project better for all and [encourage experimenting](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib).
 
+What we will focus on now? The key elements will be:
 
-What we will focus now? The key elements will be:
+* improving [documentation](https://github.com/RailsEventStore/rails_event_store/issues?q=is%3Aissue+is%3Aopen+label%3Adocumentation), describing how RES works and fits in the architecture of an application
+* support for quick prototyping of event-driven systems, to quickly garther and verify requirements
+* debugging API - to make troubleshooting production issues easier when they emerge
+* improved observability - logging, monitoring and metrics
+* better support for ongoing refactoring and refining with growing understanding of the system — domain events versioning
+* making it even easier to start with Event Sourcing using RES in new projects
 
-* adding support for quick prototyping of event-driven systems, to quickly garther & verify requirements
-* Debugging API - to make troubleshooting production issues easier
-* improved observability - logging / monitoring / metrics API
-* better support for domain events versioning
-* make it easier to start with Event Sourcing using RES in new projects
