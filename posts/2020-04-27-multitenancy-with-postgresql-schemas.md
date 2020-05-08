@@ -10,9 +10,11 @@ publish: false
 Alternative titles:
 * Multitenancy with PostgreSQL schemas - navigating the minefield
 * Multitenancy with PostgreSQL schemas - read before you go there
+* Multitenancy with PostgreSQL schemas - what you need to know
 
 a series of blogposts?
-* approaches to multitenancy
+* comparison of approaches multitenancy
+* explanation of concepts around schema-based multitenancy
 * pg schemas pitfalls
 * performance
 -->
@@ -58,11 +60,24 @@ config.after_initialize do
 end
 ```
 
-**Where do you store your tenant list**. A lot of people might wanna put it to the db to be able to manipulate it just as the rest of the models. But which schema? If you put it to `public`, all of your tenants' schemas will also have the tenants table (hopefully empty). Probably not a problem, but it's a little unsettling. If you think about it more, tenant management is logically a separate application and shouldn't be handled by the same Rails codebase, but a lot of people will do it for convenience reasons. Just beware of accruing to many hacks around that. It's related to the _Rails vs PG schemas impedance_ issue.
+**Where do you store your tenant list**. A lot of people might wanna put it to the db to be able to manipulate it just as the rest of the models. But which schema? If you put it to `public`, all of your tenants' schemas will also have the tenants table (hopefully empty). Probably not a problem, but it's a little unsettling. If you think about it more, tenant management is logically a separate application and shouldn't be handled by the same Rails codebase, but a lot of people will do it for convenience reasons. Just beware of accruing to many hacks around that.
 
-**Rails vs PG schemas impedance**. Rails is not really meant to be used with multiple schemas. On the surface it looks fine, but then there little nuances coming up. For example `db/structure.sql`. 
+**Rails vs PG schemas impedance**. Rails is not really meant to be used with multiple schemas. On the surface it looks fine, but then there little nuances coming up. 
 
-**The main disadvantage with search_path is its statefullness**. PG schemas are one thing. The other thing is how to switch them. The standard way is to use `search_path` - which is stateful (state resides in PG session), which brings about many of these pitfalls. Perhaps stateless schema-switching could be viable by using qualified table names: `SELECT * FROM my_schema.my_table`, which could be somehow hacked into AR's `set_table_name`. We haven't tried it, but it might be worth exploring. Apartments `exclude_models` relies on this to facilitate tables shared between tenants.
+* `db/structure.sql`
+* migrations per tenant or global
+
+**The main disadvantage of search_path is its statefullness**. PG schemas are one thing. The other thing is how to switch them. The standard way is to use `search_path` - which is stateful (state resides in PG session), which brings about many of these pitfalls. Perhaps stateless schema-switching could be viable by using qualified table names: `SELECT * FROM my_schema.my_table`, which could be somehow hacked into AR's `set_table_name`. We haven't tried it, but it might be worth exploring. Apartments `exclude_models` relies on this to facilitate tables shared between tenants.
+
+```ruby
+# PoC, perhaps it's an overkill do it on each request
+ActiveRecord::Base.descendants.each do |model|
+  model.table_name = "#{ current_tenant }.#{ model.table_name }"
+end
+# Better: patch table name resolution
+```
+
+TODO: Also, how do you ensure no stuff like raw sql bypasses that? Empty public schema?
 
 **Remember you have to multitenantize other 3rd party services**. SQL DB is not everything.
 
@@ -95,7 +110,7 @@ Another solution would be to scope the cache per tenant and serve it with regard
 |-----|--------|------------|-----------|
 | Migrations | O(n)++ | O(n) | O(1) |
 | Tenant setup time | Slower + possible operational overhead | Slower | Non existent |
-| Data leaks | You'd need to try hard to get one | Get a couple things right and you'll be fine | Forget a `WHERE` clause and 💥 |
+| Leaking data between tenants | You'd need to try hard to get one | Get a couple things right and you'll be fine | Forget a `WHERE` clause and 💥 |
 | Dump a single tenant | no brainer | easy | super cumbersome |
 | Conventionality | Pretty much | Sometimes at odds with Rails assumptions | Standard Rails |
 | Additional | Can be higher if pricing depends on # of dbs | not really | no |
@@ -108,5 +123,26 @@ TODO: db-level - how do you actually do it from 1 rails app? separate db connect
 * A lot of tenants? consider row-level. Especially if a lot of low-value tenants (like abandoned accounts or free tiers)
 * Less tenants (especially high-value) - schema-level more viable.
 * Data isolation crucial (no leaks). Consider schema-level.
+* Cloud hosted DB with a lot of restrictions? Consider row-level.
+* Anxious about data leaks? Consider schema-level.
+* Customers require more data isolation for whatever reasons? Consider schema-level.
 
 
+
+## Basic Concepts
+
+**PostgreSQL schema**. Basically a namespace. Sometimes also called this way internally (schema is a confusing name).
+
+**Postgres session/connection/backend**. `pg_stat_activity`, pid, `ps aux`.
+
+**PostgreSQL search_path**.
+
+**Rails connection, connection pool, connection handler**. In short: _Connection Handler_ has many _Connection Pools_ has many _Connections_. [More here](https://blog.arkency.com/rails-connections-pools-and-handlers/).
+
+**PgBouncer pooling**.
+
+## Wanna contribute?
+
+TODO: link
+
+Have comments? Reply here TODO: link to the tweet 
