@@ -134,22 +134,18 @@ event's schema level.
 ```ruby
 module Ordering
   class OrderCancelled < Event
+    event_type 'cancelled'
+
     attribute  :order_no, Types::Strict::Integer
     attribute  :reason, Types::Strict::String.optional
-
-    def event_type
-      'cancelled'
-    end
   end
 end
 
 module Shipping
   class DeliveryRevoked < Event
-    attribute  :order_no, Types::Coercible::String
+    event_type 'cancelled'
 
-    def event_type
-      'cancelled'
-    end
+    attribute  :order_no, Types::Coercible::String
   end
 end
 ```
@@ -160,13 +156,13 @@ share some attribute. As defined before these events share event
 type. As a base class I use here my own implementation of base
 event class, compatible with `RailsEventStore::Event` but
 allowing to define attributes using `dry-schema` and `dry-types` gems.
-You could see the implementation of this base class [here](link here).
+You could see the implementation of this base class [here](https://github.com/RailsEventStore/rails_event_store/blob/master/contrib/scripts/dry-event.rb).
 This events have different schema. But the way they are defined allows
 usage of the Weak Schema technique.
 
 However to be albe to use the weak schema we need to change the serialization
 format in Rails Event Store. `YAML` has been a really bad idea ;)
-Fortunatelly for us it is very simple with `DefaultMapper`
+Fortunatelly for us it is very simple with `Default` mapper:
 
 ```ruby
 module Ordering
@@ -197,6 +193,33 @@ end
 BTW do you know that it is just a wrapper for a `PipelineMapper` and you could build your own mapper by
 composing any transformations you need? But this is a story for a different post.
 
-TODO: more about weak schema rules
+
+There are some rules that you need to be aware to use the weak schema.
+The rules for mapping are simple. When reading the event from event store, you look at the
+serialized json and at the event instance. And then the rules apply:
+
+* Exists on json and instance -> value from json
+* Exists on json but not on instance -> NOP
+* Exists on instance but not in json -> default value
+
+You could read more about Weak Schema in [Event Versioning book](https://leanpub.com/esversioning/read_full)
+by [Greg Young](https://twitter.com/gregyoung) (available for free to read on LeanPub).
+
+With use of `dry-types` attributes we could also define coercion rules
+(i.e. replacing integers with strings) and define default values.
 
 ### 3rd: decouple persistence & pub/sub
+
+The last coupling to avoid is the persistence & publishing of the domain events. I've already mentioned the solution here.
+You just don't publish outside of your bounded context (module) the internal events you use to persist state changes
+of the aggregates. This technique have several advantages:
+
+* you define "the contract" between your BCs - read more about Open Host Service & Published Language context relationships
+* changes of the contract could be versioned - i.e. you could publish 2 versions of the same public event until all downstream contexts (clients) will catchup and will he able to handle latest version
+* the changes in internal domain events schema do not have impact on published public events
+* you could enrich published events with additional data and publish result of several internal events as an [summary event](https://verraes.net/2019/05/patterns-for-decoupling-distsys-summary-event/)
+* use event class remapping as a simple form of bounded context [anti-corruption layer](link here)
+
+TODO:
+* implementation of private & public stores with RES
+* just a stream level separation for modular monolith
