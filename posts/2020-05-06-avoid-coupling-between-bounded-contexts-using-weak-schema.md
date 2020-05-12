@@ -62,7 +62,7 @@ This is coupling we have on several levels:
 * coupling of event type to event's implementation (by using a class name),
 * coupling between bounded contexts as with this implementation all of them must "know" the same class (i.e. shipping BC needs to be able to use ordering domain events).
 
-This is not an optimal solution, but we have deliberately made those
+There are tradeoffs, but we have deliberately made those
 choices because of several reasons. The main of them was:
 
 * for the sake of simplicity when you start with Rails Event Store,
