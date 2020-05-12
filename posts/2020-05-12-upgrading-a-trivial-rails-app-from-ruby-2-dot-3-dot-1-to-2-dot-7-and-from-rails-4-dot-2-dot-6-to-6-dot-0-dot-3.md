@@ -75,13 +75,13 @@ The issue is that now the API for simulating http requests has changed:
 
 Instead of:
 
-```
+```ruby
 get :show, id: field.id
 ```
 
 It needs to use named parameter `params`:
 
-```
+```ruby
 get :show, params: {id: field.id}
 ```
 
@@ -101,7 +101,7 @@ Detecting rake tasks
 
 In my case, it was a “legacy” piece of code in my Rakefile:
 
-```
+```ruby
 Rake::TestTask.new do |/t/|
   /t/.libs << “test”
   /t/.pattern = “test/services/*.rb”
@@ -112,12 +112,13 @@ It wasn’t really needed anymore, so I just dropped it.
 
 In more complex scenarios, heroku recommends a technique like this:
 
-```
+```ruby
 begin
   require ‘minitest/autorun’
 rescue LoadError => e
   raise e unless ENV[‘RAILS_ENV’] == “production”
-end ```
+end
+```
 
 During the production deployment (it’s a common pattern to discover problems only at production environment) I’ve had another issue:
 
@@ -129,7 +130,7 @@ Running: rake assets:precompile
 
 As a hotfix I added this to Gemfile:
 
-```
+```ruby
 gem ‘uglifier’
 ```
 
@@ -145,7 +146,7 @@ Error loading the ‘sqlite3’ Active Record adapter. Missing a gem it depends 
 
 The fix was fairly simple:
 
-```
+```ruby
 gem 'sqlite3', '~> 1.4'
 ```
 
