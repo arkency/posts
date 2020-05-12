@@ -154,5 +154,3 @@ in the Gemfile.
 That’s it. My app now works with Ruby 2.7 and Rails 6. Yay!
 
 You can see all commits [here](https://github.com/arkency/plusone/commits/master).
-
-Looking for help with upgrading your Rails app, contact us - [we might be able to help](https://arkency.com/hire-us/).
