@@ -15,3 +15,9 @@ publish: false
 **Rails connection, connection pool, connection handler**. In short: _Connection Handler_ has many _Connection Pools_ has many _Connections_. [More here](https://blog.arkency.com/rails-connections-pools-and-handlers/).
 
 **PgBouncer pooling**.
+
+## Wanna contribute?
+
+TODO: link
+
+Have comments? Reply here TODO: link to the tweet 
