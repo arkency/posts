@@ -3,11 +3,11 @@ title: Upgrading a trivial Rails app from Ruby 2.3.1 to 2.7 and from Rails 4.2.6
 created_at: 2020-05-12T12:05:55.324Z
 author: Andrzej Krzywda
 tags: [ruby upgrade, rails upgrade, heroku, plusone]
-publish: false
+publish: true
 ---
 
 This blogpost describes the upgrading process of a trivial Rails app. 
-The app is called PlusOne and it's a small but fun Slack bot (MS Teams support coming).
+The app is called PlusOne (it's [open-sourced](https://github.com/arkency/plusone)) and it's a small but fun Slack bot (MS Teams support coming).
 
 This app doesn't rely on any external gems, consists only of 3 database tables. It just stores who gave upvote to whom. 
 Additionally it shows some stats - who has how many points.
@@ -135,7 +135,7 @@ gem ‘uglifier’
 
 and the deploy went fine.
 
-After this I was ready to try the newest Rails version - 6.0.3 (rc1 at the moment of writing this).
+After this I was ready to try the newest Rails version - 6.0.3.
 
 It failed during tests with:
 
@@ -152,3 +152,7 @@ gem 'sqlite3', '~> 1.4'
 in the Gemfile.
 
 That’s it. My app now works with Ruby 2.7 and Rails 6. Yay!
+
+You can see all commits [here](https://github.com/arkency/plusone/commits/master).
+
+Looking for help with upgrading your Rails app, contact us - [we might be able to help](https://arkency.com/hire-us/).
