@@ -53,6 +53,8 @@ and restart your server (Sprockets::Railtie::ManifestNeededError)
 
 This showed up after upgrading to Rails 5.2.4.3 (newest one from Rails 5 series).
 
+UPDATE: As was [noted on Reddit by matthewd](https://www.reddit.com/r/ruby/comments/git6m0/upgrading_a_trivial_rails_app_from_ruby_231_to_27/), it might be better not to skip Rails 5.0 and 5.1, as they expose deprecations.
+
 In my app I could probably just disable Sprockets, but it’s not an obvious solution - I’d need to unpack railites/all to all the components manually.
 
 The alternative is a temporary hack:
