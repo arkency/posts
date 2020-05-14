@@ -5,10 +5,9 @@ publish: true
 author: Paweł Pacana
 tags: ['ruby', 'parser', 'AST', 'rails_event_store' ]
 newsletter: arkency_form
-img: "rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg"
+cover_image: "rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg"
 ---
 
-<%= img_fit("rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg") %>
 
 In upcoming [Rails Event Store](https://railseventstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface — popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
 
