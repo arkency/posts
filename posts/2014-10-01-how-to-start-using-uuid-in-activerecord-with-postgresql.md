@@ -41,7 +41,7 @@ rails new -T -J -V -S postgres-extensions --database postgresql
 We skipped some tests, javascripts, views and sprockets and set our database to PostgreSQL.
 
 ## `UUID`
-Personally I think that [UUID](http://www.postgresql.org/docs/9.4/static/uuid-ossp.html) is extremely interesting topic to discuss and [Andrzej](https://twitter.com/andrzejkrzywda) has already written [an excellent article](http://andrzejonsoftware.blogspot.com/2013/12/decentralise-id-generation.html) about using this feature.
+Personally I think that [UUID](https://www.postgresql.org/docs/9.4/pgcrypto.html) is extremely interesting topic to discuss and [Andrzej](https://twitter.com/andrzejkrzywda) has already written [an excellent article](http://andrzejonsoftware.blogspot.com/2013/12/decentralise-id-generation.html) about using this feature.
 
 This is 16-octet / 128 bit type compatible with most common GUID and UUID generators, supporting distributed application design, defined by [RFC 4122, ISO/IEC 9834-8:2005](http://tools.ietf.org/html/rfc4122). It is represented by 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens).
 
@@ -76,17 +76,17 @@ It's available since `Ruby 1.9` and provides UUID version 4 described above, whi
 How to use it in SQL code?
 
 ```bash
-postgres=# CREATE EXTENSION "uuid-ossp";
+postgres=# CREATE EXTENSION "pgcrypto";
 
 CREATE EXTENSION
-postgres=# SELECT uuid_generate_v4();
-           uuid_generate_v4
+postgres=# SELECT gen_random_uuid();
+           gen_random_uuid
 --------------------------------------
  f8c9ffd6-a234-4729-bd2a-68379df315fb
 (1 row)
 ```
 
-The uuid-ossp module provides functions to generate universally unique identifiers (UUIDs) using one of several standard algorithms. There are also functions to produce certain special UUID constants.
+The pgcrypto module provides functions to generate universally unique identifiers (UUIDs) using one of several standard algorithms. There are also functions to produce certain special UUID constants.
 
 ### Rails finally
 
@@ -99,7 +99,7 @@ rails g migration enable_uuid_extension
 ```ruby
 class EnableUuidExtension < ActiveRecord::Migration
   def change
-    enable_extension 'uuid-ossp'
+    enable_extension 'pgcrypto'
   end
 end
 
