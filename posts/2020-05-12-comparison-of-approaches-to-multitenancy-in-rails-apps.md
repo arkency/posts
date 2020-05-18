@@ -14,20 +14,20 @@ In PostgreSQL you can implement multitenancy on a couple different levels:
 
 Here's how they compare to each other:
 
-|     | db-level | schema-level | row-level |
+|     | row-level | schema-level | db-level |
 |-----|--------|------------|-----------|
-| Running DB migrations | O(n)++ | O(n) | O(1) |
-| Tenant setup time | Slower + possible operational overhead | Slower |  Non existent |
-| Leaking data between tenants | You'd need to try hard to get one | Get a couple things right and you'll be fine | Forget a `WHERE` clause and 💥 |
-| Dump a single tenant | no brainer | easy | super cumbersome |
-| Conventionality | Pretty much | Sometimes at odds with Rails assumptions | Standard Rails |
-| Additional costs | Can be higher if pricing depends on # of dbs | not really | no |
-| Operational overhead | You have a lot of databases | sometimes | no |
-| Need to merge data across tenants or shared tables | in-app only, cannot do in SQL | not a big problem, can do in SQL | no brainer |
-| Complexity | | some exotic PG features, stateful `search_path` | tenant_id keys everywhere |
+| Running DB migrations | O(1) | O(n) | O(n)++ |
+| Tenant setup time | Non existent | Slower | Slower + possible operational overhead |
+| Leaking data between tenants | Forget a `WHERE` clause and 💥 | Get a couple things right and you'll be fine | You'd need to try hard to get one |
+| Dump a single tenant | super cumbersome | easy | no brainer |
+| Conventionality | Standard Rails | Sometimes at odds with Rails assumptions | Pretty much |
+| Additional costs | no | not really | Can be higher if pricing depends on # of dbs |
+| Operational overhead | no | sometimes | You have a lot of databases |
+| Need to merge data across tenants or shared tables | no brainer | not a big problem, can do in SQL | in-app only, cannot do in SQL |
+| Complexity | tenant_id keys everywhere | some exotic PG features, stateful `search_path` | |
 | Where possible | | Are you on a managed DB? Double check if it's possible | |
-| Cost of switching | You need to establish a separate db connection | Just set the `search_path` for the current session | Not at all |
-| Invasiveness | Fine | Fine | `tenant_id` columns and filters all over the code |
+| Cost of switching | Not at all | Just set the `search_path` for the current session | You need to establish a separate db connection |
+| Invasiveness | `tenant_id` columns and filters all over the code | Fine | Fine |
 
 ### MySQL vs PostgreSQL schemas
 
