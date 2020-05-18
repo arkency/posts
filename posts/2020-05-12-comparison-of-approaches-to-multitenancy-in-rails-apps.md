@@ -17,15 +17,15 @@ For MySQL check next paragraph. Here's how these levels compare to each other:
 |     | row-level | schema-level | db-level |
 |-----|--------|------------|-----------|
 | Tenant setup time | ⚡️ Create a record | 🐢 Slower (create schema, create tables) | 🐌 Even slower + possible operational overhead |
-| Leaking data between tenants | Forget a `WHERE` clause and 💥 | ✅ Get a couple things right and you'll be fine | ✅ You'd need to try hard to get one |
+| Leaking data between tenants | 💥If you forget a `WHERE` clause | ✅ Get a couple things right and you'll be fine | ✅ You'd need to try hard to get one |
 | Invasiveness | 🍝 `tenant_id` columns and filters all over the code | 👍 Fine | 👍 Fine |
 | Need shared tables or merging data across tenants | ✅ No brainer | 👍 Can still be done in SQL | 🚫 In-app only, cannot do in SQL |
 | Running DB migrations | ⚡️ O(1) | 🐢 O(n) | 🐌 O(n) |
-| Conventionality | Standard Rails | Occasionally at odds with Rails assumptions | 🤔 |
+| Conventionality | 👍 Standard Rails | 🛠 Occasionally at odds with Rails assumptions | 🤔 |
 | Additional costs | 👍 Not really | 👍 Not really | ❓ What if pricing depends on the # of DBs? |
-| Operational overhead | ✅ No | Occassionally | 🛠 You now have a lot of databases |
+| Operational overhead | ✅ No | 👍 Occassionally | 🛠 You now have a lot of databases |
 | Complexity | 🍝 tenant_id keys everywhere | 🌴 some exotic PG features, stateful `search_path` | 🤔 |
-| Where possible | 🌍 Preety much everywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
+| Where possible | 🌍 Pretty much anywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
 | Cost of switching | ⚡️ Set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
 | Dump a single tenant's data | 🛠 cumbersome | 👍 easy | 👍 no brainer |
 
@@ -39,18 +39,18 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 
 | Condition | Recommendation |
 | --- | --- |
-| A lot of tenants? Especially if a lot of low-value tenants (like abandoned accounts or free tiers) | consider row-level |
-| Less tenants (especially high-value) | schema-level more viable |
+| A lot of tenants? | consider row-level |
+| A lot of low-value tenants (like abandoned accounts or free tiers) | consider row-level |
+| Less tenants and they're high-value | schema-level more viable |
 | Anxious about data isolation (ensuring no data leaks between tenants) | consider schema-level |
 | Customers might require more data isolation for legal reasons | consider schema-level or even db-level |
 | On a managed or cloud hosted database? | if you wanna go for schema-level make sure it all works for you |
-| Multitenantizing an existing single-tenant code base? | consider schema-level |
-| Greenfield project | row-level may be easier to introduce |
+| Multitenantizing an existing single-tenant code base? | schema-level might be easier to introduce |
+| Greenfield project | row-level more viable |
 | Need to combine a lot of data across tenants | row-level is a safer bet |
-
 
 ## Feel like contributing to this blogpost?
 
-TODO: link
+Feel free to [https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md](submit a PR) to this blogpost!
 
-Have comments? Reply here TODO: link to the tweet 
+Have comments? Ping me on twitter - [https://twitter.com/tomasz_wro](@tomasz_wro)
