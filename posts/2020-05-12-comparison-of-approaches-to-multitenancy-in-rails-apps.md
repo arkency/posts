@@ -37,13 +37,17 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 
 ## Quick reasons to pick one or another
 
-* A lot of tenants? consider row-level. Especially if a lot of low-value tenants (like abandoned accounts or free tiers)
-* Less tenants (especially high-value) - schema-level more viable.
-* Data isolation crucial (no leaks). Consider schema-level.
-* Cloud hosted DB with a lot of restrictions? Consider row-level.
-* Anxious about data leaks? Consider schema-level.
-* Customers require more data isolation for whatever reasons? Consider schema-level.
-* Multitenantizing an existing code base? Consider schema-level.
+| Condition | Recommendation |
+| --- | --- |
+| A lot of tenants? Especially if a lot of low-value tenants (like abandoned accounts or free tiers) | consider row-level |
+| Less tenants (especially high-value) | schema-level more viable |
+| Anxious about data isolation (ensuring no data leaks between tenants) | consider schema-level |
+| Customers might require more data isolation for legal reasons | consider schema-level or even db-level |
+| On a managed or cloud hosted database? | if you wanna go for schema-level make sure it all works for you |
+| Multitenantizing an existing single-tenant code base? | consider schema-level |
+| Greenfield project | row-level may be easier to introduce |
+| Need to combine a lot of data across tenants | row-level is a safer bet |
+
 
 ## Feel like contributing to this blogpost?
 
