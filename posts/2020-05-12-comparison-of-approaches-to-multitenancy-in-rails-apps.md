@@ -6,17 +6,19 @@ tags: []
 publish: false
 ---
 
-| | db-level | PG schemas (schema-level) | Filtering (row-level) |
+|     | db-level | PG schemas (schema-level) | Filtering (row-level) |
 |-----|--------|------------|-----------|
 | Migrations | O(n)++ | O(n) | O(1) |
 | Tenant setup time | Slower + possible operational overhead | Slower | Non existent |
 | Leaking data between tenants | You'd need to try hard to get one | Get a couple things right and you'll be fine | Forget a `WHERE` clause and 💥 |
 | Dump a single tenant | no brainer | easy | super cumbersome |
 | Conventionality | Pretty much | Sometimes at odds with Rails assumptions | Standard Rails |
-| Additional | Can be higher if pricing depends on # of dbs | not really | no |
+| Additional costs | Can be higher if pricing depends on # of dbs | not really | no |
 | Operational overhead | You have a lot of databases | sometimes | no |
-| Need to merge data across tenants or shared tables | rocket science | not a big problem | no brainer |
-| Complexity | | some exotic PG features | tenant_id keys everywhere |
+| Need to merge data across tenants or shared tables | in-app only, cannot do in SQL | not a big problem, can do in SQL | no brainer |
+| Complexity | | some exotic PG features, stateful `search_path` | tenant_id keys everywhere |
+| Where possible | | Are you on a managed DB? Double check if it's possible | |
+| Cost of switching | `establish_connection` (PG), `use` (MySQL) | no biggie - set `search_path` | none |
 
 TODO: db-level - how do you actually do it from 1 rails app? separate db connections? (and limited number). easier in mysql?
 
