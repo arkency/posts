@@ -51,6 +51,6 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 
 ## Feel like contributing to this blogpost?
 
-Feel free to [https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md](submit a PR) to this blogpost!
+Feel free to [submit a pull request](https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md) to this blogpost!
 
-Have comments? Ping me on twitter - [https://twitter.com/tomasz_wro](@tomasz_wro)
+Have comments? Ping me on twitter - [@tomasz_wro](https://twitter.com/tomasz_wro).
