@@ -24,7 +24,7 @@ For MySQL check next paragraph. Here's how these levels compare to each other:
 | Conventionality | 👍 Standard Rails | 🛠 Occasionally at odds with Rails assumptions | 🤔 |
 | Additional costs | 👍 Not really | 👍 Not really | ❓ What if pricing depends on the # of DBs? |
 | Operational overhead | ✅ No | 👍 Occassionally | 🛠 You now have a lot of databases |
-| Complexity | 🍝 tenant_id keys everywhere | 🌴 some exotic PG features, stateful `search_path` | 🤔 |
+| Complexity | 🍝 `tenant_id` keys everywhere | 🌴 some exotic PG features, stateful `search_path` | 🤔 |
 | Where possible | 🌍 Pretty much anywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
 | Cost of switching | ⚡️ Set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
 | Dump a single tenant's data | 🛠 cumbersome | 👍 easy | 👍 no brainer |
