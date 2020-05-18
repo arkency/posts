@@ -8,9 +8,9 @@ publish: false
 
 In PostgreSQL you can implement multitenancy on a couple different levels:
 
-1. Database level (rarely practical - just for comparison).
+1. Row level (putting `tenant_id` columns to every table and filtering everywhere).
 2. Schema level (_namespaces_ is a more explanatory name, see [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html)).
-3. Row level (putting `tenant_id` columns to every table and filtering everywhere).
+3. Database level (rarely practical - just for comparison).
 
 Here's how they compare to each other:
 
