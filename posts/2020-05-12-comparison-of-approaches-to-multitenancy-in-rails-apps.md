@@ -6,28 +6,28 @@ tags: []
 publish: false
 ---
 
-In PostgreSQL you can implement multitenancy on a couple different levels:
+You can implement multitenancy on a couple different levels. If you're on PostgreSQL:
 
 1. Row level (putting `tenant_id` columns to every table and filtering everywhere).
-2. Schema level (_namespaces_ is a more explanatory name, see [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html)).
+2. Schema level (_namespaces_ is a more explanatory name, see [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html)). 
 3. Database level (rarely practical - just for comparison).
 
-Here's how they compare to each other:
+For MySQL check next paragraph. Here's how these levels compare to each other:
 
 |     | row-level | schema-level | db-level |
 |-----|--------|------------|-----------|
-| Running DB migrations | O(1) | O(n) | O(n)++ |
-| Tenant setup time | Non existent | Slower | Slower + possible operational overhead |
-| Leaking data between tenants | Forget a `WHERE` clause and 💥 | Get a couple things right and you'll be fine | You'd need to try hard to get one |
-| Dump a single tenant | super cumbersome | easy | no brainer |
-| Conventionality | Standard Rails | Sometimes at odds with Rails assumptions | Pretty much |
-| Additional costs | no | not really | Can be higher if pricing depends on # of dbs |
-| Operational overhead | no | sometimes | You have a lot of databases |
-| Need to merge data across tenants or shared tables | no brainer | not a big problem, can do in SQL | in-app only, cannot do in SQL |
-| Complexity | tenant_id keys everywhere | some exotic PG features, stateful `search_path` | |
-| Where possible | | Are you on a managed DB? Double check if it's possible | |
-| Cost of switching | Not at all | Just set the `search_path` for the current session | You need to establish a separate db connection |
-| Invasiveness | `tenant_id` columns and filters all over the code | Fine | Fine |
+| Tenant setup time | ⚡️ Create a record | 🐢 Slower (create schema, create tables) | 🐌 Even slower + possible operational overhead |
+| Leaking data between tenants | Forget a `WHERE` clause and 💥 | ✅ Get a couple things right and you'll be fine | ✅ You'd need to try hard to get one |
+| Invasiveness | 🍝 `tenant_id` columns and filters all over the code | 👍 Fine | 👍 Fine |
+| Need shared tables or merging data across tenants | ✅ No brainer | 👍 Can still be done in SQL | 🚫 In-app only, cannot do in SQL |
+| Running DB migrations | ⚡️ O(1) | 🐢 O(n) | 🐌 O(n) |
+| Conventionality | Standard Rails | Occasionally at odds with Rails assumptions | 🤔 |
+| Additional costs | 👍 Not really | 👍 Not really | ❓ What if pricing depends on the # of DBs? |
+| Operational overhead | ✅ No | Occassionally | 🛠 You now have a lot of databases |
+| Complexity | 🍝 tenant_id keys everywhere | 🌴 some exotic PG features, stateful `search_path` | 🤔 |
+| Where possible | 🌍 Preety much everywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
+| Cost of switching | ⚡️ Set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
+| Dump a single tenant's data | 🛠 cumbersome | 👍 easy | 👍 no brainer |
 
 ### MySQL vs PostgreSQL schemas
 
