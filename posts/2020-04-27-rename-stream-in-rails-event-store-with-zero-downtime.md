@@ -36,7 +36,7 @@ But having publisher constantly writing to source stream creates a few problems 
 Source stream could not be just switched to target stream when all source stream's events
 are linked to target stream. There could be a race condition and after we link last event
 and switch publisher to target stream new domain events could be published in source stream.
-This of course will be bad as we could loose some domain events.
+This of course will be bad as we could lose some domain events.
 
 
 ## Catchup subscription FTW
@@ -51,8 +51,8 @@ This time concept is:
 2. catchup subscription reads a chunk of events from source stream (never read too much,
   some streams might have a lot of events), and then:
   - if there are more events in source stream, link them to target stream and fetch next chunk of events
-  - if the subscription is catched up with source stream (we have both streams with the same events)
-    then do the switch of stream in publlisher's data store. Since now publisher will be writting to
+  - if the subscription is caught up with source stream (we have both streams with the same events)
+    then do the switch of stream in publisher's data store. Since now publisher will be writing to
     the target stream
 3. delete source stream
 
@@ -72,7 +72,7 @@ There are moments in code execution where we still miss some domain events.
 We need to have a lock on 2 critical operations here.
 First while fetching source stream events and making a switch
 of target stream on catchup process. And second while publisher fetches current stream from
-data store and write new events to it.
+data store and writes new events to it.
 
 ## Code spike to demonstrate this concept
 
@@ -110,7 +110,7 @@ def publish(stream)
 end
 ```
 
-Is just a method that constantly publish a new domain event (with index) to some stream.
+Is just a method that constantly publishes a new domain event (with index) to some stream.
 The `stream` here will be the most interesting part here.
 
 Then the catchup process:
@@ -131,7 +131,7 @@ def catchup(stream)
 end
 ```
 
-As described it fetch some events from source stream and link them to target stream.
+As described it fetches some events from source stream and links them to target stream.
 It stops when there is nothing more to read from source stream.
 
 
@@ -146,7 +146,7 @@ Please notice the difference in:
 ```
 
 To give a catchup process a chance to finally catchup with source stream it must process
-events a little faster then they are published by publisher.
+events a little faster than they are published by publisher.
 A `TIME_UNIT` is just a constant to define how fast you want this experiment to process events.
 
 ```ruby
