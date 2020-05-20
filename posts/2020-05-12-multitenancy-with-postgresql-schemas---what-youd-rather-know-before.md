@@ -97,7 +97,17 @@ end
 
 TODO: Also, how do you ensure no stuff like raw sql bypasses that? Empty public schema?
 
-**Creating threads inside a request or job?** It won't have the `search_path` set, you need to set it manually. Not sure if your code uses threads in a weird piece of code or lib? Setting pool size to 1 can help - you'll get an exception if that's the case. Not the best idea when you're on a threaded server, though.
+**Creating threads inside a request or job?** It won't have the `search_path` set:
+
+```ruby
+Apartment::Tenant.switch!("tenant_1")
+p ActiveRecord::Base.connection.execute("show search_path").to_a
+# => [{"search_path"=>"tenant_1"}]
+p Thread.new { p ActiveRecord::Base.connection.execute("show search_path").to_a }
+# => [{"search_path"=>"public"}]
+```
+
+You need to set it manually. Not sure if your code uses threads in a weird piece of code or lib? Setting pool size to 1 can help - you'll get an exception if that's the case. Not the best idea when you're on a threaded server, though.
 
 ## Feel like contributing to this blogpost?
 
