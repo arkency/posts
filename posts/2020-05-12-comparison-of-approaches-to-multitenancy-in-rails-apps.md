@@ -1,6 +1,6 @@
 ---
 title: Comparison of approaches to multitenancy in Rails apps
-created_at: 2020-05-12T14:47:33.033Z
+created_at: 2020-05-26T14:20:00.000Z
 author: Tomasz Wróbel
 tags: []
 publish: true
