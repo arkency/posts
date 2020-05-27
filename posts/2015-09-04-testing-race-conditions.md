@@ -176,11 +176,3 @@ not run in a transaction (otherwise other DB connections from other threads woul
 the records created by setup in the main testing thread). Your test is responsible for
 cleaning the database after running itself. I use `database_cleaner` with `deletion` strategy
 for that.
-
-Did you like this article? You might find [our Rails books interesting as well](/products) .
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="18%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="18%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="18%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="18%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="18%" /></a>
