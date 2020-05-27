@@ -79,10 +79,6 @@ Even if you're not that developer - look around. Is someone in the team always a
 Maybe it's #projectfoo-UI, #projectfoo-invoices or #projectfoo-performance - you name it, whatever makes sense in your context. This helps deciding where to start the conversation.
 
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">(Using email)<br><br>You have one inbox.<br><br>(Sign up for Slack)<br><br>You have 30 inboxes.<br><br>(Slack adds threads feature)<br><br>Your inboxes have inboxes.</p>&mdash; Henning Koch (@triskweline) <a href="https://twitter.com/triskweline/status/1035073193550249984?ref_src=twsrc%5Etfw">August 30, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">(Using email)<br><br>You have one inbox.<br><br>(Sign up for Slack)<br><br>You have 30 inboxes.<br><br>(Slack adds threads feature)<br><br>Your inboxes have inboxes.</p>&mdash; Henning Koch (@triskweline) <a href="https://twitter.com/triskweline/status/1035073193550249984?ref_src=twsrc%5Etfw">August 30, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Do you know other techniques how to deal with the problem? Feel free to share in the comments.
-
-If you like the way of thinkng behind those advices, you will like our [**Async/Remote**](https://blog.arkency.com/async-remote/) book too. 
-
-<img src="https://blog-arkency.imgix.net/aar/async-remote-ver13-0.77proportion.png?w=300&h=300&fit=max"</img>
