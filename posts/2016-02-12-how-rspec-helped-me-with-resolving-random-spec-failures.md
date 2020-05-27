@@ -58,14 +58,3 @@ It took almost 20 minutes to find the spec which interfered with other ones. Usu
 
 ## But what was the reason for the failure?
 It was simply `before(:all) {} ` used to set up the test. You shouldn’t use that unless you really know what you’re doing. You can read more about the differences between `before(:each)` and `before(:all)` in this `3.years.old`, but still valid [blog post](http://makandracards.com/makandra/11507-using-before-all-in-rspec-will-cause-you-lots-of-trouble-unless-you-know-what-you-are-doing).
-
-## More
-
-Did you like this article? You might find [our Rails books interesting as well](/products) .
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

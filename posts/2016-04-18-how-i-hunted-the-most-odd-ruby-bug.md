@@ -615,16 +615,6 @@ I suspect that with that improvement we will be even able to decommission some o
 Did you like this article? You will find [our Rails books interesting as well](/products) . We especially recommend
 [Responsible Rails](/responsible-rails) which contains more stories like that.
 
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="35%" /></a>
-
-You can also enjoy:
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="19%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="19%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="19%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
-<a href="/blogging"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
-
 ## Resources
 
 * [Ruby's Thread#raise, Thread#kill, timeout.rb, and net/protocol.rb libraries are broken](http://blog.headius.com/2008/02/ruby-threadraise-threadkill-timeoutrb.html)

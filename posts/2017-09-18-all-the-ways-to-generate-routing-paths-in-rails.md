@@ -72,7 +72,3 @@ You can always provide a hand-crafted String as the path. LOL 😋 . I would rat
 ## Summary
 
 Usually we use named routes such as `edit_admin_exercise` which are available via methods. But the other options are worth knowing about and they can be useful when you need to generate URLs to various actions or controllers more dynamically.
-
-Did you like this article? You will find [our Rails books interesting as well](/products).
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="35%" />

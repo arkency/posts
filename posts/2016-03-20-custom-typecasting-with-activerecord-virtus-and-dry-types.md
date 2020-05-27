@@ -116,9 +116,3 @@ That's it. That's the entire lesson. If you want more free lessons
 how to improve your Rails codebase, subscribe to our mailing list below.
 We will regularly send you valuable tips and tricks. 3200 developers already
 trusted us.
-
-## More
-
-Did you like this article? You will definitely find [our Rails books interesting as well](/products) .
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="48%" /></a><a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="48%" /></a>

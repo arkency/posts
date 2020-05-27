@@ -271,14 +271,3 @@ You might also want to read some of our other popular blogposts ActiveRecord-rel
 
 * [3 ways to do eager loading (preloading) in Rails 3 & 4](/2013/12/rails4-preloading/)
 * [Single Table Inheritance - problems and solutions](/2013/07/sti/)
-
-## More
-
-Did you like this article? You might find [our Rails books interesting as well](/products) .
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>

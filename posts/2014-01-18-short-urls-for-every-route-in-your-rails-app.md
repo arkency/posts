@@ -280,14 +280,3 @@ You can also
 [follow us on Twitter](https://twitter.com/arkency)
 [Facebook](https://www.facebook.com/pages/Arkency/107636559305814), or
 [Google Plus](https://plus.google.com/+Arkency)
-
-## More
-
-Did you like this article? You might find [our Rails books interesting as well](/products) .
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="15%" /></a>
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="15%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="15%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("dopm.jpg") %>" width="15%" /></a>
-<a href="https://arkency.dpdcart.com"><img src="<%= src_fit("blogging-small.png") %>" width="15%" /></a>
-<a href="/responsible-rails"><img src="<%= src_fit("responsible-rails/cover.png") %>" width="15%" /></a>
