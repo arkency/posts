@@ -5,6 +5,7 @@ author: Tomasz Wróbel
 tags: ['rails']
 kind: article
 publish: true
+cta: 'hireus'
 ---
 
 In Active Record there are db connections, connection pools and handlers. To put it shortly:

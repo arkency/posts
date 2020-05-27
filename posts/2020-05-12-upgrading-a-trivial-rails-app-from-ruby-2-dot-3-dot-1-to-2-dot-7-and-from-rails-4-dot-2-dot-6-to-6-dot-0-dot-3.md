@@ -4,6 +4,7 @@ created_at: 2020-05-12T12:05:55.324Z
 author: Andrzej Krzywda
 tags: [ruby upgrade, rails upgrade, heroku, plusone]
 publish: true
+cta: 'hireus'
 ---
 
 This blogpost describes the upgrading process of a trivial Rails app. 
