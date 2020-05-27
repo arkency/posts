@@ -55,5 +55,3 @@ Being honest about a technology or a technique is not only knowing _"the good pa
 There is [No Silver Bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet). In the end you'll have to make a judgement — in the context of your application and the business domain it supports.
 
 It is however good to **know your options first** and **what price tag** does each of them comes with.
-
-By the way, you can now learn Event Sourcing from [Domain-Driven Rails](https://blog.arkency.com/domain-driven-rails/) book. We've just added 50 new pages about this technique. To celebrate, use **HIGH5EVENTSOURCING** coupon with **25% off**.

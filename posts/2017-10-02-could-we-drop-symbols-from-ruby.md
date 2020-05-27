@@ -222,7 +222,3 @@ And in Smalltalk Symbols inherit from Strings:
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">Hey, Just a comment on the article: In Smalltalk, Symbols actually do inherit from string: <a href="https://t.co/YtQO91N0p7">pic.twitter.com/YtQO91N0p7</a></p>&mdash; Tobias (@krono) <a href="https://twitter.com/krono/status/916402697183535106?ref_src=twsrc%5Etfw">October 6, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-P.S.
-
-If you enjoyed this and you work on big Rails apps, you will enjoy reading [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/) .

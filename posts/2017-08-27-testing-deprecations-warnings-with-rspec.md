@@ -141,5 +141,3 @@ This way the feature is covered fully with tests. Mutant is happy (100% coverage
 Obviously, we could debate whether this kind of a feature (deprecations) deserves the tests. It's a hard question and not easy to answer. We should probably decide whether the new tests make our further work harder. 
 
 One thing which we follow from the beginning of the project is [to have 100% mutation coverage](http://blog.arkency.com/2015/04/why-i-want-to-introduce-mutation-testing-to-the-rails-event-store-gem/) to ensure the quality and to encourage the contributors to follow the TDD techniques. RailsEventStore is a tool on which serious projects rely on and we want to ensure that it works the best possible way.
-
-PS. Don’t know how to start with DDD in your Rails app? Join our Rails/DDD workshop in [Berlin](http://blog.arkency.com/ddd-training/) or in [London](http://blog.arkency.com/domain-driven-rails-workshop-london/). Also, there's a new book which we have recently released: [Domain-Driven Rails](http://blog.arkency.com/domain-driven-rails/)
