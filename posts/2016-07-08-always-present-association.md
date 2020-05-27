@@ -80,6 +80,4 @@ same time, then why not.
 
 ## P.S.
 
-* Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
-
-    <a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>
+Check out more patterns that can help you in maintaining Rails apps in our [Fearless Refactoring: Rails controllers ebook](http://rails-refactoring.com/)
