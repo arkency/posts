@@ -100,5 +100,3 @@ Also worth reading:
 * [Two ways for testing eager-loading of ActiveRecord associations](/two-ways-for-testing-preloading-eager-loading-of-activerecord-association-in-rails/)
 * [The === (case equality) operator in Ruby explained](/the-equals-equals-equals-case-equality-operator-in-ruby/)
 * [What I learnt from Jason Fried about running a remote/async software company](/what-i-learnt-from-jason-fried-about-running-a-remote-slash-async-software-company/)
-
-Check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.

@@ -212,5 +212,3 @@ Also worth reading:
 * [Why we follow the Rails repo structure in Rails Event Store](/why-we-follow-rails-repo-structure-in-rails-event-store/) - how we started using monorepo approach for our gems which work together.
 * [That one time I used recursion to solve a problem](/that-one-time-i-used-recursion-to-solve-a-problem/) - today I showed you a solution using a recursion. I once used such approach also for calculating reminders.
 * [inject vs each_with_object](/inject-vs-each-with-object/) - are you just starting your Ruby journey? Make sure to get the difference between `inject` and `each_with_object`. They are both useful methods you should know.
-
-And don't forget to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.

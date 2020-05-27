@@ -77,5 +77,3 @@ Also worth reading:
 * [Service objects as a way of testing Rails apps (without factory_girl)](/2014/06/setup-your-tests-with-services/) - using service objects to set up a test state instead of factory_girl
 * [Rails and adapter objects: different implementations in production and tests](/2016/11/rails-and-adapter-objects-different-implementations-in-production-and-tests/) - this article describes how to have a different implementation being passed in the production environment and an in-memory one in the tests.
 * [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - consciously recognizing and switching between these 2 ways of testing can make it much easier for you sometimes.
-
-Check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps like we do.

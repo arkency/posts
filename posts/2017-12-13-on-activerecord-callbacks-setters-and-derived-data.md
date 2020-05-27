@@ -169,5 +169,3 @@ Also worth reading:
 * [Domain Events over ActiveRecord callbacks](/2016/05/domain-events-over-active-record-callbacks/)
 * [The biggest Rails code smell you should avoid to keep your app healthy](https://medium.com/planet-arkency/the-biggest-rails-code-smell-you-should-avoid-to-keep-your-app-healthy-a61fd75ab2d3)
 * [Application Services - 10 common doubts answered](https://blog.arkency.com/application-service-ruby-rails-ddd/)
-
-Check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.

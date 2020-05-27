@@ -349,7 +349,3 @@ def unpublished_events
   @unpublished_events ||= []
 end
 ```
-
-## P.S.
-
-Struggling with complex Rails app and business domain? - Check out [Domain Driven Rails ebook](/domain-driven-rails/) and our [upcoming workshops in London and Berlin](/ddd-training/)
