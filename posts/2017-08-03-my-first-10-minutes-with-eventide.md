@@ -462,16 +462,6 @@ module AccountComponent
 
 It looks to me like these are helpers that help you build exemplary data, maybe test data. Maybe some kind of builders.
 
-## Learn More
-
-Next week we are going to release our newest book "Domain-Driven Rails".
-
-<div style="margin:auto; width: 480px;">
-  <a href="/domain-driven-rails/">
-    <img src="//blog-arkency.imgix.net/domain-driven-rails-design/cover7-100.png?w=480&h=480&fit=max">
-  </a>
-</div>
-
-It already has 140 pages and we've simply waited too long with publishing. So many readers could have already benefited from it.
+### PS
 
 Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.

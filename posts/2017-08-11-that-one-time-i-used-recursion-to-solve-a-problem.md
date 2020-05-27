@@ -103,16 +103,6 @@ The whole solution is around 12 logical lines of code in total :)
 
 Because the time distances between the purchase and the event are no bigger than a few years, I was not worried about possible stack-overflow. In longer periods of time, we need about 6 method calls to compute reminders for a whole year.
 
-## PS
-
-This week we are releasing our newest book "Domain-Driven Rails".
-
-<div style="margin:auto; width: 480px;">
-  <a href="/domain-driven-rails/">
-    <img src="//blog-arkency.imgix.net/domain-driven-rails-design/cover7-100.png?w=480&h=480&fit=max">
-  </a>
-</div>
-
-It already has 140 pages and contains 10 building blocks you can use in your Rails app to achieve better architecture.
+### PS
 
 Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.
