@@ -316,5 +316,3 @@ The numenclature they use is similar but they mean completely different things.
 If you enjoyed the article, [subscribe to our newsletter](http://arkency.com/newsletter) so that you are always the first one to get the knowledge that you might find useful in your everyday Rails programmer job.
 
 Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
-
-Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails applications.

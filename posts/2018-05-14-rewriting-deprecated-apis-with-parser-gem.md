@@ -228,5 +228,3 @@ You might enjoy reading:
 * [One simple trick to make Event Sourcing click](/one-simple-trick-to-make-event-sourcing-click/) — the curious case of explaining Event Sourcing with Aggregate Root
 
 * [Process Managers revisited](/process-managers-revisited/) — how coordinate events over time and put a barrier that breaks as soon as they all happened
-
-**Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**

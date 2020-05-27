@@ -114,6 +114,3 @@ You might enjoy reading:
 * [Why Event Sourcing basically requires CQRS and Read Models](/why-event-sourcing-basically-requires-cqrs-and-read-models/) - Event sourcing is a nice technique with certain benefits. But it has a big limitation. As there is no concept of easily available current state, you can’t easily get an answer to a query such as _give me all products with available quantity lower than 10_. What can be done about it?
 * [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - 2 modes of testing that you can switch between to make writing tests easier.
 * [Using ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) - when grep is not enough for your refactorings.
-
-**Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
-

@@ -54,5 +54,3 @@ You might enjoy reading:
 * [The === (case equality) operator in Ruby explained](/the-equals-equals-equals-case-equality-operator-in-ruby/)
 * [Relative Testing vs Absolute Testing](/relative-testing-vs-absolute-testing/) - the mentioned test is only using relative time in a setup. It could be nice to have 3 absolute tests checking a normal day, DST started day and DST ended day.
 * [Falsehoods programmers believe about time](http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time) - it starts with _There are always 24 hours in a day_ :)
-
-Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.

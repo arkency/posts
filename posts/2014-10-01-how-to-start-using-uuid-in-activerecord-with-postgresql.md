@@ -299,8 +299,6 @@ everyday Rails programmer job.
 
 Content is mostly focused on (but not limited to) Ruby, Rails, Web-development and refactoring Rails applications.
 
-Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.
-
 ## References
 
 - http://www.postgresql.org/docs/9.4/static/extend.html

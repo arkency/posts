@@ -249,5 +249,3 @@ You might enjoy reading:
 * [Using ruby parser and the AST tree to find deprecated syntax](/using-ruby-parser-and-ast-tree-to-find-deprecated-syntax/) - when grep is not enough for your refactorings.
 * [Big events vs Small events - from the perspective of refactoring](/big-events-vs-small-events-from-the-perspective-of-refactoring/) - _after working for several years in an event sourced system, Andrew noticed many problems connected with big events_
 
-**Also, make sure to check out our latest book [Domain-Driven Rails](/domain-driven-rails/). Especially if you work with big, complex Rails apps.**
-
