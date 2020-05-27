@@ -62,5 +62,3 @@ There are at least two other multitenancy-related blogposts we're going to publi
 * Caveats and pitfalls of schema-based multitenancy
 
 If you don't want to miss anything, [subscribe to our newsletter](https://arkency.com/newsletter/).
-
-Also, if you're looking for a team to hire - it might be an exceptional moment in our history to do so. We're typically fully booked and rarely jump on new projects, but we're available for hire starting from Q3 2020. You can [drop us a line here](https://arkency.com/).
