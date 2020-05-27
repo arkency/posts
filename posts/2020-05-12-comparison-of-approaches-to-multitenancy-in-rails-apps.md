@@ -2,8 +2,9 @@
 title: Comparison of approaches to multitenancy in Rails apps
 created_at: 2020-05-26T14:20:00.000Z
 author: Tomasz Wróbel
-tags: []
+tags: [ 'multitenancy', 'postgresql' ]
 publish: true
+cta: 'hireus'
 ---
 
 You can implement multitenancy on a couple different levels. If you're on PostgreSQL:
