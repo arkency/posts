@@ -78,7 +78,10 @@ and this video which shows visually how mutant changes the code runtime:
 
 * Subscribe to the [Arkency YouTube channel](https://www.youtube.com/channel/UCL8YpXFH1-y3AaELb0H7c3Q) - we are now regularly publishing new, short videos.
 
-<div class="fashion">
-  <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15343339-kill-the-mutants?always_show=true"><img src="/assets/images/fashion/kill-the-mutants-mutation-testing-ruby-rails-mackbook.jpg"><img src="/assets/images/fashion/kill-the-mutants-bag.jpg"><img src="/assets/images/fashion/kill-the-mutants-pillow.jpg"></a>
-</div>
-
+<a target="_blank" href="http://www.redbubble.com/people/arkency/works/15343339-kill-the-mutants?always_show=true">
+  <div class="fashion flex justify-between">
+    <img src="/assets/images/fashion/kill-the-mutants-mutation-testing-ruby-rails-mackbook.jpg">
+    <img src="/assets/images/fashion/kill-the-mutants-bag.jpg">
+    <img src="/assets/images/fashion/kill-the-mutants-pillow.jpg">
+  </div>
+</a>
