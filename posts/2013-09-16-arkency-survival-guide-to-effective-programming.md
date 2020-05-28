@@ -80,9 +80,7 @@ Another topics that we hope to cover:
 
 ## Shut up and take my money
 
-You can order beta version (including all the future releases) for $7 right now:
-_<%= landing_link() %>_ .
-The final release is planned around the end of the year.
+The final release of _<%= landing_link() %>_ is already available.
 
 ## or not
 
