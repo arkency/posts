@@ -191,10 +191,3 @@ your own controller code is approved and tesed. Write me a comment if you ever u
 
 Because in the end you probably want to put this code into service anyway and separate checking
 pre-conditions from http concerns.
-
-## More
-
-Did you like this article? Learn how to make your Rails controllers pretty,
-refactor to Service Objects and much more from our [Fearless Refactorin: Rails controllers](http://rails-refactoring.com)
-
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="25%" /></a>

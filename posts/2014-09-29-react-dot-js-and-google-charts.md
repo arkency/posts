@@ -137,11 +137,3 @@ You can see the effect here:
 These are the things that I learnt today while integrating our code with Google Charts.
 In my next blogpost I would like to share how we dealt with a similar problem when using
 Twitter Bloodhound library for autocomplete.
-
-If you liked this blogpost you might like our React.js books.
-
-<a href="/rails-react"><img src="<%= src_fit("react-for-rails/cover.png") %>" width="19%" /></a>
-<a href="http://reactkungfu.com/react-by-example/"><img src="<%= src_fit("rbe/rbe-cover.png") %>" width="19%" /></a>
-<a href="/async-remote/"><img src="<%= src_fit("aar/async-remote-ver13-0.77proportion.png") %>" width="19%" /></a>
-<a href="/blogging"><img src="<%= src_fit("blogging-small.png") %>" width="19%" /></a>
-<a href="http://rails-refactoring.com"><img src="<%= src_fit("fearless-refactoring.png") %>" width="19%" /></a>
