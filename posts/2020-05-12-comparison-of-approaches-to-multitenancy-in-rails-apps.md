@@ -7,13 +7,14 @@ publish: true
 cta: 'hireus'
 ---
 
-You can implement multitenancy on a couple different levels. If you're on PostgreSQL:
+Multitenancy means serving multiple independent customers from one app. Pretty typical for SaaS model.
+You can implement it on several different levels:
 
-1. Row level (putting `tenant_id` columns to every table and filtering everywhere).
-2. Schema level (_namespaces_ is a more explanatory name, see [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html)). 
-3. Database level (rarely practical - just for comparison).
+1. **Row level** - you put a `tenant_id` column into every DB table and filter by `tenant_id` in every query.
+2. **Schema level** - for every tenant you create a separate namespaced set of tables inside one database. Easily achievable with [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html). See next paragraph on how this relates to MySQL.
+3. **Database level** - you setup a whole new DB for every tenant. Rarely practical, including just for comparison.
 
-For MySQL check next paragraph. Here's how these levels compare to each other:
+Here's how they compare to each other:
 
 |     | row-level | schema-level | db-level |
 |-----|--------|------------|-----------|
@@ -24,11 +25,11 @@ For MySQL check next paragraph. Here's how these levels compare to each other:
 | Running DB migrations | ⚡️ O(1) | 🐢 O(n) | 🐌 O(n) |
 | Conventionality | 👍 Standard Rails | 🛠 Occasionally at odds with Rails assumptions | 🤔 |
 | Additional costs | 👍 Not really | 👍 Not really | ❓ What if pricing depends on the # of DBs? |
-| Operational overhead | ✅ No | 👍 Occassionally | 🛠 You now have a lot of databases |
-| Complexity | 🍝 `tenant_id` keys everywhere | 🌴 some exotic PG features, stateful `search_path` | 🤔 |
+| Operational overhead | ✅ No | 👍 Occasionally. You have an ever growing number of db tables. | 🛠 You now have a lot of databases |
+| Complexity | 🍝 `tenant_id` keys everywhere | 🌴 an exotic PG feature & stateful `search_path` | 🤔 |
 | Where possible | 🌍 Pretty much anywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
-| Cost of switching | ⚡️ Set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
-| Dump a single tenant's data | 🛠 Cumbersome | 👍 Easy | 👍 No brainer |
+| Cost of switching | ⚡️ Just set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
+| Extract a single tenant's data | 🛠 Cumbersome | 👍 Easy | 👍 No brainer |
 
 ### MySQL vs PostgreSQL schemas
 
@@ -41,13 +42,13 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 | Condition | Recommendation |
 | --- | --- |
 | A lot of tenants? | consider row-level |
-| A lot of low-value tenants (like abandoned accounts or free tiers) | consider row-level |
-| Less tenants and they're high-value | schema-level more viable |
-| Anxious about data isolation (ensuring no data leaks between tenants) | consider schema-level |
-| Customers might require more data isolation for legal reasons | consider schema-level or even db-level |
+| A lot of low-value tenants? (like abandoned accounts or free tiers) | consider row-level |
+| Less tenants and they're high-value? | schema-level more viable |
+| Anxious about data isolation? (ensuring no data leaks between tenants) | consider schema-level |
+| Customers might require more data isolation for legal reasons? | consider schema-level or even db-level |
 | On a managed or cloud hosted database? | if you wanna go for schema-level make sure it all works for you |
 | Multitenantizing an existing single-tenant code base? | schema-level might be easier to introduce |
-| Greenfield project | row-level more viable |
+| Greenfield project? | row-level more viable |
 | Need to combine a lot of data across tenants | schema-level possible, but row-level is a safer bet |
 
 ## Feel like contributing to this blogpost?
@@ -58,7 +59,7 @@ Have comments? [Reply under this tweet](https://twitter.com/tomasz_wro/status/12
 
 There are at least two other multitenancy-related blogposts we're going to publish soon:
 
-* A gentle introduction to PostgreSQL schema-based multitenancy with basic concepts explained
-* Caveats and pitfalls of schema-based multitenancy
+* Caveats and pitfalls of PostgreSQL schema-based multitenancy
+* A gentle introduction to schema-based multitenancy with basic concepts explained
 
 If you don't want to miss anything, [subscribe to our newsletter](https://arkency.com/newsletter/).
