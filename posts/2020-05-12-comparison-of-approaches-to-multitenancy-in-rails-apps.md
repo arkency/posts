@@ -53,13 +53,8 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 
 ## Feel like contributing to this blogpost?
 
-Feel free to [submit a pull request](https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md) to this blogpost!
+🛠 Feel free to [submit a pull request](https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md) to this blogpost. It can be a nuanced remark, better wording or just a typo.
 
-Have comments? [Reply under this tweet](https://twitter.com/tomasz_wro/status/1265289214960308224) or ping me on twitter - [@tomasz_wro](https://twitter.com/tomasz_wro). 
+💬 Have comments? [Reply under this tweet](https://twitter.com/tomasz_wro/status/1265289214960308224) or ping me on twitter - [@tomasz_wro](https://twitter.com/tomasz_wro). 
 
-There are at least two other multitenancy-related blogposts we're going to publish soon:
-
-* Caveats and pitfalls of PostgreSQL schema-based multitenancy
-* A gentle introduction to schema-based multitenancy with basic concepts explained
-
-If you don't want to miss anything, [subscribe to our newsletter](https://arkency.com/newsletter/).
+🗞 There are at least two other multitenancy-related blogposts we're going to publish soon: _Caveats and pitfalls of PostgreSQL schema-based multitenancy_ and _A gentle introduction to schema-based multitenancy with basic concepts explained_. If you don't want to miss anything, [subscribe to our newsletter](https://arkency.com/newsletter/).
