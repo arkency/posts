@@ -6,9 +6,11 @@ tags: []
 publish: false
 ---
 
+A list of random things you may want to know before you set out to implement schema-level
+
 ### PostgreSQL extensions can no longer reside in public schema
 
-If you use any extensions (like `pgcrypto`, `ltree`, `hstore`) you need to put them to a separate schema - e.g. `extensions` and always have it in the search_path (alongside the chosen tenant). In Apartment you do this via:
+If you use any extensions (like `pgcrypto`, `ltree`, `hstore`) you need to put them to a separate schema - e.g. `extensions` and always have it in the search_path (alongside the chosen tenant). In Apartment gem you do this via:
 
 ```ruby
 Apartment.configure do |config|
@@ -16,17 +18,15 @@ Apartment.configure do |config|
 end
 ```
 
-This is needed because of three conditions:
-
-1. PG extensions have to be installed in a specific schema - normally you put them to `public`. Actually the extension is global, but its objects (like functions) need to belong to a specific schema.
-2. It can only be one schema.
-3. In order to use an extension, current `search_path` must include the schema which hosts this extension.
+This is needed because of three conditions. (1) PG extensions have to be installed in a specific schema - normally they're in the `public` schema. Actually the extension is global, but its objects (like functions) need to belong to a specific schema. (2) An extension can only belong to one schema. (3) In order to use an extension, current `search_path` must include the schema which hosts this extension.
 
 You can temporarily work it around by adding `public` to `persistent_schemas` which is obviously bad, but perhaps useful for a quick PoC. It won't take you very far - Rails will complain when making a migration which creates an index (Rails checks if the index already exists in the search path and it'll refuse to create it the tenant's schema).
 
 ### Every migration needs to run for each tenant separately
 
-Probably not a problem if you have 10 tenants. Brace yourself if you have 1000 tenants. Also the default behaviour in Apartment is that when a migrations fails for a tenant the next ones are not attempted, and previous stay migrated (they're not reverted and not wrapped in a transaction - not even sure if it's possible to have a cross schema transaction. TODO: check).
+Probably not a problem if you have 10 tenants. Brace yourself if you have 1000 tenants. Also the default behaviour in Apartment is that when a migration fails for one tenant the next ones are not attempted, and previous ones stay migrated. They're not reverted and not wrapped in a transaction. 
+
+<!-- not even sure if it's possible to have a cross schema transaction. TODO: check. -->
 
 ### What about migrations not meant per tenant?
 
@@ -35,7 +35,10 @@ Perhaps you'll rarely need it. If you do, you can either run the SQL script by h
 ```ruby
 class AGlobalMigration < ActiveRecord::Migration[5.2]
   def change
-    Apartment::Tenant.current == "public" || (puts "This migration is only meant for public schema, skipping."; return)
+    unless Apartment::Tenant.current == "public"
+      puts "This migration is only meant for public schema, skipping."
+      return
+    end
     # ...
   end
 end
@@ -43,7 +46,7 @@ end
 
 ### PgBouncer transaction mode doesn't let you use search_path
 
-Got PgBouncer in your stack? If you're using a managed database (like on Digital Ocean), PgBouncer might part of the default setup. It has [3 pool modes](https://www.pgbouncer.org/features.html). You need to set the pool to _Session Mode_ (which has its own consequences) to use any PostgresSQL session features - search_path being one of them. If you run on _Transaction Mode_ you can end up with tenants mixed up.
+Got PgBouncer in your stack? If you're using a managed database (like on Digital Ocean), PgBouncer might be a part of the default setup. It has [3 pool modes](https://www.pgbouncer.org/features.html). You need to set the pool to _Session Mode_ (which has its own consequences) to use any PostgresSQL session features - search_path being one of them. If you run on _Transaction Mode_ you can end up with tenants mixed up.
 
 ### Other db connections need to be dealt with
 
@@ -149,9 +152,12 @@ TODO: Also, how do you ensure no stuff like raw sql bypasses that? Empty public 
 
 
 
-
 ## Feel like contributing to this blogpost?
 
-TODO: link
+TODO: link to contribute
 
 Have comments? Reply here TODO: link to the tweet 
+
+TODO: multitenancy landing
+
+TODO: link to other blogposts
