@@ -8,7 +8,13 @@ publish: false
 
 A list of random things you may want to know before you set out to implement schema-level
 
-### PostgreSQL extensions can no longer reside in public schema
+### Every migration needs to run for each tenant separately
+
+Probably not a problem if you have 10 tenants. Brace yourself if you have 1000 tenants. Also the default behaviour in Apartment is that when a migration fails for one tenant the next ones are not attempted, and previous ones stay migrated. They're not reverted and not wrapped in a transaction. 
+
+<!-- not even sure if it's possible to have a cross schema transaction. TODO: check. -->
+
+### On schema-based multitenacy PostgreSQL extensions can no longer reside in public schema
 
 If you use any extensions (like `pgcrypto`, `ltree`, `hstore`) you need to put them to a separate schema - e.g. `extensions` and always have it in the search_path (alongside the chosen tenant). In Apartment gem you do this via:
 
@@ -22,31 +28,35 @@ This is needed because of three conditions. (1) PG extensions have to be install
 
 You can temporarily work it around by adding `public` to `persistent_schemas` which is obviously bad, but perhaps useful for a quick PoC. It won't take you very far - Rails will complain when making a migration which creates an index (Rails checks if the index already exists in the search path and it'll refuse to create it the tenant's schema).
 
-### Every migration needs to run for each tenant separately
-
-Probably not a problem if you have 10 tenants. Brace yourself if you have 1000 tenants. Also the default behaviour in Apartment is that when a migration fails for one tenant the next ones are not attempted, and previous ones stay migrated. They're not reverted and not wrapped in a transaction. 
-
-<!-- not even sure if it's possible to have a cross schema transaction. TODO: check. -->
-
-### What about migrations not meant per tenant?
-
-Perhaps you'll rarely need it. If you do, you can either run the SQL script by hand (the traditional YOLO way), or have a guard statement:
-
-```ruby
-class AGlobalMigration < ActiveRecord::Migration[5.2]
-  def change
-    unless Apartment::Tenant.current == "public"
-      puts "This migration is only meant for public schema, skipping."
-      return
-    end
-    # ...
-  end
-end
-```
-
 ### PgBouncer transaction mode doesn't let you use search_path
 
-Got PgBouncer in your stack? If you're using a managed database (like on Digital Ocean), PgBouncer might be a part of the default setup. It has [3 pool modes](https://www.pgbouncer.org/features.html). You need to set the pool to _Session Mode_ (which has its own consequences) to use any PostgresSQL session features - search_path being one of them. If you run on _Transaction Mode_ you can end up with tenants mixed up.
+Let's say you open up two Rails consoles:
+
+```ruby
+# On the first console, set the search path to another schema
+ActiveRecord::Base.connection.execute("set search_path = tenant_123")
+
+# On the second console, check the current schema
+ActiveRecord::Base.connection.execute("show search_path").to_a
+# => [{"search_path"=> ???}]
+```
+
+Of course normally on the second console you should just get `public` (or whatever is the default). The two consoles use separate DB connections and `set` only affects the current connection, so the effect from the first console shouldn't affect the second. Well, not always. If you run on PgBouncer and it's configured to anything else than _Session Mode_ (for example _Transaction Mode_), you can easily end up with `tenant_123` in the second console. You can also check `pg_backend_pid()` in each simultaneously open connection:
+
+```ruby
+ActiveRecord::Base.connection.execute("select pg_backend_pid()").to_a
+# => [{"pg_backend_pid"=>4781}]
+```
+In _Session Mode_ you should get a different pid for each simultaneously open connection. In _Transaction Mode_ - not necessarily so.
+
+PgBouncer has [3 pool modes](https://www.pgbouncer.org/features.html). Basically, to use any PostgresSQL session features (`search_path` being one of them), you need to run on _Session Mode_.
+
+Double check if you're on a managed database. On Digital Ocean, for example, PgBouncer is part of the default setup, and _Transaction Mode_ is the recommended option. Understandable because of performance reasons, but quite a deal breaker for switching tenants via setting the `search_path`.
+
+The obvious fix is to configure PgBouncer to _Session Mode_, but then you usually need to allocate significantly more connections in the PgBouncer pool, so that there's enough of them for each connection simultaneously opened from a Rails process. Mind web processes, jobs, threads. Also ad hoc processes (consoles, deployments).
+
+Another potential alternative is to avoid `search_path` and use fully qualified table names in your queries (`select * from tenant_123.my_table`), which is described in another paragraph below.
+
 
 ### Other db connections need to be dealt with
 
@@ -65,6 +75,23 @@ end
 ### Where do you store your tenant list
 
 A lot of people might wanna put it to the db to be able to manipulate it just as the rest of the models. But which schema? If you put it to `public`, all of your tenants' schemas will also have the tenants table (hopefully empty). Probably not a problem, but it's a little unsettling. If you think about it more, tenant management is logically a separate application and shouldn't be handled by the same Rails codebase, but a lot of people will do it for convenience reasons. Just beware of accruing to many hacks around that.
+
+### What about migrations not meant per tenant?
+
+Perhaps you'll rarely need it. If you do, you can either run the SQL script by hand (the traditional YOLO way), or have a guard statement:
+
+```ruby
+class AGlobalMigration < ActiveRecord::Migration[5.2]
+  def change
+    unless Apartment::Tenant.current == "public"
+      puts "This migration is only meant for public schema, skipping."
+      return
+    end
+    # ...
+  end
+end
+```
+
 
 ### Rails vs PG schemas impedance
 
