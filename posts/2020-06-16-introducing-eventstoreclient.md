@@ -6,13 +6,13 @@ tags: ["event sourcing", "ruby", "ddd"]
 publish: true
 ---
 
+> This is a guest post by [Sebastian Wilgosz](https://twitter.com/sebwilgosz) from Yousty.
+
 Not so long ago, I've been challenged by one of my clients to split a big, monolithic 10-year old rails application into a Domain-Driven Designed, microservice-based, event-sourced ecosystem of distributed applications.
 
 Not on my own of course, but still - **it was quite a challenge.**
 
-<!-- more -->
-
-# Event Store Client
+## Event Store Client
 
 One of the key components was to design a communication channel for our services and after a lot of options checks, we've decided to go with events as our *Source Of Truth* and eventual consistency for the whole ecosystem.
 
@@ -30,11 +30,9 @@ This forced us to look for other solutions out there on the web and surprisingly
 
 ## ... to Greg's Event Store
 
-This is how we've ended up using **EventStore from Greg Young**, a project that proved to be used in production by applications of all sizes and all kinds of traffic involved. There was a problem, though. There was no Ruby client for their API.
+This is how we've ended up using **EventStore from Greg Young**, a project that proved to be used in production by applications of all sizes and all kinds of traffic involved. There was a problem, though. There was no Ruby client for their API. There was - an [Http Event Store from Arkency team](https://github.com/arkency/http_event_store). It was not maintained, however, as Arkency focused on supporting RailsEventStore.
 
-> Actually, there was - an [Http Event Store from Arkency team](https://github.com/arkency/http_event_store). It was not maintained, however, as Arkency focused on supporting RailsEventStore leaving this project a bit forgotten.
-
-Without proper support from maintainers, we could grab this project and continue from there, but under time pressure, we could not think too much about supporting backward compatibility or guides to upgrade for old projects - also, at the very beginning, my client was not sure if we want to have it open-sourced.
+We could grab this project and continue from there, but under time pressure, we could not think too much about supporting backward compatibility or guides to upgrade for old projects - also, at the very beginning, my client was not sure if we want to have it open-sourced.
 
 That's how we've ended up with implementing the [EventStoreClient](https://github.com/yousty/event_store_client) - from scratch - to support 5.x version of Greg's EventStore.
 
