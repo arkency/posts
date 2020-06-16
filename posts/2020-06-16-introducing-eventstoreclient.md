@@ -223,3 +223,5 @@ Do you know your WHY? Why do you work on microservices OR the monolith? Why not 
 I'll leave it for you to think about.
 
 **By the way, [CONTRIBUTIONS WELCOME](https://github.com/yousty/event_store_client/graphs/contributors)!**
+
+Have comments? [Reply under this tweet](https://twitter.com/andrzejkrzywda/status/1272970478211289090) or ping us on twitter - [@sebwilgosz](https://twitter.com/sebwilgosz) [@arkency](https://twitter.com/arkency).
