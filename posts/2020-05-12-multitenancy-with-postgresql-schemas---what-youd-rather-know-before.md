@@ -6,6 +6,90 @@ tags: []
 publish: false
 ---
 
+<!--
+
+categorize issues
+tell if it only applies when on structure.sql or only brownfield
+add code chunks
+
+TODO: mind large shared tables - reuse?
+TODO: where do you store tennat config
+TODO: mention gradual automation for tenant setup
+
+Make sure you have separate sessions for domains (assuming you separate tenants by domain)
+Rails.application.config.session_store :active_record_store, key: '_my_app_session'
+as long as no domain its ok
+show the test
+
+alternative way to separate - associate user account?
+
+will you need customisations per tenant? (one of some good questions to ask)
+
+separate pools for ad hoc and regular
+
+apartment: what do you  do when non existent tenant? default apartment falls back to public, you can customize and throw exception
+
+Apartment::Tenant.current,
+ActiveRecord::Base.connection.schema_search_path,
+ActiveRecord::Base.connection.execute("show search_path").first["search_path"],
+ActiveRecord::Base.connection.execute("select pg_backend_pid()").first["pg_backend_pid"],
+
+got any in memory caches?
+
+It seems to me that the (let’s call it) “dispatcher app” (register new tenant and login) is logically something different from the “actual app”. Meaning that, theoretically, they should probably be separate Rails apps. Not sure if it’s practical, though.
+If we wanna stay with one Rails app doing both functions, we can try using the public schema for that, but public schema has to have the same db structure as all the tenants' schemas (to not confuse Rails etc). 
+
+- what needed when you wanna redirect users to their subdomains?
+
+- when tenant should be accessible
+
+when you open up a console, what tenant https://github.com/influitive/apartment/issues/521#issuecomment-526587752
+
+jobs generally: your job needs to know which tenant it is (you can use metadata and then switch)
+with dj: where do you put it: public schema (use excluded models); or have the worker pick from all schemas (you don't need metadata then). or redis (???)
+https://github.com/influitive/apartment-activejob
+
+counting connections:
+- count rmt; in our case new relic needed more; mind threads in requests
+- reducing rmt to 1
+- when sessions exceeded you get a timeout, a little bogus error
+
+ERROR:  query_wait_timeout
+SSL connection has been closed unexpectedly
+
+PG::UnableToSend: no connection to the server (ActiveRecord::StatementInvalid)
+: SET client_min_messages TO 'warning'
+
+testing existing features on multitenant setting (makes sense in the post?)
+
+shared tables across tenants - they work by substituting table names; complexity; what if handcrafted sql
+
+deleting public; but rails; but seeding tables
+
+problems with structure.sql
+
+When dumping structure.sql, all pg schemas dump (eg. when I got a tenant locally, it’ll dump all public.* tables, and all tenant’s tables).
+you can use dump_schemas option
+-> if you change schema_search_path which then does dump_schemas option
+if you're on extensions, you put this there too
+
+Normally, when creating a tenant with Apartment::Tenant.create, a new pg schema gets created. Then we need to load the tables' schema somehow. Normally schema.rb is used, but we don’t have one since we use structure.sql. To deal with situations when there’s no schema.rb, apartment offers an option to pg_dump (with --schema option) & restore the schema’s tables. No option to use structure.sql so far, probably because the topic is not yet sorted out on their side.
+
+questions: how do you seed schema
+
+extensions schema:
+CREATE SCHEMA IF NOT EXISTS extensions;
+ALTER EXTENSION ltree SET SCHEMA extensions;
+ALTER EXTENSION pgcrypto SET SCHEMA extensions;
+OR
+drop deps
+DROP EXTENSION pgcrypto;
+CREATE EXTENSION pgcrypto SCHEMA extensions;
+recreate
+
+-->
+
+
 A list of random things you may want to know before you set out to implement schema-level
 
 ### Every migration needs to run for each tenant separately
