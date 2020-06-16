@@ -6,7 +6,7 @@ tags: ["event store", "microservices", "event sourcing", "ddd"]
 publish: true
 ---
 
-> This is a guest post by [Sebastian Wilgosz](https://twitter.com/sebwilgosz) from Yousty.
+> A guest post by [Rails Architect Masterclass](https://railsarchitects.com) alumni, [Sebastian Wilgosz](https://twitter.com/sebwilgosz) from Yousty.
 
 Not so long ago, I've been challenged by one of my clients to split a big, monolithic 10-year old rails application into a Domain-Driven Designed, microservice-based, event-sourced ecosystem of distributed applications.
 
