@@ -13,7 +13,7 @@ managers published by [Mariusz Gil](https://twitter.com/mariuszgil) in the
 
 Mariusz has been talking with [Kuba Pilimon](https://twitter.com/jakubpilimon?lang=en).
 This was the third episode when these devs have discussed how to design software using Domain Driven Design
-techniques & design patterns. (The podcast is in Polish but some episodes - like the inverview with
+techniques & design patterns. (The [podcast](https://bettersoftwaredesign.pl) is in Polish but some episodes - like the inverview with
 [Alberto Brandolini](https://twitter.com/ziobrando) are recorded in English).
 
 I've listened to this podcast and the overall discussion is very interesting but
@@ -23,7 +23,7 @@ I have some remarks:
 
 ## Patterns are not the silver bullet
 
-Mariusz & Kuba have dicsussed the [saga pattern]() based on the example of cinema seats reservations.
+Mariusz & Kuba have dicsussed the [saga pattern](https://dl.acm.org/doi/10.1145/38713.38742) based on the example of cinema seats reservations.
 The model is simple - each `Seat` is an aggregate and to book 4 seats you need to have a saga
 that will ensure that all 4 reservations are processed or all of them will be revoked by compensating actions.
 
