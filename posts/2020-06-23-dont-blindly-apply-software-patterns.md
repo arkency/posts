@@ -6,13 +6,13 @@ tags: ['ddd', 'saga', 'process manager']
 publish: false
 ---
 
-I've gone for a run today and I've been catching up with some podcast episodes today
-and I would like to share here my comments to the great episode about sagas & process
+I went for a run today and I was catching up with some podcast episodes today
+and I would like to share my comments to the great episode about sagas & process
 managers published by [Mariusz Gil](https://twitter.com/mariuszgil) in the
 [Better Software Design](https://bettersoftwaredesign.pl/episodes/5).
 
-Mariusz have been talking with [Kuba Pilimon](https://twitter.com/jakubpilimon?lang=en).
-This was 3rd episode when these devs have discussed how to design software using Domain Driven Design
+Mariusz has been talking with [Kuba Pilimon](https://twitter.com/jakubpilimon?lang=en).
+This was the third episode when these devs have discussed how to design software using Domain Driven Design
 techniques & design patterns. (The podcast is in Polish but some episodes - like the inverview with
 [Alberto Brandolini](https://twitter.com/ziobrando) are recorded in English).
 
@@ -23,11 +23,11 @@ I have some remarks:
 
 ## Patterns are not the silver bullet
 
-Mariusz & Kuba have dicsussed the [saga pattern]() based on example of cinema seats reservations.
+Mariusz & Kuba have dicsussed the [saga pattern]() based on the example of cinema seats reservations.
 The model is simple - each `Seat` is an aggregate and to book 4 seats you need to have a saga
 that will ensure that all 4 reservations are processed or all of them will be revoked by compensating actions.
 
-The example was as follow (pardon the pseudocode):
+The example was as follows (pardon the pseudocode):
 
 ```ruby
 # ruby flavoured pseudocode here (time axis goes down)
@@ -41,7 +41,7 @@ book_seat('A-4')
 #    or A-4 has failed (booked already by process B)
 ```
 
-This looks so simple - we have 2 processes (sagas). Each of them try to book some
+This looks so simple - we have 2 processes (sagas). Each of them tries to book some
 seats. The first wins. The other one runs its compensating action to release already
 booked seats.
 
@@ -65,24 +65,23 @@ What will be the result? `Process A` could not complete the saga - because seat 
 `Process B` could not complete its saga because seat `A-4` is already booked. Both are starting its
 compensating actions and release all bookings. With some bad luck we could end up with seats that will
 not be sold even when there was a huge demand - translating to business terms: diappointed customers
-and lost in revenues.
+and lost revenue.
 
-
-Another example I would like to comment is the most common sample of saga patter use.
-Booking a plane, a hotel and a car and release bookings when one of this has failed.
+Another example I would like to comment is the most common example of saga pattern usage.
+Booking a plane, a hotel and a car and releasing the bookings when one of these has failed.
 
 ## Don't blindly apply software patterns
 
-Mariusz & Kuba has discussed several scenarios how this could be extended. But what I've missed here,
+Mariusz & Kuba have discussed several scenarios how this could be extended. But what I've missed here,
 and what is always an issue for me when I read/hear this example is:
 
 When you book plane, hotel & car and the car is not available what are your expectations?
-I could be wrong - but I would expect that my plane & hotel is booked and then system will
+I could be wrong - but I would expect that my plane & hotel is booked and then the system will
 ask me what to do with missing car reservation. Definitelly I would not like the application
-to cancell my plane & hotel bookings when the car is not available!
+to cancel my plane & hotel bookings when the car is not available!
 
 ## What's the solution?
 
 Just ask your business/domain expert. They probably handle this kind of situations
-every day, business as usual. Don't blindly applu softare design patterns. Talk to people.
+every day, business as usual. Don't blindly apply software design patterns. Talk to people.
 Solve real world problems.
