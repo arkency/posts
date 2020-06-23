@@ -3,7 +3,7 @@ title: "Don't blindly apply software patterns"
 created_at: 2020-06-23 13:01:13 +0200
 author: Mirosław Pragłowski
 tags: ['ddd', 'saga', 'process manager']
-publish: false
+publish: true
 ---
 
 I went for a run today and I was catching up with some podcast episodes today
