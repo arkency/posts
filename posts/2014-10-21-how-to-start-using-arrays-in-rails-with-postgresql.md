@@ -15,7 +15,9 @@ tags: [ 'Active Record', 'PostgreSQL', 'Array' ]
 
 So far we covered a lot of PostgreSQL goodness. We've already talked about [using uuid](http://blog.arkency.com/2014/10/how-to-start-using-uuid-in-activerecord-with-postgresql/) or [storing hashes](http://blog.arkency.com/2014/10/how-to-persist-hashes-in-rails-applications-with-postgresql/) in our Rails applications with PostgreSQL database. Now is the time to do something in the middle of these topics (more complex than `uuid`, but easier than `hstore`) - we want to **store list of simple values under one attribute**. How can we do that? You may think *"arrays"* right now and you are correct. Let's see how we can achieve that.
 
-# A little bit of theory
+<!-- more -->
+
+## A little bit of theory
 
 Arrays are ordered, integer-indexed collections of any object. They are great for storing collection of elements even with different types.
 
@@ -25,7 +27,7 @@ For [some wise reasons](http://databases.about.com/od/specificproducts/a/Should-
 
 However there are [cases](http://blog.codinghorror.com/maybe-normalizing-isnt-normal/) when we might want to have redundant data, that's the place where arrays suit the best.
 
-# Postgres
+## Postgres
 
 We'll start with empty database and create there example table:
 
@@ -65,11 +67,11 @@ postgres=# SELECT name FROM arrays_example WHERE values[1] = 1;
 
 [Official Postgres documentation](http://www.postgresql.org/docs/9.4/static/arrays.html) provides a lot of useful examples to start working on SQL level with database.
 
-# Rails
+## Rails
 
 In the last blogpost about `hstore` we showed how to enable particular extension. This time is different (maybe easier), because [`array` is Postgres' data type](http://www.postgresql.org/docs/9.4/static/arrays.html), not an extension so there's no need to enable that, because it's accessible out of the box!
 
-## Migration
+### Migration
 
 In two previous articles (mentioned in the introduction of this article) we created `Book` model and appropriate SQL schema. Let's stick to that and extend it a little bit:
 
@@ -101,7 +103,7 @@ We can check it now:
  => Array
 ```
 
-## Model manipulation
+### Model manipulation
 
 Now is the time to add some subjects for books and then query them. Please keep in mind that all of the following examples are executed `Rails 4.2.0.beta1` environment.
 
@@ -240,7 +242,7 @@ PostgreSQL have a bunch of useful [array methods](http://www.postgresql.org/docs
  => #<ActiveRecord::Relation [#<Book id: "39abef75-56af-4ad5-8065-6b4d58729ee0", title: nil, created_at: "2014-10-17 08:21:17", updated_at: "2014-10-17 19:21:25", description: {}, metadata: {}, subjects: ["education", "business", "history", "finances"]>]>
 ```
 
-# Summary
+## Summary
 
 After reading all of these three articles you should be PostgreSQL trouper. You can now have flexible and relational database at the same time. There are [a lot of topics](http://edgeguides.rubyonrails.org/active_record_postgresql.html) worth to read, but not covered in any of these blogposts. I hope you find our tutorials useful.
 
@@ -258,6 +260,6 @@ While I was researching arrays in Postgres I found an interesting thing, that I 
 
 > Tip: There is no performance difference among these three types, apart from increased storage space when using the blank-padded type, and a few extra CPU cycles to check the length when storing into a length-constrained column. While character(n) has performance advantages in some other database systems, there is no such advantage in PostgreSQL; in fact character(n) is usually the slowest of the three because of its additional storage costs. In most situations text or character varying should be used instead.
 
-# Resources
+## Resources
 
 - http://postgresguide.com/sexy/arrays.html
