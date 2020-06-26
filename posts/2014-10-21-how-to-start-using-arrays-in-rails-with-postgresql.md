@@ -15,8 +15,6 @@ tags: [ 'Active Record', 'PostgreSQL', 'Array' ]
 
 So far we covered a lot of PostgreSQL goodness. We've already talked about [using uuid](http://blog.arkency.com/2014/10/how-to-start-using-uuid-in-activerecord-with-postgresql/) or [storing hashes](http://blog.arkency.com/2014/10/how-to-persist-hashes-in-rails-applications-with-postgresql/) in our Rails applications with PostgreSQL database. Now is the time to do something in the middle of these topics (more complex than `uuid`, but easier than `hstore`) - we want to **store list of simple values under one attribute**. How can we do that? You may think *"arrays"* right now and you are correct. Let's see how we can achieve that.
 
-<!-- more -->
-
 # A little bit of theory
 
 Arrays are ordered, integer-indexed collections of any object. They are great for storing collection of elements even with different types.
