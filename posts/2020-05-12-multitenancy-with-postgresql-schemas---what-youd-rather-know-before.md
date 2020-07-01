@@ -77,18 +77,8 @@ Normally, when creating a tenant with Apartment::Tenant.create, a new pg schema 
 
 questions: how do you seed schema
 
-extensions schema:
-CREATE SCHEMA IF NOT EXISTS extensions;
-ALTER EXTENSION ltree SET SCHEMA extensions;
-ALTER EXTENSION pgcrypto SET SCHEMA extensions;
-OR
-drop deps
-DROP EXTENSION pgcrypto;
-CREATE EXTENSION pgcrypto SCHEMA extensions;
-recreate
 
 -->
-
 
 A list of random things you may want to know before you set out to implement schema-level
 
@@ -111,6 +101,16 @@ end
 This is needed because of three conditions. (1) PG extensions have to be installed in a specific schema - normally they're in the `public` schema. Actually the extension is global, but its objects (like functions) need to belong to a specific schema. (2) An extension can only belong to one schema. (3) In order to use an extension, current `search_path` must include the schema which hosts this extension.
 
 You can temporarily work it around by adding `public` to `persistent_schemas` which is obviously bad, but perhaps useful for a quick PoC. It won't take you very far - Rails will complain when making a migration which creates an index (Rails checks if the index already exists in the search path and it'll refuse to create it the tenant's schema).
+
+TODO:
+
+```sql
+CREATE SCHEMA IF NOT EXISTS extensions;
+ALTER EXTENSION pgcrypto SET SCHEMA extensions;
+-- or
+DROP EXTENSION pgcrypto;
+CREATE EXTENSION pgcrypto SCHEMA extensions;
+```
 
 ### PgBouncer transaction mode doesn't let you use search_path
 
