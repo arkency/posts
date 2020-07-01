@@ -253,11 +253,19 @@ You need to set it manually. Not sure if your code uses threads in a weird piece
 **The main disadvantage of search_path is its statefullness**. PG schemas are one thing. The other thing is how to switch them. The standard way is to use `search_path` - which is stateful (state resides in PG session), which brings about many of these pitfalls. Perhaps stateless schema-switching could be viable by using qualified table names: `SELECT * FROM my_schema.my_table`, which could be somehow hacked into AR's `set_table_name`. We haven't tried it, but it might be worth exploring. Apartments `exclude_models` relies on this to facilitate tables shared between tenants.
 
 ```ruby
-# PoC, perhaps it's an overkill do it on each request
-ActiveRecord::Base.descendants.each do |model|
-  model.table_name = "#{ current_tenant }.#{ model.table_name }"
+def switch_tenant(new_tenant)
+  ActiveRecord::Base.connection.execute("SET search_path TO #{ new_tenant }")
 end
-# Better: patch table name resolution
+```
+
+```ruby
+# PoC, perhaps it's an overkill do it on each request. Also, thread safety.
+# Alternative: monkey patch table name getter.
+def switch_tenant(new_tenant)
+  ActiveRecord::Base.descendants.each do |model|
+    model.table_name = "#{ new_tenant }.#{ model.table_name }"
+  end
+end
 ```
 
 TODO: Also, how do you ensure no stuff like raw sql bypasses that? Empty public schema?
