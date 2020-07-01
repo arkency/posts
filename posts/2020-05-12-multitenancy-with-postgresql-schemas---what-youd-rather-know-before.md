@@ -230,7 +230,9 @@ It won't have the `search_path` set:
 Apartment::Tenant.switch!("tenant_1")
 p ActiveRecord::Base.connection.execute("show search_path").to_a
 # => [{"search_path"=>"tenant_1"}]
-p Thread.new { p ActiveRecord::Base.connection.execute("show search_path").to_a }
+Thread.new do
+  p ActiveRecord::Base.connection.execute("show search_path").to_a
+end
 # => [{"search_path"=>"public"}]
 ```
 
