@@ -270,8 +270,15 @@ end
 
 TODO: Also, how do you ensure no stuff like raw sql bypasses that? Empty public schema?
 
+TODO:
 
+```ruby
+class Product < ApplicationRecord
+  establish_connection(ENV['DATABASE_URL'])
 
+  # ...
+end
+```
 
 ## Feel like contributing to this blogpost?
 
