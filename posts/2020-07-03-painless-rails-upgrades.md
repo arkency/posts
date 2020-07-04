@@ -88,12 +88,3 @@ Gems monkey patching `ActiveRecord` can be really harmful to your maintenance pr
 ## Write better, framework agnostic code
 
 Go for tactical DDD patterns for your core domain. Modularize your code, extract [Bounded Contexts](https://blog.arkency.com/tags/bounded-context/). Use _Rails_ where they shine: `ApplicationController`, `ActiveRecord` used for writes and reads without the callback hell and STI. We've shown you the alternative approach many times: [commands](https://blog.arkency.com/tags/commands/), [service objects](https://blog.arkency.com/tags/service-objects/), [process managers](https://blog.arkency.com/tags/process-manager/), etc. Believe us, your next upgrade will be just a matter of _Rails_ version bump in your `Gemfile`.
-
-# Video
-
-If you prefer watching video where I cover those topics a bit broader, feel
-free to watch it. It will be available only for couple days.
-
-<iframe id="ytplayer" type="text/html" width="640" height="360"
-  src="http://www.youtube.com/embed/LwFkVGKITSM?autoplay=0&origin=https://blog.arkency.com/painless-rails-upgrades/"
-  frameborder="0"/>
