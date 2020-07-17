@@ -8,7 +8,13 @@ publish: false
 
 Most IT projects fail. Reasons are many, but tech debt is one of them. Tech debt has many faces. Know your enemy.
 
+## Spaghetti code
+
 ## Coupling everywhere
+
+## Implicit side effects
+
+## Global state
 
 ## Too many dependencies
 
