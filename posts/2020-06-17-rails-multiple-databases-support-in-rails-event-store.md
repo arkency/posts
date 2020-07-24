@@ -214,5 +214,3 @@ could be interesting for my future experiments here :)
 
 
 This code has not been released yet. You can join me in these experiments - just post your comments to my code on Github on [multiple databases repository branch](https://github.com/RailsEventStore/rails_event_store/tree/multiple-databases-repository) or talk to me on [twitter](https://twitter.com/mpraglowski).
-
-I'll be talking about this during the webinars week that we plan to run starting from the 30th of June as part of the promotion of the [new edition of the Rails Architects Masterclass course](https://railsarchitects.com/new/). Reserve Your spot below!
