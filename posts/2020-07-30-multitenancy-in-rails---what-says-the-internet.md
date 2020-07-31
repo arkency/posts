@@ -11,11 +11,11 @@ Recently I've been researching the topic of multitenancy in Rails. You might hav
 
 In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
 
-The original question asked about db-level multitenancy, but a lot of this relates to schema-level as well (which people also often explicitly related to).
-
 Here's some quotes that drew my attention, extracted to save you some time.
 
-All the credit goes of course to original comments' authors. You can easily find them by grepping the original discussion page.
+The original question asked about db-level multitenancy, but a lot of this relates to schema-level as well (which people also often explicitly related to). Also schema-level in Postrgres has a lot in common with db-level in MySQL as you can read in [my previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
+
+All the credit goes of course to original comments' authors. You can easily find them by grepping the original [discussion page](https://news.ycombinator.com/item?id=23305111).
 
 
 * My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
@@ -263,3 +263,5 @@ I have a bit of experience with this. A SaaS company I used to work with did thi
 We already had experience writing DB migrations that were reliable, and we had a pretty solid test suite of weird edge cases that caught most failures before we deployed them. Still, some problems would inevitably fall through the cracks. We had in-house tools that would take a DB snapshot before upgrading each customer, and our platform provided the functionality to leave a customer on an old version of our app while we investigated. We also had tools to do progressive rollouts if we suspected a change was risky.
 
 Even with the best tooling in the world I would strongly advise against this approach. Cost is one huge factor - the cheapest RDS instance is about $12/month, so you have to charge more than that to break even (if you're using AWS- we weren't at the time). But the biggest problems come from keeping track of scaling for hundreds or thousands of small databases, and paying performance overhead costs thousands of times.
+
+<!-- TODO: discuss on twitter -->
