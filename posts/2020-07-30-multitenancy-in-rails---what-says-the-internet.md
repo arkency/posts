@@ -19,7 +19,6 @@ All the credit goes of course to original comments' authors. You can easily find
 
 
 * My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
-
   This architecture decisions is one of my biggest regrets, and we are currently in the process of rebuilding into a single database model.
 
   FWIW, this process has worked well for what it was originally intended to do. Data-security has a nice db level stopgap and we can keep customer data nicely isolated. It's nice for extracting all data from a single customer if we have extended debugging work or unique data modeling work. It saves a lot of application layer logic and code. I'm sure for the most part it makes the system slightly faster.
