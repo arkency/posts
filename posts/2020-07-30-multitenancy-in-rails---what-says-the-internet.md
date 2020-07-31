@@ -17,7 +17,7 @@ The original question asked about db-level multitenancy, but a lot of this relat
 
 All the credit goes of course to original comments' authors. You can easily find them by grepping the original [discussion page](https://news.ycombinator.com/item?id=23305111).
 
-\***
+\*\*\*
 
 My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
 
@@ -29,7 +29,7 @@ However as we have grown this has become a huge headache. It is blocking major f
 
 Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgre...
 
-\***
+\*\*\*
 
 Echoing this as well, I worked for Influitive and was one of the original authours of apartment (sorry!)
 
@@ -47,7 +47,7 @@ It will probably push the need for a dedicated BI / DW environment earlier than 
     
 I still think there's maybe an interesting approach using partioning rather than schemas that eliminates a lot of these problems, but apartment probably isn't the library to do it (for starters, migrations would be entirely different if partioning is used over schemas)
 
-\***
+\*\*\*
 
 I agree that migrations are painful at the best of times, but dealing with the complexity of migrating a single database is far simpler than dealing with migrating hundreds of schemas:
 
@@ -61,13 +61,13 @@ Going read only during migrations is an interesting approach, but there's real b
 
 I don't want to say that you should never isolate data on a schema level, but I do think it's something that shouldn't be a standard tool to reach for. For the vast majority of companies, the costs outweigh the benefits in my mind.
 
-\***
+\*\*\*
 
 Can confirm, here be dragons. I did a DB per tenant for a local franchise retailer and it was the worst design mistake I ever made, which of course seemed justified at the time (different tax rules, what not), but we never managed to get off it and I spent a significant amount of time working around it, building ETL sync processes to suck everything into one big DB, and so on.
 
 Instead of a DB per tenant, or a table per tenant, just add a TenantId column on every table from day 1.
 
-\***
+\*\*\*
 
 I do both.
 
@@ -75,17 +75,17 @@ Have a tenant_id column in every table.
 
 This gives me flexibility to either host each client separately or club them together.
 
-\***
+\*\*\*
 
 Here I'll give you one: If you want to change a property of the database that will give your specific use improved performance, you have no way to transactionally apply that change. Rolling back becomes a problem of operational scale, rolling out as well.
 
 What if you need to release some feature, but that feature requires a database feature enabled? Normally you enable it once, in a transaction hopefully, and then roll out your application. With this style you have to wait for N database servers to connect, enable, validate, then go live before you can even attempt the application being deployed, much less if you get it wrong.
 
-\***
+\*\*\*
 
 For me it falls into the category of decisions that are easy to make and difficult to un-make. If for whatever reason you decide this was the wrong choice for you, be in tech needs (e.g. rails) or business needs, merging your data and going back into a codebase to add this level of filtering is a massive undertaking.
 
-\***
+\*\*\*
 
 Indeed, but if you are making a B2B enterprise/SMB SaaS, I think you are most likely to regret the opposite choice [1][2]. A lot of companies run a single instance, multitenant application and have to develop custom sharding functionality down the road when they realize the inevitable: that most joins and caches are only needed on strict subsets of the data that are tenant specific.
 
@@ -103,15 +103,15 @@ You can get there in two ways:
 
 I would argue the latter is more flexible and cost efficient, and requires less technical prowess.
 
-\***
+\*\*\*
 
 I’ve managed a system with millions of users and tens of billions of rows, and I always dreamed of DB per user. Generally, \~1% of users were active at a given time, but a lot of resources were used for the 99% who were offline (eg, indexes in memory where 99% of the data wouldn’t be needed). Learned a few tricks. If this is the problem you're trying to solve, some tips below.
 
-\***
+\*\*\*
 
 You can always take a multi-tenant system and convert it into a single-tenant system a lot more easily. First and foremost, you can simply run the full multi-tenant system with only a single tenant, which if nothing else enables progressive development (you can slowly remove those now-unnecessary WHERE clauses, etc).
 
-\***
+\*\*\*
 
 True, but:
 
@@ -119,7 +119,7 @@ In my experience by the time you reach this point you have a lot of operational 
 
 Additionally, a multi tenant behemoth might be full of assumptions that it's the only system in town therefore making it hard to run a separate instance (i.e. uniqueness constraints on names, IDs, etc).
 
-\***
+\*\*\*
 
 If an "account" is an "enterprise" customer (SMB or large, anything with multiple user accounts in it), then yes, I know at least a few successful companies, and I would argue in a lot of scenarios, it's actually advantageous over conventional multitenancy.
 
@@ -131,31 +131,31 @@ If an account is a single user then no.
 
 PS: I have a quite a lot of experience with this so if you would like more details just ask.
 
-\***
+\*\*\*
 
 Yes, for multi-tenancy. Database per tenant works alright if you have enterprise customers - i.e. in the hundreds, not millions - and it does help in security. With the right idioms in the codebase, it pretty much guarantees you don't accidentally hand one tenant data belonging to a different tenant.
 
 MySQL connections can be reused with database per tenant. Rack middleware (apartment gem) helps with managing applying migrations across all databases, and with the mechanics of configuring connections to use a tenant based on Host header as requests come in.
 
-\***
+\*\*\*
 
 Not a problem with MySQL, "use `tenant`" switches a connection's schema.
 
 Rails migrations work reasonably well with apartment gem. Never had a problem with inconsistent database migrations. Sometimes a migration will fail for a tenant, but ActiveRecord migrations records that, you fix the migration, and reapply, a no-op where it's already done.
 
-\***
+\*\*\*
 
 Using schemas gives you imperfect but still improved isolation. It's still possible for a database connection to cross into another tenant, but if your schema search path only includes the tenant in question, it significantly reduces the chance that cross-customer data is accidentally shared.
 
-\***
+\*\*\*
 
 It’s not a cool factor issue. It’s an issue of bloating the system catalogs, inability to use the buffer pool, and having to run database migrations for each and every separate schema or maintaining concurrent versions of application code to deal with different schema versions.
 
-\***
+\*\*\*
 
 As you can see now that the thread has matured, there are a lot of proponents of this architecture that have production experience with it, so it's likely not as dumb as you assume.
 
-\***
+\*\*\*
 
 > As you can see now that the thread has matured, there are a lot of proponents of this architecture that have production experience with it, ...
 
@@ -165,7 +165,7 @@ Skimming through the updated comments I do not see many claiming it was a good i
 
 I'm not just assuming, I've tried out some of the ideas proposed in this thread and know first hand they do not work at scale. Index page caching in particular is a killer as you lose most benefits of a centralized BTREE structure when each customer has their own top level pages. Also, writing dynamic SQL to perform 100K "... UNION ALL SELECT * FROM customer_12345.widget" is both incredibly annoying and painfully slow.
 
-\***
+\*\*\*
 
 I don't think we share the definition of "scale".
 
@@ -173,7 +173,7 @@ Extremely few companies that sell B2B SaaS software for enterprises have 10K cus
 
 All of them also (a) don't run a single multitenant cluster for all their customers and (b) are a massive pain in the ass to run in every possible way (an assumption, but a safe one at that!).
 
-\***
+\*\*\*
 
 In the past I worked at a company that managed thousands of individual MSSQL databases for individual customers due to data security concerns. Effectively what happened is the schema became locked in place since running migrations across so many databases became hard to manage.
 
@@ -183,7 +183,7 @@ https://www.postgresql.org/docs/9.5/ddl-rowsecurity.html
 
 We customized both ActiveRecord and Hibernate to accommodate this requirement.
 
-\***
+\*\*\*
 
 I am aware of at least one company which does this from my consulting days, and would caution you that what you get in perceived security benefits from making sure that tenants can't interact with each others' data you'll give back many times over with engineering complexity, operational issues, and substantial pain to resolve \~trivial questions.
 
@@ -191,11 +191,11 @@ I also tend to think that the security benefit is more theatre than reality. If 
 
 (The way I generally deal with this in a cross-tenant application is to ban, in Rails parlance, Model.find(...) unless the model is whitelisted (non-customer-specific). All access to customer-specific data is through @current_account.models.find(...) or Model.dangerously_find_across_accounts(...) for e.g. internal admin dashboards. One can audit new uses of dangerously_ methods, restrict them to particular parts of the codebase via testing or metaprogramming magic, etc.
 
-\***
+\*\*\*
 
 This is true if your application is running on a shared servers - however if you have fully isolated application and database deploys then you really do benefit from a security and scalability perspective- and by being able to run closer to your clients. I'd also say that it works better when you have 100s, rather than thousands of clients, most probably larger organisations at this point.
 
-\***
+\*\*\*
 
 For Postgress you can use and scale one schema per customer (B2B). Even then, depending on the instance size you will be able to accommodate 2000-5000 customers at max on a Postgres database instance. We have scaled one schema per customer model quite well so far (https://axioms.io/product/multi-tenant/).
 
@@ -203,7 +203,7 @@ That said, there are some interesting challenges with this model like schema mig
 
 Probably you also need to consider application caching scenarios. Even you managed to do one database per customer running Redis instance per customer will be a challenge. Probably you can run Redis as a docker container for each customer.
 
-\***
+\*\*\*
 
 I worked for a company that did this, we had hundreds of database instances, one per customer (which was then used by each of those customers' employees).
 
@@ -213,17 +213,17 @@ The customers all seemed to like that their data was separate from everyone else
 
 If I were starting a B2B SaaS today where no customers shared data (each customer = a whole other company) I would use this approach.
 
-\***
+\*\*\*
 
 It has been an actual requirement from our customers that they don't share an instance or database with other customers. It also seriously limits the scope of bugs in permissions checks. Sometimes I will find a bit of code that should be doing a permissions check but isnt which would be a much bigger problem if it was shared with other companies.
 
-\***
+\*\*\*
 
 As one example, New Relic had a table per (hour, customer) pair for a long time. From http://highscalability.com/blog/2011/7/18/new-relic-architec... (2011):
 
 > Within each server we have individual tables per customer to keep the customer data close together on disk and to keep the total number of rows per table down.
 
-\***
+\*\*\*
 
 I've maintained an enterprise saas product for \~1500 customers that used this strategy. Cross account analytics were definitely a problem, but the gaping SQL injection vulnerabilities left by the contractors that built the initial product were less of a concern.
 
@@ -231,11 +231,11 @@ Snapshotting / restoring entire accounts to a previous state was easy, and debug
 
 We also could run multiple versions of the product on different schema versions. Useful when certain customers only wanted their "software" updated once every 6 months.
 
-\***
+\*\*\*
 
 We do that where I am. I think it's been in place for about twenty years - certainly more than a decade. We're on MySQL/PHP without persistent connections. There have been many questionable architectural decisions in the codebase, but this isn't one of them. It seems quite natural that separate data should be separated and it regularly comes up as a question from potential clients.
 
-\***
+\*\*\*
 
 Schemas[0] are the scalable way to do this, not databases, at least in Postgres.
 
@@ -243,7 +243,7 @@ If you're going to go this route you might also want to consider creating a role
 
 That said, this is not how people usually handle multi-tenancy, for good reason, the complexity often outweighs the security benefit, there are good articles on it, and here's one by CitusData\[2] (pre-acquisition).
 
-\***
+\*\*\*
 
 I’ve done this. But the service was suited for it in a couple ways;
 
@@ -255,7 +255,7 @@ I didn’t want to deal with sharding a single database. Also given row count wo
 
 Should be noted, this was a >$1000/month service so I had some decent infrastructure budget to work with.
 
-\***
+\*\*\*
 
 I guess the question is, why do you want to?
 
@@ -267,7 +267,7 @@ If you have massive individual users who you think will be using storage/CPU tha
 
 But unless you're dealing with a very unique situation like that, it's hard to imagine why you'd go with it instead of just traditional sharding techniques.
 
-\***
+\*\*\*
 
 I have used this architecture at 2 companies and it is by far the best for B2B scenarios where there could be large amounts of data for a single customer.
 
@@ -277,11 +277,11 @@ The only trick are schema migrations. Just make sure you apply migration scripts
 
 I have managed more than 1500 databases and it is very simple.
 
-\***
+\*\*\*
 
 WordPress Multisite gives each blog a set of tables within a single database, with each set of tables getting the standard WordPress prefix ("wp_") followed by the blog ID and another underscore before the table name. Then with the hyperdb plugin you can create rules that let you shard the tables into different databases based on your requirements. That seems like a good model that gives you the best of both worlds.
 
-\***
+\*\*\*
 
 I have a bit of experience with this. A SaaS company I used to work with did this while I worked there, primarily due to our legacy architecture (not originally being a SaaS company)
 
@@ -289,17 +289,17 @@ We already had experience writing DB migrations that were reliable, and we had a
 
 Even with the best tooling in the world I would strongly advise against this approach. Cost is one huge factor - the cheapest RDS instance is about $12/month, so you have to charge more than that to break even (if you're using AWS- we weren't at the time). But the biggest problems come from keeping track of scaling for hundreds or thousands of small databases, and paying performance overhead costs thousands of times.
 
-\***
+\*\*\*
 
 Virtual Private Databases.
 
 What a lot of enterprise SaaS vendors do is have one single database for all customer data (single tenant). They then use features like Virtual Private Database to hide customer A data from customer B. So that if customer A did a “select \*” they only see their own data and not all of the other customers data. This creates faux multi-tenancy and all done using a single db account.
 
-\***
+\*\*\*
 
 This sounds very much like Row Level Security, but I've never heard the term "Virtual Private Database" to describe it.
 
-\***
+\*\*\*
 
 What we do at my current job is server per multiple accounts each server holds 500-1000 "normal sized" customers and the huge or intensive customers get their own server with another 10-50 customers Currently moving from EC2 + mysql 5.7 to RDS, mainly for ease of managing.
 
