@@ -309,4 +309,82 @@ Have a single server + db for shared data of tenents like product wide statistic
 
 Some pitfalls concern column type changes + the read replicas going out of sync but that was a single incident that only hurt the replica.
 
+\*\*\*
+
+When using a single db I'd highly recommend adding `account_id` to every single table that contains data for multiple accounts. It's much easier to check every query contains `account_id`, as opposed to checking multiple foreign keys etc. Depending on the db you can then also easily export all data for a specific account using filters on the dump tool
+
+\*\*\*
+
+> Seems impractical and slow at scale to manage even a few hundred separate databases. You lose all the advantages of the relational model — asking simple questions like “Which customers ordered more than $100 last month” require more application code. You might as well store the customer info in separate files on disk, each with a different possible format and version.
+
+Those queries are definitely convenient early on but eventually you shouldn't be making those against that system and instead aggregate the data into warehouse.
+
+\*\*\*
+
+In my case this worked out pretty well. Other than data separation and ease of scaling database per-customer (they might have different behavior of read/write operations), they other benefit was that we could place customer's database in any jurisdiction, which for some enterprise customers appeared an important point, regulations wise...
+
+\*\*\*
+
+The apartment gem enables multi-tenant Rails apps using the Postgres schemas approach described by others here.
+
+It’s slightly clunky in that the public, shared schema tables, say, the one that holds the list of tenants, exists in every schema — they’re just empty.
+
+I rolled my own based on apartment that has one shared public schema, and a schema for each tenant. Works well.
+
+\*\*\*
+
+> Seems pretty odd. The closest example I can think of would be maybe salesforce? Which basically, as far as I can tell, launches a whole new instance of the application (hosted by heroku?) for each client. I'm not a 100% sure about this, but i think this is how it works.
+
+Not at all how Salesforce works, they take a lot of pride in their multi-tenant setup (for better or worse). Every org on a given instance shares the same application servers and Oracle cluster.
+
+If I were to make a Salesforce competitor that’s one thing I would do differently, with tools like Kubernetes it’s a lot easier to just give every customer their own instances. Yes, it can take up more resources - but I cannot imagine the security nightmare involved with letting multiple customers execute code (even if it’s theoretically sandboxed) in the same process, plus the headache that is their database schema.
+
+\-\-\-
+
+As snuxoll writes, Salesforce does use a shared database with tenant_id (org_id) as a column on every table. You can read a lot about our multi-tenancy mechanisms in a whitepaper published a while back [https://developer.salesforce.com/wiki/multi_tenant_architecture].
+
+\*\*\*
+
+There aren't a lot of benefits to doing it. If you have frequent migrations, then it probably isn't something you ever want to do.
+
+For a site I run, I have one large shared read-only database everyone can access, and then one database per user.
+
+The per-user DB isn't the most performant way of doing things, but it made it easier to:
+
++ Encrypt an entire user's data at rest using a key I can't reverse engineer. (The user's DB can only be accessed by the user whilst they're logged in.)
+
++ Securely delete a user's data once they delete their account. (A backup of their account is maintained for sixty days... But I can't decrypt it during that time. I can restore the account by request, but they still have to login to access it).
+
+There are other, better, ways of doing the above.
+
+\*\*\*
+
+How about dozens per account? :) I didn’t ship this, but I work for Automattic and WordPress.com is basically highly modified WordPress MU. This means every time you spin up a site (free or otherwise) a bunch of tables are generated just for that site. There’s at least hundreds of millions of tables. Migrating schema changes isn’t something I personally deal with, but it’s all meticulously maintained. It’s nothing special on the surface.
+
+You can look up how WordPress MU maintains schema versions and migrations and get an idea of how it works if you’re really curious. If you don’t have homogeneous migrations, it might get pretty dicey, so I’d recommend not doing that.
+
+\*\*\*
+
+Jira Cloud and Confluence use a DB per user architecture at reasonable, but not outrageous, scale. I can't share numbers because I am an ex-employee, but their cloud figures are high enough. This architecture requires significant tooling an I don't recommend it. It will cause you all kinds of headaches with regards to reporting and aggregating data. You will spend a small fortune on vendor tools to solve these problems. And worst of all despite your best efforts you WILL end up with "snowflake" tenants whose schemas have drifted just enough to cause you MAJOR headaches.
+
+\*\*\*
+
+I have similar. One PG database per tenant (640). Getting the current DSN is part of auth process (central auth DB), connect through PGBouncer.
+
+Schema migrations are kind of a pain, we roll out changes, so on auth there is this blue/green decision.
+
+Custom fields in EAV data-tables or jsonb data.
+
+Backups are great, small(er) and easier to work with/restore.
+
+Easier to move client data between PG nodes. Each DB is faster than one large one. EG: inventory table is only your 1M records, not everyone's 600M records so even sequential scan queries are pretty fast.
+
+\*\*\*
+
+I worked for one of the biggest boarding school software companies. The only option was full-service, but clients could chose between hosted by us or hosted by them. We didn’t just do 1 database per school, we did entirely separate hardware/VMs per school. Some regions have very strict data regulations and the school’s compliance advisors tended to be overly cautious; they interpreted the regulations and translated them to even stricter requirements. These requirements were often impossible to satisfy. (How can the emergency roll call app both work offline AND comply with “no student PII saved to non-approved storage devices”? Does swap memory count as saving to a storage device?? Is RAM a “storage device”??? Can 7 red lines be parallel!?!?)
+
+Shared DB instances would have been completely off the table. Thankfully, most boarding schools have massive IT budgets, so cost minimization was not as important as adding additional features that justified more spend. Also the market was quite green when I was there. Strangely, the software seemed to market itself; the number of out-of-the-blue demo requests was very high, so first impressions and conversion to paying clients was the primary focus.
+
+\*\*\*
+
 <!-- TODO: discuss on twitter -->
