@@ -6,37 +6,43 @@ tags: []
 publish: false
 ---
 
-This touches on db-level multitenancy, but also schema-level (and many points concerning the former apply also for the latter).
 
-These are the bits that I found interesting:
+Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
----
+In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
 
-My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
-This architecture decisions is one of my biggest regrets, and we are currently in the process of rebuilding into a single database model.
+The original question asked about db-level multitenancy, but a lot of this relates to schema-level as well (which people also often explicitly related to).
 
-FWIW, this process has worked well for what it was originally intended to do. Data-security has a nice db level stopgap and we can keep customer data nicely isolated. It's nice for extracting all data from a single customer if we have extended debugging work or unique data modeling work. It saves a lot of application layer logic and code. I'm sure for the most part it makes the system slightly faster.
+Here's some quotes that drew my attention, extracted to save you some time.
 
-However as we have grown this has become a huge headache. It is blocking major feature refactors and improvements. It restricts our data flexibility a lot. Operationally there are some killers. Data migrations take a long time, and if they fail you are left with multiple databases in different states and no clear sense of where the break occurred.
+All the credit goes of course to original comments' authors. You can easily find them by grepping the original discussion page.
 
-Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgre...
 
----
+* My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
 
-Echoing this as well, I worked for Influitive and was one of the original authours of apartment (sorry!)
-There are a lot of headaches involved with the "tenant per schema" approach. Certainly it was nice to never have to worry about the "customer is seeing data from another customer" bug (a death knell if you're in enterprisish B2B software), but it added so many problems:
+  This architecture decisions is one of my biggest regrets, and we are currently in the process of rebuilding into a single database model.
 
-- Migrations become a very expensive and time-consuming process, and potentially fraught with errors. Doing continious-deployment style development that involves database schema changes is close to impossible without putting a LOT of effort into having super-safe migrations.
+  FWIW, this process has worked well for what it was originally intended to do. Data-security has a nice db level stopgap and we can keep customer data nicely isolated. It's nice for extracting all data from a single customer if we have extended debugging work or unique data modeling work. It saves a lot of application layer logic and code. I'm sure for the most part it makes the system slightly faster.
 
-- You'll run into weird edge cases due to the fact that you have an absolutely massive schema (since every table you have is multiplied by your number of tenants). We had to patch Rails to get around some column caching it was doing.
+  However as we have grown this has become a huge headache. It is blocking major feature refactors and improvements. It restricts our data flexibility a lot. Operationally there are some killers. Data migrations take a long time, and if they fail you are left with multiple databases in different states and no clear sense of where the break occurred.
 
-- Cloud DB hosting often doesn't play nice with this solution. We continually saw weird performance issues on Heroku Postgres, particularly with backup / restores (Heroku now has warnings against this approach in their docs)
+  Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgre...
 
-- It doesn't get you any closer to horizontal scalability, since connecting to a different server is significantly different than connecting to another schema.
-
-- It will probably push the need for a dedicated BI / DW environment earlier than you would otherwise need it, due to the inability to analyze data cross-schema.
-
-I still think there's maybe an interesting approach using partioning rather than schemas that eliminates a lot of these problems, but apartment probably isn't the library to do it (for starters, migrations would be entirely different if partioning is used over schemas)
+    * Echoing this as well, I worked for Influitive and was one of the original authours of apartment (sorry!)
+    
+      There are a lot of headaches involved with the "tenant per schema" approach. Certainly it was nice to never have to worry about the "customer is seeing data from another customer" bug (a death knell if you're in enterprisish B2B software), but it added so many problems:
+    
+      Migrations become a very expensive and time-consuming process, and potentially fraught with errors. Doing continious-deployment style development that involves database schema changes is close to impossible without putting a LOT of effort into having super-safe migrations.
+    
+      You'll run into weird edge cases due to the fact that you have an absolutely massive schema (since every table you have is multiplied by your number of tenants). We had to patch Rails to get around some column caching it was doing.
+    
+      Cloud DB hosting often doesn't play nice with this solution. We continually saw weird performance issues on Heroku Postgres, particularly with backup / restores (Heroku now has warnings against this approach in their docs)
+    
+      It doesn't get you any closer to horizontal scalability, since connecting to a different server is significantly different than connecting to another schema.
+    
+      It will probably push the need for a dedicated BI / DW environment earlier than you would otherwise need it, due to the inability to analyze data cross-schema.
+    
+      I still think there's maybe an interesting approach using partioning rather than schemas that eliminates a lot of these problems, but apartment probably isn't the library to do it (for starters, migrations would be entirely different if partioning is used over schemas)
 
 ---
 
