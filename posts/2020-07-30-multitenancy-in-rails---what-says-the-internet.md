@@ -17,7 +17,7 @@ The original question asked about db-level multitenancy, but a lot of this relat
 
 All the credit goes of course to original comments' authors. You can easily find them by grepping the original [discussion page](https://news.ycombinator.com/item?id=23305111).
 
-***
+\***
 
 My startup currently does just this 'at scale', which is for us ~150 b2b customers with a total database footprint of ~500 GB. We are using Rails and the Apartment gem to do mutli-tenancy via unique databases per account with a single master database holding some top-level tables.
 
@@ -29,7 +29,7 @@ However as we have grown this has become a huge headache. It is blocking major f
 
 Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgre...
 
-***
+\***
 
 Echoing this as well, I worked for Influitive and was one of the original authours of apartment (sorry!)
 
