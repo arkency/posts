@@ -267,4 +267,10 @@ We already had experience writing DB migrations that were reliable, and we had a
 
 Even with the best tooling in the world I would strongly advise against this approach. Cost is one huge factor - the cheapest RDS instance is about $12/month, so you have to charge more than that to break even (if you're using AWS- we weren't at the time). But the biggest problems come from keeping track of scaling for hundreds or thousands of small databases, and paying performance overhead costs thousands of times.
 
+\***
+
+Virtual Private Databases.
+
+What a lot of enterprise SaaS vendors do is have one single database for all customer data (single tenant). They then use features like Virtual Private Database to hide customer A data from customer B. So that if customer A did a “select *” they only see their own data and not all of the other customers data. This creates faux multi-tenancy and all done using a single db account.
+
 <!-- TODO: discuss on twitter -->
