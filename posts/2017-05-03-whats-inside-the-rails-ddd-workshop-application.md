@@ -128,7 +128,7 @@ module Orders
 
 # The CQRS/EventSourcing infra code
 
-The app is a nice example of a non-trivial code which is using the [RailsEventStore](https://github.com/arkency/rails_event_store) ecosystem of tools.
+The app is a nice example of a non-trivial code which is using the [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) ecosystem of tools.
 
 # The exercises
 

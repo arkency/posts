@@ -90,7 +90,7 @@ within the same codebase (just different part of it).
 
 ### Storing and publishing a domain event
 
-We are going to use [`rails_event_store`](https://github.com/arkency/rails_event_store),
+We are going to use [`rails_event_store`](https://github.com/RailsEventStore/rails_event_store),
 but you could achieve the same results using any other pub-sub (e.g. wisper +
 wisper-sidekiq extension). `rails_event_store` has the benefit that your
 domain events will be saved in a database.

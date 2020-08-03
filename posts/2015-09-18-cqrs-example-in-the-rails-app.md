@@ -138,7 +138,7 @@ end
 
 I have chosen a simple service to focus on most important parts. As you can see we call a **domain service** to create Team model and save it into the Database.
 Team is an aggregate root in relation Team <-> Members. After creating a Team we publish event to the Event Store. We use our own Event Store called **RailsEventStore**.
-You can check out the [github repository](https://github.com/arkency/rails_event_store). Publishing event should be placed in aggregate but It was a first step to put in an app service.
+You can check out the [github repository](https://github.com/RailsEventStore/rails_event_store). Publishing event should be placed in aggregate but It was a first step to put in an app service.
 We don't use the Event Sourcing. We decided to save a „current” state for now. Event Sourcing is a completely orthogonal concept to CQRS. Doing CQRS does not require event sourcing.
 But we save all events so It will be very ease to build an aggregate's state using events.
 

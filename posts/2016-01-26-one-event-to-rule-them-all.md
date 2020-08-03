@@ -21,7 +21,7 @@ at the same time, create new `fuckup` aggregate.
 
 <!-- more -->
 
-This is quite simple to implement using [Rails Event Store](https://github.com/arkency/rails_event_store) gem.
+This is quite simple to implement using [Rails Event Store](https://github.com/RailsEventStore/rails_event_store) gem.
 
 First let's start with the definition of a command that is executed when fuckup is registered and a domain event that is published
 when fuckup is reported.

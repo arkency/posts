@@ -14,7 +14,7 @@ img: "events/eventstore.jpg"
   </figure>
 </p>
 
-Still not sure what is Event Sourcing and CQRS? Looking for a practical example? You've just read my previous post [Why use EventSourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store](https://github.com/arkency/rails_event_store).
+Still not sure what is Event Sourcing and CQRS? Looking for a practical example? You've just read my previous post [Why use EventSourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) and decided to give it a try? No matter why let's dive into building an Event Sourced application in Rails using Arkency's [Rails Event store](https://github.com/RailsEventStore/rails_event_store).
 
 <!-- more -->
 

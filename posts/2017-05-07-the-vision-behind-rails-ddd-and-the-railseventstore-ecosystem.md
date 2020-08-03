@@ -48,7 +48,7 @@ Another goal was to keep the API the same as with HttpEventStore, with the idea 
 
 Fast forward, where we are today. The ecosystem of tools grew to:
 
-- [Rails Event Store](https://github.com/arkency/rails_event_store)
+- [Rails Event Store](https://github.com/RailsEventStore/rails_event_store)
 - [Ruby Event Store](https://github.com/arkency/ruby_event_store)
 - [Rails Event Store ActiveRecord](https://github.com/arkency/rails_event_store_active_record)
 - [Aggregate Root](https://github.com/arkency/aggregate_root)

@@ -7,7 +7,7 @@ author: Andrzej Krzywda
 newsletter: arkency_form
 ---
 
-We have recently released the [RailsEventStore](https://github.com/arkency/rails_event_store) project. Its goal is to make it easier for Rails developers to introduce events into their applications.
+We have recently released the [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) project. Its goal is to make it easier for Rails developers to introduce events into their applications.
 
 During the development we try to do TDD and have a good test coverage. The traditional test coverage tools have some limitations, though. Mutation testing is a different approach. In this post I’d like to highlight why using mutation testing may be a good choice.
 

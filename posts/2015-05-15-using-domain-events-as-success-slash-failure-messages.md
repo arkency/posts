@@ -123,6 +123,6 @@ The raise of an error here was replaced by the use of domain event. What is rais
 
 ## But wait, why not just change the error handling?
 
-Of course we could do it without the use of domain events that are persisted in [Rails Event Store](https://github.com/arkency/rails_event_store) but the possibility of going back in the history of the aggregate is priceless. Just realise that a stream of the domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
+Of course we could do it without the use of domain events that are persisted in [Rails Event Store](https://github.com/RailsEventStore/rails_event_store) but the possibility of going back in the history of the aggregate is priceless. Just realise that a stream of the domain events that are responsible for changing the state of an aggregate are the full audit log that is easy to present to the user.
 
 And one more thing: you want to have a monthly report of failed refunds of transactions? Just implement a handler for TransactionRefundFailed the event and do your grouping, summing & counting and store the results. And by replaying all past TransactionRefundFailed events with use of your report building handler you will get a report for the past months too!

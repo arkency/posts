@@ -6,7 +6,7 @@ tags: [ 'rails event store', 'ddd' ]
 author: Andrzej Krzywda
 ---
 
-Recently in one of our projects, we have decided that it would be a good idea to switch to [EventStore](https://geteventstore.com). Our current solution is based on [RailsEventStore](https://github.com/arkency/rails_event_store) (internal to each Bounded Context) and an external RabbitMQ to publish some event "globally". This approach works, but relying on EventStore sounds like a better approach. For a long time, we felt blocked, as EventStore doesn't offer a hosted solution and we were not sure if we want to self-host (in addition to the current heroku setup).
+Recently in one of our projects, we have decided that it would be a good idea to switch to [EventStore](https://geteventstore.com). Our current solution is based on [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) (internal to each Bounded Context) and an external RabbitMQ to publish some event "globally". This approach works, but relying on EventStore sounds like a better approach. For a long time, we felt blocked, as EventStore doesn't offer a hosted solution and we were not sure if we want to self-host (in addition to the current heroku setup).
 
 <!-- more -->
 

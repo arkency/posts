@@ -66,7 +66,7 @@ end
 
 But we could remove it completely and we do not need that `case` at all!
 
-All this code could be rewritten using [`rails_event_store`](https://github.com/arkency/rails_event_store) subscriptions as follows:
+All this code could be rewritten using [`rails_event_store`](https://github.com/RailsEventStore/rails_event_store) subscriptions as follows:
 
 ```ruby
 #command handler (or anywhere you want to initialise rails_event_store

@@ -41,7 +41,7 @@ I know there are some cool things around the [dry-*](https://github.com/dryrb)/R
 
 I recently blogged about the idea of [having a single Rails API endpoint to accept all changes to the app state](http://blog.arkency.com/2015/12/a-single-rails-api-endpoint-to-accept-all-changes-to-the-app-state/). I didn't have time to go further with this crazy idea.
 
-Look at what we're (Arkency) doing around the [RailsEventStore project](https://github.com/arkency/rails_event_store).
+Look at what we're (Arkency) doing around the [RailsEventStore project](https://github.com/RailsEventStore/rails_event_store).
 
 Many of those things do appear at [Ruby Weekly](http://rubyweekly.com) or [/r/ruby](https://www.reddit.com/r/ruby/) or [/r/rails](https://www.reddit.com/r/rails/). However they get lost among other more newbie-oriented content.
 

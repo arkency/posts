@@ -46,7 +46,7 @@ UserLoggedOut                  = Class.new(RailsEventStore::Event)
 UserMadeAdmin                  = Class.new(RailsEventStore::Event)
 ```
 
-Using the [Rails Event Store](https://github.com/arkency/rails_event_store) gem, this is how I publish those events:
+Using the [Rails Event Store](https://github.com/RailsEventStore/rails_event_store) gem, this is how I publish those events:
 
 ```ruby
 

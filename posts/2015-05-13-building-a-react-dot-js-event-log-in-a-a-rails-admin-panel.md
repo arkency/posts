@@ -26,7 +26,7 @@ This strategy will involve small steps down a long road. This is how we work in 
 ## Example
 
 We have experimented with the Event Sourcing in couple client’s projects.
-Some time ago we launched our vision of an Event Store (we call it [RES](https://github.com/arkency/rails_event_store)) which we use in customer’s applications.
+Some time ago we launched our vision of an Event Store (we call it [RES](https://github.com/RailsEventStore/rails_event_store)) which we use in customer’s applications.
 It help as a lot to start Event-think during implementation. This example will show you how to simply introduce an ES in a Rails app.
 We will create a simple events browser. We will collect events describing user’s registration.
 Events will be saved to streams, each stream per user. This way we will create a simple log.
@@ -35,7 +35,7 @@ The idea is to display events to the admin of the Rails app. We treat it as a "m
 
 ## Backend part
 
-We start by adding a `rails_event_store` gem to our Gemfile ([installation instructions](https://github.com/arkency/rails_event_store/blob/master/README.md)).
+We start by adding a `rails_event_store` gem to our Gemfile ([installation instructions](https://github.com/RailsEventStore/rails_event_store)).
 Next thing is that we need some events to collect. We have to create an event class representing a user creation.
 To do this we will use the class provided by our gem.
 
