@@ -387,4 +387,161 @@ Shared DB instances would have been completely off the table. Thankfully, most b
 
 \*\*\*
 
-<!-- TODO: discuss on twitter -->
+I worked for a company that did this, and our scale was quite large. It took a lot of work to get AWS to give us more and more databases on RDS. We had some unique challenges with scaling databases to appropriately meet the needs of each account. Specifically, it was difficult to automatically right-size a DB instance to the amount of data and performance a given customer would need. On the other hand, we did have the flexibility to manually bump an account's database to a much larger node size if we needed to help someone who was running into performance issues.
+
+I think the biggest problems had to do with migrations and backups. We maintained multiple distinct versions of the application, and each had a unique DB schema, so there was frequent drift in the actual schemas across accounts. This was painful both from a maintenance POV, and for doing things like change data capture or ETLs into the data warehouse for data science/analysis.
+
+Another big problem was dealing with backup/restore situations.
+
+I suspect this decision was made early in the company's history because it was easier than figuring out how to scale an application originally designed to be an on-prem solution to become something that could be sold as a SaaS product.
+
+Anyway, I think choosing a solution that nets your business fewer, larger database nodes will probably avoid a lot of maintenance hurdles. If you can think ahead and design your application to support things like feature flags to allow customers to gradually opt in to new versions without breaking backwards compatibility in your codebase, I think this is probably the better choice, but consider the safety and security requirements in your product, because there may be reasons you still want to isolate each tenant's data in its own logical database.
+
+\*\*\*
+
+Years ago I worked for a startup that provided CMS and ecommerce software for small business. Each of our 3000+ customers had their own MySQL database.
+
+We had a long tail of customers with negligible usage and would run several thousand MySQL databases on a single server. As customers scaled we could migrate the database to balance capacity. We could also optionally offer "premium" and "enterprise" services that guaranteed isolation and higher durability.
+
+Scaling was never a real issue, but the nature of our clients was steady incremental growth. I don't think we ever had a case of real "overnight success" where a shared host customer suddenly melted the infrastructure for everyone.
+
+However, managing and migrating the databases could be a real issue. We had a few ways of handling it, but often would need to handle it in the code, `if schemaVersion == 1 else`. Over time this added up and required discipline to ensure migration, deprecation and cleanuop. As a startup, we mostly didn't have that discipline and we did have a fair bit of drift in versions and old code lying around.<Paste>
+
+\*\*\*
+
+B2B CRM space startup. We have somewhat of a middle-ground approach. Our level of isolation for customers is at a schema-level.
+
+What this means is each customer has her own schema. Now, large customers want to be single tenant, so they have a single schema on the entire DB. Smaller (SMB) customers are a bit more price conscious so they can choose to be multitenant i.e multiple schemas on same DB.
+
+Managing this is pushed out to a separate metadata manager component which is just a DB that maps customer to the DB/schema they reside on. Connection pooling is at the DB level (so if you are multitenant then you may have lower perf because some other customer in the DB is hogging the connections)... But this has not happened to us yet.
+
+Large customers are more conscious in terms of data so want things like disc level encryption with their own keys etc, which we can provide since we are encrypting the whole DB for them (KMS is the fave here).
+
+We are not really large scale yet, so dunno what they major gotchas will be once we scale, but this approach has served us well so far.
+
+\*\*\*
+
+Stackoverflow's DBA had just posted about this: https://twitter.com/tarynpivots/status/1260680179195629568
+
+He has 564,295 tables in one SQL Server. Apparently this is for "Stack Overflow For Teams"
+
+\*\*\*
+
+One model I have seen used successfully is a hybrid model in which the product is designed to be multi-tenant, but then it is deployed in a mix of single tenant and multi-tenant instances. If you have a big mix of customer sizes (small businesses through to large enterprises) – single-tenant instances for the large enterprise customers gives them maximum flexibility, while multi-tenant for the small business customers (and even individual teams/departments within a large enterprise) keeps it cost-effective at the low end. (One complexity you can have is when a customer starts small but grows big – sometimes you might start out with just a small team at a large enterprise and then grow the account to enterprise scale – it can become necessary to design a mechanism to migrate a tenant from a multi-tenant instance into their own single-tenant instance.)
+
+\*\*\*
+
+There are definitely downsides to scaling out thousands of tenants - I've been told Heroku supports this, and at a glance I found this doc that says it may cause issues, https://devcenter.heroku.com/articles/heroku-postgresql#multiple-schemas but it really doesn't change whether you're on Heroku or not. At the end of the day it's just about your application structure, how much data you have, how many tables you have etc. Unfortunately the Apartment gem even has these problems, and even its creators have expressed some concern (https://mtm.dev/multitenancy-without-subdomains-rails-5-acts-as-tenant/#why-acts_as_tenant) about scalability with multiple schemas.
+
+The acts_as_tenant gem might be what you’re looking for:
+
+> This gem was born out of our own need for a fail-safe and out-of-the-way manner to add multi-tenancy to our Rails app through a shared database strategy, that integrates (near) seamless with Rails.
+
+My recommended configuration to achieve this is to simply add a `tenant_id` column (or `customer_id` column, etc) on every object that belongs to a tenant, and backfilling your existing data to have this column set correctly. When a new account signs up, not a lot happens under-the-hood; you can create a row in the main table with the new account, do some initial provisioning for billing and such, and not much else. Being a multi-tenant platform you want to keep the cost really low of signing up new accounts. The easiest way to run a typical SQL query in a distributed system without restrictions is to always access data scoped by the tenant. You can specify both the tenant_id and an object’s own ID for queries in your controller, so the coordinator can locate your data quickly. The tenant_id should always be included, even when you can locate an object using its own object_id.
+
+\*\*\*
+
+Yes, we did it at Kenna Security. About 300 paying customers, but over 1000 with trials, and overall about 6B vulnerabilities being tracked (the largest table in aggregate). Some of the tables were business intelligence data accessible to all customers, so they were on a “master” DB that all could access; and some of the tables were fully multi-tenant data, so each customer had their MySQL DB for it.
+
+The motivation was that we were on RDS’s highest instance and growing, with jobs mutating the data taking a less and less excusable amount of time.
+
+The initial setup was using just the Octopus gem and a bunch of Ruby magic. That got real complicated really fast (Ruby is not meant to do systems programming stuff, and Octopus turned out very poorly maintained), and the project turned into a crazy rabbit hole with tons of debt we never could quite fix later. Over time, we replaced as many Ruby bits as we could with lower-level stuff, leveraging proxySQL as we could; the architecture should have been as low-level as possible from the get-go... I think Rails 6’s multi-DB mode was going to eventually help out too.
+
+One fun piece of debt: after we had migrated all our major clients to their own shards, we started to work in parallel on making sure new clients would get their own shard too. We meant to just create the new shard on signup, but that’s when we found out, when you modify Octopus’s in-memory config of DBs, it replaces that config with a bulldozer, and interrupts all DB connections in flight. So, if you were doing stuff right when someone else signs up, your stuff would fail. We solved this by pre-allocating shards manually every month or so, triggering a manual blue-green deploy at the end of the process to gracefully refresh the config. It was tedious but worked great.
+
+And of course, since it was a bunch of Active Record hacks, there’s a number of data-related features we couldn’t do because of the challenging architecture, and it was a constant effort to just keep it going through the constant bottlenecks we were meeting. Ha, scale.
+
+Did we regret doing it? No, we needed to solve that scale problem one way or another. But it was definitely not solved the best way. It’s not an easy problem to solve.
+
+\*\*\*
+
+I believe that FogBugz used this approach, back in the day (with a SQL Server backend).
+
+The reasoning was that customers data couldn't ever leak into each other, and moving a customer to a different server was easier. I vaguely recall Joel Spolsky speaking or writing about it.
+
+\*\*\*
+
+This question reminds me of some legacy system which I've seen in the past :D :D :D
+
+In summary it was working in the following way:
+
+There was table client(id, name).
+
+And then dozens of other tables. Don't remember exactly the structure, so I will just use some sample names: - order_X - order_item_X - customer_X - newsletter_X
+
+"X" being ID from the client table mentioned earlier.
+
+Now imagine dozens of "template" tables become hundreds, once you start adding new clients. And then in the code, that beautiful logic to fetch data for given client :D
+
+And to make things worse, sets of tables didn't have same DB schema. So imagine those conditions building selects depending on the client ID :D
+
+\*\*\*
+
+We did this in a company long long time ago, each customer had their own Access database running an ASP website. Some larger migrations were a pain, but all upgrades were billed from the customers, so it didn't affect anything.
+
+If you can bill the extra computing and devops work from your customers, I'd go with separate environments alltogether. You can do this easily with AWS.
+
+On the plus side you can roll out changes gradually, upgrade the environments one user at a time.
+
+Also if Customer X pays you to make a custom feature for them, you can sell the same to all other users if it's generic enough.
+
+\*\*\*
+
+This is a common approach outside of the SaaS space. I'd worry less about Rails and tools, and more about the outcomes you need. If you have a smaller number of high value customers (big enterprises or regulated industries), or offer customers custom add-ons then it can be advantageous to give each customer their own database. Most of the HN audience will definitely not need this.
+
+In some industries you'll also have to fight with lawyers about being allowed to use a database shared between customers because their standard terms will start with this separation. This approach is helpful when you have to keep data inside the EU for customers based there. If you want to get creative, you can also use the approach to game SLAs by using it as the basis to split customers into "pods" and even if some of these are down you may not have a 100% outage and have to pay customers back.
+
+This design imposes challenges with speed of development and maintenance. If you don't know your requirements (think: almost any SaaS startup in the consumer or enterprise space) which is trying to find a niche, then following this approach is likely to add overhead which is inadvisable. The companies that can use this approach are going after an area they already know, and are prepared to go much more slowly than what most startup developers are used to.
+
+Using row-level security or schemas are recommended for most SaaS/startup scenarios since you don't have N databases to update and keep in sync with every change. If you want to do any kind of split then you might consider a US/EU split, if your customers need to keep data in the EU, but it's best to consider this at the app-level since caches and other data stores start to become as important as your database when you have customers that need this.
+
+Consideration should be given to URL design. When you put everything under yourapp.com/customername it can become hard to split it later. Using URLs like yourapp.com/invoice/kfsdj28jj42 where "kfsdj28jj42" has an index for the database (or set of web servers, databases, and caches) encoded becomes easier to route. Using customer.yourapp.com is a more natural design since it uses DNS, but the former feels more popular, possibly because it can be handled more easily in frameworks and doesn't need DNS setup in developer environments.
+
+\*\*\*
+
+We did this for 2 large projects I worked on. Works really well for env. where you can get a lot of data per customer. We had customers with up to 3-4 TB databases so any other option would either be crazy expensive to run and or to develop for. You need to invest a bit of time into nice tooling for this but in a grand scheme of things it's pretty easy to do.
+
+\*\*\*
+
+Yes!! In hosted forum software this is the norm. If you want to create an account you create an entire database for this user. It isn't that bad! Basically when a user creates an account you run a setup.sql that creates the db schema. Devops is pretty complex but is possible. EG! Adding a column - would be a script.
+
+Scaling is super easy since you can move a db to another host.
+
+\*\*\*
+
+This is pretty much how WordPress.com works - or used to work, I don't know if they changed this.
+
+Each account gets its own set of database tables (with a per-account table prefix) which are located in the same database. Upgrades can then take place on an account-by-account basis. They run many, many separate MySQL databases.
+
+\*\*\*
+
+Already some great answers. Some color: A lot of B2B contracts require this sort of "isolation". So if you read 1 database per account and think that's crazy, it's not that rare. Now you know! I certainly didn't 2 years ago.
+
+\*\*\*
+
+Nutshell does this! We have 5,000+ MySQL databases for customers and trials. Each is fully isolated into their own database, as well as their own Solr "core."
+
+We've done this from day one, so I can't really speak to the downsides of not doing it. The piece of mind that comes from some very hard walls preventing customer data from leaking is worth a few headaches.
+
+A few takeaways:
+
+- Older MySQL versions struggled to quickly create 100+ tables when a new trial was provisioned (on the order of a minute to create the DB + tables). We wanted this to happen in seconds, so we took to preprovisioning empty databases. This hasn't been necessary in newer versions of MySQL.
+
+- Thousands of DBs x 100s of tables x `innodb_file_per_table` does cause a bit of FS overhead and takes some tuning, especially around `table_open_cache`. It's not insurmountable, but does require attention.
+
+- We use discrete MySQL credentials per-customer to reduce the blast radius of a potential SQL injection. Others in this thread mentioned problems with connection pooling. We've never experienced trouble here. We do 10-20k requests / minute.
+
+- This setup doesn't seem to play well with AWS RDS. We did some real-world testing on Aurora, and saw lousy performance when we got into the hundreds / thousands of DBs. We'd observe slow memory leaks and eventual restarts. We run our own MySQL servers on EC2.
+
+- We don't split ALBs / ASGs / application servers per customer. It's only the MySQL / Solr layer which is multi-tenant. Memcache and worker queues are shared.
+
+- We do a DB migration every few weeks. Like a single-tenant app would, we execute the migration under application code that can handle either version of the schema. Each database has a table like ActiveRecord's migrations, to track all deltas. We have tooling to roll out a delta across all customer instances, monitor results.
+
+- A fun bug to periodically track down is when one customer has an odd collection of data which changes cardinality in such a way that different indexes are used in a difficult query. In this case, we're comparing `EXPLAIN` output from a known-good database against a poorly-performing database.
+
+- This is managed by a pretty lightweight homegrown coordination application ("Drops"), which tracks customers / usernames, and maps them to resources like database & Solr.
+
+- All of this makes it really easy to backup, archive, or snapshot a single customer's data for local development.
+
+\*\*\*
+
