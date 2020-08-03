@@ -30,7 +30,7 @@ This was the time, when we thought we could help other people with existing Rail
 
 
 - [HttpEventStore](https://github.com/arkency/http_event_store) (a Ruby binding/connector to the Greg's Event Store) - aka HES
-- [RailsEventStore](https://github.com/arkency/rails_event_store) - aka RES
+- [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) - aka RES
 
 
 ## HttpEventStore (aka HES)
