@@ -173,11 +173,11 @@ class Payment
 end
 ```
 
-With a little help from [RailsEventStore](http://railseventstore.arkency.com) & [AggregateRoot](https://github.com/arkency/aggregate_root) gems we have now fully functional event sourced `Payment` aggregate.
+With a little help from [RailsEventStore](http://railseventstore.arkency.com) & [AggregateRoot](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gems we have now fully functional event sourced `Payment` aggregate.
 
 # Plumbing
 
-`RailsEventStore` allows to read & store domain events. `AggregateRoot` is just a module to include in your aggregate root classes. It provides just 3 methods: `apply`, `load` & `store`. Check the [source code](https://github.com/arkency/aggregate_root/blob/master/lib/aggregate_root.rb) to understand how it works. It's quite simple.
+`RailsEventStore` allows to read & store domain events. `AggregateRoot` is just a module to include in your aggregate root classes. It provides just 3 methods: `apply`, `load` & `store`. Check the [source code](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) to understand how it works. It's quite simple.
 
 ## How to make it work?
 

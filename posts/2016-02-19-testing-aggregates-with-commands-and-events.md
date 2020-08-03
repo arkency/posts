@@ -99,7 +99,7 @@ BTW, here we get a bit closer to the Functional Programming way of thinking. I d
   end
 ```
 
-If you're interested what's the AggregateRoot part, here is the current implementation (it's part of our [aggregate_root](https://github.com/arkency/aggregate_root) gem):
+If you're interested what's the AggregateRoot part, here is the current implementation (it's part of our [aggregate_root](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gem):
 
 ```ruby
 module RailsEventStore
