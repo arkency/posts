@@ -51,6 +51,16 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 | Greenfield project? | row-level more viable |
 | Need to combine a lot of data across tenants | schema-level possible, but row-level is a safer bet |
 
+## Other possibilities
+
+These three options don't constitute the whole spectrum of approaches. For example:
+
+* Even if you have db-level separation you can still choose whether to share application servers between tenants - which makes them run in the same process. If you don't, you achieve even higher level of separation, which most people wouldn't call multitenant.
+* Even if a DB engine doesn't facilitate namespaces (like PG schemas), it can still be done manually by prefixing table names like `tenant_123_users`. Reportedly, this is how WordPress.com works.
+* In row-level approach you can employ Row Level Security and achieve a higher level of isolation, but this can have implications on reusing db connections. [Docs for PostgreSQL](https://www.postgresql.org/docs/current/ddl-rowsecurity.html).
+* With schema-level approach, you can start sharding larger numbers of schemas into multiple db servers - e.g. when reaching performance limits or when a particular tenant has higher data isolation requirements.
+* Hybrid approach. It's also possible to implement row-level multitenancy and still store the data in separate schemas/DBs (for some or all tenants). This way it's easier to migrate one way or the other according to security/scaling needs.
+
 ## Feel like contributing to this blogpost?
 
 🛠 Feel free to [submit a pull request](https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md) to this blogpost. It can be a nuanced remark, better wording or just a typo.
