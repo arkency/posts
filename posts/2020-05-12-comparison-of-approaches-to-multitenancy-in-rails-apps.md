@@ -50,6 +50,7 @@ The drawback is that in MySQL you need to make sure there's no name collisions w
 | Multitenantizing an existing single-tenant code base? | schema-level might be easier to introduce |
 | Greenfield project? | row-level more viable |
 | Need to combine a lot of data across tenants | schema-level possible, but row-level is a safer bet |
+| Some customers may have exceptional performance/capacity requirements | consider enabling db-level |
 
 ## Other possibilities
 
