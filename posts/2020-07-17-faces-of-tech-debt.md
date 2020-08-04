@@ -27,3 +27,5 @@ Most IT projects fail. Reasons are many, but tech debt is one of them. Tech debt
 ## Failing tests
 
 ## Tests difficult to modify
+
+## No CI/CD
