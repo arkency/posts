@@ -6,14 +6,18 @@ tags: []
 publish: false
 ---
 
-
 Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
 In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
 
-Here's some quotes that drew my attention, extracted to save you some time.
+Here's some quotes that drew my attention, extracted to save you some time. This was the original question:
 
-The original question asked about db-level multitenancy, but a lot of this relates to schema-level as well (which people also often explicitly related to). Also schema-level in Postrgres has a lot in common with db-level in MySQL as you can read in [my previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
+> Ask HN: Has anybody shipped a web app at scale with 1 DB per account?
+> A common way of deploying a web application database at scale is to setup a MySQL or Postgres server, create one table for all customers, and have an account_id or owner_if field and let the application code handle security. This makes it easier to run database migrations and upgrade code per customer all at once.
+> I’m curious if anybody has taken the approach of provisioning one database per account? This means you’d have to run migrations per account and keep track of all the migration versions and statuses somewhere. Additionally, if an application has custom fields or columns, the differences would have to be tracked somehow and name space collisions managed.
+> Has anybody done this? Particularly with Rails? What kinda of tools or processes did you learn when you did it? Would you do it again? What are some interesting trade offs between the two approaches?
+
+The original question asks about db-level multitenancy, but a lot of answers relate to schema-level as well (which people also often explicitly related to). Also schema-level in Postrgres has a lot in common with db-level in MySQL as you can read in [my previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
 All the credit goes of course to original comments' authors. You can easily find them by grepping the original [discussion page](https://news.ycombinator.com/item?id=23305111).
 
