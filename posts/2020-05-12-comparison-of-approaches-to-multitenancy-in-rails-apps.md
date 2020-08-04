@@ -12,7 +12,7 @@ You can implement it on several different levels:
 
 1. **Row level** - you put a `tenant_id` column into every DB table and filter by `tenant_id` in every query.
 2. **Schema level** - for every tenant you create a separate namespaced set of tables inside one database. Easily achievable with [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html). See next paragraph on how this relates to MySQL.
-3. **Database level** - you setup a whole new DB for every tenant. Rarely practical, including just for comparison.
+3. **Database level** - you setup a whole new DB for every tenant.
 
 Here's how they compare to each other:
 
