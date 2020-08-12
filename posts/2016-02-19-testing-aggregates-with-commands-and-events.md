@@ -132,7 +132,7 @@ What's worth noticing is that the output of each aggregate command handling is a
 
 Exposing such thing publicly is not the perfect thing, but it works and solves the problem of a potential dependency on some kind of event store.
 
-# Testing
+## Testing
 
 How can we test it?
 

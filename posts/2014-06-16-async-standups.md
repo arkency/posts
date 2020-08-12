@@ -25,7 +25,7 @@ I consider #standup to be a very good opportunity **to communicate cross-project
 
 When writing the standup message, **think more about the others, than about yourself** - what can they get from it by reading your status?
 
-### Example
+## Example
 
 _Yesterday I finished the "fix the price calculator" feature, which was mostly about removing the Coffee code and rely on the value retrieved from the backend, via ajax. The nice thing was that the backend code was already covered with tests, while the Coffee one wasn't. After that I helped Jack with the "allow logging in with email" feature (we need it now because we have a batch import of users from system X soon). After that I did a small ticket, where I block buying licences for special periods of time. This was nicely TDD'ed, thanks to the concept of aggregate, introduced by Robert recently - all the tests pass < 1s. Here is a commit worth looking at. Today I'm going to start with foreman'ing the recent commits and after that I want to work the XYZ system to allow a better editing of entries. I'm not sure how to start it, so all help is welcome._
 

@@ -59,7 +59,7 @@ It can be everything like a relational DB or NoSQL. We save events as streams. E
 Typically, event store is capable of storing events from multiple types of aggregates. We save events as they happened in time. This way we have complete a log of every state change ever. 
 After all we can simply load all of the events for an Aggregate and replay them on new object instance. This is it.
 
-## Base of knowledge:
+## Base of knowledge
 
 - http://martinfowler.com/eaaDev/EventSourcing.html
 - http://ookami86.github.io/event-sourcing-in-practice/#considering-event-sourcing/01-pros-and-cons-of-event-sourcing.md

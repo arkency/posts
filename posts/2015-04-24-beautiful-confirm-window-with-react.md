@@ -15,11 +15,11 @@ When designing your web application, you would like the user to confirm some act
 
 <!-- more -->
 
-# Getting started
+## Getting started
 
 In this article I am using the latest React (0.13.2) and Bootstrap v3.3.4 for styling modal window. I am also using jQuery promises to handle confirm and abort actions.
 
-# Modal window
+## Modal window
 
 Let's start with creating React component for Bootstrap-styled modal window. We will use that component later in confirm window implementation. We will create modal with backdrop and lock the whole UI under backdrop until the user clicks on confirm action button.
 
@@ -56,7 +56,7 @@ Modal = React.createClass
 
 The division with `modal-backdrop` will be used to cover and lock everything on the page. We would not close modal on backdrop click in this case.
 
-# Confirm modal
+## Confirm modal
 
 Now it's time to implement the confirm dialog component. It will use `Modal` component created in previous step. We will add title, two buttons (confirm and abort) and optional descriptive text.
 
@@ -117,7 +117,7 @@ There is also one more line in `componentDidMount` - `React.findDOMNode(@refs.co
 
 If you would like to know more about using React especially in your Rails application, take a look at [React meets Rails](http://blog.arkency.com/rails-react/) book we have written.
 
-# Making it work
+## Making it work
 
 We have created modal and confirm dialog components. Now it's time to make it work. We will create a method that will render our confirm dialog and return a promise. Once the promise is resolved or rejected, the dialog will be unmounted from DOM.
 
@@ -189,6 +189,6 @@ This is the final look:
   </figure>
 </p>
 
-# Summary
+## Summary
 
 Replacing native `window.confirm` with custom solution gives you ability to have the same behaviour but without restrictions - you can have beautifully styled dialog with custom button labels or dialog title. You can grab the demo on [jsfiddle](https://jsfiddle.net/JakubKosinski/3Lwdyvw1/).

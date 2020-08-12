@@ -33,7 +33,7 @@ The videos are embeded in a normal way recommended by the providers such as:
 <iframe src="//player.vimeo.com/video/2854412" width="500" height="311" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ```
 
-### Get the list of embedded videos from the html of landing page
+## Get the list of embedded videos from the html of landing page
 
 Nokogiri for the rescue :)
 
@@ -52,7 +52,7 @@ More about:
 * [Nokogiri searching in document](http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html#basic_searching)
 * [Xpath](http://www.w3schools.com/xpath/)
 
-### Get the metadata of videos based on their url
+## Get the metadata of videos based on their url
 
 [VideoInfo](https://github.com/thibaudgg/video_info/) to the rescue :)
 
@@ -92,7 +92,7 @@ it as well.
 * [Catching all Http errors from standard ruby lib](https://github.com/barsoom/net_http_timeout_errors) .
 It's harder then you might think.
 
-### Use metadata in the sitemap
+## Use metadata in the sitemap
 
 [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) to the rescue.
 

@@ -147,14 +147,14 @@ It's also worth to take a look at [BubbleWrap Deferable module](https://github.c
 - http://www.raywenderlich.com/63338/grand-central-dispatch-in-depth-part-2
 - http://jeffreysambells.com/2013/03/01/asynchronous-operations-in-ios-with-grand-central-dispatch
 
-#### Posts:
+#### Posts
 - http://jeffreysambells.com/2013/03/01/asynchronous-operations-in-ios-with-grand-central-dispatch
 
-#### Official Guides:
+#### Official Guides
 - https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091-CH1-SW1
 - https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i
 
-#### Libraries:
+#### Libraries
 - https://github.com/seanlilmateus/futuristic
 - https://github.com/rubymotion/BubbleWrap
 - https://github.com/mattgreen/elevate

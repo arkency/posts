@@ -13,7 +13,7 @@ Today I’d like to write a few words about big events versus small events. This
 
 To give you a sense of what I mean, here’s one example of a problem that I find very painful to deal with, namely the refactoring of our codebase. The thing is that when you publish events and you usually do it from an aggregate, then the aggregate contains some state related to the event or to the information needed to make the decision to publish the event.
  
-# Big aggregates result in big events
+## Big aggregates result in big events
 
 ```ruby
 class EmployeeRegistered < Event
@@ -35,11 +35,11 @@ Quite often, usually at the beginning when you are still new to aggregates, you 
 
 So at this time it seems to be a no-brainer because you simply append new properties. It can be some kind of an association. For example, you registered a new employee and you attach information on the department she was assigned to or you publish her manager_id and may also want to embedded the employee resume.  (BTW, see how the different Bounded Contexts are coupled here?) So you keep on enriching the event with whatever you have, which at the beginning sounds great because for some reasons you may find it very useful to have all or most of the information in one event, as it makes it easy to build a projection or a read model and saves you the trouble of reacting  to several smaller events.
 
-# Splitting an aggregate
+## Splitting an aggregate
 
 On the other hand, when you feel the need to do a refactoring of the original aggregate,  you need to split it into two parts. The events are a kind of a public interface, so other consumers rely on it. If you want to split an aggregate, suddenly you face a problem of not having all the information in one place, making the refactoring a bit more complicated. So you either try to keep the original event published somehow and build a projection only to publish the old event, just to stay with the old consumers without having to change them, or you change all the consumers or create event versions. All this is a bit problematic.
 
-# Big events postpone refactorings
+## Big events postpone refactorings
 
 To me the most important thing is that all this can make you want to postpone the refactoring. And I think that one of the most important thing about programming is that we should never worry about refactoring. If I see a better design, then I  should be able to do it quickly without any doubts or worries. And big events can be a source of worry.
 

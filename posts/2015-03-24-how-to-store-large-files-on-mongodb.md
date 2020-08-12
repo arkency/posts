@@ -23,7 +23,7 @@ I've presented how to [speed up saving data in MongoDB](http://blog.arkency.com/
 Sometimes we want to store file first and parse it later. This is the case when you use async workers like Sidekiq.
 To workaround this problem you need to store the file somewhere.
 
-##First solution:
+## First solution
 
 MongoDB allows us to store files smaller than 16MB as a string in DB. We can simply do it by putting all the data in _file\_data_ attribute. 
 
@@ -49,7 +49,7 @@ end
 The code above may work well if you upload files smaller than 16MB, but sometimes users want to import (or store) files even larger.
 The bad thing in presented code is that **we are losing information about the original file**. That thing may be very helpful when you need to open the file in a different encoding. **It's always good to have the original file.**
 
-##Second solution:
+## Second solution
 
 In this case we’ll use a concept called **GridFS**. This is MongoDB module for storing files. To enable this feature in Rails we need to import a library called
 _mongoid-grid\_fs_. The lib gives us access to methods such as:
@@ -82,7 +82,7 @@ end
 
 In the second solution we are storing the original file. We can do anything what we want with it. **GridFS is useful not only for storing files that exceed 16MB but also for storing any files for which you want access without having to load the entire file into memory.**
 
-##References:
+## References
 - https://github.com/ahoward/mongoid-grid_fs
 - http://docs.mongodb.org/manual/faq/developers/#faq-developers-when-to-use-gridfs
 

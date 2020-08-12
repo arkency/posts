@@ -52,7 +52,7 @@ We can imagine where the problem is. 15k requests to DB isn't a small number, es
 **Usually DB server is in a different location than webserver, so the latency isn't so small like it's on local environment.**
 In our case the difference between Heroku and local environment was quite big. On development we were able to import the file in 7 min, on Heroku in 1h.
 
-##How to minimize the number of requests?
+## How to minimize the number of requests?
 We can use MongoDB _insert_ method, however _insert_ doesn't run validations and it's on our hands to make sure that our model is correct. We can compare _insert_ with storing raw data in DB. There is the last thing to remember, before we store data, we have to add fields like _updated_\__at_ and _created_\__at_ to attributes.
 
 ```ruby
@@ -133,9 +133,9 @@ end
 
 Thanks to _BimPropertyUniqCache_ class we were able to avoid unnecessary requests.
 
-## Conclusion:
+## Conclusion
 
 Remember that access time to MongoDB locally is faster than on Heroku. You can easly bypass it by using mass insert. Unluckily by _insert_ we're skipping validations and we need to validate records before. We're forced to write more code, but processing time is significantly decreased. Eventually importing a 10MB file takes around 1 min.
 
-## References:
+## References
 - http://docs.mongodb.org/manual/reference/method/db.collection.insert/

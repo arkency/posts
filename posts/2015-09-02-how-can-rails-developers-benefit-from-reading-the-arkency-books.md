@@ -22,7 +22,7 @@ I'd like to explain how we're helping with improving those skills with our Arken
 
 <!-- more -->
 
-# Rails applications
+## Rails applications
 
 Big chances are that you're working on Rails applications. Some of them are probably the ones, which are not so pretty. You'd like to improve them (Scout Rule anyone?) but it's not clear how to do it. Also, it's a risk - what if you break anything?
 Another typical problem is the tests taking ages to run (and often fail for random reasons).
@@ -42,7 +42,7 @@ If you ever heart about Domain Driven Design (DDD), then this book is a great in
 
 <a href="https://bit.ly/buy-rails-refactoring">Buy Fearless Refactoring: Rails Controllers</a>
 
-# JavaScript frontends for Rails apps
+## JavaScript frontends for Rails apps
 
 As Rails developers, we were happy writing just Ruby code, for many years. Nowadays, just Ruby is not enough. We need to build rich user interfaces, which are possible only in JavaScript.
 
@@ -73,7 +73,7 @@ Animations with React.js is such a great topic that we decided to record and inc
 
 <a href="https://bit.ly/buy-rails-meets-reactjs">Buy Rails meets React.js</a>
 
-## React.js by Example
+### React.js by Example
 
 We love working with React.js so much, that we also published another book on this topic - "React.js by Example".
 
@@ -91,7 +91,7 @@ The examples are written in EcmaScript2015 and use webpack.
 
 <a href="https://bit.ly/buy-reactjs-by-example">Buy React.js by Example</a>
 
-## Which of our React.js books to choose?
+### Which of our React.js books to choose?
 
 Those books are very different. They teach you React.js in different ways. While the "Rails meets React.js" book is more Rails focused, it focuses on developing one component from a small one to a very complex widget.
 
@@ -101,7 +101,7 @@ Many of our readers bought both of the books and are happy with that.
 
 If you need to choose just one - if you want to use React.js within an existing Rails ecosystem, then go for "Rails meets React.js". If you are allowed to develop the frontend separately to Rails, then choose "React.js by Example".
 
-# Working in a team, being remote/async, communicating with the customer
+## Working in a team, being remote/async, communicating with the customer
 
 Many of us want to be happy in their Rails projects. We usually want less meetings, less bureaucracy, less stress. We want more freedom and we want to be working on features that are important.
 
@@ -121,7 +121,7 @@ We also explain the tools, which are helpful in async collaboration.
 <a href="https://bit.ly/buy-dopm">Buy Developers Oriented Project Management</a>
 
 
-# Would you like to start blogging more about programming, Ruby, Rails?
+## Would you like to start blogging more about programming, Ruby, Rails?
 
 If you follow our Arkency blog, you may have noticed that we're quite active in blogging. Several people from our team share knowledge using this medium.
 
@@ -147,12 +147,12 @@ The book is still in the beta phase (35 pages), but it already addresses all the
 
 <a href="https://bit.ly/buy-blogging-for-busy-programmers">Buy Blogging for busy programmers</a>
 
-# Refunds
+## Refunds
 
 We strongly believe in the value of all our books. We have over 1200 unique, happy customers of our books.
 
 We have a 100% refund policy - if you feel that the book didn't deliver you the value you expected, send us an email to dev@arkency.com and we issue a refund without asking any question.
 
-# The future offer
+## The future offer
 
 If you're interested in learning something specific from us - let us know! We plan to write more and such feedback will help us decide which topics are most interesting to you.

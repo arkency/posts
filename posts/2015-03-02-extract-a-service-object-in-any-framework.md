@@ -11,7 +11,7 @@ Extracting a service object is a natural step in any kind of framework-dependent
 
 <!-- more -->
 
-#### The framework calls you
+## The framework calls you
 
 The difference between a library and a framework is that you call the library, while the framework calls you.
 
@@ -24,7 +24,7 @@ The “Extract a service object” refactoring is a way of dealing with the situ
 A typical example is a Rails controller action. An action is a typical framework building block. It’s responsible for several things, including all the HTTP-related features like rendering html/json or redirecting.
 Everything else is probably your application code and there are gains in extracting it into a new class.
 
-#### Before
+## Before
 
 We’re using the nanoc tool for blogging in our Arkency blog. It serves us very well, so far. One place, where we extended it was a custom [Nanoc command](http://nanoc.ws/docs/basics/).
 
@@ -79,7 +79,7 @@ end
 
 It was serving us well for over 3 years without any change. I'm extracting it to a service object, mostly as an example to show how it would work. 
 
-#### After
+## After
 
 ````ruby
 require 'stringex'

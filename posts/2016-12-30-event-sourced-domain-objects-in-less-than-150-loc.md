@@ -24,7 +24,7 @@ You aren't gonna need it.
 
 <!-- more -->
 
-# Start with just a PORO object
+## Start with just a PORO object
 
 Let's use `Payment` as a sample here. The "story" is simple. Customer place an order.
 When an order is validated the payment is authorized. We do not just create it.
@@ -85,7 +85,7 @@ Successful payments could be then captured (what means asking payment gateway to
 
 Ok, so we have our business logic.
 
-# Introducing domain events
+## Introducing domain events
 
 First, we need to define our domain events.
 
@@ -176,11 +176,11 @@ end
 
 With a little help from [RailsEventStore](http://railseventstore.arkency.com) & [AggregateRoot](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) gems we have now fully functional event sourced `Payment` aggregate.
 
-# Plumbing
+## Plumbing
 
 `RailsEventStore` allows to read & store domain events. `AggregateRoot` is just a module to include in your aggregate root classes. It provides just 3 methods: `apply`, `load` & `store`. Check the [source code](https://github.com/RailsEventStore/rails_event_store/tree/master/aggregate_root) to understand how it works. It's quite simple.
 
-## How to make it work?
+### How to make it work?
 
 The typical lifecycle of that domain object is:
 
@@ -250,7 +250,7 @@ end
 event_store = RailsEventStore::Client.new(repository: RailsEventStore::InMemoryRepository.new)
 ```
 
-# Happy path
+## Happy path
 
 ```ruby
 random_id = SecureRandom.uuid
@@ -265,12 +265,12 @@ service.capture(transaction_id: random_id)
 
 Complete code (149 LOC) is available [here](https://gist.github.com/mpraglowski/e744d720e5340ec87aedc6e4c82dd86f).
 
-# Is it worth the effort?
+## Is it worth the effort?
 
 Of course, it is an additional effort. Of course, it requires more code (and probably even more as I have not shown read models here).
 Of course, it required a change in Your mindset.
 
-## But is it worth it?
+### But is it worth it?
 
 I've posted [Why use Event Sourcing](http://blog.arkency.com/2015/03/why-use-event-sourcing/) some time ago.
 
@@ -280,7 +280,7 @@ Avoiding impedance mismatch between object oriented and relational world & not h
 
 By using CQRS and read models (maybe not just a single one, polyglot data is a BIG win here) you could make your application more scalable, more available. Decoupling different parts of the system (bounded contexts) is also much easier.
 
-# Wants to learn more?
+## Want to learn more?
 
 This is a very basic example. There is much more to learn here, naming some only:
 

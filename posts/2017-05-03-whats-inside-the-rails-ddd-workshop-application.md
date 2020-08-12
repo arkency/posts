@@ -14,7 +14,7 @@ Many people have asked what's inside the app, so I have prepared a small sneak-p
 
 <!-- more -->
 
-# The UI
+## The UI
 
 Let's start with the UI to see the scope of the app.
 
@@ -43,7 +43,7 @@ This screen simulates the payment, to show how we can integrate with external AP
 
 The history view shows the events related to that order, which makes debugging easier, we can the whole history here.
 
-# The routes/controllers
+## The routes/controllers
 
 ```ruby
 
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 end
 ```
 
-# The domain
+## The domain
 
 Given that this app helps learning DDD, you could expect some interesting domain layer, right?
 
@@ -127,14 +127,14 @@ module Orders
     end
 ```
 
-# The CQRS/EventSourcing infra code
+## The CQRS/EventSourcing infra code
 
 The app is a nice example of a non-trivial code which is using the [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) ecosystem of tools.
 
-# The exercises
+## The exercises
 
 The code is hosted on GitLab. Once you get access there, you will also see a list of Issues. Each issue is actually an exercise to let you practice DDD, based on this app. Several of those exercises are what we expect you to do, during the workshops (with our support and help).
 
-# Summary
+## Summary
 
 I hope this blogpost answers some questions and can help you evaluate whether our [Rails DDD workshops](http://blog.arkency.com/ddd-training/) are of value to you.

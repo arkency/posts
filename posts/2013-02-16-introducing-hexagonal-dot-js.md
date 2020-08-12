@@ -14,7 +14,7 @@ There's an idea we were working on for more than one year till now. As backend d
 
 Our main inspiration was Alistair Cockburn's [Hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture). In short hexagonal.js is its JavaScript's implementation, but with some unusual solutions and additional philosophy. Let's focus on philosophy first, because it'll let you judge if you're still interested in this idea.
 
-# hexagonal.js philosophy
+## hexagonal.js philosophy
 
 1. Business logic is software's heart and have to be exposed properly.
 2. Business logic is pure: uses only objects that represents domain in domain-valid state.
@@ -25,7 +25,7 @@ Our main inspiration was Alistair Cockburn's [Hexagonal architecture](http://ali
 
 In this post I want to focus on client-side layer, because it is most interesting part. All snippets in this post are copied from hexagonal.js' [hello-world](https://github.com/hexagonaljs/hello-world) project.
 
-# Structure
+## Structure
 
 Architecture is build with:
 
@@ -38,7 +38,7 @@ Architecture is build with:
     2. Server-side
     3. WebSockets, LocalStorage etc.
 
-# Business logic
+## Business logic
 
 You're probably familiar with [use case](http://martinfowler.com/bliki/UseCases.html) term. If you have some experience with DCI (or figured it out different way) you probably know, that use cases can be represented as objects - and this is core idea.
 
@@ -62,7 +62,7 @@ class UseCase
 
 Our story is quite simple: we want to greet user that uses app - ask for his name and greet him using name. As you can see it uses only plain objects and don't care about booting, GUI or storage.
 
-# Adapters
+## Adapters
 
 This sample app has only one adapter, the most basic - GUI. Let's have a look at code of GUI for just first step of UseCase - askForName. ```GUI#showAskForName``` shows simple form and binds to click event of its confirm button. It has no idea about domain objects and doesn't contain any logic.
 
@@ -84,7 +84,7 @@ class Gui
     $("#name-input").focus()
 ```
 
-# Glue
+## Glue
 
 You probably wonder how GUI know what to present and how can it interact with our business logic. hexagonal.js uses Glue objects to glue those two layers:
 
@@ -113,7 +113,7 @@ After = (object, methodName, advice) ->
 
 So basically - it adds to original function additional behaviour. There are also ```Before``` and ```Around``` functions that let you prepend or surround original function with additional behaviour.
 
-# Booting
+## Booting
 
 To make it all run we have to implement some booting code, that'll build all required objects: domain, glue, gui and other adapters and start use case. Here's an example from hello-world app.
 
@@ -129,7 +129,7 @@ class App
 new App()
 ```
 
-# Conclusion
+## Conclusion
 
 I showed you some basics of [hexagonal.js](http://hexagonaljs.com) and now it's time for your action. If you're interested in this idea, please join our small community - we're on [Github](https://github.com/hexagonaljs), [freenode](irc://chat.freenode.net/hexagonal-js), [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/hexagonaljs) and [Twitter](https://twitter.com/hexagonaljs).
 

@@ -374,9 +374,7 @@ end
 
 ```
 
-
-
-# Was it worth it?
+## Was it worth it?
 
 That's an important question to ask. I wasted some time, right?
 

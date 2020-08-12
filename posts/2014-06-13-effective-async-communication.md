@@ -73,7 +73,7 @@ In case when we want to share screen (usually because of the code) we jump to Go
 
 A small (usually last) part of our company weekly meeting is dedicated to sharing knowledge. Everyone has a chance to express something interesting about what they learnt, did or failed at this week. You can hear **people success stories and their small, everyday failures**. It is our time to share the knowledge in cross-project manner. To have it flow even between people who don't cooperate together right now. We find it to be very valuable.
 
-# Standups and meetings
+## Standups and meetings
 
 Every company tries to balance the number of meetings (the lower the better) with knowledge flowing through the company (the more the better). And I won't lie to you that this is hard and I am pretty sure we don't have a silver bullet for that. But one of the things we found interesting after applying all those tools and techniques mentioned before is that **we don't have that much need for daily, sync standup in our projects**.
 

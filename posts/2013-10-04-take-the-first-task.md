@@ -44,21 +44,21 @@ visible for me. I do not care if you use _Pivotal_, _Redmine_ or _Trello_. I jus
 want to look at the top of the list and finish your most important task today.
 Get it done, deliver on production and forget about it.
 
-### Get more
+## Get more
 
 You can find out more in our book:
 _<%= landing_link() %>_
 or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 
-### In next episode
+## In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
 and what are the alternatives to hiring them.
 [Subscribe](<%= aar_newsletter_subscription_link %>)
 to be notified when it is out.
 
-### How about you?
+## How about you?
 
 **Is it immediately clear to you in your current project what you should be
 working on as a developer?** How long does it take to figure it out? Do you need to

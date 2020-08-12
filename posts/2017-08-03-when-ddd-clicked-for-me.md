@@ -80,7 +80,7 @@ In this case, I realized that I can refactor the payment process as:
 
     <%= img_fit("ddd-rails-ruby-saga-clicked/saga_diagram_fail_1.png") %>
 
-### Consequences
+## Consequences
 
 What does it do for your system design, how does it split the responsibilities?
 
@@ -91,6 +91,6 @@ What does it do for your system design, how does it split the responsibilities?
 * Saga orchestrates the process of keeping Payments and Orders in sync and compensates in the case of failures.
 
 
-### PS
+## PS
 
 Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.

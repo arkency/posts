@@ -18,7 +18,7 @@ Optimization has always been a tough topic. [Donald Knuth](https://www.youtube.c
 
 <!-- more -->
 
-# What won't be about
+## What won't be about
 
 Before I start, I'd like to precise what **won't** be mentioned in this article to give you a general overview about the overall content.
 
@@ -30,11 +30,11 @@ Before I start, I'd like to precise what **won't** be mentioned in this article 
 
 **A lot of useful links covering those topics are included in resources under this blogpost.** Not a lot left, huh?
 
-# Rationale
+## Rationale
 
 When I was preparing to this article I was thinking about something unique, what is not *mostly obvious*, especially for backend developers. We all know the server side quite well, but sometimes we don't have an opportunity to take care of client side - maybe because we have frontend developers in our team, maybe because we just don't want or like to do frontend at all, maybe because we only maintain server stuff and don't have any use cases on client side or for any other reason when we actually have some fear for touching a code that we are not experts in. A lot of us know how to configure workers, set proper HTTP headers, gzip and cache content and distribute it by CDN, but very few know about improving load processes for client side content, especially styles and scripts.
 
-# So what is this about?
+## So what is this about?
 
 In this blogpost I'll focus on the following things:
 
@@ -51,7 +51,7 @@ In this blogpost I'll focus on the following things:
 - `prerender`
 - `subresource`
 
-# JS
+## JS
 
 I'd like to focus on how we're loading scripts in our `html` pages. It's usually something like:
 
@@ -65,7 +65,7 @@ I'd like to focus on how we're loading scripts in our `html` pages. It's usually
 
 It's so called *normal execution*, which is **the default behavior** that pauses HTML parsing until script is executed. It means that when we have heavy-logic scripts, displaying page content will be significantly delayed. Hence it would be so obvious to mention that **all scripts should be included in the bottom of `<body>`**, just above the closing tag.
 
-## `defer`
+### `defer`
 
 ```html
 <script defer src="javascript.js" onload="init()"></script>
@@ -79,7 +79,7 @@ However, IE has slightly changed the meaning of `defer`. **Any code inside defer
 
 A positive effect of this attribute is that the **DOM will be available for your script**.
 
-## `async`
+### `async`
 
 ```html
 <script async src="javascript.js" onload="init()"></script>
@@ -89,7 +89,7 @@ A positive effect of this attribute is that the **DOM will be available for your
 
 Don’t care when the script will be available? Asynchronous is the best of both worlds: **HTML parsing may continue and the script will be executed as soon as it’s ready.** I’d recommend this for scripts such as Google Analytics.
 
-## When should I use what?
+### When should I use what?
 
 **Typically you want to use async where possible**, then defer, then no attribute. Here are some general rules to follow:
 
@@ -103,7 +103,7 @@ The difference between `async` and `defer` centers around when the script is exe
 
 **The truth is that if you write your JavaScript effectively, you'll use the `async` attribute to 90% of your `script` elements.**
 
-## Browser compatibility
+### Browser compatibility
 
 > In older browsers that don't support `async` attribute, parser-inserted scripts block the parser; script-inserted scripts execute asynchronously in IE and WebKit, but synchronously in Opera and pre-4.0 Firefox. In Firefox 4.0, the async DOM property defaults to true for script-created scripts, so the default behavior matches the behavior of IE and WebKit. To request script-inserted external scripts be executed in the insertion order in browsers where the document.createElement("script").async evaluates to true (such as Firefox 4.0), set .async=false on the scripts you want to maintain order. Never call document.write() from an async script. In Gecko 1.9.2, calling document.write() has an unpredictable effect. In Gecko 2.0, calling document.write() from an async script has no effect (other than printing a warning to the error console).
 
@@ -117,11 +117,11 @@ The difference between `async` and `defer` centers around when the script is exe
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
 - http://www.quirksmode.org/js/placejs.html
 
-# CSS
+## CSS
 
 While loading JavaScripts in different ways is pretty *natural*, loading CSS asynchronously and improving load behavior, time and order only in HTML code may be surprisingly. I'd like to present some of attributes that are worth to be included in `<link>` tags to improve performance of you website.
 
-## `dns-prefetch`
+### `dns-prefetch`
 
 ```html
 <link rel="dns-prefetch" href="https://api.twitter.com" />
@@ -135,7 +135,7 @@ This is a feature by which browser proactively performs domain name resolution o
 
 Prefetching is performed in the background, so that the DNS is likely to already have been resolved by the time the referenced items are actually needed.  This reduces latency when, for example, the user actually clicks a link.
 
-## `preconnect`
+### `preconnect`
 
 `preconnect` is used to indicate origins from which resources will be fetched.
 
@@ -147,7 +147,7 @@ You can use `preconnect` to pre-open a new TCP connection so the browser can do 
 
 > Initiating an early connection, which includes the DNS lookup, TCP handshake, and optional TLS negotiation, allows the user agent to mask the high costs of connection establishment latency.
 
-## `prefetch`
+### `prefetch`
 
 ```html
 <!-- full page -->
@@ -166,7 +166,7 @@ Link prefetching is a browser mechanism, which utilizes browser idle time to dow
 
 Keep in mind that prefetching does work across domains, including pulling cookies from those sites.
 
-## `prerender`
+### `prerender`
 
 ```html
 <link rel="prerender" href="http://example.org/index.html">
@@ -176,7 +176,7 @@ According to [the documentation](https://developers.google.com/chrome/whitepaper
 
 Prerendering extends the concept of prefetching. Instead of just downloading the top-level resource, it does all of the work necessary to show the page to the user without actually showing it until the user clicks. Prerendering behaves similarly to if a user middle-clicked on a link on a page (opening it in a background tab) and then later switched to that tab. However, in prerendering, that *background tab* is totally hidden from the user, and when the user clicks, its contents are seamlessly swapped into the same tab the user was viewing. From the user’s perspective, the page simply loads much faster than before.
 
-## `subresource`
+### `subresource`
 
 ```html
 <link rel=subresource href="critical/app.js">
@@ -185,7 +185,7 @@ Prerendering extends the concept of prefetching. Instead of just downloading the
 
 `subresource` hint identifies critical resources required for current page load. These resources should be downloaded as early as possible, they are necessary for further page load so they must be fetched immediately.
 
-## Browser support
+### Browser support
 
 - Using prefetching is possible in both Firefox and Chrome, and other browsers will probably implement it very soon.
 - If you use prefetching on your website and the visitor browser do not support prefetching, nothing will happen. It is safe to use prefetching as browsers will either implement it, or completely ignore it.
@@ -203,9 +203,9 @@ Prerendering extends the concept of prefetching. Instead of just downloading the
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ
 - https://www.igvita.com/2012/06/04/chrome-networking-dns-prefetch-and-tcp-preconnect/
 
-# Bonus
+## Bonus
 
-## GA
+### GA
 
 GoogleAnalytics provides asynchronous syntax for loading tracking script.
 
@@ -229,15 +229,15 @@ The snippet below represents the minimum configuration needed to track a page as
 
 You can read about it in the [official documentation](https://developers.google.com/analytics/devguides/collection/gajs/).
 
-## PageSpeed or ySlow
+### PageSpeed or ySlow
 
 There are some tools as extensions to our browsers for measuring load times and suggest some optimization improvements for them. Chrome offers [PageSpeed](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli), which I find a great tool and in Firefox you can use [ySlow](https://addons.mozilla.org/pl/firefox/addon/yslow/), which is quite nice web page performance analyzer.
 
-# *TL;DR*
+## *TL;DR*
 
 If you need just some short description you may check awesome slides http://bit.ly/preconnect-prefetch-prerender prepared by [Ilya Grigorik](https://www.igvita.com/), web performance guru at Google.
 
-# Resources
+## Resources
 
 - https://kinsta.com/learn/page-speed/
 - https://medium.com/@luisvieira_gmr/html5-prefetch-1e54f6dda15d

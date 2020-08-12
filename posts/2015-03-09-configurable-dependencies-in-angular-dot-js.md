@@ -36,7 +36,7 @@ In my recent work I needed to learn Angular from scratch. **After learning about
 * "Mock" implementations of your adapters for testing - of course, you can still use a `$httpProvider` or other built-in solutions to stub your dependencies on frontend. But when working with less popular integrations or just to remain in full control of this code you may provide your own solution and change it in test environment's config, using `ENV` vars or whatever other solution you like.
 * Per-client implementations - this is often the case with apps living on production. You may provide new version of the API of a certain service for new users, but your super-important old client have a big coupling of the old version of an API - with configurable dependencies you can create an adapter for a new version of API without touching the old one and substitute adapters for whatever clients you like.
 
-## How:
+## How
 
 First of all, create your Angular module:
 
@@ -143,7 +143,7 @@ myApp.factory('ProductsRepository', [
 ])
 ```
 
-## Conclusion:
+## Conclusion
 
 Dependency injection is a powerful technique to make working with your code much easier. I'm really happy that Angular supports this way of doing things out of the box - I can't wait to see more opportunities of wise usage of this framework features. **With such small amount of code you can achieve great gains now.**
 

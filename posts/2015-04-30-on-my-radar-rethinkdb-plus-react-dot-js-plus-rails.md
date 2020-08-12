@@ -40,7 +40,7 @@ If you want to learn the basics of RethinkDB I highly recommend their
 The installation process with provided OS X and Ubuntu packages was
 very simple for me as well.
 
-### Building blocks
+## Building blocks
 
 We start by adding `puma`, `nobrainer` and `react-rails` to our Gemfile.
 
@@ -53,7 +53,7 @@ to ActiveRecord.
 And finally [react-rails](https://github.com/reactjs/react-rails) is fastest
 way to start using react in rails environment.
 
-### Starting point
+## Starting point
 
 If we go with `rails g scaffold Article title:string text:string` we will have a basic
 structure generated. But it will use `NoBrainer` instead of `ActiveRecord`. Our
@@ -73,7 +73,7 @@ You can find out more about integrating [RethinkDB with Rails](http://rethinkdb.
 in their own documentation. We are gonna leave the entire write side untouched. But we will
 fiddle with the read part. How we display the document.
 
-### React component
+## React component
 
 Instead of using `html & erb` to display an article, we will play with a React component.
 When written with CoffeeScript it looks similar to HAML. Of course you could go with
@@ -96,7 +96,7 @@ window.ShowArticle = React.createClass
 
 `@props` are the properties passed to the component when rendered.
 
-### First render
+## First render
 
 We are going to use `react_component` helper that comes from the `react-rails` gem.
 It makes easier to start react components that will run when a browser fetches
@@ -125,7 +125,7 @@ interactions with it. And all that stuff that your UX is responsible for.
 `data: {reactive: start_show_path}` is a path for URL that will be used for streaming
 changes. Let's dive into it.
 
-### SSE in Browser
+## SSE in Browser
 
 So we've got the first render covered. But we need to make this component auto updates
 when the data changes. We are going to use [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
@@ -152,7 +152,7 @@ We look for `data-reactive` elements and make a connection
 to the URL. On event we ask react to re-render a new version of the
 component in the same place.
 
-### SSE in Rails
+## SSE in Rails
 
 This is just a tiny wrapper for formatting data according to SSE spec.
 

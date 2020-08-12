@@ -37,7 +37,7 @@ To use our gem’s functionality you have to create an instance of `RailsEventSt
  client = RailsEventStore::Client.new
 ```
 
-#### Creating events
+### Creating events
 
 Creating events is very simple. At the beginning you have to define your own event model extending `RailsEventStore::Event` class.
 
@@ -72,7 +72,7 @@ expected_version = "850c347f-423a-4158-a5ce-b885396c5b73"
  client.publish_event(event, stream_name, expected_version)
 ```
 
-#### Reading events
+### Reading events
 
 You can fetch events from database in a several ways. In any case, loaded events are sorted ascending.
 
@@ -98,7 +98,7 @@ client.read_all_events(stream_name)
 client.read_all_streams
 ```
 
-#### Deleting stream
+### Deleting stream
 
 You can permanently delete all events from a specific stream. Use this wisely.
 
@@ -107,7 +107,7 @@ stream_name = "product_1"
 client.delete_stream(stream_name)
 ```
 
-#### Subscription mechanism
+### Subscription mechanism
 
 Using our library you can synchronously listen on specific events. The only requirement is that the subscriber class has to implement the 'handle_event(event)' method. Check out the following example.
 

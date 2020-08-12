@@ -23,7 +23,7 @@ them to particular developers at the beginning of an iteration.
 
 <!-- more -->
 
-### You do not know how long given task is going to take
+## You do not know how long given task is going to take
 
 Let's start with an assumption. You want your developers to be doing **the most
 important task for the project that can be currently done**. Usually this is one
@@ -49,7 +49,7 @@ You can simply avoid these kind of problems by leaving tasks unassigned and
 prioritized. Let your developer start the most important task when they are
 free working on anything else.
 
-### You might not know or be sure about the availability of your developers
+## You might not know or be sure about the availability of your developers
 
 If one of your developers gets sick or needs a little break your most
 important tasks might be damaged. If you look at the original estimation
@@ -70,7 +70,7 @@ is limited and adapt often and quickly. Leave unassigned tasks to be done and le
 do them. If someone is not working today, someone else can simply do the task
 instead.
 
-### It all comes down to managing risk
+## It all comes down to managing risk
 
 Small, unassigned tasks are your tools for managing risk on daily basis.
 The problems are constantly attacking our projects from all sides. People
@@ -88,7 +88,7 @@ Also it lowers the amount of _micrmanagement_ and attention that the project
 needs. Instead of daily assigning tasks to people you just need to set their
 prorities which you do for everything anyway.
 
-### Find out more
+## Find out more
 
 There is more beyond what we wrote in this article. Find out in our
 _<%= landing_link() %>_ ebook
@@ -97,13 +97,13 @@ with tips and excerpts from the book similar in form to what you just read.
 The newsletter will also containt exclusive content from the book that is
 not published on the blog.
 
-### In next episode
+## In next episode
 
 The next blog post will be about _Collective Ownership_ and what it has in
 common with the techniques that we already described. [Subscribe](<%= aar_newsletter_subscription_link %>)
 to make sure you do not miss it.
 
-### What is your opinion
+## What is your opinion
 
 Does your company practice these techniques? How is that working for you?
 **Share your opinion in comments or on [twitter](https://twitter.com/intent/tweet?source=webclient&text=I+just+read+newest+%40arkency+blogpost+and+completely+disagree+%3AP)**.

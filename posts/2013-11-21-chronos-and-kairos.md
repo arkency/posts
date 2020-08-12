@@ -53,7 +53,7 @@ letting it pass.
 Read more about improving your current project in our book:
 **[Async Remote](http://blog.arkency.com/async-remote/) ebook**
 
-##### Links
+## Links
 
 * http://www.examiner.com/article/time-kairos-or-chronos
 * http://wordpress.crossroadefc.org/pastors-ponderings/time-kronos-and-kairos/

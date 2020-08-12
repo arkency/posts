@@ -20,7 +20,7 @@ moment I haven't thought of the object in such way.
 
 <!-- more -->
 
-### Before
+## Before
 
 The code before refactoring looked similar to this:
 
@@ -337,7 +337,7 @@ So it is a performance optimization inside the framwork's critical paths. Rememb
 that optimizing exceptions in you web application [most likely won't have any
 meaningful impact](https://gist.github.com/paneq/a643b9a3cc694ba3eb6e).
 
-### P.S. Looking for a way to get your first Ruby job?
+### Looking for a way to get your first Ruby job?
 
 Check out our [Junior Rails Developer](/junior-rails-developer/) course.
 

@@ -22,7 +22,7 @@ This blogpost is an attempt to put all the resources in one place.
 
 <!-- more -->
 
-# Blogposts
+## Blogposts
 
 - [Integrating jQuery Chosen with Webpack using imports-loader](http://reactkungfu.com/2015/10/integrating-jquery-chosen-with-webpack-using-imports-loader/)
 - [Upgrading to React 0.14 in practice](http://reactkungfu.com/2015/10/upgrading-to-react-014/)
@@ -53,11 +53,11 @@ This blogpost is an attempt to put all the resources in one place.
 - [React.js and Google Charts](http://blog.arkency.com/2014/09/react-dot-js-and-google-charts/)
 - [How we structure our front-end Rails apps with React.js](http://blog.arkency.com/2014/08/how-we-structure-our-front-end-rails-apps-with-react-dot-js/)
 
-# React.js koans
+## React.js koans
 
 [React.js koans](https://github.com/arkency/reactjs_koans)
 
-# YouTube videos
+## YouTube videos
 
 - [RethinkDB + ReactJS + Rails Live - Proof of concept](https://www.youtube.com/watch?v=P9Upn194b9M)
 - [React.js koans](https://www.youtube.com/watch?v=i6iVyLhMFco)
@@ -67,7 +67,7 @@ This blogpost is an attempt to put all the resources in one place.
 - [React.js koans - solving the 1st exercise, the basics of React components](https://www.youtube.com/watch?v=wSC2Jqy3xLU)
 - [React.js koans - solving the 2nd exercise, the list of parties!](https://www.youtube.com/watch?v=2iuVq17YQxM)
 
-# Repositories
+## Repositories
 
 - [React Flux Alt immutable TodoList](https://github.com/arkency/react_flux_alt_immutable_todolist)
 - [React.js testing approaches](https://github.com/arkency/react-testing-approaches)
@@ -75,9 +75,9 @@ This blogpost is an attempt to put all the resources in one place.
 - [Rails scaffold to React.js](https://github.com/arkency/scaffold-to-react)
 - [RethinkDB + React.js](https://github.com/arkency/rethinkdb-reactjs)
 
-# Books
+## Books
 
-## Rails meets React.js
+### Rails meets React.js
 
 <a href="/rails-react"><img style="display:block; margin: 0 auto;" src="<%= src_fit("react-for-rails/cover.png") %>" width="40%" /></a>
 
@@ -96,7 +96,7 @@ Animations with React.js is such a great topic that we decided to record and inc
 
 <a href="https://bit.ly/buy-rails-meets-reactjs">Buy Rails meets React.js</a>
 
-## React.js by example
+### React.js by example
 
 We love working with React.js so much, that we also published another book on this topic - "React.js by Example".
 
@@ -114,7 +114,7 @@ The examples are written in EcmaScript2015 and use webpack.
 
 <a href="https://bit.ly/buy-reactjs-by-example">Buy React.js by Example</a>
 
-## Which of our React.js books to choose?
+### Which of our React.js books to choose?
 
 Those books are very different. They teach you React.js in different ways. While the "Rails meets React.js" book is more Rails focused, it focuses on developing one component from a small one to a very complex widget.
 

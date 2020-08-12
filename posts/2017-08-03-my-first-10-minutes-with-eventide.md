@@ -21,7 +21,7 @@ Sounds good to me!
 
 <!-- more -->
 
-### File structure
+## File structure
 
 My first thought was that there is quite interesting structure of directories:
 
@@ -111,7 +111,7 @@ end
 
 I could not easily navigate to an interesting place in RubyMine so I just started poking around.
 
-### Commands
+## Commands
 
 The first place that I felt I am on a known ground was around files in `lib/account_component/messages/commands/` which include commands such as:
 
@@ -135,7 +135,7 @@ end
 
 commands are for telling services/handlers what to do. They're just data structures. That's important. So we have our input. Let's see where it is coming into.
 
-### Handlers
+## Handlers
 
 In `lib/account_component/handlers/commands.rb` and `lib/account_component/handlers/commands/transactions.rb` you can find handlers and the logic for processing those commands. I won't show the whole code. It's pretty interesting. Just the most important snippets.
 
@@ -197,7 +197,7 @@ opened.processed_time = time
 
 But at that point I could not easily navigate to `follow` method to check its implementation. I will probably find out later how it works.
 
-### Events
+## Events
 
 Anyway `Opened` is a domain event. Let's see it:
 
@@ -223,7 +223,7 @@ end
 
 Classic thing if you already learned about event sourcing basics.
 
-### Handlers again
+## Handlers again
 
 Here is an interesting thing:
 
@@ -248,7 +248,7 @@ Here is an interesting thing:
   end
 ```
 
-### Replies
+## Replies
 
 Events and commands are messages in EventIDE. Apparently there is also one more class of messages: Replies.
 
@@ -270,7 +270,7 @@ module AccountComponent
 
 I haven't yet figured out what Replies are used for. It seems interesting.
 
-### Model
+## Model
 
 I wonder where is the logic for changing account balance or checking if the funds are sufficient for withdrawal. Let's find out.
 
@@ -316,7 +316,7 @@ module AccountComponent
 end
 ```
 
-### Projection
+## Projection
 
 It's interesting that even though the model is event sourced you don't see it when looking at it. Let's find the place responsible for rebuilding model state based on domain events.
 
@@ -361,7 +361,7 @@ module AccountComponent
     # ...
 ```
 
-### File structure
+## File structure
 
 So far we haven't looked at these files in `controlers` directory. I wonder what's there.
 
@@ -392,7 +392,7 @@ So far we haven't looked at these files in `controlers` directory. I wonder what
 │   ├── controls.rb
 ```
 
-### Controls
+## Controls
 
 ```ruby
 lib/account_component/controls/commands/close.rb
@@ -463,6 +463,6 @@ module AccountComponent
 
 It looks to me like these are helpers that help you build exemplary data, maybe test data. Maybe some kind of builders.
 
-### PS
+## PS
 
 Subscribe to our [newsletter](http://arkency.com/newsletter) to always receive best discounts and free Ruby and Rails lessons every week.

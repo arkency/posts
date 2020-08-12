@@ -18,17 +18,17 @@ As for writing - **it’s all about sending your message**. It’s only a tiny a
 
 Let me present some simple techniques to improve your English for the purpose of blogging.
 
-#### Use an editor which highlights typos
+## Use an editor which highlights typos
 
 For code-less blogging, I use iaWriter. It has a built-in dictionary checker which is good enough. This usually means I don’t need to do a special round of typo checks.
 
-#### Special round for a/the checks
+## Special round for a/the checks
 
 When you are about to publish the blog post, make a special round of a/the check. During this round focus on all of the potential a/the mistakes. If you’re like me - you miss some of those ofen.
 
 This is probably the easiest thing to do to make your English look more like it’s “proper”.
 
-#### Refactor to short sentences
+## Refactor to short sentences
 
 **When in doubt, write short sentences**.
 
@@ -42,7 +42,7 @@ I know this temptation to write a very long sentence. A very long sentence often
 
 This technique is simple - grab the subject of the sentence. Finish the first part with a dot. Put the subject at the beginning of the next sentence. It’s a duplication. We, as programmers don’t like duplications. This kind of duplication can make miracles, though. It’s actually more than denormalisation than duplication.
 
-#### Summary
+## Summary
 
 There’s many techniques for writing a better English. I’ve presented just some of them here. I chose the ones which may make the biggest impact at the lowest cost.
 

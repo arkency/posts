@@ -15,7 +15,7 @@ Here are **4 mental tips** that I use to overcome my objections.
 
 <!-- more -->
 
-#### Start enough times
+## Start enough times
 
 Don't think about finishing a project. About the end of it. You will get there.
 **Just start working**. Because this is not how things get done most of the time:
@@ -31,7 +31,7 @@ eventually finish the task. So notice how you [perceive time](http://blog.arkenc
 and just start working on the next task. Without the promise or expectation that you will finish
 anything in current session.
 
-#### Accept negative feelings and start working
+## Accept negative feelings and start working
 
 Awful lot of people get stressed about their work before it even begins. Often in
 the mornings, during commuting, before you even open the door of your office.
@@ -54,7 +54,7 @@ be pretty and likeable_. Accept it, confirm it, don't deny it. But, **start work
 With the negative feelings, alongside with them. The only thing that makes them fade
 away is progress.
 
-#### Love the grind
+## Love the grind
 
 _aka_ [*stack the bricks*](https://unicornfree.com/stacking-the-bricks). Your success or
 failure don't depend on one big thing. Your success or failure is compound of thousands
@@ -73,7 +73,7 @@ If you are working on things that matter to you, that you care about, you can **
 to love the grind**. Why are you doing this blogpost, this side-project? Do you remember?
 Is that important to you?
 
-#### Detach yourself from results
+## Detach yourself from results
 
 More than one year ago I wrote a [rails related blogpost](/2013/12/rails4-preloading/) that is
 still visited by more than 4K developers every month. That's a lot in my world. It set the bar
@@ -103,7 +103,7 @@ readers won't get a retweet, comment or upvote**. I don't jump quickly myself in
 _thank you_ for every blogger that helped me today finish my task. Perfectly normal.
 But the appreciation is there.
 
-#### Now
+## Now
 
 Few weeks ago in a shopping-center I got a wristband from
 [anti-cancer group](http://fundacjarosa.pl/rkbndefenders/) for filling out a survey.

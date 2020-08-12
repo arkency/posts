@@ -143,7 +143,7 @@ RSpec.configure do |config|
 end
 ```
 
-## verbose
+## Verbosity
 
 The nice thing about capybara 1.4 is that it is very verbose for the external resources that
 you haven't specify allow/disallow policy about.
@@ -162,7 +162,7 @@ something. Unless of course you went with `page.driver.block_unknown_urls`
 which I recommend if your project can work with it. For all other cases
 there is `allow_url`.
 
-## summary
+## Summary
 
 * Upgrade to latest `capybara-webkit`
 * Use `page.driver.block_unknown_urls`

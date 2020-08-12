@@ -54,9 +54,8 @@ $('[data-app=appFromAppDirectory]').each ->
 
 * **glue**       - [hexagonal.js](http://hexagonaljs.com/) glue
 
-Further reading
-==
+## Further reading
 
-**Hexagonal.js** - implementation of clean hexagonal architecture - http://hexagonaljs.com/
+* **Hexagonal.js** - implementation of clean hexagonal architecture - http://hexagonaljs.com/
 
-**RxJS** - we use reactive data streams to communicate between apps - https://github.com/Reactive-Extensions/RxJS
+* **RxJS** - we use reactive data streams to communicate between apps - https://github.com/Reactive-Extensions/RxJS

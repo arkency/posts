@@ -23,7 +23,7 @@ The answer is: **no**. Unfortunately, MySQL's `utf8` character set allows to sto
 
 <!-- more -->
 
-# Problems with `utf8` character set
+## Problems with `utf8` character set
 
 Look at this example:
 
@@ -53,7 +53,7 @@ mysql> SELECT message FROM messages;
 
 As you can see, using `utf8` character set is not enough. You are getting a warning and your data is truncated at the first 4-bytes unicode character.
 
-# `utf8mb4` to the rescue
+## `utf8mb4` to the rescue
 
 [MySQL 5.5.3](https://dev.mysql.com/doc/relnotes/mysql/5.5/en/news-5-5-3.html) introduced new character set - `utf8mb4` that maps to _real_ UTF-8 and fully support all Unicode characters, including 4-bytes emoji. It is fully backward compatible, so there should be no data loss during migrating your database. You just need to convert your tables to the new character set and change your connection's settings. You can do it in migration:
 
@@ -81,7 +81,7 @@ production:
 
 Now you are ready to handle emoji 👍
 
-# Rails, why you don't like `utf8mb4`?
+## Rails, why you don't like `utf8mb4`?
 
 After changing character set, you may experience the `Mysql2::Error: Specified key was too long; max key length is 767 bytes: CREATE UNIQUE INDEX` error when performing `rake db:migrate` task. It is related to the InnoDB maximum index length described in previous section. There is [a fix](https://github.com/rails/rails/commit/8744632fb5649cf26cdcd1518a3554ece95a401b) for `schema_migrations` table in Rails 4+, however you still can experience this error on tables created by yourself. As far as I am concerned this is still not fixed in Rails 4.2. You can resolve this issue in two ways:
 

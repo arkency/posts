@@ -27,22 +27,22 @@ Once the goals are accomplished, this blogpost will be published, linked from Ar
  
 <!-- more -->
 
-# Convention - the definitions
+## Convention - the definitions
 
-# The old days of XML Configuration hell
+## The old days of XML Configuration hell
 
-# Examples
+## Examples
 
 * copying controller instance variables into views 
 * automatic mapping from column names to ActiveRecord attributes
 
-# How the conventions help
+## How the conventions help
 
-# Coupling - examples
+## Coupling - examples
 
-# Convention over Configration leading to a Technical debt
+## Convention over Configration leading to a Technical debt
 
-# Architecture over Convention
+## Architecture over Convention
 
-# Alternative solutions to typical Rails conventions
+## Alternative solutions to typical Rails conventions
 

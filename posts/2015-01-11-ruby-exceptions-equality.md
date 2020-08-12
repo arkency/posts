@@ -32,7 +32,7 @@ Let's see a comparison case by case. But first, exception definition:
   RefundNotAllowed = Class.new(StandardError)
 ```
 
-#### Does two instances of same exception equal?
+## Does two instances of same exception equal?
 
 ```ruby
 RefundNotAllowed.new == RefundNotAllowed.new
@@ -42,7 +42,7 @@ RefundNotAllowed.new == RefundNotAllowed.new
 Yes. That was our first test and it behaved according to our intution. So why did our
 test fail if everything told us that we are comparing identical exceptions.
 
-#### What about message?
+## What about message?
 
 ```ruby
 RefundNotAllowed.new("one message") == RefundNotAllowed.new("another")
@@ -56,7 +56,7 @@ Ok, so apparently the message must be identical as well. But in our case the
 message was equal and our exceptions were still non-equal. Bummer. Let's think
 about one more aspect of exceptions: backtrace.
 
-#### What about backtrace?
+## What about backtrace?
 
 The backtrace of unthrown exception is...
 
@@ -106,7 +106,7 @@ exception_one == exception_two    # => false
 Apparently for two exceptions to be equal they must have identical
 backtrace. Even 1 line of difference makes them, well... , different.
 
-#### What does the doc say?
+## What does the doc say?
 
 [ruby `Exception#==` documentation](http://www.ruby-doc.org/core-2.2.0/Exception.html#method-i-3D-3D) says:
 _If `obj` is not an Exception, returns false. Otherwise, returns true if `exc` and `obj` share same
@@ -129,7 +129,7 @@ process collected them for you, then you are on your own and this might not
 be good enough and it won't work. You might wanna just compare manually
 exception class and message.
 
-#### What about custom exceptions with additional data?
+## What about custom exceptions with additional data?
 
 Because they inherit from `Exception` (through `StandardError`) they share identical
 logic as described in documentation.
@@ -166,7 +166,7 @@ RefundNotAllowed.new(1) == RefundNotAllowed.new(2) # false
 RefundNotAllowed.new(2) == RefundNotAllowed.new(2) # true
 ```
 
-### My opinion
+## My opinion
 
 I am personally not convinced about the usability of including backtrace in
 exception equality logic because in reality one would almost never create

@@ -20,7 +20,7 @@ hacking. You can see the results below.
 
 <!-- more -->
 
-### The C Preprocessor
+## The C Preprocessor
 
 The designers of C language had to solve a similar problem, so they came up
 with a preprocessor that understands directives that allow concatenating
@@ -33,7 +33,7 @@ can be used to invoke the preprocessor.
 Its key feature here is that it can be used with any programming language, not
 necessarily C, C++ or Objective-C.
 
-### Let's give it a try
+## Let's give it a try
 
 Say I have two files, one called `deep_thought.coffee` and the other one called
 `answer.coffee`. They're listed below.
@@ -78,7 +78,7 @@ $ cpp -P deep_thought.coffee | coffee -s -p
 As you can see from the above, there is no magic and even old UNIX tools can
 get this work done properly.
 
-### Is it any good in practice?
+## Is it any good in practice?
 
 The short answer is yes. To prove this I resurrected the [hexagonal.js
 implementation of TodoMVC](https://github.com/hexagonaljs/todomvc) and replaced
@@ -110,7 +110,7 @@ commit](https://github.com/mlen/todomvc/commit/69c3c8495f3c07d40bbeb46ab5a4460ce
 To compile it, just run `make` from the command line and given you have
 `coffee` and `cpp` command line utilities installed, it just works!
 
-### But is it faster?
+## But is it faster?
 
 To check it I modified the `Makefile` to run Sprockets and performed simple
 benchmark. I ran both versions in the clean environment 50 times and took an
@@ -125,7 +125,7 @@ more work than is needed to just compile few CoffeeScript files.
 You can easily perform similar benchmark using the `time` command if you don't
 believe the results.
 
-### When not to use it
+## When not to use it
 
 You may have noticed some differences in the output file produced by the `cpp`
 solution. There is only one wrapping anonymous function on the top level. This
@@ -145,7 +145,7 @@ The performance may be also a problem, even though the benchmarks show that
 project, Sprockets recompile only that file, whereas in this solution all
 imported files need to be recompiled.
 
-### Conclusion
+## Conclusion
 
 The problem with Sprockets is that they are responsible for doing lot of tasks.
 They have to manage the dependencies, run the compiler and then concatenate all

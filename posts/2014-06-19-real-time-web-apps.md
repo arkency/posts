@@ -23,7 +23,7 @@ Nowadays, more and more often we'd like to have a **real-time experience** in ou
 So far, to simulate this real-time behavior, we had to do some work-arounds such as a [interval-timeout JS pattern](http://stackoverflow.com/questions/3138756/jquery-repeat-function-every-60-seconds) or more sophisticated, but confusing [long pooling design concept](http://stackoverflow.com/questions/15724055/long-polling-really).
 Luckily, things have changed. In the age of modern browsers, HTML5 API, smarter users and skilled developers we have (and _should_ use) great tools to build real real-time web applications.
 
-## Let's start from WebSockets.
+## Let's start from WebSockets
 WebSockets establish **persistent connection** between user's browser and a server. Both of them can use it any time to **send messages** to each other. Every side of such connection listens on it to immediately receive incoming data. These messages can be primitives or even binary data. WebSockets allow to **cross-domain communication** so developers should pay attention on security issues on their own, because we aren't bound to same-origin policy anymore and can communicate across domains.
 
 There's no special WebSocket opening method. After created, browser immediately tries to open a new connection. One of WebSocket property is `readyState` which is initialized with `WebSocket.CONNECTING`. Once connected, state changes to `WebSocket.OPEN`.
@@ -142,7 +142,7 @@ using EM.
 
 TLDR: EM for fun? Yes. EM in production? You better consider twice your options.
 
-## Now move on to Server-Sent Events.
+## Now move on to Server-Sent Events
 
 Server-Sent Events intended for **streaming text-based event data from server directly to client**. There are two requirements to use this mechanism: browser interface for **EventSource** and server `'text/event-stream'` content type. SSE are used to **push notifications** into your web application, which makes it more **interactive with user** and provides **dynamic content** at the time it appears.
 
@@ -187,31 +187,29 @@ end
   </figure>
 </p>
 
-### Basic differences:
+## Basic differences
 
-#### [WebSockets](http://caniuse.com/websockets)
+### [WebSockets](http://caniuse.com/websockets)
 - Supported in all major modern browsers (IE+10)
 - Two-directional communication
 - Siutable for chats or online gaming
 - Based on custom protocol (`ws://` and encrypted `wss://`)
 
-#### [Server-Send Events](http://caniuse.com/eventsource)
+### [Server-sent Events](http://caniuse.com/eventsource)
 - Require [Polyfill](https://github.com/remy/polyfills/blob/master/EventSource.js) as they are still _candidate recommendation_ and have no IE support
 - One-way messaging (server -> browser)
 - Best for push notifications and status updates
 - Leverages HTTP protocol
 
-### Similarities:
+## Similarities
 - Both can provide real-time web application experience in area of notifications and updates
 - JavaScript API
 - Both are pretty new and may not be supported in every environment 
 
-##### References:
+## References and resources
 1. https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events
 2. https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications
 3. http://dev.w3.org/html5/eventsource/
 4. http://dev.w3.org/html5/websockets/
-
-##### Resources:
-1. http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/
-2. http://html5doctor.com/methods-of-communication/
+5. http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/
+6. http://html5doctor.com/methods-of-communication/

@@ -22,12 +22,12 @@ I am working in Arkency for 2+ months now and building a tender documentation sy
 
 <!-- more -->
 
-# System description
+## System description
 
 The app has users with its tender projects. Each project has many named lists with posts. The post structure is defined dynamically by the user in project properties. The project property contains its own name and type. When the new project is created it has default properties. For example: ProductId(integer), ElementName(string), Quantity(float) Unit(string), PricePerUnit(price). User can change and remove default properties or add custom ones (i.e. Color(string)). Thus all project posts on the lists have dynamic structure defined by the user.
 
 
-# The first solution
+## The first solution
 
 I was wondering the post structure implementation. In my first attempt I had two tables. One for posts and one for its values (fields) associated with properties. The database schema looked as follows:
 
@@ -52,7 +52,7 @@ end
 
 That implementation was not the best one. Getting data required many SQL queries to the database. There were problems with performance while importing posts from large CSV files. Also large posts lists were displayed quite slow.
 
-# The second attempt
+## The second attempt
 
 I have removed the values table and I have changed the posts table definition as follows:
 
@@ -66,15 +66,15 @@ end
 
 Values are now hashes serialized in JSON into the values column in the posts table.
 
-# The scary solution
+## The scary solution
 
 In the typical Rails application with ActiveRecord models placed all around that kind of change involve many other changes in the application code. When the app has some code that solution is scary :(
 
 But I was lucky :) At that time I was reading the [Fearless Refactoring Book by Andrzej Krzywda](http://rails-refactoring.com/) and that book inspired me to prepare data access layer as a set of repositories. I have tried to cover all ActiveRecord objects with repositories and entity objects. Thanks to that approach I could change database structure without pain. The changes was only needed in database schema and in PostRepo class. All application logic code stays untouched.
 
-# The source code
+## The source code
 
-## ActiveRecords
+### ActiveRecords
 
 Placed in `app/models`. Used only by repositories to access the database.
 
@@ -94,7 +94,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-## Entities
+### Entities
 
 Placed in `app/entities`. Entities are simple PORO objects with Virtus included. These objects are the smallest system building blocks. The repositories use these objects as return values and as input parameters to persist them in the database.
 
@@ -126,7 +126,7 @@ class PostEntity
 end
 ```
 
-## Post repository
+### Post repository
 
 Placed in `app/repos/post_repo.rb`. PostRepo is always for single list only. The API is quite small:
 
@@ -209,7 +209,7 @@ class PostRepo
 end
 ```
 
-# Sample console session
+## Sample console session
 
 ```ruby
 # Setup

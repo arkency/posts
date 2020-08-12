@@ -11,7 +11,7 @@ Arkency became known for our DDD efforts in the Rails community. DDD together wi
 
 <!-- more -->
 
-# Where we started
+## Where we started
 
 The journey with DDD at Arkency started probably around ~6 years ago, when we started using technical patterns like service objects (in DDD we would call them application services), adapters and repositories. This phase resulted in writing the ["Fearless Refactoring: Rails Controllers"](http://rails-refactoring.com) ebook which is all about those patterns.
 
@@ -34,18 +34,18 @@ This was the time, when we thought we could help other people with existing Rail
 - [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) - aka RES
 
 
-## HttpEventStore (aka HES)
+### HttpEventStore (aka HES)
 
 With HttpEventStore our vision was to make it easy to use the so-called Greg's Event Store (or GetEventStore, or GES) from within a Ruby or Rails app.
 
 We have released some code and it gained traction. Some people started using it in their production apps, which was great. We also got a lot of help/contributions from people like [Justin Litchfield](https://github.com/litch) or [Morgan Hallgren](https://github.com/hallgren) who became an active contributor.
 
-## RailsEventStore (aka RES)
+### RailsEventStore (aka RES)
 
 With RailsEventStore the main goal at the beginning was to be as Rails-friendly as possible. The goal was to let people plug RES in very quickly and start publishing events. This goal was achieved.
 Another goal was to keep the API the same as with HttpEventStore, with the idea being that once people need a better solution than RES they can quickly switch to HES. This goal wasn't accomplished and at some point we decided not to keep the compatibility. The main reason was that while HES was mostly ready, the RES project became bigger and we didn't want it to slow us down. Which in the hindsight seems like a good decision.
 
-# Where we are
+## Where we are
 
 Fast forward, where we are today. The ecosystem of tools grew to:
 
@@ -80,7 +80,7 @@ To summarise where we are:
 - we've created a tooling around the idea of introducing DDD into Rails apps. The tooling is now ready to use and a growing number of developers are using it
 - we do a lot of education to inspire Rails developers to try out DDD
 
-# Where we are going
+## Where we are going
 
 Things are changing really fast so it's hard to predict anything precisely. However, all signs show that Arkency will keep doing DDD and Rails apps. This naturally means that we'll do even more **education** around DDD and about solving typical problems in Rails apps.
 

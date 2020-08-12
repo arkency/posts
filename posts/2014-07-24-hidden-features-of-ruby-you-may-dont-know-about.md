@@ -516,7 +516,7 @@ nil
 <small>Thanks for <a href="http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/#comment-1554676190">Jordan Running</a></small>
 
 
-# Summary
+## Summary
 Impressed? If no, that's great! It means you are a trouper. Otherwise, it's good too, because you learned something new today and I hope you find this useful.
 
 If you have your favourite tricks, you can share them in the comments below.

@@ -21,7 +21,7 @@ A few weeks ago, [Marcin](https://twitter.com/killavus) recommended [Gulp as the
 
 You don't have to disable asset pipeline in your Rails application in order to use CommonJS module loading in your JavaScripts. One of tools that allows you to do so is [Browserify](http://browserify.org/) and a nice gem called [`browserify-rails`](https://github.com/browserify-rails/browserify-rails). It lets you mix and match `//= require` directives from Sprockets with `require()` calls in your JavaScript (CoffeeScript) assets. You can **manage your JS modules with `npm`**, so you can use a wide variety of existing node modules, including [React](https://facebook.github.io/react/) directly in your Rails assets.
 
-# Getting started
+## Getting started
 
 To get started, you need to have `node` and `npm` installed on your development machine and include `browserify-rails` gem in your `Gemfile`.
 
@@ -57,7 +57,7 @@ BTW, in our [Rails meets React](http://blog.arkency.com/rails-react/) book, we'r
 
 Using `browserify-rails` does not force you to use only CommonJS-compatible libraries. **You can still use `//= require` directive** to load arbitrary JavaScript assets.
 
-# Configuration options
+## Configuration options
 
 After installing `browserify-rails` you are starting with default configuration that makes some assumptions:
 
@@ -88,7 +88,7 @@ Now you should just restart your server and write your assets in CoffeeScript fl
 
 `browserify-rails` supports the same features as `node-browserify`, e.g. you can have [multiple bundles](https://github.com/substack/node-browserify#multiple-bundles). You can read about all possible configuration options on [`browserify-rails` github page](https://github.com/browserify-rails/browserify-rails#configuration).
 
-# Deployment
+## Deployment
 
 In order to deploy your assets to production server, you don't need anything but running `rake assets:precompile` task. If you're running that task on your production server during deployment (e.g. when using `capistrano`), you also need to make sure you have `node` & `npm` installed on your production. You should also install all npm dependencies before compiling your assets. You may use rake tasks provided by `browserify-rails` gem to do so:
 
@@ -96,7 +96,7 @@ In order to deploy your assets to production server, you don't need anything but
 * `rake npm:install` - this installs all dependencies by running `npm install`
 * `rake npm:install:clean` - this combines two previous tasks by running `npm:clean` and `npm:install`
 
-# Final words
+## Final words
 
 Using `browserify-rails` can significantly increase modularity of your JavaScript assets, but have also some disadvantages.
 
@@ -112,11 +112,11 @@ Using `browserify-rails` can significantly increase modularity of your JavaScrip
 * you have to install `node` and `npm` on your development machine and on your production (if you are compiling your assets during deploy)
 * browserify compiles only JS assets, so you cannot use stylesheets from node packages
 
-# Summary
+## Summary
 
 Using `browserify-rails` may be a good option when you want to use asset pipeline and improve modularity of your JS assets. I think you may definitely give it a try!
 
-# Bonus: Heroku support for Browserify
+## Bonus: Heroku support for Browserify
 
 Heroku is a very popular platform for deploying Rails applications. By default, it automatically determines how to build your app during deploy by using some heuristics (e.g. it assumes you have Ruby application if your root directory contain `Gemfile`). In order to use `browserify-rails` and run `bundle` along with `npm install` on target machine, you need to use a custom [buildpack](http://devcenter.heroku.com/articles/buildpacks) - [`heroku-buildpack-multi`](https://github.com/heroku/heroku-buildpack-multi). To use it, you will first need to set it as your custom buildpack by running the following command:
 

@@ -26,13 +26,13 @@ Fortunately the TC39 committee is working hard on sixth version of ECMAScript. Y
 
 The best part of ES6 is that **you can use it, despite the fact it hasn't been finished yet**.
 
-# How can I use ES6 in my web browser?
+## How can I use ES6 in my web browser?
 
 New features of ES6 can be emulated in JavaScript (used in our web browsers) using [Babel](https://babeljs.io/). It provides full compatibility. However one of the features may require some extra work.
 
 One of most exciting features of ES6 are built-in modules. Before ES6 we used solutions like CommonJS or RequireJS. By default Babel uses CommonJS modules as a fallback. If you didn't use any type of packaging and want to use one, you will need to setup one.
 
-# Bringing ES6 to Rails
+## Bringing ES6 to Rails
 
 Sprockets 4.x promise to bring ES6 transpiling out of the box. This release doesn't seem to come up soon, so **we need to find some way around**.
 
@@ -58,7 +58,7 @@ We want to remove any dependencies on Sprockets or any other Ruby gem, when it c
 
 With Gulp, we can use `babelify` and `browserify` node packages in our asset processing process. It let us to use all ES6 features without any inconvenience. You can see example Gulpfile.js with ES6 transpiling and SASS compiling on gist: [Gulpfile.js](https://gist.github.com/voter101/9c824a30f712e7724cad)
 
-# Conclusions
+## Conclusions
 
 There are many more workarounds to get ES6 in Rails environment that doesn't require discarding Sprockets. Unfortunately none of them are good enough to mention as production-ready. I strongly recommend going with Gulp. It's simple, powerful and provides native environment to work with assets. 
 If you don't want to switch from Sprockets, you can try-out `sprockets-es6` gem.
