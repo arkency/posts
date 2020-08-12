@@ -1,5 +1,4 @@
 ---
-title: "Using domain events as success/failure messages"
 created_at: 2015-05-15 12:59:51 +0200
 publish: true
 author: Mirosław Pragłowski
@@ -7,6 +6,8 @@ tags: [ 'rails_event_store', 'domain event', 'event sourcing' ]
 newsletter: arkency_form
 img: "events/failure_domain_event.jpg"
 ---
+
+# Using domain events as success/failure messages
 
 <p>
   <figure>

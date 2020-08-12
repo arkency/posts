@@ -1,11 +1,12 @@
 ---
-title: "Hidden features of Ruby you may not know about"
 created_at: 2014-07-24 19:54:59 +0200
 publish: true
 author: Kamil Lelonek
 tags: [ 'ruby', 'tips', 'tricks' ]
 newsletter: frontend_course
 ---
+
+# Hidden features of Ruby you may not know about
 
 <p>
   <figure align="center">

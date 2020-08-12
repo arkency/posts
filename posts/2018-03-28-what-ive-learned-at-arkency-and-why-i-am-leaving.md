@@ -1,11 +1,12 @@
 ---
-title: "What I've learned at Arkency and why I am leaving"
 created_at: 2018-03-28 12:53:24 +0200
 publish: true
 author: Piotr Macuk
 tags: [ 'async remote', 'tools' ]
 newsletter: arkency_form
 ---
+
+# What I've learned at Arkency and why I am leaving
 
 The story I'd like to tell you starts at the beginning of 2012. At that time I've run my side project [Konfeo -- event registration and management system](https://www.konfeo.com/en/). After three years of working on that, first partially and then full time, I've decided that I need to split my time to enhance and diverse income sources. I joined Arkency in 2015.
 

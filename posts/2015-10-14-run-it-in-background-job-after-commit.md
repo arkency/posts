@@ -1,11 +1,12 @@
 ---
-title: "Run it in a background job, after a commit, from a service object"
 created_at: 2015-10-24 21:05:24 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'background job', 'after commit' ]
 newsletter: clean
 ---
+
+# Run it in a background job, after a commit, from a service object
 
 There is this problem that when you schedule a background job from inside of a running
 database transaction, the background job can kick in before the transaction is committed.

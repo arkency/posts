@@ -1,10 +1,11 @@
 ---
-title: "Testing deprecations warnings with RSpec"
 created_at: 2017-08-27 14:04:06 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 ---
+
+# Testing deprecations warnings with RSpec
 
 Recently at Arkency we've been doing quite a lot of work around the [RailsEventStore](https://railseventstore.org) ecosystem. We see RailsEventStore as the way to help Rails teams start doing DDD without needing to build the infrastructure for CQRS/ES. 
 

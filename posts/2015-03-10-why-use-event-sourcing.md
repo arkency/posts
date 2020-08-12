@@ -1,5 +1,4 @@
 ---
-title: "Why use Event Sourcing"
 created_at: 2015-03-10 21:35:01 +0100
 publish: true
 author: Mirosław Pragłowski
@@ -9,6 +8,8 @@ img: "events/eventsourcing.jpg"
 meta_title: "→ Event Sourcing - The Reasons Why To Use It"
 description: "Event Sourcing - We Explain The Biggest Advantage of Using It. Visit Our Blog and READ MORE !!!"
 ---
+
+# Why use Event Sourcing
 
 <p>
   <figure>

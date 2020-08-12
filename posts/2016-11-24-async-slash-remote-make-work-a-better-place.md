@@ -1,10 +1,11 @@
 ---
-title: "Async/Remote: make work a better place"
 created_at: 2016-11-24 17:01:51 +0200
 publish: true
 author: Anton Paisov
 tags: [ 'async remote', 'work', 'lifestyle' ]
 ---
+
+# Async/Remote: make work a better place
 
 I’d like to share my insights on some personal benefits that I gain working [async/remote](http://blog.arkency.com/async-remote/). Some of them are well known and while they might seem obvious, they aren’t seen until you have the real experience.
 

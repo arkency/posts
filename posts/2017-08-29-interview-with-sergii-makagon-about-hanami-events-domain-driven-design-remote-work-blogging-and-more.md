@@ -1,11 +1,12 @@
 ---
-title: "Interview with Sergii Makagon about hanami-events, domain-driven design, remote work, blogging and more"
 created_at: 2017-08-29 17:42:44 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'sergii', 'makagon', 'hanami', 'ddd', 'interview' ]
 newsletter: arkency_form
 ---
+
+# Interview with Sergii Makagon about hanami-events, domain-driven design, remote work, blogging and more
 
 You might not have heard about Sergii but he got my attention some time ago. Because, you see... In one year Sergii wrote about 40 articles on http://rubyblog.pro/ and I started to see them mentioned in various places.
 

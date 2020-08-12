@@ -1,5 +1,4 @@
 ---
-title: "Safer Rails database migrations with Soundcloud's Large Hadron Migrator"
 created_at: 2016-12-23 10:21:22 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'rails', 'active record', 'migration' ]
 newsletter: arkency_form
 img: "rails-migrations-large-online-big-data/large-hadron-migrator.jpg"
 ---
+
+# Safer Rails database migrations with Soundcloud's Large Hadron Migrator
 
 When I first started using Rails years ago I fell in love with the concept of
 database migrations. Perhaps because at the time I was working on commercial

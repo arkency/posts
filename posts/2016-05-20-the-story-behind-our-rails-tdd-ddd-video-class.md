@@ -1,11 +1,12 @@
 ---
-title: "The story behind our Rails TDD & DDD video class"
 created_at: 2016-05-20 12:30:29 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'tdd', 'ddd', 'mutation testing', 'video class' ]
 newsletter: arkency_form
 ---
+
+# The story behind our Rails TDD & DDD video class
 
 [Get the Rails TDD video class now](https://vimeo.com/ondemand/arkencyruby)
 

@@ -1,11 +1,12 @@
 ---
-title: "Instantiating Service Objects"
 created_at: 2014-10-12 18:14:39 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: fearless_refactoring_course_instantiating
 tags: [ 'ruby', 'rails', 'service objects', 'instantiate' ]
 ---
+
+# Instantiating Service Objects
 
 <p>
   <figure>

@@ -1,11 +1,12 @@
 ---
-title: "nil?, empty?, blank? in Ruby on Rails - what's the difference actually?"
 created_at: 2017-07-20 11:42:30 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'nil', 'empty', 'blank' ]
 newsletter: arkency_form
 ---
+
+# nil?, empty?, blank? in Ruby on Rails - what's the difference actually?
 
 There are plenty of options available. Let's evaluate their usefulness and potential problems that they bring to the table.
 

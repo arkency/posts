@@ -1,5 +1,4 @@
 ---
-title: "Why would you even want to listen about DDD?"
 created_at: 2016-12-26 08:15:56 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ddd' ]
 newsletter: arkency_form
 img: "rails-ddd-listen/why-ddd-rails.png"
 ---
+
+# Why would you even want to listen about DDD?
 
 You might have heard about this thing called DDD which stands for _Domain-Driven Design_.
 The name does not reveal much about itself. So maybe you wonder why should you listen

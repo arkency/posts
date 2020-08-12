@@ -1,5 +1,4 @@
 ---
-title: "How to use Greg's Event Store from ruby"
 created_at: 2015-03-27 15:23:03 +0100
 publish: true
 author: Tomasz Rybczyński
@@ -7,6 +6,8 @@ tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/stream.jpg"
 ---
+
+# How to use Greg's Event Store from ruby
 
 <p>
   <figure align="center">

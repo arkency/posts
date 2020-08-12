@@ -1,5 +1,4 @@
 ---
-title: "RubyMotion app with Facebook SDK"
 created_at: 2014-08-09 22:16:53 +0200
 publish: true
 author: Kamil Lelonek
@@ -7,6 +6,8 @@ newsletter: mobile
 tags: [ 'facebook', 'sdk', 'ruby', 'rubymotion', 'ios', 'mobile' ]
 stories: ['rubymotion']
 ---
+
+# RubyMotion app with Facebook SDK
 
 <p>
   <figure align="center">

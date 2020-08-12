@@ -1,5 +1,4 @@
 ---
-title: "Unit tests vs class tests"
 created_at: 2014-10-12 19:06:17 +0200
 publish: true
 author: Andrzej Krzywda
@@ -7,6 +6,9 @@ newsletter: fearless_refactoring_course_instantiating
 tags: ['testing']
 img: "unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG"
 ---
+
+# Unit tests vs class tests
+
 <p>
   <figure>
 		<img src="<%= src_fit("unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG") %>" width="100%">

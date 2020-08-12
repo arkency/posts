@@ -1,10 +1,11 @@
 ---
-title: "OOP Refactoring: from a god class to smaller objects"
 created_at: 2019-11-30 15:41:49 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['oop', 'refactoring', 'ruby']
 ---
+
+# OOP Refactoring: from a god class to smaller objects
 
 In the early years of my programming career, I got infected by the OOP thinking. It made (and still does) sense to model the problem in terms of objects and methods operating on that object.
 

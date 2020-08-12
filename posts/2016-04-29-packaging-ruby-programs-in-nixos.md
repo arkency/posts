@@ -1,5 +1,4 @@
 ---
-title: "Packaging ruby programs in NixOS"
 created_at: 2016-04-29 00:28:12 +0200
 publish: true
 author: Rafał Łasocha
@@ -7,6 +6,8 @@ tags: [ 'infra', 'nixos', 'ruby', 'devops' ]
 newsletter: arkency_form
 img: "packaging-ruby-programs-in-nixos/hammer-sledgehammer-mallet-tool.jpg"
 ---
+
+# Packaging ruby programs in NixOS
 
 <p>
   <figure>

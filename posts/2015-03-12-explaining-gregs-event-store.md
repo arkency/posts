@@ -1,5 +1,4 @@
 ---
-title: "Explaining Greg's Event Store"
 created_at: 2015-03-12 13:58:01 +0100
 publish: true
 author: Tomasz Rybczyński
@@ -9,6 +8,8 @@ img: "events/store.jpg"
 description: "Event Store is a domain specific database for people who use the Event Sourcing pattern in their apps. #LEARN MORE about it on Arkency Blog !!!"
 meta_title: "→ Explaining Greg's Event Store"
 ---
+
+# Explaining Greg's Event Store
 
 <p>
   <figure>

@@ -1,11 +1,12 @@
 ---
-title: "All the ways to generate routing paths in Rails"
 created_at: 2017-09-18 10:17:05 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'routing' ]
 newsletter: arkency_form
 ---
+
+# All the ways to generate routing paths in Rails
 
 Have you ever considered how many ways there are to generate a routing path in Rails? Plenty. Let's see.
 

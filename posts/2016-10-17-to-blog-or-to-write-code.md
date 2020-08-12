@@ -1,11 +1,12 @@
 ---
-title: "To blog or to write code?"
 created_at: 2016-10-17 20:48:53 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'blogging' ]
 newsletter: arkency_form
 ---
+
+# To blog or to write code?
 
 Four years ago when I started writing first posts on Arkency blog, I didn't have many expectations. I knew I wanted to **share my knowledge and thoughts. Not much beyond that.**
 

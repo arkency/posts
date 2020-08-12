@@ -1,11 +1,12 @@
 ---
-title: "How to track ActiveRecord model statistics"
 created_at: 2013-06-05 11:56:43 +0200
 publish: true
 author: Jan Filipowski
 newsletter: arkency_form
 tags: ['rails', 'active record', 'metrics']
 ---
+
+# How to track ActiveRecord model statistics
 
 If you're really serious about your application you have to collect and analyze its statistics. You can use Google Analytics or any other tool [to track visits and basic events](http://blog.arkency.com/2012/12/google-analytics-for-developers/), or you can send specific events on demand. There's also a way to automatically track ActiveRecord model creations and in this post I'll show you how easy it is.
 

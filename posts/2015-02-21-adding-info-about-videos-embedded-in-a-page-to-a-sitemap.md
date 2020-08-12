@@ -1,5 +1,4 @@
 ---
-title: "Adding videos embedded in a page to a sitemap"
 created_at: 2015-02-21 21:50:58 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'sitemap', 'video', 'ruby' ]
 newsletter: coaching
 img: "sitemap-video-ruby-rails/sitemap.jpeg"
 ---
+
+# Adding videos embedded in a page to a sitemap
 
 <p>
   <figure>

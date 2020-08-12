@@ -1,10 +1,11 @@
 ---
-title: "A single Rails API endpoint to accept all changes to the app state"
 created_at: 2015-12-06 02:45:55 +0100
 publish: true
 tags: [ 'rails', 'cqrs', 'commands' ]
 author: Andrzej Krzywda
 ---
+
+# A single Rails API endpoint to accept all changes to the app state
 
 This idea is heavily influenced by CQRS and its way of applying changes to the app via commands objects. In this blogpost we're showing how it could work with Rails.
 

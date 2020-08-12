@@ -1,11 +1,12 @@
 ---
-title: "70% off the Rails / TDD / DDD / mutant video class until 11pm 19.05.2016 CEST"
 created_at: 2016-05-19 09:57:12 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'tdd', 'ddd', 'mutation testing', 'video class', 'course' ]
 newsletter: arkency_form
 ---
+
+# 70% off the Rails / TDD / DDD / mutant video class until 11pm 19.05.2016 CEST
 
 Hi,
 

@@ -1,5 +1,4 @@
 ---
-title: "Use your gettext translations in your React components"
 created_at: 2015-03-01 21:46:01 +0100
 publish: true
 author: Jakub Kosiński
@@ -7,6 +6,8 @@ tags: [ 'i18n', 'i18next', 'translations', 'react', 'rails', 'gettext' ]
 img: "use-your-gettext-translations-in-your-react-components/flags.jpg"
 newsletter: react_books
 ---
+
+# Use your gettext translations in your React components
 
 <p>
   <figure>

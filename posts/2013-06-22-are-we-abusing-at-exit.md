@@ -1,11 +1,12 @@
 ---
-title: "Are we abusing at_exit?"
 created_at: 2013-06-22 18:05:22 +0200
 publish: true
 newsletter: arkency_form
 author: Robert Pankowecki
 tags: [ 'ruby', 'at_exit', 'tempfile', 'webservers' ]
 ---
+
+# Are we abusing at_exit?
 
 If you are deeply interested in Ruby, you probably already know about
 [`Kernel#at_exit`](http://www.ruby-doc.org/core-2.0/Kernel.html#method-i-at_exit).

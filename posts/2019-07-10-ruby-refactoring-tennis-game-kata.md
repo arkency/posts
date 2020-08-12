@@ -1,9 +1,10 @@
 ---
-title: "Ruby Refactoring Tennis Game Kata"
 created_at: 2019-07-10 12:01:51 +0200
 publish: false
 author: Andrzej Krzywda
 ---
+
+# Ruby Refactoring Tennis Game Kata
 
 Ruby Refactoring preview
 

@@ -1,11 +1,12 @@
 ---
-title: "You don't inject for tests"
 created_at: 2013-01-09 14:49:03 +0100
 publish: true
 author: Jan Filipowski
 newsletter: arkency_form
 tags: [ 'Ruby drama', 'dependency injection', 'OOD', 'mostly obvious', 'testing']
 ---
+
+# You don't inject for tests
 
 What is unit testing for? Is it a way to make sure that your code is correct and bugless? Or rather OOD tool, that expose most of places where you break object orientation principles? You may have your own answer (please comment though) but I would vote for the second one - of course it may assure me that I haven't introduced some totally stupid bug, but that's less interesting part.
 

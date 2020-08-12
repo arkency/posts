@@ -1,5 +1,4 @@
 ---
-title: "Correlation id and causation id in evented systems"
 created_at: 2018-05-14 18:28:57 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'correlation', 'causation', 'ddd', 'domain event' ]
 newsletter: arkency_form
 img: "correlation_id_causation_id_rails_ruby_event/CorrelationAndCausationEventsCommands.png"
 ---
+
+# Correlation id and causation id in evented systems
 
 Debugging can be one of the challenges when building asynchronous, evented systems. _Why did this happen, what caused all of that?_. But there are patterns which might make your life easier. We just need to keep track of what is happening as a result of what.  
 

@@ -1,11 +1,12 @@
 ---
-title: "When DDD clicked for me"
 created_at: 2017-08-03 10:08:44 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd' ]
 newsletter: arkency_form
 ---
+
+# When DDD clicked for me
 
 It took me quite a time to grasp the concepts from DDD community and apply them in our Rails projects. This is a story of one of such "aha" moments.
 

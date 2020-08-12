@@ -1,10 +1,11 @@
 ---
-title: Against DRY. Challenging Rails dogmas.
 created_at: 2020-07-27T08:39:15.913Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Against DRY. Challenging Rails dogmas.
 
 We've been taught to make our code DRY. It seems so obvious. Almost like the fact that earth orbits the sun.
 

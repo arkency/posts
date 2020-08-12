@@ -1,11 +1,12 @@
 ---
-title: "How good are your Ruby tests? Testing your tests with mutant"
 created_at: 2015-06-10 11:10:11 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['testing', 'mutation testing', 'tdd']
 newsletter: arkency_form
 ---
+
+# How good are your Ruby tests? Testing your tests with mutant
 
 ## New-feature-bugs vs regression-bugs
 

@@ -1,10 +1,11 @@
 ---
-title: "Remote collaborative modeling"
 created_at: 2020-03-23 14:11:18 +0100
 author: Mirosław Pragłowski
 tags: [ 'ddd', 'async remote' ]
 publish: true
 ---
+
+# Remote collaborative modeling
 
 Being remote means you don't always have face-to-face contact with your customers, with the domain experts, or with the right people who know how the business you're trying to model works.
 

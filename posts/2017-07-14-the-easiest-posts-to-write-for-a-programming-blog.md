@@ -1,11 +1,12 @@
 ---
-title: "The easiest posts to write for a programming blog"
 created_at: 2017-07-14 10:25:06 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'blogging' ]
 newsletter: arkency_form
 ---
+
+# The easiest posts to write for a programming blog
 
 Here are the 4 easiest types of posts that you can write about on your programming blog:
 

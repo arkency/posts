@@ -1,11 +1,12 @@
 ---
-title: "Rails Refactoring: the aha! moments"
 created_at: 2014-02-10 18:21:35 +0100
 publish: true
 author: Andrzej Krzywda
 tags: [ 'rails', 'refactoring']
 newsletter: fearless_refactoring_main
 ---
+
+# Rails Refactoring: the aha! moments
 
 Have you ever been stuck with some code? Looking at it for minutes, hours, feeling the code smells, but not being able to fix it?
 

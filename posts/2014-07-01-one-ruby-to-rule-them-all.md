@@ -1,5 +1,4 @@
 ---
-title: "From Rails to RubyMotion: basic toolkit"
 created_at: 2014-07-01 09:49:36 +0200
 publish: true
 author: Kamil Lelonek
@@ -7,6 +6,8 @@ newsletter: mobile
 tags: [ 'android', 'ios', 'rubymotion', 'mobile' ]
 stories: ['rubymotion']
 ---
+
+# From Rails to RubyMotion: basic toolkit
 
 <p>
   <figure align="center">

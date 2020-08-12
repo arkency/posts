@@ -1,11 +1,12 @@
 ---
-title: "Using influxdb with ruby"
 created_at: 2017-07-10 17:12:05 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'influxdb' ]
 img: ruby-influxdb-chillout/pdfs_orders2.png
 ---
+
+# Using influxdb with ruby
 
 InfluxDB is an open-source time series database, written in Go. It is optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics, and real-time analytics.
 

@@ -1,11 +1,12 @@
 ---
-title: "CoffeeScript acceptance tests"
 created_at: 2013-12-23 15:00:00 +0200
 publish: true
 author: Jan Filipowski
 newsletter: react_books
 tags: [ 'TDD', 'ATDD', 'CoffeeScript', 'testing']
 ---
+
+# CoffeeScript acceptance tests
 
 <img src="<%= src_fit("coffee-acceptance/coffeescript_acceptance_tests.png") %>" width="100%">
 

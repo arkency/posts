@@ -1,11 +1,12 @@
 ---
-title: "Developers oriented project management"
 created_at: 2013-09-16 18:25:12 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: aar_newsletter
 tags: [ 'async remote', 'ebook', 'pdf', 'guide', 'effective', 'programming' ]
 ---
+
+# Developers oriented project management
 
 Working remotely is still a relatively new thing compared to going to an office,
 which has centuries long tradition. Despite its tremendous growth recently

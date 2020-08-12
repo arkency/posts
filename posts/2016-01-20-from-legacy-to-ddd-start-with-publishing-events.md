@@ -1,10 +1,11 @@
 ---
-title: "From legacy to DDD: Start with publishing events"
 created_at: 2016-01-20 13:55:18 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 ---
+
+# From legacy to DDD: Start with publishing events
 
 When you start your journey with DDD, it's quite easy to apply DDD in a fresh app. It's a bit more complicated for existing, legacy apps.
 This blog post shows how you can start applying DDD by publishing events.

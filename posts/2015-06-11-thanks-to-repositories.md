@@ -1,5 +1,4 @@
 ---
-title: "Thanks to repositories..."
 created_at: 2015-06-11 11:34:14 +0200
 publish: true
 author: Piotr Macuk
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'rails', 'ddd', 'entity', 'active record' ]
 newsletter: fearless_refactoring_main
 img: "thanks-to-repositories/repository.jpg"
 ---
+
+# Thanks to repositories...
 
 <p>
   <figure>

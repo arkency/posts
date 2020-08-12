@@ -1,10 +1,11 @@
 ---
-title: "Physical separation in Rails apps"
 created_at: 2017-09-14 18:56:18 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
 ---
+
+# Physical separation in Rails apps
 
 I've been just following an interesting discussion within our [Rails/DDD community](http://blog.arkency.com/domain-driven-rails/). The particular topic which triggered me was a debate what kind of separation is possible within a Rails app which aims to be more in the DDD spirit.
 

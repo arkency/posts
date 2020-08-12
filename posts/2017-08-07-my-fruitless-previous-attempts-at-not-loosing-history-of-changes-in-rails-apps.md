@@ -1,11 +1,12 @@
 ---
-title: "My fruitless, previous attempts at not losing history of changes in Rails apps"
 created_at: 2017-08-07 15:56:21 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'rails' ]
 newsletter: arkency_form
 ---
+
+# My fruitless, previous attempts at not losing history of changes in Rails apps
 
 Some time ago I was implementing a simple Inventory with products that could be available, reserved and sold in certain quantities.
 

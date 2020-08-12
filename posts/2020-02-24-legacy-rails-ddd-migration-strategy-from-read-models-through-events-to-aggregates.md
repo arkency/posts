@@ -1,10 +1,11 @@
 ---
-title: "Legacy Rails DDD Migration strategy — from read models, through events to aggregates"
 created_at: 2020-02-24 15:08:12 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'legacy', 'aggregate', 'service object', 'read model', 'domain event']
 ---
+
+# Legacy Rails DDD Migration strategy — from read models, through events to aggregates
 
 How to migrate legacy Rails apps into DDD/CQRS in a relatively safe way?
 

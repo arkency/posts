@@ -1,11 +1,12 @@
 ---
-title: "The === (case equality) operator in Ruby"
 created_at: 2017-08-23 10:34:16 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'equality' ]
 newsletter: arkency_form
 ---
+
+# The === (case equality) operator in Ruby
 
 Recently I've been working on adding more exercises to [DevMemo.io](https://devmemo.io) about Ruby's Enumerable module. And I try to balance learning most popular APIs (which you might already know) with some less popular but very useful.
 

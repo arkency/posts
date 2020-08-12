@@ -1,5 +1,4 @@
 ---
-title: "Tracking down unused templates"
 created_at: 2015-03-18 03:23:22 +0100
 publish: true
 author: Rafał Łasocha
@@ -7,6 +6,8 @@ tags: [ 'story', 'chillout', 'active support' ]
 newsletter: arkency_form
 img: "tracking-down-unused-templates/countryside-fence-field.jpg"
 ---
+
+# Tracking down unused templates
 
 <p>
   <figure>

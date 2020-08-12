@@ -1,11 +1,12 @@
 ---
-title: "How we structure our front-end Rails apps with React.js"
 created_at: 2014-08-19 02:28:05 +0200
 publish: true
 author: Wiktor Mociun
 tags: [ 'front end', 'react', 'javascript' ]
 newsletter: react_books
 ---
+
+# How we structure our front-end Rails apps with React.js
 
 <p>
   <figure>

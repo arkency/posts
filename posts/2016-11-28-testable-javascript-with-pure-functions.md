@@ -1,10 +1,11 @@
 ---
-title: "Testable Javascript with pure functions"
 created_at: 2016-11-28 20:11:51 +0200
 publish: true
 author: Anton Paisov
 tags: [ 'javascript', 'testing', 'mocha', 'testing']
 ---
+
+# Testable Javascript with pure functions
 
 What if I told you that covering javascript code with tests can be easy and pleasant experience?
 

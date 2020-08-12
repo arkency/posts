@@ -1,11 +1,12 @@
 ---
-title: "How to connect to and use ActiveRecord outside of Rails?"
 created_at: 2017-08-19 19:42:19 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails', 'active record' ]
 newsletter: arkency_form
 ---
+
+# How to connect to and use ActiveRecord outside of Rails?
 
 Let's say you have a Ruby script and you would like to use `ActiveRecord` library inside it. Is it possible without Rails? Is it hard? It's possible and not hard at all.
 

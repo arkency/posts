@@ -1,11 +1,12 @@
 ---
-title: "A bug that only appears once a year"
 created_at: 2017-10-28 22:03:26 +0200
 publish: true
 author: Anton Paisov
 tags: [ 'bugs', 'testing' ]
 img: "ruby-rails-dst-timezone-change-bug-once-a-year/header-glass-time-watch-x.png"
 ---
+
+# A bug that only appears once a year
 
 There are some bugs that only appear under certain circumstances. Today was the day I've got one of those (there is a hint in this sentence).
 

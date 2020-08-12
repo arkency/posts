@@ -1,11 +1,12 @@
 ---
-title: "I was a CRUDoholic"
 created_at: 2018-11-20 17:41:40 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'rails']
 img: rescon_andrzej_thinking.jpg
 ---
+
+# I was a CRUDoholic
 
 Imagine one of your non-IT friends. Yeah, the “normal”.
 

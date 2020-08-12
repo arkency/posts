@@ -1,11 +1,12 @@
 ---
-title: "The Beginners Guide to jQuery.Deferred and Promises for Ruby programmers"
 created_at: 2015-02-24 19:30:23 +0100
 publish: true
 newsletter: react_books
 author: Marcin Grzywaczewski
 tags: [ 'jquery', 'front end', 'promise', 'case-study' ]
 ---
+
+# The Beginners Guide to jQuery.Deferred and Promises for Ruby programmers
 
 Working with asynchronous code is the bread and butter for frontend developers. You can find it hard when working with it at first - as a Rails developer, you live with code which is usually synchronous. Luckily, promises were something which allowed us to get a huge step forward to deal with callbacks in a sane way. While widely adopted by backend JavaScript developers, **Promises and their tooling is something often missed by Rails devs.**
 

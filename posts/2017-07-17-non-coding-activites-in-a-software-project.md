@@ -1,10 +1,11 @@
 ---
-title: "Non-coding activities in a software project"
 created_at: 2017-07-17 15:25:30 +0200
 publish: true
 tags: [ 'async remote' ]
 author: Andrzej Krzywda
 ---
+
+# Non-coding activities in a software project
 
 Recently in our project, we came up with a list of non-coding activities. Those are the tasks that need be done quite regularly and might be easy to be forgotten.
 

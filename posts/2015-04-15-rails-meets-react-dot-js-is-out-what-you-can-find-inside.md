@@ -1,5 +1,4 @@
 ---
-title: "Rails meets React.js is out: What you can find inside?"
 created_at: 2015-04-15 19:00:44 +0200
 publish: true
 author: Marcin Grzywaczewski 
@@ -7,6 +6,8 @@ tags: [ 'book', 'react', 'front end', 'rails' ]
 newsletter: react_books
 img: "react-for-rails/cover.png"
 ---
+
+# Rails meets React.js is out: What you can find inside?
 
 <p>
   <figure>

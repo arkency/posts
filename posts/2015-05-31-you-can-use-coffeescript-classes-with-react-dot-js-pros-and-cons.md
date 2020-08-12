@@ -1,11 +1,12 @@
 ---
-title: "You can use CoffeeScript classes with React - pros and cons"
 created_at: 2015-05-31 18:37:00 +0200
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'react', 'front end', 'coffeescript' ]
 newsletter: react_books
 ---
+
+# You can use CoffeeScript classes with React - pros and cons
 
 One of the big advantages of React components is that they are easy to write. You create an [object literal](http://blog.arkency.com/2012/10/javascript-objects-philosophy) and provide functions as fields of your object. They you pass this object to a `React.createClass` function.
 

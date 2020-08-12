@@ -1,11 +1,11 @@
 ---
-title: "A potential problem with PStore and Rails"
 created_at: 2017-02-06 16:40:01 +0100
 publish: true
 tags: [ 'rails' ]
 author: Andrzej Krzywda
 ---
 
+# A potential problem with PStore and Rails
 
 Today, I've noticed an interesting [post about PStore in Ruby](http://blog.redpanthers.co/pstore-ruby-standard-library/). This reminded me a recent story we've had with PStore.
 

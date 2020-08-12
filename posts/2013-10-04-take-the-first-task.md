@@ -1,5 +1,4 @@
 ---
-title: "Developers oriented project management: Take the first task"
 created_at: 2013-10-09 12:34:09 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: aar_newsletter
 tags: [ 'async remote', 'refactoring', 'tasks', 'story' ]
 stories: ['async-remote']
 ---
+
+# Developers oriented project management: Take the first task
 
 We recently talked how **[small](/2013/09/story-of-size-1/)
 and [unassigned](/2013/10/refactor-to-remote-leave-tasks-unassigned/)

@@ -1,10 +1,11 @@
 ---
-title: "Big events vs Small events — from the perspective of refactoring"
 created_at: 2018-09-10 08:10:49 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'ddd' ]
 ---
+
+# Big events vs Small events — from the perspective of refactoring
 
 Today I’d like to write a few words about big events versus small events. This topic usually leads to very heated discussions. At the beginning, I was mostly keen on big events, but now, after working for several years in an event sourced system, I notice many problems connected with big events. And that is why now I am all for smaller events.
 

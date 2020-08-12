@@ -1,11 +1,13 @@
 ---
-title: "You get feature toggle for free in event-driven systems"
 created_at: 2015-03-06 15:01:01 +0100
 publish: true
 author: Jakub Rozmiarek
 newsletter: arkency_form
 tags: [ 'domain event', 'event store', 'event-driven' ]
 ---
+
+# You get feature toggle for free in event-driven systems
+
 Event-driven programming has many advantages. One of my favourite ones is a fact that by design it provides feature toggle functionality.
 In one of projects we've been working on we introduced an event store. This allows us to publish and handle domain events.
 

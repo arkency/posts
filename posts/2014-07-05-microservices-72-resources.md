@@ -1,11 +1,12 @@
 ---
-title: "Microservices - 72 resources"
 created_at: 2014-07-05 10:20:25 +0200
 publish: true
 author: Paweł Pacana
 newsletter: microservices
 tags: [ 'soa', 'microservices', 'architecture' ]
 ---
+
+# Microservices - 72 resources
 
 <p>
   <figure align="center">

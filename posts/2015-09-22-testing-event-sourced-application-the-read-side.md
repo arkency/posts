@@ -1,5 +1,4 @@
 ---
-title: "Testing Event Sourced application - the read side"
 created_at: 2015-09-22 09:19:36 +0200
 publish: true
 author: Mirosław Pragłowski
@@ -7,6 +6,8 @@ tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'TDD' , 'testing'
 newsletter: rails_event_store
 img: "events/black-and-white-car-vehicle-vintage.jpg"
 ---
+
+# Testing Event Sourced application - the read side
 
 <p>
   <figure>

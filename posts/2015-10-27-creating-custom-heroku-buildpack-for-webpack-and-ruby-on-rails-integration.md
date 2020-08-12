@@ -1,5 +1,4 @@
 ---
-title: "Creating custom Heroku buildpack for Webpack and Ruby on Rails integration"
 created_at: 2015-10-27 19:01:22 +0100
 publish: true
 author: Marcin Grzywaczewski
@@ -7,6 +6,8 @@ tags: [ 'front end', 'assets', 'sprockets' ]
 newsletter: react_books
 img: "creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header.png"
 ---
+
+# Creating custom Heroku buildpack for Webpack and Ruby on Rails integration
 
 <figure>
   <img src="<%= src_fit("creating-custom-heroku-buildpack-for-webpack-and-ruby-on-rails-integration/header.png") %>" width="100%" alt="" />

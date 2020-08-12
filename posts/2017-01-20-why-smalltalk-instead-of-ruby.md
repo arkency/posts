@@ -1,11 +1,12 @@
 ---
-title: "Why Smalltalk instead of Ruby"
 created_at: 2017-01-20 23:16:16 +0100
 publish: true
 author: Richard Eng
 tags: [ 'ruby', 'smalltalk' ]
 img: "smalltalk-ruby/smalltalk-ruby.jpg"
 ---
+
+# Why Smalltalk instead of Ruby
 
 Hello, it's Andrzej Krzywda from Arkency here. Today we have a special guest post from Richard Eng, the man who is behind the Smalltalk Renaissance.
 

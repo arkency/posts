@@ -1,11 +1,12 @@
 ---
-title: "Why we don't use ORM"
 created_at: 2012-12-03 11:25:59 +0100
 publish: true
 author: 'Jan Filipowski'
 newsletter: arkency_form
 tags: [ 'ruby', 'storage', 'ddd', 'orm' ]
 ---
+
+# Why we don't use ORM
 
 You've probably already read that [we don't use Rails](http://blog.arkency.com/2012/11/not-rails/) or any other framework to build [chillout.io](http://chillout.io). Having that said I must add we neither use ORM.
 

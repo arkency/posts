@@ -1,5 +1,4 @@
 ---
-title: "Beautiful confirm window with React"
 created_at: 2015-04-24 11:25:01 +0200
 publish: true
 author: Jakub Kosiński
@@ -7,6 +6,8 @@ tags: [ 'react', 'javascript', 'confirm', 'coffeescript' ]
 newsletter: react_books
 img: "beautiful-confirm-window-with-react/confirm-with-description.png"
 ---
+
+# Beautiful confirm window with React
 
 <img src="<%= src_fit("beautiful-confirm-window-with-react/confirm-with-description.png") %>" width="100%">
 

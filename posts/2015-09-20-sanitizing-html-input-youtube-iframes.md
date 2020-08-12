@@ -1,5 +1,4 @@
 ---
-title: "Sanitizing html input: youtube iframes, css inline styles and customization"
 created_at: 2015-09-20 13:00:07 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'rails', 'sanitize', 'html', 'security' ]
 newsletter: arkency_form
 img: "rails-sanitize-html-inpute-iframe-embed-youtube-ted/editor-problem.jpg"
 ---
+
+# Sanitizing html input: youtube iframes, css inline styles and customization
 
 Sometimes we give users tremendous power over the content generated
 on the web platforms that we write. **The power to add content using

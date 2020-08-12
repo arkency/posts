@@ -1,5 +1,4 @@
 ---
-title: "Developers oriented project management: What our new book is all about?"
 created_at: 2013-10-14 17:08:51 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: aar_newsletter
 tags: [ 'happiness', 'async remote', 'organized', 'project' ]
 stories: ['async-remote']
 ---
+
+# Developers oriented project management: What our new book is all about?
 
 At first, we thought that our <%= landing_link("new book") %> is all about remote
 work. But then after writing few chapters we saw that it is not. That those

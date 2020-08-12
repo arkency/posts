@@ -1,11 +1,12 @@
 ---
-title: "Ruby background processes with upstart user jobs"
 created_at: 2014-07-31 08:00:00 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
 tags: [ 'upstart', 'background process' ]
 ---
+
+# Ruby background processes with upstart user jobs
 
 <p>
   <figure align="center">

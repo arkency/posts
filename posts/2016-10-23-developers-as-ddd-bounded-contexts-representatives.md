@@ -1,10 +1,11 @@
 ---
-title: "Developers as DDD bounded contexts representatives"
 created_at: 2016-10-23 16:54:16 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 ---
+
+# Developers as DDD bounded contexts representatives
 
 Recently, I've been preparing to my webinar about introducing DDD to existing projects/teams.
 

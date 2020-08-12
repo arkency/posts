@@ -1,5 +1,4 @@
 ---
-title: "Ruby Event Store - use without Rails"
 created_at: 2018-03-27 18:22:15 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ddd', 'ruby', 'rails', 'rails_event_store' ]
 newsletter: arkency_form
 img: "rails-event-store-ruby-event-store-v0-27/rails_event_store_ruby_event_store.png"
 ---
+
+# Ruby Event Store - use without Rails
 
 [Ruby Event Store v0.27](https://github.com/RailsEventStore/rails_event_store/releases/tag/v0.27) is here with some nice improvements. Let's have a quick look.
 

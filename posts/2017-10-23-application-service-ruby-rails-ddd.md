@@ -1,5 +1,4 @@
 ---
-title: "Application Services — 10 common doubts answered"
 created_at: 2017-10-23 09:35:44 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ddd', 'application service' ]
 newsletter: arkency_form
 img: "application-services-ruby-rails-explained/questions-answered-application-service-g.png"
 ---
+
+# Application Services — 10 common doubts answered
 
 You might have heard about the Domain-Driven Design approach to building applications. In this approach, there is this horizontal layer called **Application Service. But what does it do? What arguments does it take? How many operations can it perform? How does it cooperate with other parts of our application such as controllers and models?** So many questions, not so many answers. I decided to write down what I imagine this layer to look like based on the books and articles that I've read and on my personal feelings after years of experimenting.
 

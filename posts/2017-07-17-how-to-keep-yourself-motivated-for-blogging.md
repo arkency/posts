@@ -1,5 +1,4 @@
 ---
-title: "How to keep yourself motivated for blogging?"
 created_at: 2017-07-17 10:40:39 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'lifestyle', 'coaching', 'motivation', 'blogging' ]
 newsletter: arkency_form
 img: "motivation-programming-blog/how-to-keep-motivated-blogging.jpeg"
 ---
+
+# How to keep yourself motivated for blogging?
 
 You got your programming blog, but you don't blog too much? You don't feel like doing it? What can you do about it?
 

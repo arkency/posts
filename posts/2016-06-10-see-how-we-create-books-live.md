@@ -1,11 +1,12 @@
 ---
-title: "See how we create books. Live"
 created_at: 2016-06-10 03:30:00 +0200
 publish: true
 author: Wiktor Mociun
 tags: [ 'rails', 'react', 'front end', 'livestream' ]
 newsletter: react_books
 ---
+
+# See how we create books. Live
 
 <iframe width="665" height="374" src="https://www.youtube.com/embed/Mqz3b02-CpE?rel=0" frameborder="0" allowfullscreen></iframe>
 

@@ -1,5 +1,4 @@
 ---
-title: "upgrade capybara-webkit to 1.4 and save your time"
 created_at: 2015-02-18 18:58:10 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: coaching
 tags: [ 'rails', 'capybara', 'webkit', 'bbq' ]
 img: "capybara-webkit/page_driver_block_unknown_urls.jpg"
 ---
+
+# Upgrade capybara-webkit to 1.4 and save your time
 
 <p>
   <figure>

@@ -1,5 +1,4 @@
 ---
-title: "Modeling passing time with events"
 created_at: 2018-12-20 12:43:22 +0100
 publish: true
 author: Paweł Pacana
@@ -7,6 +6,8 @@ tags: [ 'ddd', 'process manager' ]
 newsletter: arkency_form
 cover_image: clock_mechanism.jpg
 ---
+
+# Modeling passing time with events
 
 Learning new ideas can be a real struggle. Getting familiar with new concepts, nomenclature and understanding the context in which this new skills can be applied takes time. When it finally clicks and you've connected all the dots — the joy is tremendous.
 

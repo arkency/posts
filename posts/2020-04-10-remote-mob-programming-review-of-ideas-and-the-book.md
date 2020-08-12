@@ -1,11 +1,11 @@
 ---
-title: "Remote Mob Programming — review of ideas and the book"
 created_at: 2020-04-10 15:50:12 +0200
 author: Andrzej Krzywda
 tags: [ 'async remote', 'mob programming' ]
 publish: true
 ---
 
+# Remote Mob Programming — review of ideas and the book
 
 At Arkency, we subscribe mostly to the remote and asynchronous approach to software development. I described this method in detail in “Async Remote. The guide to Build a Self-Organizing Team”, a book I co-wrote with Robert Pankowecki. Most of the insights and views expressed in the publication were based on our own experience but we also drew on some ideas borrowed from other companies. Truth be told, when we first started, there weren’t really that many remote companies to be influenced or inspired by. We learned a lot from open-source projects, the way they build their teams and how they collaborated asynchronously.
 

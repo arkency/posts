@@ -1,10 +1,11 @@
 ---
-title: "Rails multiple databases support in Rails Event Store"
 created_at: 2020-06-17 14:55:29 +0200
 author: Mirosław Pragłowski
 tags: ['rails', 'rails event store']
 publish: true
 ---
+
+# Rails multiple databases support in Rails Event Store
 
 Rails 6 released in August 2019 has brought us several new [features](https://edgeguides.rubyonrails.org/6_0_release_notes.html).
 One of the notable changes is [support for multiple databases](https://guides.rubyonrails.org/active_record_multiple_databases.html).

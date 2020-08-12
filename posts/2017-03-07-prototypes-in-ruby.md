@@ -1,5 +1,4 @@
 ---
-title: "Prototypes in Ruby and the strange story of dup"
 created_at: 2017-03-07 22:24:48 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby','rails','prototypes' ]
 newsletter: arkency_form
 img: "prototypes-in-ruby-rails-active-record-dup-clone/prototypes_in_ruby_rails_header.png"
 ---
+
+# Prototypes in Ruby and the strange story of dup
 
 <%= img_fit("prototypes-in-ruby-rails-active-record-dup-clone/prototypes_in_ruby_rails_header.png") %>
 

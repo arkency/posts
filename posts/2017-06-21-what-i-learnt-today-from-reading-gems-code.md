@@ -1,5 +1,4 @@
 ---
-title: "What I learnt today from reading gems' code"
 created_at: 2017-06-23 08:11:27 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'chillout', 'sidekiq', 'gems', 'active support' ]
 newsletter: arkency_form
 img: sidekiq-active_support-chillout-rails-metrics/pexels-photo-225769.jpeg
 ---
+
+# What I learnt today from reading gems' code
 
 Today I was working on [chillout.io](http://chillout.io/) [client](https://github.com/chilloutio/chillout) and while I was debugging some parts, I had a look at some Ruby gems. This is always an interesting experience because you can learn how other developers design their API and how different it can be from your approach.
 

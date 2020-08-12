@@ -1,5 +1,4 @@
 ---
-title: "How to teach React.js properly? A quick preview of wroc_love.rb workshop agenda"
 created_at: 2016-02-15 18:47:24 +0100
 publish: true
 author: Marcin Grzywaczewski
@@ -7,6 +6,9 @@ tags: [ 'react', 'redux', 'wroc_love.rb' ]
 newsletter: react_books
 img: "reactjs-workshop-blogpost-agenda/header.jpg"
 ---
+
+# How to teach React.js properly? A quick preview of wroc_love.rb workshop agenda
+
 <p>
   <figure>
     <img src="<%= src_fit("reactjs-workshop-blogpost-agenda/header.jpg") %>" width="100%">

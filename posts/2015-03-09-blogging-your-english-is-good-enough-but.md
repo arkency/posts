@@ -1,11 +1,12 @@
 ---
-title: "Blogging: your English is good enough, but"
 created_at: 2015-03-09 15:21:13 +0100
 publish: true
 author: Andrzej Krzywda
 newsletter: blogging_book
 tags: [ 'blog', 'blogging']
 ---
+
+# Blogging: your English is good enough, but
 
 English may be one of the reasons you’re not blogging. Here are some tips to change this thinking. TLDR: You English is good enough, don’t worry.
 

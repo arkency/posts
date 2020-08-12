@@ -1,11 +1,12 @@
 ---
-title: "One request can be multiple commands"
 created_at: 2016-11-16 13:45:40 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'commands' ]
 newsletter: arkency_form
 ---
+
+# One request can be multiple commands
 
 It took me many years to understand the simple truth. One HTTP request
 sent by a browser may include a few separate logical commands. One

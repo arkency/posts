@@ -1,11 +1,12 @@
 ---
-title: "Which ruby version am I using — how to check?"
 created_at: 2017-09-29 11:22:09 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'version', 'check' ]
 newsletter: arkency_form
 ---
+
+# Which ruby version am I using — how to check?
 
 Are you not sure which Ruby version you are using right now? Wondering how to check it? Say no more. Here are two simple ways to check for it.
 

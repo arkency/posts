@@ -1,5 +1,4 @@
 ---
-title: "How to safely store API keys in Rails apps"
 created_at: 2017-07-14 13:48:33 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'security', 'rails', 'api' ]
 newsletter: arkency_form
 img: "ruby-store-api/api-keys-rails.png"
 ---
+
+# How to safely store API keys in Rails apps
 
 Inspired by [a question on reddit: Can you store user API keys in the database?](https://www.reddit.com/r/rails/comments/6n63ql/can_you_store_user_api_keys_in_the_database/) I decided to elaborate just a little bit on this topic.
 

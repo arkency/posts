@@ -1,11 +1,11 @@
 ---
-title: "Phases of refactoring complex Rails apps"
 created_at: 2016-07-25 12:59:37 +0200
 publish: true
 tags: [ 'rails', 'refactoring' ]
 author: Marcin Grzywaczewski
 ---
 
+# Phases of refactoring complex Rails apps
 
 Refactoring is a on-going process that is necessary in big Rails applications. Without it, you can quickly get into trouble - not only your code quality will suffer, but pieces of your architecture - models, controllers and views will get more and more coupled together. This is not a nice separation you had at the beginning of the project - it can quickly transform into an entangled mess of callbacks, going by relationships through half of the system to do stuff, and horrible things like that.
 

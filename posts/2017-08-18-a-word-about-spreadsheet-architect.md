@@ -1,11 +1,12 @@
 ---
-title: "What I learned from reading spreadsheet_architect code"
 created_at: 2017-08-18 11:59:07 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'spreadsheet_architect' ]
 newsletter: arkency_form
 ---
+
+# What I learned from reading spreadsheet_architect code
 
 Recently I heard about [`spreadsheet_architect` gem](https://github.com/westonganger/spreadsheet_architect) and I wondered a few things after reading its README. It all lead me to look into its code and wonder...
 

@@ -1,10 +1,11 @@
 ---
-title: "Avoid coupling between Bounded Contexts using Weak Schema"
 created_at: 2020-05-06 11:13:13 +0200
 author: Mirosław Pragłowski
 tags: ['ddd', 'rails event store', 'domain events']
 publish: true
 ---
+
+# Avoid coupling between Bounded Contexts using Weak Schema
 
 The [Rails Event Store](https://railseventstore.org) comes with
 a [bounded_context](https://www.rubydoc.info/gems/bounded_context/) gem

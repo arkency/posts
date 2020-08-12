@@ -1,5 +1,4 @@
 ---
-title: "Minimal decoupled subsystems in your rails app"
 created_at: 2016-09-30 09:49:59 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'active job', 'ddd', 'eventual consistency', 'messaging' ]
 newsletter: arkency_form
 img: "decoupled-bounded-contexts-async-rails/two_rails_bounded_contexts.png"
 ---
+
+# Minimal decoupled subsystems in your rails app
 
 There are multiple ways to implement communication between two separate
 microservices in your application. Messaging is often the most recommended

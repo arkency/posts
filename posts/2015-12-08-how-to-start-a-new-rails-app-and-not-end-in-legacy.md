@@ -1,9 +1,10 @@
 ---
-title: "How to start a new Rails app and not end in legacy"
 created_at: 2015-12-08 12:25:37 +0100
 publish: false
 author: Andrzej Krzywda
 ---
+
+# How to start a new Rails app and not end in legacy
 
 You've been there before. Starting a new Rails app, everything goes fast at the beginning. This time it's going to be a super clean code base. Some weeks/months later, the progress slows down. The client's trust is much worse. Hard to test and more bugs.
 

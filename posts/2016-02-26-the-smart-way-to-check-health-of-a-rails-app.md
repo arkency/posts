@@ -1,5 +1,4 @@
 ---
-title: "The smart way to check health of a Rails app"
 created_at: 2016-02-26 17:05:19 +0100
 publish: true
 author: Szymon Fiedler
@@ -7,6 +6,9 @@ tags: [ 'rails', 'health check', 'ops' ]
 canonical: "/2016/02/the-smart-way-to-check-health-of-a-rails-app/"
 newsletter: arkency_form
 ---
+
+# The smart way to check health of a Rails app
+
 <p>
     <figure>
         <img src="<%= src_fit('smart-way-to-check-health-of-a-rails-app/header.jpg') %>" width="100%">

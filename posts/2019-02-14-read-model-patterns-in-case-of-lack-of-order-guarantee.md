@@ -1,11 +1,12 @@
 ---
-title: "Patterns for asynchronous read models in infrastructure without order guarantee"
 created_at: 2019-02-14 13:57:44 +0100
 publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'read model', 'background job' ]
 newsletter: arkency_form
 ---
+
+# Patterns for asynchronous read models in infrastructure without order guarantee
 
 When we focus on the model in CQRS architecture, we put most effort into write model.
 Not only this is the place where the business operations are implemented and breakthroughs in understanding domain are happening -- we also consider it the part of the implementation where we should put a lot of our technical attention to.

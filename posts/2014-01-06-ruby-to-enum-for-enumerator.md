@@ -1,11 +1,12 @@
 ---
-title: "Stop including Enumerable, return Enumerator instead"
 created_at: 2014-01-08 17:22:14 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'to_enum', 'enumerator', 'enumerable' ]
 newsletter: arkency_form
 ---
+
+# Stop including Enumerable, return Enumerator instead
 
 <img src="<%= src_fit("enumerator/each.png") %>" width="100%">
 

@@ -1,5 +1,4 @@
 ---
-title: "Using ruby parser and AST tree to find deprecated syntax"
 created_at: 2017-12-22 11:32:22 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'parser', 'AST', 'rails' ]
 newsletter: arkency_form
 img: "ast-ruby-tree-find-deprecated-rails-syntax/ruby-ast-parse-gem.png"
 ---
+
+# Using ruby parser and AST tree to find deprecated syntax
 
 Sometimes when doing large refactoring or upgrades we would like to find places in the code for which `grep` or Rubymine search is not good enough. These are usually cases where you would like to use something more powerful. And we can do that.
 

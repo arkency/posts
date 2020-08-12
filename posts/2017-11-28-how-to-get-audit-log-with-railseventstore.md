@@ -1,10 +1,11 @@
 ---
-title: "How to get an audit log with RailsEventStore today"
 created_at: 2017-11-28 20:20:20 +0100
 publish: true
 author: Paweł Pacana
 tags: [ 'rails_event_store' ]
 ---
+
+# How to get an audit log with RailsEventStore today
 
 Did you know you can already get an audit log with [RailsEventStore](https://railseventstore.org) for free?
 

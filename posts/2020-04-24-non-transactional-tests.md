@@ -1,10 +1,11 @@
 ---
-title: Non-transactional tests
 created_at: 2020-04-24T11:09:54.260Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Non-transactional tests
 
 The option was once called `use_transactional_fixtures`. Since Rails 5 it's: `use_transactional_tests` - more adequately.
 

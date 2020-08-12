@@ -1,11 +1,12 @@
 ---
-title: "Using ruby Range with custom classes"
 created_at: 2014-08-03 12:04:03 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'ruby', 'Range', 'custom class', 'time' ]
 ---
+
+# Using ruby Range with custom classes
 
 <p>
   <figure align="center">

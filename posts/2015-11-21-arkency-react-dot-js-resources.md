@@ -1,10 +1,11 @@
 ---
-title: "Arkency React.js resources"
 created_at: 2015-11-21 11:00:53 +0100
 publish: true
 tags: [ 'rails', 'react' ]
 author: Andrzej Krzywda
 ---
+
+# Arkency React.js resources
 
 It has been some time (almost 2 years?) since we started using React.js at Arkency. It quickly propagated to all of our projects. Along the way, we've been blogging a lot about what we learnt.
 

@@ -1,5 +1,4 @@
 ---
-title: "Configurable dependencies in Angular.js"
 created_at: 2015-03-09 15:09:17 +0100
 publish: true 
 author: Marcin Grzywaczewski
@@ -7,6 +6,8 @@ tags: [ 'angularjs', 'front end' ]
 img: "angular-configurable-di/img.jpg"
 newsletter: react_books
 ---
+
+# Configurable dependencies in Angular.js
 
 <p>
   <figure>

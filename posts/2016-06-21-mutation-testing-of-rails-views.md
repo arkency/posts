@@ -1,10 +1,11 @@
 ---
-title: "Mutation testing of Rails views"
 created_at: 2016-06-21 21:55:37 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 ---
+
+# Mutation testing of Rails views
 
 Thanks to mutation testing we can get much higher confidence while working with Ruby/Rails apps. There is one area, though, where I've been struggling to make mutant to work - the Rails views. People use erb or haml and they're both not a proper Ruby code, they're templating languages.
 

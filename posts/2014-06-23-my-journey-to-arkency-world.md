@@ -1,5 +1,4 @@
 ---
-title: "My journey to Arkency world"
 created_at: 2014-06-23 20:28:00 +0200
 publish: true
 author: Tomasz Rybczyński
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote', 'work-style']
 stories: ['async-remote']
 ---
+
+# My journey to Arkency world
 
 <p>
   <figure>

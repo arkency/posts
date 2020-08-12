@@ -1,11 +1,12 @@
 ---
-title: "Blogging for developers"
 created_at: 2013-01-02 10:11:52 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: react_books
 tags: [ 'blog', 'nanoc', 'blogging']
 ---
+
+# Blogging for developers
 
 There are many possible blogging platforms out there to be used, yet we decided not to use any of them.
 It was a controversial decision even inside our own, small team. Before we started blogging there was

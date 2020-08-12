@@ -1,10 +1,11 @@
 ---
-title: "The quotes from the Post Rails Book Bundle books"
 created_at: 2016-07-20 14:36:28 +0200
 publish: true
 tags: [ 'rails', 'book' ]
 author: Andrzej Krzywda
 ---
+
+# The quotes from the Post Rails Book Bundle books
 
 Given that I now looked at all the [Post Rails Book Bundle](http://www.railsbookbundle.com) (Psst, the offer ends on Friday!) books, I've decided to pick some quotes which may shed more light into the whole message. This may help you understand the different points of views reflected by each author. 
 Some of the authors are very opinionated and use a strong language, whiles others seem to quite positive towards Rails, but show their ways of extending The Rails Way.

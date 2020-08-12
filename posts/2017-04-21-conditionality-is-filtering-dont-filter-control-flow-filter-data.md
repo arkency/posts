@@ -1,5 +1,4 @@
 ---
-title: "Conditionality is filtering. Don't filter control flow, filter data."
 created_at: 2017-04-21 11:33:52 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'fp' ]
 newsletter: arkency_form
 img: control-flow-filter-data-ruby-feathers/quote.jpg
 ---
+
+# Conditionality is filtering. Don't filter control flow, filter data.
 
 I am not that smart. I didn't say it. Michael Feathers did.
 But it got me thinking and I know it inspired my colleagues as well.

@@ -1,5 +1,4 @@
 ---
-title: "Async & remote - toolbox"
 created_at: 2014-06-11 20:16:56 +0200
 publish: true
 author: Andrzej Krzywda
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote' ]
 stories: ['async-remote']
 ---
+
+# Async & remote - toolbox
 
 <p>
   <figure>

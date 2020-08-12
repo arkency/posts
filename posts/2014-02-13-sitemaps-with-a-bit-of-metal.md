@@ -1,11 +1,12 @@
 ---
-title: "Sitemaps with a bit of Metal"
 created_at: 2014-02-13 22:06:47 +0100
 publish: true
 author: Szymon Fiedler
 newsletter: arkency_form
 tags: [ 'rails', 'seo', 'sitemap', 'action controller' ]
 ---
+
+# Sitemaps with a bit of Metal
 
 <p>
   <figure>

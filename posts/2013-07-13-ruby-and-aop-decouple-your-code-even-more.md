@@ -1,11 +1,12 @@
 ---
-title: "Ruby and AOP: Decouple your code even more"
 created_at: 2013-07-13 17:16:03 +0200
 publish: true
 newsletter: arkency_form
 author: Marcin Grzywaczewski
 tags: [ 'ruby', 'AOP' ]
 ---
+
+# Ruby and AOP: Decouple your code even more
 
 We, programmers, care for our applications' design greatly. We can spend
 hours arguing about solutions that we dislike and refactoring our code to

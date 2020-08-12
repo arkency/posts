@@ -1,5 +1,4 @@
 ---
-title: "rails-refactoring.com podcast #1"
 created_at: 2014-11-15 11:33:09 +0100
 publish: true
 author: "Robert Pankowecki"
@@ -9,6 +8,8 @@ enclosure:
   identifier: "/assets/sounds/rails-refactoring1.ogg"
   type: "audio/ogg"
 ---
+
+# rails-refactoring.com podcast #1
 
 Andrzej Krzywda & Robert Pankowecki in first episode of
 [rails-refactoring.com](http://rails-refactoring.com) podcast. We are talking about migrating

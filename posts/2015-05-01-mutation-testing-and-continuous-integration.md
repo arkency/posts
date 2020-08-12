@@ -1,11 +1,12 @@
 ---
-title: Mutation testing and continuous integration
 created_at: 2015-05-01 11:56:02 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 newsletter: arkency_form
 ---
+
+# Mutation testing and continuous integration
 
 Mutation testing is another form of checking the test coverage. As such it makes sense to put it as part of our Continuous Delivery process. In this blog post I’ll show you how we started using mutant together with TravisCI in the [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) project.
 

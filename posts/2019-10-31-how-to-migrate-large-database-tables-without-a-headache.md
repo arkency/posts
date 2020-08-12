@@ -1,11 +1,12 @@
 ---
-title: "How to migrate large database tables without a headache"
 created_at: 2020-01-08 12:12:12 +0100
 publish: true
 author: Paweł Pacana
 tags: ["rails_event_store", "mysql", "database"]
 newsletter: arkency_form
 ---
+
+# How to migrate large database tables without a headache
 
 This is the story how we once migrated an in-house event store, that reached its limits, to Rails Event Store.
 

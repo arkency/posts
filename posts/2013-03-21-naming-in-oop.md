@@ -1,11 +1,12 @@
 ---
-title: "Naming in OOP"
 created_at: 2013-03-21 11:52:19 +0100
 publish: true
 author: Jan Filipowski
 tags: [ 'OOP', 'OOD', 'mostly obvious' ]
 newsletter: arkency_form
 ---
+
+# Naming in OOP
 
 There is a well known cite on naming in our industry:
 

@@ -1,11 +1,12 @@
 ---
-title: "Always present association"
 created_at: 2016-07-12 17:42:41 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]
 newsletter: arkency_form
 ---
+
+# Always present association
 
 Recently my colleague showed my a little trick
 that I found to be very useful in some situations.

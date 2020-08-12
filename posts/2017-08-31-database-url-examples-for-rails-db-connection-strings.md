@@ -1,11 +1,12 @@
 ---
-title: "DATABASE_URL examples for Rails DB connection strings"
 created_at: 2017-08-31 10:04:49 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'travis', 'rails', 'database_url', 'connection string' ]
 newsletter: arkency_form
 ---
+
+# DATABASE_URL examples for Rails DB connection strings
 
 Recently I've been configuring [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) to run tests on many
 databases on the Travis CI. We do it using `DATABASE_URL` environment variable

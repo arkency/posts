@@ -1,10 +1,11 @@
 ---
-title: "The truth about Rails Convention over Configuration"
 created_at: 2020-04-02 10:24:17 +0200
 author: Andrzej Krzywda
 tags: [ 'rails', 'architecture' ]
 publish: false
 ---
+
+# The truth about Rails Convention over Configuration
 
 This blogpost is a work in progress. It's also a call for collaboration to Arkency friends (via pull requests - [https://github.com/arkency/posts/edit/master/posts/2020-04-02-the-truth-about-rails-convention-over-configuration.md](https://github.com/arkency/posts/edit/master/posts/2020-04-02-the-truth-about-rails-convention-over-configuration.md) ) if the goal of this blogpost resonates with you.
 

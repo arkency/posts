@@ -1,11 +1,12 @@
 ---
-title: "Developer matters"
 created_at: 2014-07-13 23:31:31 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: aar_newsletter
 tags: [ 'agile', 'async remote' ]
 ---
+
+# Developer matters
 
 <p>
   <figure align="center">

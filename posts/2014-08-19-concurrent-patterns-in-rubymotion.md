@@ -1,5 +1,4 @@
 ---
-title: "Concurrency patterns in RubyMotion"
 created_at: 2014-08-19 08:23:34 +0200
 publish: true
 author: Kamil Lelonek
@@ -7,6 +6,8 @@ newsletter: mobile
 tags: [ 'concurrency', 'parallelism', 'gdc', 'ruby', 'rubymotion', 'ios', 'mobile' ]
 stories: ['rubymotion']
 ---
+
+# Concurrency patterns in RubyMotion
 
 <p>
   <figure align="center">

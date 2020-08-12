@@ -1,11 +1,12 @@
 ---
-title: "Create, run and manage your Ruby background processes with upstart"
 created_at: 2014-06-29 16:21:01 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
 tags: [ 'upstart', 'background process' ]
 ---
+
+# Create, run and manage your Ruby background processes with upstart
 
 <p>
   <figure align="center">

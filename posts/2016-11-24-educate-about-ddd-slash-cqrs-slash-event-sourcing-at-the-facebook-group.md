@@ -1,10 +1,11 @@
 ---
-title: "Educate about DDD/CQRS/Event Sourcing at the Facebook group"
 created_at: 2016-11-24 15:55:30 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 ---
+
+# Educate about DDD/CQRS/Event Sourcing at the Facebook group
 
 There's more and more places where people interested in DDD can learn more. One of those places is the [DDD/CQRS google group](https://groups.google.com/forum/#!forum/dddcqrs), from which I learnt a lot!
 

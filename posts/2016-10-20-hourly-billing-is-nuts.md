@@ -1,5 +1,4 @@
 ---
-title: "Hourly Billing is Nuts"
 created_at: 2016-10-20 18:21:38 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'consulting' ]
 newsletter: arkency_form
 img: "hourly_billing_is_nuts/billing_clock.jpg"
 ---
+
+# Hourly Billing is Nuts
 
 **When it comes to my salary, I am an ordinary guy who earns $ X per hour**. I've been working this way since I joined Arkency, and I never thought much about it. I've been happy that if I need vacations or break, I can just take them (properly communicating it with the clients, of course) without much hassle. When I feel great, and I am inspired to work and work and work, I can just log more hours without thinking much about it as well. **Just like monthly salary, hourly salary is a safe way to live. But is it the most rewarding way to live?**  
   

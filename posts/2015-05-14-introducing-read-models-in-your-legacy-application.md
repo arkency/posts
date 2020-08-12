@@ -1,5 +1,4 @@
 ---
-title: "Introducing Read Models in your legacy application"
 created_at: 2015-05-14 18:20:44 +0200
 publish: true
 author: Rafał Łasocha
@@ -7,6 +6,8 @@ tags: [ 'rails_event_store', 'read model', 'cqrs', 'domain event', 'event sourci
 newsletter: fearless_refactoring_main
 img: "introducing-read-models-in-your-legacy-application/books.jpg"
 ---
+
+# Introducing Read Models in your legacy application
 
 <p>
   <figure align="center">

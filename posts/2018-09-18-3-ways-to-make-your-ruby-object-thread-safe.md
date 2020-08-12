@@ -1,11 +1,12 @@
 ---
-title: "3 ways to make your ruby object thread-safe"
 created_at: 2018-09-18 11:38:49 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'thread-safe' ]
 newsletter: arkency_form
 ---
+
+# 3 ways to make your ruby object thread-safe
 
 Let's say you have an object and you know or suspect it might be used (called) from many threads. What can you do to make it safe to use in such a way?
 

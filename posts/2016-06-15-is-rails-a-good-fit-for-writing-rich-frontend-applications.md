@@ -1,10 +1,11 @@
 ---
-title: "Is Rails a good fit for writing rich frontend applications?"
 created_at: 2016-06-15 15:56:22 +0200
 publish: true
 tags: [ 'rails', 'api' ]
 author: Marcin Grzywaczewski
 ---
+
+# Is Rails a good fit for writing rich frontend applications?
 
 This is a question I’ve asked myself months ago, working as a consultant for a client with a quite unique app.
 

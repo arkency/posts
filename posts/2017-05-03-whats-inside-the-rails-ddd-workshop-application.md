@@ -1,11 +1,12 @@
 ---
-title: "What's inside the Rails DDD workshop application?"
 created_at: 2017-05-03 14:18:37 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 img: workshop_app/order_history.png
 ---
+
+# What's inside the Rails DDD workshop application?
 
 An integral part of our Rails DDD workshops is an application which we use during the teaching and exercises process.
 

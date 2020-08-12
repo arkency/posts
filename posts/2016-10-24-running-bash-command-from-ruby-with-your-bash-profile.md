@@ -1,10 +1,11 @@
 ---
-title: "Running bash command from Ruby (with your bash_profile)"
 created_at: 2016-10-24 13:14:46 +0200
 publish: true
 tags: [ 'ruby' ]
 author: Andrzej Krzywda
 ---
+
+# Running bash command from Ruby (with your bash_profile)
 
 Whenever I try to automate some of my daily tasks, I end up with a mix of Ruby and Bash scripts. This is the time when I look up to the differences between `system`, `exec`, `%x`, backticks and others.
 

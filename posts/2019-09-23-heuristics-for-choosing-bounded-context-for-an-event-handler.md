@@ -1,10 +1,11 @@
 ---
-title: "Heuristics for choosing bounded context for an event handler"
 created_at: 2019-09-23 10:55:30 +0200
 publish: true
 author: Rafał Łasocha
 tags: ['bounded context', 'process manager', 'ddd']
 ---
+
+# Heuristics for choosing bounded context for an event handler
 
 Some time ago I was implementing a feature. As part of this I was, of course, writing a bunch of event handlers.
 At some point, I've realized I didn't put much thought when choosing the bounded context to which the event handlers should belong. It was mostly driven by intuition or some mechanical routine that upfront design.

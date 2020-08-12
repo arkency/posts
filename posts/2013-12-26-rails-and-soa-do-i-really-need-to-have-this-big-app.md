@@ -1,11 +1,12 @@
 ---
-title: "Rails and SOA: Do I really need to have this big app?"
 created_at: 2013-12-26 14:15:56 +0100
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'architecture', 'rails', 'service objects', 'multiapp', 'soa' ]
 newsletter: arkency_form
 ---
+
+# Rails and SOA: Do I really need to have this big app?
 
 Developing complex web applications (not particularly Rails apps) is a tricky
 task. You write your models, controllers, services and optimize application

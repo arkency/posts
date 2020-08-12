@@ -1,11 +1,12 @@
 ---
-title: "The reasons why programmers don't blog"
 created_at: 2015-02-27 10:05:53 +0100
 publish: true
 author: Andrzej Krzywda
 newsletter: blogging_book
 tags: [ 'blog', 'blogging']
 ---
+
+# The reasons why programmers don't blog
 
 I was wondering why only few programmers actively blog, so I asked for reasons on Twitter. Here are the responses.
 

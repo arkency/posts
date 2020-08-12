@@ -1,5 +1,4 @@
 ---
-title: "inject vs each_with_object"
 created_at: 2017-08-29 13:30:53 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'enumerable' ]
 newsletter: arkency_form
 img: "ruby-inject-each_with_object-comparison-vs/kitty-compares-inject-ruby-each_with_object.jpg"
 ---
+
+# inject vs each_with_object
 
 Recently I've been adding new exercises to DevMemo.io and some of them were about `Enumerable#inject` (also available as aliased method `reduce`) and some of them were about `Enumberable#each_with_object`. And I've been thinking about a small guideline for when to use which.
 

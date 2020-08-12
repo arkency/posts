@@ -1,11 +1,12 @@
 ---
-title: "Web is no longer request-reply"
 created_at: 2013-02-15 10:30:12 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: react_books
 tags: [ 'rails', 'web', 'servers', 'patterns' ]
 ---
+
+# Web is no longer request-reply
 
 In the old times everything was simple. You received a request, did some computation (or not in case of static page)
 and sent a reply. However what we do now is no longer that easy.

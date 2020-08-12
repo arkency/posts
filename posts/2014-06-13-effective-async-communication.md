@@ -1,5 +1,4 @@
 ---
-title: "Effective async communication"
 created_at: 2014-06-13 18:39:02 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote', 'communication' ]
 stories: ['async-remote']
 ---
+
+# Effective async communication
 
 <p>
   <figure>

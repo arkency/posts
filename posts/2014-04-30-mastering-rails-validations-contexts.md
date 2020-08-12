@@ -1,5 +1,4 @@
 ---
-title: "Mastering Rails Validations: Contexts"
 created_at: 2014-04-30 18:29:47 +0200
 publish: true
 author: Robert Pankowecki
@@ -8,6 +7,8 @@ tags: [ 'custom', 'validations', 'context', 'rails', 'active model', 'active rec
 meta_title: "→ Mastering Rails Validations: Contexts"
 description: "Here's a Quick Introduction to Custom Validation Contexts in Rails. #LEARN MORE about it on Arkency Blog !!!"
 ---
+
+# Mastering Rails Validations: Contexts
 
 <p>
   <figure>

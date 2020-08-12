@@ -1,5 +1,4 @@
 ---
-title: "Loading all data when starting Flux SPA"
 created_at: 2016-01-22 13:39:27 +0200
 publish: true
 author: Rafał Łasocha
@@ -7,6 +6,8 @@ tags: [ 'react', 'flux', 'altjs' ]
 newsletter: react_books
 img: "loading-all-data-when-starting-flux-spa/header.jpg"
 ---
+
+# Loading all data when starting Flux SPA
 
 <p>
   <figure>

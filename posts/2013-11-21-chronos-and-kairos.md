@@ -1,5 +1,4 @@
 ---
-title: "Chronos vs Kairos: Find out how you think about time when working on a project"
 created_at: 2013-11-21 17:18:19 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote' ]
 stories: ['async-remote']
 ---
+
+# Chronos vs Kairos: Find out how you think about time when working on a project
 
 <img src="<%= src_fit("chronos_kairos/clock.png") %>" width="100%">
 

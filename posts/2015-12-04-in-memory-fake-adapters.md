@@ -1,5 +1,4 @@
 ---
-title: "In-Memory Fake Adapters"
 created_at: 2015-12-04 12:30:32 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'adapters', 'in-memory', 'rails' ]
 newsletter: clean
 img: "fake-in-memory-adapters/gorilla-thinking-about-in-memory-adapters.jpg"
 ---
+
+# In-Memory Fake Adapters
 
 <p>
   <figure>

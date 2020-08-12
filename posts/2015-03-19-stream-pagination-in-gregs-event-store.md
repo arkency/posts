@@ -1,5 +1,4 @@
 ---
-title: "Stream pagination in Greg's Event Store"
 created_at: 2015-03-24 19:28:05 +0100
 publish: true
 author: Tomasz Rybczyński
@@ -7,6 +6,8 @@ tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/pages.jpg"
 ---
+
+# Stream pagination in Greg's Event Store
 
 <p>
   <figure>

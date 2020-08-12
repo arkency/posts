@@ -1,10 +1,11 @@
 ---
-title: "Update Rails Event Store to v1.0.0 - walkthrough"
 created_at: 2020-04-28 11:59:46 +0200
 author: Mirosław Pragłowski
 tags: ['rails event store']
 publish: true
 ---
+
+# Update Rails Event Store to v1.0.0 - walkthrough
 
 Recently I've posted a tweet:
 

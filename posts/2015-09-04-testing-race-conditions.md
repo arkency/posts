@@ -1,11 +1,12 @@
 ---
-title: "Testing race conditions in your Rails app"
 created_at: 2015-09-04 09:22:03 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'race conditions', 'testing']
 img: "race-conditions-rails-active-record/race-rails2.jpg"
 ---
+
+# Testing race conditions in your Rails app
 
 <p>
   <figure>

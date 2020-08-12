@@ -1,10 +1,11 @@
 ---
-title: "How to work remotely and not get crazy"
 created_at: 2020-04-20 13:22:48 +0200
 author: Andrzej Krzywda
 tags: ['async remote']
 publish: true
 ---
+
+# How to work remotely and not get crazy
 
 Today I would like to talk about how to work remotely and how we do it at Arkency.  We’re living in crazy times right now, almost everyone seems to be working remotely, so I thought it would be a good idea to share some experiences we’ve had with remote (and asynchronous) work since we first started working like this around 15 years ago. I think some of the ideas I’m going to share are universal and can be applied to any profession, not just programming or software development. It is interesting to see how well the whole concept of remote work seems to be doing right now that everyone is embracing it. For some people, it’s a completely novel approach to going about their work, while others have been practicing it for some time. But even within one team, there can be people who have and who haven’t done it, which, of course, may create some difficulties.
 

@@ -1,11 +1,12 @@
 ---
-title: "Custom application configuration variables in Rails 4 and 5"
 created_at: 2017-09-16 12:39:49 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'configuration' ]
 newsletter: arkency_form
 ---
+
+# Custom application configuration variables in Rails 4 and 5
 
 You probably know that you can configure Rails in `config/application.rb` and `config/environments/development.rb` etc. But you can also leverage that for configuring your own custom settings for your application.
 

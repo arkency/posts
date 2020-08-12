@@ -1,5 +1,4 @@
 ---
-title: "37 signals was not lying, you win by being remote"
 created_at: 2014-01-09 12:21:00 +0100
 publish: true
 author: Szymon Fiedler
@@ -7,6 +6,8 @@ tags: ['identity', 'team', 'async remote']
 newsletter: async_remote_main
 stories: ['async-remote']
 ---
+
+# 37 signals was not lying, you win by being remote
 
 There is such moment in developer's life when you start looking for a new job, sooner or later. You can observe that even in Poland, there are plenty of Ruby on Rails job offers, often in very perspective companies. I probably could find interesting job in Poznań, where I live, but there were some presumptions which pushed me to apply to Arkency.
 

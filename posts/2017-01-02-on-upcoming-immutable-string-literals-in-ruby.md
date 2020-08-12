@@ -1,11 +1,12 @@
 ---
-title: "On upcoming immutable string literals in Ruby"
 created_at: 2017-01-02 11:23:52 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'immutable', 'string' ]
 newsletter: arkency_form
 ---
+
+# On upcoming immutable string literals in Ruby
 
 Today I checked one of the solutions made by our [Junior Rails Developer class](/junior-rails-developer/)
 student. As part of the course they make Rails apps but also learn from smaller

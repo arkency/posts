@@ -1,11 +1,12 @@
 ---
-title: "Advantages of working on a legacy application"
 created_at: 2015-10-20 11:17:21 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'legacy', 'rails' ]
 newsletter: fearless_refactoring_main
 ---
+
+# Advantages of working on a legacy application
 
 Are there any advantages of working on such an application?
 Would you rather prefer working on a greenfield?

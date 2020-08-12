@@ -1,11 +1,12 @@
 ---
-title: "Behind the scenes"
 created_at: 2014-10-03 09:34:23 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'lifestyle' ]
 newsletter: aar_newsletter
 ---
+
+# Behind the scenes
 
 We work from wherever we want and we ship it.
 

@@ -1,11 +1,12 @@
 ---
-title: "Recovering unbootable NixOS instance using Hetzner rescue mode"
 created_at: 2016-11-30 19:37:19 +0100
 publish: true
 author: Rafał Łasocha
 tags: [ 'nixos', 'infra', 'hetzner', 'devops' ]
 newsletter: arkency_form
 ---
+
+# Recovering unbootable NixOS instance using Hetzner rescue mode
 
 Some time ago we had a small fuckup with one of our CI build machines. One of the devs was changing sizes of the file system partitions and he forgot to commit new NixOS configuration to the git repository where we synchronize it. After some time, I've uploaded NixOS config from git repo (which had, like I said, outdated configuration) to the machine and run `nixos-rebuild --switch` which essentialy made system into unbootable state because of wrong UUIDs in `/etc/fstab`.
 

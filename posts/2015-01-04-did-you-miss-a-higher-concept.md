@@ -1,11 +1,12 @@
 ---
-title: "It's easy to miss a higher level concept in an app"
 created_at: 2015-01-04 15:28:14 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby' ]
 newsletter: arkency_form
 ---
+
+# It's easy to miss a higher level concept in an app
 
 Just yesterday, I finished reading [Understanding the Four Rules of Simple Design](https://leanpub.com/4rulesofsimpledesign)
 written by [Corey Haines](https://twitter.com/coreyhaines). I definitely

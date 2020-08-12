@@ -1,5 +1,4 @@
 ---
-title: "How I hunted the most odd ruby bug"
 created_at: 2016-04-18 09:59:28 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'resque', 'honeybadger', 'at_exit', 'threads' ]
 newsletter: arkency_form
 img: "ruby-honeybadger-resque-slow/cpu.jpg"
 ---
+
+# How I hunted the most odd ruby bug
 
 Every now and then there comes a bug in programmer's life that is different than anything
 else you've encountered so far. Last time for me it was 3 days of debugging to find out that MySQL

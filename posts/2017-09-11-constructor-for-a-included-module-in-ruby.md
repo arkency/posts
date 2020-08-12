@@ -1,11 +1,12 @@
 ---
-title: "How mutation testing causes deeper thinking about your code + constructor for an included module in Ruby"
 created_at: 2017-09-13 14:40:07 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'inheritance', 'module', 'constructor', 'mutation testing' ]
 newsletter: arkency_form
 ---
+
+# How mutation testing causes deeper thinking about your code + constructor for an included module in Ruby
 
 This is a short story which starts with being very surprised by mutation testing results and trying to figure out how to deal with it.
 

@@ -1,5 +1,4 @@
 ---
-title: "My favorite ActiveSupport features"
 created_at: 2015-02-25 11:36:56 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: react_books
 tags: [ 'rails', 'active support' ]
 img: "active-support/favorite-ruby-active-support.jpg"
 ---
+
+# My favorite ActiveSupport features
 
 <p>
   <figure>

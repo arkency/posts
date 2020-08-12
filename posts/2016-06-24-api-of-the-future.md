@@ -1,11 +1,12 @@
 ---
-title: "API of the future"
 created_at: 2016-06-24 15:42:00 +0200
 publish: true
 author: Marcin Grzywaczewski
 tags: [ "rails", "react", "api", "frontend-friendly-rails"]
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
+
+# API of the future
 
 _The "Frontend-friendly Rails" book is now live!_ 
 

@@ -1,5 +1,4 @@
 ---
-title: "Null Object pattern in practice"
 created_at: 2015-08-16 15:02:24 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'null', 'object', 'pattern', 'ruby' ]
 newsletter: fearless_refactoring_1
 img: "null/null-object-ruby-pattern-fowler.jpg"
 ---
+
+# Null Object pattern in practice
 
 <p>
   <figure>

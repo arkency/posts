@@ -1,10 +1,11 @@
 ---
-title: "respond_to |format| is useful even without multiple formats"
 created_at: 2016-07-21 16:39:29 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'respond_to', 'format' ]
 ---
+
+# respond_to |format| is useful even without multiple formats
 
 You might think that if a controller action is only
 capable of rendering HTML, there is not much reason

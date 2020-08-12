@@ -1,5 +1,4 @@
 ---
-title: "Ruby Exceptions Equality"
 created_at: 2015-01-11 12:19:04 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: arkency_form
 tags: [ 'ruby', 'exceptions' ]
 img: "ruby-exception-equality/ruby-exception-surprise-face.jpg"
 ---
+
+# Ruby Exceptions Equality
 
 <p>
   <figure>

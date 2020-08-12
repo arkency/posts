@@ -1,11 +1,12 @@
 ---
-title: "How to setup development work with RailsEventStore and mutant"
 created_at: 2017-09-06 12:39:16 +0200
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rails_event_store', 'mutation testing', 'ddd' ]
 newsletter: arkency_form
 ---
+
+# How to setup development work with RailsEventStore and mutant
 
 <%= img_fit("development-work-with-res-and-mutant/rita-morais-108397.jpg") %>
 

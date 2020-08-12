@@ -1,5 +1,4 @@
 ---
-title: "That one time I used recursion to solve a problem"
 created_at: 2017-08-11 13:17:27 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'recursion' ]
 newsletter: arkency_form
 img: "recursion-recursive-function-method-ruby-rails/recursion_ruby.png"
 ---
+
+# That one time I used recursion to solve a problem
 
 Some time ago I was working on a problem and I could not find a satisfactory solution. But it all turned out to be much simpler when I reminded myself about a tool that I rarely use: recursive function.
 

@@ -1,10 +1,11 @@
 ---
-title: Multitenancy with PostgreSQL schemas - a gentle introduction and explanation of concepts
 created_at: 2020-05-12T14:41:14.296Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Multitenancy with PostgreSQL schemas - a gentle introduction and explanation of concepts
 
 **PostgreSQL schema**. Basically a namespace. Sometimes also called this way internally (schema is a confusing name).
 

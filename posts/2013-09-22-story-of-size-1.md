@@ -1,5 +1,4 @@
 ---
-title: "Developers oriented project management: Story of size 1"
 created_at: 2013-09-23 20:17:43 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: aar_newsletter
 tags: [ 'async remote', 'work' ]
 stories: ['async-remote']
 ---
+
+# Developers oriented project management: Story of size 1
 
 <img src="<%= src_fit("story-1/full.png") %>" width="100%">
 

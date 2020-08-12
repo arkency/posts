@@ -1,5 +1,4 @@
 ---
-title: "Fluent Interfaces in Ruby ecosystem"
 created_at: 2017-01-26 10:27:38 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'oop', 'ruby' ]
 newsletter: arkency_form
 img: fluent-interface-api-ruby-rails/title.jpeg
 ---
+
+# Fluent Interfaces in Ruby ecosystem
 
 <%= img_fit("fluent-interface-api-ruby-rails/title.jpeg") %>
 

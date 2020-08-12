@@ -1,11 +1,12 @@
 ---
-title: "Handle sidekiq processing when one job saturates your workers and the rest queue up"
 created_at: 2017-07-14 18:25:06 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'sidekiq' ]
 newsletter: arkency_form
 ---
+
+# Handle sidekiq processing when one job saturates your workers and the rest queue up
 
 I saw [a great question on reddit](https://www.reddit.com/r/rails/comments/6mp1fi/help_how_to_handle_sidekiq_processing_when_one/) which I am gonna quote and try to provide a few possible answers.
 

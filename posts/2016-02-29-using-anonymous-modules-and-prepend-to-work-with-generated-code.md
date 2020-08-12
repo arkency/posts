@@ -1,11 +1,12 @@
 ---
-title: "Using anonymous modules and prepend to work with generated code"
 created_at: 2016-02-29 11:41:56 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'metaprogramming', 'prepend', 'anonymous-modules' ]
 newsletter: clean
 ---
+
+# Using anonymous modules and prepend to work with generated code
 
 In my previous blog-post [about using setters](/2016/01/drop-this-before-validation-and-use-method/)
 one of the commenter mentioned a case in which **the setter methods are created by a gem. How can we

@@ -1,10 +1,11 @@
 ---
-title: "Extract a service object in any framework"
 created_at: 2015-03-02 15:10:14 +0100
 publish: true
 tags: [ 'rails', 'refactoring', 'service objects' ]
 author: Andrzej Krzywda
 ---
+
+# Extract a service object in any framework
 
 Extracting a service object is a natural step in any kind of framework-dependent application. In this blog post, I’m showing you an example from Nanoc, a blogging framework.
 
@@ -54,12 +55,14 @@ run do |opts, args, cmd|
   path = "./content/posts/#{date.strftime('%Y-%m-%d')}-#{title.to_url}.md"
   template = <<TEMPLATE
 ---
-title: "#{title}"
 created_at: #{date}
 publish: false
 author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]
 ---
+
+# #{title}
+
 TEMPLATE
 
   unless File.exist?(path)
@@ -132,12 +135,13 @@ class CreateNewPostFromTemplate
   def template(title, date)
     <<TEMPLATE
 ---
-title: "#{title}"
 created_at: #{date}
 publish: false
 author: anonymous
 tags: [ 'foo', 'bar', 'baz' ]
 ---
+
+# #{title}
 
 TEMPLATE
   end

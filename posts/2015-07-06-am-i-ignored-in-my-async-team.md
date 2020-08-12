@@ -1,11 +1,12 @@
 ---
-title: "Am I ignored in my async team?"
 created_at: 2015-07-06 09:19:01 +0200
 publish: true
 tags: [ 'async remote' ]
 author: Andrzej Krzywda
 newsletter: async_remote_main
 ---
+
+# Am I ignored in my async team?
 
 When we work in async teams, we have many benefits from it - people not blocked on each other, freedom of place, freedom of time.
 We also have some drawbacks. You can't expect an instant reply to whatever you ask for. In the nature of async, you can't even be sure when you get the reply. What's interesting, you can't even be sure that all (any?) people actually received your message.

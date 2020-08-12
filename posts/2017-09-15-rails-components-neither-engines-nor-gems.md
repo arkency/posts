@@ -1,11 +1,12 @@
 ---
-title: "Rails components — neither engines nor gems"
 created_at: 2017-09-15 01:26:21 +0200
 publish: true
 author: Paweł Pacana
 tags: [ 'cbra', 'gem', 'bounded context', 'ddd' ]
 newsletter: arkency_form
 ---
+
+# Rails components — neither engines nor gems
 
 There has been a very interesting discussion today on [\#ruby-rails-ddd community slack channel](http://blog.arkency.com/domain-driven-rails/). The topic circulated around bounded contexts and introducing certain "component" solutions to separate them.
 

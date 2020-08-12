@@ -1,5 +1,4 @@
 ---
-title: "Tracking dead code in Rails apps with metrics"
 created_at: 2017-06-23 15:57:39 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'chillout', 'custom metrics', 'dead code' ]
 newsletter: arkency_form
 img: ruby-rails-metrics-for-detecting-unused-code/chillout-io-grafana-alert-unused-code2.jpg
 ---
+
+# Tracking dead code in Rails apps with metrics
 
 When you work in big Rails application sometimes you would like to remove certain lines of code or even whole features. But often, you are not completely sure if they are truly unused. What can you do?
 

@@ -1,11 +1,12 @@
 ---
-title: "One simple trick to make Event Sourcing click"
 created_at: 2017-10-02 09:34:57 +0200
 publish: true
 author: Paweł Pacana
 tags: [ 'ddd', 'event sourcing', 'aggregate' ]
 newsletter: arkency_form
 ---
+
+# One simple trick to make Event Sourcing click
 
 Event Sourcing is like having two methods when previously there was one. There — I've said it.
 

@@ -1,11 +1,12 @@
 ---
-title: "Implementing worker threads in Rails"
 created_at: 2013-06-17 10:47:05 +0200
 publish: true
 newsletter: arkency_form
 author: Paweł Pacana
 tags: [ 'ruby', 'thread', 'fork', 'chillout', 'unicorn', 'puma', 'passenger' ]
 ---
+
+# Implementing worker threads in Rails
 
 If you care about your application performance you have to schedule extra tasks into background when handling requests. One of such tasks may be collecting performance or business metrics. In this post I'll show you how to avoid potential problems with threaded background workers.
 

@@ -1,10 +1,11 @@
 ---
-title: "Rubyʼs raise Exception.new or raise Exception — they're both the same"
 created_at: 2019-12-02 18:45:01 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ruby', 'exceptions']
 ---
+
+# Rubyʼs raise Exception.new or raise Exception — they're both the same
 
 TLDR: You can use `raise Exception` and `raise Exception.new` - they’re identical as a result and it’s 4 characters less.
 

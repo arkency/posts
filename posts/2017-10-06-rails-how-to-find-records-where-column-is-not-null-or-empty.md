@@ -1,11 +1,12 @@
 ---
-title: "How to find records where column is not null or empty in Rails 4 or 5"
 created_at: 2017-09-04 16:11:04 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]
 newsletter: arkency_form
 ---
+
+# How to find records where column is not null or empty in Rails 4 or 5
 
 We all know that especially in legacy applications sometimes our database columns are not that well maintained. So we need to query for, or exclude rows containing `nil`/`NULL` and empty strings (`""`) as well. How can we do it in ActiveRecord?
 

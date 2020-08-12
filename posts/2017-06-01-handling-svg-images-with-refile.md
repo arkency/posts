@@ -1,11 +1,12 @@
 ---
-title: "Handling SVG images with Refile and Imgix"
 created_at: 2017-06-01 14:00:39 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'svg', 'refile', 'imgix' ]
 newsletter: arkency_form
 ---
+
+# Handling SVG images with Refile and Imgix
 
 My colleague Tomek today was responsible for changing a bit how we
 handle file uploads in a project so that it can support SVG logos.

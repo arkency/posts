@@ -1,5 +1,4 @@
 ---
-title: "Gulp - a modern approach to asset pipeline for Rails developers"
 created_at: 2015-03-31 16:20:02 +0200
 publish: true
 author: Marcin Grzywaczewski
@@ -7,6 +6,8 @@ tags: [ 'javascript', 'front end', 'sprockets', 'assets' ]
 newsletter: react_books
 img: "gulp-replacement-sprockets/gulp.png"
 ---
+
+# Gulp - a modern approach to asset pipeline for Rails developers
 
 <p>
   <figure>

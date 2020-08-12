@@ -1,11 +1,12 @@
 ---
-title: "Testing React.js components with Jest in Rails+Webpacker+Webpack environment"
 created_at: 2018-02-11 12:34:04 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'jest', 'rails', 'webpack', 'webpacker' ]
 newsletter: arkency_form
 ---
+
+# Testing React.js components with Jest in Rails+Webpacker+Webpack environment
 
 Around a month ago, I worked on a task, which required a more dynamic frontend behavior. I worked on a component with 2 selects and 2 date pickers and depending on what was selected where the other pickers or select inputs had to be updated based on some relatively simple business rules. I decided to implement it using React.js and it was fun and pretty straight-forward to finish it. Also, working with http://airbnb.io/react-dates/ turned out to be a very pleasureful experience. But that's not what this post is about.
 

@@ -1,11 +1,12 @@
 ---
-title: "Safely migrating has_and_belongs_to_many associations to Rails 4"
 created_at: 2017-11-17 10:54:27 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record' ]
 newsletter: arkency_form
 ---
+
+# Safely migrating has_and_belongs_to_many associations to Rails 4
 
 During recent days I've been migrating a _senior_ Rails application from Rails 3 to Rails 5. As part of the process, I was dealing with `has_and_belongs_to_many` associations.
 

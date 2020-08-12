@@ -1,11 +1,12 @@
 ---
-title: "Serverless Slack bot on Lambda with Ruby (and what’s the less pleasant part about it)"
 created_at: 2018-12-13 14:00:00 +0100
 publish: true
 author: Paweł Pacana
 tags: [ 'ruby', 'aws', 'lambda', 'serverless', 'slack' ]
 newsletter: arkency_form
 ---
+
+# Serverless Slack bot on Lambda with Ruby (and what’s the less pleasant part about it)
 
 We love sharing knowledge at Arkency. Education is in our DNA. We're happy when our readers and customers are benefiting from that as well. And we've set a Slack bot celebrate on each such occasion!
 

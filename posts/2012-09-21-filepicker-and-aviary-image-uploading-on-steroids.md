@@ -1,11 +1,12 @@
 ---
-title: "Filepicker and Aviary - Image uploading on steroids"
 created_at: 2012-09-21 13:10:02 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: react_books
 tags: [ 'filepicker', 'aviary', 'avatar', 'images', 'uploads', 'resizing', 'saas', 'coffeescript', 'rails' ]
 ---
+
+# Filepicker and Aviary - Image uploading on steroids
 
 We all have been using the same code for uploading images for years, but didn't
 you always feel that there is something wrong with it? For every other task

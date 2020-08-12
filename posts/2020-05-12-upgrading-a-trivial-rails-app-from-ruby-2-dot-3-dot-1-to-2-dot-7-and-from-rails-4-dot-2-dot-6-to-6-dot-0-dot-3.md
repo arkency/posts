@@ -1,11 +1,12 @@
 ---
-title: Upgrading a trivial Rails app from Ruby 2.3.1 to 2.7 and from Rails 4.2.6 to 6.0.3
 created_at: 2020-05-12T12:05:55.324Z
 author: Andrzej Krzywda
 tags: [ruby upgrade, rails upgrade, heroku, plusone]
 publish: true
 cta: 'hireus'
 ---
+
+# Upgrading a trivial Rails app from Ruby 2.3.1 to 2.7 and from Rails 4.2.6 to 6.0.3
 
 This blogpost describes the upgrading process of a trivial Rails app. 
 The app is called PlusOne (it's [open-sourced](https://github.com/arkency/plusone)) and it's a small but fun Slack bot (MS Teams support coming).

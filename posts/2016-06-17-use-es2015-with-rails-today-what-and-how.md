@@ -1,11 +1,12 @@
 ---
-title: "Use ES2015 with Rails today - what & how"
 created_at: 2016-06-15 15:56:22 +0200
 publish: true
 tags: [ 'rails', 'react' ]
 author: Marcin Grzywaczewski
 img: "frontend-friendly-rails/ffr-cover.png"
 ---
+
+# Use ES2015 with Rails today - what & how
 
 > This is a content which was previously published as a mailing campaign in the [Arkency Newsletter](https://eepurl.com/LnL3b). This promotes our new book - _Frontend Friendly Rails_ which is available on sale now. Use **`FF_RAILS_BLOG`** to get 40% discount on the book, which you can [buy here](https://arkency.dpdcart.com/cart/add?product_id=133328&method_id=142386).
 

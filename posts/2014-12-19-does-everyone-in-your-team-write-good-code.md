@@ -1,11 +1,12 @@
 ---
-title: "Does everyone in your team write good code?"
 created_at: 2014-12-19 16:40:03 +0100
 publish: true
 author: Andrzej Krzywda
 newsletter: fearless_refactoring_main
 tags: ['refactoring']
 ---
+
+# Does everyone in your team write good code?
 
 How does it feel when someone pushes new code to the repo and the code doesn’t fit your standards?
 

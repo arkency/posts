@@ -1,10 +1,11 @@
 ---
-title: "Testing aggregates with commands and events"
 created_at: 2016-02-19 07:26:59 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'aggregate', 'domain event', 'testing']
 ---
+
+# Testing aggregates with commands and events
 
 Once you start switching to using aggregates in your system (as opposed to say, ActiveRecord objects), you will need to find good ways of testing those aggregate objects. This blogpost is an attempt to explore one of the possible ways.
 

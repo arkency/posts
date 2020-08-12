@@ -1,11 +1,12 @@
 ---
-title: "Event Sourcing is a transferable skill"
 created_at: 2017-11-28 20:40:20 +0200
 publish: true
 author: Paweł Pacana
 tags: [ 'event sourcing', 'haskell' ]
 newsletter: arkency_form
 ---
+
+# Event Sourcing is a transferable skill
 
 As developers we're constantly learning to keep our axes sharp. Getting to know new concepts, patterns or paradigms broadens our horizons. It may eventually result in having new perspective how to solve business problems we're facing.
 

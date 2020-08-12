@@ -1,11 +1,12 @@
 ---
-title: "Services - what are they and why we need them?"
 created_at: 2013-09-26 01:12:28 +0200
 publish: true
 author: Marcin Grzywaczewski
 newsletter: fearless_refactoring_1
 tags: [ 'rails', 'oop', 'design' ]
 ---
+
+# Services - what are they and why we need them?
 
 Model-View-Controller is a design pattern which absolutely dominated web frameworks.
 On the first look it provides a great and logical separation between our application components. When we apply some basic principles (like 'fat models, slim controllers') to our application, we can live happily very long with this basic fragmentation.

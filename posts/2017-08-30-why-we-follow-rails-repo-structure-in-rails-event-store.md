@@ -1,5 +1,4 @@
 ---
-title: "Why we follow the Rails repo structure in Rails Event Store"
 created_at: 2017-08-30 18:47:00 +0200
 publish: true
 author: Paweł Pacana
@@ -7,6 +6,7 @@ tags: [ 'rails', 'rails_event_store' ]
 newsletter: arkency_form
 ---
 
+# Why we follow the Rails repo structure in Rails Event Store
 
 A complete Rails Event Store solution consists of following gems:
 

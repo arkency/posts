@@ -1,11 +1,12 @@
 ---
-title: "Throw away Sprockets, use UNIX!"
 created_at: 2013-09-23 12:49:29 +0200
 publish: true
 newsletter: react_books
 author: 'Mateusz Lenik'
 tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
+
+# Throw away Sprockets, use UNIX!
 
 The Sprockets gem is the standard way to combine asset files in Rails, but it
 wasn't very straightforward to use in stand-alone projects, like Single Page

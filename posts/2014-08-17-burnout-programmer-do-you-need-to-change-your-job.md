@@ -1,5 +1,4 @@
 ---
-title: "Burnout - do you need to change your job?"
 created_at: 2014-08-17 15:07:31 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote' ]
 stories: ['async-remote']
 ---
+
+# Burnout - do you need to change your job?
 
 <p>
   <figure>

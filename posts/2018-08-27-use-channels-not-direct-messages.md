@@ -1,10 +1,11 @@
 ---
-title: "Use channels, not direct messages — 9 tips"
 created_at: 2018-09-02 12:59:52 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'async remote' ]
 ---
+
+# Use channels, not direct messages — 9 tips
 
 There's something about using direct messages (project related) that developers find uncomfortable. At Arkency, we avoid them at all costs, but we also see how hard is to change our client teams habits, sometimes. 
 

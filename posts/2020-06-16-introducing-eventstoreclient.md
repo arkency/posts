@@ -1,10 +1,11 @@
 ---
-title: "Introducing EventStoreClient - a ruby implementation for Greg's EventStore"
 created_at: 2020-06-16 15:25:22 +0200
 author: Sebastian Wilgosz
 tags: ["event store", "microservices", "event sourcing", "ddd"]
 publish: true
 ---
+
+# Introducing EventStoreClient - a ruby implementation for Greg's EventStore
 
 > A guest post by [Rails Architect Masterclass](https://railsarchitects.com) alumnus, [Sebastian Wilgosz](https://twitter.com/sebwilgosz) from Useo.
 

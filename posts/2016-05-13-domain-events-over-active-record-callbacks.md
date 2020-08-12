@@ -1,11 +1,12 @@
 ---
-title: "Domain Events over Active Record Callbacks"
 created_at: 2016-05-13 17:02:23 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'domain event', 'active record', 'callbacks', 'ddd', 'rails' ]
 newsletter: arkency_form
 ---
+
+# Domain Events over Active Record Callbacks
 
 Recently [Marcin](https://twitter.com/killavus) wrote an article about [ActiveRecord callbacks being the biggest code smell in Rails apps](https://medium.com/planet-arkency/the-biggest-rails-code-smell-you-should-avoid-to-keep-your-app-healthy-a61fd75ab2d3#.q537fl3g5), that can easily get out of control. It was posted on Reddit and a very interesting comment appeared [there](https://www.reddit.com/r/ruby/comments/4hr125/the_biggest_rails_code_smell_you_should_avoid_to/):
 

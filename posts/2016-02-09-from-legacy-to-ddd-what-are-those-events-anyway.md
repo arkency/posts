@@ -1,10 +1,11 @@
 ---
-title: "From legacy to DDD: What are those events anyway?"
 created_at: 2016-02-09 23:48:04 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 ---
+
+# From legacy to DDD: What are those events anyway?
 
 [In one of my previous posts](http://blog.arkency.com/2016/01/from-legacy-to-ddd-start-with-publishing-events/), I've suggested to start with publishing events. It sounds easy in theory, but in practice it's not always clear what is an event.
 The problem is even bigger, as the term event is used in different places with different meaning. In here, I'm focusing on explaining events and commands, with their DDD-related meaning.

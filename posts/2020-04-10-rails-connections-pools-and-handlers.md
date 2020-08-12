@@ -1,5 +1,4 @@
 ---
-title: "Rails connections, pools and handlers"
 created_at: 2020-04-10 16:21:08 +0200
 author: Tomasz Wróbel
 tags: ['rails']
@@ -7,6 +6,8 @@ kind: article
 publish: true
 cta: 'hireus'
 ---
+
+# Rails connections, pools and handlers
 
 In Active Record there are db connections, connection pools and handlers. To put it shortly:
 

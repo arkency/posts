@@ -1,10 +1,11 @@
 ---
-title: "Where and why I'm still using Rails"
 created_at: 2016-02-09 11:50:16 +0100
 publish: true
 tags: [ 'rails', 'wrocloverb' ]
 author: Andrzej Krzywda
 ---
+
+# Where and why I'm still using Rails
 
 I've had many interesting conversations with experienced Ruby/Rails programmers recently. One of the topics that often pops up is when it makes sense (for us) to still use Rails, given the variety of other choices. This blogpost aims to summarize some of the views here. 
 

@@ -1,11 +1,12 @@
 ---
-title: "Your search index is a read model (and API 😉) in the Searching bounded context"
 created_at: 2018-02-23 16:00:00 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
 newsletter: arkency_form
 ---
+
+# Your search index is a read model (and API 😉) in the Searching bounded context
 
 For me, one of the biggest revelation from adopting [DDD](https://martinfowler.com/tags/domain%20driven%20design.html) was the discovery that one model of your data is often not sufficient. That with bigger and more complex applications you might need to have multiple, slightly (or hugely) different models which take a different perspective to look at the data. For years, I've been modeling thinking that there is one way I can organize my classes and my data. One way, which would be convenient for all parts of the application. Only years later I realized that requirements usually diverge over time and trying to have a single model to cover for the requirements coming from different people, different parts of the organization, from admins, customer service, merchants, customers, board, etc might be doomed from the beginning. I realized that it might be simpler to duplicate some data, but organize them differently, in a way which makes it easier to answer the needs of a certain stakeholder or certain class of features.
 

@@ -1,11 +1,12 @@
 ---
-title: "JavaScript objects philosophy"
 created_at: 2012-10-12 11:30:38 +0200
 publish: true
 author: "Jan Filipowski"
 newsletter: react_books
 tags: [ 'javascript', 'oop' ]
 ---
+
+# JavaScript objects philosophy
 
 As a web programmer you use JS from time to time or on daily basis. You probably know how to create and use objects, but don't feel that approach is natural. It's awful JS, right? No, it's you and your lack of knowledge. Let's see what object orientation in JavaScript mean.
 

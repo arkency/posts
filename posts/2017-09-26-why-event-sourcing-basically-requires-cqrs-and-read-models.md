@@ -1,5 +1,4 @@
 ---
-title: "Why Event Sourcing basically requires CQRS and Read Models"
 created_at: 2017-11-28 20:45:00 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ddd', 'event sourcing', 'cqrs', 'read model' ]
 newsletter: arkency_form
 img: "event_sourcing-cqrs-read_models-together-must-have/event_sourcing_ruby_loves_read_models_cqrs.png"
 ---
+
+# Why Event Sourcing basically requires CQRS and Read Models
 
 Event sourcing is a nice technique with certain benefits. But it has a big limitation. As there is no concept of easily available _current state_, you can't easily get an answer to a query such as _give me all products with available quantity lower than 10_.
 

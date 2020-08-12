@@ -1,10 +1,11 @@
 ---
-title: "Process Managers revisited"
 created_at: 2018-01-09 21:00:00 +0100
 publish: true
 author: Paweł Pacana
 tags: [ 'process manager', 'rails_event_store', 'ddd' ]
 ---
+
+# Process Managers revisited
 
 I've been telling my story with process managers [some time ago](https://blog.arkency.com/2017/06/dogfooding-process-manager/). In short I've explored there a way to source state of the process using nothing more but domain events. However I've encountered an issue which led to a workaround I wasn't quite happy about. With the release of [RailsEventStore v0.22.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v0.22.0) this is no longer a case!
 

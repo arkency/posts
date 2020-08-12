@@ -82,12 +82,13 @@ class Post
   def template
     <<~EOT
       ---
-      title: "#{@title}"
       created_at: #{@date}
       author: #{@author}
       tags: []
       publish: false
       ---
+
+      # #{@title}
 
       FIXME: Place post lead here.
 

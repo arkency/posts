@@ -1,11 +1,12 @@
 ---
-title: "Arkency goes React"
 created_at: 2015-07-02 09:19:01 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['react']
 newsletter: kung_fu
 ---
+
+# Arkency goes React
 
 From its beginnings in 2007, Arkency was connected to Ruby and Rails. We’re still most active in those technologies.
 However, over time there’s another R-named technology that quickly won our hearts - React.js.

@@ -1,10 +1,11 @@
 ---
-title: "Rails and adapter objects: different implementations in production and tests"
 created_at: 2016-11-06 18:07:14 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 ---
+
+# Rails and adapter objects: different implementations in production and tests
 
 If you work with service objects in Rails apps, very quickly you need to have the dependency being passed to the service object constructor. Which usually means, that the Rails controller needs to do it. This blogpost describes how to have a different implementation being passed in the production environment and an in-memory one in the tests.
 

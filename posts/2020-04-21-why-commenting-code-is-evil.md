@@ -1,10 +1,11 @@
 ---
-title: Why commenting code is evil
 created_at: 2020-04-21T11:52:48.259Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Why commenting code is evil
 
 TODO: that image from classic programmers paintings
 

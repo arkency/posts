@@ -1,11 +1,12 @@
 ---
-title: "Zero uptime deploy"
 created_at: 2014-04-01 16:21:18 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'rails', 'ruby', 'unicorn', 'deploy', 'verification' ]
 ---
+
+# Zero uptime deploy
 
 <p>
   <figure>

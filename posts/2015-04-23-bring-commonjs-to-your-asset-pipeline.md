@@ -1,5 +1,4 @@
 ---
-title: "Bring CommonJS to your asset pipeline"
 created_at: 2015-04-23 10:15:12 +0200
 publish: true
 author: Jakub Kosiński
@@ -7,6 +6,8 @@ tags: [ 'rails', 'browserify', 'commonjs', 'browserify-rails', 'sprockets', 'ass
 newsletter: react_books
 img: "bring-commonjs-to-your-asset-pipeline/browserify-rails.png"
 ---
+
+# Bring CommonJS to your asset pipeline
 
 <p>
   <figure align="center">

@@ -1,11 +1,12 @@
 ---
-title: "Monitoring Sidekiq queues with middlewares"
 created_at: 2017-07-19 13:28:16 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'chillout', 'sidekiq', 'middleware' ]
 newsletter: arkency_form
 ---
+
+# Monitoring Sidekiq queues with middlewares
 
 Sidekiq, similarly to Rack, has a concept of middlewares. A list of wrappers around its processing logic that you can use to include custom behavior.
 

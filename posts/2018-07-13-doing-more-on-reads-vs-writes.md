@@ -1,11 +1,12 @@
 ---
-title: "Doing more on reads vs writes"
 created_at: 2018-07-13 15:55:44 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'rails' ]
 newsletter: arkency_form
 ---
+
+# Doing more on reads vs writes
 
 What do you like more in your application? Handling complexity when reading the data or when updating it?
 

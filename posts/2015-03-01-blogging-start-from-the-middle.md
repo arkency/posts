@@ -1,11 +1,12 @@
 ---
-title: "Blogging - start from the middle"
 created_at: 2015-03-01 13:10:34 +0100
 publish: true
 author: Andrzej Krzywda
 newsletter: blogging_book
 tags: [ 'blog', 'blogging']
 ---
+
+# Blogging - start from the middle
 
 Time constraints seems to be the main reason for not blogging more often. 
 

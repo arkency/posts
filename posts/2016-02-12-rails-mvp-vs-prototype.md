@@ -1,10 +1,11 @@
 ---
-title: "Rails: MVP vs prototype"
 created_at: 2016-02-12 20:07:59 +0100
 publish: true
 tags: [ 'rails' ]
 author: Andrzej Krzywda
 ---
+
+# Rails: MVP vs prototype
 
 [In the last blog post](http://blog.arkency.com/2016/02/where-and-why-im-still-using-rails/) I explained my approach to using Rails  to quickly start a new app. In short - I'm starting with Rails but I also learnt how to gradually escape from the framework and separate the frontend.
 

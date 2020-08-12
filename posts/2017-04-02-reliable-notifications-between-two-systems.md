@@ -1,5 +1,4 @@
 ---
-title: "Reliable notifications between two apps or microservices"
 created_at: 2017-04-09 11:30:18 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'messaging' ]
 newsletter: arkency_form
 img: reliable-messaging-notifications-between-two-apps-micoservices-api/queue.png
 ---
+
+# Reliable notifications between two apps or microservices
 
 Let's say you have 2 systems or microservices (or processes). And one of them needs to be notified when something happened in another one. You might believe it is not so hard unless you start thinking about networking, reliability, and consistency.
 

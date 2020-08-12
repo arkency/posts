@@ -1,11 +1,12 @@
 ---
-title: "Drop this before validation and just use a setter method"
 created_at: 2016-01-29 10:02:10 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'validations', 'aop', 'ruby', 'rails' ]
 newsletter: clean
 ---
+
+# Drop this before validation and just use a setter method
 
 In many projects you can see code such as:
 

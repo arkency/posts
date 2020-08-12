@@ -1,11 +1,12 @@
 ---
-title: "Make your JSON API tests clean with linter"
 created_at: 2017-10-30 21:47:28 +0100
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'json', 'api', 'testing']
 newsletter: arkency_form
 ---
+
+# Make your JSON API tests clean with linter
 
 Recently, one of our customers requested that mobile devices should communicate with backend via [JSON API](http://jsonapi.org). We started implementing an endpoint for registering customers.
 

@@ -1,5 +1,4 @@
 ---
-title: "Ruby code I no longer write"
 created_at: 2017-02-17 09:16:33 +0100
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'ruby', 'metaprogramming', 'refactoring' ]
 newsletter: arkency_form
 img: "ruby-code-no-longer-write/ruby_code_puppy_banner.jpg"
 ---
+
+# Ruby code I no longer write
 
 <%= img_fit("ruby-code-no-longer-write/ruby_code_puppy_banner.jpg") %>
 

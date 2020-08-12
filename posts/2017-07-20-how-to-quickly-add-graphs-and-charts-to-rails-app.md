@@ -1,11 +1,12 @@
 ---
-title: "How to quickly add graphs and charts to Rails app"
 created_at: 2017-07-20 15:07:30 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'graphs', 'chart', 'Rails' ]
 newsletter: arkency_form
 ---
+
+# How to quickly add graphs and charts to Rails app
 
 When how to visualize data in your Rails app there are certain factors that you need to consider.
 

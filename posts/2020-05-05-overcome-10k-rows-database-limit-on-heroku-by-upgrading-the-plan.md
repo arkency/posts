@@ -1,11 +1,12 @@
 ---
-title: Overcome 10k rows database limit on Heroku by upgrading the database plan
 created_at: 2020-05-05T11:20:37.601Z
 author: Andrzej Krzywda
 tags: [heroku, postgres]
 publish: true
 cta: 'hireus'
 ---
+
+# Overcome 10k rows database limit on Heroku by upgrading the database plan
 
 Over time I have collected quite a number of small Rails heroku apps. They usually start small, but overtime they hit the limit of 10k rows and it's time to upgrade the database plan. Every time I do it, I hit the heroku documentation just to realize that their way of explaining doesn't fit me well.
 

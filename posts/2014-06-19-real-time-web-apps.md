@@ -1,11 +1,12 @@
 ---
-title: "Real-time Web Apps"
 created_at: 2014-06-19 22:04:18 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
 tags: [ 'javascript', 'real-time', 'websockets', 'web application' ]
 ---
+
+# Real-time Web Apps
 
 <p>
   <figure>

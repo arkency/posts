@@ -1,11 +1,12 @@
 ---
-title: "Composable RSpec matchers"
 created_at: 2017-09-18 22:45:53 +0200
 publish: true
 author: "Szymon Fiedler"
 tags: [ 'rspec', 'rails' , 'rails_event_store']
 newsletter: arkency_form
 ---
+
+# Composable RSpec matchers
 
 <%= img_fit("composable-rspec-matchers/caleb-woods-269348.jpg") %>
 

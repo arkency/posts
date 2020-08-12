@@ -1,10 +1,11 @@
 ---
-title: "Painless Rails upgrades"
 created_at: 2020-07-03 15:35:09 +0200
 author: Szymon Fiedler
 tags: [rails]
 publish: true
 ---
+
+# Painless Rails upgrades
 
 Sooner or later your _Rails_ application will require an upgrade of the framework itself. There are many reasons behind that. Bugs, incompatibility with modern libraries, or the worst: the version you use will no longer receive security updates. Living on the edge might be tempting, but it can also end badly for the business which relies on the application. User data leak, frauds, this all can simply lead to serious legal and financial issues.
 

@@ -1,11 +1,12 @@
 ---
-title: "How to add a default value to an existing column in a Rails migration"
 created_at: 2017-08-03 13:16:47 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rails', 'active record', 'migration' ]
 newsletter: arkency_form
 ---
+
+# How to add a default value to an existing column in a Rails migration
 
 You probably know that you can easily set a **default** when adding a new column in an Active Record migration.
 

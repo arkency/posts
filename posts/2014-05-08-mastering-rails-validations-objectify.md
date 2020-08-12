@@ -1,11 +1,12 @@
 ---
-title: "Mastering Rails Validations - Objectify"
 created_at: 2014-05-08 20:05:51 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'objectify', 'validations', 'context', 'rails', 'active model', 'active record' ]
 ---
+
+# Mastering Rails Validations: Objectify
 
 <p>
   <figure>

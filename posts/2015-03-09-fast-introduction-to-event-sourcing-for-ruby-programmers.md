@@ -1,5 +1,4 @@
 ---
-title: "Fast introduction to Event Sourcing for Ruby programmers"
 created_at: 2015-03-09 23:41:01 +0100
 publish: true
 author: Tomasz Rybczyński
@@ -7,6 +6,8 @@ newsletter: arkency_form
 tags: [ 'domain event' ]
 img: "events/events.jpg"
 ---
+
+# Fast introduction to Event Sourcing for Ruby programmers
 
 <p>
   <figure>

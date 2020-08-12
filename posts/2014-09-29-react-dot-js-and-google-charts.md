@@ -1,11 +1,12 @@
 ---
-title: "React.js and Google Charts"
 created_at: 2014-09-29 21:40:19 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'react', 'google charts' ]
 newsletter: react_books
 ---
+
+# React.js and Google Charts
 
 <p>
   <figure>

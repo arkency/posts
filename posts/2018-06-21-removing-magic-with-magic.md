@@ -1,5 +1,4 @@
 ---
-title: "Removing magic with magic"
 created_at: 2018-06-21 16:34:39 +0200
 publish: true
 author: Rafał Łasocha
@@ -7,6 +6,8 @@ tags: [ 'legacy', 'removing code' ]
 newsletter: arkency_form
 img: "removing_magic_with_magic.jpg"
 ---
+
+# Removing magic with magic
 
 <%= img_fit("removing_magic_with_magic.jpg") %>
 

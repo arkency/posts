@@ -1,11 +1,12 @@
 ---
-title: "Rolling back complex apps"
 created_at: 2015-10-24 22:25:15 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'rollback', 'deployment' ]
 newsletter: arkency_form
 ---
+
+# Rolling back complex apps
 
 One of the customers of [Responsible Rails ebook](/responsible-rails) has
 asked us about the topic of _Rolling back complex apps_ so I decided to share a

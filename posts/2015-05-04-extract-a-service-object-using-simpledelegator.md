@@ -1,5 +1,4 @@
 ---
-title: "Extract a service object using SimpleDelegator"
 created_at: 2015-05-04 14:57:53 +0200
 publish: true
 tags: [ 'rails', 'refactoring', 'service objects' ]
@@ -7,6 +6,8 @@ author: Andrzej Krzywda
 newsletter: fearless_refactoring_main
 img: "service_object_with_simple_delegate.png"
 ---
+
+# Extract a service object using SimpleDelegator
 
 <p>
 	<figure align="center">

@@ -1,11 +1,13 @@
 ---
-title: "One more step to DDD in a legacy rails app"
 created_at: 2016-05-21 13:50:09 +0200
 publish: true
 author: Szymon Fiedler
 tags: [ 'ddd', 'rails', 'active record', 'migration' ]
 newsletter: arkency_form
 ---
+
+# One more step to DDD in a legacy rails app
+
 <p>
     <figure>
         <img src="<%= src_fit('one-more-step-to-ddd-in-a-legacy-app/head.jpg') %>" width="100%">

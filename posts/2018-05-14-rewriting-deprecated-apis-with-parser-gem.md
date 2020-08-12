@@ -1,5 +1,4 @@
 ---
-title: "Rewriting deprecated APIs with parser gem"
 created_at: 2018-05-14 23:35:00 +0200
 publish: true
 author: Paweł Pacana
@@ -8,6 +7,7 @@ newsletter: arkency_form
 cover_image: "rewriting_deprecated_apis_with_parser_gem/rewriting_deprecated_apis_with_parser_gem.jpg"
 ---
 
+# Rewriting deprecated APIs with parser gem
 
 In upcoming [Rails Event Store](https://railseventstore.org) release we're going to deprecate existing reader methods. They'll be replaced in favor of fluent query interface — popularized by ActiveRecord. In order to make this transition a bit easier, we've prepared a script to transform given codebase to utilize new APIs.
 

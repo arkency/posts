@@ -1,5 +1,4 @@
 ---
-title: "Acceptance testing using actors/personas"
 created_at: 2017-06-07 17:25:36 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'testing', 'actors', 'personas' ]
 newsletter: arkency_form
 img: "actors-personas-ruby-rails-testing/actors_in_ruby_testing.jpeg"
 ---
+
+# Acceptance testing using actors/personas
 
 Today I've been working on chillout.io (new landing page coming soon).
 Our solution for sending Rails applications' metrics and building dashboards.

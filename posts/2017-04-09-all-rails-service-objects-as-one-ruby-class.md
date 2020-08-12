@@ -1,10 +1,11 @@
 ---
-title: "All Rails service objects as one Ruby class"
 created_at: 2017-04-09 22:49:09 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd', 'rails', 'service objects', 'video']
 ---
+
+# All Rails service objects as one Ruby class
 
 I review many Rails applications every month, every year. One visible change is that **service objects became mainstream in the Rails community**. This makes me happy, as I believe they do introduce some more order in typical Rails apps. Service objects were the main topic of my "Fearless Refactoring: Rails controllers" book, along with adapters, repositories and form objects.
 

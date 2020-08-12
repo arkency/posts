@@ -1,5 +1,4 @@
 ---
-title: "Dogfooding Process Manager"
 created_at: 2017-06-21 23:09:00 +0200
 publish: true
 author: Paweł Pacana
@@ -8,6 +7,7 @@ newsletter: arkency_form
 cover_image: dogfooding-process-manager/dogfooding.jpg
 ---
 
+# Dogfooding Process Manager
 
 Process managers (sometimes called Sagas) help us with modeling long running processes which happen in our domains. Think of such process as a series of domain events. When enough of them took place (and the particular ones we're interested in) then we execute a command. The thing is that the events we're waiting for might take a longer time to arrive, during which our process manager has to keep track of what has been already processed. And that's where it gets interesting.
 

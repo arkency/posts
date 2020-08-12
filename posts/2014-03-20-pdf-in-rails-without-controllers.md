@@ -1,11 +1,12 @@
 ---
-title: "Don't call controller from background job, please. Do it differently!"
 created_at: 2014-03-20 10:43:25 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'rails', 'pdf', 'background job' ]
 ---
+
+# Don't call controller from background job, please. Do it differently!
 
 <p>
   <figure>

@@ -1,11 +1,12 @@
 ---
-title: "How Algolia built their frontend search widgets with React.js by following redux principles"
 created_at: 2018-02-21 17:00:00 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
 newsletter: arkency_form
 ---
+
+# How Algolia built their frontend search widgets with React.js by following redux principles
 
 When Algolia built their first version of Frontend Search Component called Instantsearch.js I was not particularly fond of this solution.
 

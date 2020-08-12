@@ -1,10 +1,11 @@
 ---
-title: "Overcommunication is required for async/remote work"
 created_at: 2016-10-26 12:58:08 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'async remote' ]
 ---
+
+# Overcommunication is required for async/remote work
 
 At Arkency we're working remotely. **Being able to work remotely is just a side-effect of working asynchronously.**
 

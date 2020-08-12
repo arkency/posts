@@ -1,10 +1,11 @@
 ---
-title: "Dealing with randomly failing tests from a team perspective"
 created_at: 2016-11-21 00:12:37 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 ---
+
+# Dealing with randomly failing tests from a team perspective
 
 One of the things that can negatively impact a team morale is random builds - builds where sometimes some tests are failing.
 Inspired by Martin Fowler's article on [Quarantine](http://martinfowler.com/articles/nonDeterminism.html), in some of our projects we came up with a guideline how we can fix the problem as a team. 

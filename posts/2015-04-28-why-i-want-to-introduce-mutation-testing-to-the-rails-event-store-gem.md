@@ -1,11 +1,12 @@
 ---
-title: "Why I want to introduce mutation testing to the rails_event_store gem"
 created_at: 2015-04-28 12:08:56 +0200
 publish: true
 tags: ['testing']
 author: Andrzej Krzywda
 newsletter: arkency_form
 ---
+
+# Why I want to introduce mutation testing to the rails_event_store gem
 
 We have recently released the [RailsEventStore](https://github.com/RailsEventStore/rails_event_store) project. Its goal is to make it easier for Rails developers to introduce events into their applications.
 

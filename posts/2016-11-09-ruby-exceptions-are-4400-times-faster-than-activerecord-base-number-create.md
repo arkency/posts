@@ -1,10 +1,11 @@
 ---
-title: "Ruby exceptions are 4400 times faster than ActiveRecord::Base#create"
 created_at: 2016-11-09 10:15:36 +0100
 publish: true
 tags: [ 'ruby', 'exceptions' ]
 author: Andrzej Krzywda
 ---
+
+# Ruby exceptions are 4400 times faster than ActiveRecord::Base#create
 
 How slow are Ruby exceptions as compared to other frequent actions we may be doing in Rails apps. Like for example, as compared to ActiveRecord::Base#create
 

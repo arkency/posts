@@ -1,10 +1,11 @@
 ---
-title: "The esthetics of a Ruby service object"
 created_at: 2016-10-23 20:55:15 +0200
 publish: true
 tags: [ 'rails', 'ruby', 'service objects' ]
 author: Andrzej Krzywda
 ---
+
+# The esthetics of a Ruby service object
 
 A service object in Ruby has some typical elements. There are some minor difference which I noted in the way people implement them. Let's look at one example.
 

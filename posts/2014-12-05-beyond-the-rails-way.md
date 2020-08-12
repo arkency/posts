@@ -1,11 +1,12 @@
 ---
-title: "Beyond the Rails Way"
 created_at: 2014-12-05 21:00:00 +0200
 publish: true
 author: Andrzej Krzywda
 newsletter: fearless_refactoring_main
 tags: [ 'rails', 'rails way' ]
 ---
+
+# Beyond the Rails Way
 
 <p>
   <figure>

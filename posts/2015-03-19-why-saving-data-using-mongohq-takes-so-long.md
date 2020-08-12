@@ -1,5 +1,4 @@
 ---
-title: "Why saving data using MongoHQ takes so long?"
 created_at: 2015-03-23 17:16:31 +0100
 publish: true
 author: Robert Krzysztoforski
@@ -7,6 +6,8 @@ tags: [ 'heroku', 'mongodb', 'import data' ]
 newsletter: arkency_form
 img: "why-saving-data-using-mongohq-takes-so-long/img.jpg"
 ---
+
+# Why saving data using MongoHQ takes so long?
 
 <p>
   <figure>

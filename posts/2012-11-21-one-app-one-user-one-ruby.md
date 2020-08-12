@@ -1,11 +1,12 @@
 ---
-title: "One app, one user, one ruby"
 created_at: 2012-11-21 12:40:51 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'ruby', 'deployment', 'chef', 'littlechef', 'ruby-build', 'cookbooks' ]
 ---
+
+# One app, one user, one ruby
 
 There are many ways to install and manage ruby installation in your
 infrastructure. Some people like `rvm`, others prefer `rbenv`, some pack

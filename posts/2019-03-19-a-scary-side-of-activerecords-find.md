@@ -1,5 +1,4 @@
 ---
-title: "A scary side of ActiveRecord's find"
 created_at: 2019-03-19 10:10:33 +0100
 publish: true
 author: Jakub Kosiński
@@ -7,6 +6,8 @@ tags: [ 'rails', 'active record', 'find' ]
 newsletter: arkency_form
 cover_image: scary_record/hacker.jpg
 ---
+
+# A scary side of ActiveRecord's find
 
 Recently I was refactoring a part of one our projects to add more domain events to the Identity bounded context so that we can have better audit logs of certain actions performed on identities in our system. I started from extracting a service that was responsible for consuming commands. I started with something like this:
 

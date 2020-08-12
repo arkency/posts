@@ -1,11 +1,12 @@
 ---
-title: "Test critical paths in your app with ease thanks to Dependency Injection"
 created_at: 2017-06-07 23:05:46 +0200
 publish: true
 author: Szymon Fiedler
 tags: [ 'rails', 'rspec', 'testing']
 newsletter: arkency_form
 ---
+
+# Test critical paths in your app with ease thanks to Dependency Injection
 
 Dependency Injection is one of my favorite programming patterns. In this short blogpost, I’ll present you how it helps testing potentially untestable code.
 

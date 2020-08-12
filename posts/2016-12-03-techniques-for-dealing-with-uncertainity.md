@@ -1,11 +1,12 @@
 ---
-title: "Patterns for dealing with uncertainty"
 created_at: 2016-12-04 15:55:49 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'DDD', 'networking' ]
 newsletter: arkency_form
 ---
+
+# Patterns for dealing with uncertainty
 
 In programming we are often dealing with an uncertainity. We don't know,
 we are not sure if something happened or not. Or we are not sure about

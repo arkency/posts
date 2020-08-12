@@ -1,11 +1,12 @@
 ---
-title: "The anatomy of search pages"
 created_at: 2018-02-19 16:16:01 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'search', 'algolia', 'rails', 'react' ]
 newsletter: arkency_form
 ---
+
+# The anatomy of search pages
 
 What kind of components do we need to use to make a great search page? Let's have a look.
 

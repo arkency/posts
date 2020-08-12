@@ -1,11 +1,12 @@
 ---
-title: "How to overwrite to_json (as_json) in Active Record models in Rails"
 created_at: 2017-09-26 11:44:52 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'to_json', 'as_json', 'rails', 'active record']
 newsletter: arkency_form
 ---
+
+# How to overwrite to_json (as_json) in Active Record models in Rails
 
 Let's say you have a model in Rails with certain attributes and columns. When you serialize it with `to_json`, by default Rails will include all columns. How can you add one more or remove some from now appearing there?
 

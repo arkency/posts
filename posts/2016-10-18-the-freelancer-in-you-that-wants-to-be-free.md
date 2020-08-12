@@ -1,5 +1,4 @@
 ---
-title: "The freelancer in you that wants to be FREE"
 created_at: 2016-10-18 23:06:26 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'consulting', 'manual' ]
 newsletter: arkency_form
 img: freelancer/angry.gif
 ---
+
+# The freelancer in you that wants to be FREE
 
 Do you sometimes as a developer/freelancer/company owner have the feeling that you are being used? **Not adequately paid? Treated like a resource?**  
   

@@ -1,5 +1,4 @@
 ---
-title: "One event to rule them all"
 created_at: 2016-01-26 23:04:06 +0100
 publish: true
 author: Mirosław Pragłowski
@@ -7,6 +6,8 @@ tags: [ 'rails_event_store', 'domain event', 'event sourcing', 'TDD' ]
 newsletter: rails_event_store
 img: "events/cars-traffic-street-new-york.jpg"
 ---
+
+# One event to rule them all
 
 <img src="<%= src_fit("events/cars-traffic-street-new-york.jpg") %>" width="100%">
 

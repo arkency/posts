@@ -1,5 +1,4 @@
 ---
-title: "How to store large files on MongoDB?"
 created_at: 2015-04-02 11:58:03 +0200
 publish: true
 author: Robert Krzysztoforski
@@ -7,6 +6,8 @@ tags: [ 'mongodb', 'gridfs', 'sidekiq' ]
 newsletter: arkency_form
 img: "how-to-store-large-files-on-mongodb/img.jpg"
 ---
+
+# How to store large files on MongoDB?
 
 <p>
   <figure>

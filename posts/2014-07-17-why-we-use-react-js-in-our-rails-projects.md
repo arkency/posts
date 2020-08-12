@@ -1,11 +1,12 @@
 ---
-title: "Why we use React.js in our Rails projects"
 created_at: 2014-07-17 12:01:00 +0200
 publish: true
 author: Wiktor Mociun
 tags: [ 'front end', 'react', 'javascript' ]
 newsletter: react_books
 ---
+
+# Why we use React.js in our Rails projects
 
 <p>
   <figure>

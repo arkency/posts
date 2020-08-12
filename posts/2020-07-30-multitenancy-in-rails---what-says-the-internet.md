@@ -1,10 +1,11 @@
 ---
-title: Multitenancy in Rails - what says the internet
 created_at: 2020-07-30T10:10:16.167Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Multitenancy in Rails - what says the internet
 
 Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 

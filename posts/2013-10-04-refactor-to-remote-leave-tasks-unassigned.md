@@ -1,5 +1,4 @@
 ---
-title: "Developers oriented project management: Leave tasks unassigned"
 created_at: 2013-10-04 10:11:54 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: aar_newsletter
 tags: [ 'async remote', 'refactoring', 'project', 'tasks', 'story' ]
 stories: ['async-remote']
 ---
+
+# Developers oriented project management: Leave tasks unassigned
 
 As with software, **improving your company is an ongoing process consisting of
 multiple small steps**. If you want your company to be more remote-friendly it

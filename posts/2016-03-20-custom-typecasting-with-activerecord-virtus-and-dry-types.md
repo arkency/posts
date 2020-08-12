@@ -1,11 +1,12 @@
 ---
-title: "Custom type-casting with ActiveRecord, Virtus and dry-types"
 created_at: 2016-03-20 12:38:50 +0100
 publish: true
 author: Robert Pankowecki
 tags: [ 'typecasting', 'rails', 'active record', 'virtus', 'dry-types' ]
 newsletter: clean
 ---
+
+# Custom type-casting with ActiveRecord, Virtus and dry-types
 
 In [Drop this before validation and just use a setter method](/2016/01/drop-this-before-validation-and-use-method/)
 I showed you how to avoid a common pattern of using `before_validation` to

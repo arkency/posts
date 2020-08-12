@@ -1,5 +1,4 @@
 ---
-title: "How to store emoji in a Rails app with a MySQL database"
 created_at: 2015-05-06 14:34:08 +0200
 publish: true
 author: Jakub Kosiński
@@ -7,6 +6,8 @@ tags: [ 'mysql', 'unicode', 'emoji', 'rails', 'utf8mb4' ]
 newsletter: arkency_short
 img: "how-to-store-emoji-in-a-rails-app-with-a-mysql-database/emoji.png"
 ---
+
+# How to store emoji in a Rails app with a MySQL database
 
 <p>
   <figure align="center">

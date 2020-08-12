@@ -1,11 +1,12 @@
 ---
-title: "Implementing & Testing SOAP API clients in Ruby"
 created_at: 2016-07-18 16:51:03 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'SOAP', 'API', 'ruby', 'testing']
 newsletter: arkency_form
 ---
+
+# Implementing & Testing SOAP API clients in Ruby
 
 The bigger your application, the more likely you will need
 to integrate with less common APIs. This time, we are going

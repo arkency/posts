@@ -1,10 +1,11 @@
 ---
-title: Gradual automation in Ruby 
 created_at: 2020-04-21T12:23:34.488Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
+
+# Gradual automation in Ruby 
 
 Also known as: do-nothing scripting. [Original inspiration](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/).
 

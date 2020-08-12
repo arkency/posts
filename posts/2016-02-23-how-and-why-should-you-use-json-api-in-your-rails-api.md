@@ -1,11 +1,12 @@
 ---
-title: "How and why should you use JSON API in your Rails API?"
 created_at: 2016-02-23 01:41:11 +0100
 publish: true
 author: Marcin Grzywaczewski
 tags: [ 'rails', 'jsonapi', 'api' ]
 img: "json-api-rails-ams/header.jpg"
 ---
+
+# How and why should you use JSON API in your Rails API?
 
 <p>
   <figure>

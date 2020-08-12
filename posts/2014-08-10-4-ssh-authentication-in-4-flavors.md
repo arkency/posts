@@ -1,11 +1,12 @@
 ---
-title: "SSH authentication in 4 flavors"
 created_at: 2014-08-10 13:00:20 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: fearless_refactoring_1
 tags: [ 'authentication', 'ssh', 'security' ]
 ---
+
+# SSH authentication in 4 flavors
 
 <p>
   <figure align="center">

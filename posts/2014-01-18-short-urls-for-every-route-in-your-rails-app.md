@@ -1,11 +1,12 @@
 ---
-title: "Pretty, short urls for every route in your Rails app"
 created_at: 2014-01-18 14:41:04 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'rails', 'routing', 'slug', 'short', 'urls', 'render', 'redirect' ]
 ---
+
+# Pretty, short urls for every route in your Rails app
 
 <p>
   <figure>

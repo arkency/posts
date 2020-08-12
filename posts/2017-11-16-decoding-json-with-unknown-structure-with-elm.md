@@ -1,10 +1,11 @@
 ---
-title: "Decoding JSON with unknown structure with Elm"
 created_at: 2017-11-16 18:00:09 +0100
 publish: true
 author: Anton Paisov
 tags: [ 'elm', 'json' ]
 ---
+
+# Decoding JSON with unknown structure with Elm
 
 A
 [decoder](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode)

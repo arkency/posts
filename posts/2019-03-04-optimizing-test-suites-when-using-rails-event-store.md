@@ -1,11 +1,12 @@
 ---
-title: "Optimizing test suites when using Rails Event Store"
 created_at: 2019-03-04 17:24:55 +0100
 publish: true
 author: Rafał Łasocha
 tags: [ 'ddd', 'testing', 'rspec' ]
 newsletter: arkency_form
 ---
+
+# Optimizing test suites when using Rails Event Store
 
 Using domain events in DDD make it easier to tackle complex workflows. If we are working in a monolith infrastructure, it may cause our event store to have thousands handlers and running all of them in test environment is short way for long test suites. However, there's a trick which may allow you to increase the speed of your test suite by disabling unnecessary handlers.
 

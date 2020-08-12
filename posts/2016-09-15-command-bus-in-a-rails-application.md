@@ -1,10 +1,11 @@
 ---
-title: "Command bus in a Rails application"
 created_at: 2016-09-15 08:26:38 +0200
 publish: true
 tags: [ 'ddd', 'cqrs', 'commands' ]
 author: Andrzej Krzywda
 ---
+
+# Command bus in a Rails application
 
 Using commands is an important part of a DDD/CQRS-influenced architecture. In this blogpost I'd like to show you how to use the [Arkency Command Bus gem](https://github.com/arkency/command_bus) within a Rails application.
 

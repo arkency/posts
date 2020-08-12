@@ -1,11 +1,12 @@
 ---
-title: "How to persist hashes in Rails applications with PostgreSQL"
 created_at: 2014-10-13 10:27:16 +0200
 publish: true
 author: Kamil Lelonek
 newsletter: arkency_form
 tags: [ 'Active Record', 'PostgreSQL', 'Hash' ]
 ---
+
+# How to persist hashes in Rails applications with PostgreSQL
 
 <p>
   <figure>

@@ -1,10 +1,11 @@
 ---
-title: "Ultimate guide to 3rd party calls from your Aggregate"
 created_at: 2020-02-25 14:13:02 +0100
 publish: true
 author: Szymon Fiedler
 tags: [ 'ddd', 'aggregate', 'api' ]
 ---
+
+# Ultimate guide to 3rd party calls from your Aggregate
 
 If you ever wondered how to make 3rd party API call from Aggregate and not clutter it with dependencies, you may find this post interesting.
 

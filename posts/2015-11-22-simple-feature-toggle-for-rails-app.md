@@ -1,5 +1,4 @@
 ---
-title: "A Simple feature toggle for a Rails app"
 created_at: 2015-11-22 22:58:31 +0100
 publish: true
 author: Szymon Fiedler
@@ -7,6 +6,8 @@ tags: [ 'rails', 'feature toggle' ]
 newsletter: fearless_refactoring_1
 img: "simple-feature-toggle-for-rails-app/header.jpg"
 ---
+
+# A Simple feature toggle for a Rails app
 
 <p>
   <figure>

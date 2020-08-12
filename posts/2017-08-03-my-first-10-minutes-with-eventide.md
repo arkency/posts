@@ -1,11 +1,12 @@
 ---
-title: "My first 10 minutes with Eventide"
 created_at: 2017-08-03 17:01:24 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'eventide' ]
 newsletter: arkency_form
 ---
+
+# My first 10 minutes with Eventide
 
 Recently I find out about Eventide project and it looked really nice for me based on the initial documentation so I wanted have a small look inside. Here is what I found in a first few minutes without knowing anything about Eventide so far.
 

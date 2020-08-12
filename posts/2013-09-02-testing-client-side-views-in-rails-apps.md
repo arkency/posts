@@ -1,11 +1,12 @@
 ---
-title: "Testing client-side views in Rails apps"
 created_at: 2013-09-02 13:05:51 +0200
 publish: true
 author: Jan Filipowski
 newsletter: frontend_course
 tags: [ 'TDD', 'coffeescript', 'Rails', 'testing']
 ---
+
+# Testing client-side views in Rails apps
 
 In previous post I've only showed you [how to implement most basic tests](http://blog.arkency.com/2013/07/coffeescript-tests-for-rails-apps/) for your front-end code. Now I want to show you how to unit test your views and, what's more important, how to make your views testable.
 

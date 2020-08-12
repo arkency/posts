@@ -1,11 +1,12 @@
 ---
-title: "Using state_machine with event sourced entities"
 created_at: 2017-10-15 13:09:06 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'state_machine', 'event sourcing' ]
 newsletter: arkency_form
 ---
+
+# Using state_machine with event sourced entities
 
 Our event sourced aggregates usually have a lifecycle and they need to protect some business rules. Often they start with guard statements checking if performing given action is even allowed. I was wondering if there was a nice way to remove those conditional and make the code more explicit. I wanted to experiment with porting the code from our book to use `state_machine` gem and see if the results are promising.
 

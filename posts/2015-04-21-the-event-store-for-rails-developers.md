@@ -1,5 +1,4 @@
 ---
-title: "The Event Store for Rails developers"
 created_at: 2015-04-21 18:15:55 +0200
 publish: true
 author: Tomasz Rybczyński
@@ -7,6 +6,8 @@ tags: [ 'domain event', 'event store' ]
 newsletter: arkency_form
 img: "events/city-people.jpg"
 ---
+
+# The Event Store for Rails developers
 
 <p>
   <figure align="center">

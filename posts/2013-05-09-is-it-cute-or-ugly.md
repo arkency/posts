@@ -1,11 +1,12 @@
 ---
-title: "Is it cute or ugly?"
 created_at: 2013-05-09 13:07:49 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ruby', 'refactoring', 'factory', 'dependency' ]
 newsletter: arkency_form
 ---
+
+# Is it cute or ugly?
 
 Yesterday day I presented a small code snippet to my dear coworkers
 (who I of course always respect) and (as usually) they were not impressed,

@@ -1,11 +1,12 @@
 ---
-title: "RubyMine basic navigation features (that make you move around code fast)"
 created_at: 2014-07-09 10:10:42 +0200
 publish: true
 author: Robert Pankowecki
 newsletter: fearless_refactoring_1
 tags: [ 'rubymine' ]
 ---
+
+# RubyMine basic navigation features (that make you move around code fast)
 
 <p>
   <a href="https://www.youtube.com/watch?v=uRh2uetV4_I">

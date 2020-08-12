@@ -1,11 +1,12 @@
 ---
-title: "From Rails to Haskell and Yesod"
 created_at: 2015-05-03 12:28:14 +0200
 publish: false
 author: Andrzej Krzywda
 newsletter: arkency_form
 img: "haskell-helloworld.png"
 ---
+
+# From Rails to Haskell and Yesod
 
 <p>
 	<figure align="center">

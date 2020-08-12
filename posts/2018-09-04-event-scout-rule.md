@@ -1,10 +1,11 @@
 ---
-title: "Event scout rule"
 created_at: 2018-09-04 13:54:21 +0200
 publish: true
 author: Andrzej Krzywda
 tags: [ 'ddd' ]
 ---
+
+# Event scout rule
 
 Recently I came up with a new name for an existing technique that I have been suggesting over the last few years. It is connected with applying domain-driven design, event sourcing or event-driven architecture to various existing applications. 
 

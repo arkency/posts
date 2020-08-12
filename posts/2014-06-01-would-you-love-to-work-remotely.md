@@ -1,5 +1,4 @@
 ---
-title: "Would you love to work remotely (and asynchronously)?"
 created_at: 2014-06-09 17:13:32 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ newsletter: async_remote_main
 tags: [ 'async remote' ]
 stories: ['async-remote']
 ---
+
+# Would you love to work remotely (and asynchronously)?
 
 <p>
   <figure>

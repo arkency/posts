@@ -1,5 +1,4 @@
 ---
-title: "React.js and Dynamic Children - Why the Keys are Important"
 created_at: 2014-10-03 10:55:02 +0200
 publish: true
 author: Robert Pankowecki
@@ -7,6 +6,8 @@ tags: [ 'react', 'dynamic children', 'keys', 'state', 'getinitialstate' ]
 img: "react-keys-getinitial-state/react_children_keys.jpg"
 newsletter: react_books
 ---
+
+# React.js and Dynamic Children - Why the Keys are Important
 
 <%= img_fit("react-keys-getinitial-state/react_children_keys.jpg") %>
 

@@ -1,10 +1,11 @@
 ---
-title: Practical use of Ruby PStore
 created_at: 2020-04-28T20:00:00.000Z
 author: Paweł Pacana
 tags: ['ruby', 'nanoc']
 publish: true
 ---
+
+# Practical use of Ruby PStore
 
 Arkency blog has undergone several improvements over recent weeks. One of such changes was opening [the source of blog articles](https://github.com/arkency/posts). We've have concluded that having posts in the open would shorten the feedback loop and allow our readers to [collaborate](https://github.com/arkency/posts/pull/3#issuecomment-611449023) and make [the](https://github.com/arkency/posts/pull/1) [articles](https://github.com/arkency/posts/pull/2) [better](https://github.com/arkency/posts/pull/3) for all.
 

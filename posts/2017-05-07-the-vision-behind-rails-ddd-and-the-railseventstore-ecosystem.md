@@ -1,10 +1,11 @@
 ---
-title: "The vision behind Rails, DDD and the RailsEventStore ecosystem"
 created_at: 2017-05-07 15:35:54 +0200
 publish: true
 author: Andrzej Krzywda
 tags: ['ddd']
 ---
+
+# The vision behind Rails, DDD and the RailsEventStore ecosystem
 
 Arkency became known for our DDD efforts in the Rails community. DDD together with CQRS and Event Sourcing helped us dealing with large Rails apps. At some point we also started open-source tooling to support introducing DDD in Rails apps. This blogpost aims to highlight where we started, where we are and what is the vision for the future, for the RailsEventStore ecosystem.
 

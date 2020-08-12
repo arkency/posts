@@ -1,11 +1,12 @@
 ---
-title: "Introducing hexagonal.js"
 created_at: 2013-02-18 12:10:11 +0100
 publish: true
 author: Jan Filipowski
 newsletter: react_books
 tags: [ 'javascript', 'hexagonal', 'architecture', 'coffeescript', 'hexagonal.js' ]
 ---
+
+# Introducing hexagonal.js
 
 There's an idea we were working on for more than one year till now. As backend developers we were thrown into mysterious world of frontend (client-side) apps without any good pattern how to create Single Page App. So we ([GameBoxed](http://gameboxed.com) + Arkency) invented one - [hexagonal.js](http://hexagonaljs.com).
 

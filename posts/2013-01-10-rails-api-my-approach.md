@@ -1,11 +1,12 @@
 ---
-title: "Rails API - my simple approach"
 created_at: 2013-01-10 18:30:12 +0100
 publish: true
 author: Robert Pankowecki
 newsletter: arkency_form
 tags: [ 'rails', 'api' ]
 ---
+
+# Rails API - my simple approach
 
 I have seen people using very different techniques to build API around Rails applications.
 I wanted to show what I like to do in my projects. Mostly because it is a very simple

@@ -1,11 +1,12 @@
 ---
-title: "Domain Events Schema Definitions"
 created_at: 2016-07-10 15:40:11 +0200
 publish: true
 author: Robert Pankowecki
 tags: [ 'ddd', 'schema', 'rails_event_store' ]
 newsletter: arkency_form
 ---
+
+# Domain Events Schema Definitions
 
 When we started three years ago publishing Domain Events
 in our applications, we were newbies in

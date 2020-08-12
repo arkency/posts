@@ -1,10 +1,11 @@
 ---
-title: "How to unit test classes which depend on Rails models?"
 created_at: 2017-02-05 16:48:44 +0100
 publish: true
 author: Andrzej Krzywda
 tags: ['testing']
 ---
+
+# How to unit test classes which depend on Rails models?
 
 Let's say you have such a class:
 (this code is borrowed from this [Reddit thread](https://www.reddit.com/r/rails/comments/5rzeeb/how_do_you_unit_test_classes_that_depend_on_models/)

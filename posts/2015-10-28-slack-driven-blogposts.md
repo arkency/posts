@@ -1,10 +1,11 @@
 ---
-title: "Slack-driven blogposts"
 created_at: 2015-10-28 15:45:05 +0100
 publish: true
 author: Andrzej Krzywda
 tags: [ 'blog', 'blogging']
 ---
+
+# Slack-driven blogposts
 
 Slack (or any other team communication tool) may be a good source for your blogposts. 
 

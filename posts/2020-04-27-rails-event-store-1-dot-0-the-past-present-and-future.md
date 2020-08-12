@@ -1,11 +1,11 @@
 ---
-title: Rails Event Store 1.0 — The Past, Present and Future
 created_at: 2020-04-27T21:08:11.622Z
 author: Mirosław Pragłowski
 tags: ['rails event store']
 publish: true
 ---
 
+# Rails Event Store 1.0 — The Past, Present and Future
 
 [Rails Event Store](https://railseventstore.org) is a Ruby library to persist, retrieve, publish and organize application architecture around domain events in an event-driven fashion. It's not a database itself — it is built on top of an existing (typically SQL) data store in the application. It makes a great foundation for CQRS, Event Sourcing and loosely coupled components in applications driven by domain events.
 

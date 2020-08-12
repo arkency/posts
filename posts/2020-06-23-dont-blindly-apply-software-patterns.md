@@ -1,10 +1,11 @@
 ---
-title: "Don't blindly apply software patterns"
 created_at: 2020-06-23 13:01:13 +0200
 author: Mirosław Pragłowski
 tags: ['ddd', 'saga', 'process manager']
 publish: true
 ---
+
+# Don't blindly apply software patterns
 
 I went for a run today and I was catching up with some podcast episodes today
 and I would like to share my comments to the great episode about sagas & process

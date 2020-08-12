@@ -1,5 +1,4 @@
 ---
-title: "What I've learnt at RESCON"
 created_at: 2018-10-08 12:14:17 +0200
 publish: true
 author: Paweł Pacana
@@ -7,6 +6,8 @@ tags: [ 'rails_event_store', 'rescon' ]
 newsletter: arkency_form
 img: rescon_andrzej_thinking.jpg
 ---
+
+# What I've learnt at RESCON
 
 <%= img_fit("rescon_andrzej_thinking.jpg") %>
 
