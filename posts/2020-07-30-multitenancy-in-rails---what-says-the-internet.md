@@ -7,7 +7,7 @@ publish: false
 
 # Multitenancy in Rails - what says the internet
 
-Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
+Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost comparing approaches to multitenancy](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
 In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
 
