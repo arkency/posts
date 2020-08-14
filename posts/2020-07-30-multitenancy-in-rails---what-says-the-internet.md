@@ -9,9 +9,11 @@ publish: false
 
 Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost comparing approaches to multitenancy](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
-In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
+In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. It means that a lot of people have experiences in the topic and their opinions were strong enough to go and post about them.
 
-Here's some quotes that drew my attention, extracted to save you some time. This was the original question:
+I don't typically read all the comments on HN, but this time I wanted to go through it to know people's experiences on the topic I was researching.
+
+This was the original question:
 
 > Ask HN: Has anybody shipped a web app at scale with 1 DB per account?
 >
@@ -22,6 +24,8 @@ Here's some quotes that drew my attention, extracted to save you some time. This
 > Has anybody done this? Particularly with Rails? What kinda of tools or processes did you learn when you did it? Would you do it again? What are some interesting trade offs between the two approaches?
 
 The original question asks about db-level multitenancy, but a lot of answers relate to schema-level as well (which people also often explicitly related to). Also schema-level in Postrgres has a lot in common with db-level in MySQL as you can read in [my previous blogpost](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
+
+Below are some quotes that drew my attention, extracted to save you some time. They seem to be pretty harsh on db/schema-level approach at the begginning, with more balanced takes coming in later parts of the discussion.
 
 All the credit goes of course to original comments' authors. You can easily find them by grepping the original [discussion page](https://news.ycombinator.com/item?id=23305111).
 
@@ -35,7 +39,7 @@ FWIW, this process has worked well for what it was originally intended to do. Da
 
 However as we have grown this has become a huge headache. It is blocking major feature refactors and improvements. It restricts our data flexibility a lot. Operationally there are some killers. Data migrations take a long time, and if they fail you are left with multiple databases in different states and no clear sense of where the break occurred.
 
-Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgre...
+Lastly, if you use the Apartment gem, you are at the mercy of a poorly supported library that has deep ties into ActiveRecord. The company behind it abandoned this approach as described here: https://influitive.io/our-multi-tenancy-journey-with-postgres-schemas-and-apartment-6ecda151a21f
 
 \*\*\*
 
@@ -85,6 +89,8 @@ This gives me flexibility to either host each client separately or club them tog
 
 \*\*\*
 
+> How does the architecture block major refactors or improvements? Are you running a single codebase for all your tenants, albeit with separate schemas for each?
+
 Here I'll give you one: If you want to change a property of the database that will give your specific use improved performance, you have no way to transactionally apply that change. Rolling back becomes a problem of operational scale, rolling out as well.
 
 What if you need to release some feature, but that feature requires a database feature enabled? Normally you enable it once, in a transaction hopefully, and then roll out your application. With this style you have to wait for N database servers to connect, enable, validate, then go live before you can even attempt the application being deployed, much less if you get it wrong.
@@ -117,9 +123,7 @@ I’ve managed a system with millions of users and tens of billions of rows, and
 
 \*\*\*
 
-You can always take a multi-tenant system and convert it into a single-tenant system a lot more easily. First and foremost, you can simply run the full multi-tenant system with only a single tenant, which if nothing else enables progressive development (you can slowly remove those now-unnecessary WHERE clauses, etc).
-
-\*\*\*
+> You can always take a multi-tenant system and convert it into a single-tenant system a lot more easily. First and foremost, you can simply run the full multi-tenant system with only a single tenant, which if nothing else enables progressive development (you can slowly remove those now-unnecessary WHERE clauses, etc).
 
 True, but:
 
@@ -156,6 +160,8 @@ Rails migrations work reasonably well with apartment gem. Never had a problem wi
 Using schemas gives you imperfect but still improved isolation. It's still possible for a database connection to cross into another tenant, but if your schema search path only includes the tenant in question, it significantly reduces the chance that cross-customer data is accidentally shared.
 
 \*\*\*
+
+> It's a terrible idea in the same way that using PHP instead of Rust to build a production large scale application is a terrible idea (i.e. it's actually a great idea but it's not "cool").
 
 It’s not a cool factor issue. It’s an issue of bloating the system catalogs, inability to use the buffer pool, and having to run database migrations for each and every separate schema or maintaining concurrent versions of application code to deal with different schema versions.
 
@@ -227,7 +233,7 @@ It has been an actual requirement from our customers that they don't share an in
 
 \*\*\*
 
-As one example, New Relic had a table per (hour, customer) pair for a long time. From http://highscalability.com/blog/2011/7/18/new-relic-architec... (2011):
+As one example, New Relic had a table per (hour, customer) pair for a long time. From http://highscalability.com/blog/2011/7/18/new-relic-architecture-collecting-20-billion-metrics-a-day.html (2011):
 
 > Within each server we have individual tables per customer to keep the customer data close together on disk and to keep the total number of rows per table down.
 
@@ -299,11 +305,9 @@ Even with the best tooling in the world I would strongly advise against this app
 
 \*\*\*
 
-Virtual Private Databases.
+> Virtual Private Databases.
 
-What a lot of enterprise SaaS vendors do is have one single database for all customer data (single tenant). They then use features like Virtual Private Database to hide customer A data from customer B. So that if customer A did a “select \*” they only see their own data and not all of the other customers data. This creates faux multi-tenancy and all done using a single db account.
-
-\*\*\*
+> What a lot of enterprise SaaS vendors do is have one single database for all customer data (single tenant). They then use features like Virtual Private Database to hide customer A data from customer B. So that if customer A did a “select \*” they only see their own data and not all of the other customers data. This creates faux multi-tenancy and all done using a single db account.
 
 This sounds very much like Row Level Security, but I've never heard the term "Virtual Private Database" to describe it.
 
@@ -347,7 +351,7 @@ Not at all how Salesforce works, they take a lot of pride in their multi-tenant 
 
 If I were to make a Salesforce competitor that’s one thing I would do differently, with tools like Kubernetes it’s a lot easier to just give every customer their own instances. Yes, it can take up more resources - but I cannot imagine the security nightmare involved with letting multiple customers execute code (even if it’s theoretically sandboxed) in the same process, plus the headache that is their database schema.
 
-\-\-\-
+\*\*\*
 
 As snuxoll writes, Salesforce does use a shared database with tenant_id (org_id) as a column on every table. You can read a lot about our multi-tenancy mechanisms in a whitepaper published a while back [https://developer.salesforce.com/wiki/multi_tenant_architecture].
 
