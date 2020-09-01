@@ -23,7 +23,7 @@ The hope of not getting caught on code review.
 YAI - Yet Another IF
 
 
-##My goal is to help you improve the design of the if/else based codebases. 
+## My goal is to help you improve the design of the if/else based codebases. 
 
 Yes, that probably means creating new method, extracting new object. It might be a bit OOP. If that's not your taste and you're fine with if/else then this may not be for you. 
 
@@ -70,7 +70,9 @@ I'm claiming this as an improvement. Why? Because now it's easier to get to our 
 PHOTO 3
 
 
-Refactoring to this was easy. I have extracted the classes responsible for each behaviour. They still contain if's but they're now better encapsulated. This code is still not perfect. The factory logic is screaming to us to make a factory method or a factory class. But those are optional. 
+## Refactoring to this was easy.
+
+I have extracted the classes responsible for each behaviour. They still contain if's but they're now better encapsulated. This code is still not perfect. The factory logic is screaming to us to make a factory method or a factory class. But those are optional. 
 
 We've managed to conquer the main issue here - the nested if statements.
 
