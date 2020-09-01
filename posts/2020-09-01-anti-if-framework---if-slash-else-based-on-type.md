@@ -76,5 +76,5 @@ I have extracted the classes responsible for each behaviour. They still contain 
 
 We've managed to conquer the main issue here - the nested if statements.
 
-If you liked this example, you will enjoy the free training:
-https://arkency.com/anti-ifs/ - see all the details
+**If you liked this example, you will enjoy the free training:
+https://arkency.com/anti-ifs/ - see all the details**
