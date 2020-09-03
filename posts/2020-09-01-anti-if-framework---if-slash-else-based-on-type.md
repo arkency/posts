@@ -1,9 +1,9 @@
 ---
 title: Anti-IF framework - if/else based on type
-created_at: 2020-09-01T06:59:09.318Z
+created_at: 2020-09-03T01:59:09.318Z
 author: Andrzej Krzywda
 tags: []
-publish: false
+publish: true
 ---
 
 I have to admit that I'm a bit crazy when it comes to IF statements. 
@@ -41,7 +41,55 @@ The second point might be the most challenging in the case of a big and ugly nes
 Let's look at this example:
 
 
-PHOTO 1
+```ruby
+def update_quality
+    @items.each do |item|
+      if ! item.name.eql? "Aged Brie" and ! item.name.eql? "Backstage passes to a TAFKAL80ETC concert"
+        if item.quality > 0
+          if ! item.name.eql? "Sulfuras, Hand of Ragnaros"
+            item.quality = item.quality - 1
+          end
+        end
+      else
+        if item.quality < 50
+          item.quality = item.quality + 1
+          if item.name.eql? "Backstage passes to a TAFKAL80ETC concert"
+            if item.sell_in < 11
+              if item.quality < 50
+                item.quality = item.quality + 1
+              end
+            end
+            if item.sell_in < 6
+              if item.quality < 50
+                item.quality = item.quality + 1
+              end
+            end
+          end
+        end
+      end
+      if ! item.name.eql? "Sulfuras, Hand of Ragnaros"
+        item.sell_in = item.sell_in - 1
+      end
+      if item.sell_in < 0
+        if ! item.name.eql? "Aged Brie"
+          if ! item.name.eql?("Backstage passes to a TAFKAL80ETC concert")
+            if item.quality > 0
+              if ! item.name.eql?("Sulfuras, Hand of Ragnaros")
+                item.quality = item.quality - 1
+              end
+            end
+          else
+            item.quality = item.quality - item.quality
+          end
+        else
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+      end
+    end
+  end
+```
 
 
 Let's just focus on what we see here. No emotions, no blaming, no asking - who did that and why.
@@ -59,16 +107,128 @@ What can bring us one step closer to that? Refactoring the conditions so that th
 This can be the result:
 
 
-PHOTO 2
+```ruby
+def update_quality
+    @items.each do |item|
+
+      if generic?(item)
+        item.quality = item.quality - 1 if item.quality > 0
+        item.sell_in = item.sell_in - 1
+
+        if item.sell_in < 0 && item.quality > 0
+          item.quality = item.quality - 1
+        end
+      elsif sulfuras?(item)
+
+      elsif concert_pass?(item)
+        item.quality = item.quality + 1
+        if item.sell_in < 11
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+        if item.sell_in < 6
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0
+          item.quality = item.quality - item.quality
+        end
+      else # aged_brie?(item)
+        item.quality = item.quality + 1 if item.quality < 50
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+      end
+    end
+  end
+```
 
 
 The code does the same. All tests pass and I have 100% mutation coverage.
 
 I'm claiming this as an improvement. Why? Because now it's easier to get to our destination.
 
+```ruby
+def update_quality
+    @items.each do |item|
 
-PHOTO 3
+      if generic?(item)
+        Generic.new(item.sell_in, item.quality).tap do |product|
+          product.update
+          export_to_item(product, item)
+        end
+      elsif sulfuras?(item)
+      elsif concert_pass?(item)
+        ConcertPass.new(item.sell_in, item.quality).tap do |product|
+          product.update
+          export_to_item(product, item)
+        end
+      else
+        AgedBrie.new(item.sell_in, item.quality).tap do |product|
+          product.update
+          export_to_item(product, item)
+        end
+      end
+    end
 
+  end
+```
+
+```ruby
+class Generic
+    attr_accessor :sell_in
+
+    def initialize(sell_in, quality)
+      @sell_in = sell_in
+      @quality = Quality.new(quality)
+    end
+
+    def quality
+      @quality.amount
+    end
+
+    def update
+      @quality.decrease
+      self.sell_in = sell_in - 1
+      if sell_in < 0
+        @quality.decrease
+      end
+    end
+  end
+  
+  class ConcertPass
+    attr_accessor :sell_in
+
+    def initialize(sell_in, quality)
+      @sell_in = sell_in
+      @quality = Quality.new(quality)
+    end
+
+    def quality
+      @quality.amount
+    end
+
+    def update
+      @quality.increase
+      if sell_in < 11
+        @quality.increase
+      end
+      if sell_in < 6
+        @quality.increase
+      end
+      self.sell_in = sell_in - 1
+      if sell_in < 0
+        @quality.reset
+      end
+    end
+  end
+```
 
 ## Refactoring to this was easy.
 
