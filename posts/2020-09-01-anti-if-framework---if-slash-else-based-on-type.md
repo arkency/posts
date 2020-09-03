@@ -1,6 +1,6 @@
 ---
 title: Anti-IF framework - if/else based on type
-created_at: 2020-09-03T01:59:09.318Z
+created_at: 2020-09-03T06:59:09.318Z
 author: Andrzej Krzywda
 tags: []
 publish: true
