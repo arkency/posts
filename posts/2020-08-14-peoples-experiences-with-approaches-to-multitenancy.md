@@ -557,4 +557,6 @@ A few takeaways:
 
 \*\*\*
 
+<!--
 Thanks for reading to the very bottom. I hope it was valuable for you!
+-->

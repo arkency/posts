@@ -64,6 +64,7 @@ These three options don't constitute the whole spectrum of approaches. For examp
 * With schema-level approach, you can start sharding larger numbers of schemas into multiple db servers - e.g. when reaching performance limits or when a particular tenant has higher data isolation requirements.
 * Hybrid approach. It's also possible to implement row-level multitenancy and still store the data in separate schemas/DBs (for some or all tenants). This way it's easier to migrate one way or the other according to security/scaling needs.
 
+<!--
 ## Feel like contributing to this blogpost?
 
 🛠 Feel free to [submit a pull request](https://github.com/arkency/posts/edit/master/posts/2020-05-12-comparison-of-approaches-to-multitenancy-in-rails-apps.md) to this blogpost. It can be a nuanced remark, better wording or just a typo.
@@ -71,3 +72,4 @@ These three options don't constitute the whole spectrum of approaches. For examp
 💬 Have comments? [Reply under this tweet](https://twitter.com/tomasz_wro/status/1265289214960308224) or ping me on twitter - [@tomasz_wro](https://twitter.com/tomasz_wro). 
 
 🗞 There are at least two other multitenancy-related blogposts we're going to publish soon: _Caveats and pitfalls of PostgreSQL schema-based multitenancy_ and _A gentle introduction to schema-based multitenancy with basic concepts explained_. If you don't want to miss anything, [subscribe to our newsletter](https://arkency.com/newsletter/).
+-->
