@@ -1,7 +1,7 @@
 ---
 created_at: 2020-05-12T14:41:14.296Z
 author: Tomasz Wróbel
-tags: []
+tags: ["multitenancy"]
 publish: false
 ---
 
