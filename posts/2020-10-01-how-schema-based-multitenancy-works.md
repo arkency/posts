@@ -8,9 +8,14 @@ publish: false
 
 PostgreSQL _schemas_ let you hold multiple instances of the same set of tables inside a single database. They're essentially namespaces for tables. Sounds like a simple way to implement multitenancy — at least in [specific cases](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/). But if you're like me, you'd rather know exactly how it works before you rush to implement it. Let's explain basic concepts first.
 
-*PostgreSQL schema* — default schema
+*PostgreSQL schema* — _schema_ is a confusing name for it, as it can be confused with db schema in the sense of db structure. _Namespaces_ would be a more adequate name. Actually that's how PG calls it in some contexts - e.g. 
 
-*PostgreSQL search_path* session based - but not only
+current schema
+
+default schema
+
+
+*PostgreSQL search_path* session based (but not only)
 
 *PostgreSQL session/connection/backend* - pg "session features". `pg_stat_activity`, pid, `ps aux`.
 
