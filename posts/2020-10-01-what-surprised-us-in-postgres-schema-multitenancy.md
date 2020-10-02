@@ -12,6 +12,8 @@ You can implement multitenancy in [various ways](https://blog.arkency.com/compar
 
 <!-- more -->
 
+> Find me on twitter [here](https://twitter.com/tomasz_wro). Be sure to check out the upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 I like this particular feature of Postgres, but one has to admit it introduces a little bit of **complexity** - after all it's not a conventional feature everyone uses.
 
 The thing is that **complexity compounds**. One unconventional feature is not a big deal, but if there's more of them, **interesting things start to happen**. Here are some of the things that surprised us when we were implementing schema-based multitenancy.
@@ -27,3 +29,5 @@ PgBouncer is a popular tool to control the number of connections to your DB serv
 ## PG schemas + Delayed Job ⇒ you need a shared schema
 
 I'm aware not many people use Delayed Job nowadays. It was used in the project we dealt it, though, and it has shown an interesting situation. Delayed Job is used to perform jobs by a background worker, just like Sidekiq. The difference is that the jobs are stored in a plain SQL table. Now if you go multitenant, you need to decide where to put the job that belongs to a specific tenant. Should every tenant's schema have its own table with jobs? Then you need to have _N_ workers running in parallel (where _N_ is the number of tenants), or you can make one worker somehow query all these tables. Alternatively you can go for a shared table with the jobs and put it to a **shared schema** - which is what we did. You can do it by explicitly prefixing the jobs table name with the schema name. 
+
+Got comments? Reply under [this tweet](https://twitter.com/tomasz_wro/status/1312008959377707008).
