@@ -8,14 +8,14 @@ cta: 'hireus'
 
 # Comparison of approaches to multitenancy in Rails apps
 
+> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 Multitenancy means serving multiple independent customers from one app. Pretty typical for SaaS model.
 You can implement it on several different levels:
 
 1. **Row level** - you put a `tenant_id` column into every DB table and filter by `tenant_id` in every query.
 2. **Schema level** - for every tenant you create a separate namespaced set of tables inside one database. Easily achievable with [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html). See next paragraph on how this relates to MySQL.
 3. **Database level** - you setup a whole new DB for every tenant.
-
-> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
 
 Here's how they compare to each other:
 
