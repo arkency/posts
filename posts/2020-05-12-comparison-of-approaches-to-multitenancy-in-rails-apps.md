@@ -15,6 +15,8 @@ You can implement it on several different levels:
 2. **Schema level** - for every tenant you create a separate namespaced set of tables inside one database. Easily achievable with [PostgreSQL schemas](https://www.postgresql.org/docs/9.1/ddl-schemas.html). See next paragraph on how this relates to MySQL.
 3. **Database level** - you setup a whole new DB for every tenant.
 
+> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 Here's how they compare to each other:
 
 |     | row-level | schema-level | db-level |
