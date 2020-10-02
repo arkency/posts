@@ -42,7 +42,7 @@ protos-eschatos::DATABASE=> \dt
 
 Now let's create a new schema:
 
-```
+```sql
 CREATE SCHEMA tenant_1;
 ```
 
@@ -59,7 +59,7 @@ You should now see another entry if you list all existing schemas with `\dn`:
 
 Now we can create a table inside this schema. You can do it by prefixing the table name with the schema name and a dot:
 
-```
+```sql
 CREATE TABLE tenant_1.things (name text);
 ```
 
@@ -76,7 +76,7 @@ protos-eschatos::DATABASE=> \dt tenant_1.*
 
 So at this moment we should have two tables named `things` which live in separate namespaces (schemas). To interact with them, you just prefix the table name with the schema name and a dot:
 
-```
+```sql
 SELECT * FROM tenant_1.things;
 SELECT * FROM public.things;
 SELECT * FROM things;             -- will query the default schema
