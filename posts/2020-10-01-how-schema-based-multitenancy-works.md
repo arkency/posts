@@ -8,24 +8,26 @@ publish: false
 
 PostgreSQL _schemas_ let you hold multiple instances of the same set of tables inside a single database. They're essentially namespaces for tables. Sounds like a simple way to implement multitenancy — at least in [specific cases](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/). But if you're like me, you'd rather know exactly how it works before you rush to implement it. Let's explain basic concepts first.
 
-*PostgreSQL schema* — _schema_ is a confusing name for it, as it can be confused with db schema in the sense of db structure. _Namespaces_ would be a more adequate name. Actually that's how PG calls it in some contexts - e.g. 
+**PostgreSQL schema** — _schema_ is a confusing name for it, as it can be confused with db schema in the sense of db structure. _Namespace_ would be a more adequate name. Actually _namespace_ is how PG calls it in some contexts - e.g. in `pg_namespace` catalog.
 
 current schema
 
 default schema
 
 
-*PostgreSQL search_path* session based (but not only)
+**PostgreSQL search_path** session based (but not only)
 
-*PostgreSQL session/connection/backend* - pg "session features". `pg_stat_activity`, pid, `ps aux`.
+**PostgreSQL session** (sometimes referred to as _connection_ or _backend_).
 
-*Rails DB connection* - not always 1-1 with pg connections
+pg "session features". `pg_stat_activity`, pid, `ps aux`.
 
-*Rails DB connection pool* — in short: _Connection Handler_ has many _Connection Pools_ has many _Connections_. [More here](https://blog.arkency.com/rails-connections-pools-and-handlers/).
+**Rails DB connection** - not always 1-1 with pg connections
 
-How do you typically switch to a different tenant in a Rails app?
+**Rails DB connection pool** — in short: _Connection Handler_ has many _Connection Pools_ has many _Connections_. [More here](https://blog.arkency.com/rails-connections-pools-and-handlers/).
 
-How do you do it in ActiveRecord?
+**How do you typically switch to a different tenant in a Rails app?**
+
+**How do you do it in ActiveRecord?**
 
 
 
