@@ -116,17 +116,22 @@ A good question to ask: what is the scope and lifetime of this variable. This is
 
 ## PostgreSQL session
 
+Now it makes sense to explain what exactly a Postgres session is — when it's initiated and closed.
 
+Postgres session, depending on context, might be referred to as _Postgres connection_ or _backend_.  
 
-(sometimes referred to as _connection_ or _backend_).
+Under normal circumstances, whenever you establish a new connection to Postgres (e.g. via `psql` or from Rails), a new Postgres session is instantiated. It's closed when the connection closes. That perhaps explains the interchangeable usage of _session_ and _connection_. 
 
-```
-protos-eschatos::DATABASE=> select * from pg_stat_activity;
-```
+Actually when you get hold of a DB connection in Rails (eg. in a new thread), you don't always get a new DB connection — because there's a _connection pool_ ([read more here](https://blog.arkency.com/rails-connections-pools-and-handlers/)).
 
-pid, `ps aux`.
+<!-- TODO: Connection pool is there to limit the number of DB connections Rails app can make. From the perspective of Postgres sessions, a crucial fact is the DB connection is not necessarily closed if a Rails request releases it — it stays in the pool and might be used by a different request later. That's why you cannot
+TODO confirm -->
 
-pg "session features"
+Every session gets a separate OS process on the DB server, which you can check yourself by running `ps aux | grep postgres`.
+
+You can also see the sessions by querying `SELECT * FROM pg_stat_activity` — there's a lot of useful data in it.
+
+Now it's worth saying that even if Rails makes an actual new connection to the DB, it usually mean a new connection on the DB server, but not always — it depends on what stand inbetween the Rails app and the DB server. If you happen to have PgBouncer in your stack, sessions are managed by it — [read more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
 
 ## Rails DB connection
 
