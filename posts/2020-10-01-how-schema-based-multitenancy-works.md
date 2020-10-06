@@ -16,23 +16,14 @@ As I said before _schema_ is basically a collection of tables (and other db "obj
 
 Let's open `psql` and play a little.
 
-Even before you create any schemas yourself, there's already one schema there - the default schema, named `public`. You can see it by listing all schemas with the psql command `\dn`:
-
-```
-protos-eschatos::DATABASE=> \dn
-     List of schemas
-  Name  |     Owner
---------+----------------
- public | ydhtoowbnonxqk
-(1 row)
-```
+Even before you create any schemas yourself, there's already one schema there - the default schema, named `public`. You can see it by listing all schemas with the psql command `\dn`.
 
 If you run `select * from pg_namespace;` you'll also see all schemas — along with some internal ones.
 
-`public` schema is where all your tables live by default - if you don't specify any specific schema. So if you create a table `CREATE TABLE things (name text);` it just ends up in the public schema, which you'll see when listing all the tables with `\dt` (of course provided you haven't changed the `search_path` - see next section).
+`public` schema is where all your tables live by default - if you don't specify any specific schema. So if you create a table `CREATE TABLE things (name text)` it just ends up in the public schema, which you'll see when listing all the tables with `\dt` (of course provided you haven't changed the `search_path` - see next section).
 
 ```
-protos-eschatos::DATABASE=> \dt
+my-db::DATABASE=> \dt
             List of relations
  Schema |  Name  | Type  |     Owner
 --------+--------+-------+----------------
@@ -40,38 +31,27 @@ protos-eschatos::DATABASE=> \dt
 (1 row)
 ```
 
-Now let's create a new schema:
-
-```sql
-CREATE SCHEMA tenant_1;
-```
-
-You should now see another entry if you list all existing schemas with `\dn`:
+Now let's create a new schema: `CREATE SCHEMA tenant_1`. You should now see another entry if you list all existing schemas with `\dn`:
 
 ```
-      List of schemas
+my-db::DATABASE=> \dn
+     List of schemas
    Name   |     Owner
 ----------+----------------
  public   | ydhtoowbnonxqk
  tenant_1 | ydhtoowbnonxqk
-(2 rows)
 ```
 
-Now we can create a table inside this schema. You can do it by prefixing the table name with the schema name and a dot:
-
-```sql
-CREATE TABLE tenant_1.things (name text);
-```
+Now we can create a table inside this schema. You can do it by prefixing the table name with the schema name and a dot: `CREATE TABLE tenant_1.things (name text)`.
 
 You won't see it when listing all tables with `\dt` (again, provided you haven't yet changed the `search_path`). To list the table, run `\dt` with an additional param:
 
 ```
-protos-eschatos::DATABASE=> \dt tenant_1.*
+my-db::DATABASE=> \dt tenant_1.*
              List of relations
   Schema  |  Name  | Type  |     Owner
 ----------+--------+-------+----------------
  tenant_1 | things | table | ydhtoowbnonxqk
-(1 row)
 ```
 
 So at this moment we should have two tables named `things` which live in separate namespaces (schemas). To interact with them, you just prefix the table name with the schema name and a dot:
@@ -89,24 +69,18 @@ To get rid of the schema, run `DROP SCHEMA tenant_1;`. It'll fail in this situat
 So far we accessed other schemas by using the fully qualified name `schema_name.table_name`. If we skipped the schema name, the default schema was used — `public`. Now, `search_path` is a Postgres session variable that determines which schema is the default one. Let's check its value:
 
 ```
-protos-eschatos::DATABASE=> SHOW search_path;                                                                                                                        search_path
+my-db::DATABASE=> SHOW search_path;                                                                                                                        search_path
 -----------------
  "$user", public
-(1 row)
 ```
 
 As you can see, it has a couple comma-separated values. It works similarly to `PATH` in a shell — if you try to access a table, Postgres first looks for it in the first schema listed in the `search_path` — which is `"$user"`. If it cannot find it there, it looks in the second one — `public`. If it's not there, then we get an error. 
 
-Now `"$user"` is a special value that makes it actually look for a schema named after the user — personally I've never used it. It's just there by default. The ability to list multiple schemas also looks like a feature I'd rather not use, but sometimes you have to - e.g. to handle Postgres extensions - [more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
+Now `"$user"` is a special value that makes it actually look for a schema named after the user. Personally I've never used it. It's just there by default. The ability to list multiple schemas also looks like a feature I'd rather not use, but sometimes you have to - e.g. to handle Postgres extensions - [more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
 
-To change the search path:
+To change the search path, run: `SET search_path = tenant_1`.
 
-```
-protos-eschatos::DATABASE=> SET search_path = tenant_1;
-SET
-```
-
-If you now run `SELECT * FROM things`, it will access `tenant_1.things`. Simple. To get back, you typically do `SET search_path = public` — or whatever is your default.
+If you now run `SELECT * FROM things`, it will access `tenant_1.things`. To get back, you typically do `SET search_path = public` — or whatever is your default.
 
 <!-- TODO: in rails you can set the default schema in database.yml -->
 
@@ -127,11 +101,11 @@ Actually when you get hold of a DB connection in Rails (eg. in a new thread), yo
 <!-- TODO: Connection pool is there to limit the number of DB connections Rails app can make. From the perspective of Postgres sessions, a crucial fact is the DB connection is not necessarily closed if a Rails request releases it — it stays in the pool and might be used by a different request later. That's why you cannot
 TODO confirm -->
 
-Every session gets a separate OS process on the DB server, which you can check yourself by running `ps aux | grep postgres`.
+Every session gets a separate OS process on the DB server, which you can check yourself by running e.g. `ps aux | grep postgres`.
 
 You can also see the sessions by querying `SELECT * FROM pg_stat_activity` — there's a lot of useful data in it.
 
-Now it's worth saying that even if Rails makes an actual new connection to the DB, it usually mean a new connection on the DB server, but not always — it depends on what stand inbetween the Rails app and the DB server. If you happen to have PgBouncer in your stack, sessions are managed by it — [read more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
+Now it's worth saying that even if Rails makes an actual new connection to the DB, it usually mean a new connection on the DB server, but not always — it depends on what stands inbetween the Rails app and the DB server. If you happen to have PgBouncer in your stack, sessions are managed by it — [read more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
 
 ## Rails DB connection
 
