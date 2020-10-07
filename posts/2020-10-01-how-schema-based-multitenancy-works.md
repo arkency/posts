@@ -80,13 +80,11 @@ Now `"$user"` is a special value that makes it actually look for a schema named 
 
 To change the search path, run: `SET search_path = tenant_1`.
 
-If you now run `SELECT * FROM things`, it will access `tenant_1.things`. To get back, you typically do `SET search_path = public` — or whatever is your default.
-
-<!-- TODO: in rails you can set the default schema in database.yml -->
+If you now run `SELECT * FROM things`, it will access `tenant_1.things`. To get back, you typically do `SET search_path = public` — or whatever is your default (sidenote: in Rails you can set your default schema via `schema_search_path` option in `database.yml`).
 
 A good question to ask: what is the scope and lifetime of this variable. This is a _session_ variable, i.e. it affects the current Postgres session and is discarded when the session closes (there's a variant — `SET LOCAL` which works for a transaction instead of a session but personally I've never had to use it).
 
-<!-- TODO: schema resolution mechanism more complex -->
+Sidenote: `search_path` resolution is actually more complex — apart from aforementioned session variable, it can be also permanently set for the whole DB or role.
 
 ## PostgreSQL session
 
@@ -98,14 +96,19 @@ Under normal circumstances, whenever you establish a new connection to Postgres 
 
 Actually when you get hold of a DB connection in Rails (eg. in a new thread), you don't always get a new DB connection — because there's a _connection pool_ ([read more here](https://blog.arkency.com/rails-connections-pools-and-handlers/)).
 
-<!-- TODO: Connection pool is there to limit the number of DB connections Rails app can make. From the perspective of Postgres sessions, a crucial fact is the DB connection is not necessarily closed if a Rails request releases it — it stays in the pool and might be used by a different request later. That's why you cannot
-TODO confirm -->
+Connection pool is there to limit the number of DB connections Rails app can make. From the perspective of Postgres sessions, a crucial fact is that the DB connection is not necessarily closed if a Rails request releases it — it stays in the pool and might be used by a different request later. The consequence is that if you `SET` a Postgress session variable in one request, it'll be set in the next one — if it happens to run on the same DB connection. That's why you have to make sure you always SET the desired search_path before you do any DB work in a request or background job. 
 
 Every session gets a separate OS process on the DB server, which you can check yourself by running e.g. `ps aux | grep postgres`.
 
 You can also see the sessions by querying `SELECT * FROM pg_stat_activity` — there's a lot of useful data in it.
 
 Now it's worth saying that even if Rails makes an actual new connection to the DB, it usually mean a new connection on the DB server, but not always — it depends on what stands inbetween the Rails app and the DB server. If you happen to have PgBouncer in your stack, sessions are managed by it — [read more here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
+
+If you want to know what session you're currently on, you may use `pg_backend_pid()`. It's basically the PID of this session's _backend_ (OS process).
+
+```ruby
+p ActiveRecord::Base.connection.execute("select pg_backend_pid()").first
+```
 
 ## Rails DB connection
 
