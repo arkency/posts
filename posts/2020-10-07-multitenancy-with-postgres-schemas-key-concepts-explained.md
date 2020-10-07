@@ -3,7 +3,7 @@ title: Multitenancy with Postgres schemas: key concepts explained
 created_at: 2020-10-07T14:59:25.990Z
 author: Tomasz Wróbel
 tags: ['postgresql', 'multitenancy']
-publish: false
+publish: true
 ---
 
 # How Postgres-schema based multitenancy works
