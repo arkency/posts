@@ -102,6 +102,8 @@ Now it's worth saying that even if Rails makes an actual new connection to the D
 
 If you want to know what session you're currently on, you may use `pg_backend_pid()`. It's basically the PID of this session's _backend_ (OS process).
 
+Feel like giving a comment? [Reply under this tweet](https://twitter.com/tomasz_wro/status/1313912889137197056).
+
 ```ruby
 p ActiveRecord::Base.connection.execute("select pg_backend_pid()").first
 ```
