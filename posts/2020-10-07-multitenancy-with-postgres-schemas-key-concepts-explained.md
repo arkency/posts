@@ -8,6 +8,8 @@ publish: true
 
 # Multitenancy with Postgres schemas: key concepts explained
 
+> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 PostgreSQL _schemas_ let you hold multiple instances of the same set of tables inside a single database. They're essentially **namespaces for tables**. Sounds like a compelling way to implement multitenancy — [at least in specific cases](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/). But if you're like me, you'd rather know exactly how it works before you rush to implement it. Let's explain some basic concepts first: _schema_ itself, _search_path_ and _session_.
 
 ## PostgreSQL schema
