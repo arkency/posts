@@ -7,6 +7,8 @@ publish: true
 
 # People's experiences with approaches to multitenancy
 
+> Hello there! Check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 Recently I've been researching the topic of multitenancy in Rails. You might have already seen the [previous blogpost comparing approaches to multitenancy](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/).
 
 In the meantime there was another [discussion about multitenancy on HN](https://news.ycombinator.com/item?id=23305111) which pretty much blew up. It means that a lot of people have experiences in the topic and their opinions were strong enough to go and post about them.
