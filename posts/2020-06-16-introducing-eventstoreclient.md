@@ -5,7 +5,7 @@ tags: ["event store", "microservices", "event sourcing", "ddd"]
 publish: true
 ---
 
-# Introducing EventStoreClient - a ruby implementation for Greg's EventStore
+# Introducing EventStoreClient - a ruby implementation for EventStore DB
 
 > A guest post by [Rails Architect Masterclass](https://railsarchitects.com) alumnus, [Sebastian Wilgosz](https://twitter.com/sebwilgosz) from Useo.
 
@@ -17,7 +17,7 @@ Not on my own of course, but still - **it was quite a challenge.**
 
 One of the key components was to design a communication channel for our services and after a lot of options checks, we've decided to go with events as our *Source Of Truth* and eventual consistency for the whole ecosystem.
 
-To make a long story short, we've created an [EventStoreClient gem for Ruby](https://github.com/yousty/event_store_client/). It's a ruby client for HTTP communication with [Greg's Event Store](https://eventstore.org).
+To make a long story short, we've created an [EventStoreClient gem for Ruby](https://github.com/yousty/event_store_client/). It's a ruby client for HTTP communication with [EventStore DB](https://eventstore.org).
 
 And here is our why.
 
@@ -29,13 +29,13 @@ There was an option to use **distributed version of Rails Event Store**, but it 
 
 This forced us to look for other solutions out there on the web and surprisingly there were not too many of them.
 
-## ... to Greg's Event Store
+## ... to EventStore DB
 
-This is how we've ended up using **EventStore from Greg Young**, a project that proved to be used in production by applications of all sizes and all kinds of traffic involved. There was a problem, though. There was no Ruby client for their API. There was - an [Http Event Store from Arkency team](https://github.com/arkency/http_event_store). It was not maintained, however, as Arkency focused on supporting RailsEventStore.
+This is how we've ended up using **EventStore DB from Greg Young**, a project that proved to be used in production by applications of all sizes and all kinds of traffic involved. There was a problem, though. There was no Ruby client for their API. There was - an [Http Event Store from Arkency team](https://github.com/arkency/http_event_store). It was not maintained, however, as Arkency focused on supporting RailsEventStore.
 
 We could grab this project and continue from there, but under time pressure, we could not think too much about supporting backward compatibility or guides to upgrade for old projects - also, at the very beginning, my client was not sure if we want to have it open-sourced.
 
-That's how we've ended up with implementing the [EventStoreClient](https://github.com/yousty/event_store_client) - from scratch - to support 5.x version of Greg's EventStore.
+That's how we've ended up with implementing the [EventStoreClient](https://github.com/yousty/event_store_client) - from scratch - to support 5.x version of EventStore DB.
 
 ### The concept.
 
@@ -213,7 +213,7 @@ Here is a list of topics that can be improved to make this gem much more useful 
 
 - Moving ACK to after processing the events - in the first version we've made a mistake by notifying event store about consuming events too early and this causes several further issues.
 - Not 100% test coverage - as Event Store is a completely separate service, running in another container, it's a bit tricky to test it. It's not like in Postgres adapter, you can clear the database easily, and the whole communication is done via HTTP - which should be stubbed in tests... So honestly, we struggle with it at the moment. We've implemented the InMemory adapter, but the reality already shows, that adapter that is only used in testing easily goes out of sync with the real one.
-- Not all endpoints covered - Greg's EventStore allows for a crazy amount of amazing stuff to be done with events and streams by communicating via the API. Obviously, we've focused on what'd been important to our projects but there is a way more to be implemented if there are a will and need for it.
+- Not all endpoints covered - EventStore DB allows for a crazy amount of amazing stuff to be done with events and streams by communicating via the API. Obviously, we've focused on what'd been important to our projects but there is a way more to be implemented if there are a will and need for it.
 
 ### Summary
 
