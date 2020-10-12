@@ -92,8 +92,6 @@ I decided to use built-in Rails reflection mechanism for associations and check 
 
 If you are interested in the ability to dynamically examine the associations and aggregations of Active Record classes and objects read more about the available methods in [ActiveRecord::Reflection::ClassMethods documentation](http://api.rubyonrails.org/classes/ActiveRecord/Reflection/ClassMethods.html).
 
-If you need help with your Rails app, we are [available for one project](/assets/misc/How-can-Arkency-help-you.pdf) since November, 27th.
-
 If you enjoyed that story, [subscribe to our newsletter](http://arkency.com/newsletter). We share our everyday struggles and solutions for building maintainable Rails apps which don't surprise you.
 
 Also worth reading:
