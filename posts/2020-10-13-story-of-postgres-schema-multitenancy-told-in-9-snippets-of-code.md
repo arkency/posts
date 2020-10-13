@@ -8,6 +8,8 @@ publish: false
 
 # Story of Postgres schema multitenancy told in 9 snippets of code
 
+> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
+
 ## 1. 
 
 ```ruby
