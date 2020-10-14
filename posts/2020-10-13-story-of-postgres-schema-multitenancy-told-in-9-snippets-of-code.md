@@ -14,8 +14,9 @@ Let me tell you the story of how we implemented [Postgres-schema based multitena
 
 You can tell a story with a wall of text, but it's not optimal for everyone. For example, children would rather see some pictures. When it comes to programmers, I guess a lot of you will prefer a snippet of code rather than a wall of text. So let me build the story around those.
 
+Please bear with the greek letters — I wanted to use something more fun than plain digits :)
 
-### 0
+### α
 
 ```ruby
 def switch_tenant(new_tenant)
@@ -23,9 +24,20 @@ def switch_tenant(new_tenant)
 end
 ```
 
-Just to keep everyone on the same page — the simplified snippet above shows the most common solution to switch tenant's schema in a Rails app. You basically set a special Postgres session variable whose scope is the current DB connection.
+Just to keep everyone on the same page — the simplified snippet above shows the most common solution to switch the tenant's schema in a Rails app. You basically set a special Postgres session variable whose scope is the current DB connection. This typically happens in a piece of middleware.
 
-### 1
+### β
+
+```ruby
+Rails.application.config.middleware.insert_before(
+  Warden::Manager,
+  Apartment::Elevators::Subdomain
+)
+```
+
+Apartment integrates with Rails via middleware that switches the tenant as depicted in the first snippet, e.g. according to the subdomain of the current request. Just make sure you plug it in "high enough" in the middleware stack, so that any middleware that happens to contact the DB, is embraced by the tenant switch. In our case it was `ActionDispatch::Session::ActiveRecordStore`.
+
+### γ
 
 ```ruby
 Apartment.configure do |config|
@@ -35,7 +47,7 @@ end
 
 This is how you configure Apartment, to always append `extensions` schema to current `search_path` (which changes as you change tenants). `extensions` schema needs to contain your PostgreSQL extensions, like `hstore` or `ltree`, if you happen to use them.
 
-### 2
+### δ
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS extensions;
@@ -47,7 +59,7 @@ CREATE EXTENSION pgcrypto SCHEMA extensions;
 
 This is how you move the extensions to the `extensions` schema. You probably need to move them, because typically they reside in `public` — the default schema. This may be more tricky than the above snippet — e.g. because of roles and ownership. Make sure you can do it on your DB setup.
 
-### 3
+### ε
 
 ```ruby
 # On the first console, set the search path to another schema
@@ -60,7 +72,7 @@ ActiveRecord::Base.connection.execute("show search_path").to_a
 
 It's worth double checking what happens if you access the DB from another app process — you'd assume you're on another DB connection with an independent search_path — but this might not be the case, when, for example, you run PgBouncer in anything else than Session Mode. More [here](https://blog.arkency.com/multitenancy-with-postgres-schemas-key-concepts-explained/) and [here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
 
-### 4
+### ζ
 
 ```ruby
 config.after_initialize do
@@ -70,7 +82,7 @@ end
 
 This is what you can do when you're on a SQL backed background job queue, like Delayed Job. You tell it to always put the jobs in a shared schema (`public` in this case), by using a fully qualified table name, which overrides `search_path`.
 
-### 5
+### η
 
 ```ruby
 class AGlobalMigration < ActiveRecord::Migration[5.2]
@@ -86,7 +98,7 @@ end
 
 This little snippet tells a couple things. First — a short reminder that your migrations will need to be run against every schema separately (consider time, errors and rollbacks). Second — if you need something like a global migration, you can make an ugly if. Third — employing Postgres schemas is sometimes at odds with Rails assumptions, which leads to some nuances. Mostly solvable, though. For example, what exactly should your `db/structure.sql` contain.
 
-### 6
+### θ
 
 ```ruby
 module Apartment
@@ -102,7 +114,7 @@ end
 
 If you have any handcrafted in-memory caches in your app, make sure to invalidate them on tenant switch. That might be the case when you're transitioning an existing system.
 
-### 7
+### ι
 
 ```ruby
 Apartment::Tenant.switch!("tenant_1")
@@ -116,7 +128,7 @@ end
 
 If you spawn threads inside your requests or background jobs, make sure to set the `search_path` on their connections too. That should be pretty rare, but you don't want this to surprise you.
 
-### 8
+### κ
 
 ```ruby
 class Product < ApplicationRecord
@@ -128,7 +140,7 @@ end
 
 Now this piece of code is even weirder — why would you set up another connection to the same DB? But I'm sure you know pretty well that a lot of weird things can be found in the legacy systems we deal with. We had such a situation, actually with a legitimate reason to it. It basically results in [another connection pool](https://blog.arkency.com/rails-connections-pools-and-handlers/), where you need to set the `search_path` too.
 
-### 9
+### λ
 
 ```ruby
 # PoC, perhaps it's an overkill do it on each request. Also, thread safety.
