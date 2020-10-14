@@ -20,7 +20,7 @@ Please bear with the greek letters — I wanted to use something more fun than p
 
 ```ruby
 def switch_tenant(new_tenant)
-  ActiveRecord::Base.connection.execute("SET search_path TO #{ new_tenant }")
+  ActiveRecord::Base.connection.execute("SET search_path TO #{new_tenant}")
 end
 ```
 
