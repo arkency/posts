@@ -15,7 +15,7 @@ Let me tell you the story of how we implemented [Postgres-schema based multitena
 You can tell a story with a wall of text, but it's not optimal for everyone. For example, children would rather see some pictures. When it comes to programmers, I guess a lot of you will prefer a snippet of code rather than a wall of text. So let me build the story around those.
 
 
-## 1. PostgreSQL extensions need to live in a separate schema
+### 1
 
 ```ruby
 Apartment.configure do |config|
@@ -23,7 +23,9 @@ Apartment.configure do |config|
 end
 ```
 
-## 2. Migrating the extensions may be tricky
+This is how you configure Apartment, to always append `extensions` schema to current `search_path` (which changes as you change tenants). `extensions` schema needs to contain your PostgreSQL extensions, like `hstore` or `ltree`, if you happen to use them.
+
+### 2
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS extensions;
@@ -33,7 +35,9 @@ DROP EXTENSION pgcrypto;
 CREATE EXTENSION pgcrypto SCHEMA extensions;
 ```
 
-## 3. If there's PgBouncer, it needs to run in Session Mode
+This is how you move the extensions to the `extensions` schema. You probably need to move them, because typically they reside in `public` — the default schema. This may be more tricky than the above snippet — e.g. because of roles and ownership. Make sure you can do it on your DB setup.
+
+### 3
 
 ```ruby
 # On the first console, set the search path to another schema
@@ -44,7 +48,9 @@ ActiveRecord::Base.connection.execute("show search_path").to_a
 # => [{"search_path"=> ???}]
 ```
 
-## 4. If on a SQL-backed queue (like Delayed Job), you need a shared table
+It's worth double checking what happens if you access the DB from another app process — you'd assume you're on another DB connection with an independent search_path — but this might not be the case, when, for example, you run PgBouncer in anything else than Session Mode. More [here](https://blog.arkency.com/multitenancy-with-postgres-schemas-key-concepts-explained/) and [here](https://blog.arkency.com/what-surprised-us-in-postgres-schema-multitenancy/).
+
+### 4
 
 ```ruby
 config.after_initialize do
@@ -52,7 +58,9 @@ config.after_initialize do
 end
 ```
 
-## 5. Migrations run for every tenant, obviously
+This is what you can do when you're on a SQL backed background job queue, like Delayed Job. You tell it to always put the jobs in a shared schema (`public` in this case), by using a fully qualified table name, which overrides `search_path`.
+
+### 5
 
 ```ruby
 class AGlobalMigration < ActiveRecord::Migration[5.2]
@@ -66,7 +74,9 @@ class AGlobalMigration < ActiveRecord::Migration[5.2]
 end
 ```
 
-## 6. Make sure to invalidate in-memory caches when switching tenants
+This little snippet tells a couple things. First — a short reminder that your migrations will need to be run against every schema separately (consider time, errors and rollbacks). Second — if you need something like a global migration, you can make an ugly if. Third — employing Postgres schemas is sometimes at odds with Rails assumptions, which leads to some nuances. Mostly solvable, though. For example, what exactly should your `db/structure.sql` contain.
+
+### 6
 
 ```ruby
 module Apartment
@@ -80,7 +90,9 @@ module Apartment
 end
 ```
 
-## 7. If you run threads inside requests or background jobs...
+If you have any handcrafted in-memory caches in your app, make sure to invalidate them on tenant switch. That might be the case when you're transitioning an existing system.
+
+### 7
 
 ```ruby
 Apartment::Tenant.switch!("tenant_1")
@@ -92,8 +104,9 @@ end
 # => [{"search_path"=>"public"}]
 ```
 
+If you spawn threads inside your requests or background jobs, make sure to set the `search_path` on their connections too. That should be pretty rare, but you don't want this to surprise you.
 
-## 8. Are you sure there's only one Connection Pool in your app?
+### 8
 
 ```ruby
 class Product < ApplicationRecord
@@ -102,3 +115,5 @@ class Product < ApplicationRecord
   # ...
 end
 ```
+
+Now this piece of code is even weirder — why would you set up another connection to the same DB? But I'm sure you know pretty well that a lot of weird things can be found in the legacy systems we deal with. We had such a situation, actually with a legitimate reason to it. It basically results in [another connection pool](https://blog.arkency.com/rails-connections-pools-and-handlers/), where you need to set the `search_path` too.
