@@ -162,3 +162,4 @@ end
 
 Now this is a PoC — a way of switching tenants alternative to the default way described in the first snippet. If you've followed along, you could see that a lot of the issues we had were related to _statefullness_ of the `search_path`. Or, more precisely, to the fact that current state lives in a DB connection. Keeping this piece of state in-process could make the solution more robust. We haven't tried this in production, but I can imagine going for it under special circumstances.
 
+Have a comment? Leave a [reply under this tweet](https://twitter.com/tomasz_wro/status/1316343251926908932).
