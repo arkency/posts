@@ -6,14 +6,6 @@ tags: ['postgresql', 'multitenancy']
 publish: true
 ---
 
----
-title: Story of Postgres schema multitenancy told in 9 snippets of code
-created_at: 2020-10-13T15:47:40.336Z
-author: Tomasz Wróbel
-tags: ['postgresql', 'multitenancy']
-publish: false
----
-
 # Story of Postgres schema multitenancy told in 9 snippets of code
 
 > Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
