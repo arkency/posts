@@ -10,7 +10,7 @@ publish: false
 
 > Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
 
-## 1. 
+## 1. PostgreSQL extensions need to live in a separate schema
 
 ```ruby
 Apartment.configure do |config|
@@ -18,7 +18,7 @@ Apartment.configure do |config|
 end
 ```
 
-## 2.
+## 2. Migrating the extensions may be tricky
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS extensions;
@@ -28,7 +28,7 @@ DROP EXTENSION pgcrypto;
 CREATE EXTENSION pgcrypto SCHEMA extensions;
 ```
 
-## 3.
+## 3. If there's PgBouncer, it needs to run in Session Mode
 
 ```ruby
 # On the first console, set the search path to another schema
@@ -39,14 +39,7 @@ ActiveRecord::Base.connection.execute("show search_path").to_a
 # => [{"search_path"=> ???}]
 ```
 
-## 4.
-
-```ruby
-ActiveRecord::Base.connection.execute("select pg_backend_pid()").to_a
-# => [{"pg_backend_pid"=>4781}]
-```
-
-## 5.
+## 4. If on a SQL-backed queue (like Delayed Job), you need a shared table
 
 ```ruby
 config.after_initialize do
@@ -54,8 +47,7 @@ config.after_initialize do
 end
 ```
 
-
-## 6.
+## 5. Migrations run for every tenant, obviously
 
 ```ruby
 class AGlobalMigration < ActiveRecord::Migration[5.2]
@@ -69,7 +61,7 @@ class AGlobalMigration < ActiveRecord::Migration[5.2]
 end
 ```
 
-## 7.
+## 6. Make sure to invalidate in-memory caches when switching tenants
 
 ```ruby
 module Apartment
@@ -83,7 +75,7 @@ module Apartment
 end
 ```
 
-## 8.
+## 7. If you run threads inside requests or background jobs...
 
 ```ruby
 Apartment::Tenant.switch!("tenant_1")
@@ -96,7 +88,7 @@ end
 ```
 
 
-## 9.
+## 8. Are you sure there's only one Connection Pool in your app?
 
 ```ruby
 class Product < ApplicationRecord
