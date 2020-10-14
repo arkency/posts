@@ -15,6 +15,16 @@ Let me tell you the story of how we implemented [Postgres-schema based multitena
 You can tell a story with a wall of text, but it's not optimal for everyone. For example, children would rather see some pictures. When it comes to programmers, I guess a lot of you will prefer a snippet of code rather than a wall of text. So let me build the story around those.
 
 
+### 0
+
+```ruby
+def switch_tenant(new_tenant)
+  ActiveRecord::Base.connection.execute("SET search_path TO #{ new_tenant }")
+end
+```
+
+Just to keep everyone on the same page — the simplified snippet above shows the most common solution to switch tenant's schema in a Rails app. You basically set a special Postgres session variable whose scope is the current DB connection.
+
 ### 1
 
 ```ruby
@@ -117,3 +127,17 @@ end
 ```
 
 Now this piece of code is even weirder — why would you set up another connection to the same DB? But I'm sure you know pretty well that a lot of weird things can be found in the legacy systems we deal with. We had such a situation, actually with a legitimate reason to it. It basically results in [another connection pool](https://blog.arkency.com/rails-connections-pools-and-handlers/), where you need to set the `search_path` too.
+
+### 9
+
+```ruby
+# PoC, perhaps it's an overkill do it on each request. Also, thread safety.
+# Alternative: monkey patch table name getter.
+def switch_tenant(new_tenant)
+  ActiveRecord::Base.descendants.each do |model|
+    model.table_name = "#{ new_tenant }.#{ model.table_name }"
+  end
+end
+```
+
+Now this is a PoC — a way of switching tenants alternative to the default way described in the first snippet. If you've followed along, you could see that a lot of the issues we had were related to _statefullness_ of the `search_path`. Or, more precisely, to the fact that current state lives in a DB connection. Keeping this piece of state in-process could make the solution more robust. We haven't tried this in production, but I can imagine going for it under special circumstances.
