@@ -8,8 +8,6 @@ publish: true
 
 # What surprised us in Postgres-schema multitenancy
 
-> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
-
 You can implement multitenancy in [various ways](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/). In one of our projects we went for schema-based multitenancy, where each tenant has its own PostgreSQL schema - i.e. its own namespaced set of tables. This approach has many [pros and cons](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/), but we found it viable in certain situations. [Apartment](https://github.com/influitive/apartment) is a popular gem assisting with that (currently not actively maintained though).
 
 <!-- more -->

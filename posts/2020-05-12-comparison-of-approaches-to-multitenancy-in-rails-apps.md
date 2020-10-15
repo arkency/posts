@@ -8,8 +8,6 @@ cta: 'hireus'
 
 # Comparison of approaches to multitenancy in Rails apps
 
-> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
-
 Multitenancy means serving multiple independent customers from one app. Pretty typical for SaaS model.
 You can implement it on several different levels:
 

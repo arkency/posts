@@ -8,8 +8,6 @@ publish: false
 
 # Story of Postgres schema multitenancy told in 9 snippets of code
 
-> Find me on twitter [here](https://twitter.com/tomasz_wro). Also, check our upcoming free webinar: [Multitenancy Secrets](https://arkency.com/multitenancy-secrets/).
-
 Let me tell you the story of how we implemented [Postgres-schema based multitenancy](https://blog.arkency.com/multitenancy-with-postgres-schemas-key-concepts-explained/) in one of the projects we dealt with. It was an existing single tenant system — [though definitions vary](https://twitter.com/tomasz_wro/status/1313506993852878852). We were meant to _multitenantize_ this system. That was the main precondition that made us pick schema-based approach, but overall, the [decision is not obvious](https://blog.arkency.com/comparison-of-approaches-to-multitenancy-in-rails-apps/). We also went for the [Apartment gem](https://github.com/influitive/apartment), as it was the most mature and popular — but it's not currently maintained, so we ended up [on one of the forks](https://github.com/rails-on-services/apartment).
 
 You can tell a story with a wall of text, but it's not optimal for everyone. For example, children would rather see some pictures. When it comes to programmers, I guess a lot of you will prefer a snippet of code rather than a wall of text. So let me build the story around those.
