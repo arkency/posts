@@ -205,7 +205,7 @@ Of course, it's a very basic use case of aspect oriented programming. You can be
 ## Summary
 Aspect-oriented programming is fixing the problem with polluting pure logic objects with technical context of our applications. Its usecases are far broader - one of the most fascinating usecase of AOP with a huge 'wow factor' is linked in the 'Further Read' section. Be sure to check it out! 
 
-We're using AOP to separate these aspects in [chillout](http://chillout.io) - and we're very happy about it. What's more, when developing single-page apps in Arkency we embrace AOP when designing in [hexagonal architecture](http://hexagonaljs.com/). It performing very nice - just try it and your application design will improve.
+We're using AOP to separate these aspects in [chillout](http://chillout.io) - and we're very happy about it. What's more, when developing single-page apps in Arkency we embrace AOP when designing in [hexagonal architecture](https://hexagonaljs.github.io/). It performing very nice - just try it and your application design will improve.
 
 Someone can argue: 
 

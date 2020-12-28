@@ -15,7 +15,7 @@ However, over time there’s another R-named technology that quickly won our hea
 
 Our journey with JavaScript was quite long already and sometimes even painful. We’ve started with pure JavaScript, then went all CoffeeScript. Nowadays we introduce ES 6.
 
-We’ve experimented with Backbone (some parts are OK), we’ve had painful experiences with Angular (don’t ask…). We’ve been proudly following the no-framework JS way, while being very hexagonal-influenced ( [http://hexagonaljs.com](http://hexagonaljs.com) is alive and fine).
+We’ve experimented with Backbone (some parts are OK), we’ve had painful experiences with Angular (don’t ask…). We’ve been proudly following the no-framework JS way, while being very hexagonal-influenced ( [https://hexagonaljs.github.io](https://hexagonaljs.github.io) is alive and fine).
 
 From the hexagonal point of view, the views and the DOM are just adapters. They’re not especially interesting architecturally. In practice, rendering the views is one of the hardest tasks, thanks browsers.
 

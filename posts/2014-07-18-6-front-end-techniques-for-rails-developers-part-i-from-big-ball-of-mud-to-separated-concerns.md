@@ -220,6 +220,6 @@ This post is a part of the 6-day course about front-end techniques for Rails dev
 
 ## Resources
 
-* [Hexagonal architecture](http://hexagonaljs.com) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
+* [Hexagonal architecture](https://hexagonaljs.github.io) - it is a good way to thinking about creating JS applications at all. Also it comes with a great tooling and even better techniques to improve testability by reducing dependencies (to zero!)
 * [Sugar.js](http://sugarjs.com) - a library which provides us great stdlib extensions to work with domain code within our stand-alone apps. We're heavily using it in Arkency.
 * [YouAreDaBomb](https://github.com/gameboxed/YouAreDaBomb) - little library which introduces aspect-oriented programming to JavaScript - a great way to provide communication between application objects without specifying dependencies at all. You create a glue class to 'stitch' all your adapters and a use case / domain objects together. Neat!

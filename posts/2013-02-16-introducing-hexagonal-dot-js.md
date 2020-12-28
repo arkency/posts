@@ -8,7 +8,7 @@ tags: [ 'javascript', 'hexagonal', 'architecture', 'coffeescript', 'hexagonal.js
 
 # Introducing hexagonal.js
 
-There's an idea we were working on for more than one year till now. As backend developers we were thrown into mysterious world of frontend (client-side) apps without any good pattern how to create Single Page App. So we ([GameBoxed](http://gameboxed.com) + Arkency) invented one - [hexagonal.js](http://hexagonaljs.com).
+There's an idea we were working on for more than one year till now. As backend developers we were thrown into mysterious world of frontend (client-side) apps without any good pattern how to create Single Page App. So we ([GameBoxed](http://gameboxed.com) + Arkency) invented one - [hexagonal.js](https://hexagonaljs.github.io).
 
 <!-- more -->
 
@@ -131,6 +131,6 @@ new App()
 
 ## Conclusion
 
-I showed you some basics of [hexagonal.js](http://hexagonaljs.com) and now it's time for your action. If you're interested in this idea, please join our small community - we're on [Github](https://github.com/hexagonaljs), [freenode](irc://chat.freenode.net/hexagonal-js), [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/hexagonaljs) and [Twitter](https://twitter.com/hexagonaljs).
+I showed you some basics of [hexagonal.js](https://hexagonaljs.github.io) and now it's time for your action. If you're interested in this idea, please join our small community - we're on [Github](https://github.com/hexagonaljs), [freenode](irc://chat.freenode.net/hexagonal-js), [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/hexagonaljs) and [Twitter](https://twitter.com/hexagonaljs).
 
 In about two weeks our beautiful city will host [wroc_love.rb](http://wrocloverb.com) conference. If you're going to participate in this event I have small announcement for you - I'll provide QA session and hackathon / workshop on hexagonal.js on friday. It's not an official part of conference and of course it will be free, to confront (production proved) idea with other developers. If you want to join please leave a comment, ping me on [Twitter](http://twitter.com) or just look for me on friday. There'll be also fight between ember.js and hexagonal.js on saturday. To be honest: whole agenda looks very promising.
