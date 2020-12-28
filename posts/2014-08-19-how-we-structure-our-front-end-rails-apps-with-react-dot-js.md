@@ -52,10 +52,10 @@ $('[data-app=appFromAppDirectory]').each ->
 
 * **domain**     - definitions of domain objects used in view. Example: immutable list of single entries (which are domain objects too).
 
-* **glue**       - [hexagonal.js](http://hexagonaljs.com/) glue
+* **glue**       - [hexagonal.js](https://hexagonaljs.github.io) glue
 
 ## Further reading
 
-* **Hexagonal.js** - implementation of clean hexagonal architecture - http://hexagonaljs.com/
+* **Hexagonal.js** - implementation of clean hexagonal architecture - https://hexagonaljs.github.io
 
 * **RxJS** - we use reactive data streams to communicate between apps - https://github.com/Reactive-Extensions/RxJS
