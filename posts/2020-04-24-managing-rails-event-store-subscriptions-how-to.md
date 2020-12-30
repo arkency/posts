@@ -248,8 +248,8 @@ class GenerateFiles
       all_fact_classes.sort_by(&:name).each do |fact|
         event_type = fact.name
         f.puts indent("#{event_type} => [", 6)
-        subscriptions.all_for(event_type).each do |subscription|
-          f.puts indent("#{subscription}, # #{handler_type(subscription)}", 8)
+        subscribers_for(event_type).each do |subscriber|
+          f.puts indent("#{subscriber}, # #{handler_type(subscriber)}", 8)
         end
         f.puts indent("],", 6)
       end
@@ -260,9 +260,9 @@ class GenerateFiles
 
   def generate_handler_to_events
     handler_to_events = all_fact_classes.each_with_object({}) do |fact, acc|
-      subscriptions.all_for(fact.name).each do |subscription|
-        acc[subscription] ||= []
-        acc[subscription] << fact
+      subscribers_for(fact.name).each do |subscriber|
+        acc[subscriber] ||= []
+        acc[subscriber] << fact
       end
     end
 
@@ -285,8 +285,8 @@ class GenerateFiles
     ::RailsEventStore::Event.descendants
   end
 
-  def subscriptions
-    Rails.configuration.event_store.send(:broker).send(:subscriptions)
+  def subscribers_for(event_type)
+    Rails.configuration.event_store.subscribers_for(event_type)
   end
 
   def handler_to_events_header
@@ -315,8 +315,8 @@ class GenerateFiles
     EOF
   end
 
-  def handler_type(subscription)
-    subscription.respond_to?(:perform_async) ? "async" : "SYNC"
+  def handler_type(subscriber)
+    subscriber.respond_to?(:perform_async) ? "async" : "SYNC"
   end
 
   def indent(str, spaces)
@@ -329,7 +329,7 @@ script.generate_event_to_handlers
 script.generate_handler_to_events
 ```
 
-I would very much welcome this or simillar tool in Rails Event Store for a broader audience. Something like `rails routes` but for subscriptions. Either in the console or in the [browser](https://railseventstore.org/docs/browser/). 
+I would very much welcome this or similar tool in Rails Event Store for a broader audience. Something like `rails routes` but for subscriptions. Either in the console or in the [browser](https://railseventstore.org/docs/browser/).
 
 Who knows, maybe that could be [your contribution](https://github.com/RailsEventStore/rails_event_store)? 🙂
 
