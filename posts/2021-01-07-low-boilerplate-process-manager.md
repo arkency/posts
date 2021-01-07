@@ -15,7 +15,7 @@ class OrderFulfillment
   def call(event)
     event_store.link(event.event_id, stream_name: stream_for(event))
 
-    state = project_state(stream_for(event))
+    state = build_state(stream_for(event))
 
     execute(state) if state[:order_placed] && state[:payment_captured]
   end
@@ -30,7 +30,7 @@ class OrderFulfillment
     "OrderFulfillment$#{event.data[:order_id]}"
   end
 
-  def project_state(stream_name)
+  def build_state(stream_name)
     RailsEventStore::Projection
       .from_stream(stream_name)
       .init(-> { {} })
@@ -69,7 +69,7 @@ event_store.link(event.event_id, stream_name: stream_for(event))
 2. Fetch all the events currently linked to the PM's stream and build the current state from them:
 
 ```ruby
-state = project_state(stream_for(event))
+state = build_state(stream_for(event))
 ```
 
 3. If the conditions needed for the process to complete are met, execute the piece of code.
