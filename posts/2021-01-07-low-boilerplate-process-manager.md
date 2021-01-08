@@ -2,11 +2,11 @@
 title: Low-boilerplate process manager
 created_at: 2021-01-07T11:01:14.852Z
 author: Tomasz Wróbel
-tags: []
-publish: false
+tags: [ 'process manager', 'rails_event_store', 'ddd' ]
+publish: true
 ---
 
-# A simple example to start with process managers
+# A low-boilerplate process manager
 
 Process Manager — you can think of it as something that takes events on input and produces a command on output. You might have found yourself in situations, where you felt you should be implementing one.
 
