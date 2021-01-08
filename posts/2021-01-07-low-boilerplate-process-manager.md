@@ -6,9 +6,16 @@ tags: []
 publish: false
 ---
 
-# A low-boilerplate no-fuss process manager
+# A simple example to start with process managers
 
-It's an event-sourced process manager — meaning you don't need another db table to store the process manager's state (default approach). It utilizes _linking_ similarly to what Paweł described [here](https://blog.arkency.com/process-managers-revisited/) and RES projections. The goal of this snippet is to illustrate the idea and give you a simple example you can tweak. Here it is:
+Process Manager — you can think of it as something that takes events on input and produces a command on output. You might have found yourself in situations, where you felt you should be implementing one.
+
+A simple example that often happens: **you're familiar with event handlers**, but at some point it seems like you need **an event handler that would activate after two distinct events happen — not just one**. Often people are tempted to propagate attributes in events. It's rarely a good idea. It might be a good place to employ a process manager.
+
+Typically, to implement it, you handle specific events and store process manager state in an plain ol' active record — but it's not the only way to do it. Since introduction of linking events in RES, another approach is viable: event sourced process managers. Their advantage is that you don't need to set up another db table. You might have already read about them in a [blogpost by Paweł](https://blog.arkency.com/process-managers-revisited/). 
+
+What I'm giving you here is another implementation of it. A simple implementation that hopefully illustrates the essential parts. You can take it and tweak it. It utilizes linking to streams and RES projections:
+
 
 ```ruby
 class OrderFulfillment
@@ -60,19 +67,19 @@ event_store.subscribe(OrderFulfillment.new, to: [OrderPlaced, PaymentCaptured])
 
 Exactly three things:
 
-1. "Capture" the event that is needed to determine the process manager's state (put it into the process manager's stream):
+### 1. "Capture" the event that is needed to determine the process manager's state (put it into the process manager's stream):
 
 ```ruby
 event_store.link(event.event_id, stream_name: stream_for(event))
 ```
 
-2. Fetch all the events currently linked to the PM's stream and build the current state from them:
+### 2. Fetch all the events currently linked to the PM's stream and build the current state from them:
 
 ```ruby
 state = build_state(stream_for(event))
 ```
 
-3. If the conditions needed for the process to complete are met, execute the piece of code.
+### 3. If the conditions needed for the process to complete are met, execute the piece of code.
 
 ```ruby
 execute(state) if state[:order_placed] && state[:payment_captured]
