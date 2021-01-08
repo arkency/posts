@@ -23,7 +23,7 @@ end
 
 See also: [the RES docs on migrating events](https://railseventstore.org/docs/v1/migrating_messages/).
 
-I guess this is what most people would intuitively do if they weren't previously exposed to the topic of event versioning, but I believe in most cases you should not. Looks like it's just fine, but:
+I guess this is what most people would intuitively do if they weren't previously exposed to the topic of event versioning, but I believe in most cases you should not do it. Looks like it's just fine, but:
 
 * Do you control all the consumers?
 * An event is a fact — should you be changing the history?
@@ -69,9 +69,11 @@ That's often a good default for events already in production. But, what if the n
 
 ## 3. Stream rewriting a.k.a copy-and-replace 💾
 
-I.e. publish/append new events into a new stream, leave the old stream untouched, switch to the new stream. Like permanent upcasting with the price of new event records. Arguably most expensive operationally, but it can handle complicated scenarios and doesn't wipe out the history. It may be helpful to compare it to `git rebase`.
+I.e. publish/append new events into a new stream, leave the old stream untouched, switch to the new stream. Like permanent upcasting with the price of new event records. Arguably most expensive operationally, but it can handle complicated scenarios and doesn't wipe out the history. It may be helpful to compare this strategy to `git rebase`.
 
 ## Now what?
 
 This is far from what can be said on the topic. If you want to know more, make sure to check [Versioning in an Event Sourced System](https://leanpub.com/esversioning/read) by Greg Young.
+
+Special thanks for [Paweł](https://twitter.com/pawelpacana/) for crunching the topic together.
 
