@@ -12,18 +12,27 @@ Event versioning — you'll need it one day anyway. You publish an event. You ha
 
 ## 0. Mutate past events 😧
 
-I.e. you loop over the past events that need to change and just mutate their payload in the database.
+I.e. you loop over the past events that need to change and just mutate their payload in the database. You might be tempted to do it using RES internals:
 
 ```ruby
 RailsEventStoreActiveRecord::Event.where(event_type: "SomethingHappened").find_each do |record|
-  record.data["new_attribute"] = "new_value"
+  record.data[:new_attribute] = "new_value"
   record.save!
 end
 ```
 
-See also: [the RES docs on migrating events](https://railseventstore.org/docs/v1/migrating_messages/).
+But please do not. There's an api for this described [in the docs](https://railseventstore.org/docs/v1/migrating_messages/):
 
-I guess this is what most people would intuitively do if they weren't previously exposed to the topic of event versioning, but I believe in most cases you should not do it. Looks like it's just fine, but:
+```ruby
+event_store.read.each_batch do |events|
+  events.each do |event|
+    event.data[:new_attribute] = "new_value"
+  end
+  event_store.overwrite(events)
+end
+```
+
+Anyways, mutating past events is what most people intuitively do if they weren't previously exposed to the topic of event versioning. But, I believe in most cases you should not do it. Looks like it's just fine, but:
 
 * Do you control all the consumers?
 * An event is a fact — should you be changing the history?
