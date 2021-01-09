@@ -67,19 +67,19 @@ event_store.subscribe(OrderFulfillment.new, to: [OrderPlaced, PaymentCaptured])
 
 Exactly three things:
 
-### 1. "Capture" the event that is needed to determine the process manager's state (put it into the process manager's stream):
+1\. "Capture" the event that is needed to determine the process manager's state (put it into the process manager's stream):
 
 ```ruby
 event_store.link(event.event_id, stream_name: stream_for(event))
 ```
 
-### 2. Fetch all the events currently linked to the PM's stream and build the current state from them:
+2\. Fetch all the events currently linked to the PM's stream and build the current state from them:
 
 ```ruby
 state = build_state(stream_for(event))
 ```
 
-### 3. If the conditions needed for the process to complete are met, execute the piece of code.
+3\. If the conditions needed for the process to complete are met, execute the piece of code.
 
 ```ruby
 execute(state) if state[:order_placed] && state[:payment_captured]
@@ -91,7 +91,7 @@ execute(state) if state[:order_placed] && state[:payment_captured]
 * Typically, a command is the thing that you execute upon completion of the process. It's nice to think of a process manager as something that takes events and produces a command. I spared it here because not everyone has a command bus in place.
 * Does order of events and concurrency matter for your PM? RES provides [several options to control it](https://railseventstore.org/docs/v2/expected_version/).
 
-## A typical situation when you might need it
+## That's it!
 
-If you started playing with events in your app, you may have already encountered situations where you'd like to do something in an event handler, but actually you need data from two distinct events for it to happen. Often that leads people to put more attributes to one of the events, but that's rarely a good idea. Consider a process manager in this case.
+Did this piece help you? Can we improve something? Let me know, your feedback is very valuable!
 
