@@ -12,7 +12,7 @@ Event versioning — you'll need it one day anyway. You publish an event. You ha
 
 ## 0. Mutate past events 😧
 
-I.e. you loop over the past events that need to change and just mutate their payload in the database. You might be tempted to do it using RES internals:
+Meaning you just loop over the past events that need to change and mutate their payload in the database. You might be tempted to do it using RES internals:
 
 ```ruby
 RailsEventStoreActiveRecord::Event.where(event_type: "SomethingHappened").find_each do |record|
@@ -21,7 +21,7 @@ RailsEventStoreActiveRecord::Event.where(event_type: "SomethingHappened").find_e
 end
 ```
 
-But please do not. There's an api for this described [in the docs](https://railseventstore.org/docs/v1/migrating_messages/):
+But please do not. There's an api exactly for this purpose described [in the RES docs](https://railseventstore.org/docs/v1/migrating_messages/):
 
 ```ruby
 event_store.read.each_batch do |events|
@@ -32,14 +32,14 @@ event_store.read.each_batch do |events|
 end
 ```
 
-Anyways, mutating past events is what most people intuitively do if they weren't previously exposed to the topic of event versioning. But, I believe in most cases you should not do it. Looks like it's just fine, but:
+This way or another, mutating past events is what most people intuitively do if they weren't previously exposed to the topic of event versioning. But, I believe in most cases you should not go for this strategy. It seems like it's just fine, but:
 
 * Do you control all the consumers?
 * An event is a fact — should you be changing the history?
 * An event is conventionally assumed to be immutable. What if some other piece of code (rightfully) depends on this assumption?
 * Do you go for this strategy only to avoid dealing with the other ones? What if you become used to it and one day employ it in a situation where the consequences will show up?
 
-This strategy can be still fine in situations like: the event was only published on a staging environment so far. Or when you control the consumers and the change is trivial — where triviality can mean anything depending on your team. A lot of people are fine with it for e.g. event name change.
+This strategy can be still fine in situations like: the event was only published on a staging environment so far. Or when you control the consumers and the change is trivial — where triviality can mean anything depending on your team. A lot of people are fine with it for e.g. event name change, some other people will say changing a key/value in the payload is trivial too (like `user_id: 12345` -> `approved_by: "someone@example.com"`).
 
 <!-- If you still need to do it on occassion and you feel anxious about not screwing something up, it may be useful to dump the previous payload to the event metadata or to another technical event. -->
 
@@ -72,15 +72,16 @@ Rails.application.configure do
 end
 ```
 
-More in the [RES docs on configuring mappers](https://railseventstore.org/docs/v1/mapping_serialization/#custom-mapper).
+* Before RES 2.1.0 you need to configure a custom mapper. More on this: [RES docs on configuring mappers](https://railseventstore.org/docs/v1/mapping_serialization/#custom-mapper).
+* Since RES 2.1.0 you can use a `Transformation::Upcast` mapper, [see an example here](https://github.com/RailsEventStore/rails_event_store/pull/836).
 
-That's often a good default for events already in production. But, what if the necessary transformation is not practical to achieve on the fly?
+Upcasting is often a good default strategy when events are already in production. But, what if the necessary transformation is not practical to achieve on the fly?
 
 ## 3. Stream rewriting a.k.a copy-and-replace 💾
 
 I.e. publish/append new events into a new stream, leave the old stream untouched, switch to the new stream. Like permanent upcasting with the price of new event records. Arguably most expensive operationally, but it can handle complicated scenarios and doesn't wipe out the history. It may be helpful to compare this strategy to `git rebase`.
 
-## Now what?
+## Where can I learn more?
 
 This is far from what can be said on the topic. If you want to know more, make sure to check [Versioning in an Event Sourced System](https://leanpub.com/esversioning/read) by Greg Young.
 
