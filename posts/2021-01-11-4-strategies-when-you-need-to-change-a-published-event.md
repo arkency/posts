@@ -85,4 +85,6 @@ I.e. publish/append new events into a new stream, leave the old stream untouched
 
 This is far from what can be said on the topic. If you want to know more, make sure to check [Versioning in an Event Sourced System](https://leanpub.com/esversioning/read) by Greg Young.
 
+Got comments/questions? Ping or DM [me on twitter](https://twitter.com/tomasz_wro) or [reply under this tweet](https://twitter.com/tomasz_wro/status/1348629438121078784).
+
 Special thanks for [Paweł](https://twitter.com/pawelpacana/) for crunching the topic together.
