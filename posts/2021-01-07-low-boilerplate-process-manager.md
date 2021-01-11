@@ -93,7 +93,5 @@ execute(state) if state[:order_placed] && state[:payment_captured]
 
 ## That's it!
 
-Feel like commenting? Reply under [this tweet](https://twitter.com/tomasz_wro/status/1347965751383252993).
-
-Did this piece help you? Can we improve something? Let me know, your feedback is very valuable!
+Got comments/questions? [Ping or DM me on twitter](https://twitter.com/tomasz_wro) or [reply under this tweet](https://twitter.com/tomasz_wro/status/1347965751383252993). Did this piece help you? Can we improve something? Let me know, your feedback is very valuable!
 
