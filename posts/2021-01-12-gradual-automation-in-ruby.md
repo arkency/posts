@@ -68,3 +68,5 @@ STEPS.each_with_index do |step, i|
   ask_to_continue if i < (STEPS.size - 1)
 end
 ```
+
+I bet you can do it better! Send me a gist showing how you do it and I'll link your example here. [DMs open](https://twitter.com/tomasz_wro).
