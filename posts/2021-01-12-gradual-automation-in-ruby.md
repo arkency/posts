@@ -8,15 +8,6 @@ publish: false
 
 # Gradual automation in Ruby
 
----
-created_at: 2020-04-21T12:23:34.488Z
-author: Tomasz Wróbel
-tags: []
-publish: false
----
-
-# Gradual automation in Ruby
-
 Simplest piece of Ruby code you'll read today. Also known as: _do-nothing scripting_. [Original inspiration](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/).
 
 Problem: you want to codify a manual process like setting up another instance of your e-commerce app. It may involve several steps with varying potential for automation (like seed the db, set up a subdomain, set up admin account).
