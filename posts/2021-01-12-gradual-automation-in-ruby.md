@@ -69,6 +69,6 @@ STEPS.each_with_index do |step, i|
 end
 ```
 
-## I bet you can do it better!
+## I bet you can make the above snippet better!
 
 Send me a gist showing how you do it and I'll link your example here. [DMs open](https://twitter.com/tomasz_wro).
