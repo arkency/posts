@@ -73,3 +73,5 @@ end
 ## I bet you can make the above snippet better!
 
 Send me a gist showing how you do it and I'll link your example here. [DMs open](https://twitter.com/tomasz_wro).
+
+Got comments? [Reply under this tweet](https://twitter.com/tomasz_wro/status/1348956291117547520).
