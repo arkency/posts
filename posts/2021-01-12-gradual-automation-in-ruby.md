@@ -27,7 +27,10 @@ You want to codify a manual process like setting up another instance of your e-c
 * It can keep track of your progress
 * You can automate some steps, leave the rest to be done manually
 
-The original example is in Python. This is how I once did it in Ruby:
+## An example
+
+
+The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique: **Puts-Driven Automation**.
 
 ```ruby
 STEPS = [
@@ -66,8 +69,6 @@ STEPS.each_with_index do |step, i|
   ask_to_continue if i < (STEPS.size - 1)
 end
 ```
-
-I hereby announce another name for this technique: _Puts-Driven Automation_.
 
 ## I bet you can make the above snippet better!
 
