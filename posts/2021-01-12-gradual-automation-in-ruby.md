@@ -10,7 +10,7 @@ publish: false
 
 Simplest piece of Ruby code you'll read today. Also known as: _do-nothing scripting_. [Original inspiration](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/).
 
-Problem: you want to codify a manual process like setting up another instance of your e-commerce app. It may involve several steps with varying potential for automation (like seed the db, set up a subdomain, set up admin account).
+**Problem**: you want to codify a manual process like setting up another instance of your e-commerce app. It may involve several steps with varying potential for automation (like seed the db, set up a subdomain, set up admin account).
 
 Solution 1: lay out all steps in a wiki page and teach people to conform.
 
@@ -22,7 +22,7 @@ Solution 4: skip the UI part, write a script that automates it all. Wonder why p
 
 Solution 5: make a _do-nothing script_ that tells you what to do. Gradually automate it where it makes sense.
 
-Advantages of a _do-nothing script_:
+**Advantages** of a _do-nothing script_:
 
 * it's version controlled just as the rest of your stuff
 * easy to start with — at the beginning nothing needs to be automated
@@ -69,4 +69,6 @@ STEPS.each_with_index do |step, i|
 end
 ```
 
-I bet you can do it better! Send me a gist showing how you do it and I'll link your example here. [DMs open](https://twitter.com/tomasz_wro).
+## I bet you can do it better!
+
+Send me a gist showing how you do it and I'll link your example here. [DMs open](https://twitter.com/tomasz_wro).
