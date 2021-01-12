@@ -20,7 +20,7 @@ You want to codify a manual process like setting up another instance of your e-c
 * Solution 4 ⚙️: skip the UI part, write a script that automates it all. Wonder why people don't use it.
 * Solution 5 📝 + ⚙️: make a _do-nothing script_ that only tells you what to do next. Gradually automate it where it makes sense.
 
-## Advantages** of a _do-nothing script_
+## Advantages of a _do-nothing script_
 
 * It's version controlled just as the rest of your stuff.
 * It's easy to start with — at the beginning nothing needs to be automated.
