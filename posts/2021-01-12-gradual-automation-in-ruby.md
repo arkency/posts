@@ -2,8 +2,8 @@
 title: Gradual automation in Ruby
 created_at: 2021-01-12T10:51:20.895Z
 author: Tomasz Wróbel
-tags: []
-publish: false
+tags: ["infra", "devops", "deployment"]
+publish: true
 ---
 
 # Gradual automation in Ruby
