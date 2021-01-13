@@ -20,16 +20,9 @@ You want to codify a manual process like setting up another instance of your e-c
 * Solution 4 ⚙️: skip the UI part, write a script that automates it all. Wonder why people don't use it.
 * Solution 5 📝 + ⚙️: make a _do-nothing script_ that only tells you what to do next. Gradually automate it where it makes sense.
 
-## Advantages of a _do-nothing script_
-
-* It's version controlled just as the rest of your stuff.
-* It's easy to start with — at the beginning nothing needs to be automated.
-* It can keep track of your progress
-* You can automate some steps, leave the rest to be done manually
-
 ## An example
 
-The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**: First you `puts`, then you gradually automate.
+The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**, or **Puts-First Automation** — at first you `puts` what has to be done, then you gradually automate, when you think it's worth it.
 
 ```ruby
 STEPS = [
@@ -62,6 +55,13 @@ STEPS.each_with_index do |step, i|
   ask_to_continue if i < (STEPS.size - 1)
 end
 ```
+
+## Advantages of _Puts-First Automation_
+
+* It's version controlled just as the rest of your stuff.
+* It's easy to start with — at the beginning nothing needs to be automated.
+* It can keep track of your progress (as opposed to a wiki page)
+* You can automate just some steps, leave the rest to be done manually
 
 ## I bet you can make the above snippet better!
 
