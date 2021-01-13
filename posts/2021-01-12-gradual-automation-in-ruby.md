@@ -29,24 +29,17 @@ You want to codify a manual process like setting up another instance of your e-c
 
 ## An example
 
-
-The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique: **Puts-Driven Automation**.
+The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**: First you `puts`, then you gradually automate.
 
 ```ruby
 STEPS = [
   -> {
-    puts "Create a user"
-    puts
-    puts
-    puts "u = User.create!("
-    puts "  name: '#{name}',"
-    puts "  email: '#{email}',"
-    puts "  company: '#{company}',"
-    puts ")"
+    puts "Please open https://my.hosting/dashboard and create a new subdomain"
   },
   -> {
-    puts "Setup an account on a 3rd party service"
-    puts
+    puts "Creating admin user"
+    system(%q{ heroku run -a my-heroku-app rails runner "User.create(name: 'admin')" })
+    puts "Created admin user"
   },
 ]
 
