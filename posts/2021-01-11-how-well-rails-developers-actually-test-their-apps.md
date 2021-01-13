@@ -1,6 +1,6 @@
 ---
 title: How well Rails developers actually test their apps
-created_at: 2021-01-11T09:02:15.550Z
+created_at: 2021-01-13T09:02:15.550Z
 author: Tomasz Wróbel
 tags: ["testing"]
 publish: true
