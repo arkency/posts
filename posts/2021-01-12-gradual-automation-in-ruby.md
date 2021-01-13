@@ -22,7 +22,7 @@ You want to codify a manual process like setting up another instance of your e-c
 
 ## An example
 
-The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**, or **Puts-First Automation** — at first you `puts` what has to be done, then you gradually automate, when you think it's worth it.
+The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**, or **Puts-First Automation** — at first you `puts` what has to be done, then you gradually automate, when you think it's worth it. You can see here how one step is done manualy, and the other is automated.
 
 ```ruby
 STEPS = [
