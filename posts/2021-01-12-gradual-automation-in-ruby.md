@@ -8,7 +8,7 @@ publish: true
 
 # Gradual automation in Ruby
 
-It's the simplest piece of Ruby code you'll read today. Also known as: _do-nothing scripting_. [Original inspiration](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/).
+It's the simplest piece of Ruby code you'll read today. I originally stubled upon it [here](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/), where it's referred as _do-nothing scripting_. I have yet another name for it, though: **Puts-First Automation** or _Puts-Driven Automation_.
 
 ## Problem
 
@@ -22,7 +22,7 @@ You want to codify a manual process like setting up another instance of your e-c
 
 ## An example
 
-The original example is in Python. This is how I once did it in Ruby. I hereby announce another name for this technique — **Puts-Driven Automation**, or **Puts-First Automation** — at first you `puts` what has to be done, then you gradually automate, when you think it's worth it. You can see here how one step is done manualy, and the other is automated.
+The original example is in Python. This is how I once did it in Ruby. You can see why it's called _Puts-First Automation_ — at first you `puts` what has to be done, and you're happy to have your steps documented. Then you gradually automate, only when you think it's worth it. You can see here how one step is done manualy, and the other is automated.
 
 ```ruby
 STEPS = [
