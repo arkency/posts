@@ -8,7 +8,7 @@ publish: true
 
 # Gradual automation in Ruby
 
-It's the simplest piece of Ruby code you'll read today. I originally stubled upon it [here](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/), where it's referred as _do-nothing scripting_. I have yet another name for it, though: **Puts-First Automation** or _Puts-Driven Automation_.
+It's the simplest piece of Ruby code you'll read today. I originally stumbled upon it [here](https://blog.danslimmon.com/2019/07/15/do-nothing-scripting-the-key-to-gradual-automation/), where it's referred as _do-nothing scripting_. I have yet another name for it, though: **Puts-First Automation** or _Puts-Driven Automation_.
 
 ## Problem
 
