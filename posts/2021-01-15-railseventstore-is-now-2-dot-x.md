@@ -71,9 +71,11 @@ repository = EventRepository.new(model_factory: ->{ [MyEvent, MyEventInStream] }
 
 `Client#subscribers_for(event_type)` returns list of handlers subscribing for given event type. Useful in specs and diagnostics.
 
-## Ruby 3.0 support
+## Ruby 3.0 support (2.0.1)
 
-## Built-in event upcasting support
+Speaks for itself. Also introduced in 1.3.1.
+
+## Built-in event upcasting support  (2.1.0)
 
 Upcasting is a technique you can use when you need to change an already published event. [Read more here](https://blog.arkency.com/4-strategies-when-you-need-to-change-a-published-event/). Now RES helps you with that:
 
@@ -103,7 +105,7 @@ RubyEventStore::Client.new(
 ) 
 ```
 
-## Explicit event type resolver
+## Explicit event type resolver (2.1.0)
 
 Some people prefer to explicilty define event type, to avoid having event type depend on class names, which may cause bugs on class name changes. This was already possible with: 
 
