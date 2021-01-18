@@ -8,7 +8,18 @@ publish: true
 
 # The Goodies in Rails Event Store 2.x
 
-Two big releases happened since you last heard of it: [2.0.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.0.0) and [2.1.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.1.0). Let me present the highlights:
+We've released 2.0.0, 2.0.1, 2.1.0. High fives for [Paweł](https://twitter.com/pawelpacana), [Mirek](https://twitter.com/mpraglowski) and [Rafał](https://twitter.com/swistak35) for all the hard work. Some of the goodies inside:
+
+* Significantly reduced storage (no explicit "all" stream)
+* Filtering events by timestamp
+* Bi-temporal event sourcing support
+* Multiple database support
+* Listing event subscribers
+* Ruby 3.0 support (2.0.1 and 1.3.1)
+* Built-in event upcasting (2.1.0)
+* Ability to explicitly configure event type resolver (2.1.0)
+
+Read on for details. Read [the release notes](https://github.com/RailsEventStore/rails_event_store/releases/) for even more details, specifically for migration guide (2.0 requires DB migrations).
 
 ## Significant storage performance improvement
 
