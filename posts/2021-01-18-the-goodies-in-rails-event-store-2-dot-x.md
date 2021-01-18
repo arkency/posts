@@ -8,6 +8,8 @@ publish: true
 
 # The Goodies in Rails Event Store 2.x
 
+**But... what is Rails Event Store and why would I use it?** It's a Ruby library to publish, consume and *store* events in your Rails application. [Events](https://blog.arkency.com/tags/domain-event/) are an architectural pattern that helps you decouple your code, records what's happening inside your app, avoid callback hell and many other kinds of hells. Once you try this pattern, there's no going back.
+
 We've released 2.0.0, 2.0.1, 2.1.0. High fives for [Paweł](https://twitter.com/pawelpacana), [Mirek](https://twitter.com/mpraglowski) and [Rafał](https://twitter.com/swistak35) for all the hard work. Some of the goodies inside:
 
 * Significantly reduced storage (no explicit "all" stream)
