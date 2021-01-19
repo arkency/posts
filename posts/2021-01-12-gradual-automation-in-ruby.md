@@ -27,7 +27,7 @@ The original example is in Python. This is how I once did it in Ruby. You can se
 ```ruby
 STEPS = [
   -> {
-    puts "Please open https://my.hosting/dashboard
+    puts "Please open https://my.hosting/dashboard"
     puts "and create a new subdomain."
   },
   -> {
