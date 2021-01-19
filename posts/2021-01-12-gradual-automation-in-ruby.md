@@ -27,11 +27,12 @@ The original example is in Python. This is how I once did it in Ruby. You can se
 ```ruby
 STEPS = [
   -> {
-    puts "Please open https://my.hosting/dashboard and create a new subdomain"
+    puts "Please open https://my.hosting/dashboard
+    puts "and create a new subdomain."
   },
   -> {
     puts "Creating admin user"
-    system(%q{ heroku run -a my-heroku-app rails runner "User.create(name: 'admin')" })
+    system(%q{ heroku run -a my-app rails r "User.create(name: 'admin')" })
     puts "Created admin user"
   },
 ]
@@ -46,9 +47,9 @@ def ask_to_continue
 end
 
 STEPS.each_with_index do |step, i|
-  puts "-----------------------------------------------------------------------"
+  puts "---------------------------------"
   puts "Step #{i}"
-  puts "-----------------------------------------------------------------------"
+  puts "---------------------------------"
   puts
   step.call
   puts
