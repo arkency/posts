@@ -214,4 +214,4 @@ Also with upcoming Rails release new features could be added, some like
 could be interesting for my future experiments here :)
 
 
-This code has not been released yet. You can join me in these experiments - just post your comments to my code on Github on [multiple databases repository sample app](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/multiple_databases_repository_sample_app) or talk to me on [twitter](https://twitter.com/mpraglowski).
+This code has not been released yet. You can join me in these experiments - just post your comments to my code on Github on [multiple databases repository sample app](https://github.com/RailsEventStore/examples/tree/master/multiple_databases_repository) or talk to me on [twitter](https://twitter.com/mpraglowski).
