@@ -9,7 +9,9 @@ publish: false
 
 Once upon a time I was working on importing orders from a phased out Shopify shop instance into an existing system. The application was already interacting with a new shop instance. The business wanted to extend the reporting and gain insight into legacy orders from previous shop, in addition to existing one.
 
-The developers already implemented a tailor-made adapter to interact with Shopify API, which wrapped [shopify_api](https://github.com/Shopify/shopify_api) gem. So far so good — I thought, and jumped straight into the core of the problem I had to solve. The low-level interaction details were abstracted away, allowing me to move focus elsewhere. Yet something was odd when I've been using this adapter against legacy shop endpoint. Some product variant resources were not to be found in the API although I could look them up in the admin UI. 
+The developers already implemented a tailor-made adapter to interact with Shopify API, which wrapped [shopify_api](https://github.com/Shopify/shopify_api) gem. 
+So far so good — I thought, and jumped straight into the core of the problem I had to solve. The low-level interaction details were abstracted away, allowing me to move focus elsewhere. 
+Yet something was odd when I've been using this adapter against legacy shop endpoint. Some product variant resources were not to be found in the API although I could look them up in the admin UI. 
 
 The part of the adapter in question looked like this:
 
@@ -35,8 +37,12 @@ class ShopifyClient
 end        
 ```
 
-It got me thinking. Why do we use this particular value as the limit? And how many variants do we actually have in each of the shops? Turns out that Shopify by default returns up to 50 items of the collection in the API response. The new shop had not much over 50 variants. Increasing the limit to fit existing variant count was surely a pragmatic way to overcome a similar problem in the past. However the legacy shop had over 400 variants. And the limit of 250 turned out to be the maximum one can set — for a reason. In general, the bigger the query set, the more time is spent:
-* preparing (querying the database, serializing results into JSON objects, streaming the response bytes) 
+It got me thinking. Why do we use this particular value as the limit? And how many variants do we actually have in each of the shops? 
+Turns out that Shopify by default returns up to 50 items of the collection in the API response. The new shop had not much over 50 variants. Increasing the limit to fit existing variant count was surely a pragmatic way to overcome a similar problem in the past.
+However the legacy shop had over 400 variants. And the limit of 250 turned out to be the maximum one can set — for a reason. In general, the bigger the query set, the more time is spent:
+
+* preparing (querying the database, serializing results into JSON objects, streaming the response bytes)
+
 * consuming it (receiving bytes and parsing it into something useful)
 
 ## Enter cursor-based pagination
@@ -87,8 +93,11 @@ In my worldview this `ShopifyClient` adapter is an abstraction of every 3rd part
 When testing, I would like to extensively test how the adapter interacts with the 3rd party API on the HTTP protocol level. On the other hand, I would not like to exercise each piece of the application with that level of detail when it comes to 3rd party — only that it collaborates with the adapter in a way that is expected.
 
 Before you ask: the reason why would I test HTTP interactions of the adapter despite the presence of convenient `shopify_api` gem is to keep options open in the future:
+
 * when its time to change the adapter I'd like to do it with confidence and without hesitating too much how it affects the rest — keeping HTTP interactions in check gives me that
+
 * context switching — I already had to jump into very details of Shopify API and to this particular code, I'm sure months from now I'll not have all that cache in my head, thus making future changes more costly than now 
+
 * dependencies graph — each application dependency constrains it more, the scope of the gem is much bigger than the needs of the application I work on and I'd not hesitate to drop the gem as soon as it becomes a trouble (i.e. its [activeresource dependency](https://github.com/Shopify/shopify_api/issues/826))
 
 ## Verifying HTTP interactions with Webmock
