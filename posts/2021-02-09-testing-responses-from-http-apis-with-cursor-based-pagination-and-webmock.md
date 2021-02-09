@@ -221,7 +221,7 @@ stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.jso
 Client should follow the URL from link header in order to get the next set of results. This link contains the cursor in form of the `page_info` parameter. The result of following the link is the second page with the resource we're looking for. Translating all this into a spec:
 
 
-```
+```ruby
 RSpec.describe ShopifyClient do
   def first_page_variant_resource
     {
