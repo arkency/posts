@@ -142,6 +142,7 @@ Despite no expectation to fulfill, this triggers following error:
 ```
 
 That's very useful error to have. It tells that:
+
 * there's non-allowed side-effect (HTTP call) that should be mocked
 * what this mock could look like in test
 
