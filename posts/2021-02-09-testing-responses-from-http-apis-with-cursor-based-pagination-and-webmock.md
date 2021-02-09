@@ -2,7 +2,7 @@
 created_at: 2021-02-09T19:33:50.706Z
 author: Paweł Pacana
 tags: ['testing']
-publish: false
+publish: true
 ---
 
 # Testing responses from HTTP APIs with cursor-based pagination and Webmock
