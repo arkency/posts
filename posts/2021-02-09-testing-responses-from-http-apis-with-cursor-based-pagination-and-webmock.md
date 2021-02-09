@@ -90,6 +90,7 @@ end
 I did not 😱
 
 In my worldview this `ShopifyClient` adapter is an abstraction of every 3rd party interaction we could have in this application. There may be reasons out of which I would change the implementation of the adapter. At the same time I would not like to change how the application interacts with the adapter. 
+
 When testing, I would like to extensively test how the adapter interacts with the 3rd party API on the HTTP protocol level. On the other hand, I would not like to exercise each piece of the application with that level of detail when it comes to 3rd party — only that it collaborates with the adapter in a way that is expected.
 
 Before you ask: the reason why would I test HTTP interactions of the adapter despite the presence of convenient `shopify_api` gem is to keep options open in the future:
