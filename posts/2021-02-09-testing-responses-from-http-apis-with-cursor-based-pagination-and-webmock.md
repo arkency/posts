@@ -227,11 +227,16 @@ RSpec.describe ShopifyClient do
   
   specify do
     stub_request(:get, "https://exmple.myshopify.com/admin/api/2020-07/variants.json?limit=250")
-      .to_return(status: 200, body: JSON.dump({ variants: [first_page_variant_resource] }), headers: { "Link" => <<~EOS.strip })
-         <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4>; rel="next"
-      EOS
+      .to_return(
+        status: 200,
+        body: JSON.dump({ variants: [first_page_variant_resource] }), 
+        headers: { "Link" => <<~EOS.strip })
+          <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4>; rel="next"
+        EOS
     stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4")
-      .to_return(status: 200, body: JSON.dump({ variants: [second_page_variant_resource] }))
+      .to_return(
+        status: 200, 
+        body: JSON.dump({ variants: [second_page_variant_resource] }))
  
     variant = ShopifyClient.new.find_variant_by_sku(second_page_variant_resource["sku"])
       
