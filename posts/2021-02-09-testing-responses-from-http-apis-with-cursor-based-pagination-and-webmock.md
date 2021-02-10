@@ -76,7 +76,7 @@ When testing, I would like to extensively test how the adapter interacts with th
 
 Before you ask: the reason why would I test HTTP interactions of the adapter despite the presence of convenient `shopify_api` gem is to keep options open in the future:
 
-* when its time to change the adapter I'd like to do it with confidence and without hesitating too much how it affects the rest — keeping HTTP interactions in check gives me that
+* when its time to change the adapter I'd like to do it with confidence and without hesitating too much how it affects the rest — keeping HTTP interactions in check gives me that
 
 * context switching — I already had to jump into very details of Shopify API and to this particular code, I'm sure months from now I'll not have all that cache in my head, thus making future changes more costly than now 
 
