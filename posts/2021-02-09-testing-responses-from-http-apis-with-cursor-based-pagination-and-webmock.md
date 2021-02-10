@@ -240,7 +240,7 @@ RSpec.describe ShopifyClient do
  
     variant = ShopifyClient.new.find_variant_by_sku(second_page_variant_resource["sku"])
       
-     expect(variant.id).to eq(second_page_variant_resource["id"])
+    expect(variant.id).to eq(second_page_variant_resource["id"])
   end
 end
 ```
