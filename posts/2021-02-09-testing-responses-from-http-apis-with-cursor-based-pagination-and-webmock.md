@@ -57,13 +57,13 @@ class ShopifyClient
   MAX_PAGE_SIZE = 250
   
   def find_variant_by_sku(sku)
-      variants  = ShopifyAPI::Variant.find(:all, params: { limit: MAX_PAGE_SIZE })
-      variants_ = variants
-      while variants.next_page?
-        variants = variants.fetch_next_page
-        variants_.concat(variants)
-      end
-      variants_.find { |v| v.sku == sku }
+    variants  = ShopifyAPI::Variant.find(:all, params: { limit: MAX_PAGE_SIZE })
+    variants_ = variants
+    while variants.next_page?
+      variants = variants.fetch_next_page
+      variants_.concat(variants)
+    end
+    variants_.find { |v| v.sku == sku }
   end
 end
 ```
@@ -95,8 +95,7 @@ Let's execute following:
 ```ruby
 RSpec.describe ShopifyClient do
   specify do
-     variant = 
-       ShopifyClient.new.find_variant_by_sku("some-sku")
+    variant = ShopifyClient.new.find_variant_by_sku("some-sku")
   end
 end
 ```
@@ -128,7 +127,7 @@ That's very useful error to have. It tells that:
 We need expectations on the URL and query params. Let's stick to that, dropping `with(...)` part completely. It is a GET request so no body is posted, but we need body to return as a response. This is something webmock cannot provide for us and where I usually fallback to `curl`:
 
 ```
-curl "https://SUPER:SECRET@example.myshopify.com/admin/api/2020-07/variants.json?limit=250" | pbcopy
+curl "https://SUPER:SECRET@example.myshopify.com/admin/api/2020-07/variants.json?limit=250"
 ```
 
 Here's a little cheating — I don't actually want to have 250 resources in as response in the test. Just the single one, but still in shape of the collection:
@@ -165,7 +164,7 @@ HTTP/2 200
 date: Tue, 09 Feb 2021 19:05:51 GMT
 content-type: application/json; charset=utf-8
 (...)
-link: <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjozMTQ1OTE5OTI1NDY0MSwibGFzdF92YWx1ZSI6IjMxNDU5MTk5MjU0NjQxIiwiZGlyZWN0aW9uIjoibmV4dCJ9>; rel="next"
+link: <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4>; rel="next"
 ```
 
 With all that knowledge, let's improve the spec and pass the first webmock expectation:
@@ -185,7 +184,7 @@ RSpec.describe ShopifyClient do
   specify do
     stub_request(:get, "https://exmple.myshopify.com/admin/api/2020-07/variants.json?limit=250")
       .to_return(status: 200, body: JSON.dump({ variants: [first_page_variant_resource] }), headers: { "Link" => <<~EOS.strip })
-         <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ>; rel="next"
+         <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4>; rel="next"
       EOS
  
     variant = ShopifyClient.new.find_variant_by_sku("some-sku")
@@ -198,7 +197,7 @@ Our non-paginated Shopify adapter would pass this, a paginated one too. We need 
 Knowing the value of Link header, let's assert on that:
 
 ```ruby
-stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ")
+stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4")
   .to_return(status: 200, body: JSON.dump({ variants: [second_page_variant_resource] }))
 
 ```
@@ -229,9 +228,9 @@ RSpec.describe ShopifyClient do
   specify do
     stub_request(:get, "https://exmple.myshopify.com/admin/api/2020-07/variants.json?limit=250")
       .to_return(status: 200, body: JSON.dump({ variants: [first_page_variant_resource] }), headers: { "Link" => <<~EOS.strip })
-         <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ>; rel="next"
+         <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4>; rel="next"
       EOS
-    stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ")
+    stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=d5ba79c4")
       .to_return(status: 200, body: JSON.dump({ variants: [second_page_variant_resource] }))
  
     variant = ShopifyClient.new.find_variant_by_sku(second_page_variant_resource["sku"])
