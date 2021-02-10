@@ -137,7 +137,7 @@ Here's a little cheating — I don't actually want to have 250 resources in as r
 curl "https://SUPER:SECRET@example.myshopify.com/admin/api/2020-07/variants.json?limit=1"
 ```
 
-The response looks more or less like this:
+The response looks more or less like this (with majority of the attributes removed from output for brevity):
 
 ```json
 {
@@ -147,7 +147,6 @@ The response looks more or less like this:
       "product_id": 170817191964,
       "title": "Default Title",
       "sku": "300300300",
-      # (...)
     }
   ]
 }
@@ -180,7 +179,6 @@ RSpec.describe ShopifyClient do
       "product_id": 170817191964,
       "title": "Default Title",
       "sku": "300300300",
-      # more attributes cut out for brevity
     }
   end
   
@@ -190,10 +188,7 @@ RSpec.describe ShopifyClient do
          <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ>; rel="next"
       EOS
  
-    variant = 
-      ShopifyClient
-        .find_variant_by_sku("some-sku")
-        .value!
+    variant = ShopifyClient.new.find_variant_by_sku("some-sku")
   end
 end
 ```
@@ -219,7 +214,6 @@ RSpec.describe ShopifyClient do
       "product_id": 170817191964,
       "title": "Default Title",
       "sku": "300300300",
-      # (...)
     }
   end
   
@@ -229,7 +223,6 @@ RSpec.describe ShopifyClient do
       "product_id": 170817191965,
       "title": "Default Title",
       "sku": "300300301",
-      # (...)
     }
   end
   
