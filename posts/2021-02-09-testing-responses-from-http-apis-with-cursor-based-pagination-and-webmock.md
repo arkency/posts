@@ -21,7 +21,9 @@ class ShopifyClient
     include Dry::Monads[:result]
     
     def find_variant_by_sku(sku)
-      wrap_response { ShopifyAPI::Variant.find(:all, params: { limit: 250 }).find { |v| v.sku == sku } }
+      wrap_response do 
+        ShopifyAPI::Variant.find(:all, params: { limit: 250 }).find { |v| v.sku == sku }
+      end
     end
     
     def wrap_response(&block)
@@ -37,7 +39,8 @@ class ShopifyClient
 end        
 ```
 
-It got me thinking. Why do we use this particular value as the limit? And how many variants do we actually have in each of the shops? 
+It got me thinking. Why do we use this particular value as the limit? And how many variants do we actually have in each of the shops?
+
 Turns out that Shopify by default returns up to 50 items of the collection in the API response. The new shop had not much over 50 variants. Increasing the limit to fit existing variant count was surely a pragmatic way to overcome a similar problem in the past.
 However the legacy shop had over 400 variants. And the limit of 250 turned out to be the maximum one can set — for a reason. In general, the bigger the query set, the more time is spent:
 
