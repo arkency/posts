@@ -17,24 +17,8 @@ The part of the adapter in question looked like this:
 
 ```ruby
 class ShopifyClient
-  class << self
-    include Dry::Monads[:result]
-    
-    def find_variant_by_sku(sku)
-      wrap_response do 
-        ShopifyAPI::Variant.find(:all, params: { limit: 250 }).find { |v| v.sku == sku }
-      end
-    end
-    
-    def wrap_response(&block)
-      response = block.call
-      return response if response.is_a? Dry::Monads::Result
-       return Failure(nil) if response.blank?
-
-       Success(response)
-     rescue ActiveResource::ConnectionError => e
-       Failure(e)
-     end
+  def find_variant_by_sku(sku)
+    ShopifyAPI::Variant.find(:all, params: { limit: 250 }).find { |v| v.sku == sku }
   end
 end        
 ```
@@ -72,20 +56,14 @@ At this point I could have improved the API adapter and call it a day:
 class ShopifyClient
   MAX_PAGE_SIZE = 250
   
-  class << self
-    include Dry::Monads[:result]
-
-    def find_variant_by_sku(sku)
-      wrap_response do
-        variants  = ShopifyAPI::Variant.find(:all, params: { limit: MAX_PAGE_SIZE })
-        variants_ = variants
-        while variants.next_page?
-          variants = variants.fetch_next_page
-          variants_.concat(variants)
-        end
-        variants_.find { |v| v.sku == sku }
+  def find_variant_by_sku(sku)
+      variants  = ShopifyAPI::Variant.find(:all, params: { limit: MAX_PAGE_SIZE })
+      variants_ = variants
+      while variants.next_page?
+        variants = variants.fetch_next_page
+        variants_.concat(variants)
       end
-    end
+      variants_.find { |v| v.sku == sku }
   end
 end
 ```
@@ -118,9 +96,7 @@ Let's execute following:
 RSpec.describe ShopifyClient do
   specify do
      variant = 
-       ShopifyClient
-         .find_variant_by_sku("some-sky")
-         .value!
+       ShopifyClient.new.find_variant_by_sku("some-sku")
   end
 end
 ```
@@ -171,7 +147,7 @@ The response looks more or less like this:
       "product_id": 170817191964,
       "title": "Default Title",
       "sku": "300300300",
-      # more attributes cut out for brevity
+      # (...)
     }
   ]
 }
@@ -189,7 +165,7 @@ Among the various key-values, there's the one we're looking for. A `link`. It's 
 HTTP/2 200 
 date: Tue, 09 Feb 2021 19:05:51 GMT
 content-type: application/json; charset=utf-8
-…
+(...)
 link: <https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjozMTQ1OTE5OTI1NDY0MSwibGFzdF92YWx1ZSI6IjMxNDU5MTk5MjU0NjQxIiwiZGlyZWN0aW9uIjoibmV4dCJ9>; rel="next"
 ```
 
@@ -243,7 +219,7 @@ RSpec.describe ShopifyClient do
       "product_id": 170817191964,
       "title": "Default Title",
       "sku": "300300300",
-      # more attributes cut out for brevity
+      # (...)
     }
   end
   
@@ -253,7 +229,7 @@ RSpec.describe ShopifyClient do
       "product_id": 170817191965,
       "title": "Default Title",
       "sku": "300300301",
-      # more attributes cut out for brevity
+      # (...)
     }
   end
   
@@ -265,11 +241,8 @@ RSpec.describe ShopifyClient do
     stub_request(:get, "https://example.myshopify.com/admin/api/2020-07/variants.json?limit=250&page_info=eyJsYXN0X2lkIjoyMDI1MzI3Mjk2NTQwLCJsYXN0X3ZhbHVlIjoiMjAyNTMyNzI5NjU0MCIsImRpcmVjdGlvbiI6Im5leHQifQ")
       .to_return(status: 200, body: JSON.dump({ variants: [second_page_variant_resource] }))
  
-    variant = 
-      ShopifyClient
-        .find_variant_by_sku(second_page_variant_resource["sku"])
-        .value!
-         
+    variant = ShopifyClient.new.find_variant_by_sku(second_page_variant_resource["sku"])
+      
      expect(variant.id).to eq(second_page_variant_resource["id"])
   end
 end
