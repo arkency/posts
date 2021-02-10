@@ -5,7 +5,7 @@ tags: ['testing']
 publish: true
 ---
 
-# Testing responses from HTTP APIs with cursor-based pagination and Webmock
+# Testing cursor-based pagination with Webmock
 
 Once upon a time I was working on importing orders from a phased out Shopify shop instance into an existing system. The application was already interacting with a new shop instance. The business wanted to extend the reporting and gain insight into legacy orders from previous shop, in addition to existing one.
 
