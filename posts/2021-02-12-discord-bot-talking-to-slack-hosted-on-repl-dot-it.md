@@ -14,15 +14,20 @@ require "httparty"
 
 post_message = lambda do |message|
   HTTParty.post(
-    "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXXXX/xxxxxxxxxxxxxxxxxxxxxxxx",
+    "https://hooks.slack.com/services/xxx/xxxx/xxxxx",
     body: JSON.dump({ text: message }),
     headers: { "Content-Type" => "application/json" }
   )
 end
 
-bot = Discordrb::Bot.new(token: "xxxxxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxx")
+bot = Discordrb::Bot.new(token: "xxxx.xxx.xxxx")
 
-bot.voice_state_update(self_mute: false, self_deaf: false, mute: false, deaf: false) do |event|
+bot.voice_state_update(
+  self_mute: false,
+  self_deaf: false,
+  mute:      false,
+  deaf:      false
+) do |event|
   case event.channel
   when NilClass
     post_message["#{event.user.name} disconnected"]
@@ -32,7 +37,9 @@ bot.voice_state_update(self_mute: false, self_deaf: false, mute: false, deaf: fa
       post_message["#{event.user.name} joined #{event.channel.name}"]
     else
       # share|unshare while being on the channel
-      post_message["#{event.user.name} joined #{event.channel.name}"] unless event.channel.name == event.old_channel.name 
+      unless event.channel.name == event.old_channel.name
+        post_message["#{event.user.name} joined #{event.channel.name}"]
+      end
     end
   end
 end
