@@ -6,7 +6,7 @@ tags: []
 publish: false
 ---
 
-# Discord bot talking to Slack hosted on repl.it
+# Discord-to-Slack bot hosted on repl.it
 
 ```ruby
 require "discordrb"
