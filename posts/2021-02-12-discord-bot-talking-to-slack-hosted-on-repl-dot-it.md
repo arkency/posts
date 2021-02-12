@@ -8,6 +8,13 @@ publish: false
 
 # Discord-to-Slack bot hosted on repl.it
 
+## The story
+
+So we started using Discord alongside Slack recently. The selling point were the voice channels. There's no calling each other. You join a voice channel. When someone else joins, then you chat. It allowed us to communicate by voice in most _async_ way possible. And we like to stay _async_. 
+
+<!-- link tweet -->
+<!-- no migration -->
+
 ```ruby
 require "discordrb"
 require "httparty"
