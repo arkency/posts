@@ -22,6 +22,7 @@ Read on to see why I've specifically picked them.
 # Decompressing stored responses
 
 * no idea what is the data we make assertions on
+* not realizing how huge is the payload when storing all your un-paginatend products from catalog as a reponse to GET on index
 
 # Not allowing unused mocks
 
@@ -30,15 +31,17 @@ Read on to see why I've specifically picked them.
 # Disabling VCR where not explicitly needed
 
 * conflicting with webmock-style expectations
-* developers dodging the bullet by limiting matching scope in VCR
+* developers dodging the bullet by limiting matching scope too much in VCR
 
 # Complete tweak
+
+* all of the above leading to this
 
 ```ruby
 VCR.configure do |c|
   c.hook_into :webmock
   c.default_cassette_options = {
-    decode_compressed_response: true,
+    decode_compressed_response:     true,
     allow_unused_http_interactions: false,
   }
 end
