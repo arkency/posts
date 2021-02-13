@@ -16,7 +16,7 @@ Basically, whenever someone joins a voice channel it means _I'm available to tal
 
 But since we're using Slack as the primary means of communication, and not everyone is used to having Discord open at all times, we needed one thing: an integration that would **notify us on Slack, whenever someone joins a voice channel on Discord**. Simple.
 
-<%= img_fit("discord-bot.png") %>
+<%= img_original("discord-bot.png") %>
 
 ## Let's do it
 
