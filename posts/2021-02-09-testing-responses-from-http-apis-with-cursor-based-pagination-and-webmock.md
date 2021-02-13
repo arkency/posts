@@ -1,7 +1,7 @@
 ---
 created_at: 2021-02-09T19:33:50.706Z
 author: Paweł Pacana
-tags: ['testing']
+tags: ['testing', 'ruby']
 publish: true
 ---
 
