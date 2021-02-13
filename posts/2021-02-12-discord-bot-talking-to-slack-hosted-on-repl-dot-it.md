@@ -1,5 +1,5 @@
 ---
-title: Discord bot talking to Slack hosted on repl.it 
+title: Discord-to-Slack bot hosted on repl.it 
 created_at: 2021-02-12T12:02:20.443Z
 author: Tomasz Wróbel
 tags: []
@@ -10,10 +10,15 @@ publish: false
 
 ## The story
 
-So we started using Discord alongside Slack recently. The selling point were the voice channels. There's no calling each other. You join a voice channel. When someone else joins, then you chat. It allowed us to communicate by voice in most _async_ way possible. And we like to stay _async_. 
+So we started using Discord alongside Slack recently. The selling point were voice channels and screen streaming. It made voice conversations much smoother and  more _async_ friendly and made us overall closer to each other. More context [here](https://twitter.com/tomasz_wro/status/1355222703221968900).
 
-<!-- link tweet -->
-<!-- no migration -->
+Basically, whenever someone joins a voice channel it means _I'm available to talk_ or _I don't mind company_.
+
+But since we're using Slack as the primary means of communication, and not everyone is used to having Discord open at all times, we needed one thing: an integration that would **notify us on Slack, whenever someone joins a voice channel on Discord**. Simple.
+
+<!-- image of joining notifications -->
+
+## Let's do it
 
 ```ruby
 require "discordrb"
