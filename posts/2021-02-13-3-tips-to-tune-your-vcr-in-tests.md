@@ -15,7 +15,7 @@ In this post I describe 3 things that have grown my trust in VCR. These are:
 
 Read on to see why I've specifically picked them.
 
-# What is VCR from a bird's eye view
+## What is VCR from a bird's eye view
 
 VCR is a tool which I'd classify as useful in snapshot testing. You record a snapshot of an interaction with a [System Under Test](http://xunitpatterns.com/SUT.html). Once recorded, these interactions are replayed from stored files — snapshots.
 
@@ -36,7 +36,7 @@ When added to project, VCR installs globally and intercepts all HTTP requests ma
 
 For an interaction to be recorded, a living HTTP endpoint with data to record must exist. This is usually is your staging or test service instance. Recording is no different from regular data manipulation — querying or modifying. 
 
-# Decompressing stored responses
+## Decompressing stored responses
 
 By default VCR is tuned to store gzipped response data in gzipped-and-base64-encoded yaml-friendly string. This data is not decompressed and definitely not greppable:
 
@@ -91,7 +91,7 @@ Caveat:
 
 > This option should be avoided if the actual decompression of response bodies is part of the functionality of the library or app being tested.
 
-# Not allowing unused mocks
+## Not allowing unused mocks
 
 Another default in VCR states that if there are unused interactions recorded on a tape, they will be silently skipped. No error is raised if the tape has a GET request to https://example.net and this request is not actually made. Documentation says:
 
@@ -115,9 +115,7 @@ VCR.configure do |c|
 end
 ```
 
-
-
-# Disabling VCR where not explicitly needed
+## Disabling VCR where not explicitly needed
 
 Finally I wanted to make some [well-placed and precise assertions with webmock](https://blog.arkency.com/testing-responses-from-http-apis-with-cursor-based-pagination-and-webmock/) on HTTP interactions for new functionality. 
 
@@ -147,7 +145,7 @@ end
 
 That worked beautifully. 
 
-The caveat is you have to explicitly enable VCR when not using test metadata (`vcr: { … }`):
+The caveat is you have to explicitly enable VCR when not using `vcr:` in test metadata:
 
 ```rubv
 specify do
@@ -176,7 +174,7 @@ end
 ```
 
 
-# Complete tweak
+## Complete tweak
 
 All above tweaks finally led me to following snippet of configuration:
 
