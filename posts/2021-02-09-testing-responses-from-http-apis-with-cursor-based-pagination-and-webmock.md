@@ -256,3 +256,7 @@ We've now covered full interaction with a paginated endpoint:
 All clear and explicitly stated in code, as opposed to VCR-recorded interaction in YAML fixtures. 
 
 I hope this post gave you some useful insight how to use webmock and how a cursor-based pagination can be approached.
+
+### Protip from [Szymon](https://blog.arkency.com/authors/szymon-fiedler/)
+
+You can use [Request callbacks](https://github.com/bblimke/webmock#request-callbacks) to reach zen in web mocking. No need to mess `curl` when you can print all the request and response data with use of _Webmock_. Please remember to enable real requests to get what you want.
