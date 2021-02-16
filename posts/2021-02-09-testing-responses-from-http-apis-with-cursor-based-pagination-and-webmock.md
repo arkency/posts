@@ -259,4 +259,4 @@ I hope this post gave you some useful insight how to use webmock and how a curso
 
 ### Protip from [Szymon](https://blog.arkency.com/authors/szymon-fiedler/)
 
-You can use [Request callbacks](https://github.com/bblimke/webmock#request-callbacks) to reach zen in web mocking. No need to mess `curl` when you can print all the request and response data with use of _Webmock_. Please remember to enable real requests to get what you want.
+You can use [Request callbacks](https://github.com/bblimke/webmock#request-callbacks) to reach zen in web mocking. No need to mess with `curl` when you can print all the request and response data using _Webmock_. Please remember to enable real requests to get what you want.
