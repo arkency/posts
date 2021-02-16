@@ -71,7 +71,7 @@ http_interactions:
 
 Problem:
 
-* not greppable response body and no idea what is the data that we make assertions on
+* not greppable response body and no idea what is in the data that we make assertions on
 * not realizing how huge is the payload to store (i.e. recording the whole index of CMS entries), usually a tiny fraction is what we need for assertion and the rest only contributes to noise
 * when tempted to adjust just a single value in such recorded response body, one has to decode and decompress it first, following the reverse procedure on save — not a quick fix to introduce
 
