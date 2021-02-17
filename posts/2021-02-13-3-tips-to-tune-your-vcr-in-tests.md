@@ -147,7 +147,7 @@ That worked beautifully.
 
 The caveat is you have to explicitly enable VCR when not using `vcr:` in test metadata:
 
-```rubv
+```ruby
 specify do
   begin
     VCR.turn_on!
