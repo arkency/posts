@@ -2,7 +2,7 @@
 created_at: 2021-02-13T09:19:01.230Z
 author: Paweł Pacana
 tags: ['ruby', 'testing']
-publish: false
+publish: true
 ---
 
 # 3 tips to tune your VCR in tests
