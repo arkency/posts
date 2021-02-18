@@ -70,4 +70,5 @@ Click, click, click, the app is live 🎉
 
 I have to admit it was fast. Personally I really like it when services and tools improve DX, eliminate friction and are more approachable. 
 
+Want to discuss? Leave a [reply under this tweet](https://twitter.com/tomasz_wro/status/1362433027738066953).
 
