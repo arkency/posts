@@ -34,7 +34,7 @@ Now the code takes the [discordrb gem](https://github.com/shardlab/discordrb) an
 require "discordrb"
 require "httparty"
 
-def notify(message)
+def notify_slack(message)
   HTTParty.post(
     "https://hooks.slack.com/services/xxx/xxxx/xxxxx",
     body: JSON.dump({ text: message }),
@@ -47,11 +47,11 @@ bot = Discordrb::Bot.new(token: "xxxx.xxx.xxxx")
 bot.voice_state_update do |event|
   case 
   when event.channel.nil?
-    notify "✂️ #{event.user.name} disconnected"
+    notify_slack "✂️ #{event.user.name} disconnected"
   when event.old_channel.nil?
-    notify "👋 #{event.user.name} connected to #{event.channel.name}"
+    notify_slack "👋 #{event.user.name} connected to #{event.channel.name}"
   when event.channel.name != event.old_channel.name
-    notify "🔀 #{event.user.name} switched to #{event.channel.name}"
+    notify_slack "🔀 #{event.user.name} switched to #{event.channel.name}"
   end
 end
 
