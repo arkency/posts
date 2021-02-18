@@ -2,8 +2,8 @@
 title: Discord-to-Slack bot hosted on repl.it 
 created_at: 2021-02-12T12:02:20.443Z
 author: Tomasz Wróbel
-tags: []
-publish: false
+tags: ['ruby', 'async-remote']
+publish: true
 ---
 
 # Discord-to-Slack bot hosted on repl.it
@@ -69,7 +69,5 @@ Run it from my local machine... Works!
 Click, click, click, the app is live 🎉
 
 I have to admit it was fast. Personally I really like it when services and tools improve DX, eliminate friction and are more approachable. 
-
-
 
 
