@@ -1,6 +1,6 @@
 ---
 title: Discord-to-Slack bot hosted on repl.it 
-created_at: 2021-02-12T12:02:20.443Z
+created_at: 2021-02-18T12:02:20.443Z
 author: Tomasz Wróbel
 tags: ['ruby', 'async-remote']
 publish: true
