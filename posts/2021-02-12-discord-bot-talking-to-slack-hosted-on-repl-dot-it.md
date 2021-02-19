@@ -30,20 +30,22 @@ We'll need to:
 
 Now the code takes the [discordrb gem](https://github.com/shardlab/discordrb) and uses it to listen to voice channel updates (basically any event related to voice status, like self-mute or screen share). The updates get filtered and posted to the Slack webhook.
 
+First, some basic setup of Discordb that will puts whenever something related to voice happens on Discord:
+
 ```ruby
 require "discordrb"
-require "httparty"
-
-def notify_slack(message)
-  HTTParty.post(
-    "https://hooks.slack.com/services/xxx/xxxx/xxxxx",
-    body: JSON.dump({ text: message }),
-    headers: { "Content-Type" => "application/json" }
-  )
-end
 
 bot = Discordrb::Bot.new(token: "xxxx.xxx.xxxx")
 
+bot.voice_state_update { |event| p event }
+
+at_exit { bot.stop }
+bot.run
+```
+
+Now we only care about a specific set of events — when someone joins, leaves or changes a voice channel. That's how we can filter them out in the main method:
+
+```ruby
 bot.voice_state_update do |event|
   case 
   when event.channel.nil?
@@ -54,12 +56,28 @@ bot.voice_state_update do |event|
     notify_slack "🔀 #{event.user.name} switched to #{event.channel.name}"
   end
 end
+```
 
-at_exit { bot.stop }
-bot.run
+Now we need to actually send these notifications to slack. It's just a plain post to the configured webhook:
+
+
+```ruby
+require "httparty"
+
+def notify_slack(message)
+  HTTParty.post(
+    "https://hooks.slack.com/services/xxx/xxxx/xxxxx",
+    body: JSON.dump({ text: message }),
+    headers: { "Content-Type" => "application/json" }
+  )
+end
 ```
 
 Run it from my local machine... Works!
+
+You can find the [full gist here](https://gist.github.com/tomaszwro/c6574aa95c0c4009adcba92a8da2cec1).
+
+Special thanks for [Paweł](https://twitter.com/pawelpacana) for working on it together as a short coffee-break-hack.
 
 ## Now, where do I deploy such a tiny lil' thing?
 
