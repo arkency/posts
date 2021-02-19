@@ -12,7 +12,7 @@ There has been a very interesting discussion today on [\#ruby-rails-ddd communit
 
 <!-- more -->
 
-There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://shageman.github.io/cbra.info/) were listed among them. It was, however, the mention of "unbuilt gems" that reminded me of something.
+There are various approaches to achieve such separation —  Rails Engines and [CBRA](http://cbra.info/) were listed among them. It was, however, the mention of "unbuilt gems" that reminded me of something.
 
 ## Gem as a code boundary
 
