@@ -47,7 +47,7 @@ Here is a set of rules / things to consider when you will build your domain even
 
 ## Rule #1: the naming is hard, really hard
 
-In my [old talk](http://praglowski.com/presentations/cqrses/#/14) I’ve presented at dev’s user group meetup I’ve defined domain event as:
+In my [old talk](https://talks.praglowski.com/cqrs-es/) I’ve presented at dev’s user group meetup I’ve defined domain event as:
 
 * Something that has had already happened, and therefore…
 * Should be named in past tense…
