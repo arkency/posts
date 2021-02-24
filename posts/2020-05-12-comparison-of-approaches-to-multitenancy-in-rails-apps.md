@@ -22,15 +22,15 @@ Here's how they compare to each other:
 | Tenant setup time | ⚡️ Just create a record | 🐢 Slower (need to create schema, create tables) | 🐌 Even slower + possible operational overhead |
 | Leaking data between tenants | 💥 If you forget a `WHERE` clause | 👍 Get a couple things right and you'll be fine | ✅ You'd need to try hard to get one |
 | Invasiveness | 🍝 `tenant_id` columns and filters all over the code | 👍 Fine | 👍 Fine |
-| Need shared tables or merging data across tenants | ✅ No brainer | 👍 Can still be done in SQL | 🚫 In-app only, cannot do in SQL |
+| Need shared tables or merging data across tenants | ✅ No-brainer | 👍 Can still be done in SQL | 🚫 In-app only, cannot do in SQL |
 | Running DB migrations | ⚡️ O(1) | 🐢 O(n) | 🐌 O(n) |
 | Conventionality | 👍 Standard Rails | 🛠 Occasionally at odds with Rails assumptions | 🤔 |
 | Additional costs | 👍 Not really | 👍 Not really | ❓ What if pricing depends on the # of DBs? |
 | Operational overhead | ✅ No | 👍 Occasionally. You have an ever growing number of db tables. | 🛠 You now have a lot of databases |
 | Complexity | 🍝 `tenant_id` keys everywhere | 🌴 an exotic PG feature & stateful `search_path` | 🤔 |
-| Where possible | 🌍 Pretty much anywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases on the fly? |
+| Where possible | 🌍 Pretty much anywhere | ⚠️ Are you on a managed DB? Double check if all features and ops possible | ⚠️ Got rights to create databases? Can be done on the fly? |
 | Cost of switching | ⚡️ Just set a variable | ⚡️ Set the `search_path` for the current db connection | 🐢 You need to establish a separate db connection |
-| Extract a single tenant's data | 🛠 Cumbersome | 👍 Easy | 👍 No brainer |
+| Extract a single tenant's data | 🛠 Cumbersome | 👍 Easy | 👍 No-brainer |
 | Per-tenant DB structure customizations | ⚠️ Problematic | 👍 Possible | ✅ Even more possible |
 
 ### MySQL vs PostgreSQL schemas
