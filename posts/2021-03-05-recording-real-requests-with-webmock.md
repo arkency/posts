@@ -6,6 +6,8 @@ tags: []
 publish: false
 ---
 
+# Recording real requests with WebMock
+
 Almost like VCR, but without VCR — thankfully.
 
 You're looking for this:
