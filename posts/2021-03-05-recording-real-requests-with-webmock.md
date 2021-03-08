@@ -1,9 +1,9 @@
 ---
 title: Recording real requests with WebMock
-created_at: 2021-03-05T12:22:44.265Z
+created_at: 2021-03-08T21:00:00.000Z
 author: Tomasz Wróbel
-tags: []
-publish: false
+tags: ['testing']
+publish: true
 ---
 
 # Recording real requests with [WebMock](https://github.com/bblimke/webmock)
