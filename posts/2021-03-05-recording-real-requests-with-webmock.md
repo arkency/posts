@@ -6,11 +6,11 @@ tags: []
 publish: false
 ---
 
-# Recording real requests with WebMock
+# Recording real requests with [WebMock](https://github.com/bblimke/webmock)
 
-Almost like VCR, but without VCR — thankfully.
+...to get an experience almost like with [VCR](https://github.com/vcr/vcr), but without it — thankfully.
 
-You're looking for this:
+If you're just looking for the piece of code to paste, it's here:
 
 ```ruby
 def allow_and_print_real_requests_globally!
@@ -57,4 +57,15 @@ WebMock::NetConnectNotAllowedError:
 
 I really appreciate that WebMock gives you a copy-paste-able snippet to stub your request in a test case, but this snippet is only useful to some extent — to stub your request when you don't care what it returns. When your code cares about the returned response, you need to define the body and you need to take it from somewhere. Usually people play with the real service and take an example response body from it. This can get quite tedious when there's a lot of requests. There are tools that help you with this too — if you run your test again a real service, VCR will record any HTTP interaction to a yaml file called "tape", which can then be replayed in subsequent test runs without hitting the real service.
 
-But personally I'd rather avoid VCR and limit myself to WebMock, unless I'm forced too — for reasons that could make another blogpost. Shortly — it's easy to start with, but tends to be painful to maintain. But why not use WebMock for this? WebMock's `after_request` callback can be used 
+But personally I'd rather avoid VCR and limit myself to WebMock, unless I'm forced too — for reasons that could make another blogpost. Shortly — it's easy to start with, but tends to be painful to maintain. (Actually, while I'm in the mode of sharing opinions, I'd limit the use of WebMock too — preferrably just to test the _adapters_. Domain tests can stub/mock/fake the adapters. Otherwise the tests quickly get noisy.)
+
+But we can use WebMock like VCR to some degree. WebMock's `after_request` callback can be used to get hold of any outgoing request (once you allow them with `WebMock.allow_net_connect!`) and print it to stdout. Sounds promising, but if you only go with:
+
+```ruby
+WebMock.allow_net_connect!
+WebMock.after_request { |req, res| p res }
+```
+
+...you'll no longer see these ready-to-copy stubbing snippets, but we can have them back with `RequestSignatureSnippet#stubbing_instructions`, which is what the original snippet is about.
+
+That's it.
