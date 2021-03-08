@@ -13,15 +13,20 @@ Almost like VCR, but without VCR — thankfully.
 You're looking for this:
 
 ```ruby
-def allow_and_print_real_requests!
+def allow_and_print_real_requests_globally!
   WebMock.allow_net_connect!
   WebMock.after_request do |request_signature, response|
+    stubbing_instructions =
+      WebMock::RequestSignatureSnippet
+        .new(request_signature)
+        .stubbing_instructions
+    parsed_body = JSON.parse(response.body)
     puts "=== outgoing request ========================================"
-    puts WebMock::RequestSignatureSnippet.new(request_signature).stubbing_instructions
+    puts stubbing_instructions
     puts
     puts "parsed body:"
     puts
-    pp JSON.parse(response.body)
+    pp parsed_body
     puts "============================================================="
     puts
   end
