@@ -2,7 +2,7 @@
 title: Recording real requests with WebMock
 created_at: 2021-03-08T21:00:00.000Z
 author: Tomasz Wróbel
-tags: ['testing']
+tags: ['testing', 'ruby']
 publish: true
 ---
 
@@ -10,7 +10,7 @@ publish: true
 
 ...to get an experience almost like with [VCR](https://github.com/vcr/vcr), but without it — thankfully.
 
-If you're just looking for the piece of code to paste, it's here:
+If you're my-future-self and you're just looking for the piece of code to paste, it's here:
 
 ```ruby
 def allow_and_print_real_requests_globally!
@@ -68,4 +68,6 @@ WebMock.after_request { |req, res| p res }
 
 ...you'll no longer see these ready-to-copy stubbing snippets, but we can have them back with `RequestSignatureSnippet#stubbing_instructions`, which is what the original snippet is about.
 
-That's it.
+Here are some other pieces about WebMock and VCR we've published recenty: [3 tips to tune your VCR in tests](https://blog.arkency.com/3-tips-to-tune-your-vcr-in-tests/) and [Testing cursor-based pagination with Webmock](https://blog.arkency.com/testing-responses-from-http-apis-with-cursor-based-pagination-and-webmock/).
+
+If you want to comment or discuss, feel free to [reply under this tweet](https://twitter.com/tomasz_wro/status/1369262330782027776).
