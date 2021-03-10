@@ -19,7 +19,7 @@ In Active Record there are db connections, connection pools and handlers. To put
 
 ## Connection
 
-This is what you most often directly interact with. You can get hold of it via `ActiveRecord::Base.connection` and, for example, use it to execute raw SQL:
+The `connection` object is the one you most often directly interact with. You can get hold of it via `ActiveRecord::Base.connection` and, for example, use it to execute raw SQL:
 
 ```ruby
 ActiveRecord::Base.connection.execute("select 1 as x").to_a
@@ -104,7 +104,10 @@ ActiveRecord::Base
   .connection_handler
   .connection_pools.first
   .connections.first
-  .execute("select 'Do not execute SQL on random connections' as helpful_hint")
+  .execute <<~SQL
+    SELECT 'Do not execute SQL on random connections'
+    AS helpful_hint
+  SQL
 ```
 
 ### Want to contribute to this blogpost?
