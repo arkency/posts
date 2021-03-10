@@ -28,7 +28,7 @@ Some APIs may allow you to create an object in some kind of _draft_ state. If yo
 
 <!-- TODO: if api does does not support drafts, can some other attribute be abused for it? or some other api functionality? -->
 
-## Case 4 - existence check
+## Case 4 — existence check
 
 If your api lets you check for existence.
 
