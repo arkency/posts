@@ -36,5 +36,13 @@ But here you need to deal with potential race conditions around concurrency, if 
 
 <!-- TODO: how to mitigate race conditions -->
 
+## Random points, to be edited
+
+<!-- from @swistak35 -->
+
+* make a DB lock to ensure that only 1 request for a specific ID can happen in a single moment
+* being able to add an identifier to resource metadata might be helpful
+* sidekiq limiter
+
 
 <!-- TODO: discerning response created vs was-already-there -->
