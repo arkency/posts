@@ -51,25 +51,25 @@ TLDR: Every tools has its pros and cons. Give them a try in your entire team and
 
 Slack in normal mode
 
-<a href="/assets/images/remote-toolbox/slack_normal.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/slack_normal.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/slack_normal.png") %>" />
 </a>
 
 Slack in compact mode
 
-<a href="/assets/images/remote-toolbox/slack_compact.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/slack_compact.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/slack_compact.png") %>" />
 </a>
 
 Notifications on slack
 
-<a href="/assets/images/remote-toolbox/slack_notifications.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/slack_notifications.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/slack_notifications.png") %>" />
 </a>
 
 ### Flowdock
 
-<a href="/assets/images/remote-toolbox/flowdock.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/flowdock.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/flowdock.png") %>" />
 </a>
 
@@ -90,19 +90,19 @@ In some projects we use Pivotal, Redmine or Asana for the same goal.
 
 Living on the edge... Trello with one column only :)
 
-<a href="/assets/images/remote-toolbox/trello_column.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/trello_column.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/trello_column.png") %>" />
 </a>
 
 One ticket on trello
 
-<a href="/assets/images/remote-toolbox/trello_one_ticket.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/trello_one_ticket.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/trello_one_ticket.png") %>" />
 </a>
 
 Email notifications from trello
 
-<a href="/assets/images/remote-toolbox/trello_email_notifications.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/trello_email_notifications.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/trello_email_notifications.png") %>" />
 </a>
 
@@ -115,13 +115,13 @@ It's basically a wiki on steroids. It has support for collections, it notifies a
 
 Whatever interesting happens in our company, it gets an URL on Hackpad. Do I have an idea for a bigger refactoring in one project? I create a hackpad, paste some code and describe the plan. Others can join whenever they want (async!) and add their comments.
 
-<a href="/assets/images/remote-toolbox/hackpad.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/hackpad.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/hackpad.png") %>" />
 </a>
 
 The email notifications are very powerful tool to keep being updated in an asynchronous discussion about topics that you subscribed to. Here is a screenshot with notifications from our hackpad dedicated to our annual Arkency Camp event. As you can see the notifications are provide with a a bit of context for the changes, so sometimes you don't even have to open the pad, to know what's been changed or what is someone opinion about the topic.
 
-<a href="/assets/images/remote-toolbox/hackpad_email_notifications.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/hackpad_email_notifications.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/hackpad_email_notifications.png") %>" />
 </a>
 
@@ -155,7 +155,7 @@ You can configure it to work in "Press button for talking mode" which is very co
 
 Our mumble server is self-hosted by us. Maybe that's one of the reasons that the sound quality is better than any other tool like skype or google hangout. Or maybe it's just mumble. I don't know, but it is a pleasure to use this tool for voice communication. Works on mac, linux, windows, ios and android.
 
-<a href="/assets/images/remote-toolbox/mumble.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/mumble.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/mumble.png") %>" />
 </a>
 
@@ -181,18 +181,18 @@ We use video calls very rarely and mostly, when external teams are involved who 
 
 We have our small self hosted app which just lists uploaded .webm files that every new browser can play without any plugin. And automatically create and embed hackpad below the video to have a place for discussion.
 
-<a href="/assets/images/remote-toolbox/arkency_tv_listing.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/arkency_tv_listing.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/arkency_tv_listing.png") %>" />
 </a>
 
 
-<a href="/assets/images/remote-toolbox/arkency_tv.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/arkency_tv.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/arkency_tv.png") %>" />
 </a>
 
 But recently we started to experiment with non-public videos on youtube and that also works great.
 
-<a href="/assets/images/remote-toolbox/dopm_yt.png" rel="lightbox[picker]">
+<a href="<%= src_original("remote-toolbox/dopm_yt.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("remote-toolbox/dopm_yt.png") %>" />
 </a>
 

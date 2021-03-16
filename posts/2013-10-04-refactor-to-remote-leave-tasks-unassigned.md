@@ -31,13 +31,13 @@ of the most important criteria taken into consideration when assigning a task. S
 let's say you have three developers and ten tasks to be done during the iteration.
 Here is how you decided to split the work.
 
-<a href="/assets/images/unassigned/plan.png" rel="lightbox"><img src="<%= src_fit("unassigned/plan.png") %>" class="fit"></a>
+<a href="<%= src_original("unassigned/plan.png") %>" rel="lightbox"><img src="<%= src_fit("unassigned/plan.png") %>" class="fit"></a>
 
 Looks very promising. But here comes the reality. The most important task (no. 1)
 takes longer than anticipated. And suprisingly one of the tasks (no. 3) turned out to
 be easier and was finished earlier.
 
-<a href="/assets/images/unassigned/reality.png" rel="lightbox"><img src="<%= src_fit("unassigned/reality.png") %>" class="fit"></a>
+<a href="<%= src_original("unassigned/reality.png") %>" rel="lightbox"><img src="<%= src_fit("unassigned/reality.png") %>" class="fit"></a>
 
 What effect does it have for your project? **Multiple times during this iteration
 people are working on tasks which are not most important**. The first developer is

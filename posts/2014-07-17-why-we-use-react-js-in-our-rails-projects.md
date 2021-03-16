@@ -51,7 +51,7 @@ Assume that we got to create a list of books with a dynamic search.
 
 <p>
   <figure align="center">
-    <img src="/assets/images/react/box.png">
+    <img src="<%= src_original("react/box.png") %>">
   </figure>
 </p>
 

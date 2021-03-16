@@ -106,7 +106,7 @@ from it. Whatever the reasons are, make sure the strategy
 is discussed with the customer and your team and the rules
 are clear for everyone.
 
-<a href="/assets/images/floating-doc/documentation_as_floating_ticket.png" rel="lightbox[doc]"><img src="<%= src_fit("floating-doc/documentation_as_floating_ticket.png") %>" /></a>
+<a href="<%= src_original("floating-doc/documentation_as_floating_ticket.png") %>" rel="lightbox[doc]"><img src="<%= src_fit("floating-doc/documentation_as_floating_ticket.png") %>" /></a>
 
 So you decided to extract two task. You create them on top
 of your backlog so that you or your team mates can start

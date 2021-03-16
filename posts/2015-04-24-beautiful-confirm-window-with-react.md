@@ -147,7 +147,7 @@ that would produce something like this:
 
 <p>
   <figure align="center">
-    <img src="/assets/images/beautiful-confirm-window-with-react/native-confirm.png">
+    <img src="<%= src_original("beautiful-confirm-window-with-react/native-confirm.png") %>">
   </figure>
 </p>
 
@@ -163,7 +163,7 @@ that looks like this:
 
 <p>
   <figure align="center">
-    <img src="/assets/images/beautiful-confirm-window-with-react/confirm-without-description.png">
+    <img src="<%= src_original("beautiful-confirm-window-with-react/confirm-without-description.png") %>">
   </figure>
 </p>
 
@@ -185,7 +185,7 @@ This is the final look:
 
 <p>
   <figure align="center">
-    <img src="/assets/images/beautiful-confirm-window-with-react/confirm-with-description.png">
+    <img src="<%= src_original("beautiful-confirm-window-with-react/confirm-with-description.png") %>">
   </figure>
 </p>
 

@@ -24,7 +24,7 @@ concepts_. What does that even mean? Especially in terms of programming?
 
 First, let's have a look at this example:
 
-<a href="/assets/images/higher-level-concept/four_rules_of_simple_design_page_screenshot.png" rel="lightbox[rules]">
+<a href="<%= src_original("higher-level-concept/four_rules_of_simple_design_page_screenshot.png") %>" rel="lightbox[rules]">
   <img src="<%= src_fit("higher-level-concept/four_rules_of_simple_design_page_screenshot.png") %>" width="100%">
 </a>
 
@@ -82,7 +82,7 @@ This makes sense if you assume an infinite, 2-dimensional Map of square cells, w
 _Conway game of life_. But whenever you say _Game_ to me, first thing I think
 about is _Civilization 5_ and its hexagonal Map.
 
-<a href="/assets/images/higher-level-concept/civ5_map_hexes.jpg" rel="lightbox[civ5]">
+<a href="<%= src_original("higher-level-concept/civ5_map_hexes.jpg") %>" rel="lightbox[civ5]">
   <img src="<%= src_fit("higher-level-concept/civ5_map_hexes.jpg") %>" width="100%">
 </a>
 

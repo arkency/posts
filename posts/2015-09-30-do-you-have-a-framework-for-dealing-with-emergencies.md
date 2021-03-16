@@ -110,7 +110,7 @@ We described ours in _Responsible Rails_ book.
       <h1 class="text-center my-8">Responsible Rails</h1>
     </a>
     <a href="https://products.arkency.com/responsible-rails">
-      <img src="/assets/images/responsible-rails/cover.png" alt="" style="float: left; max-width: 220px; margin-right: 3em; margin-bottom: 1em">
+      <img src="<%= src_original("responsible-rails/cover.png") %>" alt="" style="float: left; max-width: 220px; margin-right: 3em; margin-bottom: 1em">
     </a>
     <p>Tired of weekend works? Missing a framework for handling emergencies? Looking for advice how to mitigate the number of production accidents?</p>
     <p><strong>Try Responsible Rails!</strong> The book contains:</p>

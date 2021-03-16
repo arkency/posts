@@ -103,7 +103,7 @@ As Damian Hickey puts it in [an excellent way](http://dhickey.ie/post/2014/03/03
 _Like writing lots and lots of fine-grained "unit" tests, mocking out every teeny-weeny interaction between every single object?
 This is your application:_
 
-<img src="/assets/images/unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG">
+<img src="<%= src_original("unit_tests_vs_class_tests/GULLIVERS-TRAVELS.JPG") %>">
 
 
 _Now try to change something._

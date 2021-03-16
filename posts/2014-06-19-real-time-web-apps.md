@@ -53,7 +53,7 @@ wss.on 'connection', (ws) ->
 
 <p>
   <figure>
-    <img src="/assets/images/real-time-web/web-sockets.png" width="100%">
+    <img src="<%= src_original("real-time-web/web-sockets.png") %>" width="100%">
     <details>
       Source: <a href="http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/">dsheiko.com</a>
     </details>
@@ -180,7 +180,7 @@ end
 
 <p>
   <figure>
-    <img src="/assets/images/real-time-web/event-source.png" width="100%">
+    <img src="<%= src_original("real-time-web/event-source.png") %>" width="100%">
     <details>
       Source: <a href="http://dsheiko.com/weblog/websockets-vs-sse-vs-long-polling/">dsheiko.com</a>
     </details>

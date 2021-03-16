@@ -45,7 +45,7 @@ It seems like a perfect candidate at first sight, so let's dive into this topic 
 
 I believe that we could use diagram here.
 
-<a href="/assets/images/async-zmq/Async-ZMQ.png" rel="lightbox"><img src="<%= src_fit("async-zmq/Async-ZMQ.png") %>" class="fit" /></a>
+<a href="<%= src_original("async-zmq/Async-ZMQ.png") %>" rel="lightbox"><img src="<%= src_fit("async-zmq/Async-ZMQ.png") %>" class="fit" /></a>
 
 Every rails thread (I assume multithreading app here, but it does not matter
 a lot) would have a ZMQ socket for sending exceptions and business metrics. Sending
@@ -106,7 +106,7 @@ and sends them further to the external service.
 
 Let's see a diagram:
 
-<a href="/assets/images/async-zmq/Process.png" rel="lightbox"><img src="<%= src_fit("async-zmq/Process.png") %>" class="fit" /></a>
+<a href="<%= src_original("async-zmq/Process.png") %>" rel="lightbox"><img src="<%= src_fit("async-zmq/Process.png") %>" class="fit" /></a>
 
 Rails application can communicate with the process running in customer
 infrastructure using any protocol it wants. That could be for example

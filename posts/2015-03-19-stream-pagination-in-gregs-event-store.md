@@ -142,19 +142,19 @@ If we would like to get all entries from newest we have to iterate **backward** 
 
 First step:
 
-<a href="/assets/images/events/backward_first.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/backward_first.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/backward_first.png") %>" />
 </a>
 
 Second step:
 
-<a href="/assets/images/events/backward_second.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/backward_second.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/backward_second.png") %>" />
 </a>
 
 Third step:
 
-<a href="/assets/images/events/backward_third.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/backward_third.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/backward_third.png") %>" />
 </a>
 
@@ -162,19 +162,19 @@ To get all events starting from the begin we have to walk **forward** over whole
 
 First step:
 
-<a href="/assets/images/events/forward_first.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/forward_first.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/forward_first.png") %>" />
 </a>
 
 Second step:
 
-<a href="/assets/images/events/forward_second.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/forward_second.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/forward_second.png") %>" />
 </a>
 
 Third step:
 
-<a href="/assets/images/events/forward_third.png" rel="lightbox[picker]">
+<a href="<%= src_original("events/forward_third.png") %>" rel="lightbox[picker]">
   <img src="<%= src_fit("events/forward_third.png") %>" />
 </a>
 

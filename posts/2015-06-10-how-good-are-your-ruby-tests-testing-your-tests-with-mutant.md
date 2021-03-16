@@ -81,8 +81,8 @@ and this video which shows visually how mutant changes the code runtime:
 
 <a target="_blank" href="http://www.redbubble.com/people/arkency/works/15343339-kill-the-mutants?always_show=true">
   <div class="fashion flex justify-between">
-    <img src="/assets/images/fashion/kill-the-mutants-mutation-testing-ruby-rails-mackbook.jpg">
-    <img src="/assets/images/fashion/kill-the-mutants-bag.jpg">
-    <img src="/assets/images/fashion/kill-the-mutants-pillow.jpg">
+    <img src="<%= src_original("fashion/kill-the-mutants-mutation-testing-ruby-rails-mackbook.jpg") %>">
+    <img src="<%= src_original("fashion/kill-the-mutants-bag.jpg") %>">
+    <img src="<%= src_original("fashion/kill-the-mutants-pillow.jpg") %>">
   </div>
 </a>

@@ -17,7 +17,7 @@ img: "events/black-and-white-car-vehicle-vintage.jpg"
 
 In my last post, I've presented a way how to test an Event Sourced application. But again (yes, again and again) some part was missing there. It is clearly visible when you look at test coverage:
 
-<img src="/assets/images/events/sample-test-coverage.png"/>
+<img src="<%= src_original("events/sample-test-coverage.png") %>"/>
 
 The missing part, of course, is the read side.
 

@@ -44,7 +44,7 @@ stopped.
 If you are already using Thin, which is built on top of EM, sending such data without blocking your Rails
 application is trivial. Just embrace the features of your webserver.
 
-<a href="/assets/images/async-zmq/eventmachine.png" rel="lightbox"><img src="<%= src_fit("async-zmq/eventmachine.png") %>" class="fit" /></a>
+<a href="<%= src_original("async-zmq/eventmachine.png") %>" rel="lightbox"><img src="<%= src_fit("async-zmq/eventmachine.png") %>" class="fit" /></a>
 
 ### The good parts
 
@@ -80,7 +80,7 @@ with it. So just don't make the job for them harder :)
 Probably one of the most obvious solution is to use bunch of threads and
 delegate the job of sending data to them.
 
-<a href="/assets/images/async-zmq/threads-queue.png" rel="lightbox"><img src="<%= src_fit("async-zmq/threads-queue.png") %>" class="fit" /></a>
+<a href="<%= src_original("async-zmq/threads-queue.png") %>" rel="lightbox"><img src="<%= src_fit("async-zmq/threads-queue.png") %>" class="fit" /></a>
 
 We can have multiple threads processing HTTP requests (probably spawned
 by our webserver such as Puma) or one main thread doing that (as in
