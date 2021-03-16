@@ -8,10 +8,27 @@ publish: false
 
 ## YAML
 
-## JSONB
+* you can just throw whatever at it and have it serialized
+* self-contained schema
+
+```
+example payload
+```
 
 ## JSON
 
+* you need schema definition for anything beyond json types
+* dry
+
+## JSONB
+
+* you can query
+
+
 ## Marshal
+
+* almost like yaml - you can throw anything ruby at it
+* but unreadable
+* and dangerous?
 
 ## Protobuf
