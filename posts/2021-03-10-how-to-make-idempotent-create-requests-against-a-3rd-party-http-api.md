@@ -1,12 +1,18 @@
 ---
-title: How to make idempotent CREATE requests against a 3rd party http api
+title: How to call 3rd party APIs idempotently
 created_at: 2021-03-10T07:56:46.014Z
 author: Tomasz Wróbel
 tags: []
 publish: false
 ---
 
-It depends on what this particular api provides.
+Why?
+
+* we make more and more 3rd party api calls in our apps these days, mostly in background jobs
+* background jobs cannot be assumed to be run only once - there's no way around that (why? job can be retried because of an exception or even run twice in parallel in some weird scenarios)
+* that's why jobs need to be designed to be idempotent, i.e. safe to run any number of times, while still producing the desired end state on the 3rd party system - if a job that sends emails is retried 10 times, it should still send only 1 email, not 10
+
+Now how to make an 3rd party api call idempotent? It depends on what this particular api provides.
 
 Some requests are easily made idempotent, like updating the status to `COMPLETED` (provided it should never go back).
 
