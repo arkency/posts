@@ -8,18 +8,18 @@ publish: false
 
 # N simple ways to make remote work less lonely
 
-I joined Arkency, a remote-first company, 4+ years ago. It's so _remote_ I didn't even see my teammates' faces for almost half a year. The most surprising thing I experienced at the new job vs the previous one:
+I joined Arkency, a remote-first company, 4+ years ago. It was so _remote_ I didn't even see my teammates' faces for almost half a year. The most surprising thing I experienced at the new job, was that even it was remote:
 
 * I felt I have more connection to other teammates than in my previous non-remote job
 * I had way more insight into what's happening in other projects in the company
 
-Now most of us need to work remotely. I guess not all are happy about that, partially because all that accidental interaction lost.
+Nowadays most of us need to work remotely. I guess not everyone is happy about that, partially because of all that accidental human interaction lost.
 
 Here's how we've always dealt with that:
 
 ## Set up personal channels on Slack
 
-Let's say your name is Dorothy. Now go on and create a channel named: `#dorothy`. Treat this channel as your own blog, which is just published internally in your company, with your teammates comments inlined. Post anything related to your life: going on a hike, read something interesting, buying a piece of hardware and needing help — post it and let others chime in. Good place for occasional photos, too.
+Let's say your name is Dorothy. Now create a channel named: `#dorothy`. Treat this channel as your own blog, which is just published internally in your company, with your teammates comments inlined. Post anything related to your life: going on a hike, read something interesting, buying a piece of hardware and needing help — post it and let others chime in. Good place for occasional photos, too.
 
 ## _Overcommunicate_
 
@@ -29,7 +29,7 @@ When working on a project, don't defer communication until you're stuck or until
 2. You're helping your teammates to stay updated with your progress, without waiting for the daily standup
 3. You're helping yourself, because if you're encountering a problem for which a teammate knows a quicker solution, he can just jump in.
 
-<!-- Example: yarn -->
+Example: one day I had too set up assets compilation on CI. I would probably do it sooner or later with more or less googling and that was the plan. I just kept communicating what I'm doing step on a channel where everyone has access, but I didn't expect anyone to read. I didn't even assume anyone is around. By default I'm just communicating my moves for the purpose of rubber-duck-debugging. But perhaps someone is around, has already dealt with that and doesn't mind being interrupted at the moment — in such situation they can offer to help and this is what happened in this particular situation and I probably saved an hour or two. It wouldn't happen though, if I weren't _overcommunicating_, i.e. turn myself into `--verbose` mode. The default was just to keep doing it myself and noone would be offended if there wasn't any response to my messages.
 
 <!-- #bleach-tomw -->
 
@@ -41,7 +41,7 @@ But...
 
 ## Prefer public comms
 
-This may blow your mind, but [83% messages on our Slack are sent to public channels](https://twitter.com/andrzejkrzywda/status/1352694180326289412), only 17% in DMs. This is completely different from most other companies, percentage of public messages can even be a single digit.
+This may blow your mind, but [83% messages on our Slack are sent to public channels](https://twitter.com/andrzejkrzywda/status/1352694180326289412), only 17% in DMs. This is completely different from most other companies, where percentage of public messages can even be a single digit.
 
 Our dedication to communication via public channels helps many things. It's so much easier to be a part of a project you're not directly assigned to. 
 
