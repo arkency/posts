@@ -3,7 +3,6 @@ created_at: 2020-05-05T11:20:37.601Z
 author: Andrzej Krzywda
 tags: [heroku, postgres]
 publish: true
-cta: 'hireus'
 ---
 
 # Overcome 10k rows database limit on Heroku by upgrading the database plan

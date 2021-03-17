@@ -4,7 +4,6 @@ author: Tomasz Wróbel
 tags: ['rails']
 kind: article
 publish: true
-cta: 'hireus'
 ---
 
 # Rails connections, pools and handlers

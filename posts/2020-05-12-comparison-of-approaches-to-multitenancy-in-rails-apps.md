@@ -3,7 +3,6 @@ created_at: 2020-05-26T14:20:00.000Z
 author: Tomasz Wróbel
 tags: [ 'ruby on rails', 'multitenancy', 'postgresql' ]
 publish: true
-cta: 'hireus'
 ---
 
 # Comparison of approaches to multitenancy in Rails apps
