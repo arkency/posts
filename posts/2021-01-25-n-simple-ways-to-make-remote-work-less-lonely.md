@@ -2,7 +2,7 @@
 title: 7 simple ways to make remote work feel less lonely
 created_at: 2021-03-17T18:00:39.102Z
 author: Tomasz Wróbel
-tags: ['async-remote']
+tags: ['async remote']
 publish: true
 ---
 
