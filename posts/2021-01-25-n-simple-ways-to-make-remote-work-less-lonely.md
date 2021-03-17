@@ -47,7 +47,7 @@ If you're not comfortable with full-blown pairing style like TDD ping-pong, just
 
 If you don't feel like pairing all the time, try _intermittent pairing_. Jump in and out of pairing mode whenever you think it makes sense.
 
-## 5. Prefer channels over commit messages
+## 5. Prefer channels over private messages
 
 This may blow your mind, but [83% messages on our Slack are sent to public channels](https://twitter.com/andrzejkrzywda/status/1352694180326289412), only 17% in DMs. This is completely different from most other companies, where percentage of public messages can even be a single digit.
 
