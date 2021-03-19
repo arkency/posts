@@ -2,7 +2,7 @@
 created_at: 2021-03-19 17:37:56 +0100
 author: Szymon Fiedler
 tags: ["activeadmin", "rails", "legacy", "ddd", "read model"]
-publish: false
+publish: true
 ---
 
 # Use ActiveAdmin like a boss
