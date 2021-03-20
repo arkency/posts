@@ -1,6 +1,6 @@
 ---
 title: Code review of an Order object implemented as a state machine 
-created_at: 2021-03-20T212:42:46.712Z
+created_at: 2021-03-20 17:37:56 +0100
 author: Andrzej Krzywda
 tags: [rails event store, ddd, aggregate, event sourcing]
 publish: false
