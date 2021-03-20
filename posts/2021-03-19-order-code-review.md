@@ -131,7 +131,7 @@ What are the possible directions of improvement here?
 
 - Reduce the size of this state machine
 - Decouple an object to explain why a change is not possible from the code which just says it's not possible
-- Extract a new oject per a possible state
+- Extract a new object per a possible state
 - Extract the event logic out of this class
 
 The first direction is the most tempting here. Reducing the size via reducing the number of possible states would help. It would help as it decreases the scope of other problems too. That's the direction that is most beneficial - it does improve the root of the problem and thus reduces other problems.
