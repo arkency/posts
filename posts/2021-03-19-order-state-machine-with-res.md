@@ -111,9 +111,20 @@ The less happy paths include `expired` and `cancelled`, both are leaf states.
 
 The challenge with state machines is that it's not easy to represent them in code in a readable manner. Whenever the number of states and transitions grows it's becoming harder to read such code.
 
-State machines consist of states and transitions. Somehow we need to represent them in the code. In this implementation, we put the transition as the main "dimension". The method names show the possible transitions. However, they show possible transitions for all the states. This leads to a problem, that in each of those methods we now need to "disable" the impossible transitions. We could do it with just an early return in such cases without using exceptions.
+State machines consist of states and transitions. Somehow we need to represent them in the code. In this implementation, we put the transition as the main "dimension". The method names show the possible transitions. However, they show possible transitions for all the states. This leads to a problem, that in each of those methods we now need to "disable" the impossible transitions. We could do it with just an early return in such cases without using exceptions. The problem with this code is that it's hard to easily say, what is the possible flow in this state machine. The code is infected with other responsibilities which make it all less readable.
 
-Exactly, why do we use exceptions here?
+BTW, why do we use exceptions here?
 
-Because one responsibility of this object is to communicate "WHY" a certain change is not possible. An early return only communicates a boolean information - possible or not. A custom exception brings more context.
+Because one responsibility of this object is to communicate "WHY" a certain change is not possible. An early return only communicates a boolean information - possible or not. A custom exception brings more context. 
+
+What are the possible directions of improvement here?
+
+- Reduce the size of this state machine
+- Decouple an object to explain why a change is not possible from the code which just says it's not possible
+- Extract a new oject per a possible state
+- Extract the event logic out of this class
+
+The first direction is the most tempting here. Reducing the size via reducing the number of possible states would help. It would help as it decreases the scope of other problems too. That's the direction that is most beneficial - it does improve the root of the problem and thus reduces other problems.
+
+How can we reduce the number of states here? Stay tuned :)
 
