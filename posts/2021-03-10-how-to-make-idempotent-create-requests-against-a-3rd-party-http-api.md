@@ -52,3 +52,6 @@ But here you need to deal with potential race conditions around concurrency, if 
 
 
 <!-- TODO: discerning response created vs was-already-there -->
+
+<!-- from swistak: generally: locks (pessimistic?) (+ querying if exists(???)) -->
+<!-- can optimistic go in place of optimistic? -->
