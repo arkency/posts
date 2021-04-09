@@ -6,17 +6,17 @@ tags: []
 publish: false
 ---
 
-# build times
+## build times
 
 https://twitter.com/adamgordonbell/status/1374728566068416518
 
-# community
+## community
 
-# occasional metaprogramming
+## occasional magic / metaprogramming
 
-# beatiful language
+## beautiful language
 
-# little punctuation
+## little punctuation
 
-# so many good ideas started in Ruby x Rails community
+## so many good ideas started in Ruby x Rails community
 
