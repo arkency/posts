@@ -16,7 +16,7 @@ I wrote this post to gather the disadvantages of a typical PR flow, so that you 
 
 If you have anything to add, [contact me on twitter](https://twitter.com/tomasz_wro) or [submit a pull request to this blogpost](https://github.com/arkency/posts/edit/master/posts/2021-04-09-disadvantages-of-pull-requests.md) (how ironic 🙃).
 
-## More long living branches => more merge conflicts
+## 1. More long living branches, more merge conflicts
 
 PRs promote developing code in branches, which increases **the time and the amount of code staying in divergent state**, which increases chances of merge conflicts. And merge conflicts can be terrible, especially if the branch waited for a long time.
 
@@ -40,7 +40,7 @@ Think of Google-Docs-style realtime collaboration vs. emailing each other subseq
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">From personal experience, it feels like using Google Docs compared to emailing each other Word documents.<br><br>Also refactoring much much more often since it&#39;s extremely cheap and fast. <br><br>Which helps with =&gt; <a href="https://t.co/jdN1eSmJPl">https://t.co/jdN1eSmJPl</a></p>&mdash; Miroslav Csonka (@miroslavcsonka) <a href="https://twitter.com/miroslavcsonka/status/1374497072884240391?ref_src=twsrc%5Etfw">March 23, 2021</a></blockquote>
 
-## The reviewability of a change decreases with size
+## 2. The reviewability of a change decreases with size
 
 I bet you can relate:
 
@@ -55,9 +55,9 @@ I also like to increase reviewability of my changes by annotating them (and mixi
 * `Change formatting ...`
 * `Add this feature ...`
 
-This way I can suggest where the reviewer spends most attention.
+This way I can suggest where the reviewer spends the most attention.
 
-## Short feedback loop is what makes programming fun
+## 3. Short feedback loop is what makes programming fun
 
 Why is programming so much more fun compared to other engineering disciplines? Perhaps because it's so quick to build something and see the result of your work. If you're building skyscrappers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable — because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
 
@@ -67,7 +67,7 @@ There are a lot of processes for managing programmers' time, quality of the code
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Working on a project now without a laborious PR review process, and it feels like I&#39;m flying.</p>&mdash; René Wiersma (@Rene_Wiersma) <a href="https://twitter.com/Rene_Wiersma/status/1360508416612048898?ref_src=twsrc%5Etfw">February 13, 2021</a></blockquote>
 
-## Reviews tend to be superficial
+## 4. Reviews tend to be superficial
 
 Perhaps it's familiar to you:
 
@@ -83,15 +83,15 @@ The superficiality of reviews is amplified by following factors:
 * randomness of person involved
 * lack of shared context of the reviewer
 
-## Merging is blocked by remarks that shouldn't be blocking
+## 5. Merging is blocked by remarks that shouldn't be blocking
 
 Remarks made by the reviewer can fall anywhere on the spectrum of whether they should block merging or not: from **a mistake that'll bring production down** to **cosmetic suggestions** or opinions (with more of the latter ones). How do we account for this variety? Typically, any PR comment makes a dispute that needs to be resolved before merging.
 
-## It's easier to fix than to explain the fix
+## 6. It's easier to fix than to explain the fix
 
 Let's say the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it first, agree with it, and then is expected to implement it. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. **PRs promote more words instead of action**.
 
-## _Responsibility mindset_ develops slower
+## 7. _Responsibility mindset_ develops slower
 
 Compare these two developers:
 
@@ -104,7 +104,7 @@ The second one knows that every line he writes can screw up things for other dev
 
 People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast can such a person stop relying on reviews on develop his own sense of responsibility?
 
-## PRs discourage _continuous refactoring_
+## 8. PRs discourage _continuous refactoring_
 
 I believe refactoring is an activity that should be performed continuously. It's good to follow boy scouts' rule: **always leave the place better than it was before**. Over time it can lead to nice codebases. With PRs, though, this rule is harder to apply: if I see a piece of code worth fixing while working in this specific area, I can now:
 
@@ -115,15 +115,15 @@ Some discussion with interesting arguments:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hypothesis:<br><br>PR-based workflow kills continuous refactoring.<br><br>I see a piece of code I can improve while working on a feature and... no, I&#39;m not doing it now to avoid having irrelevant stuff in the PR (and reducing reviewability).</p>&mdash; Tomasz Wróbel (@tomasz_wro) <a href="https://twitter.com/tomasz_wro/status/1361663527593906177?ref_src=twsrc%5Etfw">February 16, 2021</a></blockquote>
 
-## How do you switch to branches with migrations
+## 9. Negative emotions and outright pathology
+
+Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. Sometimes it can lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
+
+## 10. How do you switch to branches with migrations
 
 You obviously sometimes need migrations while working on a branch. What do you do if you then have to switch back to another branch locally? Cumbersome.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">With a Rails app, how do you manage switching between a bunch of different branches that have different DB schemas/migration states? Blowing away the whole DB every time gets old fast.</p>&mdash; Nate Berkopec (@nateberkopec) <a href="https://twitter.com/nateberkopec/status/1377348675291111426?ref_src=twsrc%5Etfw">March 31, 2021</a></blockquote>
-
-## Negative emotions and outright pathology
-
-Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. Sometimes it can lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
 
 ## Now, how to make the _10% change_ in your team today
 
