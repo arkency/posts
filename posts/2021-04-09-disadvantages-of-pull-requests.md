@@ -6,7 +6,9 @@ tags: []
 publish: false
 ---
 
-Pull requests with blocking reviews (sometimes mandatory) are widespread. A lot of developers believe pushing to mainline should be prohibited. Sometimes it's unavoidable (low-trust environment), but often people work with PRs just because everyone else does. And nobody ever got fired for it.
+# Disadvantages of Pull Requests
+
+Pull requests with blocking reviews (sometimes mandatory) are widespread. A lot of developers believe pushing to mainline should be prohibited. Sometimes it's unavoidable (in a low-trust environment), but often people work with PRs just because everyone else does. And nobody ever got fired for it.
 
 But what are the costs of working in such style? And what are the alternatives?
 
@@ -104,6 +106,11 @@ I believe refactoring is an activity that should be performed continuously. It's
 
 * fix it in my PR and worsen the reviewability of it by including a non-essential change
 * change the branch, create another PR, refactor, wait for review, merge the PR into your original PR, continue
+
+Some discussion with interesting arguments:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hypothesis:<br><br>PR-based workflow kills continuous refactoring.<br><br>I see a piece of code I can improve while working on a feature and... no, I&#39;m not doing it now to avoid having irrelevant stuff in the PR (and reducing reviewability).</p>&mdash; Tomasz Wróbel (@tomasz_wro) <a href="https://twitter.com/tomasz_wro/status/1361663527593906177?ref_src=twsrc%5Etfw">February 16, 2021</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## How do you switch to branches with migrations
 
