@@ -10,7 +10,9 @@ Pull requests with blocking reviews (sometimes mandatory) are widespread. A lot 
 
 But what are the costs of working in such style? And what are the alternatives?
 
-I wrote this post to round-up the disadvantages of typicall PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting.
+I wrote this post to gather the disadvantages of typicall PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting. 
+
+If you have anything to add, [ping me on twitter](https://twitter.com/tomasz_wro) or [submit a pull request to this blogpost](https://github.com/arkency/posts/edit/master/posts/2021-04-09-disadvantages-of-pull-requests.md) (how ironic 🙃).
 
 ## More long living branches => more merge conflicts
 
@@ -57,6 +59,8 @@ Now PRs make this feedback loop longer. You code something up but it's nowhere c
 
 There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays of to also manage programmer's _energy_ and _momentum_.
 
+OH (somewhere on twitter): _We agreed with our team to push to master and it feels like I'm flying._
+
 ## Reviews tend to be superficial
 
 Perhaps it's familiar to you:
@@ -81,7 +85,7 @@ Remarks made by the reviewer can fall anywhere on the spectrum of whether they s
 
 Now the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it, and is expected to implement. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. PRs promote more words instead of action.
 
-## _Responsibility mindset_ weakened
+## _Responsibility mindset_ develops slower
 
 Compare these two developers:
 
@@ -109,22 +113,17 @@ You obviously sometimes need migrations while working on a branch. What do you d
 
 Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. We all have limited emotional budgets — it's better not to waste it on avoidable stuff. Sometimes it can lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
 
-## random
+## Now, how to make the _10% change_ in your team today
 
-push to master and it feels like I'm flying
+I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only make the 10% percent change in your organization. What are examples of such changes?
 
-pull requests VS pushing to master — is like — emailing new doc versions VS realtime google docs collaboration 
+* Pair program on a complicated feature instead allowing feedback only when PR is finished.
+* Try a feature toggle to prevent your unfinished work from affecting production (instead of keeping it on prod). Flipper is a nice gem for that, but you can simply start with an ENV var switch or hiding the feature on UI.
+* Try getting into a habit or reviewing commits post-merge.
+* Make approvals not mandatory - let the developer merge the PR right away and have it reviewd post factum.
+* Make PRs not mandatory — let the developer choose if he wants to develop in a PR or commit to master.
+* Encourage post factum improvements by reviewers instead of comments.
+* Make it clear with PR comments are blocking, and which are free to be addressed after merging the PR.
+* Try to learn how to split your feature into small shippable pieces which don't break production.
 
-## How to make the 10% change
-
-* let developer choose - commit to mainline or PR if he really wants it reviewed first, perhaps suggesting the places he'd like to discuss
-* make reviews post factum
-* don't require approval
-* go with PRs but allow merging right away
-* encourage post factum improvements instead of comments
-* only point out stuff that really shouldn't go to master
-* allow pushes to master
-* trunk based development
-* try a feature flags, flipper
-* pair programming, perhaps not in a full blown way, that meme
-* split the change into a couple commits or PRs, behind a flag, or into pieces
+<!-- pair program meme -->
