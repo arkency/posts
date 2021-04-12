@@ -63,7 +63,7 @@ Remarks made by the reviewer can fall anywhere on the spectrum of whether they s
 
 Now the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it, and is expected to implement. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. PRs promote more words instead of action.
 
-## PRs don't reinfoce to _responsibility mindset_
+## _Responsibility mindset_ weakened
 
 Compare these two developers:
 
@@ -76,14 +76,22 @@ The second one knows that every line he writes can screw up things for other dev
 
 People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast can such a person stop relying on reviews on develop his own sense of responsibility?
 
-## discourages continuous refactoring
+## PRs discourage _continuous refactoring_
 
-## switching branches/PRs and migrations
+I believe refactoring is an activity that should be performed continuously. It's good to follow boy scouts' rule: always leave the place better that it was before. Over time it can lead to nice codebases. With PRs, though, this rule is harder to apply: if I see a piece of code worth fixing while working in this specific area, I can now:
 
-https://twitter.com/nateberkopec/status/1377348675291111426?s=21
+* fix it in my PR and worsen the reviewability of it by including a non-essential change
+* change the branch, create another PR, refactor, wait for review, merge the PR into your original PR, continue
 
-## approvals get traded
+<!-- Without PRs I typically -->
 
+## How do you switch to branches with migrations
+
+You obviously sometimes need migrations while working on a branch. What do you do if you then have to switch back to another branch locally? Cumbersome. See [this tweet](https://twitter.com/nateberkopec/status/1377348675291111426?s=21).
+
+## Negative emotions and pathology
+
+Mandatory PR reviews can induce a way more negative emotions that needed. Someone nitpicks on my PR because he has to point out something. The original author takes it personally. We all have limited emotional budgets — it's better not to waste on avoidable stuff. Sometimes PRs lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, you'll approve mine_.
 
 ## random
 
