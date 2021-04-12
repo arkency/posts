@@ -60,7 +60,10 @@ end
 How it's wired up:
 
 ```ruby
-event_store.subscribe(OrderFulfillment.new, to: [OrderPlaced, PaymentCaptured])
+event_store.subscribe(OrderFulfillment.new, to: [
+  OrderPlaced,
+  PaymentCaptured,
+])
 ```
 
 ## What happens here
