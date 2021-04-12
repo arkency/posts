@@ -57,7 +57,7 @@ I also like to increase reviewability of my changes by annotating them (and mixi
 
 This way I can suggest where the reviewer spends the most attention.
 
-## 3. Short feedback loop is what makes programming fun
+## 3. Short feedback loop makes programming fun
 
 Why is programming so much more fun compared to other engineering disciplines? Perhaps because it's so quick to build something and see the result of your work. If you're building skyscrappers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable — because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
 
@@ -91,7 +91,7 @@ Remarks made by the reviewer can fall anywhere on the spectrum of whether they s
 
 Let's say the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it first, agree with it, and then is expected to implement it. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. **PRs promote more words instead of action**.
 
-## 7. _Responsibility mindset_ develops slower
+## 7. Developers are slower to adapt the _responsibility mindset_
 
 Compare these two developers:
 
