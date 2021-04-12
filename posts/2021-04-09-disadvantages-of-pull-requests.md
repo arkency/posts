@@ -34,7 +34,11 @@ When I have a feature to implement, I often like to work like this:
 
 (I believe this is what [Kent Beck meant](https://twitter.com/KentBeck/status/250733358307500032) saying _For each desired change, make the change easy (warning: this may be hard), then make the easy change_)
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">for each desired change, make the change easy (warning: this may be hard), then make the easy change</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/250733358307500032?ref_src=twsrc%5Etfw">September 25, 2012</a></blockquote>
+
 Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course we prefer realtime style and a lot of applications migrate towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboartion with all the benefits ot it.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">From personal experience, it feels like using Google Docs compared to emailing each other Word documents.<br><br>Also refactoring much much more often since it&#39;s extremely cheap and fast. <br><br>Which helps with =&gt; <a href="https://t.co/jdN1eSmJPl">https://t.co/jdN1eSmJPl</a></p>&mdash; Miroslav Csonka (@miroslavcsonka) <a href="https://twitter.com/miroslavcsonka/status/1374497072884240391?ref_src=twsrc%5Etfw">March 23, 2021</a></blockquote>
 
 ## The reviewability of a change decreases with size
 
@@ -61,7 +65,7 @@ Now PRs make this feedback loop longer. You code something up but it's nowhere c
 
 There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays of to also manage programmer's _energy_ and _momentum_.
 
-OH (somewhere on twitter): _We agreed with our team to push to master and it feels like I'm flying._
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Working on a project now without a laborious PR review process, and it feels like I&#39;m flying.</p>&mdash; René Wiersma (@Rene_Wiersma) <a href="https://twitter.com/Rene_Wiersma/status/1360508416612048898?ref_src=twsrc%5Etfw">February 13, 2021</a></blockquote>
 
 ## Reviews tend to be superficial
 
@@ -110,7 +114,6 @@ I believe refactoring is an activity that should be performed continuously. It's
 Some discussion with interesting arguments:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hypothesis:<br><br>PR-based workflow kills continuous refactoring.<br><br>I see a piece of code I can improve while working on a feature and... no, I&#39;m not doing it now to avoid having irrelevant stuff in the PR (and reducing reviewability).</p>&mdash; Tomasz Wróbel (@tomasz_wro) <a href="https://twitter.com/tomasz_wro/status/1361663527593906177?ref_src=twsrc%5Etfw">February 16, 2021</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## How do you switch to branches with migrations
 
@@ -134,3 +137,5 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 * Try to learn how to split your feature into small shippable pieces which don't break production.
 
 <!-- pair program meme -->
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
