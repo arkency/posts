@@ -1,5 +1,5 @@
 ---
-title: Costs of Pull Requests
+title: Disadvantages of Pull Requests
 created_at: 2021-04-09T13:33:57.200Z
 author: Tomasz Wróbel
 tags: []
@@ -41,33 +41,40 @@ There are a lot of processes for managing programmers' time, quality of the code
 
 ## Reviews tend to be superficial
 
-I bet it's familiar to you:
+Perhaps it's familiar to you:
 
 * someone reviewed your PR, but only pointed out simple things — actually relevant things were not addressed: data flow, architecture, corner cases
 * you were asked for a review, but you were only able to point out some simple things — you submitted it to give impression you made a thorough review
 
-Why is that? In order to review 
+Why is that? In order to properly review a non-trivial piece of code, I need to focus, get deep and build enough context almost to the extent that the PR author did. All this without the privilege of being able to put my hands on the keyboard and without enough time. **Proper review takes the same amount of focus as actual coding. Why not pair-program instead?**
 
+The superficiality of reviews is amplified by following factors:
 
-this cost is amplified by
-* mandatory-ness
-* size of PR
+* reviews being mandatory
+* size of the pull request
 * randomness of person involved
 * lack of shared context of the reviewer
 
-## integration blocked by stuff that shouldn't be blocking
+## Merging is blocked by remarks that shouldn't be blocking
 
-## put away the responsibility mindset
+Remarks made by the reviewer can fall anywhere on the spectrum of whether they should block merging or not: from a mistake that'll bring production down to cosmetic/subjective suggestions (with more of the latter ones). How do we account for this variety? Typically, any PR comment makes a dispute that needs to be resolved before merging.
 
-slower learning
+## It's easier to fix than to explain
 
-## it takes the same focus
+Now the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it, and is expected to implement. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. PRs promote more words instead of action.
 
-## less responsibility
+## PRs don't reinfoce to _responsibility mindset_
 
-## doesn't promote action
+Compare these two developers:
 
-## short feedback look is what makes programming fun
+* Developer 1 makes subsequent commits to a branch, then creates a PR, then has it reviewed and merged.
+* Developer 2 breaks his feature into small non-breaking pieces, makes subsequent commits to mainline, his code is integrated right away and possibly deployed
+
+Which developer will faster learn to code responsibly? The first one knows, that whatever he commits, lands on a branch, and doesn't affect anything. Then there's the review, so if he commited anything blatantly wrong, perhaps the reviewier will catch it.
+
+The second one knows that every line he writes can screw up things for other developers or even bring production down. He watches his step, he knows he's the only one responsible for this change. It shortens the delay between making a mistake and seeing the effect of it.
+
+People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast can such a person stop relying on reviews on develop his own sense of responsibility?
 
 ## discourages continuous refactoring
 
