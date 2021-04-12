@@ -8,17 +8,17 @@ publish: true
 
 # Disadvantages of Pull Requests
 
-Pull requests with blocking reviews (sometimes mandatory) are widespread in our industry. A lot of developers believe pushing straight to the mainline should be prohibited. Sometimes it's unavoidable (in a low-trust environment), but often people work with PRs just because everyone else does. And nobody ever got fired for it.
+Pull requests with blocking reviews (sometimes mandatory) are widespread in our industry. A lot of developers believe pushing straight to the mainline should be prohibited. Sometimes it's unavoidable (in a low-trust environment), but **often people work with PRs just because everyone else does**. And nobody ever got fired for it.
 
-But what are the costs of working in such style? And what are the alternatives?
+But what are the **costs of working in such style**? And what are the alternatives?
 
-I wrote this post to gather the disadvantages of typicall PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting. 
+I wrote this post to gather the disadvantages of a typical PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting. 
 
 If you have anything to add, [contact me on twitter](https://twitter.com/tomasz_wro) or [submit a pull request to this blogpost](https://github.com/arkency/posts/edit/master/posts/2021-04-09-disadvantages-of-pull-requests.md) (how ironic 🙃).
 
 ## More long living branches => more merge conflicts
 
-PRs promote developing code in branches, which increases the time and the amount of code staying in divergent state, which increases chances of merge conflicts. And merge conflicts can be terrible, especially if the branch waited for a long time.
+PRs promote developing code in branches, which increases **the time and the amount of code staying in divergent state**, which increases chances of merge conflicts. And merge conflicts can be terrible, especially if the branch waited for a long time.
 
 Now branches are unavoidable, even if you only commit to master and never type `git branch`. You're still creating a _logical branch_ at the very moment you change a file in your local working directory. But it's up to us:
 
@@ -47,7 +47,7 @@ I bet you can relate:
 * 10 LOC piece of code — reviewer finds 10 issues
 * 10 KLOC piece of code - reviewer says: _LGTM_ (or perhaps adds a couple nitpicks)
 
-PRs tend to promote reviewing bigger chunks of code.
+**PRs tend to promote reviewing bigger chunks of code**.
 
 I also like to increase reviewability of my changes by annotating them (and mixing purposes as rarely as possible).
 
