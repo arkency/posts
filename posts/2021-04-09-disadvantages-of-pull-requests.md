@@ -6,30 +6,48 @@ tags: []
 publish: false
 ---
 
-Pull requests with blocking reviews (sometimes mandatory) are widespread. Sometimes they're unavoidable (low-trust environment), but often people work with PRs just because everyone else does. And nobody ever got fired for it.
+Pull requests with blocking reviews (sometimes mandatory) are widespread. A lot of developers believe pushing to mainline should be prohibited. Sometimes it's unavoidable (low-trust environment), but often people work with PRs just because everyone else does. And nobody ever got fired for it.
 
 But what are the costs of working in such style? And what are the alternatives?
 
-Why do I write this post? To be able to make a more informed decision, by knowing all the costs involved.
+I wrote this post to round-up the disadvantages of typicall PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting.
 
-## More long living branches, more merge conflicts
+## More long living branches => more merge conflicts
 
-PRs promote developing code in branches, which increases the time and amount of code in divergent state, which increases chances of merge conflicts. And merge conflicts can be terrible, especially if the branch waited for a long time.
-
-<!-- If you think -->
+PRs promote developing code in branches, which increases the time and the amount of code staying in divergent state, which increases chances of merge conflicts. And merge conflicts can be terrible, especially if the branch waited for a long time.
 
 Now branches are unavoidable, even if you only commit to master and never type `git branch`. You're still creating a _logical branch_ at the very moment you change a file in your local working directory. But it's up to us:
 
 * how long this does a piece of code live in this divergent state, and
 * what is the size of this piece of code involved
  
-Limiting these factors can make merge conflicts happen way less often.
+Limiting these factors can make merge conflicts happen less frequently.
 
-<!-- google docs -->
+When I have a feature to implement, I often like to work like this:
 
-<!-- I like to work ... preparatory refactorings k beck -->
+1. make a number of _preparatory refactorings_, delivered in small atomic commits, pushed as fast as possible
+2. implement the actual feature in a small, clean commit — perhaps, after step 1, it's now a one-liner - peak reviewability achieved
 
-<!-- size of piece of code end reviewability -->
+(I believe this is what [Kent Beck meant](https://twitter.com/KentBeck/status/250733358307500032) saying _For each desired change, make the change easy (warning: this may be hard), then make the easy change_)
+
+Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course we prefer realtime style and a lot of applications migrate towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboartion with all the benefits ot it.
+
+## The reviewability of a change decreases with size
+
+I bet you can relate:
+
+* 10 LOC piece of code — reviewer finds 10 issues
+* 10 KLOC piece of code - reviewer says: _LGTM_ (or perhaps adds a couple nitpicks)
+
+PRs tend to promote reviewing bigger chunks of code.
+
+I also like to increase reviewability of my changes by annotating them (and mixing purposes as rarely as possible).
+
+* `Refactor: ...`
+* `Change formatting ...`
+* `Add this feature ...`
+
+This way I can suggest where the reviewer spends most attention.
 
 ## Short feedback loop is what makes programming fun
 
@@ -83,24 +101,19 @@ I believe refactoring is an activity that should be performed continuously. It's
 * fix it in my PR and worsen the reviewability of it by including a non-essential change
 * change the branch, create another PR, refactor, wait for review, merge the PR into your original PR, continue
 
-<!-- Without PRs I typically -->
-
 ## How do you switch to branches with migrations
 
 You obviously sometimes need migrations while working on a branch. What do you do if you then have to switch back to another branch locally? Cumbersome. See [this tweet](https://twitter.com/nateberkopec/status/1377348675291111426?s=21).
 
-## Negative emotions and pathology
+## Negative emotions and outright pathology
 
-Mandatory PR reviews can induce a way more negative emotions that needed. Someone nitpicks on my PR because he has to point out something. The original author takes it personally. We all have limited emotional budgets — it's better not to waste on avoidable stuff. Sometimes PRs lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, you'll approve mine_.
+Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. We all have limited emotional budgets — it's better not to waste it on avoidable stuff. Sometimes it can lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
 
 ## random
 
-10 KLOC PR - LGTM, or nitpicks random issues
-10 LOC PR — finds 10 bugs
-
 push to master and it feels like I'm flying
 
-pull requests VS pushing to master — is like — emailing new doc versions VS realtime google docs collaboration https://twitter.com/tomasz_wro/status/1374660731082248192
+pull requests VS pushing to master — is like — emailing new doc versions VS realtime google docs collaboration 
 
 ## How to make the 10% change
 
