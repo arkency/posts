@@ -29,18 +29,25 @@ Limiting these factors can make merge conflicts happen way less often.
 
 <!-- I like to work ... preparatory refactorings k beck -->
 
+<!-- size of piece of code end reviewability -->
+
 ## Short feedback loop is what makes programming fun
 
 Why is programming so much more fun compared to other engineering disciplines? Perhaps it can be so quick to build something and see the result of your work. If you're building skyscrappers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable, because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
 
-<!-- energy -->
+Now PRs make this feedback loop longer. You code something up but it's nowhere close to being integrated and working. You now have to wait for the reviewer, go through his remarks, discuss them, change the code... 
 
-
-<!-- kill momentum -->
+There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays of to also manage programmer's _energy_ and _momentum_.
 
 ## Reviews tend to be superficial
 
-I rarely 
+I bet it's familiar to you:
+
+* someone reviewed your PR, but only pointed out simple things — actually relevant things were not addressed: data flow, architecture, corner cases
+* you were asked for a review, but you were only able to point out some simple things — you submitted it to give impression you made a thorough review
+
+Why is that? In order to review 
+
 
 this cost is amplified by
 * mandatory-ness
