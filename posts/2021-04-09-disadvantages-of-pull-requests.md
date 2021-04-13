@@ -125,6 +125,11 @@ You obviously sometimes need migrations while working on a branch. What do you d
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">With a Rails app, how do you manage switching between a bunch of different branches that have different DB schemas/migration states? Blowing away the whole DB every time gets old fast.</p>&mdash; Nate Berkopec (@nateberkopec) <a href="https://twitter.com/nateberkopec/status/1377348675291111426?ref_src=twsrc%5Etfw">March 31, 2021</a></blockquote>
 
+## 11. PR's impact on overall product quality
+No one would argue against PR's if we were sure that they substantially contribute to overall product quality.
+In fact, are we sure PR's increase overall product quality at all?? Probably yes, but how much? Probably not much..., because
+deciding factors are not the ones that are impacted by the PRs. How do PR's affect the architecture and the design of the system (division of responsibilities between services, how the services communicate with each other, etc), how do they affect requirements gathering / domain distillation process? If we don't see positive impact on these factors then why should we invest time and energy on activities that do NOT matter. In worst case scenario we could end up with overall product quality decreased due to uproductive consumption of time and energy and distraction from activities that DO matter. How often PRs focus on implemenation details? Is it a big deal if the implementation of a service is not so clean, optimal as one could imagine, especially if the service is an independent application (aka micro-service)? How much time do you spend on discussing, cleaning the requirements **before** starting the implementation of a new feature? How does this activity influence the quality of the produced code? Think about the universal Pareto's Law (80/20 Rule) and try to follow it. Concentrate on processes that contribute 80% of your product's value. 
+
 ## Now, how to make the _10% change_ in your team today
 
 I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only make the 10% percent change in your organization. What are examples of such changes?
