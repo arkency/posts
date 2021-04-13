@@ -115,9 +115,9 @@ Some discussion with interesting arguments:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hypothesis:<br><br>PR-based workflow kills continuous refactoring.<br><br>I see a piece of code I can improve while working on a feature and... no, I&#39;m not doing it now to avoid having irrelevant stuff in the PR (and reducing reviewability).</p>&mdash; Tomasz Wróbel (@tomasz_wro) <a href="https://twitter.com/tomasz_wro/status/1361663527593906177?ref_src=twsrc%5Etfw">February 16, 2021</a></blockquote>
 
-## 9. Negative emotions and outright pathology
+## 9. Negative emotions
 
-Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. Sometimes it can lead to outright pathology: developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
+Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. In rare cases it can lead to absurd behaviors, e.g. developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
 
 ## 10. How do you switch to branches with migrations
 
@@ -141,5 +141,9 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 If your manager thinks pair-programming is a waste of time, perhaps he can be convinced by a meme:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Super excited that you liked my last drawing. Here is a new one! 🤗 <a href="https://t.co/vULVb0uoFo">pic.twitter.com/vULVb0uoFo</a></p>&mdash; Vincent Déniel (@vincentdnl) <a href="https://twitter.com/vincentdnl/status/1252628160111394817?ref_src=twsrc%5Etfw">April 21, 2020</a></blockquote>
+
+## Want to discuss?
+
+* Reply in [this twitter thread](https://twitter.com/tomasz_wro/status/1381598019674587141)
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
