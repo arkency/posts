@@ -135,7 +135,7 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 * Make approvals not mandatory - let the developer merge the PR right away and have it reviewd post factum.
 * Make PRs not mandatory — let the developer choose if he wants to develop in a PR or commit to master.
 * Encourage post factum improvements by reviewers instead of comments.
-* Make it clear with PR comments are blocking, and which are free to be addressed after merging the PR.
+* Make it clear which PR comments are blocking, and which are free to be addressed after merging the PR.
 * Try to learn how to split your feature into small shippable pieces which don't break production.
 
 If your manager thinks pair-programming is a waste of time, perhaps he can be convinced by a meme:
