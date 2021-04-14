@@ -30,6 +30,7 @@ New cool ways:
 * discord voice channles, screen sharing
 * snaps
 * pairing, intermittent pairing
+* cut the project into small storiess, deliver daily
 
 Each of these has nice side effects:
 
