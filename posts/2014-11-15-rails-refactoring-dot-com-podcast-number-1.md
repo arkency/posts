@@ -1,7 +1,7 @@
 ---
 created_at: 2014-11-15 11:33:09 +0100
 publish: true
-author: "Robert Pankowecki"
+author: Robert Pankowecki
 tags: [ 'ruby2.1', 'service objects', 'form objects' ]
 newsletter: arkency_form
 enclosure:

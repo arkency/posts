@@ -1,7 +1,7 @@
 ---
 created_at: 2012-12-05 12:22:32 +0100
 publish: true
-author: 'Jan Filipowski'
+author: Jan Filipowski
 newsletter: react_books
 tags: [ 'google analytics', 'business metrics', 'marketing' ]
 ---

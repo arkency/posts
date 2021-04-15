@@ -1,7 +1,7 @@
 ---
 created_at: 2012-12-03 11:25:59 +0100
 publish: true
-author: 'Jan Filipowski'
+author: Jan Filipowski
 newsletter: arkency_form
 tags: [ 'ruby', 'storage', 'ddd', 'orm' ]
 ---

@@ -2,7 +2,7 @@
 created_at: 2013-09-23 12:49:29 +0200
 publish: true
 newsletter: react_books
-author: 'Mateusz Lenik'
+author: Mateusz Lenik
 tags: [ 'sprockets', 'unix', 'coffeescript', 'javascript' ]
 ---
 

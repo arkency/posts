@@ -1,7 +1,7 @@
 ---
 created_at: 2012-11-11 08:58:16 +0200
 publish: true
-author: "Robert Pankowecki"
+author: Robert Pankowecki
 newsletter: react_books
 tags: [ 'rails', 'exceptions', 'business metrics', 'thin', 'eventmachine', 'threads']
 ---

@@ -1,7 +1,7 @@
 ---
 created_at: 2012-10-17 11:04:22 +0200
 publish: true
-author: "Robert Pankowecki"
+author: Robert Pankowecki
 newsletter: react_books
 tags: [ 'rails', 'zmq', 'business metrics', 'process', 'exceptions' ]
 ---

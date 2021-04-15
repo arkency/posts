@@ -1,7 +1,7 @@
 ---
 created_at: 2015-05-10 20:11:11 +0200
 publish: true
-author: Marcin Grzywaczewski 
+author: Marcin Grzywaczewski
 tags: [ 'react', 'front end', 'book' ]
 newsletter: react_books
 img: "one-year-of-react/head.png"

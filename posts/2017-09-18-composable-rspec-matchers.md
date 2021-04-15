@@ -1,7 +1,7 @@
 ---
 created_at: 2017-09-18 22:45:53 +0200
 publish: true
-author: "Szymon Fiedler"
+author: Szymon Fiedler
 tags: [ 'rspec', 'rails' , 'rails_event_store']
 newsletter: arkency_form
 ---

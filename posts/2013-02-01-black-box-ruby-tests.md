@@ -1,7 +1,7 @@
 ---
 created_at: 2013-02-01 16:45:58 +0100
 publish: true
-author: 'Jan Filipowski'
+author: Jan Filipowski
 newsletter: arkency_form
 tags: [ 'TDD', 'ATDD', 'testing', 'ruby' ]
 ---

@@ -1,7 +1,7 @@
 ---
 created_at: 2015-04-15 19:00:44 +0200
 publish: true
-author: Marcin Grzywaczewski 
+author: Marcin Grzywaczewski
 tags: [ 'book', 'react', 'front end', 'rails' ]
 newsletter: react_books
 img: "react-for-rails/cover.png"
