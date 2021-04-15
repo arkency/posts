@@ -24,6 +24,7 @@ def allow_and_print_real_requests_globally!
     puts "===== outgoing request ======================="
     puts stubbing_instructions
     puts
+    puts "response status: #{ res.status.inspect }"
     puts "parsed body:"
     puts
     pp parsed_body
