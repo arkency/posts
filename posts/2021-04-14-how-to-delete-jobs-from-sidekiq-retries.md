@@ -17,13 +17,13 @@ Sidekiq::RetrySet.new.map(&:display_class).uniq
 ### Number of jobs being retried for a specific class
 
 ```ruby
-Sidekiq::RetrySet.new.select { |j| j.display_class == "MyJob" }.count
+Sidekiq::RetrySet.new.select { |j| j.display_class == "AJob" }.count
 ```
 
 ### Delete all jobs for a class from the retries list
 
 ```ruby
-Sidekiq::RetrySet.new.select { |j| j.display_class == "MyJob" }.map(&:delete)
+Sidekiq::RetrySet.new.select { |j| j.display_class == "AJob" }.map(&:delete)
 ```
 
 (similarly, there's `&:kill`, `&:retry`)
@@ -36,7 +36,7 @@ Sidekiq::RetrySet.new.select { |j| j.display_class == "MyJob" }.map(&:delete)
 Sidekiq::RetrySet.new
   .select  { |j| j.display_class == "MyAsyncHandler" }
   .collect { |j| j.args[0]["arguments"][0]["event_id"] }
-  .collect { |event_id| Rails.configuration.event_store.read.event(event_id) }
+  .collect { |id| Rails.configuration.event_store.read.event(id) }
 ```
 
 (warning: the details depend on your [RES](https://railseventstore.org/docs/v2/install/) async scheduler implementation)
