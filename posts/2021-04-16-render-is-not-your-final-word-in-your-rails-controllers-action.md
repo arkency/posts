@@ -1,5 +1,5 @@
 ---
-title: "render" is not your final word in your Rails controller's action
+title: "'render' is not your final word in your Rails controller's action"
 created_at: 2021-04-16T07:45:16.021Z
 author: Jakub Kosiński
 tags: ["rails", "rendering"]
