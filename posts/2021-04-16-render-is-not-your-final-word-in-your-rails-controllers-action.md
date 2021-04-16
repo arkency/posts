@@ -3,15 +3,15 @@ title: "'render' is not your final word in your Rails controller's action"
 created_at: 2021-04-16T07:45:16.021Z
 author: Jakub Kosiński
 tags: ["rails", "rendering"]
-publish: false
+publish: true
 ---
 
 Today I have a quick tip for you. Suppose you are using some library that performs some logic in your controller and render some templates once some invariants are not met. 
 Assume the library is old and was created once you were not using JSON API but was only rendering HTML templates.
 Now you need to add similar logic to your API controller. You may think that you should now modify the library to handle JSON responses, but that's not the only solution you can use.
 
-Remember that the `render` method in your controllers is not returning the control flow from your action and you can still modify the response or perform some operations once you call `render`. 
-You only cannot call `render` more than once in a single action as that will raise the `DoubleRenderError` exception.
+Remember that the [`render`](https://api.rubyonrails.org/classes/ActionController/Renderer.html#method-i-render) method in your controllers is not returning the control flow from your action and you can still modify the response or perform some operations once you call [`render`](https://api.rubyonrails.org/classes/ActionController/Renderer.html#method-i-render). 
+You only cannot call [`render`](https://api.rubyonrails.org/classes/ActionController/Renderer.html#method-i-render) more than once in a single action as that will raise the [`DoubleRenderError`](https://api.rubyonrails.org/classes/AbstractController/DoubleRenderError.html) exception.
 
 This means you can enhance your action without touching the library. Let's assume your library is exposing a module with a method that is rendering a template in case on an exception (I'm not going to discuss if the library is well-written here, this in only an example):
 
