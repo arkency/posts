@@ -53,7 +53,11 @@ For example this is an article originally posted on arkency blog, that is also o
 
 Besides telling the machines what is duplicate and what is not, I cared for the reader too. There was a note at the end telling about the source:
 
-TU_GRZESIU_WKLEJA_OBRAZEJ
+<p>
+  <figure>
+    <img src="<%= src_fit("canonical-medium.png") %>" width="100%">
+  </figure>
+</p>
 
 Do blogging platforms actually allow you to place canonical link reference? In the past Medium allowed it. There's a way to do in on [dev.to](https://dev.to/michaelburrows/comment/125j0) for sure.
 
