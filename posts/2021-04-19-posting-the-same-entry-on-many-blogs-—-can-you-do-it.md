@@ -1,7 +1,7 @@
 ---
 created_at: 2021-04-19T13:08:16.313Z
 author: Paweł Pacana
-tags: %w[blogging 5days5blogposts]
+tags: ['blogging', '5days5blogposts']
 publish: false
 ---
 
