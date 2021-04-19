@@ -17,7 +17,7 @@ Before diving into technical aspects of reusing your blog content, let's examine
 
 ### Starting blogging on a blogging platform but moving to your own website later
 
-Blogging is great. When you're a developer, starting this journey it is unfortunately very easy to fall into a trap of doing your own blog platform or engine first. Endless layout tweaks, picking fonts, code example highlighting, comment system and whatnot. It is interesting for sure! When you're just beginning blogging it may quickly wear off all your initial enthusiasm. It's a way to procrastinate instead of writing too.
+Blogging is great. When you're a developer starting this journey, it is unfortunately very easy to fall into a trap of doing your own blog platform or engine first. Endless layout tweaks, picking fonts, code example highlighting, comment system and whatnot. It is interesting for sure! When you're just beginning blogging it may quickly wear off all your initial enthusiasm. It's a way to procrastinate instead of writing too.
   
 Instead — start on an existing platform. Accept all of the platform limitations. Let it help you taking away the distractions for writing. You're not deciding on service permanently after all. Write your first ten or twenty blogposts there. And only then consider moving to your own website. 
 
