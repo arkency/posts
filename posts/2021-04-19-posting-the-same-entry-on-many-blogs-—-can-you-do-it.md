@@ -55,7 +55,7 @@ Besides telling the machines what is duplicate and what is not, I cared for the 
 
 <p>
   <figure>
-    <img src="<%= src_fit("canonical-medium.png") %>" width="100%">
+    <img src="<%= src_fit('canonical-medium.png') %>" width="100%">
   </figure>
 </p>
 
