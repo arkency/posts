@@ -137,6 +137,7 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 * Encourage post factum improvements by reviewers instead of comments.
 * Make it clear which PR comments are blocking, and which are free to be addressed after merging the PR.
 * Try to learn how to split your feature into small shippable pieces which don't break production.
+* An idea from [@CraigBuchek](https://twitter.com/CraigBuchek/status/1383976735922786304): You don't have to pair on writing the code, but you can pair with someone to do a code review (in real time).
 
 If your manager thinks pair-programming is a waste of time, perhaps he can be convinced by a meme:
 
