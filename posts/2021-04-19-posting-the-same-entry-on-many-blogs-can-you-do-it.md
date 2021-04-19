@@ -45,7 +45,7 @@ For example: "Optimist's Guide to Pessimistic Library Versioning" presented on [
 The drawback of duplicating content on the web is the SEO. Doing so will hurt the way search engines rank your content. Unless you're very explicit what is the original post and what is duplicate. 
 To do so, use [canonical link element](https://moz.com/blog/cross-domain-rel-canonical-seo-value-cross-posted-content). Duplicate posts are indexed by search engines [less frequently](https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls).
 
-For example this is an article originally posted on arkency blog, that is also on [Medium](medium.com/planet-arkency/one-simple-trick-to-make-event-sourcing-click-762457e6c28). Inspect its source to find `rel="canonical` link buried inside:
+For example this is an article originally posted on arkency blog, that is also on [Medium](https://medium.com/planet-arkency/one-simple-trick-to-make-event-sourcing-click-762457e6c28). Inspect its source to find `rel="canonical` link buried inside:
 
 ```html
 <link data-rh="true" rel="canonical" href="http://blog.arkency.com/one-simple-trick-to-make-event-sourcing-click/">
