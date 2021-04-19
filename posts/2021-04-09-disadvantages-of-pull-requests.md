@@ -22,7 +22,7 @@ PRs promote developing code in branches, which increases **the time and the amou
 
 Now branches are unavoidable, even if you only commit to master and never type `git branch`. You're still creating a _logical branch_ at the very moment you change a file in your local working directory. But it's up to us:
 
-* how long this does a piece of code live in this divergent state, and
+* how long does a piece of code live in this divergent state, and
 * what is the size of this piece of code involved
  
 Limiting these factors can make merge conflicts happen less frequently.
@@ -36,7 +36,7 @@ When I have a feature to implement, I often like to work like this:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">for each desired change, make the change easy (warning: this may be hard), then make the easy change</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/250733358307500032?ref_src=twsrc%5Etfw">September 25, 2012</a></blockquote>
 
-Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course we prefer realtime style and a lot of applications migrate towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboartion with all the benefits ot it.
+Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course, we prefer realtime style and a lot of applications migrate towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboartion with all the benefits of it.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">From personal experience, it feels like using Google Docs compared to emailing each other Word documents.<br><br>Also refactoring much much more often since it&#39;s extremely cheap and fast. <br><br>Which helps with =&gt; <a href="https://t.co/jdN1eSmJPl">https://t.co/jdN1eSmJPl</a></p>&mdash; Miroslav Csonka (@miroslavcsonka) <a href="https://twitter.com/miroslavcsonka/status/1374497072884240391?ref_src=twsrc%5Etfw">March 23, 2021</a></blockquote>
 
@@ -59,11 +59,11 @@ This way I can suggest where the reviewer spends the most attention.
 
 ## 3. Short feedback loop makes programming fun
 
-Why is programming so much more fun compared to other engineering disciplines? Perhaps because it's so quick to build something and see the result of your work. If you're building skyscrappers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable — because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
+Why is programming so much more fun compared to other engineering disciplines? Perhaps because it's so quick to build something and see the result of your work. If you're building skyscrapers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable — because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
 
 Now PRs make this feedback loop longer. You code something up but it's nowhere close to being integrated and working. You now have to wait for the reviewer, go through his remarks, discuss them, change the code... 
 
-There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays of to also manage programmer's _energy_ and _momentum_.
+There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays off to also manage programmer's _energy_ and _momentum_.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Working on a project now without a laborious PR review process, and it feels like I&#39;m flying.</p>&mdash; René Wiersma (@Rene_Wiersma) <a href="https://twitter.com/Rene_Wiersma/status/1360508416612048898?ref_src=twsrc%5Etfw">February 13, 2021</a></blockquote>
 
@@ -76,11 +76,11 @@ Perhaps it's familiar to you:
 
 Why is that? In order to properly review a non-trivial piece of code, I need to focus, get deep enough and build enough context — almost to the extent that the PR author did while coding. The reviewer has to do it without the privilege of being able to put my hands on the keyboard and without the same amount of time. **Proper review takes the same amount of focus as actual coding. Why not pair-program instead?**
 
-The superficiality of reviews is amplified by following factors:
+The superficiality of reviews is amplified by the following factors:
 
 * reviews being mandatory
 * size of the pull request
-* randomness of person involved
+* randomness of the person involved
 * lack of shared context of the reviewer
 
 ## 5. Merging is blocked by remarks that shouldn't be blocking
@@ -98,7 +98,7 @@ Compare these two developers:
 * Developer 1 makes subsequent commits to a branch, then creates a PR, then has it reviewed and merged.
 * Developer 2 splits his feature into small non-breaking pieces, makes subsequent commits to mainline, his code is integrated right away and possibly deployed
 
-Which developer will faster learn to _code responsibly_? The first one knows that whatever he commits, first lands on a branch, and doesn't affect anything. Then there's the review, so if he commited anything blatantly wrong, perhaps the reviewier will catch it.
+Which developer will faster learn to _code responsibly_? The first one knows that whatever he commits, first lands on a branch, and doesn't affect anything. Then there's the review, so if he commited anything blatantly wrong, perhaps the reviewer will catch it.
 
 The second one knows that every line he writes can screw up things for other developers or even bring production down. He watches his step, he knows he's the only one responsible for this change. **It shortens the delay between making a mistake and seeing the effect of it**.
 
@@ -132,7 +132,7 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 * Pair program with a teammate on a complicated feature instead allowing feedback only when PR is finished.
 * Try a feature toggle to prevent your unfinished work from affecting production (instead of keeping it on prod). Flipper is a nice gem for that, but you can simply start with an ENV var switch or hiding the feature on UI.
 * Try getting into a habit or reviewing commits post-merge.
-* Make approvals not mandatory - let the developer merge the PR right away and have it reviewd post factum.
+* Make approvals not mandatory - let the developer merge the PR right away and have it reviewed post factum.
 * Make PRs not mandatory — let the developer choose if he wants to develop in a PR or commit to master.
 * Encourage post factum improvements by reviewers instead of comments.
 * Make it clear which PR comments are blocking, and which are free to be addressed after merging the PR.
