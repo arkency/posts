@@ -6,7 +6,9 @@ tags: [rails event store, ddd, aggregate, event sourcing]
 publish: true
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gFM9OjrENck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="aspect-w-16 aspect-h-9">
+  <iframe src="https://www.youtube.com/embed/gFM9OjrENck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 Let me show you an example piece of code - an Order class. This class is used in our [sample DDD/CQRS/ES application](https://github.com/RailsEventStore/cqrs-es-sample-with-res). We're in the process of improving this app so this is a good opportunity to document certain opinions and changes.
 
