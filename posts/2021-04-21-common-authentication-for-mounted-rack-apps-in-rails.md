@@ -25,17 +25,17 @@ In production application you'll want to protect access to this Sidekiq dashboar
 # config/routes.rb
 
 Rails.application.routes.draw do
-	Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-	  # Protect against timing attacks:
-	  # - See https://codahale.com/a-lesson-in-timing-attacks/
-	  # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
-	  # - Use & (do not use &&) so that it doesn't short circuit.
-	  # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
-	  ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &
-	    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_PASSWORD"]))
-	end
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    # Protect against timing attacks:
+    # - See https://codahale.com/a-lesson-in-timing-attacks/
+    # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
+    # - Use & (do not use &&) so that it doesn't short circuit.
+    # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
+    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_PASSWORD"]))
+  end
 
-	mount Sidekiq::Web, at: "/sidekiq"
+  mount Sidekiq::Web, at: "/sidekiq"
 end	
 ```
 
@@ -45,7 +45,7 @@ Let's transform this example a bit to not rely on `Sidekiq::Web.use`. That's ver
 # config/routes.rb
 
 Rails.application.routes.draw do
-	mount Rack::Builder.new do
+  mount Rack::Builder.new do
     use Rack::Auth::Basic do |username, password|
 	    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username),
             ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
