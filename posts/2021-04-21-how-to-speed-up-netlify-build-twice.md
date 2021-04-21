@@ -1,7 +1,7 @@
 ---
 created_at: 2021-04-21T00:34:14.769Z
 author: Paweł Pacana
-tags: ['nanoc', 'netlify']
+tags: ['nanoc', 'netlify', '5days5blogposts']
 publish: true
 ---
 
