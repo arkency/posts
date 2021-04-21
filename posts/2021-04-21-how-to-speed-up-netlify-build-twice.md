@@ -9,7 +9,7 @@ publish: true
 
 Netlify is a platform to build and deploy static sites (i.e. [nanoc](https://nanoc.app) or jekyll). We use it extensively for many of our sites at Arkency, like this [blog](https://blog.arkency.com). 
 
-The platform acts both as a Continuous Deployment pipeline and a hosting for generated HTML files, with Content Delivery Network. That is quite convenient combination of features.
+The platform acts both as a Continuous Deployment pipeline and a hosting for generated HTML files, with Content Delivery Network. That is a quite convenient combination of features.
 
 The workflow to publish changes on a site starts from a push into a git repository. That triggers the build process for a given revision of the repository. That build process runs within a sort of stateless container. That is pretty typical model if you've ever had anything to do with a CI/CD in a cloud.
 
@@ -47,12 +47,12 @@ Same goes with [parceljs](https://parceljs.org) — a very pleasant-to-work-wit
 Luckily Netlify [left the door open](https://www.youtube.com/watch?v=w9yrrQBBKos) for developers to augment their build process and let them go "deep". This is done with [build plugins](https://docs.netlify.com/configure-builds/build-plugins/).
 
 Building such plugin is rather straightforward:
-* there a [starter repository](https://github.com/netlify/build-plugin-template), which acts as a template to fork with test suite and linter
+* there is a [starter repository](https://github.com/netlify/build-plugin-template), which acts as a template to fork with test suite and linter
 * the plugin is event-driven, you handle only the events relevant to you
 * plugin has access to site configuration, input parameters and some bits of environment
 * you're able to interrupt the build, interact with cache, retrieve changes from git and finally run commands and processes
 
-Pretty sweet balance of possibilities yet without overly verbose API. Here's an overview of build events:
+Pretty sweet balance of possibilities yet without an overly verbose API. Here's an overview of build events:
 
 | hook | description | 
 | ---  | --- |
@@ -60,7 +60,7 @@ Pretty sweet balance of possibilities yet without overly verbose API. Here's an 
 | onBuild | runs directly after the build command is executed |
 | onPostBuild | runs after the build command completes, can be used to prevent a build from being deployed |
 | onError | runs when an error occurs in the build or deploy stage, failing the build |
-| onSuccess | runs when the deploy succeeds
+| onSuccess | runs when the deploy succeeds |
 | onEnd | runs after completion of the deploy stage, regardless of build error or success |
 
 It turned out that plugins to take the most of nanoc and parceljs were quite simplistic:
