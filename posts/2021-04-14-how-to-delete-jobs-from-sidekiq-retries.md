@@ -11,19 +11,25 @@ Hi future-me! This is just a list of snippets I might be looking for next time I
 ### List job classes sitting in the retries list
 
 ```ruby
-Sidekiq::RetrySet.new.map(&:display_class).uniq
+Sidekiq::RetrySet.new
+  .map(&:display_class)
+  .uniq
 ```
 
 ### Number of jobs being retried for a specific class
 
 ```ruby
-Sidekiq::RetrySet.new.select { |j| j.display_class == "AJob" }.count
+Sidekiq::RetrySet.new
+  .select { |j| j.display_class == "AJob" }
+  .count
 ```
 
 ### Delete all jobs for a class from the retries list
 
 ```ruby
-Sidekiq::RetrySet.new.select { |j| j.display_class == "AJob" }.map(&:delete)
+Sidekiq::RetrySet.new
+  .select { |j| j.display_class == "AJob" }
+  .map(&:delete)
 ```
 
 (similarly, there's `&:kill`, `&:retry`)
