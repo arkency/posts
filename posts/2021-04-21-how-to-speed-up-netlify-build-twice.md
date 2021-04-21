@@ -20,7 +20,7 @@ The container is stateless itself, but it needs some state in order to make buil
 Netlify is smart enough to figure out that our Nanoc or Jekyll sites have runtime dependencies:
 * Ruby gems as defined in `Gemfile`
 * npm packages as defined in `package.json`
-* 
+
 Those dependencies are automatically cached in order to save us much time fetching them over and over again on each build. That is pretty typical too, when setting up CI/CD and it is great to have it working out of the box.
 
 Netlify as a platform goes "wide", to attract many developers and provide great initial experience for most of us (there's far more "jamstacks" than just Nanoc or Jekyll). 
