@@ -47,10 +47,8 @@ Let's transform this example a bit to not rely on `Sidekiq::Web.use`. That's ver
 Rails.application.routes.draw do
   mount Rack::Builder.new do
     use Rack::Auth::Basic do |username, password|
-	    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username),
-            ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
-            ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password),
-              ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
+       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
     end
     run Sidekiq::Web
   end, at: "/sidekiq"
@@ -77,10 +75,8 @@ Rails.application.routes.draw do
     lambda do |app|
       Rack::Builder.new do
         use Rack::Auth::Basic do |username, password|
-          ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username),
-            ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
-            ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password),
-              ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
+          ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
+            ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
         end
         run app
       end
