@@ -75,7 +75,7 @@ module Scanner
 end
 ```
 
-This worked with classic autoloader mostly due to `require_dependency 'scanner/domain_events'` placed in the bottom of `Scanner` module file:
+This worked with classic autoloader mostly due to `require_dependency` placed in the bottom of `Scanner` module file:
 
 ```
 # scanner/lib/scanner.rb
@@ -110,10 +110,10 @@ It is totally fine for zeitwerk if multiple classes in a single file are nested 
 # scanner/lib/scanner/domain_events.rb
 
 module Scanner
-	module DomainEvents    # matches file name
-	  TicketScanned        = Class.new(Fact)
-	  TicketAlreadyScanned = Class.new(Fact)
-	  # ...
+  module DomainEvents    # matches file name
+    TicketScanned        = Class.new(Fact)
+    TicketAlreadyScanned = Class.new(Fact)
+    # ...
   end
 end  
 ```
