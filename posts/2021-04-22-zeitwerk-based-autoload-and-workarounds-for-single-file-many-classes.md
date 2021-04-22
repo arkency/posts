@@ -149,7 +149,7 @@ scanner/
 
 We need to tell autoloader to keep `scanner/lib/scanner/domain/events` collapsed.
 
-```
+```ruby
 # config/initializers/zeitwerk.rb
 
 SUBDOMAINS = %w(
@@ -174,9 +174,9 @@ Then con is obviously a class-per-file religion. Which again may be totally fine
 
 <blockquote class="twitter-tweet" data-theme="light"><p lang="en" dir="ltr">Remove zeitwerk, explicit require list. ;)</p>&mdash; Markus Schirp (@_m_b_j_) <a href="https://twitter.com/_m_b_j_/status/1372664853580673025?ref_src=twsrc%5Etfw">March 18, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Perhaps now opting out of autoloading in Rails is easier than ever. With zeitwerk you can tell the autoloader to [ignore particualar directories](https://github.com/fxn/zeitwerk#ignoring-parts-of-the-project).
+Perhaps now opting out of autoloading in Rails is easier than ever. With zeitwerk you can tell the autoloader to [ignore particular directories](https://github.com/fxn/zeitwerk#ignoring-parts-of-the-project).
 
-```
+```ruby
 # config/initializers/zeitwerk.rb
 
 SUBDOMAINS = %w(
