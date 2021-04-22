@@ -3,10 +3,10 @@ title: Explaining Rack — desugaring Rack::Builder DSL
 created_at: 2021-04-22T16:05:59.695Z
 author: Paweł Pacana
 tags: ['rails', 'ruby', 'rack', '5days5blogposts']
-publish: false
+publish: true
 ---
 
-Yesterday I wrote a post highlighting Basic Auth and how can we protect Rack applications mounted in Rails with it.
+Yesterday I [wrote a post](https://blog.arkency.com/common-authentication-for-mounted-rack-apps-in-rails/) highlighting Basic Auth and how can we protect Rack applications mounted in Rails with it.
 Today when discussing some ideas from this post with my colleague, our focus immediately shifted on `Rack::Builder`.
 
 On one hand Rack interface is simple, fairly constrained and well described in [spec](https://github.com/rack/rack/blob/master/SPEC.rdoc). And ships with a [linter](https://github.com/rack/rack/blob/2c95c7d1eb2f743f64c134bde06c92be24a70717/lib/rack/lint.rb) to help your Rack apps and middleware pass this compliance.
@@ -32,7 +32,7 @@ require_relative "config/environment"
 run Rails.application
 ```
 
-Behind the scenes, this file [is eventually fed to](https://github.com/rack/rack/blob/2c95c7d1eb2f743f64c134bde06c92be24a70717/lib/rack/server.rb#L344-L350) Rack::Builder`. It is a convenient DSL to compose Rack application out of other Rack applications. In yesterday's blogpost we've seen it being used directly:
+Behind the scenes, this file [is eventually passed to](https://github.com/rack/rack/blob/2c95c7d1eb2f743f64c134bde06c92be24a70717/lib/rack/server.rb#L344-L350) `Rack::Builder`. It is a convenient DSL to compose Rack application out of other Rack applications. In [yesterday's blogpost](https://blog.arkency.com/common-authentication-for-mounted-rack-apps-in-rails/) we've seen it being used directly:
 
 ```ruby
 Rack::Builder.new do
@@ -54,13 +54,13 @@ An example of a _middleware_ that makes everything sound more dramatic:
 
 ```ruby
 class Dramatize
-	def initialize(app)
-		@app = app
-	end
+  def initialize(app)
+    @app = app
+  end
 	
   def call(env)
-	  status, headers, body = @app.call(env)
-	  [status, headers, body.map { |x| "#{x}111one!1" }]
+    status, headers, body = @app.call(env)
+    [status, headers, body.map { |x| "#{x}111one!1" }]
   end
 end
 ```
@@ -71,7 +71,7 @@ A composition of such middleware and our previous sample `HelloWorld` applicatio
 # config.ru
 
 class HelloWorld
-	# omitted for brevity
+  # omitted for brevity
 end
 
 class Dramatize
@@ -98,7 +98,7 @@ Now back to the question that started it all:
 
 > How does this DSL relate to that rather simple Rack interface?
 
-The last example of composition via `Rack::Builder` can be (partially) rewritten to avoid some of the DSL:
+The last example of composition via `Rack::Builder` can be rewritten to avoid some of the DSL:
 
 ```ruby
 # config.ru
