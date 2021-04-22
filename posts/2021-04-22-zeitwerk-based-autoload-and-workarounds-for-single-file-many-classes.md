@@ -10,7 +10,7 @@ publish: false
 
 Rails has dropped its [classic autoloader](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html) by the release of version 6.1. From now on it uses [zeitwerk](https://github.com/fxn/zeitwerk) gem as a basis for new autoloading. That's a good news — the classic autoloader had several, well-documented, but nevertheless tricky [gotchas](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html#common-gotchas). This welcomed change brings back the sanity.
 
-Unfortunately the initial scope of [zeitwerk] features did not include one, that I'd welcome the most — an ability to host several classes in a single file.
+Unfortunately the initial scope of zeitwerk features did not include one, that I'd welcome the most — an ability to host several classes in a single file.
 
 ## The Problem
 
