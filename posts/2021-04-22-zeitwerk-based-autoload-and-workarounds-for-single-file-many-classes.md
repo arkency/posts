@@ -77,7 +77,7 @@ end
 
 This worked with classic autoloader mostly due to `require_dependency` placed in the bottom of `Scanner` module file:
 
-```
+```ruby
 # scanner/lib/scanner.rb
 
 module Scanner
