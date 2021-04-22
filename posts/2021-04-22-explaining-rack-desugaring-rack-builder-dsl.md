@@ -7,7 +7,7 @@ publish: true
 ---
 
 Yesterday I [wrote a post](https://blog.arkency.com/common-authentication-for-mounted-rack-apps-in-rails/) highlighting Basic Auth and how can we protect Rack applications mounted in Rails with it.
-Today when discussing some ideas from this post with my colleague, our focus immediately shifted on `Rack::Builder`.
+Today when discussing some ideas from this post with my colleague, our focus immediately shifted to `Rack::Builder`.
 
 On one hand Rack interface is simple, fairly constrained and well described in [spec](https://github.com/rack/rack/blob/master/SPEC.rdoc). And ships with a [linter](https://github.com/rack/rack/blob/2c95c7d1eb2f743f64c134bde06c92be24a70717/lib/rack/lint.rb) to help your Rack apps and middleware pass this compliance.
 
