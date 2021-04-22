@@ -86,7 +86,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Fun fact is that a `Proc#[]` is an [equivalent](https://ruby-doc.org/core-3.0.0/Proc.html#method-i-3D-3D-3D) to `Proc#call`.
+Fun fact is that a `Proc#[]` is an [equivalent](https://ruby-doc.org/core-3.0.0/Proc.html#method-i-5B-5D) to `Proc#call`.
 The last line can be as well written as:
 
 ```ruby
