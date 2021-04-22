@@ -36,15 +36,16 @@ Behind the scenes, this file [is eventually passed to](https://github.com/rack/r
 
 ```ruby
 Rack::Builder.new do
-    use Rack::Auth::Basic do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
-       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
-    end
-    run Sidekiq::Web
+  use Rack::Auth::Basic do |username, password|
+    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_USERNAME"))) &
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("DEV_UI_PASSWORD")))
   end
+  run Sidekiq::Web
+end
 ```
 
-Whether you use `Rack::Builder` directly or via [rackup](https://github.com/rack/rack#rackup-) files, you're associating Rack with `use` and `run` DSL. And that triggered an honest question from my colleague — how does this DSL relate to that rather simple Rack interface?
+Whether you use `Rack::Builder` directly or via [rackup](https://github.com/rack/rack#rackup-) files, you're immediately associating Rack with the `use` and `run` DSL. 
+And that triggered an honest question from my colleague — how does this DSL relate to that rather simple Rack interface?
 
 # De-sugaring Rack::Builder DSL
 
