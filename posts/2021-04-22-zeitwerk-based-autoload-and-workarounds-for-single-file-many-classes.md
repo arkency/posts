@@ -2,13 +2,13 @@
 created_at: 2021-04-22T20:51:01.454Z
 author: Paweł Pacana
 tags: ['rails', 'zeitwerk', 'autoload']
-publish: false
+publish: true
 ---
 
 # Zeitwerk-based autoload and workarounds for single-file-many-classes problem
 
 
-Rails has dropped its [classic autoloader](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html) by the release of version 6.1. From now on it uses [zeitwerk](https://github.com/fxn/zeitwerk) gem as a basis for new autoloading. That's good news — the classic autoloader had several, well-documented, but nevertheless tricky [gotchas](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html#common-gotchas). This welcomed change brings back the sanity.
+Rails has deprecated its [classic autoloader](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html) by the release of version 6.1. From now on it by default uses [zeitwerk](https://github.com/fxn/zeitwerk) gem as a basis for new autoloading. The previous autoloader is going to be dropped in future releases. That's good news — the classic autoloader had several, well-documented, but nevertheless tricky [gotchas](https://guides.rubyonrails.org/autoloading_and_reloading_constants_classic_mode.html#common-gotchas). This welcomed change brings back the sanity.
 
 Unfortunately the initial scope of zeitwerk features did not include one, that I'd welcome the most — an ability to host several classes in a single file.
 
@@ -99,7 +99,7 @@ In zeitwerk-based autoloader there is no place for [`require_dependency`](https:
 
 The limitation is [known](https://github.com/fxn/zeitwerk/issues/51) and [described](https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#one-file-one-constant-at-the-same-top-level) in the migration guide.
 
-What are your options when you have similar code structure and intend to migrate to Rails 6.1?
+What are your options when you have similar code structure and intend to migrate beyond Rails 6.1?
 
 
 #### Multiple classes in a single file sharing a common namespace
@@ -120,7 +120,7 @@ end
 
 I'm not a fan of excessive nesting and would like to keep namespaces as flat as possible. With `Scanner::DomainEvents::TicketScanned` it is already 3rd level and quite verbose. 
 
-What doesn't suit me however may be totally fine for you 🤷‍♂️
+What doesn't suit me however may be totally fine for you.
 
 #### Single class per file in a collapsed directory
 
@@ -168,7 +168,7 @@ end
 
 The pro is that namespace is kept intact as in `Scanner::TicketScanned`. The classes are also grouped, although not in a single file.
 
-Then con is obviously a class-per-file religion. Which again may be totally fine for you and there's nothing wrong with that 🤷‍♂️
+Then con is obviously a class-per-file religion. Which may be totally fine for some and there's nothing wrong with that.
 
 #### Opt out of autoloading 
 
@@ -191,7 +191,6 @@ Rails.autoloaders.each do |autoloader|
 end
 ```
 
-I don't personally see that much value in autoloading in test-driven first approach.
 
 
 Feel free to [expand this article](https://github.com/arkency/posts/edit/master/posts/2021-04-22-zeitwerk-based-autoload-and-workarounds-for-single-file-many-classes.md) or [ping me on twitter](https://twitter.com/pawelpacana) with comments.
