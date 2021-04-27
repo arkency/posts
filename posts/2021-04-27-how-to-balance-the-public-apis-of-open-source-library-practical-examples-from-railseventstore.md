@@ -151,8 +151,10 @@ end
 
 You can change any of these components. They're dependencies. Passed via initializer, not hardcoded. 
 
-In need for [in-memory event repository](https://railseventstore.org/docs/v2/repository/#using-rubyeventstore-inmemoryrepository-for-faster-tests) for faster tests? Check. 
-Working on a DynamoDB [storage backend](https://github.com/carsdb/rails_event_store_dynamoid)? Check. 
+In need for [in-memory event repository](https://railseventstore.org/docs/v2/repository/#using-rubyeventstore-inmemoryrepository-for-faster-tests) for faster tests? Check.
+
+Working on a DynamoDB [storage backend](https://github.com/carsdb/rails_event_store_dynamoid)? Check.
+
 Not an ActiveRecord fan or [integrating with ROM](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-rom) and Hanami? Check.
 
 Same could go for subscriptions — i.e. persistent storage over in-memory from evaluating configuration file. Or to replace a broker (the in-process pub-sub bus). 
