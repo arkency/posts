@@ -2,7 +2,7 @@
 created_at: 2021-04-27 18:20:23 +0200
 author: Paweł Pacana
 tags: ['rails_event_store']
-publish: false
+publish: true
 ---
 
 # How to balance the public APIs of open-source library — practical examples from RailsEventStore
@@ -101,7 +101,7 @@ scope.to_a
 
 # Swappable components
 
-Starting with batteries included is great. Over time your project will likely diverge from the defaults "for everyone". At this point it would be better if the library allowed some room for that. 
+Starting with batteries included is great. Over time your project will likely diverge from the defaults "for everyone". At this point it would be better if the library leaves some room for that. 
 
 If `RailsEventStore::Client.new` was the frontend, here's the backend view. All of the assumptions, defined as default arguments:
 
