@@ -5,7 +5,7 @@ tags: ['rails_event_store']
 publish: true
 ---
 
-# How to balance the public APIs of open-source library — practical examples from RailsEventStore
+# How to balance the public APIs of an open-source library — practical examples from RailsEventStore
 
 On twitter, Krzysztof asked an interesting question: what are our thoughts on carving a well-balanced API for an open-source library that [RailsEventStore](https://railseventstore.org) is: 
 
