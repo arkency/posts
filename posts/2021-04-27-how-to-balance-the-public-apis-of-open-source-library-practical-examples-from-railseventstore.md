@@ -84,7 +84,7 @@ This further allows collaborators (i.e. broker or repository) to expect and act 
 module RailsEventStoreActiveRecord
   class EventRepository
     def append_to_stream: (Array[RubyEventStore::Record] records, RubyEventStore::Stream stream, RubyEventStore::ExpectedVersion expected_version) -> untyped
-	end
+  end
 end
 ```
 
@@ -149,9 +149,11 @@ module RailsEventStore
 end
 ```
 
-You can change any of these components. They're dependencies, passed via initializer. Not hardcoded.
+You can change any of these components. They're dependencies. Passed via initializer, not hardcoded. 
 
-In need for [in-memory event repository](https://railseventstore.org/docs/v2/repository/#using-rubyeventstore-inmemoryrepository-for-faster-tests) for faster tests? Check. Working on a DynamoDB [storage backend](https://github.com/carsdb/rails_event_store_dynamoid)? Check. Not an ActiveRecord fan or [integrating with ROM](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-rom) and Hanami? Check.
+In need for [in-memory event repository](https://railseventstore.org/docs/v2/repository/#using-rubyeventstore-inmemoryrepository-for-faster-tests) for faster tests? Check. 
+Working on a DynamoDB [storage backend](https://github.com/carsdb/rails_event_store_dynamoid)? Check. 
+Not an ActiveRecord fan or [integrating with ROM](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-rom) and Hanami? Check.
 
 Same could go for subscriptions — i.e. persistent storage over in-memory from evaluating configuration file. Or to replace a broker (the in-process pub-sub bus). 
 
@@ -171,5 +173,9 @@ But it also comes with several component implementations that are enabled by the
 * `Rack` [middleware to correlate event metadata](https://github.com/RailsEventStore/rails_event_store/blob/master/rails_event_store/lib/rails_event_store/middleware.rb) with Rails requests
 
 You can **opt-out from these framework integrations**. Chances are you won't — you've chosen Rails for a reason. 
-But in case you need it, compose your own event store from the ground up with [RubyEventStore](https://railseventstore.org/docs/v2/without_rails/). Think of it this way: RailsEventStore is a specialization of RubyEventStore.
+But in case you need it, compose your own event store from the ground up with [RubyEventStore](https://railseventstore.org/docs/v2/without_rails/). 
+
+Think of it this way: RailsEventStore is a specialization of RubyEventStore. Can there be HanamiEventStore, on top RubyEventStore? Sure!
+
+Catch me up on [twitter](https://twitter.com/pawelpacana) to discuss more — my DMs are open.
 
