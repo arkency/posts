@@ -3,7 +3,7 @@ title: Decorate your runner session like a pro
 created_at: 2021-04-28T08:17:38.564Z
 author: Jakub Kosiński
 tags: ["rails"]
-publish: false
+publish: true
 ---
 
 [Paweł](https://blog.arkency.com/authors/pawel-pacana) described some [tricks](https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/) you could use to tune-up your Rails console. 
