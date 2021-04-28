@@ -2,7 +2,7 @@
 created_at: 2021-04-28 09:20:25 +0200
 author: Paweł Pacana
 tags: ['rails']
-publish: false
+publish: true
 ---
 
 # Rails console trick I had no idea about
@@ -28,9 +28,13 @@ end
 # ...
 ```
 
-You'd open the console first and load the helpers next to the IRB session with `load 'script/likeasir.rb'`.
+You'd open the console first and load the helpers next to the IRB session with:
 
-And then [Kuba](https://blog.arkency.com/authors/jakub-kosinski/) showed a neat trick that made this load step completely obsolete.
+```ruby
+load 'script/likeasir.rb'
+```
+
+And then [Kuba](https://blog.arkency.com/authors/jakub-kosinski/) showed me a neat trick that made this load step completely obsolete:
 
 ```ruby
 # config/application.rb
@@ -38,16 +42,16 @@ And then [Kuba](https://blog.arkency.com/authors/jakub-kosinski/) showed a neat 
 module MyApp
   class Application < Rails::Application
     # ...
-    
+
     console do
       module DummyConsole
         def event_store
           Rails.configuration.event_store
         end
-        
+
         def command_bus
-				  Rails.configuration.command_bus
-				end
+          Rails.configuration.command_bus
+        end
       end
       Rails::ConsoleMethods.include(DummyConsole)
     end
@@ -55,9 +59,9 @@ module MyApp
 end
 ```
 
-Now, whenever you load `bin/rails c`, the `command_bus` and `event_store` methods will be present in the IRB session. 
+Now, whenever you load `bin/rails c`, the `command_bus` and `event_store` methods will be present in the IRB session.
 
-That's it. That's the trick I did not know about for years. 
+That's it. That's the trick I did not know about for years.
 
 You're welcome.
 
