@@ -7,7 +7,7 @@ publish: true
 
 # Rails console trick I had no idea about
 
-Tweaking `.irbrc` to make interactive console comfortable is a highly-rewarding activity. You gets instant boost of productivity and there are less frustrations. There were numerous posts and tip featured in Ruby Weekly on the topic recently.
+Tweaking `.irbrc` to make interactive console comfortable is a highly-rewarding activity. You gets instant boost of productivity and there are less frustrations. There were numerous posts and tips featured in Ruby Weekly on this topic recently.
 
 I've been making my `.irbrc` more useful too. The harder part was always distributing those changes to remote servers. For example to have those goodies available in Heroku console. And not only for me. There are multiple ways to achieve that, duh. The one that stick though was close to the app code:
 
