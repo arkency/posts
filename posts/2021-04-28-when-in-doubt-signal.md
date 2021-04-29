@@ -3,12 +3,11 @@ title: When in doubt, signal!
 created_at: 2021-04-28T22:14:57.836Z
 author: Jakub Kosiński
 tags: ["javascript", "react", "fetch", "hooks"]
-publish: false
+publish: true
 ---
 
-When you are writing frontend applications you often need to fetch some data. Sometimes, especially when you're working with a single-page app, some requests could be cancelled
-as you would not use the response anywhere, e.g. when your visitor clicks on some link and changes the page during the request that was needed on the previous page.
-If you are using `fetch` to perform AJAX requests, you can use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) signaling to cancel pending requests in such situations.
+When you are writing frontend applications you often need to fetch some data. Sometimes, especially when you're working with a single-page app, some requests could be cancelled as you would not use the response anywhere, e.g. when your visitor clicks on some link and changes the page during the pending request that would no longer be needed on the next page.
+If you are using `fetch` to perform AJAX requests, you can use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel pending requests in such situations.
 
 `AbortController` and `AbortSignal` are features [available in most modern browsers](https://caniuse.com/?search=AbortController), there are also some [polyfills](https://www.npmjs.com/package/abortcontroller-polyfill) 
 available for those unfortunates who need to support IE.
@@ -51,8 +50,7 @@ export default function useSignal(dependencies = []) {
 }
 ```
 
-This hook could be used in your function component that is fetching some data. When such component is unmounted, all pending requests will be cancelled. You should just remember to handle `AbortError`
-in your state management so that you won't update the state if your component is unmounted. An example component might look like this:
+This hook could be used in your function component that is fetching some data. When such component is unmounted, all pending requests will be cancelled. You should remember to handle the `AbortError` in your state management so that you won't update the state when your component is unmounted. An example component might look like this:
 
 ```js
 import {useCallback, useEffect, useState} from "react";
@@ -79,6 +77,5 @@ export default function Profile() {
 }
 ```
 
-With such implementation you'll fetch data on initial render and call `setProfile` only if the request was successful. If you unmount the component, the request will be cancelled an `AbortError` will 
-be catched and ignored (so you won't try to update state of an already unmounted component). As we are throwing all errors other than `AbortError`, you should wrap your component with some [Error Boundary](https://reactjs.org/docs/error-boundaries.html)
+With such implementation you'll fetch the data on initial render and call `setProfile` only if the request was successful. If you unmount the component, the request will be cancelled an `AbortError` will be catched and ignored (so you won't try to update the state of an already unmounted component). As we are throwing all errors other than `AbortError`, you should wrap your component with an [Error Boundary](https://reactjs.org/docs/error-boundaries.html)
 to prevent crashes in case of any other error that might occur during fetching the data.
