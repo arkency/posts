@@ -52,7 +52,7 @@ export default function useSignal(dependencies = []) {
 
 This hook could be used in your function component that is fetching some data. When such component is unmounted, all pending requests will be cancelled. You should remember to handle the `AbortError` in your state management so that you won't update the state when your component is unmounted. An example component might look like this:
 
-```js
+```jsx
 import {useCallback, useEffect, useState} from "react";
 import useSignal from "./useSignal";
 
