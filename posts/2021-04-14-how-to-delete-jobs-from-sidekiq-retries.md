@@ -47,7 +47,17 @@ Sidekiq::RetrySet.new
 
 (warning: the details depend on your [RES](https://railseventstore.org/docs/v2/install/) async scheduler implementation)
 
+### Unique error messages for a class of jobs
+
+```ruby
+Sidekiq::RetrySet.new
+  .select { _1.display_class == "AJob" }
+  .map    { _1.item["error_message"] }
+  .uniq
+```
+
 ## More
 
 * https://github.com/mperham/sidekiq/wiki/API#retries
 * https://gist.github.com/wbotelhos/fb865fba2b4f3518c8e533c7487d5354
+* https://www.mikeperham.com/2021/04/20/a-tour-of-the-sidekiq-api/ — Fun fact: Mike Perham (Sidekiq's author) wrote this post after [stumbling upon my piece and deeming it incomplete](https://twitter.com/getajobmike/status/1382482181725900801), quite understandably. I never intended this article to a comprehensive walk-through of Sidekiq's API, just a list of snippets I use most often. Now we have the author expanding on the topic. Everyone benefits :)  
