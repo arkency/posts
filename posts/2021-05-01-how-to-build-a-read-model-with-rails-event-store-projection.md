@@ -1,7 +1,8 @@
 ---
 title: How to build a read model with Rails Event Store Projection
 created_at: 2021-05-01 00:58:27 +0200
-author: Szymon Fiedler tags: ['res', 'projection', 'read model', 'domain events']
+author: Szymon Fiedler
+tags: ['res', 'projection', 'read model', 'ddd']
 publish: false
 ---
 
@@ -155,3 +156,5 @@ end
 
 What if another field is required or there was a bug in the calculations? Not a problem, read models can be thrown out
 and rebuild with ease, because all the history behind them is known — thanks to domain events.
+
+Btw. You might be also interested in other posts on [read models](https://blog.arkency.com/tags/read-model/) on our blog.
