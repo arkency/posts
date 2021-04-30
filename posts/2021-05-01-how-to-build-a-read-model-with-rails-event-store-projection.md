@@ -19,7 +19,6 @@ is done, the report will be available instantly in a web ui.
 ## Let's start with a domain event
 
 ```ruby
-
 module TestExecution
   class AnswerRegistered < ::Event
     attribute :participant_id, Types::Integer
@@ -42,7 +41,6 @@ Next building block is the asynchronous handler. Why asynchronous? Not to waste 
 cycle and lower their satisfaction from using our application:
 
 ```ruby
-
 module Reporting
   class CalculateparticipantReport < ApplicationJob
     prepend RailsEventStore::AsyncHandler
@@ -73,30 +71,29 @@ module Reporting
         .when(
             SurveyExecution::AnswerRegistered,
             ->(state, event) do
-              skill_id                           = event.data.fetch(:skill_id)
-              state[skill_id][:score]            += event.data.fetch(:score)
+              skill_id = event.data.fetch(:skill_id)
+              state[skill_id][:score] += event.data.fetch(:score)
               state[skill_id][:number_of_scores] += 1
             end
           )
-            .run(Rails.configuration.event_store)
-            .reduce({}) do |scores, (skill_id, values)|
+        .run(Rails.configuration.event_store)
+          .reduce({}) do |scores, (skill_id, values)|
             scores[skill_id] = values[:score] / values[:n]
             scores
           end
     end
-  end
 
-  def link_to_stream(event, test_id, participant_id)
-    Rails.configuration.event_store.link(
-      event.event_id,
-      stream_name: stream_name(surveyee_id, survey_group_id)
-    )
-  end
+    def link_to_stream(event, test_id, participant_id)
+      Rails.configuration.event_store.link(
+        event.event_id,
+        stream_name: stream_name(surveyee_id, survey_group_id)
+      )
+    end
 
-  def stream_name(test_id, participant_id)
-    "participantReport$#{test_id}-#{participant_id}"
+    def stream_name(test_id, participant_id)
+      "participantReport$#{test_id}-#{participant_id}"
+    end
   end
-end
 end
 ```
 
@@ -140,8 +137,6 @@ end
 
 # app/views/test_results/show.html.erb
 <h1>Personalised report for <%= report.participant_name %></h1>
-
-
 <h2><%= report.test_name %></h2>
 <% report.skills.each do |skill| %>
   <div>
