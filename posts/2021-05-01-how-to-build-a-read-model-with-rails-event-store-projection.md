@@ -130,23 +130,23 @@ simple lookup for a single record which contains all the data to be displayed in
 ```ruby
 # app/controllers/test_results_controller.rb
 class TestResultsController < ApplicationController
-  def show
-    render locals: { report: ParticipantReport.find_by!(report_slug: params[:slug]) }
-  end
+   def show
+      render locals: { report: ParticipantReport.find_by!(report_slug: params[:slug]) }
+   end
 end
 ```
 
 ```erbruby
 # app/views/test_results/show.html.erb
-<h1>Personalised report for <%= report.participant_name %></h1>
-<h2><%= report.test_name %></h2>
-<% report.skills.each do |skill| %>
+<h1>Personalised report for report.participant_name</h1>
+<h2>report.test_name</h2>
+report.skills.each do |skill|
   <div>
-    Your performance in <%= skill[:name] %> is
-    <%= skill[:average] %> comparing to
-    <%= skill[:global] %> earned by others
+    Your performance in skill[:name] is
+    skill[:average] comparing to
+    skill[:global] earned by others
   </div>
-<% end %>
+end
 ```
 
 ## But...
