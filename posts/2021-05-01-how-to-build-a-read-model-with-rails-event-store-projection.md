@@ -141,17 +141,16 @@ class TestResultsController < ApplicationController
 end
 ```
 
-```erbruby
-# app/views/test_results/show.html.erb
-<h1>Personalised report for <%= report.participant_name %></h1>
-<h2><%= report.test_name %></h2>
-<% report.skills.each do |skill| %>
-  <div>
-    Your performance in <%= skill[:name] %> is
-    <%= skill[:average] %> comparing to
-    <%= skill[:global] %> earned by others
-  </div>
-<% end %>
+```haml
+\# app/views/test_results/show.html.erb
+%h1
+  Personalised report for #{report.participant_name}
+%h2= report.test_name
+- report.skills.each do |skill|
+  %div
+    Your performance in #{skill[:name]} is
+    \#{skill[:average]} comparing to
+    \#{skill[:global]} earned by others
 ```
 
 ## But...
