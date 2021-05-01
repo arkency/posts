@@ -110,10 +110,11 @@ What happens here:
 
 ## How the read model looks like?
 
-|id| report_slug | participant_name | test_name | skills | |:--|:--|:--|:--|:--|:--| |997| cf827527c552 | Jane Doe |
-Important skillz test | `[{name: 'Sleeping', average: '2.5', global: '2.2'}, #...]` | |998| 6adb1fc1d201 | Ugly Joe |
-Programming skills assessment | `[{name: 'Ruby', average: '4.0', global: '2.0'}, #...]` | |999| 4cece2d44ae0 | Mr
-Kobayashi | Smartness test | `[{name: 'Whatever', average: '5.0', global: '1.0'}, #...]` |
+| id | report_slug | participant_name | test_name | skills |
+|-----|-----|-----|-----|-----|
+| 997 | cf827527c552 | Jane Doe | Important skillz test | `[{name: 'Sleeping', average: '2.5', global: '2.2'}, #...]` |
+| 998 | 6adb1fc1d201 | Ugly Joe | Programming skills assessment | `[{name: 'Ruby', average: '4.0', global: '2.0'}, #...]` |
+| 999 | 4cece2d44ae0 | Mr Kobayashi | Smartness test | `[{name: 'Whatever', average: '5.0', global: '1.0'}, #...]` |
 
 [Vaughn Vernon](https://twitter.com/VaughnVernon) in his „Implementing Domain-Driven Design” book describes _read model_
 this way:
