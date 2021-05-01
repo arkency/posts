@@ -43,14 +43,12 @@ How can it be done differently? By introducing _Value object_. Before diving int
 correct definition of it. I like characteristics of _Value object_ which Eric Evans put in his 
 „Domain-Driven Design: Tackling the Complexity in the Heart of Software” book:
 
-<blockquote>
-* It measures, quantifies, or describes a thing in the domain.
-* It can be maintained as immutable.
-* It models a conceptual whole by composing related attributes as an integral unit.
-* It is completely replaceable when the measurement or description changes.
-* It can be compared with others using Value equality.
-* It supplies its collaborators with Side-Effect-Free Behavior
-</blockquote>
+  * It measures, quantifies, or describes a thing in the domain.
+  * It can be maintained as immutable.
+  * It models a conceptual whole by composing related attributes as an integral unit.
+  * It is completely replaceable when the measurement or description changes.
+  * It can be compared with others using Value equality.
+  * It supplies its collaborators with Side-Effect-Free Behavior
 
 Probably the most common example of Value object you'll meet is the `Price` or `MonetaryValue` which represents the
 combo of `BigDecimal` and a `String` representing the currency. I'll do something different then.
