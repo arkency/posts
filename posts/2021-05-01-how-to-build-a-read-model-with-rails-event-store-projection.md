@@ -134,7 +134,9 @@ class TestResultsController < ApplicationController
     render locals: { report: ParticipantReport.find_by!(report_slug: params[:slug]) }
   end
 end
+```
 
+```erbruby
 # app/views/test_results/show.html.erb
 <h1>Personalised report for <%= report.participant_name %></h1>
 <h2><%= report.test_name %></h2>
