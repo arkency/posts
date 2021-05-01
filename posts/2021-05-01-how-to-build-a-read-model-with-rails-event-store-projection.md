@@ -32,8 +32,9 @@ module TestExecution
 end
 ```
 
-Nothing fancy, a typical domain event powered by [Rails Event Store](https://railseventstore.org), with a schema defined, keeping identifiers of involved entities and score
-calculated by the domain service which publishes the event above when its job is done.
+Nothing fancy, a typical domain event powered by [Rails Event Store](https://railseventstore.org), with a schema
+defined, keeping identifiers of involved entities and score calculated by the domain service which publishes the event
+above when its job is done.
 
 ## Build the read model
 
@@ -62,6 +63,7 @@ module Reporting
 
     def prepare_data_for_read_model(scores, test_id, participant_id)
       # magic happens, querying additional info, formatting data
+      [scores, participant, test]
     end
 
     def calculate_scores(test_id, participant_id)
@@ -76,21 +78,21 @@ module Reporting
               state[skill_id][:number_of_scores] += 1
             end
           )
-        .run(Rails.configuration.event_store)
-          .reduce({}) do |scores, (skill_id, values)|
+            .run(Rails.configuration.event_store)
+            .reduce({}) do |scores, (skill_id, values)|
             scores[skill_id] = values[:score] / values[:n]
             scores
           end
     end
 
     def link_to_stream(event, test_id, participant_id)
-       begin
-          Rails.configuration.event_store.link(
-                  event.event_id,
-                  stream_name: stream_name(test_id, participant_id)
-          )
-       rescue RubyEventStore::EventDuplicatedInStream
-       end
+      begin
+        Rails.configuration.event_store.link(
+          event.event_id,
+          stream_name: stream_name(test_id, participant_id)
+        )
+      rescue RubyEventStore::EventDuplicatedInStream
+      end
     end
 
     def stream_name(test_id, participant_id)
@@ -130,6 +132,43 @@ The query model is a denormalized data model. It is not meant to deliver domain 
 Denormalization is not a popular technique in the Rails world. What it gives? Complex, often many queries replaced with
 simple lookup for a single record which contains all the data to be displayed in a pre—formatted manner.
 
+## How to deal with concurrency issues
+
+Please, have a look at the read model implementation:
+
+```ruby
+
+module Reporting
+  class ParticipantReport < ApplicationRecord
+    def self.write(scores, participant, test)
+      ApplicationRecord.transaction do
+        advisory_lock(participant.id, test.id)
+
+        report = find_or_initialize_by(participant_id: participant.id, test_id: test.id)
+
+        report.slug = SecureRandom.hex(6)
+        report.participant_name = participant.name
+        report.scores = scores
+        report.save!
+      end
+    end
+
+    private_class_method def self.advisory_lock(participant_id, test_id)
+       bigint = [participant_id, test_id].join.hash
+       ApplicationRecord.connection.execute(
+         "SELECT pg_advisory_xact_lock(#{bigint})"
+       )
+    end
+  end
+end
+```
+
+It's _mostly obvious_. One might think that, there's already `with_lock` or simply `lock!` method in `ActiveRecord`. Yes,
+it is. However, it won't work for the not–yet–existing records because it uses `lock for update` and on first write there's
+no update operation, but create. So, in many cases `ActiveRecord::RecordNotUnique` errors would appear if two or more
+concurrent threads would try to insert the row for the first time. Thanks to `pg_advisory_xact_lock ( key bigint ) → void`
+we can _obtain an exclusive transaction-level advisory lock, waiting if necessary_. Yet another reason to use `PostgreSQL`.
+
 ## How to use the read model
 
 ```ruby
@@ -158,4 +197,5 @@ end
 What if another field is required or there was a bug in the calculations? Not a problem, read models can be thrown out
 and rebuild with ease, because all the history behind them is known — thanks to domain events.
 
-Btw. You might be also interested in other posts on [read models](https://blog.arkency.com/tags/read-model/) on our blog.
+Btw. You might be also interested in other posts on [read models](https://blog.arkency.com/tags/read-model/) on our
+blog.
