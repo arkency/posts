@@ -102,7 +102,7 @@ What happens here:
 1. `AnswerRegistered` event is linked to a dedicated report stream `participantReport$123-456`. By doing that, we can
    scope events in a way we desired, in our case, the stream contains id of a test and participant.
 2. Then, with the use of [Projection](https://railseventstore.org/docs/v2/projection/) reading from our dedicated
-   stream `participantReport$123-456` all the scores are grouped by the `skill_id`, accumulated with additional info (
+   stream `ParticipantReport$123-456` all the scores are grouped by the `skill_id`, accumulated with additional info (
    number of elements, specifically). After the projection is done, `reduce` is being used to do the math, resulting in
    average scores for each _skill_.
 3. When the _scores_ are ready, further calculations come and additional info for read model (like _skill_ names, etc.)
