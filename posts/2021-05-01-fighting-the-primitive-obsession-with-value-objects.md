@@ -130,9 +130,11 @@ end
 And there it is, we won't be able to add anything wrong to our score:
 
 ```ruby
-irb(main):123:0> AnswerScore.new(123, 0) + AnswerScore.new(456, 1)
+# Same skills, different scores
+irb(main):123:0> AnswerScore.new(123, 0) + AnswerScore.new(123, 1)
 => 0.1e1
 
+# Different object
 irb(main):124:0> AnswerScore.new(123, 0) + 5
 Traceback (most recent call last):
         5: from /Users/fidel/.rbenv/versions/2.7.3/bin/irb:23:in `<main>'
@@ -142,9 +144,7 @@ Traceback (most recent call last):
         1: from (irb):107:in `+'
 ArgumentError (ArgumentError)
 
-irb(main):125:0> AnswerScore.new(123, 0) + AnswerScore.new(123, 1)
-=> 0.1e1
-
+# Scores of different skills
 irb(main):126:0> AnswerScore.new(123, 0) + AnswerScore.new(456, 1)
 Traceback (most recent call last):
         5: from /Users/fidel/.rbenv/versions/2.7.3/bin/irb:23:in `<main>'
@@ -282,6 +282,7 @@ e.new(123, 1)
 => #<ScoreSum:0x0000000112030a30 @skill_id=123, @sum=0.2e1, @n=3>
 irb(main):256:0> [AnswerScore.new(123, 0), AnswerScore.new(123, 1), AnswerScore
 .new(123, 1)].reduce(&:+)
+=> #<ScoreSum:0x00000001137a8938 @skill_id=123, @sum=0.2e1, @n=3>
 ```
 
 What this gives us:
