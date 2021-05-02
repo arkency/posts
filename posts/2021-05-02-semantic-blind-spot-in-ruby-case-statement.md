@@ -22,7 +22,7 @@ else
 end
 ```
 
-The ranges actually read well. I'd even write similar case statement myself. And yet... an avid [mutant](https://github.com/mbj/mutant) user may tell you there's a "flaw" hidden there. Can you spot it?
+The ranges actually read well. I'd even write similar case statement myself. And yet an avid [mutant](https://github.com/mbj/mutant) user may tell you there's a "flaw" hidden there. Can you spot it?
 
 Let's pick one branch of that conditional for a closer look. Be it this one:
 
@@ -81,7 +81,7 @@ The [mutant](https://github.com/mbj/mutant) gem is a way to automatically detect
 >
 > Think of mutant as an expert developer that simplifies your code while making sure that all tests pass.
 
-Yet you can perform such code mutations in small scale, manually. It's a matter of changing the lower-bound in range condition and re-rerunning the tests.
+You can perform such code mutations in small scale without mutant — manually. It's a matter of changing the lower-bound in range condition and re-rerunning the tests.
 
 ```ruby
 def test_high
