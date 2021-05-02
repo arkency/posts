@@ -12,13 +12,13 @@ Some time ago I've stumbled upon an [article](https://twitter.com/RubyInside/sta
 ```ruby
 case number
 when (0..3)
-	'low value'
+  'low value'
 when (4..7)
-	'medium value'
+  'medium value'
 when (8..10)
-	'high value'
+  'high value'
 else
-	'invalid value'
+  'invalid value'
 end
 ```
 
@@ -41,11 +41,11 @@ def test_high
     when (4..7)
       'medium value'
     when (8..10)
-	    'high value'
+      'high value'
     else
-	    'invalid value'
+      'invalid value'
     end
-	end
+  end
 
   assert_equal 'high value', case_when.call(8)
   assert_equal 'high value', case_when.call(9)
@@ -92,11 +92,11 @@ def test_high
     when (0..7)
       'medium value'
     when (0..10)
-	    'high value'
+      'high value'
     else
-	    'invalid value'
+      'invalid value'
     end
-	end
+  end
 
   assert_equal 'high value', case_when.call(8)
   assert_equal 'high value', case_when.call(9)
