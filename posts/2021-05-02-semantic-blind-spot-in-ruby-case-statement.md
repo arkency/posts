@@ -61,7 +61,7 @@ Coverage:        88.00%
 
 That drop of the coverage (as mutant sees it) can be attributed to conditions being shadowed by earlier branches. It doesn't really matter if the lower-bound of the range in condition is a bit off. The test still pass.
 
-```diff
+```
    case number
    when (0..3)
      "low value"
