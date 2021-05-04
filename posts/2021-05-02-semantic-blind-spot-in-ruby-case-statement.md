@@ -2,7 +2,7 @@
 created_at: 2021-05-02 19:16:20 +0200
 author: Paweł Pacana
 tags: ['mutant', 'ruby']
-publish: false
+publish: true
 ---
 
 # Semantic blind spot in Ruby case statement
