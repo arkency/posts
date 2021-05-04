@@ -12,7 +12,7 @@ Pull requests with blocking reviews (sometimes mandatory) are widespread in our 
 
 But what are the **costs of working in such style**? And what are the alternatives?
 
-I wrote this post to gather the disadvantages of a typical PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting. 
+I wrote this post to gather the disadvantages of a typical PR flow, so that you can make a better informed decision — by knowing all the potential costs involved. You can judge yourself how each particular aspect applies to your specific work setting.
 
 If you have anything to add, [contact me on twitter](https://twitter.com/tomasz_wro) or [submit a pull request to this blogpost](https://github.com/arkency/posts/edit/master/posts/2021-04-09-disadvantages-of-pull-requests.md) (how ironic 🙃).
 
@@ -24,7 +24,7 @@ Now branches are unavoidable, even if you only commit to master and never type `
 
 * how long does a piece of code live in this divergent state, and
 * what is the size of this piece of code involved
- 
+
 Limiting these factors can make merge conflicts happen less frequently.
 
 When I have a feature to implement, I often like to work like this:
@@ -61,7 +61,7 @@ This way I can suggest where the reviewer spends the most attention.
 
 Why is programming so much more fun compared to other engineering disciplines? Perhaps because it's so quick to build something and see the result of your work. If you're building skyscrapers or airplanes, it takes years to see the product. This is also the reason why a lot of programmers find UI (or game) programming more enjoyable — because you can code something up and quickly see a fancy effect on the screen, which makes you want to do more.
 
-Now PRs make this feedback loop longer. You code something up but it's nowhere close to being integrated and working. You now have to wait for the reviewer, go through his remarks, discuss them, change the code... 
+Now PRs make this feedback loop longer. You code something up but it's nowhere close to being integrated and working. You now have to wait for the reviewer, go through his remarks, discuss them, change the code...
 
 There are a lot of processes for managing programmers' time, quality of the code, but I believe it pays off to also manage programmer's _energy_ and _momentum_.
 
@@ -89,7 +89,7 @@ Remarks made by the reviewer can fall anywhere on the spectrum of whether they s
 
 ## 6. It's easier to fix than to explain the fix
 
-Let's say the reviewer has an idea how to make a piece of code in you PR better. He explains it in a comment. The original author has to understand it first, agree with it, and then is expected to implement it. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. **PRs promote more words instead of action**.
+Let's say the reviewer has an idea how to make a piece of code in you PR better. They explain it in a comment. The original author has to understand it first, agree with it, and then is expected to implement it. Often it's better to let the original author merge his thing, and let the reviewer implement his remark post-factum? Faster, less costly, less frustrating. **PRs promote more words instead of action**.
 
 ## 7. Developers are slower to adapt the _responsibility mindset_
 
@@ -98,9 +98,9 @@ Compare these two developers:
 * Developer 1 makes subsequent commits to a branch, then creates a PR, then has it reviewed and merged.
 * Developer 2 splits his feature into small non-breaking pieces, makes subsequent commits to mainline, his code is integrated right away and possibly deployed
 
-Which developer will faster learn to _code responsibly_? The first one knows that whatever he commits, first lands on a branch, and doesn't affect anything. Then there's the review, so if he commited anything blatantly wrong, perhaps the reviewer will catch it.
+Which developer will faster learn to _code responsibly_? The first one knows that whatever they commit, first lands on a branch, and doesn't affect anything. Then there's the review, so if they commited anything blatantly wrong, perhaps the reviewer will catch it.
 
-The second one knows that every line he writes can screw up things for other developers or even bring production down. He watches his step, he knows he's the only one responsible for this change. **It shortens the delay between making a mistake and seeing the effect of it**.
+The second one knows that every line they write can screw up things for other developers or even bring production down. They watch their step, they know they are the only one responsible for this change. **It shortens the delay between making a mistake and seeing the effect of it**.
 
 People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast can such a person stop relying on reviews on develop his own sense of responsibility?
 
@@ -117,7 +117,7 @@ Some discussion with interesting arguments:
 
 ## 9. Negative emotions
 
-Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because he has to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. In rare cases it can lead to absurd behaviors, e.g. developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
+Mandatory PR reviews can induce way more negative emotions than needed. Let's say someone nitpicks on a PR because they had to point out something. The original author takes it personally. **We all have limited emotional budgets** — it's better not to waste it on avoidable stuff. In rare cases it can lead to absurd behaviors, e.g. developers making arrangements behind the scenes: _I'll approve your PR, and you'll approve mine_.
 
 ## 10. How do you switch to branches with migrations
 
@@ -131,7 +131,7 @@ You obviously sometimes need migrations while working on a branch. What do you d
 
 Here's a contribution from [@PavelKaczor](https://twitter.com/PavelKaczor):
 
-> No one would argue against PRs if we were sure that they substantially contribute to overall product quality. In fact, are we sure PRs increase overall product quality at all? Probably yes, but how much? Probably not much because deciding factors are not the ones that are impacted by the PRs. How do PRs affect the architecture and the design of the system (division of responsibilities between services, how the services communicate with each other, etc.), how do they affect requirements gathering / domain distillation process? If we don't see positive impact on these factors then why should we invest time and energy on activities that do _not_ matter. In worst case scenario we could end up with overall product quality decreased due to uproductive consumption of time and energy and distraction from activities that _do_ matter. How often do PRs focus on implemenation details? Is it a big deal if the implementation of a service is not so clean, optimal as one could imagine, especially if the service is an independent application (aka micro-service)? How much time do you spend on discussing, cleaning the requirements _before_ starting the implementation of a new feature? How does this activity influence the quality of the produced code? Think about the universal Pareto's Law (80/20 Rule) and try to follow it. Concentrate on processes that contribute 80% of your product's value. 
+> No one would argue against PRs if we were sure that they substantially contribute to overall product quality. In fact, are we sure PRs increase overall product quality at all? Probably yes, but how much? Probably not much because deciding factors are not the ones that are impacted by the PRs. How do PRs affect the architecture and the design of the system (division of responsibilities between services, how the services communicate with each other, etc.), how do they affect requirements gathering / domain distillation process? If we don't see positive impact on these factors then why should we invest time and energy on activities that do _not_ matter. In worst case scenario we could end up with overall product quality decreased due to uproductive consumption of time and energy and distraction from activities that _do_ matter. How often do PRs focus on implemenation details? Is it a big deal if the implementation of a service is not so clean, optimal as one could imagine, especially if the service is an independent application (aka micro-service)? How much time do you spend on discussing, cleaning the requirements _before_ starting the implementation of a new feature? How does this activity influence the quality of the produced code? Think about the universal Pareto's Law (80/20 Rule) and try to follow it. Concentrate on processes that contribute 80% of your product's value.
 
 ## Now, how to make the _10% change_ in your team today
 
@@ -141,13 +141,13 @@ I'm not suggesting a total outlawing of PRs. Gerald Weinberg says you can only m
 * Try a feature toggle to prevent your unfinished work from affecting production (instead of keeping it on prod). Flipper is a nice gem for that, but you can simply start with an ENV var switch or hiding the feature on UI.
 * Try getting into a habit or reviewing commits post-merge.
 * Make approvals not mandatory - let the developer merge the PR right away and have it reviewed post factum.
-* Make PRs not mandatory — let the developer choose if he wants to develop in a PR or commit to master.
+* Make PRs not mandatory — let the developer choose if they want to develop in a PR or commit to master.
 * Encourage post factum improvements by reviewers instead of comments.
 * Make it clear which PR comments are blocking, and which are free to be addressed after merging the PR.
 * Try to learn how to split your feature into small shippable pieces which don't break production.
 * An idea from [@CraigBuchek](https://twitter.com/CraigBuchek/status/1383976735922786304): You don't have to pair on writing the code, but you can pair with someone to do a code review (in real time).
 
-If your manager thinks pair-programming is a waste of time, perhaps he can be convinced by a meme:
+If your manager thinks pair-programming is a waste of time, perhaps they can be convinced by a meme:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Super excited that you liked my last drawing. Here is a new one! 🤗 <a href="https://t.co/vULVb0uoFo">pic.twitter.com/vULVb0uoFo</a></p>&mdash; Vincent Déniel (@vincentdnl) <a href="https://twitter.com/vincentdnl/status/1252628160111394817?ref_src=twsrc%5Etfw">April 21, 2020</a></blockquote>
 
