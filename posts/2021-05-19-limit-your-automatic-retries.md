@@ -29,7 +29,7 @@ What if there is so much concurrent writes, that this request will fail over and
 
 What if there is a bug in the code which will always raise that error and we always retry? **We have created an infinite loop, which deployed to production can bring our system down in seconds.** :)
 
-At least for these reasons, the retries should always be retries limited number of times (one should be enough ;) ). An example could be:
+At least for these reasons, there code should be always be retried limited number of times (one should be enough ;) ). An example could be:
 
 ```ruby
 def build_state(event)
