@@ -1,7 +1,7 @@
 ---
 created_at: 2021-05-19 07:58:17 +0200
 author: Rafał Łasocha
-tags: []
+tags: ['distributed systems', 'integrations']
 publish: true
 ---
 
