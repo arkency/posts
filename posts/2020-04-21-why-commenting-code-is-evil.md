@@ -7,7 +7,12 @@ publish: false
 
 # Why commenting code is evil
 
-TODO: that image from classic programmers paintings
+Less inflammatory title: hidden costs of putting adding comments to code
+
+<div class="tumblr-post" data-href="https://embed.tumblr.com/embed/post/9NYQOutKOEXi4aopdzCr9A/143319675260" data-did="a3fbf2de0fdc7813870b144667c226566dd2e2ac"><a href="https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy">https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy</a></div>
+<script async src="https://assets.tumblr.com/post.js"></script>
+
+
 
 I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out. _Saved for later_. _Disabled for now_.
 
