@@ -24,7 +24,7 @@ I've talked with people outraged at this position. _What if there's a pitfall in
 
 Do you wanna make sure that an assumption is valid? Write a test for it.
 
-### Makes you feel better when you shouldn't
+### Comments make you feel better when you shouldn't
 
 <!-- virtue signaling? -->
 
