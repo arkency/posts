@@ -20,10 +20,11 @@ I bet you've seen such codebases. Comments all over the place. You've got no ide
 
 While I agree that comments can sometimes help, here's my list of costs they incur which should be kept in mind when considering their helpfullness. That's why I try to avoid comments at all as a rule.
 
+<!-- it's variable how each factor applies to you -->
+
 ### Attention cost
 
 Let's say you stumble upon a comment in a unfamiliar area of the code. You feel like the knight on above picture. You now wonder - is this comment still relevant? Should I care about it? Should I stop now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant. All this thinking and potential action impose a cost on the visiting programmer.
-
 
 ### Comments make you feel better when you shouldn't
 
@@ -47,9 +48,11 @@ An interesting excerpt from a [paper on production failures in distributed syste
 
 ### Comments invite more comments
 
+Even if you try hard to make your comments always helpful, your teammates won't necessarily apply the same amount of discipline. Other teammates, seeing that comments are tolerated in this codebase might feel free to use them for whatever reason.
+
 ### Comments are ugly
 
-<!-- Singapore and chewing gum. -->
+That's definitely subjective, but I wouldn't overlook this factor. Developers care a lot about code formatting etc., how code comments turn out in this matter?
 
 ## What can be done instead
 
@@ -104,3 +107,5 @@ Do you wanna make sure that an assumption is valid? Write a test for it.
 
 
 -->
+
+<!-- the problem with comments is that it's too easy to write them -->
