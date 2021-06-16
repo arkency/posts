@@ -7,22 +7,23 @@ publish: false
 
 # Why commenting code is evil
 
-Less inflammatory title: hidden costs of putting adding comments to code
+Less inflammatory title: **Hidden costs of putting adding comments to code**.
+
+Here's a post from [Classic Programmer Paintings](https://classicprogrammerpaintings.com) which I like to link occasionally and which is my go-to resource when arguing about comments:
 
 <div class="tumblr-post" data-href="https://embed.tumblr.com/embed/post/9NYQOutKOEXi4aopdzCr9A/143319675260" data-did="a3fbf2de0fdc7813870b144667c226566dd2e2ac"><a href="https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy">https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy</a></div>
 <script async src="https://assets.tumblr.com/post.js"></script>
 
-I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out. _Saved for later_. _Disabled for now_.
+In a perfect world, the comments should be helpful and truthful, but in reality comments are often too obvious, they rot (they're not kept up to date), comments can mislead or outrightly lie.
 
-Random reasons why commenting code is bad for you and what can be done instead:
+I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out: _Saved for later_. _Disabled for now_.
+
+While I agree that comments can sometimes help, here's my list of costs they incur which should be kept in mind when considering their helpfullness. That's why I try to avoid comments at all as a rule.
 
 ### Attention cost
 
-You see one and you wonder - is it still relevant? Should I care about it? Should I stop now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant.
+Let's say you stumble upon a comment in a unfamiliar area of the code. You feel like the knight on above picture. You now wonder - is this comment still relevant? Should I care about it? Should I stop now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant. All this thinking and potential action impose a cost on the visiting programmer.
 
-I've talked with people outraged at this position. _What if there's a pitfall in that piece of code? Wouldn't you rather wanna know about that?_ If there really is a pitfall, there are so many ways you can do better than a code comment. Actually, why would you leave a pitfall in the code in the first place? Why not fix it instead? Putting a comment makes you feel justified - for a wrong reason, because you haven't improved anything. If it needs fixing, but you cannot do it at the moment - create a ticket for it. 
-
-Do you wanna make sure that an assumption is valid? Write a test for it.
 
 ### Comments make you feel better when you shouldn't
 
@@ -95,3 +96,11 @@ Got better reasons for commenting code?
 <!-- reasons to comment: there's an issue, something is not obvious, there's a pitfall... -->
 
 
+<!-- 
+
+I've talked with people outraged at this position. _What if there's a pitfall in that piece of code? Wouldn't you rather wanna know about that?_ If there really is a pitfall, there are so many ways you can do better than a code comment. Actually, why would you leave a pitfall in the code in the first place? Why not fix it instead? Putting a comment makes you feel justified - for a wrong reason, because you haven't improved anything. If it needs fixing, but you cannot do it at the moment - create a ticket for it. 
+
+Do you wanna make sure that an assumption is valid? Write a test for it.
+
+
+-->
