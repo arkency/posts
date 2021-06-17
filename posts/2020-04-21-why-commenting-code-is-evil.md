@@ -77,7 +77,7 @@ def this_method_will_catapult_you_if_you_call_it_with_an_even_number(number)
 end
 ```
 
-One could argue it's not that different from a comment. A method name can also lie. But still, it's less likely to ignore a method name or keep it out of sync with the actual code.
+One could argue it's not that different from a comment. A method name can also lie. But still, it's more difficult ignore a method name or keep it out of sync with the actual code.
 
 I always appreciated the naming of `dangerouslySetInnerHtml` in React. In my codebase, I'd rather add the `dangerous` prefix instead of going with a `// warning: dangerous` comment.
 
@@ -91,14 +91,14 @@ I find that a lot of people don't write commit messages. Perhaps because they do
 
 Let's go with an example. Suppose you discover a bug in a library you're using. Not a big deal, you can easily work it around on your side. But you also believe the library's going to get a proper fix soon too. You wouldn't like the work around to stay here forever. You're thinking about adding a comment:
 
-```
+```ruby
 # TODO: remove this workaround once the library gets a proper fix
 ```
 
 Not perfect. In most of the projects I worked on, no one would ever get into that again. The comment and the work around would stay there forever. What can you do instead?
 How about you write a test case against the library code, that will expect the bug to be there and fail when the bug is fixed on library's side?
 
-```
+```ruby
 def test_library_x_has_buggy_behavior_in_method_foo
   assert_equal "wrong", Library.foo, "the bug seems to be fixed - you can now remove the work around"
 end
