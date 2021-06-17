@@ -9,26 +9,31 @@ publish: false
 
 Less inflammatory title: **Hidden costs of putting adding comments to code**.
 
+I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out: _Saved for later_. _Disabled for now_.
+
+While I agree that comments sometimes help, here's my list of costs they impose which should be kept in mind when considering the helpfullness of adding comments. That's why I try to avoid comments at all as a rule. Of course the extent to which they affect your work is variable and subjective, but I believe it's helpful to be aware of all this aspects.
+
+### Comments rot, mislead and lie -- the deception cost
+
+One of the problems with comments is that it's too easy too write them.
+
+In a perfect world, the comments should be only helpful and truthful, but in reality they rot (they're not kept up to date), comments can mislead or outrightly lie. 
+
+It might happen that the original commenter was wrong since the beginning. Code, in turn, never lies (although method names can :)).
+
+It might happen that the comment was originally right, but the future commiters failed to keep it in sync when the code changed.
+
+
+### Comments leave you wondering -- the attention cost
+
 Here's a post from [Classic Programmer Paintings](https://classicprogrammerpaintings.com) which I like to link occasionally and which is my go-to resource when arguing about comments:
 
 <div class="tumblr-post" data-href="https://embed.tumblr.com/embed/post/9NYQOutKOEXi4aopdzCr9A/143319675260" data-did="a3fbf2de0fdc7813870b144667c226566dd2e2ac"><a href="https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy">https://classicprogrammerpaintings.com/post/143319675260/experienced-engineer-examines-comments-in-a-legacy</a></div>
 <script async src="https://assets.tumblr.com/post.js"></script>
 
-In a perfect world, the comments should be helpful and truthful, but in reality comments are often too obvious, they rot (they're not kept up to date), comments can mislead or outrightly lie.
-
-I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out: _Saved for later_. _Disabled for now_.
-
-While I agree that comments can sometimes help, here's my list of costs they incur which should be kept in mind when considering their helpfullness. That's why I try to avoid comments at all as a rule.
-
-<!-- it's variable how each factor applies to you -->
-
-### Attention cost
-
-Let's say you stumble upon a comment in a unfamiliar area of the code. You feel like the knight on above picture. You now wonder - is this comment still relevant? Should I care about it? Should I stop now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant. All this thinking and potential action impose a cost on the visiting programmer.
+Let's say you stumble upon a comment in a unfamiliar area of the code. You feel like the knight on above picture. You now wonder - is this comment still relevant? Should I care about it? Or is it just the one that states something obviuous? Should I break my flow now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant. All this thinking and potential action impose a cost on the visiting programmer.
 
 ### Comments make you feel better when you shouldn't
-
-<!-- virtue signaling? -->
 
 Let's say you write a piece of code in a non-optimal way. I'm often tempted to leave a comment like:
 
@@ -45,6 +50,8 @@ If you forbid yourself comments like this, perhaps you're going to leave less cr
 An interesting excerpt from a [paper on production failures in distributed systems](https://www.usenix.org/conference/osdi14/technical-sessions/presentation/yuan):
 
 > Specifically, we found that almost all (92%) of the catastrophic system failures are the result of incorrect handling of non-fatal errors explicitly signaled in software. (...) In fact, in 35% of the catastrophic failures, the faults in the error handling code fall into three trivial patterns: (i) the error handler is simply empty or only contains a log printing statement, (ii) the error handler aborts the cluster on an overly-general exception, and (iii) **the error handler contains expressions like “FIXME” or “TODO” in the comments**.  
+
+<!-- virtue signaling? -->
 
 ### Comments invite more comments
 
@@ -108,4 +115,4 @@ Do you wanna make sure that an assumption is valid? Write a test for it.
 
 -->
 
-<!-- the problem with comments is that it's too easy to write them -->
+
