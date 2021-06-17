@@ -13,7 +13,7 @@ I bet you've seen such codebases. Comments all over the place. You've got no ide
 
 While I agree that comments sometimes help, here's my list of costs they impose which should be kept in mind when considering the helpfullness of adding comments. That's why I try to avoid comments at all as a rule. Of course the extent to which they affect your work is variable and subjective, but I believe it's helpful to be aware of all this aspects.
 
-### Comments rot, mislead and lie -- the deception cost
+### 1. Comments rot, mislead and lie -- the deception cost
 
 One of the problems with comments is that it's too easy too write them.
 
@@ -24,7 +24,7 @@ It might happen that the original commenter was wrong since the beginning. Code,
 It might happen that the comment was originally right, but the future commiters failed to keep it in sync when the code changed.
 
 
-### Comments leave you wondering -- the attention cost
+### 2. Comments leave you wondering -- the attention cost
 
 Here's a post from [Classic Programmer Paintings](https://classicprogrammerpaintings.com) which I like to link occasionally and which is my go-to resource when arguing about comments:
 
@@ -33,7 +33,7 @@ Here's a post from [Classic Programmer Paintings](https://classicprogrammerpaint
 
 Let's say you stumble upon a comment in a unfamiliar area of the code. You feel like the knight on above picture. You now wonder - is this comment still relevant? Should I care about it? Or is it just the one that states something obviuous? Should I break my flow now, focus and try to understand what the commenter meant? Good bye deep work. It leaves you with worries and guilt. It's like dead code, but worse - you cannot easily establish if it's still relevant. All this thinking and potential action impose a cost on the visiting programmer.
 
-### Comments make you feel better when you shouldn't
+### 3. Comments make you feel better when you shouldn't
 
 Let's say you write a piece of code in a non-optimal way. I'm often tempted to leave a comment like:
 
@@ -53,23 +53,37 @@ An interesting excerpt from a [paper on production failures in distributed syste
 
 <!-- virtue signaling? -->
 
-### Comments invite more comments
+### 4. Comments invite more comments
 
 Even if you try hard to make your comments always helpful, your teammates won't necessarily apply the same amount of discipline. Other teammates, seeing that comments are tolerated in this codebase might feel free to use them for whatever reason.
 
-### Comments are ugly
+### 5. Comments are ugly
 
 That's definitely subjective, but I wouldn't overlook this factor. Developers care a lot about code formatting etc., how code comments turn out in this matter?
 
-## What can be done instead
+## Alternatives to commenting code
 
-### Self explanatory code, obviously
+### 1. Self-explanatory code, obviously
 
-Name a method in a specific way, even if it's very weird, e.g. dangerouslySetInnerHtml instead of `// warning: dangerous`
+OH: a piece of code is like a joke — if you have to explain it, it's bad.
 
-### Commit messages
+If you're tempted to write a comment to explain what the piece of code does, you try refactoring the code so that it no longer needs a comment.
 
-### Make a test case
+Here's the good part of forbidding yourself writing comments at all — when I know I cannot do it, I'm more likely to find a way to make the code more clear. Often it's very easy. In the worst case I can give a really long name to the method in question, like:
+
+```ruby
+def this_method_will_catapult_you_if_you_call_it_with_an_even_number(number)
+  catapult if number.even?
+end
+```
+
+One could argue it's not that different from a comment. A method name can also lie. But still, it's less likely to ignore a method name or keep it out of sync with the actual code.
+
+I always appreciated the naming of `dangerouslySetInnerHtml` in React. In my codebase, I'd rather add the `dangerous` prefix instead of going with a `// warning: dangerous` comment.
+
+### 2. Commit messages
+
+### 3. Test cases
 
 An example. Suppose you discover a bug in a library you're using. Not a big deal, you can easily work it around on your side. But you also believe the library's going to get a proper fix soon too. You wouldn't like the work around to stay here forever. You're thinking about adding a comment:
 
