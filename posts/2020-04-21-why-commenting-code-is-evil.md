@@ -7,13 +7,13 @@ publish: false
 
 # Why commenting code is evil
 
-Less inflammatory title: **Hidden costs of putting adding comments to code**.
+Less inflammatory title: **Hidden costs of adding comments to your code**.
 
 I bet you've seen such codebases. Comments all over the place. You've got no idea which ones are still relevant. Most of them hard to understand or too obvious. Big chunks of code commented out: _Saved for later_. _Disabled for now_.
 
 While I agree that comments sometimes help, here's my list of costs they impose which should be kept in mind when considering the helpfullness of adding comments. That's why I try to avoid comments at all as a rule. Of course the extent to which they affect your work is variable and subjective, but I believe it's helpful to be aware of all this aspects.
 
-### 1. Comments rot, mislead and lie -- the deception cost
+### 1. Comments rot, mislead and lie — the deception cost
 
 One of the problems with comments is that it's too easy too write them.
 
@@ -24,7 +24,7 @@ It might happen that the original commenter was wrong since the beginning. Code,
 It might happen that the comment was originally right, but the future commiters failed to keep it in sync when the code changed.
 
 
-### 2. Comments leave you wondering -- the attention cost
+### 2. Comments leave you wondering — the attention cost
 
 Here's a post from [Classic Programmer Paintings](https://classicprogrammerpaintings.com) which I like to link occasionally and which is my go-to resource when arguing about comments:
 
@@ -83,9 +83,13 @@ I always appreciated the naming of `dangerouslySetInnerHtml` in React. In my cod
 
 ### 2. Commit messages
 
+I really like and appreciate writing commit messages to explain the _what_ and the _why_ of your change. You don't have limit yourself — you're not polluting the code base. Commit messages have the advantage of being written in a particular point of history — they're not going to rot, they're always true in that particular point of time.
+
+I find that a lot of people don't write commit messages. Perhaps because they don't feel they're read by other teammates or perhaps that people cannot easily dig git history to find relevant information (commands like `git log`, `git grep`).
+
 ### 3. Test cases
 
-An example. Suppose you discover a bug in a library you're using. Not a big deal, you can easily work it around on your side. But you also believe the library's going to get a proper fix soon too. You wouldn't like the work around to stay here forever. You're thinking about adding a comment:
+Let's go with an example. Suppose you discover a bug in a library you're using. Not a big deal, you can easily work it around on your side. But you also believe the library's going to get a proper fix soon too. You wouldn't like the work around to stay here forever. You're thinking about adding a comment:
 
 ```
 # TODO: remove this workaround once the library gets a proper fix
@@ -102,11 +106,13 @@ end
 
 I prefer the latter. When the test case fails, it's much more likely that someone does something about it. And also there's no comment making the production code ugly!
 
-### Raise an exception
+### Issue trackers, documentation, wiki pages, READMEs
 
-### Issue tracker
+They're all viable alternatives, but there are disadvantages to consider. One has to consider how likely such document is to be revisited or kept up to date. I have mixed feelings about using ticket trackers for technical issues – too often noone gets back to it — but still it's better that `# TODO:` comments. When it comes to documentation and wiki pages — they have even bigger tendency to get out of date to the level of being actively misleading. A `README` file has the advantage of being tracked in git history and can be changed together with the code.
 
 ## Caveats
+
+Obviously there are projects 
 
 * The rule may not be 100% but still you're far better off if you stick to it 100%, because you never wonder "should I write a comment".
 * Ok, you work on a public api, library - documentation.
@@ -115,7 +121,6 @@ I prefer the latter. When the test case fails, it's much more likely that someon
 
 Got better reasons for commenting code?
 
-<!-- code never lies comments do often -->
 
 <!-- reasons to comment: there's an issue, something is not obvious, there's a pitfall... -->
 
