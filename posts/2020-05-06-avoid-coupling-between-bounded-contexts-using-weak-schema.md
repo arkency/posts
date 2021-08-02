@@ -163,7 +163,7 @@ type. As a base class, I use here my implementation of base
 event class, compatible with `RailsEventStore::Event` but
 allowing to define attributes using `dry-schema` and `dry-types` gems.
 You could see the implementation of this base class
-[here](https://github.com/RailsEventStore/rails_event_store/blob/master/contrib/scripts/dry-event.rb).
+[here](https://github.com/RailsEventStore/examples/blob/master/scripts/dry-event.rb).
 These events have a different schema. But the way they are defined allows
 usage of the Weak Schema technique.
 

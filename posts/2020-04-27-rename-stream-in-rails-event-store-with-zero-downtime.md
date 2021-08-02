@@ -300,4 +300,4 @@ it could not be deleted (at least not without use of rails console :P).
 
 ## Make your own experiments
 
-Code is fun! Go play with it! Here is the [source of code spike](https://github.com/RailsEventStore/rails_event_store/blob/master/contrib/scripts/rename-stream.rb) for this blog post.
+Code is fun! Go play with it! Here is the [source of code spike](https://github.com/RailsEventStore/examples/blob/master/scripts/rename-stream.rb) for this blog post.
