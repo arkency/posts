@@ -1,8 +1,8 @@
 ---
-created_at: 2021-08-09 12:25:24 +0200
+created_at: 2021-08-13 12:25:24 +0200
 author: Andrzej Krzywda
-tags: [event sourcing]
-publish: false
+tags: ['event sourcing', 'rails event store', 'elm', 'ddd', 'audit log']
+publish: true
 ---
 
 # Audit log with event sourcing
