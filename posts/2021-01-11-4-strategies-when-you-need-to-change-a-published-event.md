@@ -2,7 +2,7 @@
 title: 4 strategies when you need to change a published event
 created_at: 2021-01-11T13:31:08.554Z
 author: Tomasz Wróbel
-tags: ["event store", "event sourcing", "ddd"]
+tags: ["event store", "event sourcing", "ddd", 'rails event store']
 publish: true
 ---
 
