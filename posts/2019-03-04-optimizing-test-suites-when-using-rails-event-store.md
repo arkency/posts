@@ -2,7 +2,7 @@
 created_at: 2019-03-04 17:24:55 +0100
 publish: true
 author: Rafał Łasocha
-tags: [ 'ddd', 'testing', 'rspec' ]
+tags: [ 'ddd', 'testing', 'rspec', 'rails event store' ]
 newsletter: arkency_form
 ---
 
