@@ -8,9 +8,13 @@ publish: false
 
 ## Webhooks and in-request handling 
 
+* maybe the webhook caller will care about the order when retrying webhooks
+
 ## Webhooks and background handling
 
-## Queues
+* retries can mess up order
+
+## A queue/log
 
 ## Streams
 
