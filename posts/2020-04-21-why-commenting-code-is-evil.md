@@ -135,3 +135,6 @@ Do you wanna make sure that an assumption is valid? Write a test for it.
 -->
 
 
+<!-- https://twitter.com/tomasz_wro/status/1255470624501268481 -->
+<!-- https://twitter.com/fxn/status/1409468315790155777 -->
+<!-- https://twitter.com/timriley/status/1409475807458697225 -->
