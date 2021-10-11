@@ -14,3 +14,4 @@ publish: false
 
 ## Sidekiq Ent `unique_for`
 
+<!-- https://stackoverflow.com/questions/5748143/what-transaction-behavior-should-we-expect-if-the-client-dies -->
