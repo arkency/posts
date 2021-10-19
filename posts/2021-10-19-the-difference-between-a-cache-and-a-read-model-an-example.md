@@ -36,7 +36,29 @@ You start to think about...
 
 ## Caching
 
-You want to cache the JSON responses.
+In this case you want to cache the JSON responses.
+
+* You need to cache a response for every combination of filters/pages/sorting
+* You will probably cache on first request, so some of the requests can still be slow, no predictable performance 
+* Warming up a cache can be cumbersome and feels dirty
+* Now comes the second hardest problem of computer science: _cache expiration_ (the first one being _naming things_)
+
+Is a cache the only option?
+
+Let's look at...
+
+## Read models
+
+In this solution you'd do something different.
+
+* Build a new DB table which is totally optimized for the queries that the client wants to do.
+* Let's have a single table (as opposed to multiple cached variants per page/sorting/filters). This table should contain all the data for further pagination/sorting/filtering.
+* Have all the fields as client-ready as possible. If you need to show the address, instead of joining with `addresses` table, put this data into the read model table, so that now the 
+* Need to filter or sort - have a plain field dedicated for it
+
+
+Now how you're going to maintain current data in this table?
+Update the 
 
 
 
