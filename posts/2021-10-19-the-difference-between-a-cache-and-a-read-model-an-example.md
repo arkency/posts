@@ -10,7 +10,7 @@ Let's say you have a fairly complicated view: a calendar-like table with apartme
 
 <!-- TODO: image -->
 
-Of course you want to be able to
+Of course you want to be able to:
 
 * filter by availability, by location
 * sort
@@ -53,12 +53,48 @@ In this solution you'd do something different.
 
 * Build a new DB table which is totally optimized for the queries that the client wants to do.
 * Let's have a single table (as opposed to multiple cached variants per page/sorting/filters). This table should contain all the data for further pagination/sorting/filtering.
-* Have all the fields as client-ready as possible. If you need to show the address, instead of joining with `addresses` table, put this data into the read model table, so that now the 
-* Need to filter or sort - have a plain field dedicated for it
+* Have all the fields as client-ready as possible. If you need to show the address alongside the apartment, instead of joining with `addresses` table, put this data into the read model table, so that now the row is as ready as possible. DB denormalization and data redundancy are allowed and very welcome. 
+* If you need to have a complicated filter or sort expression, precalculate it and put it in a field to make querying as easy as possible
 
+But how do we keep the read model up to date with the write model?
 
-Now how you're going to maintain current data in this table?
-Update the 
+## How to keep the read model up to date — the _vanilla_ way
 
+The "vanilla" way is pretty straightforward: 
 
+```ruby
+ApplicationRecord.transaction do
+  booking = Booking.create!(params)
+  CalendarReadModel.handle_booking_created(booking)
+end  
+```
 
+You can move all these read-related methods from the original model to the read model. Feels good.
+
+You need to update the read model everytime you change anything related to the read model (here: not only when creating a booking but also when adding another appartment, changing an addres, changing the price). Feels like a lot of work? Probably. But it might still be justifiable.
+
+But it's not the only way to update the read model.
+
+## How to keep the read model up to date — the _event-driven_ way
+
+Here's the other approach. When you book an apartment, publish an event alongside it:
+
+```ruby
+ApplicationRecord.transaction do
+  booking = Booking.create!(params)
+  event_store.publish(BookingCreated.new(data: { booking_id: booking.id })
+end
+```
+
+And subscribe the event to a handler that will update the read model:
+
+```ruby
+event_store.subscribe(
+  -> event { CalendarReadModel.handle_booking_created(event) },
+  to: [BookingCreated]
+)
+```
+
+It's way more decoupled this way. It doesn't decrease the effort — you still need to react to changes in all the relevant models — but the implementation is arguably cleaner and simpler and there's so much more you can now do with the event that you publish.
+
+It's worth noting, that the handler is synchronous so it will execute in the same transaction, just as in the "vanilla" example. You can make the handler asynchronous, but then you need to account for _eventual consistency_, meaning that there might be a little lag between what the read model shows and what the write model allows. It's justifiable drawback in many situations.
