@@ -15,6 +15,15 @@ While I agree that comments sometimes help, here's my list of costs they impose 
 
 ### 1. Comments rot, mislead and lie — the deception cost
 
+True story, one of many:
+
+```
+resources {
+  cpu    = 500 # 500 MHz
+  memory = 1024 # 256MB
+}
+```
+
 One of the problems with comments is that it's too easy too write them.
 
 In a perfect world, the comments should be only helpful and truthful, but in reality they rot (they're not kept up to date), comments can mislead or outrightly lie. 
