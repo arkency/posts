@@ -52,7 +52,7 @@ Let's look at...
 In this solution you'd do something different.
 
 * Build a new DB table which is totally optimized for the queries that the client wants to do.
-* Let's have a single table (as opposed to multiple cached variants per page/sorting/filters). This table should contain all the data for further pagination/sorting/filtering.
+* Let's have a single table (as opposed to multiple cached variants per page/sorting/filters). This table should contain all the data for further pagination/sorting/filtering. (Generally, a read model does not have to be a single table. It doesn't have to be an SQL table at all. It can be anything from an in memory object to a file on the disc).
 * Have all the fields as client-ready as possible. If you need to show the address alongside the apartment, instead of joining with `addresses` table, put this data into the read model table, so that now the row is as ready as possible. DB denormalization and data redundancy are allowed and very welcome. 
 * If you need to have a complicated filter or sort expression, precalculate it and put it in a field to make querying as easy as possible
 
