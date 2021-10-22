@@ -37,3 +37,6 @@ end
 
 
 https://github.com/mbj/mutant/blob/main/docs/mutant-rspec.md#test-selection
+https://github.com/mbj/mutant/blob/main/docs/configuration.md
+
+https://github.com/RailsEventStore/ecommerce/blob/master/rails_application/.mutant.yml — example
