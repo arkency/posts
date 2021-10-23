@@ -9,8 +9,6 @@ publish: false
 
 If you ever got annoyed by the fact that `JSON.parse` returns hash with string keys and prefer hashes with symbols as keys, this post is for you.
 
-FIXME: Place post lead here.
-
 <!-- more -->
 
 If you're a Rails developer, you're probably familiar with `deep_symbolize_keys` method in `Hash` which can help with such case. Especially, in ideal world, where our data structure is a hash, like:
