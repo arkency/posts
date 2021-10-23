@@ -2,7 +2,7 @@
 created_at: 2021-10-23 13:19:08 +0200
 author: Szymon Fiedler
 tags: [ruby, rails, json]
-publish: false
+publish: true
 ---
 
 # Less known capability of Ruby's JSON.parse
