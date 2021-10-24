@@ -70,7 +70,7 @@ Let's check how it rolls on Array with collection of hashes:
 
 Perfect.
 
-How I discovered this feature? Some time ago I worked on a read model which had some data stored in PostgreSQL json columns. As you probably know, the data get serialized and deserialized automatically. Which means, that we get string keys in our data structure.
+How I discovered this feature? Some time ago I worked on a read model which had some data stored in PostgreSQL json columns. As you probably know, data are serialized and deserialized automatically. Which means, that in result of reading from json column we get data structure with string keys.
 
 ```ruby
 # before
@@ -81,7 +81,7 @@ end
 => [{"foo" => { "bar" => "baz" } }]
 ```
 
- This was quite inconvenient to me. I wanted a reliable way to have value accessible via symbols, especially that it was an array containing individual hashes that. I explored docs a bit, which allowed me to write a custom serializer:
+This was quite inconvenient to me. I wanted a reliable way to have value accessible via symbols, especially that it was an array containing individual hashes. I explored docs a bit, which allowed me to write a custom serializer:
 ```ruby
 class FancyModel < ActiveRecord::Base
   class SymbolizedSerializer
