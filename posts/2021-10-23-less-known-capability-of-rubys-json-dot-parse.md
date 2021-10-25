@@ -86,7 +86,7 @@ This was quite inconvenient to me. I wanted a reliable way to have value accessi
 class FancyModel < ActiveRecord::Base
   class SymbolizedSerializer
     def self.load(json)
-      JSON.parse(json, symbolized_names: true)
+      JSON.parse(json, symbolize_names: true)
     end
     
     def self.dump(data)
