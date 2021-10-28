@@ -94,7 +94,7 @@ class FancyModel < ActiveRecord::Base
     end
   end
   
-  serialise :my_json_column, SymbolizedSerializer
+  serialize :my_json_column, SymbolizedSerializer
 end
 
 > FancyModel.last.my_json_column
