@@ -25,3 +25,5 @@ ping not nuff, DM needed
 go for text instead
 
 easier to reread, don't have to repeat, don't have connectivity problems
+
+# Discussions in private channels
