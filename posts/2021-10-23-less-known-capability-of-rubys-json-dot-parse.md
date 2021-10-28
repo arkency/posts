@@ -5,7 +5,7 @@ tags: [ruby, rails, json]
 publish: true
 ---
 
-# Less known capability of Ruby's JSON.parse
+# A lesser known capability of Ruby's JSON.parse
 
 If you ever got annoyed by the fact that `JSON.parse` returns hash with string keys and prefer hashes with symbols as keys, this post is for you.
 
