@@ -26,6 +26,8 @@ go for text instead
 
 easier to reread, don't have to repeat, don't have connectivity problems
 
+focus problems
+
 # Secretive conversations
 
 - private channels
