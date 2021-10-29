@@ -14,8 +14,7 @@ If you ever got annoyed by the fact that `JSON.parse` returns hash with string k
 If you're a Rails developer, you're probably familiar with `deep_symbolize_keys` method in `Hash` which can help with such case. Especially, in ideal world, where our data structure is a hash, like:
 
 ```ruby
-# if outside of Rails, add the below require statement
-#require 'json'
+require 'json'
 
 json = <<~JSON
 { 
