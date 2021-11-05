@@ -34,3 +34,18 @@ focus problems
 - group DMs
 
 Why?
+
+
+<!--
+
+if it's a meeting then it's obivously work. Why people look bad at wasting time when working individually? But when on a group call, wasting time suddenly is ...
+
+problems with calls
+"can you repeat"
+"sounds good"
+weary
+cannot reread
+
+also priv messages
+
+-->
