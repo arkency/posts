@@ -6,13 +6,13 @@ tags: []
 publish: false
 ---
 
-## `@here`
+## `@here`-ing too
 
-what about  a real defcon
+What are you going to do when there's a real DEFCON? There's no bigger way of grabbing people's attention.
 
 ## ping inflation
 
-ping not nuff, DM needed
+ping not enough, DM needed
 
 ## meeting to solve everything
 
@@ -48,4 +48,9 @@ cannot reread
 
 also priv messages
 
+meetings drain energy
+meetings drain attention budget
+you wan't to make sure you're doing that for a good reason
+
 -->
+
