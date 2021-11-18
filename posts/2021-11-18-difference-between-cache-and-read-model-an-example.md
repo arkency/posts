@@ -8,7 +8,7 @@ publish: false
 
 Let's say you have a fairly complicated view: a calendar-like table with apartments to rent as rows and availability dates as columns.
 
-<!-- TODO: image -->
+<%= img_fit("cache-vs-read-model.png", title: "Courtesy of getlavanda.com") %>
 
 Of course you want to be able to:
 
