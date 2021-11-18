@@ -26,12 +26,13 @@ You need to join data from a couple different tables:
 * `bookings`
 * a sequence of dates
 
-What happens next?
+What happens next:
 
-* At the beginning you just query your tables and do some joins. Later you optimize the queries and perhaps write some of them by hand.
+* At the beginning you just query your tables, do some joins.
+* Later you optimize the queries and perhaps write some of them by hand.
 * Developers keep extending this view over the years by adding more and more data.
 * Clients grow their datasets and soon they start complaing about the page being too slow.
-* You start to think about a solution to make it even faster. Perhaps caching?
+* You start to think about a solution to make it fast enough. Perhaps caching?
 
 ## Caching
 
