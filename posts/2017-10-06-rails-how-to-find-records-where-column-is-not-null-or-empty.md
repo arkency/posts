@@ -27,7 +27,7 @@ User.where(category: [nil, ""])
 Still easy.
 
 ```ruby
-User.where.not(category: [nil, ""])
+User.where.not(category: "")
 ```
 
 This `not()` clause is going to only apply to one `where`. You are not going to negate all previous conditions. In other words you can safely use it like this:
