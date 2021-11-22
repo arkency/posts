@@ -6,10 +6,10 @@ newsletter: arkency_short
 img: "preloading/header.png"
 tags: [ 'rails', 'active record', 'preloading', 'eager_loading' ]
 description: "There are 3 ways to do Eager Loading in Rails: #includes, #preload, #eager_load. Want to know more about it? #CLICK HERE to visit Arkency Blog !!!"
-meta_title: "→  Eager Loading (preloading) - 3 ways to do it in Rails 3 & 4 & 5"
+meta_title: "→  Eager Loading (preloading) - 3 ways to do it in Rails 3, 4, 5 and 6"
 ---
 
-# 3 ways to do eager loading (preloading) in Rails&nbsp;3&nbsp;&&nbsp;4&nbsp;&&nbsp;5
+# 3 ways to do eager loading (preloading) in Rails&nbsp;3,&nbsp;4,&nbsp;5&nbsp;and&nbsp;6
 
 <%= img_fit("preloading/header.png") %>
 
@@ -301,7 +301,7 @@ end
 
 I hope you get the idea :) But this is just a dream. Let's get back to reality...
 
-## Rails 4 & 5 changes
+## Rails 4 and 5 changes
 
 ... and talk about what changed in Rails 4.
 
@@ -465,6 +465,47 @@ which Rails 3 has been missing for years:
 * [`#preload`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-preload)
 * [`#eager_load`](http://api.rubyonrails.org/v4.0.1/classes/ActiveRecord/QueryMethods.html#method-i-eager_load)
 
+## Rails 6 changes
+
+Rails 6 facitilites usage of `#includes` making `#references` almost obsolete.
+
+Using `#includes` without `#references` and filtering data by the referenced column using string conditions will fail as before:
+
+```ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland").inspect
+# User Load (0.7ms)  SELECT "users".* FROM "users" WHERE (addresses.country = 'Poland') /* loading for inspect */ LIMIT ?  [["LIMIT", 11]]
+# SQLite3::SQLException: no such column: addresses.country (ActiveRecord::StatementInvalid)
+# no such column: addresses.country (SQLite3::SQLException)
+```
+
+Adding `#references` solves the problem:
+
+```ruby
+User.includes(:addresses).where("addresses.country = ?", "Poland").references(:addresses).inspect
+#   SQL (0.3ms)  SELECT DISTINCT "users"."id" FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE (addresses.country = 'Poland') # /* loading for inspect */ LIMIT ?  [["LIMIT", 11]]
+# => "#<ActiveRecord::Relation []>"
+```
+
+Now we can make use of the mentioned facilitation brought by Rails 6:
+
+```ruby
+User.includes(:addresses).where({ addresses: { country: "Poland" } }).inspect
+#   SQL (0.3ms)  SELECT DISTINCT "users"."id" FROM "users" LEFT OUTER JOIN "addresses" ON "addresses"."user_id" = "users"."id" WHERE "addresses"."country" = ? /* loading for inspect */ LIMIT ?  [["country", "Poland"], ["LIMIT", 11]]
+# => "#<ActiveRecord::Relation []>"
+```
+
+If conditions referencing eager table columns are passed as hash, `#where` is able to reference the valid table. This means that:
+
+```ruby
+.where("addresses.country = ?", "Poland").references(:addresses)
+```
+
+can be replaced with
+
+```ruby
+.where({ addresses: { country: "Poland" } })
+```
+
 ## Testing
 
 Check out how you can [test eager-loading the associations](/two-ways-for-testing-preloading-eager-loading-of-activerecord-association-in-rails/) and make sure the code actually makes as many queries as you expected.
@@ -485,8 +526,11 @@ presence or absence of condition related to one of the preloaded table.
 `#eager_load` is using one big query with `LEFT JOIN` for each eager loaded
 table.
 
-In Rails 4 & 5 you should use `#references` combined with `#includes` if you
+In Rails 4 and 5 you should use `#references` combined with `#includes` if you
 have the additional condition for one of the eager loaded table.
+
+In Rails 6 you can skip using `#references` combined with `#includes` if you
+pass condition for eager loaded table using hash.
 
 ## Would you like to continue learning more?
 
