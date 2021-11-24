@@ -30,9 +30,9 @@ Still easy.
 User.where.not(category: [nil, ""])
 ```
 
-> _A contribution from [pjmartorell](https://github.com/pjmartorell)_:
+> A contribution from [pjmartorell](https://github.com/pjmartorell):
 > 
-> `User.where.not(category: "")` will also find records where column is not null or empty (`SELECT "users".* FROM "users" WHERE "users"."category" != ?  [["category", ""]`) but in a more efficient way than using the array form (`NOT IN`). Because of the nature of `not`, it does not fetch records where `category` is `null`. You can read more about this topic [here](https://thoughtbot.com/blog/activerecord-s-where-not-and-nil).
+> `User.where.not(category: "")` will also find records where column is not null or empty, but in a more efficient way than using the array form (`NOT IN`). Because of the nature of `not`, it does not fetch records where `category` is `null`. You can read more about this topic [here](https://thoughtbot.com/blog/activerecord-s-where-not-and-nil).
 
 This `not()` clause is going to only apply to one `where`. You are not going to negate all previous conditions. In other words you can safely use it like this:
 
