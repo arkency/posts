@@ -1,6 +1,6 @@
 ---
 title: Difference between Cache and Read Model, an example
-created_at: 2021-11-18T11:29:35.457Z
+created_at: 2021-11-24T11:29:35.457Z
 author: Tomasz Wróbel
 tags: []
 publish: false
@@ -8,7 +8,7 @@ publish: false
 
 Let's say you have a fairly complicated view: a calendar-like table with apartments to rent as rows and availability dates as columns.
 
-<%= img_fit("cache-vs-read-model.png", title: "Courtesy of getlavanda.com") %>
+<%= img_fit("cache-vs-read-model/cache-vs-read-model.png", title: "Courtesy of getlavanda.com") %>
 
 Of course you want to be able to:
 
