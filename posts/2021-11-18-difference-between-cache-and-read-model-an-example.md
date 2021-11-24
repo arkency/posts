@@ -2,8 +2,8 @@
 title: Difference between Cache and Read Model, an example
 created_at: 2021-11-24T11:29:35.457Z
 author: Tomasz Wróbel
-tags: []
-publish: false
+tags: [ 'ddd', 'read model', 'cqrs', 'rails_event_store' ]
+publish: true
 ---
 
 Let's say you have a fairly complicated view: a calendar-like table with apartments to rent as rows and availability dates as columns.
