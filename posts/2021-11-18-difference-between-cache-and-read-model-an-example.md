@@ -1,5 +1,5 @@
 ---
-title: The Difference Between a Cache and a Read Models, an example
+title: The Difference Between a Cache and a Read Model, an example
 created_at: 2021-11-24T11:29:35.457Z
 author: Tomasz Wróbel
 tags: [ 'ddd', 'read model', 'cqrs', 'rails_event_store' ]
