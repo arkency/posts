@@ -6,7 +6,7 @@ publish: false
 ---
 # Don't waste your time on assets compilation on Heroku
 
-At some point, you may want or be forced to use the CDN to server asset of your Rails app. When your app is globally available, you may want to serve the assets from strategically located servers around the world to provide the best possible experience for the end user. Serving static assets via Puma is not the best idea — it'll be slow. The only viable option on Heroku is to use CDN. I will show you how to do it smart, save time and have faster deployments
+At some point, you may want or be forced to use the CDN to serve asset of your Rails app. When your app is globally available, you may want to serve the assets from strategically located servers around the world to provide the best possible experience for the end user. Serving static assets via Puma is not the best idea — it'll be slow. The only viable option on Heroku is to use CDN. I will show you how to do it smart, save time and have faster deployments
 
 <!-- more -->
 
