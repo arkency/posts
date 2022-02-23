@@ -12,12 +12,21 @@ At some point, you may want or be forced to use the CDN to serve assets of your 
 
 There are two types of CDNs. _Push_ and _Pull_. I won't be focusing here on the differences, but for our purpose we've chosen the _Push_ approach which basically acts as like the origin server and assets are requested for client directly from it. The only downside for us is that we need to deliver the assets to CDN on our own, but it's not that hard as it sounds. If we used the _Pull_ CDN, it would do it for us, but initial request for a user would be sluggish and rewriting URLs is a no–go. Btw. [Amazon found every 100ms of latency cost them 1% in sales](https://www.gigaspaces.com/blog/amazon-found-every-100ms-of-latency-cost-them-1-in-sales) — big money on the table.
 
-There are quite few solutions available, the most popular is probably `asset_sync` gem. Basically, it hooks into `assets:precompile` and syncs assets with given S3 bucket (or other provider). I don't like implicit hooks. It also happens during deployment adding more time to it. On Heroku, all the assets and their sources, like "beloved" `node_modules` contribute to slug size, it's easy to be far away from their soft—limit (300MB) which contributes to slower deployments because of longer compression time.
+There are quite few solutions available, the most popular is probably `asset_sync` gem. Basically, it hooks into `assets:precompile` and syncs assets with given S3 bucket (or other provider). I don't like implicit hooks. It also happens during deployment adding more time to it. On Heroku, all the assets and their sources, like "beloved" `node_modules` contribute to slug size. It's easy to be far away from their soft—limit (300MB) which contributes to slower deployments because of longer compression time.
 
 How it started: >8 minutes from push to master to release
 How is it going: ~2 minutes from push to master to release
 
 What if I tell you that assets can be compiled on CI, in parallel with the test suite and pushed to CDN, so they're instantly available as soon as the app is released?
+
+To sum up what has been done:
+
+- assets are precompiled using pretty modern stack on CI in parallel with tests running,
+- CI uploads them to CDNs bucket along with manifest file,
+- custom Heroku buildpack downloads manifest,
+- during build phase, asset precompilation is skipped since manifest is in place,
+- app is released and links assets from CDN,
+- build time and slug size are saved
 
 We've kinda reimplemented rsync on S3. _Ok, show me the code!_
 
@@ -250,13 +259,4 @@ jobs:
 
 - As you can see, we use limited number of `ENV` variables here, we replaced `RAILS_ENV=production` with `ASSET_ENV=production` for `assets:precompile`. It required simple tweaks in esbuild's and postcss's configs. Since we don't do minification with Sprockets, we don't need the full Rails env here. It happens within seconds now.
 - One day we'll switch to [Propshaft](https://github.com/rails/propshaft), all the preceding steps makes us closer to it.
-
-To sum up what happens here:
-
-- assets are precompiled using pretty modern stack on CI in parallel with tests running
-- CI uploads them to CDNs bucket along with manifest file
-- Heroku buildpack downloads manifest
-- during build phase, asset precompilation is skipped since manifest is in place
-- app is released and links assets from CDN
-- build time and slug size are saved
 
