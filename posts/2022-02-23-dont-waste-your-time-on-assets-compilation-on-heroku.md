@@ -4,6 +4,7 @@ author: Szymon Fiedler
 tags: ["heroku", "rails", "assets", "sprockets"]
 publish: false
 ---
+# Don't waste your time on assets compilation on Heroku
 
 At some point, you may want or be forced to use the CDN to server asset of your Rails app. When your app is globally available, you may want to serve the assets from strategically located servers around the world to provide the best possible experience for the end user. Serving static assets via Puma is not the best idea — it'll be slow. The only viable option on Heroku is to use CDN. I will show you how to do it smart, save time and have faster deployments
 
@@ -148,7 +149,7 @@ end
 
 Nothing fancy here, except few things listed below:
 
-- We used `[FixedThreadPool](https://ruby-concurrency.github.io/concurrent-ruby/master/file.thread_pools.html#FixedThreadPool)` to upload files in parallel, great library to do this, for sure it's already present in your codebase since it's a dependency for ActiveSupport, [dry-rb](https://dry-rb.org) or one and only [RailsEventStore](https://railseventstore.org).
+- We used [FixedThreadPool](https://ruby-concurrency.github.io/concurrent-ruby/master/file.thread_pools.html#FixedThreadPool) to upload files in parallel, great library to do this, for sure it's already present in your codebase since it's a dependency for ActiveSupport, [dry-rb](https://dry-rb.org) or one and only [RailsEventStore](https://railseventstore.org).
 - Important optimisation is listing files present in the bucket along with their ETags so we can compare those with the ones to be sent and only upload files which name or content differs. It's especially important to compare not only name for non–digested files. We upload everything from Rails `public` directory, eg. `422.html` — no digest here, file could change and it would be omitted during upload while relying on its path only (or _key_ when using S3 vocabulary). _S3_ can produce _ETag_ in few ways, check which applies to your scenario in the [documentation](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html). For us it's basically `Digest::MD5.hexdigest` of a file content.
 - Tell S3 what is the `Content-Type` of file you're uploading. It'll do a best guess, however, browser won't run `application.js` with `Content-Type: binary/octet`.
 - Our current stack is sprockets with [esbuild](https://esbuild.github.io) and [tailwind](https://tailwindcss.com) along with [postcss](https://postcss.org) and [cssnano](https://cssnano.co). We started with [cssbundling-rails](https://github.com/rails/cssbundling-rails) but ditched it since we only need this:
@@ -173,7 +174,7 @@ Rake::Task["assets:clobber"].enhance(["css:clobber"])
 ```
 
 - Rails expect that `.sprockets-manifest-totallyrandomdigestwhichmustmatchregex.json` will be present in `public/assets` when the app starts. Yep, digest included in manifest filename is totally random and Rails detects it based on some assumptions. So we use it to find our desired file: [Sprockets::Railtie.build_manifest(Rails.application).path](https://github.com/rails/sprockets-rails/blob/5badf679b206e4f218b9e3a42730d27779e572b2/lib/sprockets/railtie.rb#L213-L217). After that we're able to upload it under a known and predictable name: `manifest-$COMMIT_SHA.json`. We also produce `manifest-latest.json` as a fallback in case something went wrong and we haven't delivered manifest referencing released commit.
-- Having predictable name allows us to download it on Heroku using carefully crafted [buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest) for this purpose. What it does is downloading `manifest-$COMMIT_SHA.json` or the fallback one to `public/assets/$ASSET_MANIFEST_PATH`. You want to put it before `heroku/ruby` buildpack. Rails will skip `assets:precompile` because of manifest file being in place. You earn some time here and you can later limit your slug size and save time by skipping installing node, running yarn or npm by creating `[.slugignore](https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore)` file
+- Having predictable name allows us to download it on Heroku using carefully crafted [buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest) for this purpose. What it does is downloading `manifest-$COMMIT_SHA.json` or the fallback one to `public/assets/$ASSET_MANIFEST_PATH`. You want to put it before `heroku/ruby` buildpack. Rails will skip `assets:precompile` because of manifest file being in place. You earn some time here and you can later limit your slug size and save time by skipping installing node, running yarn or npm by creating [.slugignore](https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore) file
 
 ```
 package.json
