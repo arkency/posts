@@ -213,7 +213,7 @@ class CdnAssets
 end
 ```
 
-We used [FixedThreadPool](https://ruby-concurrency.github.io/concurrent-ruby/master/file.thread_pools.html#FixedThreadPool) to upload files in parallel. Great library to do this, for sure it's already present in your codebase since it's a dependency for ActiveSupport, [dry-rb](https://dry-rb.org) or one and only [RailsEventStore](https://railseventstore.org).
+We used [FixedThreadPool](https://ruby-concurrency.github.io/concurrent-ruby/master/file.thread_pools.html#FixedThreadPool) to upload files in parallel. _Concurrent Ruby_ is a great library to do this, for sure it's already present in your codebase since it's a dependency for ActiveSupport, [dry-rb](https://dry-rb.org) or one and only [RailsEventStore](https://railseventstore.org).
 
 Important optimisation is listing files present in the bucket along with their _ETags_, we can compare those with the ones to be sent and only upload files which name or content differs. It's especially important to compare not only name for non–digested files. We upload everything from Rails `public` directory, eg. `422.html` — no digest here, file could change and it would be omitted during upload while relying on its path only (or _key_ when using S3 vocabulary). _S3_ can produce _ETag_ in few ways, check which applies to your scenario in the [documentation](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html). For our case it's `Digest::MD5.hexdigest` of a file content.
 
@@ -250,7 +250,7 @@ Adding missing step to `.github/workflows/assets.yml`:
 ### Download manifest on Heroku
 Having predictable Sprockets manifest name allows us to download it on Heroku using carefully crafted [buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest). What it does is downloading `manifest-$COMMIT_SHA.json` or the fallback one to `public/assets/$ASSET_MANIFEST_PATH`. `$ASSET_MANIFEST_PATH` can be something like: `public/assets/.sprockets-manifest-5ad1cd2a52740dfb575f43c74d6f3b0e.json`. It doesn't need to change in time, it's name doesn't reference contents, it must match sprockets lookup pattern.
 
-## Save time and slug size
+## Save even more time and slug size
  You want to run [cdn manifest buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest) before `heroku/ruby` default buildpack. Rails will skip `assets:precompile` because of manifest file being in place. You earn some time here and you can later limit your slug size and build time by skipping installing node, running yarn or npm by creating [.slugignore](https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore) file:
  
 ```
