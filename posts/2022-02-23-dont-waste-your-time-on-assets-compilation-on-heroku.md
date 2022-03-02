@@ -2,7 +2,7 @@
 created_at: 2022-02-23 11:15:15 +0100
 author: Szymon Fiedler
 tags: ["heroku", "rails", "assets", "sprockets"]
-publish: false
+publish: true
 ---
 # Don't waste your time on assets compilation on Heroku
 
@@ -248,7 +248,7 @@ Adding missing step to `.github/workflows/assets.yml`:
 ```
 
 ### Download manifest on Heroku
-Having predictable Sprockets manifest name allows us to download it on Heroku using carefully crafted [buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest). What it does is downloading `manifest-$COMMIT_SHA.json` or the fallback one to `public/assets/$ASSET_MANIFEST_PATH`. `$ASSET_MANIFEST_PATH` can be something like: `public/assets/.sprockets-manifest-5ad1cd2a52740dfb575f43c74d6f3b0e.json`. It doesn't need to change in time, it's name doesn't reference contents, it must match sprockets lookup pattern.
+Having predictable Sprockets manifest name allows us to download it on Heroku using carefully crafted [buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest). What it does is downloading `manifest-$COMMIT_SHA.json` or the fallback one to `public/assets/$ASSET_MANIFEST_PATH`. `$ASSET_MANIFEST_PATH` can be something like: `public/assets/.sprockets-manifest-5ad1cd2a52740dfb575f43c74d6f3b0e.json`. It doesn't need to change in time, it's name doesn't reference content, it has to match sprockets lookup pattern.
 
 ## Save even more time and slug size
  You want to run [cdn manifest buildpack](https://github.com/arkency/heroku-buildpack-cdn-manifest) before `heroku/ruby` default buildpack. Rails will skip `assets:precompile` because of manifest file being in place. You earn some time here and you can later limit your slug size and build time by skipping installing node, running yarn or npm by creating [.slugignore](https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore) file:
