@@ -286,15 +286,22 @@ You can use it to generate and verify signed messages
 
 ```ruby
 @verifier = ActiveSupport::MessageVerifier.new('s3Krit', serializer: JSON)
-@verifier.generate("private message")
-#=> "InByaXZhdGUgbWVzc2FnZSI=--43fc83190b28daf8df04c0b86ff2976931a6dcd2"
-@verifier.verify("InByaXZhdGUgbWVzc2FnZSI=--43fc83190b28daf8df04c0b86ff2976931a6dcd2")
-#=> "private message"
+@verifier.generate("signed message")
+#=> "InNpZ25lZCBtZXNzYWdlIg==--e31182c43a7c13fc8d9affe8c0ed5503f79cc861"
+@verifier.verify("InNpZ25lZCBtZXNzYWdlIg==--e31182c43a7c13fc8d9affe8c0ed5503f79cc861")
+#=> "signed message"
 
-@verifier.generate("a" => "private message")
-#=> "eyJhIjoicHJpdmF0ZSBtZXNzYWdlIn0=--b253af3e77622f743cf6804c870f4a95cbbd6f00"
-@verifier.verify("eyJhIjoicHJpdmF0ZSBtZXNzYWdlIn0=--b253af3e77622f743cf6804c870f4a95cbbd6f00")
-=> {"a"=>"private message"}
+@verifier.generate("a" => "signed message")
+#=> "eyJhIjoic2lnbmVkIG1lc3NhZ2UifQ==--f41b7c9e79e26e528975ee3630f2ad5b8b1267d9"
+@verifier.verify("eyJhIjoic2lnbmVkIG1lc3NhZ2UifQ==--f41b7c9e79e26e528975ee3630f2ad5b8b1267d9")
+=> {"a"=>"signed message"}
+```
+
+Mostly obvious: it's just a signed message, not an encrypted one. You can easily look up the data after it's decoded with Base64:
+
+```
+Base64.strict_decode64("InNpZ25lZCBtZXNzYWdlIg==--e31182c43a7c13fc8d9affe8c0ed5503f79cc861".split("--").first)
+#=> "\"signed message\""
 ```
 
 ## Summary
