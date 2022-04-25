@@ -64,3 +64,5 @@ The last step is to simply register the `IgnoredErrorReportingDeathHandler` in S
 ```ruby
 config.death_handlers << IgnoredErrorReportingDeathHandler.new
 ```
+
+And you're good to go! Less distractions, better focus.
