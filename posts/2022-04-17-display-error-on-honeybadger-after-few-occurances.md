@@ -14,7 +14,7 @@ In our systems, there are those special types of errors that are transient. For 
 ## We don't want to distracted for no reason
 You're guessing it right that something like this happened recently in the project that I work on. So we started thinking about how we could solve it to get notified, on our Slack channel, only about exceptions that need our attention.
 
-Luckily in that period, we were together at Arkency microcamp and the and one only [Mirosław](https://blog.arkency.com/authors/miroslaw-praglowski/) (thanks again!) arrived on the white horse (or rather his Kawasaki) and told us about the solution they have implemented in their project.
+Luckily in that period, we were together at Arkency microcamp and the one only [Mirosław](https://blog.arkency.com/authors/miroslaw-praglowski/) (thanks again!) arrived on the white horse (or rather his Kawasaki) and told us about the solution they have implemented in their project.
 
 ## Sidekiq DeathHandler to the rescue
 The IgnoredError class is a wrapper for an error that has the potential to be transient. And hence it may heal itself in the next couple of occurrences.
