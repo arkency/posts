@@ -19,21 +19,18 @@ Luckily in that period, we were together at Arkency microcamp and the one only [
 ## Sidekiq DeathHandler to the rescue
 The IgnoredError class is a wrapper for an error that has the potential to be transient. And hence it may heal itself in the next couple of occurrences.
 ```ruby
-  class IgnoredError < StandardError
-    def initialize(root_error, message: nil)
-      raise if !root_error.is_a?(Exception)
-      @root_error = root_error
-      super(message || root_error.inspect)
-    end
-    attr_reader :root_error
+class IgnoredError < StandardError
+  def message
+    cause.inspect
   end
+end
 ```
 
 Let's see how it would be used in production code
 ```ruby
-  rescue Banking::BankAccountNotFound => exception
-    raise Infra::ErrorNotifier::IgnoredError.new(exception)
-  end
+rescue BankAccountNotFound => exception
+  raise IgnoredError.new(exception)
+end
 ```
 The error might occur for very different reasons. One of them is that the events (in the Event-Driven system) appeared in a different order than would be expected. And that's okay. We don't need to worry about that if we can simply retry the job and handle the transient error. Hence we can transform this exception to `IgnoredError`.
 
@@ -45,9 +42,9 @@ Death handlers are called when all retries for a job have been exhausted and the
 ```ruby
 class IgnoredErrorReportingDeathHandler
   def call(job, exception)
-    if exception.is_a?(Infra::ErrorNotifier::IgnoredError)
-      Infra::ErrorNotifier.notify(
-        exception.root_error,
+    if exception.is_a?(IgnoredError)
+      ErrorNotifier.notify(
+        exception.cause,
         context: {
           context: {
             tags: "death_handler"
