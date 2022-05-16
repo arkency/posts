@@ -2,7 +2,7 @@
 created_at: 2022-04-17 17:50:42 +0200
 author: Łukasz Reszke
 tags: ['sidekiq', 'honeybadger', 'notifications', 'failures', 'transient errors']
-publish: false
+publish: true 
 ---
 
 # Notify Honeybadger about errors after few occurances
