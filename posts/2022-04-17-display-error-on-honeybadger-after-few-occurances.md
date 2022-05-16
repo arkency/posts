@@ -25,8 +25,16 @@ class IgnoredError < StandardError
   end
 end
 ```
+We also have to add the *IgnoredError* to honeybadger's configuration, to make sure it's not reported by default.
+```yaml
+# honeybadger.yml
 
-Let's see how it would be used in production code
+exceptions:
+  ignore:
+    - IgnoredError
+```
+
+Now, lets see how it would be used in production code
 ```ruby
 rescue BankAccountNotFound => exception
   raise IgnoredError.new(exception)
