@@ -37,7 +37,7 @@ exceptions:
 Now, lets see how it would be used in production code
 ```ruby
 rescue BankAccountNotFound => exception
-  raise IgnoredError.new(exception)
+  raise IgnoredError
 end
 ```
 The error might occur for very different reasons. One of them is that the events (in the Event-Driven system) appeared in a different order than would be expected. And that's okay. We don't need to worry about that if we can simply retry the job and handle the transient error. Hence we can transform this exception to `IgnoredError`.
