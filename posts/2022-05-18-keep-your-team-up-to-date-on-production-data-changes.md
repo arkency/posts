@@ -7,29 +7,26 @@ publish: false
 
 # Keep your team up to date on production data changes
 
-It is not uncommon situation when we manipulate production data via Rails console. It happens. The crucial thing is to
-leave track of what commands have we issued.
-
+It is not uncommon for Ruby developer to manipulate production data via Rails console. Sometimes it is necessary. The crucial thing is to leave track of what commands have we issued.
 - Maybe we would be asked to do similar modifications again in the feature.
-
 - Maybe something would go wrong and we will have to analyze what.
-
 - Maybe we just want to keep our teammates informed on what is going on.
 
 There are many more reasons to leave a track.
 
 <!-- more -->
 
-In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blogpost</a>, Paweł showed how to load helper module with Rails console initialization.
+In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blogpost</a>, Paweł showed how to load helper module with Rails console start.
 Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and to what purpose.
-Let's prepare `Console` module with `setup` method which:
+Let's prepare `Console` module with a `setup` method which:
 - warns developer about working on non-development data
 - asks for a name
 - sends notification about session's start
 - asks for a purpose of current session
 - sends notification about the purpose if there is any
-- sends notification about commands issued (except the last one which should be `exit`)
+- sends notification about commands issued (except the last one which normally is `exit`)
 - sends notification about session's finish
+
 ```ruby
 require 'readline'
 
@@ -99,7 +96,9 @@ module Console
   end
 end
 ```
+
 To make it works, we append our `Application` class with these lines:
+
 ```ruby
 
 class Application < Rails::Application
