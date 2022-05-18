@@ -12,7 +12,7 @@ It is not uncommon for Ruby developer to manipulate production data via Rails co
 - Maybe something would go wrong and we will have to analyze what.
 - Maybe we just want to keep our teammates informed on what is going on.
 
-There are many more reasons to leave a track.
+There are many more reasons to have a some kind of logging.
 
 <!-- more -->
 
@@ -100,7 +100,6 @@ end
 To make it works, we append our `Application` class with these lines:
 
 ```ruby
-
 class Application < Rails::Application
   #...
   console do
@@ -109,5 +108,7 @@ class Application < Rails::Application
   #...
 end
 ```
+
+Running the console, you will be asked for your name and purpose of a current session. Than you can operate normally and all the commands you typed, will be stored on your team's Slack channel.
 
 <img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>" width="100%">
