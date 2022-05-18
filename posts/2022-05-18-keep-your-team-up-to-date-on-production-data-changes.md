@@ -102,3 +102,5 @@ class Application < Rails::Application
   #...
 end
 ```
+
+<img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>">
