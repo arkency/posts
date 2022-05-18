@@ -7,22 +7,22 @@ publish: false
 
 # Keep your team up to date on production data changes
 
-It is not uncommon for Ruby developer to manipulate production data via Rails console. Sometimes it is necessary. The crucial thing is to leave track of what commands have we issued.
+It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave track of what commands have we issued.
 - Maybe we would be asked to do similar modifications again in the feature.
 - Maybe something would go wrong and we will have to analyze what.
 - Maybe we just want to keep our teammates informed on what is going on.
 
-There are many more reasons to have a some kind of logging.
+There are many more reasons to have some kind of logging.
 
 <!-- more -->
 
-In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blogpost</a>, Paweł showed how to load helper module with Rails console start.
+In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blog post</a>, Paweł showed how to load the helper module with the Rails console's start.
 Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and to what purpose.
-Let's prepare `Console` module with a `setup` method which:
+Let's prepare a `Console` module with a `setup` method which:
 - warns developer about working on non-development data
 - asks for a name
 - sends notification about session's start
-- asks for a purpose of current session
+- asks for a purpose of the current session
 - sends notification about the purpose if there is any
 - sends notification about commands issued (except the last one which normally is `exit`)
 - sends notification about session's finish
@@ -109,6 +109,6 @@ class Application < Rails::Application
 end
 ```
 
-Running the console, you will be asked for your name and purpose of a current session. Than you can operate normally and all the commands you typed, will be stored on your team's Slack channel.
+Running the console, you will be asked for your name and the purpose of a current session. Then you can operate normally and all the commands you typed will be stored on your team's Slack channel.
 
 <img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>" width="100%">
