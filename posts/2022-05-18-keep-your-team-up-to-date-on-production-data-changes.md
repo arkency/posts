@@ -20,8 +20,16 @@ There are many more reasons to leave a track.
 
 <!-- more -->
 
-FIXME: Place post body here.
-
+In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blogpost</a>, Paweł showed how to load helper module with Rails console initialization.
+Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and to what purpose.
+Let's prepare `Console` module with `setup` method which:
+- warns developer about working on non-development data
+- asks for a name
+- sends notification about session's start
+- asks for a purpose of current session
+- sends notification about the purpose if there is any
+- sends notification about commands issued (except the last one which should be `exit`)
+- sends notification about session's finish
 ```ruby
 require 'readline'
 
@@ -91,7 +99,7 @@ module Console
   end
 end
 ```
-
+To make it works, we append our `Application` class with these lines:
 ```ruby
 
 class Application < Rails::Application
@@ -103,4 +111,4 @@ class Application < Rails::Application
 end
 ```
 
-<img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>">
+<img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>" width="100%">
