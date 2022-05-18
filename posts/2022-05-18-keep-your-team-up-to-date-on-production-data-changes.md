@@ -20,7 +20,7 @@ In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about
 Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and to what purpose.
 Let's prepare a `Console` module with a `setup` method which:
 - warns developer about working on non-development data
-- asks for a name
+- asks for his name
 - sends notification about session's start
 - asks for a purpose of the current session
 - sends notification about the purpose if there is any
@@ -109,6 +109,6 @@ class Application < Rails::Application
 end
 ```
 
-Running the console, you will be asked for your name and the purpose of a current session. Then you can operate normally and all the commands you typed will be stored on your team's Slack channel.
+Running the console, you will be asked for your name and the purpose of the current session. Then you can operate normally and all the commands you typed will be stored on your team's Slack channel.
 
-<img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack.png") %>" width="100%">
+<img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack-notifications.png") %>" width="100%">
