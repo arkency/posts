@@ -7,7 +7,7 @@ publish: false
 
 # Keep your team up to date on production data changes
 
-It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave track of what commands have we issued.
+It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave a trace of what commands have we issued.
 - Maybe we would be asked to do similar modifications again in the feature.
 - Maybe something would go wrong and we will have to analyze what.
 - Maybe we just want to keep our teammates informed on what is going on.
