@@ -7,24 +7,24 @@ publish: false
 
 # Keep your team up to date on production data changes
 
-It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave a trace of what commands we have issued.
-- Maybe we would be asked to do similar modifications again in the feature.
-- Possibly something would go wrong, and we will have to analyze what.
-- For sure we want to keep our teammates informed on what is going on.
+It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave a trace of what commands you have issued.
+- Maybe you would be asked to do similar modifications again in the feature.
+- Possibly something would go wrong, and you will have to analyze what.
+- I am sure you want to keep our teammates informed on what is going on.
 
 There are many more reasons to have some kind of logging.
 
 <!-- more -->
 
 In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blog post</a>, Paweł showed how to load the helper module with the Rails console's start.
-Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and for what purpose.
+This time, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and for what purpose.
 Let's prepare a `Console` module with a `setup` method which:
 - warns developer about working on non-development data
 - asks for his name
 - sends notification about session's start
 - asks for a purpose of the current session
 - sends notification about the purpose if there is any
-- sends notification about commands issued (except the last one which normally is `exit`)
+- sends notification about commands issued (except the last one which is typically `exit`)
 - sends notification about session's finish
 
 ```ruby
@@ -97,7 +97,7 @@ module Console
 end
 ```
 
-To make it works, we append our `Application` class with these lines:
+To make it works, we have to append our `Application` class with these lines:
 
 ```ruby
 class Application < Rails::Application
@@ -113,4 +113,4 @@ Running the console, you will be asked for your name and the purpose of the curr
 
 <img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack-notifications.png") %>" width="100%">
 
-Check also Kuba's <a href="https://blog.arkency.com/decorate-your-runner-session-like-a-pro/">blog post</a> if you want to enhance your Rails runner sessions.
+### Check also Kuba's <a href="https://blog.arkency.com/decorate-your-runner-session-like-a-pro/">blog post</a> to know how to do a similar thing with rails runner sessions.
