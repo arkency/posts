@@ -7,17 +7,17 @@ publish: false
 
 # Keep your team up to date on production data changes
 
-It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave a trace of what commands have we issued.
+It is not uncommon for Ruby developers to manipulate production data via Rails console. Sometimes it is just necessary. The crucial thing is to leave a trace of what commands we have issued.
 - Maybe we would be asked to do similar modifications again in the feature.
-- Maybe something would go wrong and we will have to analyze what.
-- Maybe we just want to keep our teammates informed on what is going on.
+- Possibly something would go wrong, and we will have to analyze what.
+- For sure we want to keep our teammates informed on what is going on.
 
 There are many more reasons to have some kind of logging.
 
 <!-- more -->
 
 In his <a href="https://blog.arkency.com/rails-console-trick-i-had-no-idea-about/">blog post</a>, Paweł showed how to load the helper module with the Rails console's start.
-Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and to what purpose.
+Today, in a similar way, we will "hack" our console to get Slack notifications of what commands are being called, by whom, and for what purpose.
 Let's prepare a `Console` module with a `setup` method which:
 - warns developer about working on non-development data
 - asks for his name
@@ -109,7 +109,7 @@ class Application < Rails::Application
 end
 ```
 
-Running the console, you will be asked for your name and the purpose of the current session. Then you can operate normally and all the commands you typed will be stored on your team's Slack channel.
+Running the console, you will be asked for your name and the purpose of the current session. Then you can operate normally, and all the commands you typed will be stored on your team's Slack channel.
 
 <img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack-notifications.png") %>" width="100%">
 
