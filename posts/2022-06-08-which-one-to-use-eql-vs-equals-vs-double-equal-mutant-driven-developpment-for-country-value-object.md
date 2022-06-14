@@ -393,6 +393,7 @@ class Country
   private attr_reader :iso_code
 
   def initialize(iso_code)
+    raise unless SUPPORTED_COUNTRIES.include?(iso_code.to_s.upcase)
     @iso_code = iso_code
   end
 
