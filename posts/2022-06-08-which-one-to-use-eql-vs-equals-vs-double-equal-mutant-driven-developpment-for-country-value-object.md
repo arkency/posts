@@ -286,7 +286,7 @@ After re-running mutant, there are two more issues to deal with:
 The one of two survivors is killed by changing `==` to `eql?`
 ```ruby
     def ==(other)
-      other.hash.eql?(hash)
+      other.class === self && other.hash.eql?(hash)
     end
 ```
 
