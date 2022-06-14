@@ -245,7 +245,7 @@ And run mutant again
 
 Well... not good, not bad. Different mutants were injected in the code. Still, there are some survivors.
 
-What does it mean?
+Let's focus on the `==` method mutations. What's going on here?
 ```ruby
   def ==(other)
     other.class === self && other.hash == hash
