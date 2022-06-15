@@ -259,12 +259,12 @@ We miss the latter one. Let's fix this by adding the test
 ```ruby
   def test_equality_between_two_different_types_of_objects
     foo =
-      Struct.new(:iso_code, :accounting_country_code) do
+      Struct.new(:iso_code) do
         def hash
-          accounting_country_code.hash ^ 0b111111100100000010010010110011101011000101010111001101100110000
+          iso_code.hash ^ 0b111111100100000010010010110011101011000101010111001101100110000
         end
       end
-    assert_not_equal Country.new(Country::PL), foo.new("PL", "PL")
+    assert_not_equal Country.new(Country::PL), foo.new("PL")
     end
 ```
 
