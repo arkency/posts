@@ -24,16 +24,19 @@ Let's prepare a `Console` module with a `setup` method that does the following a
 - sends notification about session's start
 - asks for a purpose of the current session
 - sends notification about the purpose if there is any
-- sends notification about commands issued (except the last one which is typically `exit`)
+- sends notification about commands issued (except the last one which is typically `exit` or `quit`)
 - sends notification about session's finish
 
 ```ruby
 require 'readline'
 
 module Console
+  EXIT_COMMANDS = %w[quit exit]
+  
   class << self
     def setup
       warn unless Rails.env.development?
+      return if Rails.application.sandbox?
       return unless Rails.env.production?
       get_name
       notify_session_started
@@ -89,7 +92,8 @@ module Console
     end
 
     def notify_commands_issued
-      Reline::HISTORY[0...-1].each do |command|
+      skip_last = Reline::HISTORY.last.in?(EXIT_COMMANDS)
+      Reline::HISTORY[0..(skip_last ? -2 : -1)].each do |command|
         SlackBot.dev_notification "*#{@name}* issued a command: ```#{command}```"
       end
     end
@@ -112,5 +116,7 @@ end
 Running the console, you will be asked for your name and the purpose of the current session. Then you can operate normally, and all the commands you typed will be posted to your team's Slack channel.
 
 <img src="<%= src_original("keep-your-team-up-to-date-on-production-data-changes/slack-notifications.png") %>" width="100%">
+
+And what if you want to explore production data and don't plan to make any changes? Run the console with a `--sandbox` flag. Notifications of your activity wouldn't be sent. This will help to limit the communication chaos.
 
 ### Check also Kuba's <a href="https://blog.arkency.com/decorate-your-runner-session-like-a-pro/">blog post</a> to know how to do a similar thing with rails runner sessions.
