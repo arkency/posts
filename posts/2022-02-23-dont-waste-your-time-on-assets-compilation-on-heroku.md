@@ -123,11 +123,11 @@ class CdnAssets
   end
 
   def upload(commit_sha = mk_commit_sha.())
-    _files_to_sync = files_to_sync
+    _synced_files = synced_files
 
     puts "Uploading #{_synced_files.size} missing files"
 
-    _files_to_sync.each do |path, _|
+    _synced_files.each do |path, _|
       pool.post do
         content_type = detect_content_type(path)
         params = { bucket: bucket, key: path, body: body(path), acl: acl }
