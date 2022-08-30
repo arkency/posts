@@ -10,7 +10,7 @@ In the last week, I have been responsible for migrating a pretty big (300k+ line
 
 After some short investigation, we decided to use esbuild to prepare our JS entries. And as time has passed and we have finally said goodbye to IE 11, there was also an opportunity to improve the stack by switching to ECMAScript modules - [almost 95%](https://caniuse.com/es6-module) of web users can understand them and there is no point in not using them today. And few years after we looked at our JS stack for the last time, it turned out that we don't need Babel and some polyfills anymore as some features are already built in modern browsers.
 
-In this post, I am describing and discussing our current configuration our JavaScript setup.
+In this post, I am describing and discussing the current configuration of our JavaScript setup.
 
 ## esbuild configuration
 
