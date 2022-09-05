@@ -1,12 +1,12 @@
 ---
 title: Tune up your esbuild config with plugins and cleanup your assets directory
-created_at: 2022-09-01T20:42:12.845Z
+created_at: 2022-09-05T13:30:00.000Z
 author: Jakub Kosiński
 tags: ["esbuild", "javascript", "js"]
-publish: false
+publish: true
 ---
 
-In my previous post, I wrote about [migrating a large JS project from Webpack to esbuild](https://blog.arkency.com/how-i-migrated-a-rails-app-from-webpack-to-esbuild-and-got-smaller-and-faster-js-builds/). I mentioned that the process is not fully optimal as old files from previous builds are kept in the `app/assets/builds` directory. That led to slow initial requests after starting the Rails server. I spent some time learning about [esbuild plugins](https://esbuild.github.io/plugins/) and it turned out that a solution for this issue is very simple.
+In my previous post, I wrote about [migrating a large JS project from Webpack to esbuild](https://blog.arkency.com/how-i-migrated-a-rails-app-from-webpack-to-esbuild-and-got-smaller-and-faster-js-builds/). I mentioned that the process is not fully optimal as old files from previous builds are kept in the `app/assets/builds` directory. This is not a problem when you're not using the [`splitting`](https://esbuild.github.io/api/#splitting) option with hashed [chunk names](https://esbuild.github.io/api/#chunk-names). But if you want to split your bundle into more smaller chunks and lazy-load them, you will end up with multiple small JS files with digested names that may change often in your `app/assets/builds` directory. That might result in slow initial requests after starting the Rails server. I spent some time learning about [esbuild plugins](https://esbuild.github.io/plugins/) and it turned out that a solution for this issue is very simple.
 
 Esbuild plugin system allows running on-end callbacks when a build ends. This is a perfect place to hook our cleanup task that will remove all files from previous builds that are no longer needed. The initial version of the plugin may look like this:
 
