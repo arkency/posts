@@ -11,11 +11,11 @@ Last week I was dealing with an interesting bug. In our system, there was a user
 
 Debugging that issue was quite simple because of the [linking feature](https://railseventstore.org/docs/v2/link/) of RailsEventStore that we use in our application to correlate all events related to a user in a single stream. By linking to such a user stream you get the possibility to see all events that are related to that certain user account.
 
-<img src="<%= src_original("linkking/res-events.png") %>" width="100%">
+<img src="<%= src_original("linking/res-events.png") %>" width="100%">
 
 What is interesting here is that there’s a `UserLeftTenant` event, which in our case, should lead to deleting the user’s account if that was the only tenant that the user belonged to. But that didn’t happen. Additionally, as you can see events that happened after, there was still a possibility to log in as that user. Which resulted in a very ugly error.
 
-<img src="<%= src_original("linkking/linking-error.png") %>" width="100%">
+<img src="<%= src_original("linking/linking-error.png") %>" width="100%">
 
 Well, at least we can see that the account still exists and it’s still possible to log in, right? Eventually, it turned out that there was another way for a user to leave the tenant. It didn’t follow the process of checking if that was the only tenant that the user belongs to. It was also quite easy to find in the code as I was able to grep by the `UserLeftTenant` event and find that place in our codebase. Another benefit of using events ;)
 
