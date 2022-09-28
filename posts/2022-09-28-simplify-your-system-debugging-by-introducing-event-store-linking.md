@@ -2,7 +2,7 @@
 created_at: 2022-09-28 10:33:43 +0200
 author: Łukasz Reszke
 tags: ['rails event store', 'event sourcing', 'linking event to stream']
-publish: false
+publish: true
 ---
 
 # Simplify your system debugging by introducing event store linking
