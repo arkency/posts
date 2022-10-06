@@ -1,9 +1,10 @@
 ---
 created_at: 2022-09-28 12:58:50 0200
 author: Łukasz Reszke
-tags: []
+tags: ['rails event store', 'event sourcing', 'initial event', 'opening balance', 'ddd']
 publish: false
 ---
+# Dealing with the opening balance when moving from CRUD to EventSourcing
 
 Did you ever wonder how to get from CRUD to EventSourcing? There's one thing you should consider. The opening balance.
 
