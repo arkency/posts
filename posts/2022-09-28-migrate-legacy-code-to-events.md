@@ -21,7 +21,7 @@ Basically you have at least two options when it comes to the opening balance.
 
 The first option is to start with the event that "starts" the life-cycle of your aggregate. If your aggregate is a `BankAccount` that is brought to life by `OpenBankAccount` method, which produces `BankAccountOpened` event, you would migrate your legacy model by calling the method to produce this event. You could do that by script, example below 😉.
 
-The second option is a little bit different. Instead of starting with regular event that starts the lifecycle of the aggregate, you can introduce a new one that will be used only for migration. For the initial opening balance. In case of `BankAccount` the opening evnet could be named `LegacyBankAccountImported`.
+The second option is a little bit different. Instead of starting with regular event that starts the lifecycle of the aggregate, you can introduce a new one that will be used only for migration. For the initial opening balance. In case of `BankAccount` the opening event could be named `LegacyBankAccountImported`.
 
 Additional, unnecessary work you might say.
 
