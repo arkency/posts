@@ -1,10 +1,10 @@
 ---
-created_at: 2022-09-28 12:58:50 0200
+created_at: 2022-10-07 12:58:50 0200
 author: Łukasz Reszke
 tags: ['rails event store', 'event sourcing', 'initial event', 'opening balance', 'ddd']
-publish: false
+publish: true
 ---
-# The final trick when moving from CRUD to Event Sourcing 
+# The final trick when moving from Rails CRUD to Event Sourcing 
 
 ## From CRUD to EventSourcing
 Did you ever wonder how to actually switch the model from the CRUD one to EventSourcing? There's one thing you should consider. The initial event that has to be published for existing data. Also called the opening balance.
@@ -38,7 +38,7 @@ legacy_bank_accounts = BankAccount.unscoped
 
 repository = AggregateRoot::Repository.new
 
-legacy_bank_accounts.each do |legacy_bank_account
+legacy_bank_accounts.each do |legacy_bank_account|
   aggregate_id = legacy_bank_account.uniq_id
   ApplicationRecord.with_advisory_lock(legacy_bank_account.uniq_id) do
     repository.with_aggregate(Banking::BankAccount.new(aggregate_id), stream_name(aggregate_id)) do |bank_account|
