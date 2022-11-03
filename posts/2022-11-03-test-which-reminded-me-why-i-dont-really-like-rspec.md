@@ -7,7 +7,7 @@ publish: true
 
 # Test which reminded me why I don't really like RSpec
 
-Recently, our friend from a different software company asked us for some help with [mutant](https://github.com/mbj/mutant) setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I have immediately wrote: 
+Recently, our friend from a different software company asked us for some help with [mutant](https://github.com/mbj/mutant) setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I had immediately written: 
 
 — _Oh man, this example reminds me why I don't like RSpec._ 
 
