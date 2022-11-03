@@ -7,11 +7,11 @@ publish: false
 
 # Test which reminded me why I don't really like RSpec
 
-Recently, our friend from a different software company asked us for some help with mutant setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I have immediately wrote: _Oh man, this example reminds me why I don't like RSpec_.
+Recently, our friend from a different software company asked us for some help with [mutant](https://github.com/mbj/mutant) setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I have immediately wrote: _Oh man, this example reminds me why I don't like RSpec_.
 
 <!-- more -->
 
-Just to be clear: I have no problem with the RSpec library itself. It's a great tool, I've used it in several projects, but I don't like how a lot of people utilise it. Let's have a look at it.
+Just to be clear: I have no problem with the _RSpec_ library itself. It's a great tool, I've used it in several projects, but I don't like how a lot of people utilise it. Let's have a look at it.
 
 Let's have a look at the original example:
 
