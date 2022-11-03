@@ -227,7 +227,7 @@ end
 ```
 
 ```haml
-\# app/views/test_results/show.html.erb
+\# app/views/test_results/show.html.haml
 %h1
   = "Personalised report for #{report.participant_name}"
 %h2= report.test_name
