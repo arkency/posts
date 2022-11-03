@@ -2,7 +2,7 @@
 created_at: 2022-11-03 10:53:38 +0100
 author: Szymon Fiedler
 tags: ["rspec", "testing", "ruby on rails"]
-publish: false
+publish: true
 ---
 
 # Test which reminded me why I don't really like RSpec
