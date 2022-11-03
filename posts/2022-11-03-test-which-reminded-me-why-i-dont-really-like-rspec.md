@@ -7,7 +7,11 @@ publish: false
 
 # Test which reminded me why I don't really like RSpec
 
-Recently, our friend from a different software company asked us for some help with [mutant](https://github.com/mbj/mutant) setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I have immediately wrote: _Oh man, this example reminds me why I don't like RSpec_.
+Recently, our friend from a different software company asked us for some help with [mutant](https://github.com/mbj/mutant) setup. We asked to share a sample test to discover what can be wrong. When I read the snippet on a slack channel, I have immediately wrote: 
+
+— _Oh man, this example reminds me why I don't like RSpec._ 
+
+— _Feel free to review it, it's written by one of our juniors and I need to give him some feedback soon._ — he responded.
 
 <!-- more -->
 
@@ -93,7 +97,7 @@ Here's a list of my thoughts after reading test above:
 - Tests should be verbose about their subject, not about the plumbing around.
 - I don't get what the test is about, it's unreadable because of the nested `it` in `context`
 
-   — _hey, but we have IDEs which can fold the blocks of code_
+   — _hey, but we have IDEs which can fold the blocks of code..._
    
    — _Cool, but not here on Slack, nor on GitHub where you usually make your code reviews. I simply don't want to jump around the file to see what's the input to a service call._
    
