@@ -91,9 +91,12 @@ Here's a list of my thoughts after reading test above:
 
 - RSpec specific syntax sugar to actual test code ratio is too d\*mn high
 - Tests should be verbose about their subject, not about the plumbing around.
-- I don't get what the test is about, it's unreadable because of the nested `it` in `context` \
-   — _hey, but we have IDEs which can fold the blocks of code_\
+- I don't get what the test is about, it's unreadable because of the nested `it` in `context`
+
+   — _hey, but we have IDEs which can fold the blocks of code_
+   
    — _Cool, but not here on Slack, nor on GitHub where you usually make your code reviews. I simply don't want to jump around the file to see what's the input to a service call._
+   
 - Setup is done through `FactoryBot` which sets some artificial database state, often not following the business rules (if your business rules live in `ActiveRecord` models — I'm sorry, we're past that since years). It's better to use domain services to setup the initial state. I've seen a lot of codebases struggling with gigantic test execution time because of too many database object being created because of how `FactoryBot` was used.
 - `context` is only used to overwrite `let`, so there's different setup in different examples. Why not keep the structure flat and do the setup explicit in every example? If you need something different that declared in `let`, just use local variable in the example. `let` is great for specifying dependencies and things that don't change per each test case.
 - The main input to this class giving different outcomes are `params` — this should be clearly visible how they differ in the input and what output they give, why not pass them explicitly to `call`?
