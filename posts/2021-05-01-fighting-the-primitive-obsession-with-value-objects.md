@@ -62,15 +62,14 @@ class AnswerScore
 
   attr_reader :skill_id, :score
 
-  def ==(other)
-    other.class === self &&
-      other.hash == hash
+  def eql?(other)
+    other.instance_of?(AnswerScore) && skill_id.eql?(other.skill_id) && score.eql?(other.score)
   end
 
-  alias eql? ==
+  alias == eql?
 
   def hash
-    [skill_id, score].join.hash
+    AnswerScore.hash ^ [skill_id, score].hash
   end
 end
 ```
@@ -89,7 +88,7 @@ irb(main):072:0> AnswerScore.new(123, 0) == AnswerScore.new(456, 0)
 => false
 ```
 
-Same results will give us the `.eql?` operator since we alias it.
+Same results will give us the `.eql?` operator since `==` is alias of it.
 
 ## Adding two value objects
 
@@ -106,23 +105,22 @@ class AnswerScore
   end
 
   attr_reader :skill_id, :score
-  
+
   def +(other)
     raise ArgumentError unless self.class === other
     raise ArgumentError if self.skill_id != other.skill_id
-    
+
     score + other.score
   end
 
-  def ==(other)
-    other.class === self &&
-      other.hash == hash
+  def eql?(other)
+    other.instance_of?(AnswerScore) && skill_id.eql?(other.skill_id) && score.eql?(other.score)
   end
 
-  alias eql? ==
+  alias == eql?
 
   def hash
-    [skill_id, score].join.hash
+    AnswerScore.hash ^ [skill_id, score].hash
   end
 end
 ```
@@ -182,20 +180,20 @@ This won't work, we don't have a `NullScore`, we should implement it:
 
 ```ruby
 class NullScore
-   def +(other)
+  def +(other)
     raise ArgumentError unless AnswerScore === other
-    
+
     other
   end
-  
-  def ==(other)
-    NullScore === other
+
+  def eql?(other)
+    other.instance_of?(NullScore)
   end
 
-  alias eql? ==
+  alias == eql?
 
   def hash
-    'NullScore'.hash
+    NullScore.hash
   end
 end
 ```
@@ -216,27 +214,26 @@ class AnswerScore
   end
 
   attr_reader :skill_id, :score
-  
+
   def +(other)
     raise ArgumentError unless self.class === other
     raise ArgumentError if self.skill_id != other.skill_id
-    
+
     ScoreSum.new(skill_id: skill_id, sum: score + other.score, n: 2)
   end
-  
+
   def average_score
     score.round(2)
   end
 
-  def ==(other)
-    other.class === self &&
-      other.hash == hash
+  def eql?(other)
+    other.instance_of?(AnswerScore) && skill_id.eql?(other.skill_id) && score.eql?(other.score)
   end
 
-  alias eql? ==
+  alias == eql?
 
   def hash
-    [skill_id, score].join.hash
+    AnswerScore.hash ^ [skill_id, score].hash
   end
 end
 
@@ -247,33 +244,33 @@ class ScoreSum
     @n = Integer(n)
   end
 
-  attr_reader :skill_id, :sum, :n 
-  
+  attr_reader :skill_id, :sum, :n
+
   def +(other)
     raise ArgumentError unless AnswerScore === other
     raise ArgumentError if self.skill_id != other.skill_id
-    
-    ScoreSum.new(sum: sum + other.score, skill_id: skill_id, n: n+1)
+
+    ScoreSum.new(sum: sum + other.score, skill_id: skill_id, n: n + 1)
   end
-  
+
   def average_score
     (score / n).round(2)
   end
 
-  def ==(other)
-    other.class === self &&
-      other.hash == hash
+  def eql?(other)
+    other.instance_of?(ScoreSum) && skill_id.eql?(other.skill_id) && sum.eql?(other.sum) && n.eql?(other.n)
   end
 
-  alias eql? ==
+  alias == eql?
 
   def hash
-    [skill_id, sum, n].join.hash
+    ScoreSum.hash ^ [skill_id, sum, n].hash
   end
 end
 ```
 
 How it rolls:
+
 ```ruby
 irb(main):254:0> AnswerScore.new(123, 0) + AnswerScore.new(123, 1)
 => #<ScoreSum:0x00000001137b3770 @skill_id=123, @sum=0.1e1, @n=2>
