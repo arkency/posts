@@ -2,11 +2,12 @@
 title: Fighting the primitive obsession with Value objects
 created_at: 2021-05-01 13:41:14 +0200
 author: Szymon Fiedler
-tags: ['ddd', 'value object']
+tags: ["ddd", "value object"]
 publish: true
 ---
+
 My previous post on [read models](https://blog.arkency.com/how-to-build-a-read-model-with-rails-event-store-projection/)
-intended to address something different, but I decided to focus on read model part and leave the other topic for a different 
+intended to address something different, but I decided to focus on read model part and leave the other topic for a different
 one. There's one thing which I dislike in the implementation. Using primitives to calculate the scores.
 
 <!-- more -->
@@ -40,15 +41,15 @@ as you may suspect, the original is more complex.
 ## We can do better
 
 How can it be done differently? By introducing _Value object_. Before diving into the code, we should establish the
-correct definition of it. I like characteristics of _Value object_ which Eric Evans put in his 
+correct definition of it. I like characteristics of _Value object_ which Eric Evans put in his
 „Domain-Driven Design: Tackling the Complexity in the Heart of Software” book:
 
-  * It measures, quantifies, or describes a thing in the domain.
-  * It can be maintained as immutable.
-  * It models a conceptual whole by composing related attributes as an integral unit.
-  * It is completely replaceable when the measurement or description changes.
-  * It can be compared with others using Value equality.
-  * It supplies its collaborators with Side-Effect-Free Behavior
+- It measures, quantifies, or describes a thing in the domain.
+- It can be maintained as immutable.
+- It models a conceptual whole by composing related attributes as an integral unit.
+- It is completely replaceable when the measurement or description changes.
+- It can be compared with others using Value equality.
+- It supplies its collaborators with Side-Effect-Free Behavior
 
 Probably the most common example of Value object you'll meet is the `Price` or `MonetaryValue` which represents the
 combo of `BigDecimal` and a `String` representing the currency. I'll do something different then.
@@ -97,6 +98,7 @@ we treat this id to distinguish scores of different skills. Adding two scores of
 sense, right? Imagine adding money in dollars and pounds sterling without distinguishing the currency.
 
 Let's implement `+` operator on the object then.
+
 ```ruby
 class AnswerScore
   def initialize(skill_id, score)
@@ -283,12 +285,14 @@ irb(main):256:0> [AnswerScore.new(123, 0), AnswerScore.new(123, 1), AnswerScore
 ```
 
 What this gives us:
-* the objects are immutable, every time we do some operation, the new object is returned
-* we clearly explain our concept
-* we can incorporate specific behaviour for `AnswerScore` and `ScoreSum`, eg. `average_score` method which for score is
+
+- the objects are immutable, every time we do some operation, the new object is returned
+- we clearly explain our concept
+- we can incorporate specific behaviour for `AnswerScore` and `ScoreSum`, eg. `average_score` method which for score is
   simply a score, but for `ScoreSum` it's a sum divided by number of elements
 
 ## Bad news
+
 Our projection won't work now. Because current implementation in [Rails Event Store](https://railseventstore.org)
 framework doesn't allow that. Initial implementation worked because we used the `Hash` to maintain our state and we were
 mutating on and on the same instance
@@ -307,17 +311,14 @@ def calculate_scores(test_id, participant_id)
     .stream(stream_name(test_id, participant_id))
     .map do |event|
       case event.event_type
-      when 'SurveyExecution::AnswerRegistered'
-        AnswerScore.new(
-          skill_id: event.data.fetch(:skill_id),
-          score: event.data.fetch(:score)
-        )
+      when "SurveyExecution::AnswerRegistered"
+        AnswerScore.new(skill_id: event.data.fetch(:skill_id), score: event.data.fetch(:score))
       else
         raise WeDontDoThatHere
       end
-  end
-  .reduce(&:+)
-  .average_score
+    end
+    .reduce(&:+)
+    .average_score
 end
 ```
 
