@@ -13,7 +13,7 @@ prefer not to dive into.
 
 <!-- more -->
 
-The solution was obvious — lets progressively build read model every time someone answers the question. After the test
+The solution was obvious — let's progressively build read model every time someone answers the question. After the test
 is done, the report will be available instantly in a web ui.
 
 ## Let's start with a domain event
