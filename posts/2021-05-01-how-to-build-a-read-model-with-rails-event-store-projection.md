@@ -153,8 +153,8 @@ module Reporting
     end
 
     private_class_method def self.advisory_lock(participant_id, test_id)
-      bigint = [participant_id, test_id].join.hash
-      ApplicationRecord.connection.execute("SELECT pg_advisory_xact_lock(#{bigint})")
+      args = [participant_id, test_id].join
+      ApplicationRecord.connection.execute("SELECT pg_advisory_xact_lock(hash_64('#{args}'))")
     end
   end
 end
@@ -165,6 +165,55 @@ it is. However, it won't work for the not–yet–existing records because it us
 no update operation, but create. So, in many cases `ActiveRecord::RecordNotUnique` errors would appear if two or more
 concurrent threads would try to insert the row for the first time. Thanks to `pg_advisory_xact_lock ( key bigint ) → void`
 we can _obtain an exclusive transaction-level advisory lock, waiting if necessary_. Yet another reason to use `PostgreSQL`.
+
+### We were wrong on computing lock key
+
+Previous implementation of `advisory_lock` method in this blogpost didn't provide identical hash across different MRI processes and code was prone to `ActiveRecord::RecordNotUnique` errors.
+
+It required two different processes using two different connections to prove that previous `advisory_lock` didn't work as expected and allowed share of the same resource:
+
+```ruby
+private_class_method def self.advisory_lock(participant_id, test_id)
+  bigint = [participant_id, test_id].join.hash
+  ApplicationRecord.connection.execute("SELECT pg_advisory_xact_lock(#{bigint})")
+end
+```
+
+Why this happens is explained in [Ruby's `Object#hash` docs](https://ruby-doc.org/core-3.1.2/Object.html#method-i-hash):
+
+> The hash value for an object may not be identical across invocations
+> or implementations of Ruby. If you need a stable identifier across Ruby
+> invocations and implementations you will need to generate one with
+> a custom method.
+
+We fixed it by creating custom `hash_64()` function in our PostgreSQL database:
+
+```sql
+create function hash_64(_identifier character varying) returns bigint
+    language plpgsql
+as
+$$
+DECLARE
+hash bigint;
+BEGIN
+  select left('x' || md5(_identifier), 16)::bit(64)::bigint into hash;
+  return hash;
+  END;
+  $$;
+
+alter function hash_64(varchar) owner to dbuser;
+```
+
+which then was used to fix the implementation of `advisory_lock`:
+
+```ruby
+private_class_method def self.advisory_lock(participant_id, test_id)
+  args = [participant_id, test_id].join
+  ApplicationRecord.connection.execute("SELECT pg_advisory_xact_lock(hash_64('#{args}'))")
+end
+```
+
+The `hash_64()` implementation was taken from [Eventide](https://github.com/eventide-project/message-store-postgres/commit/272a848e0f19851e255a28d8c7dee2ba66e98997) codebase.
 
 ## How to use the read model
 
