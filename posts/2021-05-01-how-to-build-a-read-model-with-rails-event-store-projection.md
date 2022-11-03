@@ -2,7 +2,7 @@
 title: How to build a read model with Rails Event Store Projection
 created_at: 2021-05-01 00:58:27 +0200
 author: Szymon Fiedler
-tags: ['res', 'projection', 'read model', 'ddd', 'rails event store']
+tags: ["res", "projection", "read model", "ddd", "rails event store"]
 publish: true
 ---
 
@@ -116,11 +116,11 @@ What happens here:
 
 ## How the read model looks like?
 
-| id | report_slug | participant_name | test_name | skills |
-|-----|-----|-----|-----|-----|
-| 997 | cf827527c552 | Jane Doe | Important skillz test | `[{name: 'Sleeping', average: '2.5', global: '2.2'}, #...]` |
-| 998 | 6adb1fc1d201 | Ugly Joe | Programming skills assessment | `[{name: 'Ruby', average: '4.0', global: '2.0'}, #...]` |
-| 999 | 4cece2d44ae0 | Mr Kobayashi | Smartness test | `[{name: 'Whatever', average: '5.0', global: '1.0'}, #...]` |
+| id  | report_slug  | participant_name | test_name                     | skills                                                      |
+| --- | ------------ | ---------------- | ----------------------------- | ----------------------------------------------------------- |
+| 997 | cf827527c552 | Jane Doe         | Important skillz test         | `[{name: 'Sleeping', average: '2.5', global: '2.2'}, #...]` |
+| 998 | 6adb1fc1d201 | Ugly Joe         | Programming skills assessment | `[{name: 'Ruby', average: '4.0', global: '2.0'}, #...]`     |
+| 999 | 4cece2d44ae0 | Mr Kobayashi     | Smartness test                | `[{name: 'Whatever', average: '5.0', global: '1.0'}, #...]` |
 
 [Vaughn Vernon](https://twitter.com/VaughnVernon) in his „Implementing Domain-Driven Design” book describes _read model_
 this way:
@@ -137,7 +137,6 @@ simple lookup for a single record which contains all the data to be displayed in
 Please, have a look at the read model implementation:
 
 ```ruby
-
 module Reporting
   class ParticipantReport < ApplicationRecord
     def self.write(scores, participant, test)
@@ -154,10 +153,8 @@ module Reporting
     end
 
     private_class_method def self.advisory_lock(participant_id, test_id)
-       bigint = [participant_id, test_id].join.hash
-       ApplicationRecord.connection.execute(
-         "SELECT pg_advisory_xact_lock(#{bigint})"
-       )
+      bigint = [participant_id, test_id].join.hash
+      ApplicationRecord.connection.execute("SELECT pg_advisory_xact_lock(#{bigint})")
     end
   end
 end
@@ -183,13 +180,13 @@ end
 ```haml
 \# app/views/test_results/show.html.erb
 %h1
-  Personalised report for #{report.participant_name}
+  = "Personalised report for #{report.participant_name}"
 %h2= report.test_name
 - report.skills.each do |skill|
   %div
-    Your performance in #{skill[:name]} is
-    \#{skill[:average]} comparing to
-    \#{skill[:global]} earned by others
+    = "Your performance in #{skill[:name]} is"
+    = "#{skill[:average]} comparing to"
+    = "#{skill[:global]} earned by others"
 ```
 
 ## But...
