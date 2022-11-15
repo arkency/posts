@@ -5,7 +5,7 @@ tags: ["ruby", "rails", "postgresql"]
 publish: false
 ---
 
-# How we got struck by 5 year old implementation
+# How we got struck by 5–year–old implementation
 
 Recently we discovered that we were wrong on computing lock key for acquiring advisory locks. It was already covered as an update to [article about building read models](https://blog.arkency.com/how-to-build-a-read-model-with-rails-event-store-projection/#we_were_wrong_on_computing_lock_key), but we thought that telling the whole story behind the issue could be interesting for you.
 
