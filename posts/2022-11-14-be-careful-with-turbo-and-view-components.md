@@ -53,6 +53,6 @@ And it works. However it turned out there is an issue.
 Our other component links stopped to work.
 The link_to with option method will dynamically create an HTML form and immediately submit it.
 It uses @rails/ujs and it turns out that GET forms are not compatible with turbo stream responses.
-The fix was to remove the :method option, and use a button_tag for the :post request.
-The since Rails 7 @rails/ujs library is no longer on by default. Also the link_to attriubute "method" is a deprecated link_to attribute.
+The fix was to remove the `:method` option, and use a button_tag for the `:post` request.
+Since Rails 7 @rails/ujs library is no longer on by default. Also the link_to attriubute "method" is a deprecated link_to attribute.
 
