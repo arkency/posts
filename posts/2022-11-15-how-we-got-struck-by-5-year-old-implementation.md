@@ -2,7 +2,7 @@
 created_at: 2022-11-15 14:59:22 +0100
 author: Szymon Fiedler
 tags: ["ruby", "rails", "postgresql"]
-publish: false
+publish: true
 ---
 
 # How we got struck by 5–year–old implementation
