@@ -11,11 +11,11 @@ bla bla bla
 
 This is more less how our typical architecture looks like.
 
-<img src="<%= src_original("tuebo-event-handlers/sync.png") %>" width="100%">
+<img src="<%= src_original("turbo-event-handlers/sync.png") %>" width="100%">
 
 bla bla bla
 
-<img src="<%= src_original("tuebo-event-handlers/async.png") %>" width="100%">
+<img src="<%= src_original("turbo-event-handlers/async.png") %>" width="100%">
 
 bla bla bla
 
