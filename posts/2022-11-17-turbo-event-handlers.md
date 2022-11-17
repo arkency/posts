@@ -1,7 +1,7 @@
 ---
 created_at: 2022-11-17 15:06:19 +0100
 author: Piotr Jurewicz
-tags: ['turbo, 'rails']
+tags: ['turbo', 'rails']
 publish: false
 ---
 
