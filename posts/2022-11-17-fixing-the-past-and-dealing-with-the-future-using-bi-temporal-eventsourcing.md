@@ -5,7 +5,7 @@ tags: [event sourcing, ddd, bi-temporal event sourcing]
 publish: false
 ---
 
-# Fixing the past and dealing with the future using Bi-temporal EventSourcing
+# Fixing the past and dealing with the future using bi-temporal EventSourcing
 
 Working with EventSourcing is amazing. There's a history of events that happened in the system. This makes debugging so much easier.
 
@@ -65,7 +65,7 @@ The salary of an employee is raised to 10K
 
 After 2 months an employee investigates payslips and it turns out that they're not getting what they agreed upon. They were supposed to get 10.3K.
 
-The test below shows how we can deal with that issue using Bi-temporal EventSourcing.
+The test below shows how we can deal with that issue using i-temporal EventSourcing.
 
 First, let's set the salary.
 
@@ -170,7 +170,7 @@ This is how you can deal with the past. Time to plan for the future.
 
 ## Planning for the future
 
-In the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application, there was an issue regarding [scheduling prices for the future](https://github.com/RailsEventStore/ecommerce/issues/190). It was good opportunity to use the Bi-temporal EventSourcing feature that we have introduced some time ago.
+In the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application, there was an issue regarding [scheduling prices for the future](https://github.com/RailsEventStore/ecommerce/issues/190). It was good opportunity to use the bi-temporal EventSourcing feature that we have introduced some time ago.
 
 I was eager to test it out in larger project than simple example above, so I just proceed. But at first the solution didn't feel ok in the beginning. You can see my concerns in the GitHub issue and in the [commit message](https://github.com/RailsEventStore/ecommerce/commit/b7c83959b30de1aaceb0082b96d57d8803def938) itself.
 
@@ -180,16 +180,18 @@ Instead of changing the domain code, we used the bi-temporal EventSourcing featu
 
 ```ruby
 class SetFuturePriceHandler
-  def initialize(event_store)
+    def initialize(event_store)
     @repository = Infra::AggregateRootRepository.new(event_store)
     @event_store = event_store
-  end
-
-  def call(cmd)
-    @event_store.with_metadata({ valid_at: cmd.valid_since }) do
-      @repository.with_aggregate(Product, cmd.product_id) { |product| product.set_price(cmd.price) }
     end
-  end
+
+    def call(cmd)
+    @event_store.with_metadata({ valid_at: cmd.valid_since }) do
+        @repository.with_aggregate(Product, cmd.product_id) do |product|
+        product.set_price(cmd.price)
+        end
+    end
+    end
 end
 ```
 
@@ -197,7 +199,9 @@ The most important here are following lines
 
 ```ruby
 @event_store.with_metadata({ valid_at: cmd.valid_since }) do
-  @repository.with_aggregate(Product, cmd.product_id) { |product| product.set_price(cmd.price) }
+    @repository.with_aggregate(Product, cmd.product_id) do |product|
+        product.set_price(cmd.price)
+    end
 end
 ```
 
@@ -208,23 +212,29 @@ We add the additional `valid_at` metadata to the `event_store`. As you remember 
 Test has to be included in order to prove that it works as expected.
 
 ```ruby
-def test_check_future_price
-  product_1_id = SecureRandom.uuid
-  set_price(product_1_id, 20)
-  future_date_timestamp = Time.now.utc + plus_five_days
-  set_future_price(product_1_id, 30, future_date_timestamp.to_s)
+    def test_check_future_price
+       product_1_id = SecureRandom.uuid
+       set_price(product_1_id, 20)
+       future_date_timestamp = Time.now.utc + plus_five_days
+       set_future_price(product_1_id, 30, future_date_timestamp.to_s)
 
-  Timecop.travel(future_date_timestamp + 2137) do
-    order_id = SecureRandom.uuid
-    add_item(order_id, product_1_id)
-    stream = "Pricing::Order$#{order_id}"
+       Timecop.travel(future_date_timestamp + 2137) do
+         order_id = SecureRandom.uuid
+         add_item(order_id, product_1_id)
+         stream = "Pricing::Order$#{order_id}"
 
-    assert_events(
-      stream,
-      OrderTotalValueCalculated.new(data: { order_id: order_id, discounted_amount: 30, total_amount: 30 }),
-    ) { calculate_total_value(order_id) }
-  end
-end
+         assert_events(
+           stream,
+           OrderTotalValueCalculated.new(
+             data: {
+               order_id: order_id,
+               discounted_amount: 30,
+               total_amount: 30
+             }
+           )
+         ) { calculate_total_value(order_id) }
+       end
+     end
 ```
 
 As you can see the newer price is used when we _time travel_ into the future.
