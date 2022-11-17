@@ -58,7 +58,7 @@ class Configuration
 end
 ```
 
-```html
+```erb
 <table>
   <thead>
     <tr>
