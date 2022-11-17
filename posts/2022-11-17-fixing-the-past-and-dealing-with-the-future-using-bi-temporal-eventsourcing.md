@@ -15,7 +15,7 @@ What about bi-temporal EventSourcing?
 
 <!-- more -->
 
-# Bi-temporal EventSourcing
+## Bi-temporal EventSourcing
 
 Bi-temporal EventSourcing is based on two-time dimensions. 
 
@@ -23,11 +23,11 @@ One of them is the one that is already well known in EventSourcing. It's the tim
 
 The other time dimension describes when the event actually becomes valid. In [RailsEventStore](https://railseventstore.org) we use the `valid_at` metadata to record that fact.
 
-# Fixing the history
+## Fixing the history
 
 In the RailsEventStore [documentation](https://railseventstore.org/docs/v2/bi-temporal/) we have a conceptual example of how we can use bi-temporal event sourcing to fix incorrectly raised salary. I'll reuse the example.
 
-## The example
+### The example
 
 Think about a system that allows you to keep track of the salaries of employees in a given company. 
 
@@ -176,12 +176,12 @@ _et voilà_
 
 This is how you can deal with the past. Time to plan for the future.
 
-# Planning for the future
+## Planning for the future
 In the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application, there was an issue regarding [scheduling prices for the future](https://github.com/RailsEventStore/ecommerce/issues/190). It was good opportunity to use the Bi-temporal EventSourcing feature that we have introduced some time ago.
 
 I was eager to test it out in larger project than simple example above, so I just proceed. But at first the solution didn't feel ok in the beginning. You can see my concerns in the GitHub issue and in the [commit message](https://github.com/RailsEventStore/ecommerce/commit/b7c83959b30de1aaceb0082b96d57d8803def938) itself.
 
-## The solution
+### The solution
 
 Instead of changing the domain code, we used the bi-temporal EventSourcing feature. Because of that we needed a new command and it's handler.
 
@@ -214,7 +214,7 @@ end
 
 We add the additional `valid_at` metadata to the `event_store`. As you remember from the beginning, it's the other time dimension that allows us to make decision _when_ the event became valid. Exactly at which point in time. This metadata is used when the _Product_ aggregate publishes the `PriceSet` event.
 
-## The test
+### The test
 
 Test has to be included in order to prove that it works as expected.
 
