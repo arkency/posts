@@ -2,7 +2,7 @@
 created_at: 2022-11-17 09:58:56 +0100
 author: Łukasz Reszke
 tags: [event sourcing, ddd, bi-temporal event sourcing]
-publish: false
+publish: true
 ---
 
 # Fixing the past and dealing with the future using bi-temporal EventSourcing
