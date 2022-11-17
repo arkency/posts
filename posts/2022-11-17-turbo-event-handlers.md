@@ -59,12 +59,12 @@ end
 ```
 
 ```html
-<table class="w-full">
+<table>
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Customer</th>
-      <th>State</th>
+      <td>Number</td>
+      <td>Customer</td>
+      <td>State</td>
     </tr>
   </thead>
 
