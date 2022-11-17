@@ -58,7 +58,7 @@ class Configuration
 end
 ```
 
-```html+erb
+```html
 <table class="w-full">
   <thead>
     <tr>
