@@ -58,25 +58,18 @@ class Configuration
 end
 ```
 
-```ruby
-<table>
-  <thead>
-    <tr>
-      <td>Number</td>
-      <td>Customer</td>
-      <td>State</td>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @orders.each do |order| %>
-    <%= turbo_stream_from "orders_order_#{order.uid}" %>
-    <tr>
-      <td><%= order.number %></td>
-      <td><%= order.customer %></td>
-      <td id="<%= "orders_order_#{order.uid}_state" %>"><%= order.state %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+```haml
+%table
+  %thead
+    %tr
+      %td Number
+      %td Customer
+      %td State
+  %tbody
+    - @orders.each do |order|
+      = turbo_stream_from "orders_order_#{order.uid}"
+      %tr
+        %td= order.number
+        %td= order.customer
+        %td{id: "orders_order_#{order.uid}_state"}= order.state
 ```
