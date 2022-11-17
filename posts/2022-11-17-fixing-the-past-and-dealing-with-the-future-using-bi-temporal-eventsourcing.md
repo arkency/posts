@@ -180,18 +180,18 @@ Instead of changing the domain code, we used the bi-temporal EventSourcing featu
 
 ```ruby
 class SetFuturePriceHandler
-    def initialize(event_store)
+  def initialize(event_store)
     @repository = Infra::AggregateRootRepository.new(event_store)
     @event_store = event_store
-    end
+  end
 
-    def call(cmd)
+  def call(cmd)
     @event_store.with_metadata({ valid_at: cmd.valid_since }) do
-        @repository.with_aggregate(Product, cmd.product_id) do |product|
+      @repository.with_aggregate(Product, cmd.product_id) do |product|
         product.set_price(cmd.price)
-        end
+      end
     end
-    end
+  end
 end
 ```
 
@@ -199,9 +199,9 @@ The most important here are following lines
 
 ```ruby
 @event_store.with_metadata({ valid_at: cmd.valid_since }) do
-    @repository.with_aggregate(Product, cmd.product_id) do |product|
-        product.set_price(cmd.price)
-    end
+  @repository.with_aggregate(Product, cmd.product_id) do |product|
+    product.set_price(cmd.price)
+  end
 end
 ```
 
