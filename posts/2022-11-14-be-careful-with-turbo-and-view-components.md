@@ -2,7 +2,7 @@
 created_at: 2022-11-14 13:50:10 +0100
 author: Tomasz Patrzek
 tags: []
-publish: false
+publish: true
 ---
 
 # Be careful with turbo and view components
