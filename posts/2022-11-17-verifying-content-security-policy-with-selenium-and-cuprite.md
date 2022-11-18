@@ -17,7 +17,7 @@ Quick reminder [what this CSP thing is](https://content-security-policy.com):
 
 > Content-Security-Policy is the name of a HTTP response header that modern browsers use to enhance the security of the document (or web page). The Content-Security-Policy header allows you to restrict how resources such as JavaScript, CSS, or pretty much anything that the browser loads.
 
-In short — setting CSP headers can [help protect against XSS and injection attacks](https://edgeguides.rubyonrails.org/security.html).
+In short — setting CSP headers can [help protect against XSS and injection attacks]([https://edgeguides.rubyonrails.org/security.html](https://edgeguides.rubyonrails.org/security.html#content-security-policy-header)).
 
 For example, a web server tells your browser, that inline scripts cannot be executed. The web browser knows this because it received the following HTTP header in the response.
 
