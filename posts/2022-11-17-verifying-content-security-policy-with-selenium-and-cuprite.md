@@ -25,7 +25,7 @@ For example, a web server tells your browser, that inline scripts cannot be exec
 content-security-policy: script-src 'self'
 ```
 
-Whenever the browser finds an inlined script in the HTML body of such response, it won't execute it.
+Whenever the browser finds an inlined script in the HTML body of the response, it won't execute it.
 
 ```html
 <script type="text/javascript">
@@ -33,7 +33,7 @@ Whenever the browser finds an inlined script in the HTML body of such response, 
 </script>
 ```
 
-Instead an error will be raised and logged. It doesn't matter whether the inlined script was legitimate or injected by the attacker. The policy strictly disallows it.
+Instead, an error will be raised and logged. It doesn't matter whether the inlined script was legitimate or injected by the attacker. The policy strictly disallows it.
 
 ```
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-b1No4u4UwgH6M1mNU7GPc4D3Fc2lJ26AvLJAgCR+lvE='), or a nonce ('nonce-...') is required to enable inline execution.
@@ -41,11 +41,11 @@ Refused to execute inline script because it violates the following Content Secur
 
 ## How to detect Content-Security Policy violation
 
-At this point we already know that it's the application or web server dictating policy. And the web browser has "the engine" to verify end enforce it. Thus it would be best to lean on headless web browser in the test and never look into that black box.
+At this point, we already know that it's the application or web server dictating policy. And the web browser has "the engine" to verify end enforce it. Thus it would be best to lean on a headless web browser in the test and never look into that black box.
 
-In order to verify desired Content-Security Policy, we first need to emulate it. `RES::Browser` is technically speaking a Rack application that you either mount in a Rails app or run standalone. Let's focus on the former. That's most frequent use case.
+In order to verify desired Content-Security Policy, we first need to emulate it. `RES::Browser` is technically speaking a Rack application that you either mount in a Rails app or run standalone. Let's focus on the former. That's the most frequent use case.
 
-When mounted, `RES::Browser` would rely on CSP header from Rails application. In test we don't need to involve though. Just a tiny Rack middleware that adds Content-Security Policy headers will be enough here to emulate it.
+When mounted, `RES::Browser` would rely on the CSP header from Rails. In a test, we don't need to involve the whole application though. Just a tiny Rack middleware that adds Content-Security Policy headers will be enough here to emulate it.
 
 ```ruby
 class CspApp
@@ -63,7 +63,7 @@ class CspApp
 end
 ```
 
-We will wrap the `RES::Browser` component with this middleware. Now, when the web browser — driven by [Capybara](https://github.com/teamcapybara/capybara) and [Cuprite](https://github.com/rubycdp/cuprite) — visits root URL, it will compare received Content-Security Policy header with the reality of served HTML. Quickly making objections if there should be any. The same objections would be raised outside tested system, on a real web browser.
+We will wrap the `RES::Browser` component with this middleware. Now, when the web browser — driven by [Capybara](https://github.com/teamcapybara/capybara) and [Cuprite](https://github.com/rubycdp/cuprite) — visits the root URL, it will compare the received Content-Security Policy header with the reality of served HTML. Quickly making objections if there should be any. The same objections would be raised outside the tested system, on a real web browser.
 
 ```ruby
 session =
@@ -78,19 +78,20 @@ session =
 session.visit("/")
 ```
 
-How do we know there were any issues? Parts of the page may not load correctly and we could assert on that.
+How do we know there were any issues? Parts of the page may not load correctly and we could assert that. That is perfect for checking dynamic content.
 
 ```ruby
 expect(session).to have_content("RubyEventStore v2.5.1")
 ```
 
-More universally — we could peek into web browser logs, looking for errors.
+But what about [inline CSS not loading due to restrictive policy](https://github.com/RailsEventStore/rails_event_store/issues/1346)? We may not be able to detect it by looking only at HTML content.
+However, more universally — we could peek into web browser logs, looking for errors.
 
 ```ruby
 expect(logger.messages.select { |m| m["params"]["entry"]["level"] == "error" }).to be_empty
 ```
 
-Where does this `logger` come from? In Cuprite one can pass it to the driver. Logger simply [has to respond to puts](https://github.com/rubycdp/ferrum#customization) method. Implementation good enough for single test might look like this:
+Where does this `logger` come from? In Cuprite one can pass it to the driver. Logger simply [has to respond to puts](https://github.com/rubycdp/ferrum#customization) method. Implementation good enough for a single test might look like this:
 
 ```ruby
 logger =
@@ -114,9 +115,9 @@ Capybara.register_driver(:cuprite_with_logger) { |app| Capybara::Cuprite::Driver
 
 ## Cuprite vs Selenium
 
-Only recently I've learned that Cuprite does not require Chromedriver to operate. That alone convinced me to give it a try — who doesn't like reducing dependencies! And Chromedriver is this annoying dependency which needs to be frequently updated, in version sync with Chrome browser and [lifted from quarantine](https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/).
+Only recently I've learned that Cuprite does not require Chromedriver to operate. That alone convinced me to give it a try — who doesn't like reducing dependencies? And Chromedriver is this annoying dependency that needs to be frequently updated, in version sync with Chrome browser and [lifted from quarantine](https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/).
 
-Previously in RailsEventStore were using Selenium with a headless Chrome. On such setup we were inspecting browser logs differently. The logger didn't have to be explicitly passed and was already exposed on driver interface.
+Previously in RailsEventStore were using Selenium with a headless Chrome. On such a setup, we were inspecting browser logs differently. The logger didn't have to be explicitly passed and was already exposed on the driver interface.
 
 ```ruby
 expect(session.driver.browser.manage.logs.get(:browser).select { |le| le.level == "SEVERE" }).to be_empty
