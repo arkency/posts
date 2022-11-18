@@ -7,25 +7,25 @@ publish: false
 
 # Verifying Content-Security Policy with Selenium and Cuprite
 
-Once upon a time, a fellow RailsEventStore enthusiast [reported us an issue](https://github.com/RailsEventStore/rails_event_store/issues/1062). It turned out that `RES::Browser` component was not compatible with a quite reasonable Content-Security Policy they were using in their Rails app. His report led to an interesting discussion. Eventually, one pull-request later, the project gained new contributor and a more CSP-friendly setup.
+Once upon a time, a fellow RailsEventStore enthusiast [reported an issue](https://github.com/RailsEventStore/rails_event_store/issues/1062). It turned out that the `RES::Browser` component was not compatible with a quite reasonable Content-Security Policy they were using in their Rails app. His report led to an interesting discussion. Eventually, one pull-request later, the project gained new contributor and a more CSP-friendly setup.
 
 How did we ensure that this improvement will not be broken in future releases without manual testing? Read on.
 
 ## What is Content-Security Policy?
 
-Quick reminder [what this CSP thing actually is](https://content-security-policy.com):
+Quick reminder [what this CSP thing is](https://content-security-policy.com):
 
 > Content-Security-Policy is the name of a HTTP response header that modern browsers use to enhance the security of the document (or web page). The Content-Security-Policy header allows you to restrict how resources such as JavaScript, CSS, or pretty much anything that the browser loads.
 
 In short — setting CSP headers can [help protect against XSS and injection attacks](https://edgeguides.rubyonrails.org/security.html).
 
-For example: web server tells your browser, that inline scripts cannot be executed. The web browser knows this because it received following HTTP header in the response.
+For example, a web server tells your browser, that inline scripts cannot be executed. The web browser knows this because it received the following HTTP header in the response.
 
 ```
 content-security-policy: script-src 'self'
 ```
 
-Whenever browser finds an inlined script in the HTML body of such response, it won't execute it.
+Whenever the browser finds an inlined script in the HTML body of such response, it won't execute it.
 
 ```html
 <script type="text/javascript">
