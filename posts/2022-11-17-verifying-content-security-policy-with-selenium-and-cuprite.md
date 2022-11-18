@@ -1,7 +1,7 @@
 ---
 created_at: 2022-11-17 13:16:10 +0100
 author: Paweł Pacana
-tags: []
+tags: [ 'ruby', 'testing' ]
 publish: false
 ---
 
