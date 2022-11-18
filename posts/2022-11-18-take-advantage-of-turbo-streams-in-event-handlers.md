@@ -15,12 +15,12 @@ However, rejecting the concept of `Turbo::Broadcastable` concern, I see Turbo St
 <!-- more -->
 
 This is more less how our typical architecture looks like.
-<img src="<%= src_original("turbo-event-handlers/sync.png") %>" width="100%">
+<img src="<%= src_original("take-advantage-of-turbo-streams-in-event-handlers/sync.png") %>" width="100%">
 **Read models** are loaded and presented on the **UI**. A user issues a **command** which is passed to the domain layer. This usually culminates in one or more **domain events** being published.
 These events are persisted are then handled synchronously or asynchronously by **event handlers** which update the **read models**. With next page load, the user sees the updated **read models**. The circle is closed.
 
 With Turbo Streams and just one more event handler, we can invoke asynchronous updates to the UI.
-<img src="<%= src_original("turbo-event-handlers/async.png") %>" width="100%">
+<img src="<%= src_original("take-advantage-of-turbo-streams-in-event-handlers/async.png") %>" width="100%">
 
 Let's see how we do it based on the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application.
 
