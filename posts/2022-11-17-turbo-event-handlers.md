@@ -6,18 +6,20 @@ publish: false
 ---
 
 # Turbo event handlers
-It's been a time since Rails 7 came with Turbo and it's Turbo Streams. 
-bla bla bla
+It's been a time since Rails 7 came with Turbo and it's Turbo Streams. At first, I was a bit sceptical because of the idea of broadcasting view updates as a sort of Active Record callbacks.
+Sorry, I'm simply not buying the idea of mixing websockets updates into data model.
+However, Rejecting the concept of Turbo::Broadcastable concern, I see Turbo Stream as a great tool and I'm sure there is a proper place for it in the Rails app architecture.
+
+<!-- more -->
 
 This is more less how our typical architecture looks like.
-
 <img src="<%= src_original("turbo-event-handlers/sync.png") %>" width="100%">
+Read models are loaded and presented on the UI. A user issues a **command** which is passed to the domain layer. This usually culminates in one or more **domain events** being published.
+These events are then handled synchronously or asynchronously by **event handlers** which update the read models. With next page load, the user sees the updated read models. The circle is closed.
 
-bla bla bla
 
+With Turbo Streams and just one more event handler, we can make asynchronous updates to the UI.
 <img src="<%= src_original("turbo-event-handlers/async.png") %>" width="100%">
-
-bla bla bla
 
 Let's see how we do it based on the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application.
 
@@ -80,3 +82,4 @@ end
   </tbody>
 </table>
 ```
+
