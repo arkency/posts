@@ -6,22 +6,46 @@ publish: false
 ---
 
 # Turbo event handlers
-It's been a time since Rails 7 came with Turbo and it's Turbo Streams. At first, I was a bit sceptical because of the idea of broadcasting view updates as a sort of Active Record callbacks.
+It's been a time since Rails 7 came with Turbo and it's Turbo Streams.
+
+At first, I was a bit sceptical because of the idea of broadcasting view updates as a sort of Active Record callbacks.
 Sorry, I'm simply not buying the idea of mixing websockets updates into data model.
-However, Rejecting the concept of Turbo::Broadcastable concern, I see Turbo Stream as a great tool and I'm sure there is a proper place for it in the Rails app architecture.
+However, rejecting the concept of `Turbo::Broadcastable` concern, I see Turbo Stream as a great tool and I'm sure there is a proper place for it in the Rails app architecture.
 
 <!-- more -->
 
 This is more less how our typical architecture looks like.
 <img src="<%= src_original("turbo-event-handlers/sync.png") %>" width="100%">
-Read models are loaded and presented on the UI. A user issues a **command** which is passed to the domain layer. This usually culminates in one or more **domain events** being published.
-These events are then handled synchronously or asynchronously by **event handlers** which update the read models. With next page load, the user sees the updated read models. The circle is closed.
+**Read models** are loaded and presented on the **UI**. A user issues a **command** which is passed to the domain layer. This usually culminates in one or more **domain events** being published.
+These events are then handled synchronously or asynchronously by **event handlers** which update the **read models**. With next page load, the user sees the updated **read models**. The circle is closed.
 
-
-With Turbo Streams and just one more event handler, we can make asynchronous updates to the UI.
+With Turbo Streams and just one more event handler, we can invoke asynchronous updates to the UI.
 <img src="<%= src_original("turbo-event-handlers/async.png") %>" width="100%">
 
 Let's see how we do it based on the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application.
+
+```html+erb
+<table>
+  <thead>
+    <tr>
+      <td>Number</td>
+      <td>Customer</td>
+      <td>State</td>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%% @orders.each do |order| %>
+    <%%= turbo_stream_from "orders_order_#{order.uid}" %>
+    <tr>
+      <td><%%= order.number %></td>
+      <td><%%= order.customer %></td>
+      <td id="<%%= "orders_order_#{order.uid}_state" %>"><%%= order.state %></td>
+    </tr>
+  <%% end %>
+  </tbody>
+</table>
+```
 
 ```ruby
 
@@ -29,7 +53,7 @@ class Configuration
   def call(event_store)
     @event_store = event_store
 
-    # ...
+    # ... handlers building read models omited
 
     subscribe(
       ->(event) { broadcast_order_state_change(event.data.fetch(:order_id), 'Submitted') },
@@ -60,26 +84,4 @@ class Configuration
 end
 ```
 
-```html+erb
-<table>
-  <thead>
-    <tr>
-      <td>Number</td>
-      <td>Customer</td>
-      <td>State</td>
-    </tr>
-  </thead>
-
-  <tbody>
-  <%% @orders.each do |order| %>
-    <%%= turbo_stream_from "orders_order_#{order.uid}" %>
-    <tr>
-      <td><%%= order.number %></td>
-      <td><%%= order.customer %></td>
-      <td id="<%%= "orders_order_#{order.uid}_state" %>"><%%= order.state %></td>
-    </tr>
-  <%% end %>
-  </tbody>
-</table>
-```
-
+Boom! Any time we catch a `OrderSubmitted`, `OrderConfirmed` or `OrderCancelled` event, we update the UI. Every subscribed client receives Turbo Streams message and updates the specific order state.
