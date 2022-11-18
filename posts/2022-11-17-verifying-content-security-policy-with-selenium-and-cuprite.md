@@ -94,22 +94,20 @@ Where does this `logger` come from? In Cuprite one can pass it to the driver. Lo
 
 ```ruby
 logger =
-  Class
-    .new do
-      attr_reader :messages
+  Class.new do
+    attr_reader :messages
 
-      def initialize
-        @messages = []
-      end
-
-      def puts(message)
-        _, _, body = message.strip.split(" ", 3)
-        body = JSON.parse(body)
-
-        @messages << body if body["method"] == "Log.entryAdded"
-      end
+    def initialize
+      @messages = []
     end
-    .new
+
+    def puts(message)
+      _, _, body = message.strip.split(" ", 3)
+      body = JSON.parse(body)
+
+      @messages << body if body["method"] == "Log.entryAdded"
+    end
+  end.new
 
 Capybara.register_driver(:cuprite_with_logger) { |app| Capybara::Cuprite::Driver.new(app, logger: logger) }
 ```
