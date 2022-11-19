@@ -1,8 +1,8 @@
 ---
-created_at: 2022-11-17 15:06:19 +0100
+created_at: 2022-11-18 15:06:19 +0100
 author: Piotr Jurewicz
-tags: ['turbo', 'rails']
-publish: false
+tags: ['architecture', 'turbo', 'rails']
+publish: true
 ---
 
 # Take advantage of Turbo Streams in event handlers
