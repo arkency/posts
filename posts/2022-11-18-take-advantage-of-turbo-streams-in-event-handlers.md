@@ -19,7 +19,7 @@ This is more or less what our typical architecture looks like.
 **Read models** are loaded and presented on the **UI**. A user issues a **command** which is passed to the domain layer. This usually culminates in one or more **domain events** being published.
 These events are persisted and then handled synchronously or asynchronously by **event handlers** which update the **read models**. With the next page load, the user sees the updated **read models**. The circle is closed.
 
-With Turbo Streams and just one more event handler, we can invoke asynchronous updates to the UI.
+With Turbo Streams and just one more event handler, we can invoke asynchronous direct updates from the backend to the UI and significantly improve user experience.
 <img src="<%= src_original("take-advantage-of-turbo-streams-in-event-handlers/async.png") %>" width="100%">
 
 Let's see how we do it based on the [ecommerce](https://github.com/RailsEventStore/ecommerce/), our demo application.
@@ -53,7 +53,7 @@ class Configuration
   def call(event_store)
     @event_store = event_store
 
-    # ... handlers building read models omited
+    # ... handlers building read models omitted
 
     subscribe(
       ->(event) { broadcast_order_state_change(event.data.fetch(:order_id), 'Submitted') },
