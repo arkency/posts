@@ -14,13 +14,13 @@ What caught our attention was the way of handling webhooks from third-party serv
 
 ## Two event types
 
-The advice we gave was to distinguish between two types of webhooks and publish them 
-###Technical event
+The advice we gave was to distinguish between two types of events:
+###Technical events
 This event is published when a webhook is received from a third-party service. It just contains the whole payload. `WebhookReceived`, `ConnectionSynced` are good examples of such events.
 
-###Domain event
+###Domain events
 This event is published when a webhook payload is processed and a domain event is extracted from it. It captures the memory of something interesting which affects the domain.
-`UserRegistered`, `OrderPlaced`, `InvoiceIssued` are common examples.
+`UserRegistered`, `OrderPlaced`, `InvoiceIssued` are common examples. You can extract more than one domain event from a single technical event. It's also ok to have a technical event which doesn't result in any domain event.
 
 ## Why?
 
