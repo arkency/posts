@@ -2,7 +2,7 @@
 created_at: 2022-11-21 11:44:08 +0100
 author: Piotr Jurewicz
 tags: ['rails event store']
-publish: false
+publish: true
 ---
 
 # Handling third-party webhooks with Rails Event Store
