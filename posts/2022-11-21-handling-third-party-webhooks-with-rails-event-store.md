@@ -78,8 +78,10 @@ What is more, if your business rules ever change, you can still reuse the payloa
 ###Improved performance
 Your responses to the third-party are super fast because you don't need to wait for the domain event to be processed synchronously.
 You just publish the technical event and respond immediately. Then you can process the queue asynchronously based on the processing unit's availability and the priority of the events.
+
 Overall, you can scale the processing of the events independently from the web server.
 
 ###No need to rely on the third-party retry mechanism
 Once you have a payload stored, you can process it as many times as you want. If there is a bug in your code, you can fix it and reprocess the event. Retrying on unhandled exceptions is a default mechanism of most ActiveJob queue adapters.
+
 You can't rely on how the third-party will act on your internal error. It may retry the request, or not. It may retry it immediately, or after a few hours. It may retry it only once, or many times. You don't want to lose control over this.
