@@ -7,7 +7,7 @@ publish: false
 
 # Handling third-party webhooks with Rails Event Store
 
-Lately, one of our clients asked us to review his Rails Event Store-based application. RES mentoring is one of the fields of our professional activity.
+Lately, one of our clients asked us to review his Rails Event Store-based application. We helped him, as RES mentoring is one of the key fields of our professional activity.
 
 What caught our attention was the way of handling incoming webhooks from third-party services.
 
@@ -16,6 +16,7 @@ What caught our attention was the way of handling incoming webhooks from third-p
 In a given project, incoming requests payloads were mapped to the domain commands on the fly, resulting in publishing domain events afterward.
 
 In fact, incoming webhooks usually inform us about things that have already happened in the past. So we should rather treat them as events, not commands.
+
 But simply mapping them to the domain events is risky. We can not reject them, as they are facts, but we can check if they do not contradict our invariants.
 If they do it can mean that we have incorrect expectations, or external service is not operating correctly.
 
