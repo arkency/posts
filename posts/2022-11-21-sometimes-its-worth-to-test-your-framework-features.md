@@ -146,4 +146,4 @@ It turned out that _PostgreSQL_ `CURRENT_TIMESTAMP` returns time at the start of
 
 [NOW() in MySQL](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_now) does the same.
 
-Have a look in a [Rails codebase](https://github.com/search?q=repo%3Arails%2Frails%20CURRENT_TIMESTAMP&type=code) if you're curious how CURRENT_TIMESTAMP is utilised.
+Have a look in a [Rails codebase](https://github.com/search?q=repo%3Arails%2Frails%20CURRENT_TIMESTAMP&type=code) if you're curious how `CURRENT_TIMESTAMP` is utilised.
