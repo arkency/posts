@@ -7,7 +7,8 @@ publish: false
 
 # Handling third-party webhooks with Rails Event Store
 
-Lately, one of our clients asked us to review his Rails Event Store-based application. We helped him, as RES mentoring is one of the key fields of our professional activity.
+Lately, one of our clients asked us to review his Rails Event Store-based application.
+We helped him, as [RES mentoring](https://railseventstore.org/support/) is one of the key fields of our professional activity.
 
 What caught our attention was the way of handling incoming webhooks from third-party services.
 
