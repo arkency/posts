@@ -22,7 +22,7 @@ If they do it can mean that we have incorrect expectations, or external service 
 
 The advice we gave was to distinguish between two types of events:
 
-###Technical events
+###Technical event
 This event is published when a webhook is received from a third-party service. It just contains the whole payload. `WebhookReceived`, `ConnectionSynced` are good examples of such events.
 This is an example of how publishing such an event can look like:
 ```ruby
@@ -62,7 +62,7 @@ module Api
 end
 ```
 
-###Domain events
+###Domain event
 This event is published when a webhook payload is processed and a domain event is extracted from it. It captures the memory of something interesting which affects the domain.
 `UserRegistered`, `OrderPlaced`, and `InvoiceIssued` are common examples. You can extract more than one domain event from a single technical event. It's also ok to have a technical event that doesn't result in any domain event.
 
