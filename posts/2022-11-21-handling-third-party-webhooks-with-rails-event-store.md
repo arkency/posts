@@ -13,12 +13,13 @@ What caught our attention was the way of handling incoming webhooks from third-p
 
 <!-- more -->
 
-## Two event types
 In a given project, incoming requests payloads were mapped to the domain commands on the fly, resulting in publishing domain events afterward.
 
 In fact, incoming webhooks usually inform us about things that have already happened in the past. So we should rather treat them as events, not commands.
 But simply mapping them to the domain events is risky. We can not reject them, as they are facts, but we can check if they do not contradict our invariants.
 If they do it can mean that we have incorrect expectations, or external service is not operating correctly.
+
+## Two event types
 
 The advice we gave was to distinguish between two types of events:
 
