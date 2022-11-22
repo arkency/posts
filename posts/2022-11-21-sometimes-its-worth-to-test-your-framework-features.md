@@ -2,7 +2,7 @@
 created_at: 2022-11-21 18:55:15 +0100
 author: Szymon Fiedler
 tags: [tests postgresql mysql rails]
-publish: false
+publish: true
 ---
 
 # Sometimes it's worth to test your framework features
