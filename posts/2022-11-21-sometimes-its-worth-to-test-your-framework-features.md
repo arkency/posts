@@ -1,7 +1,7 @@
 ---
 created_at: 2022-11-21 18:55:15 +0100
 author: Szymon Fiedler
-tags: [tests postgresql mysql rails]
+tags: ["tests", "postgresql", "mysql", "rails"]
 publish: true
 ---
 
