@@ -64,6 +64,7 @@ module Api
   end
 end
 ```
+*([Read more](https://railseventstore.org/docs/v2/publishing_unique_events/) about `publish_event_uniquely` pattern)*
 
 ###Domain event
 This event is published when a webhook payload is processed and a domain event is extracted from it. It captures the memory of something interesting which affects the domain.
