@@ -40,7 +40,7 @@ class FancyModelTest < ActiveSupport::TestCase
 
     fancy = FancyModel.find_by!(foo: :baz)
 
-    assert fancy.updated_at > fancy.created_at
+    assert(fancy.updated_at > fancy.created_at)
   end
 end
 ```
@@ -84,7 +84,7 @@ class FancyModelTest < ActiveSupport::TestCase
 
     fancy = FancyModel.find_by!(foo: :baz)
 
-    assert fancy.updated_at > fancy.created_at
+    assert(fancy.updated_at > fancy.created_at)
   end
 end
 ```
@@ -106,7 +106,7 @@ class FancyModelTest < ActiveSupport::TestCase
 
     fancy = FancyModel.find_by!(foo: :baz)
 
-    assert fancy.updated_at > fancy.created_at
+    assert(fancy.updated_at > fancy.created_at)
   end
 end
 ```
@@ -132,8 +132,9 @@ class FancyModelTest < ActiveSupport::TestCase
 
     fancy = FancyModel.find_by!(foo: :baz)
 
-    assert fancy.updated_at > fancy.created_at
+    assert(fancy.updated_at > fancy.created_at)
   end
+end
 ```
 
 Green.
