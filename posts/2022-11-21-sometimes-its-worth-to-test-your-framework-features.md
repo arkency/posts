@@ -69,7 +69,7 @@ end
 
 ## Too fast for you?
 
-What if it happens so fast, that comparison won't event notice, we thought.
+What if it happens so fast, that assertion won't even notice — we thought.
 
 Put a `sleep(1)` on it, make it pass:
 
@@ -144,6 +144,6 @@ It turned out that _PostgreSQL_ `CURRENT_TIMESTAMP` returns time at the start of
 
 > Since these functions return the start time of the current transaction, their values do not change during the transaction. This is considered a feature: the intent is to allow a single transaction to have a consistent notion of the „current” time, so that multiple modifications within the same transaction bear the same time stamp.
 
-[NOW() in MySQL](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_now) does the same.
+[NOW()](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_now) in MySQL does the same.
 
 Have a look in a [Rails codebase](https://github.com/search?q=repo%3Arails%2Frails%20CURRENT_TIMESTAMP&type=code) if you're curious how `CURRENT_TIMESTAMP` is utilised.
