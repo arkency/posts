@@ -1,7 +1,7 @@
 ---
 created_at: 2022-11-18 15:06:19 +0100
 author: Piotr Jurewicz
-tags: ['architecture', 'turbo', 'rails']
+tags: ['architecture', 'turbo', 'rails', 'hotwire']
 publish: true
 ---
 
