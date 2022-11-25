@@ -8,9 +8,9 @@ publish: true
 # Take advantage of Turbo Streams in event handlers
 It's been a time since Rails 7 came with Turbo and its Turbo Streams.
 
-At first, I was a bit skeptical because of the idea of broadcasting view updates as a sort of Active Record callbacks.
+At first, I was skeptical because the idea of broadcasting view updates as a sort of Active Record callbacks.
 Sorry, I'm simply not buying the idea of mixing WebSockets calls into a data model.
-However, rejecting the concept of `Turbo::Broadcastable` concern, I see Turbo Stream as a great tool and I'm sure there is a proper place for it in the Rails app architecture.
+However, rejecting the concept of `Turbo::Broadcastable` concern, I see Turbo Stream as a great tool, and I'm sure there is a proper place for it in the Rails app architecture.
 
 <!-- more -->
 
@@ -53,7 +53,7 @@ class Configuration
   def call(event_store)
     @event_store = event_store
 
-    # ... handlers building read models omitted
+    # ... handlers syncing Active Record models omitted
 
     subscribe(
       ->(event) { broadcast_order_state_change(event.data.fetch(:order_id), 'Submitted') },

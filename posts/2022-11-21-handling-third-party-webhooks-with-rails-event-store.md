@@ -19,15 +19,15 @@ In a given project, incoming requests payloads were mapped to the domain command
 In fact, incoming webhooks usually inform us about things that have already happened in the past. So we should rather treat them as events, not commands.
 
 But simply mapping them to the domain events is risky. We can not reject them, as they are facts, but we can check if they do not contradict our invariants.
-If they do it can mean that we have incorrect expectations, or external service is not operating correctly.
+If they do, it can mean that we have incorrect expectations or the external service is not operating correctly.
 
 ## Two event types
 
 The advice we gave was to distinguish between two types of events:
 
 ###Technical event
-This event is published when a webhook is received from a third-party service. It just contains the whole payload. `WebhookReceived`, `ConnectionSynced` are good examples of such events.
-This is an example of how publishing such an event can look like:
+This event is published when a webhook is received from a third-party service. It just contains the whole payload. `WebhookReceived` and `ConnectionSynced` are good examples of such events.
+Below is an example of how publishing such an event can look like:
 ```ruby
 module Api
   module Webhooks
@@ -67,7 +67,7 @@ end
 *([Read more](https://railseventstore.org/docs/v2/publishing_unique_events/) about `publish_event_uniquely` pattern)*
 
 ###Domain event
-This event is published when a webhook payload is processed and a domain event is extracted from it. It captures the memory of something interesting which affects the domain.
+This event is published when a webhook payload is processed, and a domain event is extracted from it. It captures the memory of something interesting, which affects the domain.
 `UserRegistered`, `OrderPlaced`, and `InvoiceIssued` are common examples. You can extract more than one domain event from a single technical event. It's also ok to have a technical event that doesn't result in any domain event.
 
 ## Why?
@@ -86,4 +86,4 @@ Overall, you can scale the processing of the events independently from the web s
 ###No need to rely on the third-party retry mechanism
 Once you have a payload stored, you can process it as many times as you want. If there is a bug in your code, you can fix it and reprocess the event. Retrying on unhandled exceptions is a default mechanism of most ActiveJob queue adapters.
 
-You can't rely on how the third-party will act on your internal error. It may retry the request, or not. It may retry it immediately, or after a few hours. It may retry it only once, or many times. You don't want to lose control over this.
+You can't rely on how the third-party will act on your internal error. It may retry the request or not. It may retry it immediately, or after a few hours. It may retry it only once or many times. You don't want to lose control over this.
