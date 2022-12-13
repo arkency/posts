@@ -2,7 +2,7 @@
 created_at: 2022-12-13 12:19:53 +0100
 author: Piotr Jurewicz
 tags: ['rails event store', 'aggregate']
-publish: false
+publish: true
 ---
 
 # Speed up aggregate roots loading with snapshot events
