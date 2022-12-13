@@ -7,7 +7,7 @@ publish: false
 
 # Speed up aggregate roots loading with snapshot events
 
-[Rails Event Store](https://railseventstore.org/) 2.7 is coming with a new experimental feature: `SnapshotRepository`.
+[Rails Event Store](https://railseventstore.org/) 2.7 is coming with a new experimental feature: `AggregateRoot::SnapshotRepository`.
 
 <!-- more -->
 
@@ -36,20 +36,17 @@ During our last RES camp in Poznań, we decided to break the deadlock and provid
 For a initial implementation, we decided to go with an alternative aggregate root repository storing snapshots in a separate stream for a given interval of events.
 
 ```ruby
-# saves aggregate snapshot on each 50 events
+# save aggregate snapshot on each 50 events
 repository = AggregateRoot::SnapshotRepository.new(event_store, 50)
-
-# stick to the default interval of 100 events
+# or stick to the default interval of 100 events
 repository = AggregateRoot::SnapshotRepository.new(event_store)
 ```
 
-<img src="<%= src_original("speed-up-aggregate-roots-loading-with-snapshot-events/snapshotting.png") %>" width="100%">
+<img src="<%= src_original("speed-up-aggregate-roots-loading-with-snapshot-events/snapshotting-transparent.png") %>" width="100%">
 
 In the above example, using snapshots every 100 events, with aggregate root `Order` having 202 events, we would have only 2 events to read from the event store to load the aggregate root.
-
-At first, we check for the latest snapshot event in the `Ordering::Order$bb7c6c8b..._snapshots` stream. If it exists, we load the aggregate root state from the event data.
-
-Then, we read the remaining domain events from the `Ordering::Order$bb7c6c8b...` stream and apply them to the aggregate root one by one.
+* At first, we check for the latest snapshot event in the `Ordering::Order$bb7c6c8b..._snapshots` stream. If it exists, we load the aggregate root state from the event data.
+* Then, we read the remaining domain events from the `Ordering::Order$bb7c6c8b...` stream and apply them to the aggregate root one by one.
 
 A standard implemantion would go through all the 202 domain events to achieve the same result. STONKS!
 
