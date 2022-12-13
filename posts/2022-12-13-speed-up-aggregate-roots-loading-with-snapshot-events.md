@@ -72,5 +72,9 @@ W, [2022-12-13T16:19:33.175471 #62803]  WARN -- : Aggregate root cannot be resto
 ```
 
 ## Keeping exploring
-That’s not the only possible snapshot implementation out there. We’ve once explored different styles of [aggregate implementation](https://github.com/arkency/aggregates), listing their strengths and letting one evaluate them in one place on the same subject.
-We’re going to iterate on snapshots in the same fashion at: https://github.com/RailsEventStore/snapshots. If you don’t want to miss it, what that space and leave a star for encouragement.
+That is not the only possible snapshot implementation out there.
+
+We have once explored different styles of [aggregate implementation](https://github.com/arkency/aggregates), listing their strengths and letting one evaluate them in one place on the same subject.
+We are going to iterate on snapshots in the same fashion at: https://github.com/RailsEventStore/snapshots.
+
+If you don’t want to miss it, watch that space and leave a star for encouragement 😉
