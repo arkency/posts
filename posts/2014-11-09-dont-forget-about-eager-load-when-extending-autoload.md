@@ -310,7 +310,7 @@ Isn't that nice?
 
 Don't confuse _eager loading of code_ with _eager loding of active record objects_
 which [we also happen to have an article about](/2013/12/rails4-preloading/).
-The numenclature they use is similar but they mean completely different things.
+The nomenclature they use is similar but they mean completely different things.
 
 ## Would you like to continue learning more?
 
