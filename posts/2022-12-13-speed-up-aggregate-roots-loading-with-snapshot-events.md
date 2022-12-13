@@ -17,19 +17,19 @@ This allows for a complete history of changes to be tracked but can also lead to
 A general rule of thumb is to design short-lived streams regarding the events count. However, you can find yourself in a situation where the streams rapidly grow too big, and loading becomes a performance bottleneck.
 It would be best if you had a quick solution to this problem.
 
-This is where Snapshotting comes in.
+**This is where Snapshotting comes in.**
 
-## Many possible implementations
+## Paradox of choice
 
 There are several common patterns for implementing aggregate snapshot features.
 
-They can be treated as a kind of technical event, or they can be stored elsewhere.
-If you go with the first approach, you can use aggregate root's stream or a separate one.
-It is not so obvious how to dump the aggregate state for persistence
-We can also debate whether Aggregate should know about being snapshotted.
+* They can be treated as a kind of technical events, or they can be stored elsewhere.
+* If you go with the first approach, you can use the aggregate root's stream or a dedicated one.
+* It is not so obvious how to dump the aggregate state for persistence.
+* We can also discuss whether Aggregate should know about being snapshotted or if it is strictly a repository's responsibility.
 
-So many things to consider made us blocked from providing a ready-to-use solution for some time.
-During our last RES camp in Poznań, we decided to break the deadlock and offer a simple solution to check if it is a good fit for the community.
+So many things to consider made us blocked from providing a ready-to-use solution for some time. There were debates about which patterns to follow and which to reject.
+During our last RES camp in Poznań, **we decided to break the deadlock and offer a simple solution** to check if it is a good fit for the community.
 
 ## RES implementation
 
@@ -45,8 +45,8 @@ repository = AggregateRoot::SnapshotRepository.new(event_store)
 <img src="<%= src_original("speed-up-aggregate-roots-loading-with-snapshot-events/snapshotting-transparent.png") %>" width="100%">
 
 In the above example, using snapshots every 100 events, with aggregate root `Order` having 202 events, we would have only 2 events to read from the event store to load the aggregate root.
-* At first, we check for the latest snapshot event in the `Ordering::Order$bb7c6c8b..._snapshots` stream. We initialize the aggregate root state from the event data if it exists.
-* Then, we read the remaining domain events from the `Ordering::Order$bb7c6c8b...` stream and apply them to the aggregate root one by one.
+1. At first, we check for the latest snapshot event in the `Ordering::Order$bb7c6c8b..._snapshots` stream. We initialize the aggregate root state from the event data if it exists.
+2. Then, we read the remaining domain events from the `Ordering::Order$bb7c6c8b...` stream and apply them to the aggregate root one by one.
 
 A standard implementation would go through all 202 domain events to achieve the same result. STONKS!
 
