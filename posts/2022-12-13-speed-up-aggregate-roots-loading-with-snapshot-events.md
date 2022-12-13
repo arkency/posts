@@ -1,7 +1,7 @@
 ---
 created_at: 2022-12-13 12:19:53 +0100
 author: Piotr Jurewicz
-tags: ['rails event store']
+tags: ['rails event store', 'aggregate']
 publish: false
 ---
 
