@@ -21,7 +21,7 @@ This is where Snapshotting comes in.
 
 ## Many possible implementations
 
-There are several ways of snapshots implementation. 
+There are several common patterns for implementing aggregate snapshot feature.
 
 They can be treated as a kind of technical events, or they can be stored elsewhere.
 If you goes with the first approach, you can either use aggregate root's stream or a separate one.
@@ -50,8 +50,19 @@ In the above example, using snapshots every 100 events, with aggregate root `Ord
 
 A standard implemantion would go through all the 202 domain events to achieve the same result. STONKS!
 
-
-
-
+### Dumping the state
 Under the hood, we use Ruby's `Marshal` library to dump the aggregate root state into a byte stream, allowing them to be stored in the event data.
-Marshal format has its limitations. Dumping an aggregate root will not work if its instance variables are bindings, procedure or method objects, instances of class IO, or singleton objects. 
+Marshal format has its own limitations. Dumping an aggregate root will not work if its instance variables are bindings, procedure or method objects, instances of class IO, or singleton objects.
+It is also not possible to load a dump created with a different major version of `Marshal`.
+
+`AggregateRoot::SnapshotRepository` deals with these possible problems by catching errors and falling back to the standard implementation of linear reading of all the events from aggregate roots stream.
+To make sure whether aggregate roots are dumped and restored with the snapshot support, you can subscribe to a specific ActiveSupport::Notifications via AggregateRoot::InstrumentedRepository.
+```ruby
+require 'logger'
+instrumented_repository = InstrumentedRepository.new(repository, ActiveSupport::Notifications)
+logger = Logger.new(STDOUT)
+
+ActiveSupport::Notifications.subscribe("error_occured.repository.aggregate_root") do |_name, _start, _finish, _id, payload|
+     logger.warn(payload[:exception_object].message)
+end
+```
