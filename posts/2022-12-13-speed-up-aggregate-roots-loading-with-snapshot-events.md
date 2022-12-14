@@ -7,7 +7,7 @@ publish: true
 
 # Speed up aggregate roots loading with snapshot events
 
-[Rails Event Store](https://railseventstore.org/) 2.7 is coming in a days with a new experimental feature: `AggregateRoot::SnapshotRepository`.
+[Rails Event Store](https://railseventstore.org/) 2.7 is coming in a few days with a new experimental feature: `AggregateRoot::SnapshotRepository`.
 
 <!-- more -->
 
