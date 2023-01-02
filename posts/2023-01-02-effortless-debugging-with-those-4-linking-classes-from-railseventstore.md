@@ -2,7 +2,7 @@
 created_at: 2023-01-02 16:53:30 +0100
 author: Łukasz Reszke
 tags: ['event store', 'event sourcing', 'rails event store']
-publish: false
+publish: true 
 ---
 
 # Effortless debugging with those 4 linking classes from RailsEventStore
