@@ -15,10 +15,10 @@ Currently, there are [4 linking classes](https://railseventstore.org/docs/v2/lin
 
 <!-- more -->
 
-`RailsEventStore::LinkByMetadata` - links events to stream built on specified metadata key and value,
-`RailsEventStore::LinkByCorrelationId` - links events to stream by event's correlation id,
-`RailsEventStore::LinkByCausationId` - links events to stream by event's causation id,
-`RailsEventStore::LinkByEventType` - links events to stream by event's type
+- `RailsEventStore::LinkByMetadata` - links events to stream built on specified metadata key and value,
+- `RailsEventStore::LinkByCorrelationId` - links events to stream by event's correlation id,
+- `RailsEventStore::LinkByCausationId` - links events to stream by event's causation id,
+- `RailsEventStore::LinkByEventType` - links events to stream by event's type
 It's easy to use. All you have to do is to add the following line to your subscriptions:
 
 ```ruby
