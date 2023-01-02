@@ -9,7 +9,7 @@ publish: false
 
 Some time ago I wrote a [short article](https://blog.arkency.com/simplify-your-system-debugging-by-introducing-event-store-linking/) about simplifying your system debugging by using the linking feature of RailsEventStore. The post is describing custom built linking class.
 
-However, I forgot to mention that `RailsEventStore` provides a few linking classes out of the box!
+However, I forgot to mention that RailsEventStore provides a few linking classes out of the box!
 
 Currently, there are [4 linking classes](https://railseventstore.org/docs/v2/link/#available-linking-classes):
 
