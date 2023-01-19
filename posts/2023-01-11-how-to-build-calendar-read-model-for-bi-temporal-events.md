@@ -9,8 +9,9 @@ publish: false
 
 In our previous [blog-post](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
 And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/) on the back-end side.
+
 The next step would be to get the salesman the possibility to view / update their future prices.
-Let's create a [read model] for the prices set for the future.
+Let's create a read model for the prices set for the future.
 
 
 ```ruby
