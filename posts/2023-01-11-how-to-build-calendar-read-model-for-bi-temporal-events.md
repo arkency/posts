@@ -25,7 +25,7 @@ class AddPricesCatalogToProduct < ActiveRecord::Migration[7.0]
 end
 ```
 
-I've used a serialized column for the prices catalog. Separate table for price entries could be event easier to handle the entries.
+I've used a serialized column for the prices catalog. However separate table for price entries could be event easier to handle the entries.
 
 ```ruby
 module Products
