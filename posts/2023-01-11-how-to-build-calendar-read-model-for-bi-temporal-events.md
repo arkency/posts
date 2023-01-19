@@ -105,8 +105,9 @@ def to_catalog_entry(e)
 end
 ```
 
-The `of_a` method of [] loads events in correct order
-now we can introduce `future_prices` method in our read model needed for our usecase
+The `as_of` method of [Rails Event Store](https://railseventstore.org/docs/v2/bi-temporal/#usage) loads events in correct order using `valid_at` attribute.
+
+Now we can introduce `future_prices` method in our read model needed for our use case.
 
 ```ruby
 module Products
@@ -122,6 +123,7 @@ end
 ### Price in any time in history
 
 As next I've removed the previously used `price` column from the product read model.
+
 Now I can get a price using the pricing catalog for any given time.
 
 ```ruby
