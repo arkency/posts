@@ -154,7 +154,8 @@ def set_future_product_price(product_id, price, valid_since)
 end
 ```
 
-And on the read side display in user time zone and parsed price:
+And on the read side, time is displayed in in user time zone.
+The price is also parsed to BigDecimal.
 
 ```ruby
 def prices_catalog
