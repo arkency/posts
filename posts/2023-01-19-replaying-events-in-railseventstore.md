@@ -36,6 +36,6 @@ The events to do the replay are ready. `SendXmasCardToEligibleCustomer` is a cla
 events.each { |event| SendXmasCardToEligibleCustomer.new.call(event) }
 ```
 
-And voila, we have replayed the events for the needs of `SendXmasCardToEligibleCustomer` class.
+And voila, we have replayed the events for the needs of the `SendXmasCardToEligibleCustomer` class.
 
 In this particular case we're instantiating the `SendXmasCardToEligibleCustomer` class and executing its logic based on the event passed to the call method. However, there are other things that you could do. Given your handlers are idempotent, you could simply re-publish those events once again.
