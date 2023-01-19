@@ -74,7 +74,7 @@ module Products
 end
 ```
 
-The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the price entries by data, to keep the entries in order.
+The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the price entries by date, to keep the entries in order.
 Entries are stored as hashes in this example. We store price and `:valid_since` obtained from the bi-temporal event attribute `:valid_at`
 
 
