@@ -160,7 +160,7 @@ def set_future_product_price(product_id, price, valid_since)
 end
 ```
 
-And on the read side, time is displayed in in user time zone.
+On the read side, the time is displayed in the users time zone.
 The price is also parsed to BigDecimal.
 
 ```ruby
@@ -179,4 +179,4 @@ def parese_catalog_entry(entry)
 end
 ```
 
-The first step to manage future prices is ready. As next we would need to add a update and delete methods.
+This is it. The first step to manage future prices is ready. As next we will need to implement removing and updating the pricing catalog entries.
