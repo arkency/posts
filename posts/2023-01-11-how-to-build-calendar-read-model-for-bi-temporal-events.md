@@ -50,8 +50,8 @@ end
 ```
 ### Handle new price set
 
-In the configuration part we set the handler to update our read model with new price on the `PriceSet` event.
-
+On `PriceSet` event we run a handler to update our read model. This described in the configuration part.
+The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the price entries by date, to keep the entries in order.
 
 ```ruby
 module Products
@@ -79,13 +79,12 @@ module Products
 end
 ```
 
-The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the price entries by date, to keep the entries in order.
-Entries are stored as hashes in this example. We store price and `:valid_since` obtained from the bi-temporal event attribute `:valid_at`
+Entries are stored as hashes in this example. We store price and `valid_since` obtained from the bi-temporal event attribute `valid_at`.
 
 
 ### Rebuild
 
-We can always rebuild our read model by reading the events
+We can always rebuild our read model by reading the events.
 
 ```ruby
 def prices_catalog_by_product_id(product_id)
@@ -115,14 +114,14 @@ The `as_of` method of [Rails Event Store](https://railseventstore.org/docs/v2/bi
 
 ### Future prices
 
-Now we can introduce `future_prices` method in our read model needed for our use case.
+Now we can introduce `future_prices` method in our read model, which is needed for our use case.
 
 ```ruby
 module Products
   class Product
     #...
     def future_prices
-      prices_catalog.find { |entry| entry[:valid_since] > time }
+      prices_catalog.find { |entry| entry[:valid_since] > Time.now }
     end
   end
 end
@@ -132,7 +131,7 @@ end
 
 As next I've removed the previously used `price` column from the product read model.
 
-Now I can get the price using the pricing catalog for any given time.
+Now I can get the price using the pricing catalog, for any given time.
 
 ```ruby
 def price(time = Time.now)
@@ -152,7 +151,7 @@ end
 
 ### Time zone
 
-I'm storing the `valid_since` time in UTC Time zone.
+On the write side, I'm storing the `valid_since` time in UTC Time zone.
 
 ```ruby
 def set_future_product_price(product_id, price, valid_since)
