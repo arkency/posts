@@ -179,4 +179,4 @@ def parese_catalog_entry(entry)
 end
 ```
 
-This is it. The first step to manage future prices is ready. As next we will need to implement removing and updating the pricing catalog entries.
+That's all. The first step to manage future prices is ready. As next we will need to implement removing and updating the pricing catalog entries.
