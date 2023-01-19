@@ -21,6 +21,7 @@ class AddPricesCatalogToProduct < ActiveRecord::Migration[7.0]
   end
 end
 ```
+
 I've used a serialized column for the prices catalog. Separate table for price entries could be event easier to handle the entries.
 
 ```ruby
@@ -44,7 +45,7 @@ module Products
   end
 end
 ```
-In the configuration part we set the handler to updated our read model with new price on the `PriceSet` event.
+In the configuration part we set the handler to update our read model with new price on the `PriceSet` event.
 
 
 ```ruby
@@ -53,7 +54,6 @@ module Products
     def call(event)
       @event = event
       @product = Product.find(event.data.fetch(:product_id))
-
       @product.update!(prices_catalog: new_prices_catalog)
     end
 
