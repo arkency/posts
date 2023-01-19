@@ -10,6 +10,9 @@ publish: false
 In our previous [blog-post](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
 And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/) on the back-end side.
 
+
+### Prices catalog read model
+
 The next step would be to get the salesman the possibility to view / update their future prices.
 Let's create a read model for the prices set for the future.
 
@@ -45,6 +48,8 @@ module Products
   end
 end
 ```
+### Handle new price set
+
 In the configuration part we set the handler to update our read model with new price on the `PriceSet` event.
 
 
@@ -107,6 +112,8 @@ end
 ```
 
 The `as_of` method of [Rails Event Store](https://railseventstore.org/docs/v2/bi-temporal/#usage) loads events in correct order using `valid_at` attribute.
+
+### Future prices
 
 Now we can introduce `future_prices` method in our read model needed for our use case.
 
