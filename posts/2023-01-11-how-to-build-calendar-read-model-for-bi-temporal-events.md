@@ -78,7 +78,7 @@ The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the pric
 Entries are stored as hashes in this example. We store price and `:valid_since` obtained from the bi-temporal event attribute `:valid_at`
 
 
-#Rebuild
+### Rebuild
 
 We can always rebuild our read model by reading the events
 
@@ -125,7 +125,7 @@ end
 
 As next I've removed the previously used `price` column from the product read model.
 
-Now I can get a price using the pricing catalog for any given time.
+Now I can get the price using the pricing catalog for any given time.
 
 ```ruby
 def price(time = Time.now)
