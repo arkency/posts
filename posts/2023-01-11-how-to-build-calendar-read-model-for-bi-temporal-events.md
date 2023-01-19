@@ -11,9 +11,9 @@ In our previous [blog-post](https://blog.arkency.com/fixing-the-past-and-dealing
 And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/) on the back-end side.
 
 
-### Prices catalog read model
+### Prepare read model for pricing catalog
 
-The next step would be to get the salesman the possibility to view / update their future prices.
+The next step would be to get the salesman the possibility to view/create future prices for the products.
 Let's create a read model for the prices set for the future.
 
 
