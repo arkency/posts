@@ -135,11 +135,11 @@ end
 private
 
 def last_price_before(time)
-  prices_before(time).last[:price]
+  prices_entries_before(time).last[:price]
 end
 
-def prices_before(time)
-  prices_calendar.partition { |entry| entry[:valid_since] < time }.first
+def prices_entries_before(time)
+  prices_catalog.partition { |entry| entry[:valid_since] < time }.first
 end
 ```
 
@@ -157,14 +157,14 @@ end
 And on the read side display in user time zone and parsed price:
 
 ```ruby
-def current_prices_calendar
+def prices_catalog
   return [] unless super
-  super.map(&method(:parese_calendar_entry))
+  super.map(&method(:parese_catalog_entry))
 end
 
 private
 
-def parese_calendar_entry(entry)
+def parese_catalog_entry(entry)
   {
     valid_since:  Time.parse(time_of(entry)).in_time_zone(Time.now.zone),
     price: BigDecimal(entry[:price])
