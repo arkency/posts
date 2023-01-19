@@ -7,7 +7,7 @@ publish: false
 
 # Replaying events in RailsEventStore
 
-Event Sourcing comes with a very handy utility that lets you replay events that happened in the system. Imagine that you’re introducing a new report, or you fixed an existing event handler and you need to run some events against it to assemble a valuable outcome that your business friends expect.
+Event Sourcing comes with a very handy utility that lets you replay events that happened in the system. Imagine that you’re introducing a new report, or you fixed an existing event handler and you need to run some events against it to produce a valuable outcome that your business friends expect.
 
 <!-- more -->
 
