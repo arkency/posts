@@ -65,7 +65,7 @@ module Products
 
     def new_catalog_entry
       {
-        price: @event.data.fetch(:price)
+        price: @event.data.fetch(:price),
         valid_since: e.metadata.fetch(:valid_at)
       }
     end
@@ -112,10 +112,10 @@ Now we can introduce `future_prices` method in our read model needed for our use
 ```ruby
 module Products
   class Product
-  #...
-  def future_prices
-    prices_catalog.find { |entry| entry[:valid_since] > time }
-  end
+    #...
+    def future_prices
+      prices_catalog.find { |entry| entry[:valid_since] > time }
+    end
   end
 end
 ```
