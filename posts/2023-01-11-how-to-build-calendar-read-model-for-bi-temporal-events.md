@@ -8,7 +8,7 @@ publish: false
 # Catalog of future events using bi-temporal EventSourcing
 
 In our previous [blog-post](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
-And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/) on the back-end side.
+And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/), to get correct current price, while handling prices that are set for the future.
 
 
 ### Prepare read model for pricing catalog
