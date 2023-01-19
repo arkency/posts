@@ -21,9 +21,12 @@ Let's assume that we want to send a Xmas card to our customers that made at leas
 
 Those events are `OrderFulfilled` and `OrderReturned`. We also know exactly when they happened, right? We can easily find & replay events from the last 3 months and trigger the new functionality aka send Xmas cards. 
 
-We'll need an instance of the `RailsEventStore` client. Then we need to specify which events you want to replay. The requirements are clear. We're interested in `OrderFulfilled` and `OrderReturned` events from the last 3 months. So let's prepare the list of events that will be replayed using the read API.
+We'll need an instance of the `RailsEventStore` client. Then we need to specify which events you want to replay. The requirements are clear. We're interested in `OrderFulfilled` and `OrderReturned` events from the last 3 months. So let's prepare the list of events that will be replayed using [the read API](https://railseventstore.org/docs/v2/read/).
 
-_Find all the events of type `OrderFulfilled` and `OrderReturned` that occurred in the last 3 months_
+_For detailed information on how to setup RailsEventStore client take a look into the [doc](https://railseventstore.org/docs/v2/install/#instantiate-a-client)_
+
+
+Find all the events of type `OrderFulfilled` and `OrderReturned` that occurred in the last 3 months.
 
 ```ruby
 events = client.read.of_type([OrderFulfilled, OrderReturned]).newer_than(3.months.ago).to_a
