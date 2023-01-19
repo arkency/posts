@@ -40,4 +40,4 @@ events.each { |event| SendXmasCardToEligibleCustomer.new.call(event) }
 
 And voila, we replayed the events for the needs SendXmasCardToEligibleCustomer class.
 
-In this specific case we're instantiating the `SendXmasCardToEligibleCustomer` class and react to the event. However, there are other things that you could do. Given your handlers are idempotent, you could just publish those events once again.
+In this specific case we're instantiating the `SendXmasCardToEligibleCustomer` class and execute it's logic based on event passed to the call method. However, there are other things that you could do. Given your handlers are idempotent, you could just publish those events once again.
