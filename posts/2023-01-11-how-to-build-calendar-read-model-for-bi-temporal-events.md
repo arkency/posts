@@ -60,7 +60,8 @@ module Products
     private
 
     def new_prices_catalog
-      (@product.prices_catalog + new_catalog_entry).sort_by { |entry| entry[:valid_since] }
+      (@product.prices_catalog + new_catalog_entry)
+        .sort_by { |entry| entry[:valid_since] }
     end
 
     def new_catalog_entry
