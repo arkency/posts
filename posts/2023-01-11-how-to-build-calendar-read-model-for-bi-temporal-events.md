@@ -149,7 +149,7 @@ I'm storing the `valid_since` time in UTC Time zone.
 
 ```ruby
 def set_future_product_price(product_id, price, valid_since)
-  Time.parse(future_price["start_time"]).utc.to_s
+  valid_since = Time.parse(future_price["start_time"]).utc.to_s
   command_bus.(set_product_future_price_cmd(product_id, price, valid_since))
 end
 ```
