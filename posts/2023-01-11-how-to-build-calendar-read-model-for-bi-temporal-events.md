@@ -7,11 +7,10 @@ publish: false
 
 # Catalog of future events using bi-temporal EventSourcing
 
-In our previous [blogpost](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
-And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/), to get correct current price, while handling prices that are set for the future.
+In our previous [blogpost](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that are awaited in the future and how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/) to get correct, current prices while handling prices set for the future.
 
 
-### Prepare the read model for pricing catalog
+### Prepare the read model for the pricing catalog
 
 The next step would be to get the salesman the possibility to view/create future prices for the products.
 Let's create a read model for the prices set for the future.
@@ -25,7 +24,7 @@ class AddPricesCatalogToProduct < ActiveRecord::Migration[7.0]
 end
 ```
 
-I've used a serialized column for the prices catalog. However separate table for price entries could be even easier to handle the entries.
+I've used a serialized column for the pricing catalog. However separate table for price entries could be even easier to handle them.
 
 ```ruby
 module Products
