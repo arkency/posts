@@ -11,9 +11,8 @@ In our previous [blogpost](https://blog.arkency.com/fixing-the-past-and-dealing-
 
 ### Prepare the read model for the pricing catalog
 
-The next step would be to get the salesman the possibility to view/create future prices for the products.
-Let's create a read model for the prices set for the future.
-
+The next step would be to give the salesperson the ability to view/create future prices for the products.
+Let's create a read model for future prices.
 
 ```ruby
 class AddPricesCatalogToProduct < ActiveRecord::Migration[7.0]
