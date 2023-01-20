@@ -15,8 +15,6 @@ _If you are not familiar with event-sourcing, it's a way to store the state of a
 
 ## How do I replay events with RailsEventStore?
 
-It's easy 
-
 Let's assume that we want to send a Xmas card to our customers that made at least 5 orders and haven't returned any of them during last 3 months. Luckily, in our system, we have events that will help us make decisions about which customers should receive the astonishing Xmas cards.
 
 Those events are `OrderFulfilled` and `OrderReturned`. We also know exactly when they happened, right? We can easily find & replay events from the last 3 months and trigger the new functionality aka send Xmas cards. 
@@ -28,7 +26,7 @@ _For detailed information on setting up the RailsEventStore client, see the [doc
 Find all events of type `OrderFulfilled` and `OrderReturned` that have occurred in the last 3 months.
 
 ```ruby
-events = client.read.of_type([OrderFulfilled, OrderReturned]).newer_than(3.months.ago).to_a
+events = client.read.of_type([OrderFulfilled, OrderReturned]).newer_than(3.months.ago)
 ``` 
 
 The events to do the replay are ready. `SendXmasCardToEligibleCustomer` is a class that will determine if the customer is eligible to receive a gift. If they are, there will be a request for the gift to be sent. Lets do a replay of our events.
