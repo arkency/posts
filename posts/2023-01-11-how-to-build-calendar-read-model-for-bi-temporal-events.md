@@ -7,7 +7,7 @@ publish: false
 
 # Catalog of future events using bi-temporal EventSourcing
 
-In our previous [blog-post](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
+In our previous [blogpost](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/) Łukasz described how to handle events that should occur in the future.
 And how we use it in our example application [ecommerce](https://github.com/RailsEventStore/ecommerce/), to get correct current price, while handling prices that are set for the future.
 
 
@@ -25,7 +25,7 @@ class AddPricesCatalogToProduct < ActiveRecord::Migration[7.0]
 end
 ```
 
-I've used a serialized column for the prices catalog. However separate table for price entries could be event easier to handle the entries.
+I've used a serialized column for the prices catalog. However separate table for price entries could be even easier to handle the entries.
 
 ```ruby
 module Products
@@ -50,8 +50,8 @@ end
 ```
 ### Handle new price set
 
-On `PriceSet` event we run a handler to update our read model. This described in the configuration part.
-The `AddPriceToCatalog` handler adds new entry to the catalog and sorts the price entries by date, to keep the entries in order.
+On the `PriceSet` event, we run a handler to update our read model. This is described in the configuration part.
+The `AddPriceToCatalog` handler adds new price entries to the catalog and sorts them by date to keep them in order.
 
 ```ruby
 module Products
@@ -79,7 +79,7 @@ module Products
 end
 ```
 
-Entries are stored as hashes in this example. We store price and `valid_since` obtained from the bi-temporal event attribute `valid_at`.
+Entries are stored as hashes in this example. We persist price and `valid_since` obtained from the bi-temporal event `valid_at` metadata.
 
 
 ### Rebuild
@@ -110,11 +110,11 @@ def to_catalog_entry(e)
 end
 ```
 
-The `as_of` method of [Rails Event Store](https://railseventstore.org/docs/v2/bi-temporal/#usage) loads events in correct order using `valid_at` attribute.
+The `as_of` method of [Rails Event Store](https://railseventstore.org/docs/v2/bi-temporal/#usage) loads events in the correct order using the `valid_at` metadata.
 
 ### Future prices
 
-Now we can introduce `future_prices` method in our read model, which is needed for our use case.
+Now we can introduce the `future_prices` method in our read model, which is needed for our use case.
 
 ```ruby
 module Products
@@ -129,9 +129,9 @@ end
 
 ### Price in any time in history
 
-As next I've removed the previously used `price` column from the product read model.
+Next, I've removed the previously used `price` column from the product read model.
 
-Now I can get the price using the pricing catalog, for any given time.
+Now I can get the price using the pricing catalog at any given time.
 
 ```ruby
 def price(time = Time.now)
@@ -151,7 +151,7 @@ end
 
 ### Time zone
 
-On the write side, I'm storing the `valid_since` time in UTC Time zone.
+On the write side, I'm storing the `valid_since` time in the UTC Time zone.
 
 ```ruby
 def set_future_product_price(product_id, price, valid_since)
@@ -160,7 +160,7 @@ def set_future_product_price(product_id, price, valid_since)
 end
 ```
 
-On the read side, the time is displayed in the users time zone.
+On the read side, the time is displayed in the user's time zone.
 The price is also parsed to BigDecimal.
 
 ```ruby
@@ -179,4 +179,4 @@ def parese_catalog_entry(entry)
 end
 ```
 
-That's all. The first step to manage future prices is ready. As next we will need to implement removing and updating the pricing catalog entries.
+That's all. The first step to managing future prices is ready. As next we will need to implement removing and updating the pricing catalog entries.
