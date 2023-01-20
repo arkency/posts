@@ -39,7 +39,7 @@ end
 ```
 ### Handle new price set
 
-On the `PriceSet` event, we run a handler to update our read model. This is described in the configuration part.
+On the `Pricing::PriceSet` event, we run a handler to update our read model. This is described in the configuration part.
 
 ```ruby
 module Products
@@ -49,13 +49,13 @@ module Products
     end
 
     def call
-      @event_store.subscribe(AddPriceToCatalog, to: [Pricing::PriceSet])
+      @event_store.subscribe(AddNewPricingCalendarEntry, to: [Pricing::PriceSet])
     end
   end
 end
 ```
 
-The `AddPriceToCatalog` handler adds new price entries to the catalog and sorts them by date to keep them in order.
+The `AddNewPricingCalendarEntry` handler adds new price entries to the catalog and sorts them by date to keep them in order.
 
 ```ruby
 module Products
