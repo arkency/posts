@@ -98,12 +98,7 @@ def prices_catalog_by_product_id(product_id)
     .as_of
     .to_a
     .filter { |e| e.data.fetch(:product_id).eql?(product_id) }
-    .select(&method(:future_prices))
     .map(&method(:to_catalog_entry))
-end
-
-def future_prices(e)
-  e.metadata.fetch(:valid_at) > Time.now
 end
 
 def to_catalog_entry(e)
