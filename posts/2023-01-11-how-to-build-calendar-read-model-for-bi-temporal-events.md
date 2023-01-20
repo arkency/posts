@@ -35,7 +35,14 @@ module Products
       super || []
     end
   end
+end
+```
+### Handle new price set
 
+On the `PriceSet` event, we run a handler to update our read model. This is described in the configuration part.
+
+```ruby
+module Products
   class Configuration
     def initialize(event_store)
       @event_store = event_store
@@ -47,9 +54,7 @@ module Products
   end
 end
 ```
-### Handle new price set
 
-On the `PriceSet` event, we run a handler to update our read model. This is described in the configuration part.
 The `AddPriceToCatalog` handler adds new price entries to the catalog and sorts them by date to keep them in order.
 
 ```ruby
