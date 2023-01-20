@@ -47,17 +47,17 @@ module Products
     end
 
     def call
-      @event_store.subscribe(AddNewPricingCalendarEntry, to: [Pricing::PriceSet])
+      @event_store.subscribe(AddNewPriceToCatalog, to: [Pricing::PriceSet])
     end
   end
 end
 ```
 
-The `AddNewPricingCalendarEntry` handler adds new pricing entries to the catalog and sorts them by date to keep them in order.
+The `AddNewPriceToCatalog` handler adds new pricing entries to the catalog and sorts them by date to keep them in order.
 
 ```ruby
 module Products
-  class AddNewPricingCalendarEntry < Infra::EventHandler
+  class AddNewPriceToCatalog < Infra::EventHandler
     def call(event)
       @event = event
       @product = Product.find(event.data.fetch(:product_id))
