@@ -2,7 +2,7 @@
 created_at: 2023-01-19 16:30:49 +0100
 author: Łukasz Reszke
 tags: ['event sourcing', 'event store']
-publish: false
+publish: true
 ---
 
 # Replaying events in RailsEventStore
