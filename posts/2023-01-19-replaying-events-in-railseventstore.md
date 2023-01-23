@@ -38,12 +38,12 @@ And voila, we have replayed the events for the needs of the `SendXmasCardToEligi
 
 In this particular case we're instantiating the `SendXmasCardToEligibleCustomer` class and executing its logic based on the event passed to the call method. However, there are other things that you could do. Given your handlers are idempotent, you could simply re-publish those events once again.
 
-## What might the implementation of `SendXmasCardToEligibleCustomer` look like?
+## One way to implement such example
 
-Lets take a look at a possible implementation of SendXmasCard.
+Lets take a look at a possible implementation of `SendXmasCardToEligibleCustomer`.
 
 ```ruby
-class SendXmasCard
+class SendXmasCardToEligibleCustomer
   NUMBER_OF_DAYS_TO_RETURN_ORDER = 14.days.freeze
 
   class State
@@ -130,7 +130,7 @@ class SendXmasCard
 end
 ```
 
-Since it responds to two events and needs to calculate the occurrence, it seems like it could be a process manager instead of a simple event handler.
+Since it responds to two events and needs to calculate the occurrence, it seems like it could be a [process manager](https://blog.arkency.com/tags/process-manager/) instead of a simple event handler.
 
 SendXmasCard has to make a decision about sending the gift. To do this, it needs to keep track of fulfilled orders and returned orders for customers. Additionally, it needs to check if the time to return fulfilled orders has passed. Also, the card should be sent only once a year. Therefore, once it is sent, the state is marked as completed.
 
