@@ -50,13 +50,13 @@ class SendXmasCardToEligibleCustomer
     def initialize
       @fulfilled_orders = []
       @has_no_returned_orders = true
-      @completed = false
+      @already_sent = false
       @version = -1
       @event_ids_to_link = []
     end
 
-    def mark_as_completed
-      @completed = true
+    def mark_as_sent
+      @already_sent = true
     end
 
     def apply_order_fulfilled(order_id, fulfillment_date)
@@ -117,14 +117,14 @@ class SendXmasCardToEligibleCustomer
     state = State.new
     state.load(stream_name, event_store: event_store)
 
-    return if state.completed? # The gift has to be sent once only.
+    return if state.already_sent? # The gift has to be sent once only.
 
     state.apply(event)
     state.store(stream_name, event_store: event_store)
 
     if state.complete?
       command_bus.(ScheduleXmasCardShipment.new(data: { customer_id: customer_id }))
-      state.mark_as_completed # Mark process as finished
+      state.mark_as_sent # Mark process as finished
     end
   end
 end
@@ -132,5 +132,5 @@ end
 
 Since it responds to two events and needs to calculate the occurrence, it seems like it could be a [process manager](https://blog.arkency.com/tags/process-manager/) instead of a simple event handler.
 
-SendXmasCard has to make a decision about sending the gift. To do this, it needs to keep track of fulfilled orders and returned orders for customers. Additionally, it needs to check if the time to return fulfilled orders has passed. Also, the card should be sent only once a year. Therefore, once it is sent, the state is marked as completed.
+SendXmasCard has to make a decision about sending the gift. To do this, it needs to keep track of fulfilled orders and returned orders for customers. Additionally, it needs to check if the time to return fulfilled orders has passed. Also, the card should be sent only once a year. Therefore, once it is sent, the state is marked as already sent.
 
