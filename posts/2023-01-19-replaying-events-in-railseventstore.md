@@ -37,3 +37,100 @@ events.each { |event| SendXmasCardToEligibleCustomer.new.call(event) }
 And voila, we have replayed the events for the needs of the `SendXmasCardToEligibleCustomer` class.
 
 In this particular case we're instantiating the `SendXmasCardToEligibleCustomer` class and executing its logic based on the event passed to the call method. However, there are other things that you could do. Given your handlers are idempotent, you could simply re-publish those events once again.
+
+## What might the implementation of `SendXmasCardToEligibleCustomer` look like?
+
+Lets take a look at a possible implementation of SendXmasCard.
+
+```ruby
+class SendXmasCard
+  NUMBER_OF_DAYS_TO_RETURN_ORDER = 14.days.freeze
+
+  class State
+    def initialize
+      @fulfilled_orders = []
+      @has_no_returned_orders = true
+      @completed = false
+      @version = -1
+      @event_ids_to_link = []
+    end
+
+    def mark_as_completed
+      @completed = true
+    end
+
+    def apply_order_fulfilled(order_id, fulfillment_date)
+      @fulfilled_orders << { order_id: order_id, fulfillment_date: fulfillment_date }
+    end
+
+    def apply_order_returned
+      @has_no_returned_orders = false
+    end
+
+    def complete?
+      @fulfilled_orders.size >= 5 &&
+        @has_no_returned_orders &&
+        last_fulfilled_order_return_date_passed?
+    end
+
+    def last_fulfilled_order_return_date_passed?
+      @fulfilled_orders
+        .map { |order| order.fetch(:fulfillment_date) }
+        .all? { |date| date + NUMBER_OF_DAYS_TO_RETURN_ORDER < Time.now }
+    end
+
+    def apply(*events)
+      events.each do |event|
+        case event
+        when OrderFulfilled
+          apply_order_fulfilled(
+            event.data.fetch(:order_id),
+            event.data.fetch(:fulfilled_at)
+          )
+        when OrderReturned
+          apply_order_returned
+        end
+        @event_ids_to_link << event.id
+      end
+    end
+
+    def load(stream_name, event_store:)
+      events = event_store.read.forward(stream_name)
+      events.each { |event| apply(event) }
+      @version = events.size - 1
+      @event_ids_to_link = []
+      self
+    end
+
+    def store(stream_name, event_store:)
+      event_store.link(@event_ids_to_link, stream_name: stream_name, expected_version: @version)
+      @version += @event_ids_to_link.size
+      @event_ids_to_link = []
+    end
+  end
+  private_constant :State
+
+  def call(event)
+    customer_id = event.data(:customer_id)
+    stream_name = "SendXmasCardToEligibleCustomer$#{customer_id}_#{Time.current.year}"
+
+    state = State.new
+    state.load(stream_name, event_store: event_store)
+
+    return if state.completed? # The gift has to be sent once only.
+
+    state.apply(event)
+    state.store(stream_name, event_store: event_store)
+
+    if state.complete?
+      command_bus.(ScheduleXmasCardShipment.new(data: { customer_id: customer_id }))
+      state.mark_as_completed # Mark process as finished
+    end
+  end
+end
+```
+
+Since it responds to two events and needs to calculate the occurrence, it seems like it could be a process manager instead of a simple event handler.
+
+SendXmasCard has to make a decision about sending the gift. To do this, it needs to keep track of fulfilled orders and returned orders for customers. Additionally, it needs to check if the time to return fulfilled orders has passed. Also, the card should be sent only once a year. Therefore, once it is sent, the state is marked as completed.
+
