@@ -2,7 +2,7 @@
 created_at: 2023-01-27 18:54:42 +0100
 author: Szymon Fiedler
 tags: ['rails event store', 'json', 'jsonb']
-publish: false
+publish: true
 ---
 
 # First class json(b) handling in Rails Event Store
