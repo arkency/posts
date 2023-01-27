@@ -5,7 +5,7 @@ tags: [event sourcing, bi-temporal event sourcing, read model, serialized db col
 publish: false
 ---
 
-# Catalog of future events using bi-temporal EventSourcing
+# How to build Read models with bi-temporal events
 
 In our previous [blogpost](https://blog.arkency.com/fixing-the-past-and-dealing-with-the-future-using-bi-temporal-eventsourcing/), Łukasz described how to handle events that are expected in the future and how we use it in our [ecommerce](https://github.com/RailsEventStore/ecommerce/) example application to get correct current prices while handling prices that are set for the future.
 
