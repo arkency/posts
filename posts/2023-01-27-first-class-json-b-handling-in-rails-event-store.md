@@ -258,7 +258,5 @@ nor in the [Browser](https://railseventstore.org/docs/v2/browser/).
 
 ## Summary
 
-Running on `JSONClient` with `PreserveTypes` provides seamless type handling. It removes all the disadvantages which using _JSON_ brought as compared to _YAML_ serialization within binary column. It opens new possibilities like ability to query events' `data` and `metadata` via SQL interface and RES interface in the future.
-
-It's also a nice alternative to event schemas used solely for type casting which can be sometimes slow. If you find this interesting here's a [repository](https://github.com/pawelpacana/res-event-schema-comparison) benchmarking different approaches to event schemas.
+Running on `JSONClient` with `PreserveTypes` provides seamless type handling. It removes all the disadvantages which using _JSON_ brought as compared to _YAML_ serialization within binary column. It opens new possibilities like ability to query events' `data` and `metadata` via SQL interface and RES interface in the future. It's also a nice alternative to event schemas used solely for type casting which can be sometimes [slow](https://github.com/pawelpacana/res-event-schema-comparison). 
 
