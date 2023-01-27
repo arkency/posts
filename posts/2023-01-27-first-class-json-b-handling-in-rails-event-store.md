@@ -146,7 +146,7 @@ after persisting and reading it again will represent originally intended data ty
 }
 ```
 
-Here's extracted `PreserveTypes` configuration extracted from [`RailsEventStore::JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/2e5c3ab33e60696f207d52f690ae06cc6bb44fdc/rails_event_store/lib/rails_event_store/json_client.rb)
+Here's `PreserveTypes` configuration extracted from [`RailsEventStore::JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/2e5c3ab33e60696f207d52f690ae06cc6bb44fdc/rails_event_store/lib/rails_event_store/json_client.rb)
 
 ```ruby
 RubyEventStore::Mappers::Transformation::PreserveTypes
