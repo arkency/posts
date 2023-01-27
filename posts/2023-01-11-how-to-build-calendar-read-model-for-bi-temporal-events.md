@@ -2,7 +2,7 @@
 created_at: 2023-01-11 14:08:30 +0100
 author: Tomasz Patrzek
 tags: [event sourcing, bi-temporal event sourcing, read model, serialized db column]
-publish: false
+publish: true
 ---
 
 # How to build Read models with bi-temporal events
