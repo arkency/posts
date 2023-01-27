@@ -7,7 +7,7 @@ publish: false
 
 # First class json(b) handling in Rails Event Store
 
-Recently, in Rails Event Store [v2.8.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.8.0) `PreserveTypes` transformation has been introduced. Recent [v2.9.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.9.0) release brought `RailsEventStore::JSONClient`. It's a set of great improvements for RES users who plan to or already use PostgreSQL with `jsonb` data type for keeping events' `data` and `metadata`.
+Recently, in _Rails Event Store_ [v2.8.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.8.0) `PreserveTypes` transformation has been introduced. [v2.9.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.9.0) release brought `RailsEventStore::JSONClient`. It's a set of great improvements for RES users who plan to or already use PostgreSQL with `jsonb` data type for keeping events' `data` and `metadata`.
 
 <!-- more -->
 ## Back to the primitive
