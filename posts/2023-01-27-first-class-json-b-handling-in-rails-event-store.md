@@ -186,6 +186,8 @@ RubyEventStore::Mappers::Transformation::PreserveTypes
 
 As you noticed, the configuration is pretty simple, we expect both serializer and deserializer to respond to `call` and accept single argument with value. 
 
+Primitive types like `String` or `Integer` require no serialization, original value will be passed. It also won't be deserialized on read.
+
 If you're curious how `PreserveTypes` transformation is implemented, feel free to look at the [source code](https://github.com/RailsEventStore/rails_event_store/blob/2e5c3ab33e60696f207d52f690ae06cc6bb44fdc/ruby_event_store/lib/ruby_event_store/mappers/transformation/preserve_types.rb#L6).
 
 ## Quirks
