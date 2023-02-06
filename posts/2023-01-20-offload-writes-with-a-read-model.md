@@ -1,3 +1,4 @@
+
 ---
 created_at: 2023-01-20 12:56:50 +0100
 author: Piotr Jurewicz
@@ -13,6 +14,7 @@ Imagine following business requirement:
 Simply adding items to the cart does not guarantee products availability.
 However, the customer should not be able to add to the cart a product which is already not available.*
 
+<!-- more -->
 
 Actually, it is not any fancy requirement. I used to work on ecommmerce project with such feature.
 When I was diving deeper into DDD, I started to think how to meet this requirement in a proper way.
@@ -24,12 +26,10 @@ It was a really awful candidate for a command. It was obfuscating the aggregate'
 
 When I realized that my command makes nothing but the read, I started looking for a solution in read model.
 An efficient read model is eventually consistent. It is not a problem for our case.
-In fact, checking availability on the aggregate neither was immediate consistent. Just 1 ms after check, it could change.
+In fact, placing an order after checking availability on the aggregate neither was guaranteeing consistency. Just 1 ms after check, it could change.
 That's just because that command didn't change state!
 
-<!-- more -->
-
-FIXME: Place post body here.
+<img src="<%= src_original("offload-writes-with-a-read-model/exploring-ecommerce-8.png") %>" width="100%">
 
 ```ruby
 Person.new.show_secret
