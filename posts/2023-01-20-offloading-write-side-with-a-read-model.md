@@ -2,8 +2,8 @@
 ---
 created_at: 2023-02-06 12:56:50 +0100
 author: Piotr Jurewicz
-tags: ['read model', 'cqrs', 'commands']
-publish: false
+tags: ['ddd', 'read model', 'cqrs', 'commands']
+publish: true
 ---
 
 # Offloading write side with a read model
@@ -17,10 +17,10 @@ However, the customer should not be able to add a product that is already unavai
 <!-- more -->
 
 Actually, it is not any fancy requirement. I used to work on e-commmerce project with such a feature.
-When diving deeper into DDD, I started thinking about how to properly meet this requirement.
+When diving deeper into Domain-driven design, I started thinking about how to properly meet this requirement with DDD building blocks.
 
 At first, the rule *"the customer should not be able to add to the cart a product which is already out of stock"* sounded like an intuitive invariant to me.
-I have even implemented a `Inventory::CheckAvailability` command which was invoked on `Inventory::InventoryEntry` aggregate.
+I have even implemented a `Inventory::CheckAvailability` command which was invoked on `Inventory::InventoryEntry` aggregate root.
 ```ruby
 def check_availability!(desired_quantity)
   return unless stock_level_defined?
@@ -32,10 +32,10 @@ In fact, It was doing nothing with the aggregate's internal state. This method w
 
 When I realized that my command made nothing but the read, I started looking for a solution in the read model.
 An efficient read model is eventually consistent. It is not a problem in our case.
-In fact, placing an order just after checking availability directly on the aggregate neither guarantees success. Just 1 ms after checking, it could change.
+In fact, placing an order just after checking availability directly on the aggregate root neither guarantees success. Just 1 ms after checking, it could change.
 That's just because that command did not affect the aggregate's state.
 
-So, I prepared `ProductsAvailability` read model, which was driven by `Inventory::AvailabilityChanged` events.
+So, I prepared `ProductsAvailability` read model, which subscribes to `Inventory::AvailabilityChanged` events.
 I use it as a kind of validation if invoking `Ordering::AddItemToBasket` command makes any sense.
 
 <img src="<%= src_original("offload-writes-with-a-read-model/exploring_inventory.png") %>" width="100%">
@@ -51,9 +51,9 @@ def add_item
 end
 ```
 
-Lessons that I learned:
-- Started to distinguish hard business rules which go together with some state change within the aggregate.
-Requirements of this kind are, in fact, good candidates for invariants.
+Lessons that I have learned:
+- Started to distinguish hard business rules which go together with some state change within the system.
+Requirements of this kind are, in fact, good candidates for aggregates invariants.
 - Noticed that some requirements improve user experience but are not so critical to affecting aggregate design.
 Checking those, we do not care for 100% consistency with a write side.
 - It is OK to have some read models that are not strict for viewing purposes.
