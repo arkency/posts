@@ -28,7 +28,7 @@ def check_availability!(desired_quantity)
 end
 ```
 In fact, It was doing nothing with the aggregate's internal state. This method was just raising an error if the product was out of stock.
-**It was a terrible candidate for a command**. It was obfuscated the aggregate's code, which should stay minimalistic, and did no changes within the system.
+**It was a terrible candidate for a command**. It obfuscated the aggregate's code, which should stay minimalistic, and did no changes within the system.
 
 When I realized that my command made nothing but the read, I started looking for a solution in the read model.
 An efficient read model is eventually consistent. It is not a problem in our case.
