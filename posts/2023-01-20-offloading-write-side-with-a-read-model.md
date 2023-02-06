@@ -32,8 +32,8 @@ In fact, It was doing nothing with the aggregate's internal state. This method w
 
 When I realized that my command made nothing but the read, I started looking for a solution in the read model.
 An efficient read model is eventually consistent. It is not a problem in our case.
-In fact, placing an order after checking availability directly on the aggregate neither guaranteed consistency. Just 1 ms after checking, it could change.
-That's just because that command did not affect the aggregate's state!
+In fact, placing an order just after checking availability directly on the aggregate neither guarantees success. Just 1 ms after checking, it could change.
+That's just because that command did not affect the aggregate's state.
 
 So, I prepared `ProductsAvailability` read model, which was driven by `Inventory::AvailabilityChanged` events.
 I use it as a kind of validation if invoking `Ordering::AddItemToBasket` command makes any sense.
