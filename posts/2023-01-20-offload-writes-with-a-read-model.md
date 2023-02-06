@@ -2,24 +2,24 @@
 ---
 created_at: 2023-02-06 12:56:50 +0100
 author: Piotr Jurewicz
-tags: []
+tags: ['read model', 'cqrs', 'commands']
 publish: false
 ---
 
 # Offloading write side with a read model
 
-Imagine following business requirement:
+Imagine the following business requirement:
 
 *All the products should be reserved for a customer on order submission.
-Simply adding items to the cart does not guarantee products availability.
-However, the customer should not be able to add to the cart a product which is already not available.*
+Simply adding items to the cart does not guarantee product availability.
+However, the customer should not be able to add a product that is already unavailable.*
 
 <!-- more -->
 
-Actually, it is not any fancy requirement. I used to work on ecommmerce project with such feature.
-When I was diving deeper into DDD, I started to think how to meet this requirement in a proper way.
+Actually, it is not any fancy requirement. I used to work on e-commmerce project with such a feature.
+When diving deeper into DDD, I started thinking about how to properly meet this requirement.
 
-At first, the rule *"the customer should not be able to add to the cart a product which is already out of stock"* sound like an intuitive invariant to me.
+At first, the rule *"the customer should not be able to add to the cart a product which is already out of stock"* sounded like an intuitive invariant to me.
 I have even implemented a `Inventory::CheckAvailability` command which was invoked on `Inventory::InventoryEntry` aggregate.
 ```ruby
 def check_availability!(desired_quantity)
@@ -27,16 +27,16 @@ def check_availability!(desired_quantity)
   raise InventoryNotAvailable if desired_quantity > availability
 end
 ```
-In fact, It was doing nothing with aggregate's internal state. This method was just raising an error if the product was out of stock.
-**It was a really bad candidate for a command**. It was obfuscating the aggregate's code, which should stay minimalistic, and did no changes within a system.
+In fact, It was doing nothing with the aggregate's internal state. This method was just raising an error if the product was out of stock.
+**It was a terrible candidate for a command**. It was obfuscated the aggregate's code, which should stay minimalistic, and did no changes within the system.
 
-When I realized that my command makes nothing but the read, I started looking for a solution in read model.
-An efficient read model is eventually consistent. It is not a problem for our case.
-In fact, placing an order after checking availability directly on the aggregate neither was guaranteeing consistency. Just 1 ms after check, it could change.
-That's just because that command did not affect aggregate's state!
+When I realized that my command made nothing but the read, I started looking for a solution in the read model.
+An efficient read model is eventually consistent. It is not a problem in our case.
+In fact, placing an order after checking availability directly on the aggregate neither guaranteed consistency. Just 1 ms after checking, it could change.
+That's just because that command did not affect the aggregate's state!
 
-So that, I prepared `ProductsAvailability` read model which was driven by `Inventory::AvailabilityChanged` events.
-I use it as a kind of validation if invoking `Ordering::AddItemToBasket` command make any sense.
+So, I prepared `ProductsAvailability` read model, which was driven by `Inventory::AvailabilityChanged` events.
+I use it as a kind of validation if invoking `Ordering::AddItemToBasket` command makes any sense.
 
 <img src="<%= src_original("offload-writes-with-a-read-model/exploring_inventory.png") %>" width="100%">
 
@@ -52,8 +52,8 @@ end
 ```
 
 Lessons that I learned:
-- Started to distinguish hard business rules which goes together with some state change.
-Requirements of this kind are in fact good candidates for invariants.
-- Noticed that some requirements improves user experience but are not so important to affect aggregates design.
+- Started to distinguish hard business rules which go together with some state change within the aggregate.
+Requirements of this kind are, in fact, good candidates for invariants.
+- Noticed that some requirements improve user experience but are not so critical to affecting aggregate design.
 Checking those, we do not care for 100% consistency with a write side.
-- It is OK to have some read models that are not strict for a viewing purposes.
+- It is OK to have some read models that are not strict for viewing purposes.
