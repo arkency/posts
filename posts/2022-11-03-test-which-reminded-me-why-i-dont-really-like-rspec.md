@@ -114,15 +114,15 @@ Talk is cheap, so I did a 5 minutes refactoring resulting in this:
 require "rails_helper"
 
 RSpec.describe Api::Students::Update do
-  test "when user is a student" do
+  specify "when user is a student" do
     expect(Api::Students::Update.call(current_user: user, params: { last_name: "something" })).to be_success
   end
 
-  test "when user is a teacher" do
+  specify "when user is a teacher" do
     expect(Api::Students::Update.call(current_user: teacher, params: { last_name: "something" })).to be_failure
   end
 
-  test "when user has address and want to change something in their address will succeed" do
+  specify "when user has address and want to change something in their address will succeed" do
     address = create(:address, owner: user)
 
     result = Api::Students::Update.call(current_user: user, params: { last_name: "something", zip_code: new_zip_code })
@@ -131,7 +131,7 @@ RSpec.describe Api::Students::Update do
     expect(address.reload.zip_code).to eq(new_zip_code)
   end
 
-  test "when user has not have any address and want to change something in their address create address with given params" do
+  specify "when user has not have any address and want to change something in their address create address with given params" do
     result =
       expect {
         Api::Students::Update.call(current_user: user, params: { last_name: "something", zip_code: new_zip_code })
@@ -142,7 +142,7 @@ RSpec.describe Api::Students::Update do
     expect(user.address).to eq(Address.last)
   end
 
-  test "when user has parent and want to change something" do
+  specify "when user has parent and want to change something" do
     user = create(:user, profession: student)
 
     result = Api::Students::Update.call(current_user: user, params: { parent: { first_name: parent_first_name } })
@@ -151,7 +151,7 @@ RSpec.describe Api::Students::Update do
     expect(parent.reload.first_name).to eq(parent_first_name)
   end
 
-  test "when user has not have any parent and want to change something in their parent" do
+  specify "when user has not have any parent and want to change something in their parent" do
     user = create(:user, profession: student)
 
     result =
