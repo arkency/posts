@@ -52,6 +52,8 @@ As the codebase was huge and poorly tested, we had to find a smart way to track 
 Paweł came up with the idea to use a [parser tool](https://github.com/whitequark/parser) for this purpose.
 Examples of using this powerful gem have already been described by us [on the blog](https://blog.arkency.com/tags/parser/).
 
+In short, it allows us to parse Ruby code into an AST (abstract syntax tree) and then traverse it.
+
 ```ruby
 require "parser/runner"
 require "rubocop"
@@ -78,10 +80,10 @@ class Collector < Parser::AST::Processor
 
     namespace = node.namespace
     while namespace
-      return if namespace.lvar_type? # products_klazz::RENTERS
-      return if namespace.send_type? # obj.rating_namespace::Settings
-      return if namespace.self_type? # self::ENCRYPTED_ID_PREFIX
-      break if namespace.cbase_type?
+      return if namespace.lvar_type? # local_variable::SOME_CONSTANT
+      return if namespace.send_type? # obj.method::SomeClass
+      return if namespace.self_type? # self::SOME_CONSTANT
+      break if namespace.cbase_type? # we reached the top level
       namespace = namespace.namespace
     end
     const_string = Unparser.unparse(node)
