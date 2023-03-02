@@ -141,7 +141,7 @@ end
 ```
 
 After that, we check if the filtered-out constants resolve correctly.
-If the constant is explicitly referenced from the top-level, we can just try to evaluate it.
+If the constant is explicitly referenced from the top-level, we just try to evaluate it.
 In other cases, we must consider the namespace in which the constant is used and try to call it with the full namespace prepended, and then with one level less, and so on, until we reach the top level binding.
 ```ruby
 if node.namespace&.cbase_type?
@@ -160,4 +160,38 @@ else
   end
 end
 ```
-Finally, we are storing constants that failed to resolve with their location in the codebase.
+Finally, we store constants that failed to resolve with their location in the codebase.
+
+Another class to extend is `Parser::Runner` which is responsible for parsing the files and passing them to the processor.
+```ruby
+runner =
+  Class.new(Parser::Runner) do
+    def runner_name
+      "dudu"
+    end
+
+    def process(buffer)
+      parser = @parser_class.new(RuboCop::AST::Builder.new)
+      collector = Collector.new
+      collector.process(parser.parse(buffer))
+      show(collector.suspicious_consts)
+    end
+
+    def show(collection)
+      return if collection.empty?
+      puts
+      collection.each { |pair| puts pair.join("\t") }
+    end
+  end
+
+runner.go(ARGV)
+```
+
+## Results
+We ensured that eager loading is enabled and invoked the script on Ruby 2.4 and 2.5 to compare the results.
+```bash
+bundle exec ruby collector.rb app/ lib/
+```
+It turned out that there were 52 constants that were not resolving correctly in Ruby 2.5 and only 7 fewer in Ruby 2.4.
+It means there were already 45 possible sources of run-time errors in the codebase that were not detected by tests!
+Fortunately, some of them were located in the code that was not used anymore, so we could just safely remove those methods.
