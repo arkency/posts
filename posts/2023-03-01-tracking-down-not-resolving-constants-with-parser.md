@@ -7,16 +7,18 @@ publish: false
 
 # Tracking down not resolving constants with parser
 
-Lately, we have been working on upgrading an obsolete stack of one Ruby app. This application was running on Ruby 2.4.
-After dropping dozens of unused gems, performing security updates, and eliminating deprecation warnings, we decided it's time for a Ruby upgrade.
-This is where the story REALLY begins.
+Lately, we have been working on upgrading an obsolete stack of one Ruby app.
+This application was running on Ruby 2.4.
+After dropping 50 unused gems, performing security updates, and eliminating deprecation warnings, we decided it was time for a Ruby upgrade.
 
+This is where the story REALLY begins, and I encourage you to keep reading even if you are not interested in the old Ruby version's internals.
+In the end, I will give you a powerful tool to help you track down not resolving constants in your codebase.
 <!-- more -->
 
 ## Top-level constant lookup
 
 One of the major changes introduced in Ruby 2.5 was [removing top-level constant lookup](https://github.com/ruby/ruby/commit/44a2576f79).
-It means a breaking change of how Ruby resolves constants. Let me explain it with an example.
+It means a breaking change in how Ruby resolves constants. Let me explain it with an example.
 ```ruby
 class A
   class B
@@ -36,6 +38,8 @@ In Ruby 2.4 and earlier, the output of calling `A::B::C` is `C`. Are you surpris
 => C
 ```
 
+The warning message suggests that we are doing something that may have unexpected results.
+
 If we tried to do the same in Ruby 2.5 and later, we would get an error.
 ```
 [1] pry(main)> RUBY_VERSION
@@ -47,12 +51,14 @@ from (pry):8:in `<main>'
 
 As the codebase was huge and poorly tested, we had to find a smart way to track down all the places where this change would break the app.
 
+It would be relatively easy to grep with regexp all the constants used in the codebase, but then we had to find out if they resolved correctly from the context they are being used.
+
 ## Parser gem
 
 Paweł came up with the idea to use a [parser tool](https://github.com/whitequark/parser) for this purpose.
 Examples of using this powerful gem have already been described by us [on the blog](https://blog.arkency.com/tags/parser/).
 
-In short, it allows us to parse Ruby code into an AST (abstract syntax tree) and then traverse it.
+In short, it allows parsing Ruby code into an AST (abstract syntax tree) and then traversing it.
 
 ```ruby
 require "parser/runner"
