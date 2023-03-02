@@ -145,6 +145,8 @@ After that, we check if the filtered-out constants resolve correctly.
 If the constant is explicitly referenced from the top-level, we just try to evaluate it.
 In other cases, we must consider the namespace in which the constant is used and try to call it with the full namespace prepended, and then with one level less, and so on, until we reach the top level binding.
 ```ruby
+const_string = Unparser.unparse(node)
+
 if node.namespace&.cbase_type?
   return if validate_const(const_string)
 else
@@ -163,8 +165,13 @@ end
 ```
 Finally, we store constants that failed to resolve with their location in the codebase.
 
+```ruby
+store(const_string, node.location)
+```
+
 ### Runner
 Another class to extend is `Parser::Runner` which is responsible for parsing the files and passing them to the processor.
+At the end, it prints all the stored suspicious constants.
 ```ruby
 runner =
   Class.new(Parser::Runner) do
