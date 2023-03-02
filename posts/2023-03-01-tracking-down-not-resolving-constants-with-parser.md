@@ -60,14 +60,8 @@ Examples of using this powerful gem have already been described by us [on the bl
 
 In short, it allows parsing Ruby code into an AST (abstract syntax tree) and then traversing it.
 
+We started with extending the `Parser::AST::Processor` class and overriding the `on_const` method which gets trigerred for every constant found in the code.
 ```ruby
-require "parser/runner"
-require "rubocop"
-require "unparser"
-require "set"
-
-require_relative "config/environment"
-
 class Collector < Parser::AST::Processor
   include AST::Sexp
 
@@ -126,26 +120,44 @@ class Collector < Parser::AST::Processor
     false
   end
 end
-
-runner =
-  Class.new(Parser::Runner) do
-    def runner_name
-      "dudu"
-    end
-
-    def process(buffer)
-      parser = @parser_class.new(RuboCop::AST::Builder.new)
-      collector = Collector.new
-      collector.process(parser.parse(buffer))
-      show(collector.suspicious_consts)
-    end
-
-    def show(collection)
-      return if collection.empty?
-      puts
-      collection.each { |pair| puts pair.join("\t") }
-    end
-  end
-
-runner.go(ARGV)
 ```
+
+Guards in the `on_const` method are there to skip constants that are part of the class/module definition. We look for usages only.
+```ruby
+return if node.parent.module_definition?
+return if node.parent.class_definition?
+```
+
+Than, we drop all the dynamic usages which are hard to validate and need special handling.
+```ruby
+namespace = node.namespace
+while namespace
+  return if namespace.lvar_type? # local_variable::SOME_CONSTANT 
+  return if namespace.send_type? # obj.method::SomeClass
+  return if namespace.self_type? # self::SOME_CONSTANT
+  break if namespace.cbase_type? # we reached the top level
+  namespace = namespace.namespace
+end
+```
+
+After that, we check if the filtered-out constants resolve correctly.
+If the constant is explicitly referenced from the top-level, we can just try to evaluate it.
+In other cases, we must consider the namespace in which the constant is used and try to call it with the full namespace prepended, and then with one level less, and so on, until we reach the top level binding.
+```ruby
+if node.namespace&.cbase_type?
+  return if validate_const(const_string)
+else
+  namespace_const_names =
+    node
+      .each_ancestor
+      .select { |n| n.class_type? || n.module_type? }
+      .map { |mod| mod.children.first.const_name }
+      .reverse
+
+  (namespace_const_names.size + 1).times do |i|
+    concated = (namespace_const_names[0...namespace_const_names.size - i] + [node.const_name]).join("::")
+    return if validate_const(concated)
+  end
+end
+```
+Finally, we are storing constants that failed to resolve with their location in the codebase.
