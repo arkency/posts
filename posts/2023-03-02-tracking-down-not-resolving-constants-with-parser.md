@@ -1,5 +1,5 @@
 ---
-created_at: 2023-03-01 14:00:31 +0100
+created_at: 2023-03-02 14:00:31 +0100
 author: Piotr Jurewicz
 tags: []
 publish: false
@@ -195,11 +195,13 @@ We ensured that eager loading is enabled and invoked the script on Ruby 2.4 and 
 bundle exec ruby collector.rb app/ lib/
 ```
 It turned out that there were 52 constants that were not resolving correctly in Ruby 2.5 and only 7 fewer in Ruby 2.4.
-**It means there were already 45 possible sources of run-time errors in the codebase which were not detectable by tests!** 🤯
+**It means there were already 45 possible sources of run-time errors in the codebase which were not detectable by existing tests!** 🤯
 
 Fortunately, some of them were located in the code that was not used anymore, so we could just safely remove those methods.
 
 ## Bonus
-We published the script within the context of example app on GitHub.
+We published the script within the context of the example app on GitHub.
+
 Check it out at: [https://github.com/arkency/constants-resolver](https://github.com/arkency/constants-resolver).
 Copy and run `collector.rb` against your codebase and see if your app is free of not resolving constants.  
+If you find something, share this solution with your friends to help them avoid problems too.
