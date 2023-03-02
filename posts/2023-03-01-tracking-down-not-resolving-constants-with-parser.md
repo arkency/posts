@@ -60,6 +60,7 @@ Examples of using this powerful gem have already been described by us [on the bl
 
 In short, it allows parsing Ruby code into an AST (abstract syntax tree) and then traversing it.
 
+### Processor
 We started with extending the `Parser::AST::Processor` class and overriding the `on_const` method which gets trigerred for every constant found in the code.
 ```ruby
 class Collector < Parser::AST::Processor
@@ -162,6 +163,7 @@ end
 ```
 Finally, we store constants that failed to resolve with their location in the codebase.
 
+### Runner
 Another class to extend is `Parser::Runner` which is responsible for parsing the files and passing them to the processor.
 ```ruby
 runner =
@@ -196,3 +198,8 @@ It turned out that there were 52 constants that were not resolving correctly in 
 **It means there were already 45 possible sources of run-time errors in the codebase which were not detectable by tests!** 🤯
 
 Fortunately, some of them were located in the code that was not used anymore, so we could just safely remove those methods.
+
+## Bonus
+We published the script within the context of example app on GitHub.
+Check it out at: [https://github.com/arkency/constants-resolver](https://github.com/arkency/constants-resolver).
+Copy and run `collector.rb` against your codebase and see if your app is free of not resolving constants.  
