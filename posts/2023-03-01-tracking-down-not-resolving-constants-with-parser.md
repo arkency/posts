@@ -193,5 +193,6 @@ We ensured that eager loading is enabled and invoked the script on Ruby 2.4 and 
 bundle exec ruby collector.rb app/ lib/
 ```
 It turned out that there were 52 constants that were not resolving correctly in Ruby 2.5 and only 7 fewer in Ruby 2.4.
-It means there were already 45 possible sources of run-time errors in the codebase that were not detected by tests!
+**It means there were already 45 possible sources of run-time errors in the codebase which were not detectable by tests!** 🤯
+
 Fortunately, some of them were located in the code that was not used anymore, so we could just safely remove those methods.
