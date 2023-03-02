@@ -2,7 +2,7 @@
 created_at: 2023-03-02 14:00:31 +0100
 author: Piotr Jurewicz
 tags: []
-publish: false
+publish: true
 ---
 
 # Tracking down not resolving constants with parser
@@ -202,6 +202,5 @@ Fortunately, some of them were located in the code that was not used anymore, so
 ## Bonus
 We published the script within the context of the example app on GitHub.
 
-Check it out at: [https://github.com/arkency/constants-resolver](https://github.com/arkency/constants-resolver).
-Copy and run `collector.rb` against your codebase and see if your app is free of not resolving constants.  
-If you find something, share this solution with your friends to help them avoid problems too.
+Check it out at: [https://github.com/arkency/constants-resolver](https://github.com/arkency/constants-resolver). 
+Copy and run `collector.rb` against your codebase and see if your app is free of not resolving constants. If you find something, share this solution with your friends to help them avoid problems too.
