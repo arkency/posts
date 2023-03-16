@@ -5,7 +5,7 @@ tags: ['ruby', 'parser', 'AST', 'rails']
 publish: true
 ---
 
-# Tracking down not resolving constants with parser
+# Tracking down not resolving constants in Ruby with parser
 
 Lately, we have been working on upgrading an obsolete stack of one Ruby app.
 This application was running on Ruby 2.4.
