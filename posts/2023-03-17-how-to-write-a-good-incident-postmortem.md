@@ -93,6 +93,6 @@ Describe in points how similar issues can be avoided in the future, it serves a 
 
 ## Plot twist
 
-This is based on a true story. What's even more funny is the fact that the development process consisted of all the points mentioned in [Loosing Control](#loosing_control) paragraph. It lacked the most important one: ability to act quickly when the issue occurs. Mistakes will happen, especially if taking the risk is cheaper than preventing all the edge cases.
+This is based on a true story. What's even more funny is the fact that the development process consisted of all the points mentioned in [Losing Control](#losing_control) paragraph. It lacked the most important one: ability to act quickly when the issue occurs. Mistakes will happen, especially if taking the risk is cheaper than preventing all the edge cases.
 
 But it's a topic for a different story.
