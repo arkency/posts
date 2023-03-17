@@ -2,7 +2,7 @@
 created_at: 2023-03-17 11:05:49 +0100
 author: Szymon Fiedler
 tags: [team consulting]
-publish: false
+publish: true
 ---
 
 # How to write a good incident postmortem
