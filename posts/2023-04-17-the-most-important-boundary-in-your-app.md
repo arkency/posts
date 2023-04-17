@@ -50,19 +50,19 @@ Rails 5.1
 <td>
 </td>
 <td>
-only permitted?
+only permitted params?
 </td>
 <td>
 indifferent access?
 </td>
 <td>
-only permitted?
+only permitted params?
 </td>
 <td>
 indifferent access?
 </td>
 <td>
-only permitted?
+only permitted params?
 </td>
 <td>
 indifferent access?
@@ -92,7 +92,7 @@ indifferent access?
 <td>✅</td>
 <td>❌</td>
 <td>✅</td>
-<td colspan="2">💥</td>
+<td colspan="2">Missing method error</td>
 </tr>
 </tbody>
 </table>
