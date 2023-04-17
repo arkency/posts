@@ -53,19 +53,19 @@ Rails 5.1
 only permitted params?
 </td>
 <td>
-indifferent access?
+has indifferent access?
 </td>
 <td>
 only permitted params?
 </td>
 <td>
-indifferent access?
+has indifferent access?
 </td>
 <td>
 only permitted params?
 </td>
 <td>
-indifferent access?
+has indifferent access?
 </td>
 </tr>
 <tr>
@@ -92,7 +92,7 @@ indifferent access?
 <td>✅</td>
 <td>❌</td>
 <td>✅</td>
-<td colspan="2">Missing method error</td>
+<td colspan="2"><b>Missing method error</b></td>
 </tr>
 </tbody>
 </table>
@@ -128,3 +128,5 @@ Decoupling has several advantages:
 - **Flexibility**: Decoupling allows developers to switch frameworks, libraries, or even languages without having to rewrite the entire application.
 - **Testability**: When domain logic is decoupled from framework internals, it is easier to test the core functionality without complex setups or dependencies.
 - **Maintainability**: Decoupled applications are easier to maintain because they have a clearer separation of concerns, making it easier to identify and fix issues.
+
+Similar examples will be addressed in the upcoming Rails Business Logic Masterclass course. Subscribe to the newsletter below so you don't miss any updates.
