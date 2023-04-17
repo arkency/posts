@@ -1,8 +1,8 @@
 ---
 created_at: 2023-04-17 10:52:52 +0200
 author: Piotr Jurewicz
-tags: []
-publish: false
+tags: ['rails', 'framewrok', 'decoupling']
+publish: true
 ---
 
 # The most important boundary in your app
@@ -24,7 +24,7 @@ However, all the methods available on hashes were still available on `ActionCont
 
 ### Rails 5.1
 In Rails 5.1, the `missing_method` hook was removed.
-It further emphasized the separation between ActionController::Parameters and regular Ruby hashes so that methods `#each`, `#map`, `#select`, etc., were no longer available on `ActionController::Parameters` instances.
+It further emphasized the separation between ActionController::Parameters and regular Ruby hashes so that methods `#each`, `#map`, `#each_key`, `#each_value`, etc., were no longer available on `ActionController::Parameters` instances.
 
 # The problem
 
