@@ -26,73 +26,13 @@ However, all the methods that were available on hashes were still available on `
 In Rails 5.1, the `missing_method` hook was removed. So that the methods like `#each`, `#map`, `#select`, etc. were no longer available on `ActionController::Parameters` instances.
 
 
-<table>
-<thead>
-<tr>
-<th>
-</th>
-<th colspan="2">
-Rails 4.2
-</th>
-<th colspan="2">
-Rails 5.0
-</th>
-<th colspan="2">
-Rails 5.1
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-</td>
-<td>
-only permitted?
-</td>
-<td>
-indifferent access?
-</td>
-<td>
-only permitted?
-</td>
-<td>
-indifferent access?
-</td>
-<td>
-only permitted?
-</td>
-<td>
-indifferent access?
-</td>
-</tr>
-<tr>
-<td>`params.to_hash`</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>`params.to_h`</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>`params.(some native hash method)`</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
-<td colspan="2">⛔</td>
-</tr>
-</tbody>
-</table>
+|method <td colspan=2>Rails 4.2</td><td colspan=2>Rails 5.0</td><td colspan=2>Rails 5.1</td>
+|------------|:----------------------------:|:--------:|:--------------:|:--------:|:--------------:|:--------:|
+|            |       only permitted?        | Indifferent access? | only permitted? | Indifferent access? | only permitted? | Indifferent access? |
+| `params.to_hash` |              ❌               |     ❌      |       ❌         |     ❌      |       ✅         |     ❌      |
+| `params.to_h`    |              ✅               |     ❌      |       ✅         |     ✅      |       ✅         |     ✅      |
+| `params.(some native hash method)` |              ❌               |     ✅      |       ❌         |     ✅      |       ⛔         |           |
+
 
 
 # The problem
