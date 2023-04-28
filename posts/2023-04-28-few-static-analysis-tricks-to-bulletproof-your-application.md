@@ -1,8 +1,8 @@
 ---
 created_at: 2023-04-28 11:17:58 +0200
 author: Piotr Jurewicz
-tags: []
-publish: false
+tags: ['ruby', 'rails', 'static analysis']
+publish: true
 ---
 
 # Few static analysis tricks to bulletproof your application
