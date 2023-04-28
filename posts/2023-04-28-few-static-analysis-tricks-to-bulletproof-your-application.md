@@ -8,8 +8,8 @@ publish: true
 # Few static analysis tricks to bulletproof your application
 
 Static analysis is the process of examining code without executing it to identify potential issues and improve its quality.
-By employing valuable static analysis techniques, you can enhance your application's robustness and reliability.
-In this article, I discuss three practical techniques that can help you prevent and resolve issues in your codebase.
+By employing valuable static analysis techniques, you can enhance your application's reliability.
+In this article, I discuss three practical techniques that can help you resolve issues in your codebase.
 
 ## Badly named tests
 
@@ -31,7 +31,7 @@ Using the following command, we managed to identify all problematic files:
 ```bash
 find ./spec -type f -not -name \*_spec.rb -not -path "./spec/factories/*" -not -path "./spec/support/*" | xargs rg RSpec\.describe
 ```
-We found numerous files with incorrect naming patterns, such as `*.spec.rb`, `*_sepc.rb`, and so on. After renaming these files, we ran them and half of them failed...
+We found numerous files with incorrect naming patterns, such as `*.spec.rb`, `*_sepc.rb`, and so on. After renaming these files, half of these tests turned out to be failing.
 
 ## Not resolving constants
 
@@ -46,6 +46,7 @@ bundle exec ruby collector.rb app/
 
 Another useful script for cleaning up your codebase checks if your `routes.rb` file define any routes which do not have a corresponding controller action nor a view for implicit rendering.
 ```ruby
+# unused_routes.rb
 require_relative "config/environment"
 
 Rails.application.routes.routes.map(&:requirements).each do |route|
