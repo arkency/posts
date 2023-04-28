@@ -7,6 +7,10 @@ publish: false
 
 # Few static analysis tricks to bulletproof your application
 
+Static analysis is the process of examining code without executing it to identify potential issues and improve its quality.
+By employing valuable static analysis techniques, you can enhance your application's robustness and reliability.
+In this article, I discuss three practical techniques that can help you prevent and resolve issues in your codebase.
+
 ## Badly named tests
 
 Recently, while tracking down unused code in our client's application,
@@ -27,7 +31,7 @@ Using the following command, we managed to identify all problematic files:
 ```bash
 find ./spec -type f -not -name \*_spec.rb -not -path "./spec/factories/*" -not -path "./spec/support/*" | xargs rg RSpec\.describe
 ```
-We found numerous files with incorrect naming patterns, such as `*.spec.rb`, `*_sepc.rb`, and so on. After renaming these files, we run them and half of them failed.
+We found numerous files with incorrect naming patterns, such as `*.spec.rb`, `*_sepc.rb`, and so on. After renaming these files, we ran them and half of them failed...
 
 ## Not resolving constants
 
