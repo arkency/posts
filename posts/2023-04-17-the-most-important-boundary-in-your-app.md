@@ -1,7 +1,7 @@
 ---
 created_at: 2023-04-17 10:52:52 +0200
 author: Piotr Jurewicz
-tags: ['rails', 'framewrok', 'decoupling']
+tags: ['rails', 'framework', 'decoupling']
 publish: true
 ---
 
