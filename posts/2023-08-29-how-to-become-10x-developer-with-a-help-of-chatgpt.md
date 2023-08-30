@@ -2,7 +2,7 @@
 created_at: 2023-08-29 20:38:59 +0200
 author: Szymon Fiedler
 tags: [chatgpt, productivity, copilot, llm, parser, ast, ruby]
-publish: false
+publish: true
 ---
 
 # How to become 10x developer with a help of ChatGPT
