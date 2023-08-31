@@ -24,9 +24,9 @@ I thought — _Ok, that's an easy fix_, _PostGIS_ is just an extension, we need 
 
 This easy fix required me to change 8 files (4 with implementation and 4 with tests). _Something is not ok here_ — I thought. So let's look through each of them:
 
-1. I had to add `postgis` to the list of `SUPPORTED_ADAPTERS` in `VerifyAdapter` class
+### I had to add `postgis` to the list of `SUPPORTED_ADAPTERS` in `VerifyAdapter` class
 
-```rubv
+```ruby
 # frozen_string_literal: true
 
 module RubyEventStore
@@ -52,7 +52,7 @@ module RubyEventStore
 end
 ```
 
-2. Then I had to extend case statement in `ForeignKeyOnEventIdMigrationGenerator#each_migration` method
+### Then I had to extend case statement in `ForeignKeyOnEventIdMigrationGenerator#each_migration` method
 
 ```ruby
 # frozen_string_literal: true
@@ -72,7 +72,7 @@ module RubyEventStore
 
       def each_migration(database_adapter, &block)
         case database_adapter
-        when 'postgresql'
+        when "postgresql", "postgis"
           [
             'add_foreign_key_on_event_id_to_event_store_events_in_streams',
             'validate_add_foreign_key_on_event_id_to_event_store_events_in_streams'
@@ -122,7 +122,7 @@ module RubyEventStore
 end
 ```
 
-3. Same goes for Rails version of migration generator
+### Same goes for Rails version of migration generator
 
 ```ruby
 # frozen_string_literal: true
@@ -189,7 +189,7 @@ end
 
 What is important, both of the migrators used `VerifyAdapter` class mentioned in 1st point.
 
-4. `TemplateDirectory` class also suffered from primitive obsession and it was used by both of the migrators too.
+### `TemplateDirectory` class also suffered from primitive obsession and it was used by both of the migrators too.
 
 ```ruby
 # frozen_string_literal: true
