@@ -24,7 +24,7 @@ I thought — _Ok, that's an easy fix_, _PostGIS_ is just an extension, we need 
 
 This easy fix required me to change 8 files (4 with implementation and 4 with tests). _Something is not ok here_ — I thought. So let's look through each of them:
 
-### I had to add `postgis` to the list of `SUPPORTED_ADAPTERS` in `VerifyAdapter` class
+I had to add `postgis` to the list of `SUPPORTED_ADAPTERS` in `VerifyAdapter` class
 
 ```ruby
 # frozen_string_literal: true
@@ -52,7 +52,7 @@ module RubyEventStore
 end
 ```
 
-### Then I had to extend case statement in `ForeignKeyOnEventIdMigrationGenerator#each_migration` method
+Then I had to extend case statement in `ForeignKeyOnEventIdMigrationGenerator#each_migration` method
 
 ```ruby
 # frozen_string_literal: true
@@ -122,7 +122,7 @@ module RubyEventStore
 end
 ```
 
-### Same goes for Rails version of migration generator
+Same goes for Rails version of migration generator
 
 ```ruby
 # frozen_string_literal: true
@@ -187,9 +187,9 @@ if defined?(Rails::Generators::Base)
 end
 ```
 
-What is important, both of the migrators used `VerifyAdapter` class mentioned in 1st point.
+What is important, both of the migrators used `VerifyAdapter` class (and two other migrators too).
 
-### `TemplateDirectory` class also suffered from primitive obsession and it was used by both of the migrators too.
+`TemplateDirectory` class also suffered from primitive obsession and it was used by both of the migrators too.
 
 ```ruby
 # frozen_string_literal: true
