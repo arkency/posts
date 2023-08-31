@@ -17,7 +17,7 @@ Still, there are couple scenarios where tools backed with LLMs shine and can boo
 
 ## Writing verbose pieces of code, like tests
 
-I prefer self–contained test cases, not dependent on shared setup and micro optimizations coming from poorly understood [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle. GitHub's Copilot shines in such scenario. Let me share recent example of test test which I added when implementing a [value object](https://blog.arkency.com/tags/value-object/) in [RailsEventStore](https://railseventstore.org):
+I prefer self–contained test cases, not dependent on shared setup and micro optimizations coming from poorly understood [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle. GitHub's Copilot shines in such scenario. Let me share recent example of test which I added when implementing a [value object](https://blog.arkency.com/tags/value-object/) in [RailsEventStore](https://railseventstore.org):
 
 ```ruby
 specify "adapter_name" do
