@@ -258,5 +258,5 @@ You've just avoided meeting with HR. Quite nice, isn't it?
 
 I've tried to look for a funny example. Obviously you can engage LLM for a more serious use like looking for arguments in support of the thesis you're trying to advance. Or better understanding domain you're working on if you don't have domain expert next to you.
 
-What's your take on that? Hit me up on [X](https://twitter.com/szymonfiedler), I'm happy to discuss other use–cases.
+What's your take on that? Hit me up on [X](https://twitter.com/szymonfiedler/status/1696842746403729823), I'm happy to discuss other use–cases.
 
