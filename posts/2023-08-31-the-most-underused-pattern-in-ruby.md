@@ -2,7 +2,7 @@
 created_at: 2023-08-31 19:04:08 +0200
 author: Szymon Fiedler
 tags: [value object, ruby, rails event store]
-publish: false
+publish: true
 ---
 
 # The most underused pattern in Ruby
