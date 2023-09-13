@@ -7,7 +7,7 @@ publish: false
 
 # Six ways to prevent a monkey-patch drift from the original code
 
-Monkey-patching in short is modifying external code, whose source we don't directly control, to fit our specific purpose in the project. When modernising framework stack in "legacy" projects this is often a necessity when upgrade of a dependency is not yet possible, or would involve moving too many blocks at once.
+Monkey-patching in short is modifying external code, whose source we don't directly control, to fit our specific purpose in the project. When modernising framework stack in "legacy" projects this is often a necessity when an upgrade of a dependency is not yet possible or would involve moving too many blocks at once.
 
 It's a short-term solution to move things forward. The reward we get from monkey-patching is instant. The code is changed without asking for anyone's permission and without much extra work that a dependency fork would involve.
 
@@ -19,13 +19,13 @@ One way to communicate a monkey-patched dependency is to document it with a test
 
 Why test?
 
-1. It is close to the changed code — in project source, as opposed to any external documentation medium.
+1. It is close to the changed code — in the project source, as opposed to any external documentation medium.
 
 2. It is executable, unlike code comment and greatly reduces the risk of someone [not noticing an announcement](https://www.goodreads.com/quotes/379100-there-s-no-point-in-acting-surprised-about-it-all-the).
 
 In a project I've recently worked on there was already an unannounced `AcitveRecord::Persistence#reload` method patch inside `User` model. I consider myself very lucky spotting within over 910000 lines of code having only 10% test coverage.
 
-A code comment would definitely not help me noticing it, coming to this project only recently and the authors were already working on something else too.
+A code comment would definitely not help me notice it — I came to this project only recently and the authors were already working on it before were gone.
 
 A test I've added to document it looked like this:
 
@@ -51,9 +51,9 @@ end
 
 Now whenever Rails version changes, this check is supposed to fail. The failure has a descriptive message instructing what needs to be checked in order to prolong the patch.
 
-Within an organisation relying on Continuous Integration and aspiring to testing culture this is should be enough to prevent failure from such patching.
+Within an organisation relying on continuous integration and aspiring to the testing culture this should be enough to prevent failure from such patching.
 
-But is it enough developer friendly?
+But is it enough developer-friendly?
 
 ## Improving version check
 
@@ -134,11 +134,11 @@ Can we do any better?
 
 ## Checking Abstract Syntax Tree of the implementation
 
-I admit that computing hash of the source code is neat. However it falls short of "formatting" changes. Source code is a textual representation. Introducing whitespace characters — spaces or line breaks, does not change the implementation. It behaves exactly the same. The hash will be different though, raising false negative.
+I admit that computing the hash of the source code is neat. However, it falls short of "formatting" changes. Source code is a textual representation. Introducing whitespace characters — spaces or line breaks does not change the implementation. It behaves the same. The hash will be different though, raising a false negative.
 
-So can we do it better? Yes we can, with little help of [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree). In theory and AST representation should free us from how the patched code is formatted.
+So can we do it better? Yes, we can. With little help of [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree). In theory AST representation should free us from how the patched code is formatted.
 
-In Ruby we have a few options to render AST of the source code. The popular `parser` and `syntax_tree` gems. The `Ripper` in the standard library. Or the native `RubyVM::AbstractSyntaxTree`.
+In Ruby, we have a few options to render AST of the source code. The popular `parser` and `syntax_tree` gems. The `Ripper` in the standard library. Or the native `RubyVM::AbstractSyntaxTree`.
 
 A pessimist may notice their limitations first:
 
@@ -146,11 +146,11 @@ A pessimist may notice their limitations first:
 
 - `parser` and `syntax_tree` are external dependencies, so not universally applicable — chances are they're already a transitive dependency in your project
 
-I definitely did not see it all on first sight. Here are the implementations I would not recommend.
+I definitely did not see it all at first sight. Here are the implementations I would not recommend.
 
 ### False hopes for checksum free from formatting
 
-In core Ruby there is `RubyVM::AbstractSyntaxTree` [module](https://ruby-doc.org/core-trunk/RubyVM/AbstractSyntaxTree.html), which provides methods to parse Ruby code into abstract syntax trees. Unfortunately the output includes line and column information, making it unfit for checksumming independent of source formatting. Thus it is not better in any aspect then hexdigest on plain source code. 
+In core Ruby there is `RubyVM::AbstractSyntaxTree` [module](https://ruby-doc.org/core-trunk/RubyVM/AbstractSyntaxTree.html), which provides methods to parse Ruby code into abstract syntax trees. Unfortunately, the output includes line and column information, making it unfit for checksumming independent of source formatting. Thus it is not better in any aspect than hexdigest on plain source code. 
 
 ```ruby
 # spec/models/user_spec.rb
@@ -183,7 +183,7 @@ end
 
 ### No checksum for the added benefit of seeing actual implementation changes
 
-In Ruby standard library we may also find `Ripper`, a [Ruby script parser](https://ruby-doc.org/stdlib-3.0.0/libdoc/ripper/rdoc/Ripper.html). It parses the code into a [symbolic expression tree](https://en.wikipedia.org/wiki/S-expression). Unfortunately this too containts line and column information in the output. Perhaps with some additional post-processing step we could get rid of it. I prefer comparing s-expressions to checksums — on failure the test framework has a chance to show differences in the syntax tree. Which is a nice bonus!
+In Ruby standard library we may also find `Ripper`, a [Ruby script parser](https://ruby-doc.org/stdlib-3.0.0/libdoc/ripper/rdoc/Ripper.html). It parses the code into a [symbolic expression tree](https://en.wikipedia.org/wiki/S-expression). Unfortunately this too contains line and column information in the output. Perhaps with some additional post-processing step, we could get rid of it. I prefer comparing s-expressions to checksums — the test framework has a chance to show differences in the compared syntax trees. Which is a nice bonus!
 
 ```ruby
 # spec/models/user_spec.rb
@@ -482,9 +482,9 @@ RSpec.describe "User" do
 end
 ```
 
-As you can see, there is no line or column references in the output. It stil depends on non-core-or-stdlib `parser` and `method_source` gems. I've made peace with them, as they're already in the project via `pry`, `mutant` and `rubocop` additions. 
+As you can see, there is are line or column references in the output. It still depends on non-core-or-stdlib `parser` and `method_source` gems. I've made peace with them, as they're already in the project via `pry`, `mutant` and `rubocop` additions. 
 
-For the portability I wish those dependencies weren't needed. Hopefully one day this all will be easier in the future Ruby:
+For the portability, I wish those dependencies weren't needed. Hopefully one day this all will be easier in the future Ruby:
 
 <% link_to "https://twitter.com/_m_b_j_/status/1694830922548257141", target: "_blank", rel: "noreferrer" do %>
   <img src="<%= src_fit("six-ways-mp/tweet-1694830922548257141.png") %>" width="100%">
