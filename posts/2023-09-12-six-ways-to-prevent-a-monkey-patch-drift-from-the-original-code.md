@@ -1,7 +1,7 @@
 ---
 created_at: 2023-09-13 10:00:00 +0200
 author: Paweł Pacana
-tags: ['ruby', 'testing']
+tags: ["ruby", "testing"]
 publish: false
 ---
 
@@ -59,7 +59,7 @@ But is it enough developer-friendly?
 
 One drawback of strict version checks is ...being too strict. Some dependencies are best allowed within a range of possible versions. To not fail the check on version changes mitigating security issues for example:
 
-```
+```plain
 --- spec/app/models/user_spec.rb
 +++ spec/app/models/user_spec.rb
 @@ -4,7 +4,7 @@ require 'rails_helper'
@@ -74,7 +74,7 @@ When we're certain that a dependency follows a meaningful version numbering sche
 
 An example using RubyGems API:
 
-```
+```plain
 --- spec/app/models/user_spec.rb
 +++ spec/app/models/user_spec.rb
 @@ -4,7 +4,7 @@ require 'rails_helper'
@@ -150,7 +150,7 @@ I definitely did not see it all at first sight. Here are the implementations I w
 
 ### False hopes for checksum free from formatting
 
-In core Ruby there is `RubyVM::AbstractSyntaxTree` [module](https://ruby-doc.org/core-trunk/RubyVM/AbstractSyntaxTree.html), which provides methods to parse Ruby code into abstract syntax trees. Unfortunately, the output includes line and column information, making it unfit for checksumming independent of source formatting. Thus it is not better in any aspect than hexdigest on plain source code. 
+In core Ruby there is `RubyVM::AbstractSyntaxTree` [module](https://ruby-doc.org/core-trunk/RubyVM/AbstractSyntaxTree.html), which provides methods to parse Ruby code into abstract syntax trees. Unfortunately, the output includes line and column information, making it unfit for checksumming independent of source formatting. Thus it is not better in any aspect than hexdigest on plain source code.
 
 ```ruby
 # spec/models/user_spec.rb
@@ -482,7 +482,7 @@ RSpec.describe "User" do
 end
 ```
 
-As you can see, there is are line or column references in the output. It still depends on non-core-or-stdlib `parser` and `method_source` gems. I've made peace with them, as they're already in the project via `pry`, `mutant` and `rubocop` additions. 
+As you can see, there is are line or column references in the output. It still depends on non-core-or-stdlib `parser` and `method_source` gems. I've made peace with them, as they're already in the project via `pry`, `mutant` and `rubocop` additions.
 
 For the portability, I wish those dependencies weren't needed. Hopefully one day this all will be easier in the future Ruby:
 
