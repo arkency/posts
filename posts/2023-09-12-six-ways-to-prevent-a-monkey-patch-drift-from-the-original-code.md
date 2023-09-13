@@ -59,7 +59,7 @@ But is it enough developer-friendly?
 
 One drawback of strict version checks is ...being too strict. Some dependencies are best allowed within a range of possible versions. To not fail the check on version changes mitigating security issues for example:
 
-```diff
+```
 --- spec/app/models/user_spec.rb
 +++ spec/app/models/user_spec.rb
 @@ -4,7 +4,7 @@ require 'rails_helper'
@@ -74,7 +74,7 @@ When we're certain that a dependency follows a meaningful version numbering sche
 
 An example using RubyGems API:
 
-```diff
+```
 --- spec/app/models/user_spec.rb
 +++ spec/app/models/user_spec.rb
 @@ -4,7 +4,7 @@ require 'rails_helper'
