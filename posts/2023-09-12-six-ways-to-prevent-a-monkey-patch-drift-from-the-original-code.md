@@ -91,9 +91,9 @@ It would be ideal if we could peek into the source of the method we're patching 
 
 Reading a tweet from my [former arkency fellow](https://blog.arkency.com/authors/robert-pankowecki/) shed new light on the issue.
 
-<% link_to "https://twitter.com/pankowecki/status/1687103206713962497", target: "_blank", rel: "noreferrer" do %> 
-  <img src="<%= src_fit("six-ways-mp/tweet-1687103206713962497.png") %>" width="100%">
-<% end %>
+<a href="https://twitter.com/pankowecki/status/1687103206713962497" target="_blank" rel="noreferrer">
+  <img src="<%= src_fit("six-ways-mp/tweet-1687103206713962497.png") %>" width="100%" loading="lazy">
+</a>
 
 A complete test utilising this technique may look like this:
 
@@ -486,8 +486,8 @@ As you can see, there is are line or column references in the output. It still d
 
 For the portability, I wish those dependencies weren't needed. Hopefully one day this all will be easier in the future Ruby:
 
-<% link_to "https://twitter.com/_m_b_j_/status/1694830922548257141", target: "_blank", rel: "noreferrer" do %>
-  <img src="<%= src_fit("six-ways-mp/tweet-1694830922548257141.png") %>" width="100%">
-<% end %>
+<a href="https://twitter.com/_m_b_j_/status/1694830922548257141" target="_blank" rel="noreferrer">
+  <img src="<%= src_fit("six-ways-mp/tweet-1694830922548257141.png") %>" width="100%" loading="lazy">
+</a>
 
 Fingers crossed 🤞
