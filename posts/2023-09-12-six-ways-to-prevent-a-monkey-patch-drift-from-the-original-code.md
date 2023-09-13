@@ -482,7 +482,7 @@ RSpec.describe "User" do
 end
 ```
 
-As you can see, there are no line or column references in the output. It still depends on non-core-or-stdlib `parser` and `method_source` gems. I've made peace with them, as they're already in the project via `pry`, `mutant` and `rubocop` additions.
+As you can see, there are no line or column references in the output. 
 
 For the portability, I wish those dependencies weren't needed. Hopefully one day this all will be easier in the future Ruby:
 
