@@ -2,7 +2,7 @@
 created_at: 2023-09-13 10:00:00 +0200
 author: Paweł Pacana
 tags: ["ruby", "testing"]
-publish: false
+publish: true
 ---
 
 # Six ways to prevent a monkey-patch drift from the original code
