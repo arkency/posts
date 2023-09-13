@@ -144,7 +144,7 @@ A pessimist may notice their limitations first:
 
 - `RubyVM::AbstractSyntaxTree` and `Ripper` still include formatting in the output, defeating the purpose
 
-- `parser` and `syntax_tree` are external dependencies, so not universally applicable — chances are they're already a transitive dependency in your project
+- `parser` and `syntax_tree` are [external](https://github.com/whitequark/parser) [dependencies](https://github.com/ruby-syntax-tree/syntax_tree), so not universally applicable — chances are they're already a transitive dependency in your project
 
 I definitely did not see it all at first sight. Here are the implementations I would not recommend.
 
