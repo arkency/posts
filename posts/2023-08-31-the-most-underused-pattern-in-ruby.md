@@ -598,7 +598,7 @@ The tests of above classes simplified a lot and are now focused on core responsi
 
 ## New adapter, not a big deal
 
-Soon, there will be new default MySQL adapter in Rails 7.1 called [Trilogy](https://github.blog/2022-08-25-introducing-trilogy-a-new-database-adapter-for-ruby-on-rails/). It would be cool to cover this case already. 
+Soon, there will be new MySQL adapter in Rails 7.1 called [Trilogy](https://github.blog/2022-08-25-introducing-trilogy-a-new-database-adapter-for-ruby-on-rails/). It would be cool to cover this case already.
 
 The only thing which we had to do in this case, was to change one line of code and add single line of test — since we already owned a good abstraction:
 
