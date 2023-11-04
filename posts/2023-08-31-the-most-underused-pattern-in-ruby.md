@@ -288,7 +288,7 @@ module RubyEventStore
     InvalidDataTypeForAdapter = Class.new(StandardError)
 
     class DatabaseAdapter
-      NOT_SET = Object.new.freeze
+      NONE = Object.new.freeze
 
       class PostgreSQL < self
         SUPPORTED_DATA_TYPES = %w[binary json jsonb].freeze
@@ -349,7 +349,7 @@ module RubyEventStore
       def template_directory
       end
 
-      def self.from_string(adapter_name, data_type = NOT_SET)
+      def self.from_string(adapter_name, data_type = NONE)
         raise NoMethodError unless eql?(DatabaseAdapter)
 
         case adapter_name.to_s.downcase
@@ -367,7 +367,7 @@ module RubyEventStore
       private
 
       def validate_data_type!(data_type)
-        if !data_type.eql?(NOT_SET) && !supported_data_types.include?(data_type)
+        if !data_type.eql?(NONE) && !supported_data_types.include?(data_type)
           raise InvalidDataTypeForAdapter,
                 "#{class_name} doesn't support #{data_type.inspect}. Supported types are: #{supported_data_types.join(", ")}."
         end
@@ -606,7 +606,7 @@ The only thing which we had to do in this case, was to change one line of code a
   module RubyEventStore
     module ActiveRecord
       class DatabaseAdapter
-        def self.from_string(adapter_name, data_type = NOT_SET)
+        def self.from_string(adapter_name, data_type = NONE)
           raise NoMethodError unless eql?(DatabaseAdapter)
           case adapter_name.to_s.downcase
           when "postgresql", "postgis"
@@ -632,7 +632,7 @@ _Trilogy_ is an adapter for _MySQL_, there's no difference from our perspective,
 
 ## Summary
 
-If you're curious on the full process, here's the [PR](https://github.com/RailsEventStore/rails_event_store/pull/1671/files) with the introduction of `DatabaseAdapter` value object. The code is 100% covered with mutation testing thanks to [mutant](https://github.com/mbj/mutant). 
+If you're curious on the full process, here's the [PR](https://github.com/RailsEventStore/rails_event_store/pull/1671/files) with the introduction of `DatabaseAdapter` value object. The code is 100% covered with mutation testing thanks to [mutant](https://github.com/mbj/mutant).
 
 I believe that Value Object is a totally underused pattern in Ruby ecosystem. That's why I wanted to provide [yet another example](https://blog.arkency.com/which-one-to-use-eql-vs-equals-vs-double-equal-mutant-driven-developpment-for-country-value-object/) which differs from typical `Money` one you usually see.
 
