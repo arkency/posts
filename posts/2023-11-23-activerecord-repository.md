@@ -32,13 +32,13 @@ I also recall a saying from Adam Niesłodowy that you can get 80% benefits out o
 
 ```ruby
 class Transaction
-	def self.of_id(id)
-		find(id)
-	end
+  def self.of_id(id)
+    find(id)
+  end
 
-	def self.last_not_pending_of_user_id(user_id)
-		where.not(status: "pending").where(user_id: user_id).order(:id).last
-	end
+  def self.last_not_pending_of_user_id(user_id)
+    where.not(status: "pending").where(user_id: user_id).order(:id).last
+  end
 end
 ```
 
