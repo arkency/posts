@@ -30,7 +30,7 @@ There were "query objects" that addressed there "read" part [dej linka].
 
 I also recall a saying from Adam Niesłodowy that you can get 80% benefits out of repository by putting 20% effort into AR like this:
 
-```
+```ruby
 class Transaction
 	def self.of_id(id)
 		find(id)
