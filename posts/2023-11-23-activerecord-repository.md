@@ -48,27 +48,28 @@ This the repository I'd make today, without any external dependencies in the fra
 
 ```ruby
 class TransactionRepository
-	class Record < ActiveRecord::Base
-	  self.table_name = "transactions"
-	end
-	private_constant :Record
+  class Record < ActiveRecord::Base
+    self.table_name = "transactions"
+  end
+  private_constant :Record
 
-	Transaction = Data.define(Record.attribute_names.map(&:to_sym))
+  Transaction = Data.define(Record.attribute_names.map(&:to_sym))
 
-	class << self
-	def of_id(id)
-		as_struct(Record.find(id))
-	end
+  class << self
+    def of_id(id)
+      as_struct(Record.find(id))
+    end
 
-	def last_not_pending_of_user_id(user_id)
-		as_struct(Record.where.not(status: "pending").where(user_id: user_id).order(:id).last)
-	end
+    def last_not_pending_of_user_id(user_id)
+      as_struct(Record.where.not(status: "pending").where(user_id: user_id).order(:id).last)
+    end
 
-	private
+    private
 
-	def as_struct(record)
-		Transaction.new(**record.attributes.symbolize_keys)
-	end
+    def as_struct(record)
+      Transaction.new(**record.attributes.symbolize_keys)
+    end
+  end
 end
 ```
 
