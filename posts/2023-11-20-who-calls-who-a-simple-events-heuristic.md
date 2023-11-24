@@ -2,7 +2,7 @@
 created_at: 2023-11-20 09:46:34 +0100
 author: Tomasz Stolarczyk
 tags: ['commands', 'events', 'context mapping', 'bounded contexts']
-publish: false
+publish: true
 ---
 
 # Who calls who? — a simple events heuristic
