@@ -66,7 +66,7 @@ And that's mostly it.
 
 It would be such a nice thing to have a shell function that spawns a temporary database engine in the background, leaving us in the shell with `DATABASE_URL` already set and cleaning up automatically when we exit.
 
-The only missing ingredient is an exit hook for the shell. One can be implemented with `trap` and stack-like behaviour built on top of it. Borrowed from [modernish](https://github.com/modernish/modernish#user-content-use-varstacktrap):
+The only missing ingredient is an exit hook for the shell. One can be implemented with `trap` and stack-like behaviour built on top of it, as in [modernish](https://github.com/modernish/modernish#user-content-use-varstacktrap):
 
 ```sh
 pushtrap () {
@@ -106,7 +106,7 @@ with_postgres_15() {
 }
 ```
 
-Whenever I need to be dropped into a shell with Postgres 15 running, executing `with_postgres ` fulfills it.
+Whenever I need to be dropped into a shell with Postgres 15 running, executing `with_postgres_15` fulfills it.
 
 ## The nix dessert
 
