@@ -114,7 +114,7 @@ One may argue that using `Docker` is familiar and temporary databases is a solve
 
 However I've found my peace with `nix` long time ago. Thanks to [numerous contributions and initiatives](https://opencollective.com/nix-macos) using `nix` on MacOS is nowadays as simple as `brew`.
 
-With [nix manager](https://nix.dev) and nix-shell` utility, I'm currently spawning the databases with one command. That is:
+With [nix manager](https://nix.dev) and `nix-shell` utility, I'm currently spawning the databases with one command. That is:
 
 ```sh
 nix-shell ~/Code/rails_event_store/support/nix/postgres_15.nix
