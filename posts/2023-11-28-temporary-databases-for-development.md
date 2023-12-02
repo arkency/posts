@@ -78,29 +78,31 @@ pushtrap () {
 The automation in its full shape:
 
 ```sh
-pushtrap () {
-  test "$traps" || trap 'set +eu; eval $traps' 0;
-  traps="$*; $traps"
-}
+with_postgres_15() {
+  (
+    pushtrap() {
+      test "$traps" || trap 'set +eu; eval $traps' 0;
+      traps="$*; $traps"
+    }
 
-mk_pg_15() {
-  TMP=$(mktemp -d)
-  DB=$TMP/db
-  SOCKET=$TMP
+    TMP=$(mktemp -d)
+    DB=$TMP/db
+    SOCKET=$TMP
 
-  /path_to_pg_15/initdb -D $DB
-  /path_to_pg_15/pg_ctl -D $DB \
-    -l $TMP/logfile \
-    -o "--unix_socket_directories='$SOCKET'" \
-    -o "--listen_addresses=''\'''\'" \
-    start
+    /path_to_pg_15/initdb -D $DB
+    /path_to_pg_15/pg_ctl -D $DB \
+      -l $TMP/logfile \
+      -o "--unix_socket_directories='$SOCKET'" \
+      -o "--listen_addresses=''\'''\'" \
+      start
 
-  /path_to_pg_15/createdb -h $SOCKET rails_event_store
-  export DATABASE_URL="postgresql:///rails_event_store?host=$SOCKET"
+    /path_to_pg_15/createdb -h $SOCKET rails_event_store
+    export DATABASE_URL="postgresql:///rails_event_store?host=$SOCKET"
 
-  pushtrap "/path_to_pg_15/pg_ctl -D $DB stop; rm -rf $TMP" EXIT
+    pushtrap "/path_to_pg_15/pg_ctl -D $DB stop; rm -rf $TMP" EXIT
 
-  sh
+    $SHELL
+  )
 }
 ```
 
