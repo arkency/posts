@@ -80,7 +80,7 @@ For an alternative approach, please see the doc.
 
 Note that this is a simplified implementation. [There are other aspects to consider when designing an async read model](https://blog.arkency.com/read-model-patterns-in-case-of-lack-of-order-guarantee/)
 
-In this case, I only subscribe to one event because that is all I need to build the read model. Note that my. first argument to the method is a class, not a class instance.
+In this case, I only subscribe to one event because that is all I need to build the read model. Note that my first argument to the method is a class, not a class instance.
 ```ruby
   Rails.configuration.event_store.tap do |store|
     # ... 
