@@ -51,6 +51,8 @@ In this case, time will heal the wounds.  In other cases, the error will require
 But nothing comes for free. Async requires us to deal with eventual consistency.
 
 ## Implementing async read model
+This event handler that manages the reading model is quite simple. Its job is to visualize the progress of a quiz to the supervisor. So what it does is it subscribes to an event and builds the read model, which is an `ActiveRecord' model. Questions are predefined as constants because there's only one quiz in this demo app.
+
 As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with sidekiq. In this case, I'll show you how to set up an event handler in application that uses `ActiveJob::Base` to perform background operations.
 
 ```ruby
@@ -80,6 +82,14 @@ The `RailsEventStore::AsyncHandler` module is included to deserialize the event 
 For an alternative approach, please see the doc.
 
 Note that this is a simplified implementation. [There are other aspects to consider when designing an async read model](https://blog.arkency.com/read-model-patterns-in-case-of-lack-of-order-guarantee/)
+
+In this case, I only subscribe to one event because that is all I need to build the read model. Note that my. first argument to the method is a class, not a class instance.
+```ruby
+  Rails.configuration.event_store.tap do |store|
+    # ... 
+    store.subscribe(BuildOngoingQuiz, to: [QuestionAnswered])
+  end
+```
 
 ### The scheduler
 In this project I am using RailsEventStore's predefined `JSONClient`. [You can read more about that here.](https://blog.arkency.com/first-class-json-b-handling-in-rails-event-store/)
