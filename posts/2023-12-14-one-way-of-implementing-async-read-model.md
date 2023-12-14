@@ -112,38 +112,6 @@ In the most standard case of `ActiveJobScheduler`, these methods are implemented
 
 [Full implementation available here.](https://github.com/RailsEventStore/rails_event_store/blob/48ac91ec4c481257740fb5c9d1ee72489dcf5731/rails_event_store/lib/rails_event_store/active_job_scheduler.rb#L4)
 
-### Async scheduler when there's no active job in the project
-There are situations when it is more convinient to rely on `Sidekiq::Job` directly,
-without the ActiveJob facade. In that case you need a slighly differnet scheduler.
-
-There's implementation that you can use or you can code it on your own if 
-you wish not to get another gem dependency in your project. The verify and call
-methods could be implemented as follows:
-```ruby
-    def verify(subscriber)
-      Class === subscriber && !!(subscriber < Sidekiq::Worker)
-    end
-
-    def call(klass, record)
-      klass.perform_async(record.serialize(serializer).to_h.transform_keys(&:to_s))
-    end
-
-```
-
-And the `BuildOngoingQuiz` read model it could be implemented as follows:
-
-```ruby
-class BuildOngoingQuiz < ActiveJob::Base
-  include Sidekiq::Job
-
-  def perform(event)
-  end
-end
-```
-
-If you're using different driver for your queue, all you have to do is to implement
-the verify and call methods.
-
 ## Common mistake
 There's a common mistake with the async event handler subscription that we see in the projects we consult. I want you to be aware of it.
 
