@@ -51,7 +51,7 @@ In this case, time will heal the wounds.  In other cases, the error will require
 But nothing comes for free. Async requires us to deal with eventual consistency.
 
 ## Implementing async read model
-As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with sidekiq. In this case, I'll show you how to set up an event handler in application that uses ActiveJob to perform background operations.
+As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with sidekiq. In this case, I'll show you how to set up an event handler in application that uses `ActiveJob::Base` to perform background operations.
 
 ```ruby
 class BuildOngoingQuiz < ActiveJob::Base
@@ -87,7 +87,7 @@ In this project I am using RailsEventStore's predefined `JSONClient`. [You can r
 Although it is predefined, I want you to be aware of the part with the scheduler as it is very important and often confused.
 
 The scheduler is used to define how the subscriber of the event is handled. The default implementation of the `JSONClient` uses `ActiveJobScheduler`. The scheduler must define a call and verify methods. In the case of the async scheduler, the verify method answers the question of whether the called subscriber is properly defined as an is a correctly defined async class. The call method knows how to call the Subscriber.
-In the most standard case of ActiveJobScheduler, these methods are implemented as follows:
+In the most standard case of `ActiveJobScheduler`, these methods are implemented as follows:
 
 ```ruby
     def verify(subscriber)
@@ -106,7 +106,7 @@ In the most standard case of ActiveJobScheduler, these methods are implemented a
 Full implementation available here.
 
 ### Async scheduler when there's no active job in the project
-There are situations when it is more convinient to rely on Sidekiq::Job directly,
+There are situations when it is more convinient to rely on `Sidekiq::Job` directly,
 without the ActiveJob facade. In that case you need a slighly differnet scheduler.
 
 There's implementation that you can use or you can code it on your own if 
@@ -123,7 +123,7 @@ methods could be implemented as follows:
 
 ```
 
-And the BuildOngoingQuiz read model it could be implemented as follows:
+And the `BuildOngoingQuiz` read model it could be implemented as follows:
 
 ```ruby
 class BuildOngoingQuiz < ActiveJob::Base
@@ -155,7 +155,7 @@ It is not possible to do it that way and keep the event handler asynchronous.
 
 Please keep this in mind. If you use RES in your project, it's a good moment to check that you don't have event handlers that unintentionally subscribe to events in this way ;).
 
-But if you do, don't rush to remove the `.new' part. This change will affect
+But if you do, don't rush to remove the `.new` part. This change will affect
 behavior of your application. You'll run into the potential consistency problem
 that I described at the beginning of this article.
 
