@@ -34,7 +34,7 @@ This is especially important when we think about a user making a POST request th
 
 The bad part is that if the read model update fails for some reason,
 the POST request will also fail. This happens even if the write part
-is successful. As a result, the user would see some error. Of course, you can take care of the the error part by adding a few rescues here and there, but this would make your read make your read model inconsistent. Which is something we don't want. And you'd have to rebuild that read model anyway.
+is successful. As a result, the user would see some error. Of course, you can take care of the the error part by adding a few rescues here and there, but this would make your read model inconsistent. Which is something we don't want. And you'd have to rebuild that read model anyway.
 
 Also, you often have more than one event handler subscribing to an event. The more sync event handlers that subscribe to an event, the higher the chance that the that the request won't be processed successfully. Also, the more handlers, the more IO operations, so the request will take longer. More often than not, the approach of using only sync event handlers leads to an unacceptable amount of time to to process the request. Which in turn makes for bad UX.
 
@@ -43,7 +43,7 @@ Async is short for asynchronous.
 
 When a read model is built async, the event handlers are executed by the background workers. This is great because we can scale the handling of events independently of the web server.
 
-Also, if processing an event fails, then it is up to the queue mechanism to deal with it. It's likely that as a Rails developer you use the sidekiq.
+Also, if processing an event fails, then it is up to the queue mechanism to deal with it. It's likely that as a Rails developer you use the Sidekiq.
 I'll use it for this example as well. Sidekiq has an auto retry that you can use. 
 Sometimes the event will not be processed due to a transient error. 
 In this case, time will heal the wounds.  In other cases, the error will require code fixes. With async handlers, there's the convenience of being able to fix the error, deploy, and retry the job that handles the event. However, the user experience would be poor in this  experience in this case because we're talking about read models, which, as I said, is something that users like to browse.
@@ -51,9 +51,9 @@ In this case, time will heal the wounds.  In other cases, the error will require
 But nothing comes for free. Async requires us to deal with eventual consistency.
 
 ## Implementing async read model
-This event handler that manages the reading model is quite simple. Its job is to visualize the progress of a quiz to the supervisor. So what it does is it subscribes to an event and builds the read model, which is an `ActiveRecord' model. Questions are predefined as constants because there's only one quiz in this demo app.
+This event handler that manages the reading model is quite simple. Its job is to visualize the progress of a quiz to the supervisor. So what it does is it subscribes to an event and builds the read model, which is an `ActiveRecord` model. Questions are predefined as constants because there's only one quiz in this demo app.
 
-As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with sidekiq. In this case, I'll show you how to set up an event handler in application that uses `ActiveJob::Base` to perform background operations.
+As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with Sidekiq. In this case, I'll show you how to set up an event handler in application that uses `ActiveJob::Base` to perform background operations.
 
 ```ruby
 class BuildOngoingQuiz < ActiveJob::Base
@@ -73,10 +73,7 @@ class BuildOngoingQuiz < ActiveJob::Base
 end
 ```
 
-Let's take a look at the `BuildOngoingQuiz` read model example.
-This read model subscribes to quiz answers and builds a simple view of of questions <-> answers for the supervisor, who can then see how the person taking the who is taking the quiz.
-
-In this example I used the `ActiveJob::Base` to handle my sidekiq jobs. This affects the way I have to set up the scheduler, we'll get to that in the next paragraph.
+In this example I used the `ActiveJob::Base` to handle the Sidekiq jobs. This affects the way I have to set up the scheduler, we'll get to that in the next paragraph.
 
 The `RailsEventStore::AsyncHandler` module is included to deserialize the event for the active job. I can access the event directly instead of going through the payload.
 For an alternative approach, please see the doc.
