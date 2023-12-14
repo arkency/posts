@@ -103,7 +103,7 @@ In the most standard case of `ActiveJobScheduler`, these methods are implemented
     end
 ```
 
-Full implementation available here.
+[Full implementation available here.](https://github.com/RailsEventStore/rails_event_store/blob/48ac91ec4c481257740fb5c9d1ee72489dcf5731/rails_event_store/lib/rails_event_store/active_job_scheduler.rb#L4)
 
 ### Async scheduler when there's no active job in the project
 There are situations when it is more convinient to rely on `Sidekiq::Job` directly,
