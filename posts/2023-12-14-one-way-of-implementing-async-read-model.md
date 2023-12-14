@@ -30,13 +30,13 @@ When a read model is built synchronously, both the event and the read model are 
 Usually that process is either a user request that causes some object to publish an event, or a worker.
 
 The good thing about using synchronous read models is that we have instant consistency.
-This is especially important when we think about a user making a POST request that changes the state of the application. The state change is immediately reflected in the in the read model, which means we can rely on that information and get it back in the from the response. This makes it easy to display in the UI. It is not so easy with asynchronous read models.
+This is especially important when we think about a user making a POST request that changes the state of the application. The state change is immediately reflected in the read model, which means we can rely on that information and get it back in the from the response. This makes it easy to display in the UI. It is not so easy with asynchronous read models.
 
 The bad part is that if the read model update fails for some reason,
 the POST request will also fail. This happens even if the write part
 is successful. As a result, the user would see some error. Of course, you can take care of the the error part by adding a few rescues here and there, but this would make your read model inconsistent. Which is something we don't want. And you'd have to rebuild that read model anyway.
 
-Also, you often have more than one event handler subscribing to an event. The more sync event handlers that subscribe to an event, the higher the chance that the request won't be processed successfully. Also, the more handlers, the more IO operations, so the request will take longer. More often than not, the approach of using only sync event handlers leads to an unacceptable amount of time to to process the request. Which in turn makes for bad UX.
+Also, you often have more than one event handler subscribing to an event. The more sync event handlers that subscribe to an event, the higher the chance that the request won't be processed successfully. Also, the more handlers, the more IO operations, so the request will take longer. More often than not, the approach of using only sync event handlers leads to an unacceptable amount of time to process the request. Which in turn makes for bad UX.
 
 ## Async
 Async is short for asynchronous.
