@@ -14,19 +14,18 @@ Make sure you also look at the end of this blog post, where I describe one of
 the most common mistakes.
 
 ## What is a read model 
-In an event sourced system (or part of the system that
+
+* In an event sourced system (or part of the system that
 is event sourced) the truth lays in the event store. However, event stores are
 not optimized for reading the data. Therefore, it is more convenient to use
 read models.
-
-A read model is a denormalized data model built using the data coming from the
+* A read model is a denormalized data model built using the data coming from the
 events.
-
-You can think of it as a more convenient, handy data model that makes reading
+* You can think of it as a more convenient, handy data model that makes reading
 the data for the UI easier and faster.
 
 In this particular example, the read model will be implemented as an event
-handler
+handler.
 
 <!-- more -->
 
@@ -34,29 +33,25 @@ handler
 Although we'll focus on the async read model in this blog post, I think
 you might also be interested in learning about the sync read model.
 
-Sync is the abbreviation that comes from the word synchronous. We use it quite
+* Sync is the abbreviation that comes from the word synchronous. We use it quite
 a bit, so I thought it might be useful to make it clear.
-
-When a read model is built synchronously, both the event and the read model are
+* When a read model is built synchronously, both the event and the read model are
 stored in the database within the same process. However, not necessairly within
 the same transaction. Usually that process is either a user request that causes
 some object to publish an event, or a worker.
-
-The good thing about using synchronous read models is that we have instant
+* The good thing about using synchronous read models is that we have instant
 consistency. This is especially important when we think about a user making a
 POST request that changes the state of the application. The state change is
 immediately reflected in the read model, which means we can rely on that
 information and get it back in the from the response. This makes it easy to
 display in the UI. It is not so easy with asynchronous read models.
-
-The bad part is that if the read model update fails for some reason, the POST
+* The bad part is that if the read model update fails for some reason, the POST
 request will also fail. This happens even if the write part is successful. As a
 result, the user would see some error. Of course, you can take care of the the
 error part by adding a few rescues here and there, but this would make your
 read model inconsistent. Which is undesired. And you'd have to rebuild that
 read model anyway.
-
-Also, you often have more than one event handler subscribing to an event. The
+* Also, you often have more than one event handler subscribing to an event. The
 more sync event handlers that subscribe to an event, the higher the chance that
 the request won't be processed successfully. Also, the more handlers, the more
 IO operations, so the request will take longer. More often than not, the
@@ -64,13 +59,11 @@ approach of using only sync event handlers leads to an unacceptable amount of
 time to process the request. Which in turn makes for bad UX.
 
 ## Async 
-Async is short for asynchronous.
-
-When a read model is built async, the event handlers are executed by the
+* Async is short for asynchronous.
+* When a read model is built async, the event handlers are executed by the
 background workers. This is great because we can scale the handling of events
 independently of the web server.
-
-Also, if processing an event fails, then it is up to the queue mechanism to
+* Also, if processing an event fails, then it is up to the queue mechanism to
 deal with it. It's likely that as a Rails developer you use the Sidekiq. I'll
 use it for this example as well. Sidekiq has an auto retry that you can use.
 Sometimes the event will not be processed due to a transient error. In this
@@ -79,8 +72,7 @@ fixes. With async handlers, there's the convenience of being able to fix the
 error, deploy, and retry the job that handles the event. However, the user
 experience would be poor in this  experience in this case because we're talking
 about read models, which, as I said, is something that users like to browse.
-
-But nothing comes for free. Async requires us to deal with eventual
+* But nothing comes for free. Async requires us to deal with eventual
 consistency.
 
 ## Implementing async read model builder 
