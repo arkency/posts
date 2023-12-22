@@ -171,6 +171,7 @@ a proper subscription to the async event handler! Even if you inherit from the
 Also, the same object will always be used to handle new events.
 
 **Correct version below**
+
 `event_store.subscribe(BuildOngoingQuiz, to: [QuestionAnswered])`
 
 Sometimes the cause of this error is that people want to include dependencies
