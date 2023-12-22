@@ -64,8 +64,7 @@ time to process the request. Which in turn makes for bad UX.
 background workers. This is great because we can scale the handling of events
 independently of the web server.
 * Also, if processing an event fails, then it is up to the queue mechanism to
-deal with it. It's likely that as a Rails developer you use the Sidekiq. I'll
-use it for this example as well. Sidekiq has an auto retry that you can use.
+deal with it. Most of the queues have an auto retry that you can rely on.
 Sometimes the event will not be processed due to a transient error. In this
 case, time will heal the wounds.  In other cases, the error will require code
 fixes. With async handlers, there's the convenience of being able to fix the
@@ -83,9 +82,9 @@ model. Questions are predefined as constants because there's only one quiz in
 this demo app.
 
 As mentioned above, we need some sort of background worker to set up an
-asynchronous event handler. I'll assume you're familiar with Sidekiq. In this
-case, I'll show you how to set up an event handler in application that uses
-`ActiveJob::Base` to perform background operations.
+asynchronous event handler. In this case, I'll show you how to set up an event
+handler in application that uses `ActiveJob::Base` to take care of background
+operations.
 
 ```ruby
 class BuildOngoingQuiz < ActiveJob::Base
@@ -105,7 +104,7 @@ class BuildOngoingQuiz < ActiveJob::Base
 end
 ```
 
-In this example I used the `ActiveJob::Base` to handle the Sidekiq jobs. This
+In this example I used the `ActiveJob::Base` to handle the background jobs. This
 affects the way I have to set up the scheduler, we'll get to that in the next
 paragraph.
 
@@ -170,6 +169,9 @@ a proper subscription to the async event handler! Even if you inherit from the
 `ActiveJob::Base`. This event handler is always executed synchronously.
 
 Also, the same object will always be used to handle new events.
+
+**Correct version below**
+`event_store.subscribe(BuildOngoingQuiz, to: [QuestionAnswered])`
 
 Sometimes the cause of this error is that people want to include dependencies
 into the event handler/subscriber. 
