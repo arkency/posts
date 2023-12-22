@@ -13,7 +13,8 @@ on the same page.
 Make sure you also look at the end of this blog post, where I describe one of
 the most common mistakes.
 
-## What is a read model In an event sourced system (or part of the system that
+## What is a read model 
+In an event sourced system (or part of the system that
 is event sourced) the truth lays in the event store. However, event stores are
 not optimized for reading the data. Therefore, it is more convenient to use
 read models.
@@ -29,7 +30,8 @@ handler
 
 <!-- more -->
 
-## Sync Although we'll focus on the async read model in this blog post, I think
+## Sync 
+Although we'll focus on the async read model in this blog post, I think
 you might also be interested in learning about the sync read model.
 
 Sync is the abbreviation that comes from the word synchronous. We use it quite
@@ -61,7 +63,8 @@ IO operations, so the request will take longer. More often than not, the
 approach of using only sync event handlers leads to an unacceptable amount of
 time to process the request. Which in turn makes for bad UX.
 
-## Async Async is short for asynchronous.
+## Async 
+Async is short for asynchronous.
 
 When a read model is built async, the event handlers are executed by the
 background workers. This is great because we can scale the handling of events
@@ -80,11 +83,12 @@ about read models, which, as I said, is something that users like to browse.
 But nothing comes for free. Async requires us to deal with eventual
 consistency.
 
-## Implementing async read model builder This event handler that manages the
-reading model is quite simple. Its job is to visualize the progress of a quiz
-to the supervisor. So what it does is it subscribes to an event and builds the
-read model, which is an `ActiveRecord` model. Questions are predefined as
-constants because there's only one quiz in this demo app.
+## Implementing async read model builder 
+This event handler that manages the reading model is quite simple. Its job is
+to visualize the progress of a quiz to the supervisor. So what it does is it
+subscribes to an event and builds the read model, which is an `ActiveRecord`
+model. Questions are predefined as constants because there's only one quiz in
+this demo app.
 
 As mentioned above, we need some sort of background worker to set up an
 asynchronous event handler. I'll assume you're familiar with Sidekiq. In this
@@ -131,8 +135,9 @@ class instance.
   end
 ```
 
-### The scheduler In this project I am using RailsEventStore's predefined
-`JSONClient`. [You can read more about that
+### The scheduler 
+In this project I am using RailsEventStore's predefined `JSONClient`. [You can
+read more about that
 here.](https://blog.arkency.com/first-class-json-b-handling-in-rails-event-store/)
 
 Although it is predefined, I want you to be aware of the part with the
@@ -162,9 +167,9 @@ call method knows how to call the Subscriber. In the most standard case of
 
 [Full implementation available here.](https://github.com/RailsEventStore/rails_event_store/blob/48ac91ec4c481257740fb5c9d1ee72489dcf5731/rails_event_store/lib/rails_event_store/active_job_scheduler.rb#L4)
 
-## Common mistake There's a common mistake with the async event handler
-subscription that we see in the projects we consult. I want you to be aware of
-it.
+## Common mistake 
+There's a common mistake with the async event handler subscription that we see
+in the projects we consult. I want you to be aware of it.
 
 `event_store.subscribe(BuildOngoingQuiz.new, to: [QuestionAnswered])`
 
