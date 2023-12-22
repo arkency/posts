@@ -2,7 +2,7 @@
 created_at: 2023-12-14 09:02:21 +0100
 author: Łukasz Reszke
 tags: ["read model", "res"]
-publish: false
+publish: true
 ---
 
 # A crucial detail in implementing an async read model builder
