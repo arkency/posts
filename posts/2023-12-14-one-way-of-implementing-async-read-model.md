@@ -5,7 +5,7 @@ tags: ["read model", "res"]
 publish: false
 ---
 
-# One way of implementing async read model builder
+# A crucial detail in implementing an async read model builder
 
 Let's start with claryfing few terms before we begin, just to make sure we're
 on the same page.
