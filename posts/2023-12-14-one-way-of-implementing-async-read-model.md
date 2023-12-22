@@ -10,6 +10,8 @@ publish: false
 Let's start with claryfing few terms before we begin, just to make sure we're
 on the same page.
 
+Make sure you also look at the end of this blog post, where I describe one of the most common mistakes.
+
 ## What is a read model
 In an event sourced system (or part of the system that is event sourced) the truth lays in the event store. However, event stores are not optimized for reading the data. Therefore, it is more convenient to use read models.
 
