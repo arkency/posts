@@ -5,7 +5,7 @@ tags: []
 publish: false
 ---
 
-# One way of implementing async read model
+# One way of implementing async read model builder
 
 Let's start with claryfing few terms before we begin, just to make sure we're
 on the same page.
@@ -50,7 +50,7 @@ In this case, time will heal the wounds.  In other cases, the error will require
 
 But nothing comes for free. Async requires us to deal with eventual consistency.
 
-## Implementing async read model
+## Implementing async read model builder
 This event handler that manages the reading model is quite simple. Its job is to visualize the progress of a quiz to the supervisor. So what it does is it subscribes to an event and builds the read model, which is an `ActiveRecord` model. Questions are predefined as constants because there's only one quiz in this demo app.
 
 As mentioned above, we need some sort of background worker to set up an asynchronous event handler. I'll assume you're familiar with Sidekiq. In this case, I'll show you how to set up an event handler in application that uses `ActiveJob::Base` to perform background operations.
