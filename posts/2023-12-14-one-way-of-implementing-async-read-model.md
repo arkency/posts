@@ -1,7 +1,7 @@
 ---
 created_at: 2023-12-14 09:02:21 +0100
 author: Łukasz Reszke
-tags: []
+tags: ["read model", "res"]
 publish: false
 ---
 
