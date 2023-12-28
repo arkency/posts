@@ -25,7 +25,7 @@ That's a significant scope to cover. It translates to a certain cost of time, en
 I remember a few past attempts from my colleagues to control the scope of ActiveRecord surfaced in larger codebases.
 There was the [not_activerecord](https://github.com/paneq/not_activerecord) to help express the boundaries. There were various approaches to [query](https://codeclimate.com/blog/7-ways-to-decompose-fat-activerecord-models) [objects](https://thoughtbot.com/blog/a-case-for-query-objects-in-rails) that addressed the read part.
 
-I also vaguely recall a quote from [Adam Pohorecki on a DRUG meetup](http://adam.pohorecki.pl/blog/2013/06/27/ppppp-talk-at-drug/) that you can get 80% benefits out of Repository by putting 20% effort into shaping ActiveRecord like this:
+I also vaguely recall a quote from [Adam Pohorecki on a DRUG meetup](https://adam.pohorecki.pl/blog/2013/06/27/bogus-talk-at-drug/) that you can get 80% benefits out of Repository by putting 20% effort into shaping ActiveRecord like this:
 
 ```ruby
 class Transaction
