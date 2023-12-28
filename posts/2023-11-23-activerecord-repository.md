@@ -2,7 +2,7 @@
 created_at: 2023-12-28 16:00:00 +0100
 author: Paweł Pacana
 tags: ["rails"]
-publish: false
+publish: true
 ---
 
 
