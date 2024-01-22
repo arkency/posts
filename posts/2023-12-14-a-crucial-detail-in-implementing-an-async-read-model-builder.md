@@ -69,8 +69,8 @@ Sometimes the event will not be processed due to a transient error. In this
 case, time will heal the wounds.  In other cases, the error will require code
 fixes. With async handlers, there's the convenience of being able to fix the
 error, deploy, and retry the job that handles the event. However, the user
-experience would be poor in this  experience in this case because we're talking
-about read models, which, as I said, is something that users like to browse.
+experience would be poor in this case because we're talking about read models
+which, as I said, is something that users like to browse.
 * But nothing comes for free. Async requires us to deal with eventual
 consistency.
 
@@ -136,11 +136,10 @@ scheduler as it is very important and often confused.
 
 The scheduler is used to define how the subscriber of the event is handled. The
 default implementation of the `JSONClient` uses `ActiveJobScheduler`. The
-scheduler must define a call and verify methods. In the case of the async
-scheduler, the verify method answers the question of whether the called
-subscriber is properly defined as an is a correctly defined async class. The
-call method knows how to call the Subscriber. In the most standard case of
-`ActiveJobScheduler`, these methods are implemented as follows:
+scheduler must define a `call` and `verify` methods. In the case of the async scheduler,
+the `verify` method answers the question of whether the called subscriber
+is a correctly defined async class. The `call` method knows how to call the Subscriber.
+In the most standard case of `ActiveJobScheduler`, these methods are implemented as follows:
 
 ```ruby
     def verify(subscriber)
