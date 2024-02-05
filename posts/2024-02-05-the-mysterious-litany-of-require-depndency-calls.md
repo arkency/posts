@@ -5,6 +5,8 @@ tags: [ ]
 publish: false
 ---
 
+# The mysterious litany of `require_dependecy` calls
+
 One of the challenges we faced when working on a huge legacy app tech stack upgrade was switching the autoloader
 to [Zeitwerk](https://github.com/fxn/zeitwerk).
 
@@ -13,7 +15,7 @@ It is optional starting from Rails 6, but gets mandatory in Rails 7.
 Once, we were on Rails 6 and manged to apply most of new framework defaults, we decided it's high time to switch to
 Zeitwerk.
 
-# The mysterious litany of `require_dependecy` calls
+## This is where the story begins
 
 Spending a lot of time with this codebase we came across one very large initializer with above 300
 of `require_dependency` calls.
@@ -23,7 +25,7 @@ The first red flag was that all the files listed in the initializer were located
 [The official Rails documentation](https://guides.rubyonrails.org/classic_to_zeitwerk_howto.html#delete-require-dependency-calls)
 clearly states:
 > All known use cases of require_dependency have been eliminated with Zeitwerk. You should grep the project and delete them.
-> 
+
 But first, we wanted to make sure that we understand why this file was even there and what is the story behind it.
 It started with an ominous comment:
 
