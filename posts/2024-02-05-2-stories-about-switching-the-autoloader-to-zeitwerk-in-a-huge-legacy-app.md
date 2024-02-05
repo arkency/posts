@@ -42,4 +42,14 @@ Rake tasks, even though run in production environment, simmilarly to development
 
 - Production pods were run on some Debian-based Linux distribution, while our local development environment was macOS. We found out that the file system on macOS is case-insensitive by default, while on Linux it is case-sensitive.
 
+We have also noticed that files listed in the mysterious initializer had unusual capitalization in their paths. Example: `lib/raport/PL/X123/products`
+
+With classic autoloader, and eager loading disabled, it goes from a const name to a file name by calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products.rb`.
+There were no such files from the case-sensitive file system perspective and that's the clue why NameErrors were spotted in production.
+
+Zeitwerk autloader works in an opposite way. It goes from a file name to a const name by listing all files from the autoloaded directories and calling `.camelize` on each of them.
+It takes inflection rules into account, resulting in `Raport::PL::X123::Products` no matter the file system is case-sensitive or not.
+
+Knowing that, we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and switch to Zeitwerk.
+
 # Story 2: Lack of consistency in using acronyms
