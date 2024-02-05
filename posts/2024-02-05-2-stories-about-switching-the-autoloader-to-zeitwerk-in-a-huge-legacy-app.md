@@ -38,7 +38,7 @@ Pretty scary, right? Yeah, I thought so too. Who wants to introduce NameErrors i
 In fact, we managed to find some traces of those errors in Sentry, but couldn't reproduce them locally. We started digging deeper and looked at the differences between theses environments.
 
 - In `production.rb` we had eager loading enabled which is totally standard for performance-oriented environments. However, it found out that [this setting do not affect rake tasks](https://www.codegram.com/blog/rake-ignores-eager-loading-rails-config/).
-Rake tasks, simmilarly to development environment, did not eager load the codebase.
+Rake tasks, even though run in production environment, simmilarly to development environment, did not eager load the codebase.
 
 - Production pods were run on some Debian-based Linux distribution, while our local development environment was macOS. We found out that the file system on macOS is case-insensitive by default, while on Linux it is case-sensitive.
 
