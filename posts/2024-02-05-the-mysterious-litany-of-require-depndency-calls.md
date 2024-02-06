@@ -31,7 +31,7 @@ But first, we wanted to make sure that we understood why this file was even ther
 It started with an ominous comment:
 
 ```ruby
-# Pre-loading all the Rating Engine modules, otherwise we
+# Pre-loading all the Reporting modules, otherwise we
 # might get uninitialized constant errors (typically on rake tasks)
 ```
 
@@ -50,40 +50,40 @@ digging deeper and looked at the differences between these environments.
   We found out that the file system on macOS is case-insensitive by default, while on Linux it is case-sensitive.
 
 We have also noticed that files listed in the mysterious initializer had unusual capitalization in their paths.
-Example: `lib/raport/PL/X123/products`
+Example: `lib/report/PL/X123/products`
 
 ## Classic autoloader
 
 With a classic autoloader, and eager loading disabled, it goes from a const name to a file name by
-calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products`.
+calling `Raport::PL::X123.to_s.underscore` which results in `report/pl/x123/products`.
 
 This magic happens in the `Module#const_missing` method invoked any time a reference is made to an undefined constant
 _(similarly to well-known_ `method_missing` _callback)_.
 Standard Ruby implementation of this method raises an error, but Rails overrides it and tries to locate the file in one
 of the autoloaded directories.
 
-However, there was no such file like `raport/pl/x123/products.rb` from the case-sensitive file system perspective and
+However, there was no such file like `report/pl/x123/products.rb` from the case-sensitive file system perspective and
 that's the clue why NameErrors were spotted in production unless we eagerly loaded the whole codebase at boot time _(in
 case of eager loading being enabled, Rails loads all files in the_ `eager_load_paths` _during boot)_.
 
 ### case-insensitive file system (development - macOS)
 
 ```
-❯ ls lib/raport/PL/X123/products.rb
-lib/raport/PL/X123/products.rb
+❯ ls lib/report/PL/X123/products.rb
+lib/report/PL/X123/products.rb
 
-❯ ls lib/raport/pl/x123/products.rb
-lib/raport/pl/x123/products.rb
+❯ ls lib/report/pl/x123/products.rb
+lib/report/pl/x123/products.rb
 ```
 
 ### case-sensitive file system (production - linux)
 
 ```
-$ ls lib/raport/PL/X123/products.rb
-lib/raport/PL/X123/products.rb
+$ ls lib/report/PL/X123/products.rb
+lib/report/PL/X123/products.rb
 
-$ ls lib/raport/pl/x123/products.rb
-ls: cannot access 'lib/raport/pl/x123/products.rb': No such file or directory
+$ ls lib/report/pl/x123/products.rb
+ls: cannot access 'lib/report/pl/x123/products.rb': No such file or directory
 ```
 
 ## How things changed with Zeitwerk
@@ -93,24 +93,24 @@ Zeitwerk autoloader works in the opposite way.
 It goes from a file name to a const name by listing files from the autoloaded directories and
 calling `.delete_suffix!(".rb").camelize` on each of them.
 It takes [inflection](https://github.com/fxn/zeitwerk?tab=readme-ov-file#inflection) rules into account, resulting
-in `Raport::PL::X123::Products` no matter whether file system is case-sensitive or not.
+in `Report::PL::X123::Products` no matter whether file system is case-sensitive or not.
 
 It utilizes `Module#autoload` built-in Ruby feature to specify the file where the constant should be loaded from:
 
 ```ruby
 # at boot time
-autoload :Raport, Rails.root.join('lib/raport')
-# on first Raport reference
-Raport.autoload :PL, Rails.root.join('lib/raport/pl')
-# on first Raport::PL reference
-Raport::PL.autoload :X123, Rails.root.join('lib/raport/PL/x123')
-# on first Raport::PL::X123 reference
-Raport::PL::X123.autoload :Products, Rails.root.join('lib/raport/PL/X123/products.rb')
+autoload :Report, Rails.root.join('lib/report')
+# on first Report reference
+Report.autoload :PL, Rails.root.join('lib/report/pl')
+# on first Report::PL reference
+Report::PL.autoload :X123, Rails.root.join('lib/report/PL/x123')
+# on first Report::PL::X123 reference
+Report::PL::X123.autoload :Products, Rails.root.join('lib/report/PL/X123/products.rb')
 ```
 
 It simply says:
-> When you encounter `Raport::PL::X123::Products` and it will be missed in a constant table,
-> load `lib/raport/PL/X123/products.rb`
+> When you encounter `Report::PL::X123::Products` and it will be missed in a constant table,
+> load `lib/report/PL/X123/products.rb`
 
 Knowing that we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
 switch to Zeitwerk. It went very smoothly and NameErrors never appeared again.
