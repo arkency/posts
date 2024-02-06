@@ -1,7 +1,7 @@
 ---
 created_at: 2024-02-05 16:33:07 +0100
 author: Piotr Jurewicz
-tags: [rails zeitwerk]
+tags: [ rails zeitwerk ]
 publish: false
 ---
 
@@ -53,11 +53,17 @@ We have also noticed that files listed in the mysterious initializer had unusual
 Example: `lib/raport/PL/X123/products`
 
 With classic autoloader, and eager loading disabled, it goes from a const name to a file name by
-calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products.rb`.
-There were no such files from the case-sensitive file system perspective and that's the clue why NameErrors were spotted
-in production unless we eagerly loaded the whole codebase.
+calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products`.
+
+This magic happens in the `Module#const_missing` method invoked when a reference is made to an undefined constant.
+Standard Ruby implementation of this method raises an error, but Rails overrides it and tries to locate the file in one
+of the autoloaded directories.
+
+However, there were no such file like `raport/pl/x123/products.rb` from the case-sensitive file system perspective and
+that's the clue why NameErrors were spotted in production unless we eagerly loaded the whole codebase at boot time.
 
 ### case-insensitive file system (development - macOS)
+
 ```
 ❯ ls lib/raport/PL/X123/products.rb
 lib/raport/PL/X123/products.rb
@@ -67,6 +73,7 @@ lib/raport/pl/x123/products.rb
 ```
 
 ### case sensitive file system (production - linux)
+
 ```
 $ ls lib/raport/PL/X123/products.rb
 lib/raport/PL/X123/products.rb
