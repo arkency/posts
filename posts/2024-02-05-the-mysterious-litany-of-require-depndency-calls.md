@@ -15,7 +15,7 @@ It is optional starting from Rails 6, but gets mandatory in Rails 7.
 Once, we were on Rails 6 and manged to apply most of new framework defaults, we decided it's high time to switch to
 Zeitwerk.
 
-This is where the story begins...
+#### ...This is where the story begins...
 
 Spending a lot of time with this codebase we came across one very large initializer with above 300
 of `require_dependency` calls.
@@ -89,20 +89,29 @@ ls: cannot access 'lib/raport/pl/x123/products.rb': No such file or directory
 Zeitwerk autloader works in an opposite way.
 
 It goes from a file name to a const name by listing all files from the
-autoloaded directories and calling `.camelize` on each of them.
-It takes inflection rules into account, resulting in `Raport::PL::X123::Products` no matter the file system is
+autoloaded directories and calling `.delete_suffix!(".rb").camelize` on each of them.
+It takes [inflection](https://github.com/fxn/zeitwerk?tab=readme-ov-file#inflection) rules into account, resulting
+in `Raport::PL::X123::Products` no matter the file system is
 case-sensitive or not.
 
-It utilize `Module#autoload` built-in Ruby feature to specify the file where the constant should be loaded from.
+It utilize `Module#autoload` built-in Ruby feature to specify the file where the constant should be loaded from:
 
 ```ruby
-autoload :Raport::PL::X123::Products, Rails.root.join('lib/raport/PL/X123/products.rb')
+# at boot time
+autoload :Raport, Rails.root.join('lib/raport')
+# on first Raport reference
+Raport.autoload :PL, Rails.root.join('lib/raport/pl')
+# on first Raport::PL reference
+Raport::PL.autoload :X123, Rails.root.join('lib/raport/PL/x123')
+# on first Raport::PL::X123 reference
+Raport::PL::X123.autoload :Products, Rails.root.join('lib/raport/PL/X123/products.rb')
 ```
 
-It simply says: "When you encounter `Raport::PL::X123::Products` and it will be missed in a constant table,
-load `lib/raport/PL/X123/products.rb`."
+It simply says:
+> When you encounter `Raport::PL::X123::Products` and it will be missed in a constant table,
+> load `lib/raport/PL/X123/products.rb`.
 
 Knowing that, we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
-switch to Zeitwerk.
-
+switch to Zeitwerk. It went smooth.
+___
 Anyway, from now on, I will always be suspicious when I see capitalized file names in the codebase.
