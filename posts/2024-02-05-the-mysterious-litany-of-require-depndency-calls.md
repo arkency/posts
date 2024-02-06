@@ -13,8 +13,7 @@ to [Zeitwerk](https://github.com/fxn/zeitwerk).
 It is optional starting from Rails 6 but gets mandatory in Rails 7.
 
 Once, we were on Rails 6 and managed to apply most of the new framework defaults, we decided it was high time to switch
-to
-Zeitwerk.
+to __Zeitwerk__.
 
 #### ...This is where the story begins...
 
@@ -58,12 +57,14 @@ Example: `lib/raport/PL/X123/products`
 With a classic autoloader, and eager loading disabled, it goes from a const name to a file name by
 calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products`.
 
-This magic happens in the `Module#const_missing` method invoked when a reference is made to an undefined constant.
+This magic happens in the `Module#const_missing` method invoked any time a reference is made to an undefined constant
+_(similarly to well-known `method_missing` callback)_.
 Standard Ruby implementation of this method raises an error, but Rails overrides it and tries to locate the file in one
 of the autoloaded directories.
 
 However, there was no such file like `raport/pl/x123/products.rb` from the case-sensitive file system perspective and
-that's the clue why NameErrors were spotted in production unless we eagerly loaded the whole codebase at boot time.
+that's the clue why NameErrors were spotted in production unless we eagerly loaded the whole codebase at boot time _(in
+case of eager loading being enabled, Rails loads all files in the_ `eager_load_paths` _during boot)_.
 
 ### case-insensitive file system (development - macOS)
 
@@ -89,8 +90,8 @@ ls: cannot access 'lib/raport/pl/x123/products.rb': No such file or directory
 
 Zeitwerk autoloader works in the opposite way.
 
-It goes from a file name to a const name by listing all files from the
-autoloaded directories and calling `.delete_suffix!(".rb").camelize` on each of them.
+It goes from a file name to a const name by listing all files from the autoloaded directories and
+calling `.delete_suffix!(".rb").camelize` on each of them.
 It takes [inflection](https://github.com/fxn/zeitwerk?tab=readme-ov-file#inflection) rules into account, resulting
 in `Raport::PL::X123::Products` no matter whether file system is case-sensitive or not.
 
@@ -112,6 +113,6 @@ It simply says:
 > load `lib/raport/PL/X123/products.rb`.
 
 Knowing that we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
-switch to Zeitwerk. It went smoothly.
+switch to Zeitwerk. It went very smoothly and NameErrors never appeared again.
 ___
 Anyway, from now on, I will always be suspicious when I see capitalized file names in the codebase.
