@@ -52,6 +52,8 @@ digging deeper and looked at the differences between theses environments.
 We have also noticed that files listed in the mysterious initializer had unusual capitalization in their paths.
 Example: `lib/raport/PL/X123/products`
 
+## Classic autoloader
+
 With classic autoloader, and eager loading disabled, it goes from a const name to a file name by
 calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products`.
 
@@ -84,10 +86,21 @@ ls: cannot access 'lib/raport/pl/x123/products.rb': No such file or directory
 
 ## How things changed with Zeitwerk
 
-Zeitwerk autloader works in an opposite way. It goes from a file name to a const name by listing all files from the
+Zeitwerk autloader works in an opposite way.
+
+It goes from a file name to a const name by listing all files from the
 autoloaded directories and calling `.camelize` on each of them.
 It takes inflection rules into account, resulting in `Raport::PL::X123::Products` no matter the file system is
 case-sensitive or not.
+
+It utilize `Module#autoload` built-in Ruby feature to specify the file where the constant should be loaded from.
+
+```ruby
+autoload :Raport::PL::X123::Products, Rails.root.join('lib/raport/PL/X123/products.rb')
+```
+
+It simply says: "When you encounter `Raport::PL::X123::Products` and it will be missed in a constant table,
+load `lib/raport/PL/X123/products.rb`."
 
 Knowing that, we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
 switch to Zeitwerk.
