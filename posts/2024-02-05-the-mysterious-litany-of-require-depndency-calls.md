@@ -58,7 +58,7 @@ With a classic autoloader, and eager loading disabled, it goes from a const name
 calling `Raport::PL::X123.to_s.underscore` which results in `raport/pl/x123/products`.
 
 This magic happens in the `Module#const_missing` method invoked any time a reference is made to an undefined constant
-_(similarly to well-known `method_missing` callback)_.
+_(similarly to well-known_ `method_missing` _callback)_.
 Standard Ruby implementation of this method raises an error, but Rails overrides it and tries to locate the file in one
 of the autoloaded directories.
 
@@ -90,7 +90,7 @@ ls: cannot access 'lib/raport/pl/x123/products.rb': No such file or directory
 
 Zeitwerk autoloader works in the opposite way.
 
-It goes from a file name to a const name by listing all files from the autoloaded directories and
+It goes from a file name to a const name by listing files from the autoloaded directories and
 calling `.delete_suffix!(".rb").camelize` on each of them.
 It takes [inflection](https://github.com/fxn/zeitwerk?tab=readme-ov-file#inflection) rules into account, resulting
 in `Raport::PL::X123::Products` no matter whether file system is case-sensitive or not.
@@ -110,7 +110,7 @@ Raport::PL::X123.autoload :Products, Rails.root.join('lib/raport/PL/X123/product
 
 It simply says:
 > When you encounter `Raport::PL::X123::Products` and it will be missed in a constant table,
-> load `lib/raport/PL/X123/products.rb`.
+> load `lib/raport/PL/X123/products.rb`
 
 Knowing that we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
 switch to Zeitwerk. It went very smoothly and NameErrors never appeared again.
