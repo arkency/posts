@@ -1,7 +1,7 @@
 ---
 created_at: 2024-02-06 17:01:52 +0100
 author: Piotr Jurewicz
-tags: [ rails zeitwerk ]
+tags: [ 'rails', 'zeitwerk', 'autoload' ]
 publish: false
 ---
 
