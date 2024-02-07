@@ -57,8 +57,8 @@ Example: `lib/report/PL/X123/products`
 With a classic autoloader, and eager loading disabled, it goes from a const name to a file name by
 calling `Raport::PL::X123.to_s.underscore` which results in `report/pl/x123/products`.
 
-This magic happens in the `Module#const_missing` method invoked any time a reference is made to an undefined constant
-_(similarly to well-known_ `method_missing` _callback)_.
+This magic happens in the `Module#const_missing` method invoked each time a reference is made to an undefined constant
+_(analogous to the well-known_ `method_missing` _callback)_.
 Standard Ruby implementation of this method raises an error, but Rails overrides it and tries to locate the file in one
 of the autoloaded directories.
 
@@ -115,4 +115,4 @@ It simply says:
 Knowing that we felt fully confident to remove the initializer with its mysterious `require_dependency` litany and
 switch to Zeitwerk. It went very smoothly and NameErrors never appeared again.
 ___
-Anyway, from now on, I will always be suspicious when I see capitalized file names in the codebase.
+Anyway, from now on, I will always be suspicious when I see capitalized file names in the project tree.
