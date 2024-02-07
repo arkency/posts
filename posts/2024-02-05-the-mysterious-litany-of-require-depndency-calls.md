@@ -2,13 +2,13 @@
 created_at: 2024-02-05 16:33:07 +0100
 author: Piotr Jurewicz
 tags: [ rails zeitwerk ]
-publish: false
+publish: true
 ---
 
 # The mysterious litany of `require_dependecy` calls
 
-One of the challenges we faced when working on a huge legacy app tech stack upgrade was switching the autoloader
-to [Zeitwerk](https://github.com/fxn/zeitwerk).
+One of the challenges we faced when working on a huge legacy app tech stack upgrade was switching from the obsolete
+classic autoloader to the modern one, [Zeitwerk](https://github.com/fxn/zeitwerk).
 
 It is optional starting from Rails 6 but gets mandatory in Rails 7.
 
