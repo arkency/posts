@@ -5,7 +5,7 @@ tags: [ 'rails', 'zeitwerk', 'autoload' ]
 publish: false
 ---
 
-# Completly custom Zeitwerk inflector
+# Completely custom Zeitwerk inflector
 
 In [my previous post](https://blog.arkency.com/the-mysterious-litany-of-require-depndency-calls/), I discussed the
 difference between how the classic autoloader and Zeitwerk autoloader match constant and file names. Short reminder:
