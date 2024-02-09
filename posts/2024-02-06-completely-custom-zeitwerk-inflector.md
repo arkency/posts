@@ -92,7 +92,7 @@ end
 ## 2. Set overrides for Rails::Autoloader::Inflector
 
 In some cases, you won't add certain autoloader-specific rules to the ActiveSupport inflector. It's not mandatory.
-You have the option to override some specific rules only for Zeitwerk and leave the Rails global inflector as it is
+You have the option to override some specific rules only for Zeitwerk and leave the Rails global inflector as it is.
 However, even if you do that, Zeitwerk will still fall back to `String#camelize` and `ActiveSupport::Inflector` when it
 cannot find a specific key.
 
@@ -111,8 +111,8 @@ end
 
 Zeitwerk is a gem designed to be used independently from Rails and it provides an alternative implementation of
 inflector that you can use instead of `Rails::Autoloader::Inflector`.
-By doing so, you will have complete control over the acronyms you use in file naming conventions in a single place.
-Furthermore, it will help you avoid polluting the ActiveSupport inflector with autoloader-specific rules.
+By doing so, you will have complete control over the acronyms you use in modules and classes naming conventions in a
+single place. Furthermore, it will help you avoid polluting the ActiveSupport inflector with autoloader-specific rules.
 
 ```ruby
 # config/initializers/zeitwerk.rb
@@ -128,9 +128,8 @@ end
 
 ## 4. Implement your custom inflector
 
-Consider a scenario where, apart from the `API::REST::Client`, you sldo have the `User::Activities::Rest` constant in
-your
-codebase. Both of them include the `/rest/i` substring, but you cannot use the same inflection rule to derive the
+Consider a scenario where, apart from the `API::REST::Client`, you also have the `User::Activities::Rest` constant in
+your codebase. Both of them include the `/rest/i` substring, but you cannot use the same inflection rule to derive the
 constant name from the file name.
 
 This is a good example of when you may need to provide a custom inflector implementation.
