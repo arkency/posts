@@ -141,7 +141,6 @@ This is a good example of when you may need to provide a custom inflector implem
 Let's revisit the standard `Rails::Autoloader::Inflector#camelize` method implementation to better understand this.
 
 ```ruby
-
 def self.camelize(basename, _abspath)
   @overrides[basename] || basename.camelize
 end
@@ -159,10 +158,10 @@ However, you can still take advantage of its presence in your custom implementat
 # config/initializers/zeitwerk.rb
 
 class UnconventionalInflector
-  def self.conditional_inflection_for(basename:, inflection:, paths:)
+  def self.conditional_inflection_for(basename:, inflection:, path:)
     Module.new do
       define_method :camelize do |basename_, abspath|
-        if basename_ == basename && paths.map { |p| Rails.root.join(p).to_s }.include?(abspath)
+        if basename_ == basename && path.match?(abspath)
           inflection
         else
           super(basename_, abspath)
@@ -174,7 +173,7 @@ class UnconventionalInflector
   prepend conditional_inflection_for(
             basename: 'rest',
             inflection: 'REST',
-            paths: %w[lib/api/rest],
+            path: /\A#{Rails.root.join('lib', 'api')}/,
           )
 
   # ...
