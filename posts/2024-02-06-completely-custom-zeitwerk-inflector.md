@@ -2,7 +2,7 @@
 created_at: 2024-02-06 17:01:52 +0100
 author: Piotr Jurewicz
 tags: [ 'rails', 'zeitwerk', 'autoload' ]
-publish: false
+publish: true
 ---
 
 # Completely custom Zeitwerk inflector
@@ -202,5 +202,5 @@ uses an non-standard inflection. If not, it falls back to the default implementa
 
 ___
 I understand that the example of `Rest` and `REST` may seem contrived, but it serves to illustrate the point. In
-real-life situations, there may be more convincing reasons to implement a custom inflector, just like we did on a
-previous consulting project and it  proved to be very helpful.
+real-life situations, there may be more convincing reasons to implement a custom inflector, just as we did on a
+project we were consulting, where it proved to be very helpful.
