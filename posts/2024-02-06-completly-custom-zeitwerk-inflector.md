@@ -7,7 +7,8 @@ publish: false
 
 # Completly custom Zeitwerk inflector
 
-In [my previous post](https://blog.arkency.com/the-mysterious-litany-of-require-depndency-calls/), I described the general difference between how the classic autolader and Zeitwerk autoloader match
+In [my previous post](https://blog.arkency.com/the-mysterious-litany-of-require-depndency-calls/), I described the
+general difference between how the classic autolader and Zeitwerk autoloader match
 constant and file names. Short reminder:
 
 - Classic autoloader maps missing constant name `Raport::PL::X123` to a file name by
@@ -25,7 +26,6 @@ attribute names.
 `Rails::Autoloader::Inflector` is the one that is used by default in Rails integration with Zeitwerk:
 
 ```ruby
-
 module Rails
   class Autoloaders
     module Inflector # :nodoc:
@@ -45,10 +45,9 @@ end
 
 It's `camelize` method checks for the overrides and if it finds one, it uses it. Otherwise, it
 utilizes `String#camelize`
-method which is a port of ActiveSupport core extensions for String:
+method which is a part of ActiveSupport core extensions for String:
 
 ```ruby
-
 def camelize(first_letter = :upper)
   case first_letter
   when :upper
@@ -82,7 +81,8 @@ do that.
 
 ## 1. Configure ActiveSupport::Inflector
 
-
+An intuitive and pretty common way is to configure ActiveSupport::Inflector directly. But doing so you affect how
+ActiveSupport inflects these phrases globally. It's not always desired.
 
 ```ruby
 # config/initializers/inflections.rb
@@ -113,9 +113,10 @@ end
 
 ## 3. Zeitwerk::Inflector
 
-Zeitwerk provides an alternative implementation of inflector that you can use instead of `Rails::Autoloader::Inflector`.
-If you do so, you will have full control over the acronyms you use in file naming conventions in single place.
-Doings so, you can avoid the ActiveSupport inflector being polluted with autoloader specific rules.
+Zeitwerk is a gem designed to be used independently from Rails and it provides an alternative implementation of
+inflector that you can use instead of `Rails::Autoloader::Inflector`.
+If you do so, you will have full control over the acronyms you use in file naming conventions in single place and 
+avoid the ActiveSupport inflector being polluted with autoloader specific rules.
 
 ```ruby
 # config/initializers/zeitwerk.rb
