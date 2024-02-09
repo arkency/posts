@@ -24,6 +24,7 @@ such as pluralization, singularization, __acronym handling__, and humanization o
 `Rails::Autoloader::Inflector` is the one that is used by default in Rails integration with Zeitwerk:
 
 ```ruby
+
 module Rails
   class Autoloaders
     module Inflector # :nodoc:
@@ -45,6 +46,7 @@ Its `camelize` method checks for the overrides and if it finds one, it uses it, 
 method, which is part of ActiveSupport core extensions for String.
 
 ```ruby
+
 def camelize(first_letter = :upper)
   case first_letter
   when :upper
@@ -67,9 +69,6 @@ However, in the context, of Zeitwerk, __acronym handling__ is an essential featu
 
 An example of acronym is "REST" (Representational State Transfer). It is not uncommon to have a constant including it,
 such as `API::REST::Client`.
-
-Classic autoloader, in case of undefined constant `API::REST::Client`, would call `API::REST::Client.to_s.underscore`
-and look for `api/rest/client.rb` file in autoloaded directories.
 
 When the classic autoloader encounters an undefined constant `API::REST::Client`, it
 calls `API::REST::Client.to_s.underscore` to find the `api/rest/client.rb` file in the autoloaded directories.
@@ -141,6 +140,7 @@ This is a good example of when you may need to provide a custom inflector implem
 Let's revisit the standard `Rails::Autoloader::Inflector#camelize` method implementation to better understand this.
 
 ```ruby
+
 def self.camelize(basename, _abspath)
   @overrides[basename] || basename.camelize
 end
