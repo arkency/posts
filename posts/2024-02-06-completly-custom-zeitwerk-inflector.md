@@ -7,7 +7,7 @@ publish: false
 
 # Completly custom Zeitwerk inflector
 
-In my previous post, I described the general difference between how the classic autolader and Zeitwerk autoloader match
+In [my previous post](https://blog.arkency.com/the-mysterious-litany-of-require-depndency-calls/), I described the general difference between how the classic autolader and Zeitwerk autoloader match
 constant and file names. Short reminder:
 
 - Classic autoloader maps missing constant name `Raport::PL::X123` to a file name by
@@ -22,7 +22,7 @@ In the context of web frameworks like Ruby on Rails, an inflector is specificall
 transformations, such as pluralization, singularization, __acronym handling__, and humanization of
 attribute names.
 
-`Rails::Autoloader::Inflector` is the one that is used by default in Rails integration with Zeitwerk.
+`Rails::Autoloader::Inflector` is the one that is used by default in Rails integration with Zeitwerk:
 
 ```ruby
 
@@ -43,8 +43,9 @@ module Rails
 end
 ```
 
-It's camelize method checks for the overrides and if it finds one, it uses it. Otherwise, it utilizes String#camelize
-method which is a port of ActiveSupport core extensions for String.
+It's `camelize` method checks for the overrides and if it finds one, it uses it. Otherwise, it
+utilizes `String#camelize`
+method which is a port of ActiveSupport core extensions for String:
 
 ```ruby
 
@@ -66,7 +67,7 @@ As you can see `String#camelize` uses `ActiveSupport::Inflector` underneath.
 singular to plural, class names to table names, modularized class names to ones without, and class names to foreign
 keys.
 
-In the context, of Zeitwerk, __acronym handling__ is a crucial feature of inflector.
+However, in the context, of Zeitwerk, __acronym handling__ is a crucial feature of inflector.
 
 An example of acronym can be "REST" (Representational State Transfer). It's not uncommon to have a constant including it
 in, let's say `API::REST::Client`.
@@ -75,11 +76,13 @@ Classic autoloader, in case of undefined constant `API::REST::Client`, would cal
 and look for `api/rest/client.rb` file in autoloaded directories.
 
 Zeitwerk, on the other hand, when encountering `api/rest/client.rb`, would invoke `'api/rest/client'.camelize` and
-unless we provide acronym handling rules, it would results in `Api::Rest::Client` constant.
-To obtain `Api::Rest::Client`, we need to provide Zeitwerk with acronym handling rules. There are at least 4 ways to do
-that.
+unless we provide acronym handling rules, it would result in `Api::Rest::Client` constant.
+To obtain `API::REST::Client`, we need to provide an inflector with acronym handling rules. There are at least 4 ways to
+do that.
 
 ## 1. Configure ActiveSupport::Inflector
+
+
 
 ```ruby
 # config/initializers/inflections.rb
