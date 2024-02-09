@@ -202,3 +202,8 @@ end
 The implementation above utilizes `Rails::Autoloader::Inflector` module. However, it prepends its `camelize`
 implementation with the one that first checks if the file path matches any unconventional rules. If it does, the method
 uses an unconventional inflection. If not, it falls back to the standard implementation.
+
+___
+I understand that the example of `Rest` and `REST` may seem contrived, but it serves to illustrate the point. In
+real-life scenarios, there may be more compelling reasons to provide a custom inflector, as we did on the project we
+were consulting some time ago.
