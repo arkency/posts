@@ -111,7 +111,7 @@ Rails.autoloaders.each do |autoloader|
 end
 ```
 
-## 3. Zeitwerk::Inflector
+## 3. Use Zeitwerk::Inflector
 
 Zeitwerk is a gem designed to be used independently from Rails and it provides an alternative implementation of
 inflector that you can use instead of `Rails::Autoloader::Inflector`.
@@ -130,13 +130,13 @@ Rails.autoloaders.each do |autoloader|
 end
 ```
 
-## 4. Your custom inflector
+## 4. Implement your custom inflector
 
 Consider a scenario where except the `API::REST::Client` you have also `User::Activities::Rest` constant in your
 codebase. Both of them include the `/rest/i` substring, but you can't use the same inflection rule to obtain the
 constant name from the file name.
 
-This is a perfect example of when you can provide your custom inflector implementation.
+This is a good example of when you can provide your custom inflector implementation.
 
 Let's take a look at standard `Rails::Autoloader::Inflector#camelize` method implementation once again:
 
@@ -148,8 +148,10 @@ end
 ```
 
 As you can see it is designed to take 2 arguments: `basename` and `abspath`. The `basename` is the file name without
-the extension and the `abspath` is the absolute path to the file. Note that the `abspath` is not used not in
-the `Rails::Autoloader::Inflector` nor in the `Zeitwerk::Inflector` implementation.
+the extension and the `abspath` is the absolute path to the file.
+
+Note that the `abspath` is not used not in the `Rails::Autoloader::Inflector` nor in the `Zeitwerk::Inflector`
+implementation.
 
 But what stops you from using it in your custom unconventional implementation?
 
