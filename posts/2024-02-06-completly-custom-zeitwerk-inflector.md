@@ -143,13 +143,13 @@ def self.camelize(basename, _abspath)
 end
 ```
 
-As you can see it is designed to take 2 arguments: `basename` and `abspath`. The `basename` is the file name without
-the extension and the `abspath` is the absolute path to the file.
+As you can see it is designed to take 2 arguments: `basename` and `_abspath`. The `basename` is the file name without
+the extension and the `_abspath` is the absolute path to the file.
 
-Note that the `abspath` is not used in wither the `Rails::Autoloader::Inflector` or the `Zeitwerk::Inflector`
+Note that the `_abspath` is not used in wither the `Rails::Autoloader::Inflector` or the `Zeitwerk::Inflector`
 implementation.
 
-However, you can still take advantage of its presence in your custom implementation.
+However, you can still take advantage of this argument presence in your custom implementation.
 
 ```ruby
 # config/initializers/zeitwerk.rb
