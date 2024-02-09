@@ -24,7 +24,6 @@ such as pluralization, singularization, __acronym handling__, and humanization o
 `Rails::Autoloader::Inflector` is the one that is used by default in Rails integration with Zeitwerk:
 
 ```ruby
-
 module Rails
   class Autoloaders
     module Inflector # :nodoc:
@@ -46,7 +45,6 @@ Its `camelize` method checks for the overrides and if it finds one, it uses it, 
 method, which is part of ActiveSupport core extensions for String.
 
 ```ruby
-
 def camelize(first_letter = :upper)
   case first_letter
   when :upper
@@ -79,8 +77,8 @@ acronym handling rules. There are at least four ways to do this.
 
 ## 1. Configure ActiveSupport::Inflector
 
-An intuitive and pretty common way is to configure ActiveSupport::Inflector directly. But doing so you affect how
-ActiveSupport inflects these phrases globally. It's not always desired.
+An intuitive and pretty common way is to configure `ActiveSupport::Inflector` directly.
+But doing so you affect how ActiveSupport inflects these phrases globally. It's not always desired.
 
 ```ruby
 # config/initializers/inflections.rb
@@ -95,8 +93,8 @@ end
 
 In some cases, you won't add certain autoloader-specific rules to the ActiveSupport inflector. It's not mandatory.
 You have the option to override some specific rules only for Zeitwerk and leave the Rails global inflector as it is
-However, even if you do that, Zeitwerk will still fall back to 'String#camelize' and ActiveSupport::
-Inflector when it cannot find a specific key.
+However, even if you do that, Zeitwerk will still fall back to `String#camelize` and `ActiveSupport::Inflector` when it
+cannot find a specific key.
 
 ```ruby
 # config/initializers/zeitwerk.rb
@@ -140,7 +138,6 @@ This is a good example of when you may need to provide a custom inflector implem
 Let's revisit the standard `Rails::Autoloader::Inflector#camelize` method implementation to better understand this.
 
 ```ruby
-
 def self.camelize(basename, _abspath)
   @overrides[basename] || basename.camelize
 end
