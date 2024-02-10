@@ -7,43 +7,61 @@ publish: false
 
 # Upcasting events in RailsEventStore
 
-We understood new domain concept and our model had to be adjusted to that latest understanding. The model is designed as
-an event-sourced aggregate. As it's state is built from the events, we had to adjust them somehow, so the new model
-would understand them.
+Understanding the domain you are working with often leads to the need to redesign some of the models. Sometimes you'll
+need to add or change a concept. Sometimes you'll need to remove a method or event produced by the aggregate. This was
+the case for us.
 
-In this post, I will show you how to upcast events in RailsEventStore.
+Our goal was to remove an event from the system. To do that, we had to deal with the fact that this event is used in the
+aggregate stream.
 
-<!-- more -->
+It's interesting how we got there.
 
-In our case the new domain concept was actually removing part of the model. The reason behind is that the aggregate
-itself,
-when designed, was a little bit too much feature-driven. It works fine, the rules were still respected.
-However when we were implementing new business concept it felt kind of... hacky.
+We started discussing how to implement a new business feature in the aforementioned model.
+After exchanging a few ideas it felt like it didn't belong in the aggregate itself.
+We realized that it belonged in the application layer, which is responsible for handling different business use cases.
+It's often a dilemma that can arise. Where does this business logic go? The aggregate, the application layer that is
+responsible for the use cases? Somewhere else?
+From a code perspective, it's all about where to put this if statement.
 
-After the discussion, we came to conclusion that we duplicated one of the business concepts.
+After some discussion, we decided to implement this feature in the application layer. But it felt hacky.
+Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing,
+are presented the same way in the read model, but produce different events.
 
-Therefore, as mentioned already, we had to remove one of the method. This method produceed an event, which was used
-to build the state.
+Long story short, it turned out that our aggregate was a little too feature-driven. It was working fine, all the rules
+were being
+followed.
+
+Feature-driven design of an aggregate deserves its own blog post. It's not a bad place to start. Learning domain is a
+process.
+With new insights, you may need to adjust the model.
+
+At the end of this somewhat long introduction, we realized that we had two events representing the same concept.
+And we decided to remove one of them.
+
+Then the question remains. What to do with the events already in the stream?
 
 [There are multiple ways to deal with that situation.](https://blog.arkency.com/4-strategies-when-you-need-to-change-a-published-event/)
-We decided to upcast the event. We may forget that this situation existed, however events are immutable and won't be
-removed.
-Having those in stream will make them easier to access and understand the full picture. It's especially important when
-something goes off.
+
+We decided to upcast the event. Why? Events are immutable and shouldn't be removed. Having those in stream will make it
+easier to access them and understand the full picture whenever needed. It's especially important when something goes
+off.
 
 ## What is upcasting?
 
-Upcasting is a process of converting an event to a newer version of the event. In our case, the event was kind of
+Upcasting is the process of converting an event to a newer version of the event. In our case, the event was
 duplicated.
-As I mentioned, we discovered that during implementing new business use case. It turned out that two of the events
-represent
-the same concept. So in our case, upcasting will convert the old event, not used anymore, to the other one, that was
-duplicated.
+As I mentioned earlier, we discovered this while implementing a new business use case. It turned out that two of the
+events
+represent the same concept.
+
+In our case, upcasting will convert the old event that was duplicated to the other one that was originally there.
+and should be the only one that represents that business concept.
 
 ## How to upcast events in RailsEventStore?
 
-There's probably multiple ways of how you can implement the details. However, the general idea is to add transformation,
-that does the into the pipeline. In the transformation we tell the RailsEventStore what to do when it sees the old
+There are probably several ways to implement the details. However, the general idea is to use a
+transformation
+to the pipeline. In the transformation, we tell the RailsEventStore what to do when it sees the old
 event.
 
 Take a look at the example below.
@@ -68,25 +86,30 @@ RubyEventStore::Mappers::Pipeline.new(
 )
 ```
 
-Pipeline mapper, referred to by the `mapper` keyword, is a place in which you can add different transformations. Often
-what you'll see here is
-the [`SymbolizeMetadataKeys`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/ruby_event_store/lib/ruby_event_store/mappers/transformation/symbolize_metadata_keys.rb)
-or [`WithIndifferentAccess`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/contrib/ruby_event_store-transformations/lib/ruby_event_store/transformations/with_indifferent_access.rb)
-transformations.
-Or perhaps you won't, if you're using
-the [`JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/rails_event_store/lib/rails_event_store/json_client.rb).
+The pipeline mapper, referred to by the keyword `mapper`, is a place where you can add various transformations.
 
 The `Upcast` transformation takes hash as an argument. The key is the name of the old event. The value is an lambda,
 that takes the old event record and returns a new one. Or in our case, existing one that was duplicated.
 
+There are transformations available in the RailsEventStore. You can take a look at them for reference. For example,
+the [`SymbolizeMetadataKeys`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/ruby_event_store/lib/ruby_event_store/mappers/transformation/symbolize_metadata_keys.rb)
+or [`WithIndifferentAccess`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/contrib/ruby_event_store-transformations/lib/ruby_event_store/transformations/with_indifferent_access.rb)
+transformations.
+It's also worth familiarizing yourself with
+the [`JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/b8e4bbffabf43db98a154ebab694486229c3706c/rails_event_store/lib/rails_event_store/json_client.rb).
+
 ## When to use upcasting?
 
-When you do event sourcing it is recommended not to delete events. They are immutable and should be kept.
-It makes a lot of sense. It makes the application reliable.
+If you are using event sourcing, it is not recommended that you delete events. Events are immutable and should be left
+as they were.
+It makes a lot of sense. It makes the application more reliable. It's good for auditing.
 
-I used to deal differently with "mistakes" in the aggregates stream. I did rewrite streams, applying only the events
-that should be kept. However this strategy has few drawbacks. It is harder to see the full picture.
-The events are not deleted, but they are not in the stream anymore. It makes it harder to see what happened in the past.
+I used to deal with bugs in the aggregate stream in a different way. I would rewrite streams and only apply the events
+that should be
+that should be kept. However, this strategy has a few drawbacks. It is harder to see the whole picture.
+The events are not deleted, but they are no longer in the stream. It makes it harder to see what happened in the past
+for
+for certain aggregates.
 
-However, it's good learn multiple strategies and know when to use them. In this case, upcasting seemed like the best
+It's good to learn multiple strategies and know when to use them. In this case, upcasting seemed to be the best
 solution.
