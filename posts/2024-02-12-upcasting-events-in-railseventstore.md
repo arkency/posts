@@ -2,7 +2,7 @@
 created_at: 2024-02-12 8:43:14 +0100
 author: Łukasz Reszke
 tags: [ 'rails', 'rails-event-store', 'event-sourcing', 'upcasting', 'ddd' ]
-publish: false
+publish: true
 ---
 
 # Upcasting events in RailsEventStore
