@@ -73,12 +73,12 @@ calls `API::REST::Client.to_s.underscore` to find the `api/rest/client.rb` file 
 
 On the other hand, Zeitwerk locates `api/rest/client.rb` and invokes `'api/rest/client'.camelize`. Without acronym
 handling rules, this results in `Api::Rest::Client`. To get `API::REST::Client`, we need to supply an inflector with
-acronym handling rules. There are at least four ways to do this.
+acronym handling rules. In this post, I will demonstrate four distinct methods to accomplish that.
 
 ## 1. Configure ActiveSupport::Inflector
 
 An intuitive and pretty common way is to configure `ActiveSupport::Inflector` directly.
-But doing so you affect how ActiveSupport inflects these phrases globally. It's not always desired.
+But doing so affects how ActiveSupport inflects these phrases globally. It's not always desired.
 
 ```ruby
 # config/initializers/inflections.rb
@@ -91,8 +91,9 @@ end
 
 ## 2. Set overrides for Rails::Autoloader::Inflector
 
-In some cases, you won't add certain autoloader-specific rules to the ActiveSupport inflector. It's not mandatory.
-You have the option to override some specific rules only for Zeitwerk and leave the Rails global inflector as it is.
+In some cases, you don't want to add certain class or module naming rules to the ActiveSupport inflector.
+It's not mandatory.
+You have the option to override particular inflections only for Zeitwerk and leave the Rails global inflector as it is.
 However, even if you do that, Zeitwerk will still fall back to `String#camelize` and `ActiveSupport::Inflector` when it
 cannot find a specific key.
 
@@ -111,8 +112,8 @@ end
 
 Zeitwerk is a gem designed to be used independently from Rails and it provides an alternative implementation of
 inflector that you can use instead of `Rails::Autoloader::Inflector`.
-By doing so, you will have complete control over the acronyms you use in modules and classes naming conventions in a
-single place. Furthermore, it will help you avoid polluting the ActiveSupport inflector with autoloader-specific rules.
+By doing so, you will have complete control over the acronyms you use in modules and classes naming conventions in a single place.
+Furthermore, it will help you avoid polluting the ActiveSupport general-purpose inflector with autoloader-specific rules.
 
 ```ruby
 # config/initializers/zeitwerk.rb
@@ -142,8 +143,8 @@ def self.camelize(basename, _abspath)
 end
 ```
 
-As you can see it is designed to take 2 arguments: `basename` and `_abspath`. The `basename` is the file name without
-the extension and the `_abspath` is the absolute path to the file.
+As you can see it is designed to take 2 arguments: `basename` and `_abspath`.
+The `basename` is the file name without the extension and the `_abspath` is the absolute path to the file.
 
 Note that the `_abspath` is not used in either the `Rails::Autoloader::Inflector` or the `Zeitwerk::Inflector`
 implementation.
@@ -196,8 +197,8 @@ end
 ```
 
 The implementation above utilizes `Rails::Autoloader::Inflector` module. However, it prepends its `camelize`
-implementation with the one that first checks if the file path matches an unconventional rule. If it does, the method
-uses an non-standard inflection. If not, it falls back to the default implementation.
+implementation with the one that first checks if the file path matches an unconventional inflection rule.
+If it does, the method uses an non-standard inflection. If not, it falls back to the default implementation.
 
 ___
 I understand that the example of `Rest` and `REST` may seem contrived, but it serves to illustrate the point. In
