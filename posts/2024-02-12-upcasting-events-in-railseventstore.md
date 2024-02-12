@@ -1,5 +1,5 @@
 ---
-created_at: 2024-02-06 17:15:14 +0100
+created_at: 2024-02-12 8:43:14 +0100
 author: Łukasz Reszke
 tags: [ 'rails', 'rails-event-store', 'event-sourcing', 'upcasting', 'ddd' ]
 publish: false
@@ -29,8 +29,8 @@ After some discussion, we decided to implement this feature in the application l
 Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing.
 The concept is represented in the same way in the read model. However, those two methods produce different events.
 
-Long story short, it turned out that our aggregate was a little too feature-driven. It worked fine, all the business 
-rules were respected. But it felt like it duplicated part of the business logic. 
+Long story short, it turned out that our aggregate was a little too feature-driven. It worked fine, all the business
+rules were respected. But it felt like it duplicated part of the business logic.
 
 Feature-driven design of an aggregate deserves its own blog post. It's not a bad place to start. Learning domain is a
 process. With new insights, you may have to adjust the model.
@@ -61,7 +61,7 @@ and should be the only one that represents that business concept.
 
 There are probably several ways to implement the details. However, the general idea is to use a
 transformation
-to the pipeline. In the transformation, we setup the RailsEventStore to convert the old event to the new one. 
+to the pipeline. In the transformation, we setup the RailsEventStore to convert the old event to the new one.
 
 Take a look at the example below.
 
@@ -99,7 +99,7 @@ the [`JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/b8e
 
 ## When to use upcasting?
 
-If you are using event sourcing, **it is not recommended that you delete events**.  Events are **immutable** and 
+If you are using event sourcing, **it is not recommended that you delete events**.  Events are **immutable** and
 should be left as they were. This makes a lot of sense. It makes the application more reliable. It's good for auditing.
 
 Alternatively, if you know the event shouldn't be in the stream, you could rewrite the stream and only include the
