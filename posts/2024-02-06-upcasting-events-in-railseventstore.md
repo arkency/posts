@@ -23,7 +23,7 @@ It's often a dilemma that can arise. Where does this business logic go? The aggr
 responsible for the use cases? Somewhere else?
 From a code perspective, it's all about where to put this if statement.
 
-Have you ever experienced a similar conundrum? :wink:
+Have you ever experienced a similar conundrum?
 
 After some discussion, we decided to implement this feature in the application layer. But it felt hacky.
 Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing,
