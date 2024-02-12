@@ -11,31 +11,31 @@ Understanding the domain you are working with often leads to the need to redesig
 need to add or change a concept. Sometimes you'll need to remove a method or event produced by the aggregate. This was
 the case for us.
 
-Our goal was to remove an event from the system. To do that, we had to deal with the fact that this event is used in the
+Our goal was to remove an event from the system. To do this, we had to deal with the fact that this event was in the
 aggregate stream.
 
 It's interesting how we got there.
 
 We started discussing how to implement a new business feature in the aforementioned model.
-After exchanging a few ideas it felt like it didn't belong in the aggregate itself.
+After tossing around a few ideas it felt like it didn't belong in the aggregate itself.
 We realized that it belonged in the application layer, which is responsible for handling different business use cases.
 It's often a dilemma that can arise. Where does this business logic go? The aggregate, the application layer that is
 responsible for the use cases? Somewhere else?
 From a code perspective, it's all about where to put this if statement.
 
+Have you ever experienced a similar conundrum? :wink:
+
 After some discussion, we decided to implement this feature in the application layer. But it felt hacky.
 Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing,
 are presented the same way in the read model, but produce different events.
 
-Long story short, it turned out that our aggregate was a little too feature-driven. It was working fine, all the rules
-were being
-followed.
+Long story short, it turned out that our aggregate was a little too feature-driven. It worked fine, all the business 
+rules were respected. But it felt like it duplicated part of the business logic. 
 
 Feature-driven design of an aggregate deserves its own blog post. It's not a bad place to start. Learning domain is a
-process.
-With new insights, you may need to adjust the model.
+process. With new insights, you may have to adjust the model.
 
-At the end of this somewhat long introduction, we realized that we had two events representing the same concept.
+Anyway. At the end, of this somewhat long introduction, we realized that we had two events representing the same concept.
 And we decided to remove one of them.
 
 Then the question remains. What to do with the events already in the stream?
@@ -61,8 +61,7 @@ and should be the only one that represents that business concept.
 
 There are probably several ways to implement the details. However, the general idea is to use a
 transformation
-to the pipeline. In the transformation, we tell the RailsEventStore what to do when it sees the old
-event.
+to the pipeline. In the transformation, we setup the RailsEventStore to convert the old event to the new one. 
 
 Take a look at the example below.
 
@@ -100,16 +99,11 @@ the [`JSONClient`](https://github.com/RailsEventStore/rails_event_store/blob/b8e
 
 ## When to use upcasting?
 
-If you are using event sourcing, it is not recommended that you delete events. Events are immutable and should be left
-as they were.
-It makes a lot of sense. It makes the application more reliable. It's good for auditing.
+If you are using event sourcing, **it is not recommended that you delete events**.  Events are **immutable** and 
+should be left as they were. This makes a lot of sense. It makes the application more reliable. It's good for auditing.
 
-I used to deal with bugs in the aggregate stream in a different way. I would rewrite streams and only apply the events
-that should be
-that should be kept. However, this strategy has a few drawbacks. It is harder to see the whole picture.
-The events are not deleted, but they are no longer in the stream. It makes it harder to see what happened in the past
-for
-for certain aggregates.
+Alternatively, if you know the event shouldn't be in the stream, you could rewrite the stream and only include the
+events that should be there. In this case, it felt unnecessary. The event was valid, it was just duplicated.
 
-It's good to learn multiple strategies and know when to use them. In this case, upcasting seemed to be the best
+It's good to learn different strategies and know when to use them. In this case, upcasting seemed to be the best
 solution.
