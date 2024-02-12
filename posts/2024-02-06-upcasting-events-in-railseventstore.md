@@ -8,7 +8,7 @@ publish: false
 # Upcasting events in RailsEventStore
 
 Understanding the domain you are working with often leads to the need to redesign some of the models. Sometimes you'll
-need to add or change a concept. Sometimes you'll need to remove a method or event produced by the aggregate. This was
+need to add or change a concept. Other times, you'll need to remove a method or event produced by the aggregate. This was
 the case for us.
 
 Our goal was to remove an event from the system. To do this, we had to deal with the fact that this event was in the
@@ -21,13 +21,13 @@ After tossing around a few ideas it felt like it didn't belong in the aggregate 
 We realized that it belonged in the application layer, which is responsible for handling different business use cases.
 It's often a dilemma that can arise. Where does this business logic go? The aggregate, the application layer that is
 responsible for the use cases? Somewhere else?
-From a code perspective, it's all about where to put this if statement.
+From a code perspective, it's all about _where to put this if statement_.
 
 Have you ever experienced a similar conundrum?
 
 After some discussion, we decided to implement this feature in the application layer. But it felt hacky.
-Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing,
-are presented the same way in the read model, but produce different events.
+Writing a few test cases helped us realize that the aggregate class has two methods that basically do the same thing.
+The concept is represented in the same way in the read model. However, those two methods produce different events.
 
 Long story short, it turned out that our aggregate was a little too feature-driven. It worked fine, all the business 
 rules were respected. But it felt like it duplicated part of the business logic. 
@@ -35,14 +35,14 @@ rules were respected. But it felt like it duplicated part of the business logic.
 Feature-driven design of an aggregate deserves its own blog post. It's not a bad place to start. Learning domain is a
 process. With new insights, you may have to adjust the model.
 
-Anyway. At the end, of this somewhat long introduction, we realized that we had two events representing the same concept.
+At the end, of this somewhat long introduction, we realized that we had two events representing the same concept.
 And we decided to remove one of them.
 
-Then the question remains. What to do with the events already in the stream?
+Then the question remains. What to do with the events that are already in the stream?
 
 [There are multiple ways to deal with that situation.](https://blog.arkency.com/4-strategies-when-you-need-to-change-a-published-event/)
 
-We decided to upcast the event. Why? Events are immutable and shouldn't be removed. Having those in stream will make it
+We decided to upcast those events. Why? Events are immutable and shouldn't be removed. Having those in stream will make it
 easier to access them and understand the full picture whenever needed. It's especially important when something goes
 off.
 
