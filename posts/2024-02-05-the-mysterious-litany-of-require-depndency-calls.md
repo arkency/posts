@@ -55,7 +55,7 @@ Example: `lib/report/PL/X123/products`
 ## Classic autoloader
 
 With a classic autoloader, and eager loading disabled, it goes from a const name to a file name by
-calling `Raport::PL::X123.to_s.underscore` which results in `report/pl/x123/products`.
+calling `Report::PL::X123.to_s.underscore` which results in `report/pl/x123/products`.
 
 This magic happens in the `Module#const_missing` method invoked each time a reference is made to an undefined constant
 _(analogous to the well-known_ `method_missing` _callback)_.

@@ -10,8 +10,8 @@ publish: true
 In [my previous post](https://blog.arkency.com/the-mysterious-litany-of-require-depndency-calls/), I discussed the
 difference between how the classic autoloader and Zeitwerk autoloader match constant and file names. Short reminder:
 
-- Classic autoloader maps missing constant name `Raport::PL::X123` to a file name by
-  calling `Raport::PL::X123.to_s.underscore`
+- Classic autoloader maps missing constant name `Report::PL::X123` to a file name by
+  calling `Report::PL::X123.to_s.underscore`
 - Zeitwerk autoloader finds `lib/report/pl/x123/products.rb` and maps it to `Report::PL::X123::Products` constant name
   with the help of defined __inflectors__ rules.
 
