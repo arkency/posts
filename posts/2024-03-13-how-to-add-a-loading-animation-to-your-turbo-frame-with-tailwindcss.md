@@ -23,9 +23,9 @@ To make my animation I've wrapped the frame with an additional container:
 
 ```html+erb
  <div class="relative min-h-96">
-    <%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
+    <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
         Loading...
-    <% end %>
+    <%% end %>
 </div>
 ```
 
@@ -35,11 +35,11 @@ To create the overlay we need another element, which will change its behaviour b
 
 ```html+erb
  <div class="relative min-h-96">
-    <%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
+    <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
         Loading...
-    <% end %>
+    <%% end %>
     <div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-gray-50 bg-opacity-25 backdrop-blur-sm transition-opacity">
-      <%= image_tag "loading.svg", class: "animate-pulse" %>
+      <%%= image_tag "loading.svg", class: "animate-pulse" %>
     </div>
 </div>
 ```
@@ -49,10 +49,10 @@ Right now we have a pulsating loading image with an overlay covering the frame's
 
 ```html+erb
  <div class="relative min-h-96">
-    <%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
-    <% end %>
+    <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
+    <%% end %>
     <div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-gray-50 bg-opacity-25 opacity-0 [[busy]~&]:opacity-100 backdrop-blur-sm transition-opacity">
-      <%= image_tag "loading.svg", class: "animate-pulse" %>
+      <%%= image_tag "loading.svg", class: "animate-pulse" %>
     </div>
 </div>
 ```
