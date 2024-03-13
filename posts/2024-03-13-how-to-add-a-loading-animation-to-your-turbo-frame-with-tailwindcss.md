@@ -21,8 +21,8 @@ I did some digging and found out that [turbo frames actually have states](https:
 
 To make my animation I've wrapped the frame with an additional container:
 
-```html+erb
- <div class="relative min-h-96">
+```erb
+<div class="relative min-h-96">
     <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
         Loading...
     <%% end %>
@@ -33,8 +33,8 @@ I've added `relative` class to create a possibility of making overlay, and `min-
 
 To create the overlay we need another element, which will change its behaviour based on turbo frame's state. We'll place it underneath the frame:
 
-```html+erb
- <div class="relative min-h-96">
+```erb
+<div class="relative min-h-96">
     <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
         Loading...
     <%% end %>
@@ -47,8 +47,8 @@ To create the overlay we need another element, which will change its behaviour b
 Right now we have a pulsating loading image with an overlay covering the frame's content. We need to create a selector to change it's opacity, to do it we'll use the sibling `~` selector, and combine it with the tailwind's arbitrary variant: `[[busy]~&]:`. In this puzzle `[busy]` refers to our frame, `&` represents the loader element, so when the frame get's the `busy` attribute `[[busy]~&]:` variant will work. We'll use it with the opacity property - default value will be `0`, and `100` for the active variant. We can also get rid of the `Loading...` text.
 
 
-```html+erb
- <div class="relative min-h-96">
+```erb
+<div class="relative min-h-96">
     <%%= turbo_frame_tag 'transactions', src: dashboard_transactions_historic_path do %>
     <%% end %>
     <div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-gray-50 bg-opacity-25 opacity-0 [[busy]~&]:opacity-100 backdrop-blur-sm transition-opacity">
