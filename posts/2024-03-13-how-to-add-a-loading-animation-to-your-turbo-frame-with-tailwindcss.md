@@ -11,13 +11,17 @@ Ever been working on a project and hit a snag? That's what happened to me recent
 
 <!-- more -->
 
+<div>
+<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted playsinline loop></video>
+<span class="italic text-sm">Waiting a few eternities for the other tab to load.</span>
+</div>
+
 ## The `busy` attribute of the turbo frame
 
 The easiest way to add a loading state to the turbo frame is to insert the loader inside the frame tag. Problem is that it only works on the very first load, after that you'll see the old content until the new one fully loads.
 
 I did some digging and found out that [turbo frames actually have states](https://turbo.hotwired.dev/reference/frames#html-attributes), which can be useful: one when they're loading `busy` and one when they're done `complete`. They're represented by an HTML attribute and can be used to create the proper CSS selector.
 
-<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted></video>
 
 ## The handful sibling selector
 
@@ -58,7 +62,7 @@ Right now we have a pulsating loading image with an overlay covering the frame's
 </div>
 ```
 
-<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted></video>
+<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted playsinline loop></video>
 
 Now everytime we reload the frame's content we'll get a visual confirmation that something is going on. Everything done with a plain CSS selector and not a single line of JavaScript!
 
