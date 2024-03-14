@@ -17,7 +17,7 @@ The easiest way to add a loading state to the turbo frame is to insert the loade
 
 I did some digging and found out that [turbo frames actually have states](https://turbo.hotwired.dev/reference/frames#html-attributes), which can be useful: one when they're loading `busy` and one when they're done `complete`. They're represented by an HTML attribute and can be used to create the proper CSS selector.
 
-<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay></video>
+<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted></video>
 
 ## The handful sibling selector
 
@@ -58,7 +58,7 @@ Right now we have a pulsating loading image with an overlay covering the frame's
 </div>
 ```
 
-<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay></video>
+<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted></video>
 
 Now everytime we reload the frame's content we'll get a visual confirmation that something is going on. Everything done with a plain CSS selector and not a single line of JavaScript!
 
