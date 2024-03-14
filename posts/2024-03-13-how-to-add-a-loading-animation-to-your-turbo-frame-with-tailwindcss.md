@@ -11,9 +11,9 @@ Ever been working on a project and hit a snag? That's what happened to me recent
 
 <!-- more -->
 
-<div>
-<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full not-prose" autoplay muted playsinline loop></video>
-<span class="font-italic text-sm not-prose">Waiting a few eternities for the historic transactions tab to load.</span>
+<div class="not-prose">
+<video src="https://arkency-images.s3.eu-central-1.amazonaws.com/how-to-add-a-loading-animation-to-your-turbo-frame-with-tailwindcss/loader-off.mp4" class="w-full" autoplay muted playsinline loop></video>
+<span class="italic text-sm not-prose">Waiting a few eternities for the historic transactions tab to load.</span>
 </div>
 
 ## The `busy` attribute of the turbo frame
