@@ -1,8 +1,8 @@
 ---
-created_at: 2024-03-13 19:51:22 +0100
+created_at: 2024-03-14 13:06:22 +0100
 author: Maciek Korsan
 tags: ['frontend', 'css', 'hotwire', 'tailwindcss', 'rails' ]
-publish: false
+publish: true
 ---
 
 # How to add a loading animation to your turbo frame with TailwindCSS
