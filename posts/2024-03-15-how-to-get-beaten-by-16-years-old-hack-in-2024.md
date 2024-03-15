@@ -2,7 +2,7 @@
 title: How to get beaten by 16 years old hack in 2024
 created_at: 2024-03-15T10:37:05.835Z
 author: Paweł Pacana
-tags: []
+tags: ['ruby', 'gems', 'macos']
 publish: true
 ---
 
