@@ -36,24 +36,103 @@ end
 The culprit was in the debase gem, which did not build on new Command Line Tools. 
 
 ```
-msg
+Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+    current directory: /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/ruby-debug-ide-b671a1cbb6d8/ext
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/bin/ruby mkrf_conf.rb
+Installing base gem
+Building native extensions. This could take a while...
+Building native extensions. This could take a while...
+ERROR: Failed to build gem native extension.
+
+    current directory: /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/debase-0.2.5.beta2/ext
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/bin/ruby extconf.rb
+checking for vm_core.h... yes
+checking for iseq.h... yes
+checking for version.h... yes
+creating Makefile
+
+current directory: /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/debase-0.2.5.beta2/ext
+make DESTDIR\= sitearchdir\=./.gem.20240311-43199-d198st sitelibdir\=./.gem.20240311-43199-d198st clean
+
+current directory: /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/debase-0.2.5.beta2/ext
+make DESTDIR\= sitearchdir\=./.gem.20240311-43199-d198st sitelibdir\=./.gem.20240311-43199-d198st
+compiling breakpoint.c
+compiling context.c
+compiling debase_internals.c
+debase_internals.c:319:25: warning: initializing 'rb_control_frame_t *' (aka 'struct rb_control_frame_struct *') with an expression of type 'const
+rb_control_frame_t *' (aka 'const struct rb_control_frame_struct *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+    rb_control_frame_t *start_cfp = RUBY_VM_END_CONTROL_FRAME(TH_INFO(thread));
+                        ^           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+debase_internals.c:770:3: error: incompatible function pointer types passing 'void (VALUE, VALUE)' (aka 'void (unsigned long, unsigned long)') to parameter
+of type 'VALUE (*)(VALUE, VALUE)' (aka 'unsigned long (*)(unsigned long, unsigned long)') [-Wincompatible-function-pointer-types]
+  rb_define_module_function(mDebase, "set_trace_flag_to_iseq", Debase_set_trace_flag_to_iseq, 1);
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:338:142: note: expanded from macro 'rb_define_module_function'
+#define rb_define_module_function(mod, mid, func, arity)    RBIMPL_ANYARGS_DISPATCH_rb_define_module_function((arity), (func))((mod), (mid), (func),
+(arity))
+                                                                                                                                             ^~~~~~
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:274:1: note: passing argument to parameter here
+RBIMPL_ANYARGS_DECL(rb_define_module_function, VALUE, const char *)
+^
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:256:72: note: expanded from macro 'RBIMPL_ANYARGS_DECL'
+RBIMPL_ANYARGS_ATTRSET(sym) static void sym ## _01(__VA_ARGS__, VALUE(*)(VALUE, VALUE), int); \
+                                                                       ^
+debase_internals.c:773:3: error: incompatible function pointer types passing 'void (VALUE, VALUE)' (aka 'void (unsigned long, unsigned long)') to parameter
+of type 'VALUE (*)(VALUE, VALUE)' (aka 'unsigned long (*)(unsigned long, unsigned long)') [-Wincompatible-function-pointer-types]
+  rb_define_module_function(mDebase, "unset_iseq_flags", Debase_unset_trace_flags, 1);
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:338:142: note: expanded from macro 'rb_define_module_function'
+#define rb_define_module_function(mod, mid, func, arity)    RBIMPL_ANYARGS_DISPATCH_rb_define_module_function((arity), (func))((mod), (mid), (func),
+(arity))
+                                                                                                                                             ^~~~~~
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:274:1: note: passing argument to parameter here
+RBIMPL_ANYARGS_DECL(rb_define_module_function, VALUE, const char *)
+^
+/Users/kakadudu/.rvm/rubies/ruby-3.3.0/include/ruby-3.3.0/ruby/internal/anyargs.h:256:72: note: expanded from macro 'RBIMPL_ANYARGS_DECL'
+RBIMPL_ANYARGS_ATTRSET(sym) static void sym ## _01(__VA_ARGS__, VALUE(*)(VALUE, VALUE), int); \
+                                                                       ^
+1 warning and 2 errors generated.
+make: *** [debase_internals.o] Error 1
+
+make failed, exit code 2
+
+Gem files will remain installed in /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/debase-0.2.5.beta2 for inspection.
+Results logged to /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/extensions/x86_64-darwin-23/3.3.0/debase-0.2.5.beta2/gem_make.out
+...
+  /Users/kakadudu/.rvm/rubies/ruby-3.3.0/lib/ruby/3.3.0/rubygems/dependency_installer.rb:250:in `install'
+  mkrf_conf.rb:31:in `rescue in <main>'
+  mkrf_conf.rb:24:in `<main>'
+
+rake failed, exit code 1
+
+Gem files will remain installed in /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/ruby-debug-ide-b671a1cbb6d8 for inspection.
+Results logged to /Users/kakadudu/.rvm/gems/ruby-3.3.0/bundler/gems/extensions/x86_64-darwin-23/3.3.0/ruby-debug-ide-b671a1cbb6d8/gem_make.out
+
+...
+
+An error occurred while installing ruby-debug-ide (0.7.3), and Bundler cannot continue.
+
+In Gemfile:
+  ruby-debug-ide
 ```
 
 The build error message suggested the workaround to make it work again. If the gem was built with error condition turned off, it succeeded:
 
 ```
-gem install debase -v '0.2.5.beta2' 
+gem install debase -v '0.2.5.beta2' -- --with-cflags=-Wno-error=incompatible-function-pointer-types
+bundle install
 ```
 
 Translating this to bundler configuration, so that bundle install` picks it up, seemed straightforward:
 
 ```
-bundle config build.debase --with
+bundle config build.debase --with-cflags=-Wno-error=incompatible-function-pointer-types
 ```
 
 But it did not work. Why? 
 
-## The 12-year old hack
+## The 16 years old hack
 
 Looking again at the error message made me realise something. While the compiler could not build the debase gem, despite bundler having the right flags to instruct the compiler, it was the `ruby-debug-ide` gem which initiated the trouble.
 
@@ -64,7 +143,7 @@ Gem ruby-debug-ide-0.7.3
   rake (>= 0.8.1)
 ```
 
-Yet it initiates the build of the debase gem. A quick look into `ruby-debug-ide` source code revealed this gem ships a C-extension:
+Yet it initiates the build of the `debase` gem. A quick look into `ruby-debug-ide` source code revealed this gem ships a C-extension:
 
 ```ruby
 Gem::Specification.new do |spec|
@@ -120,7 +199,7 @@ f.write("task :default\n")
 f.close
 ```
 
-I've accidentally learned about `Gem::DependencyInstaller`, which does not honor bundler config and its build flags for gems. 
+I've accidentally learned about `Gem::DependencyInstaller`, which does not honor Bundler config and its build flags for gems. 
 
 The comment of _dummy rakefile to indicate success_ made me explore this more and I've found [180 similar results in gemspecs on github](https://github.com/search?q=path%3A*.gemspec+ext%2Fmkrf_conf.rb&type=code&ref=advsearch).
 
@@ -141,9 +220,9 @@ Why does this pattern exist? Let's zoom into to this conditional:
   Gem::DependencyInstaller.new(:prerelease => dep.prerelease?, :install_dir => install_dir).install(dep)
 ```
 
-This pattern was supposed dynamically add dependencies, based on which Ruby VM version we're installing this gem on. Perhaps by the time it was introduced it was the only possible solution.
+This pattern is supposed to dynamically add dependencies, based on which Ruby VM version we're installing this gem on. Perhaps by the time it was introduced it was the only possible solution.
 
-Nowadays nn application developer could take advantage of [Bundler platforms](https://bundler.io/v2.5/man/gemfile.5.html#PLATFORMS) in `Gemfile`:
+Nowadays an application developer could take advantage of [Bundler platforms](https://bundler.io/v2.5/man/gemfile.5.html#PLATFORMS) in `Gemfile`:
 
 ```ruby
 gem "weakling",   platforms: :jruby
@@ -193,10 +272,10 @@ Normally the gemspec Ruby-like specification is transformed into a more static o
 ```
 
 
-What did we do in our project? We're not building Ruby IDEs for living. We do not need to support Ruby < 3.3.0.
+What did we do in our project? We're not building Ruby IDEs for living. We do not need to support Ruby older than 3.3.0.
 
 Thus we've:
 
 * remained on stated explicit dependencies in `Gemfile`
-* opted out from conditional dependencies — removed `spec.extensions=` line in `ruby-debug-ide` fork, along with `ext/mkrf_conf.rb`
+* opted out from conditional dependencies — removed `spec.extensions=` line in `ruby-debug-ide` fork along with `ext/mkrf_conf.rb` file
 * enjoyed not seeing developers distracted by accidental complexity in the stack — without needig Bundler to support this pattern
