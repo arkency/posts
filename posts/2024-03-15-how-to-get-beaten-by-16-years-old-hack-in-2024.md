@@ -3,7 +3,7 @@ title: How to get beaten by 16 years old hack in 2024
 created_at: 2024-03-15T10:37:05.835Z
 author: Paweł Pacana
 tags: []
-publish: false
+publish: true
 ---
 
 There's a project I'm consulting on where programmers develop predominantly in cloud environment. This setup simplifies a lot of moving parts and has the benefit of providing everyone homogenous containers to run code. If it runs on my box — it will run on everyone's box. In that case, that box is Linux-based. It has the drawback of having greater latency and being more resource-constrained than a beefy local machine a developer is equipped with, i.e. MacBook Pro running on Apple Silicon.
@@ -155,7 +155,7 @@ end
 
 And this C-extension is a fake one:
 
-```
+```ruby
 install_dir = File.expand_path("../../../..", __FILE__)
 
 if !defined?(RUBY_ENGINE) || RUBY_ENGINE == 'ruby'
