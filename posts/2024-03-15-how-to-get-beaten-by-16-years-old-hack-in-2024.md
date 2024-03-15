@@ -121,7 +121,6 @@ The build error message suggested the workaround to make it work again. If the g
 
 ```
 gem install debase -v '0.2.5.beta2' -- --with-cflags=-Wno-error=incompatible-function-pointer-types
-bundle install
 ```
 
 Translating this to bundler configuration, so that bundle install` picks it up, seemed straightforward:
@@ -134,7 +133,7 @@ But it did not work. Why?
 
 ## The 16 years old hack
 
-Looking again at the error message made me realise something. While the compiler could not build the debase gem, despite bundler having the right flags to instruct the compiler, it was the `ruby-debug-ide` gem which initiated the trouble.
+Looking again at the error message made me realise something. While the compiler could not build the `debase` gem, despite bundler having the right flags to instruct the compiler, it was the `ruby-debug-ide` gem which initiated the trouble.
 
 This gem has no dependencies in its gemspec:
 ```
