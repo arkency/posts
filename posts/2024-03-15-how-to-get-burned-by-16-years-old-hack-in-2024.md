@@ -8,7 +8,7 @@ publish: true
 
 There's a project I'm consulting on where programmers develop predominantly in cloud environment. This setup simplifies a lot of moving parts and has the benefit of providing everyone homogenous containers to run code. If it runs on my box — it will run on everyone's box. In that case, that box is Linux-based. It has the drawback of having greater latency and being more resource-constrained than a beefy local machine a developer is equipped with, i.e. MacBook Pro running on Apple Silicon.
 
-Recently we've upgraded this development environment from Ruby 3.2.2 to Ruby 3.0.0. The process was smooth and predictable in the cloud environment. It worked on my box and by definition on everyone's boxes. However this wasn't always the case for local machines. The developers who chose to upgrade Ruby on their Macs early, experienced no trouble either. On the other hand, those who procrastinated a bit...
+Recently we've upgraded this development environment from Ruby 3.2.2 to Ruby 3.3.0. The process was smooth and predictable in the cloud environment. It worked on my box and by definition on everyone's boxes. However this wasn't always the case for local machines. The developers who chose to upgrade Ruby on their Macs early, experienced no trouble either. On the other hand, those who procrastinated a bit...
 
 The developers who procrastinated with Ruby upgrade got caught by the new release of Apple's Command Line Tools. If you're curious that version was:
 
@@ -123,7 +123,7 @@ The build error message suggested the workaround to make it work again. If the g
 gem install debase -v '0.2.5.beta2' -- --with-cflags=-Wno-error=incompatible-function-pointer-types
 ```
 
-Translating this to bundler configuration, so that bundle install` picks it up, seemed straightforward:
+Translating this to bundler configuration, so that `bundle install` picks it up, seemed straightforward:
 
 ```
 bundle config build.debase --with-cflags=-Wno-error=incompatible-function-pointer-types
