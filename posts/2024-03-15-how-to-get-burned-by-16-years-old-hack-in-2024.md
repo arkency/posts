@@ -277,4 +277,4 @@ Thus we've:
 
 * remained on stated explicit dependencies in `Gemfile`
 * opted out from conditional dependencies — removed `spec.extensions=` line in `ruby-debug-ide` fork along with `ext/mkrf_conf.rb` file
-* enjoyed not seeing developers distracted by accidental complexity in the stack — without needig Bundler to support this pattern
+* enjoyed not seeing developers distracted by accidental complexity in the stack — without needing Bundler to support this pattern
