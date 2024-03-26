@@ -8,10 +8,10 @@ publish: false
 # Do you tune out Ruby deprecation warnings?
 
 Looking into deprecation warnings is an essential habit to maintain up-to-date tech stack.
-While, thanks to the standard configuration of `ActiveSupport::Deprecation`, it's super easy to handle deprecation
-warnings coming from Rails, it's not always the case with Ruby itself.
-As we always want to keep both Rails and Ruby on the edge, we need a consistent approach to handle deprecation warnings
-from both sources.
+While, thanks to the explicit configuration of `ActiveSupport::Deprecation` in the environment-specific configuration
+files, it's quite popular to handle deprecation warnings coming from Rails.
+However, I rarely see projects configured properly to handle deprecation warnings coming from Ruby itself.
+As we always want to keep both Rails and Ruby up-to-date, it's crucial to handle both types of deprecation warnings.
 
 ## How does Rails handle its deprecation warnings?
 
@@ -36,7 +36,8 @@ We usually want to disallow for deprecations that we have already handled to avo
 Available behaviours for `config.active_support.deprecation` are `:raise`, `:stderr`, `:log`, `:notify`, `:report`, and
 `:silence`. You can also pass any object that responds to `call` method, i.e. a lambda.
 
-We usually set it to `:raise` or `:log` in the development. It's a good practice to collect them into an artifact on CI in the test environment.
+We usually set it to `:raise` or `:log` in the development. It's a good practice to collect them into an artifact on CI
+in the test environment.
 
 ```ruby
 # config/environments/test.rb
@@ -49,9 +50,11 @@ end
 ```
 
 In the production environment, on the other hand, we normally want to log, but never raise.
-However, an auto-generated `production.rb` file sets `config.active_support.report_deprecations = false` which is equivalent to `:silence` behaviour.
+However, an auto-generated `production.rb` file sets `config.active_support.report_deprecations = false` which is
+equivalent to `:silence` behaviour.
 We need manual intervention to start collecting deprecation warnings from the production environment.
 
 ## How about Ruby deprecation warnings?
 
+Ruby can also emit deprecation warnings, but it's not as straightforward as in Rails and requires an explicit setup.
 
