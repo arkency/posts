@@ -58,3 +58,7 @@ We need manual intervention to start collecting deprecation warnings from the pr
 
 Ruby can also emit deprecation warnings, but it's not as straightforward as in Rails and requires an explicit setup.
 
+It uses the built-in `Warning` module to notify about deprecated features being used.
+However, by default warnings issued by Ruby are printed to `$stderr`, which is usually ignored by developers.
+Moreover, [Ruby starting from version 2.7.2](https://bugs.ruby-lang.org/issues/17591), would not issue this certain type
+of warnings unless we explicitly tell it to do so with `Warning[:deprecated] = true`.
