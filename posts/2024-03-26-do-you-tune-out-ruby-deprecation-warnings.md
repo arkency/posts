@@ -66,7 +66,7 @@ of warning unless we explicitly tell it to do so with `Warning[:deprecated] = tr
 An approach that I recommend is to apply the same strategy to Ruby deprecation warnings as it is configured for Rails.
 
 We can do it by overriding the `Kernel#warn` method, which is used by Ruby to print warnings and make it pass certain
-messages to the ActiveSupport::Deprecation#warn method.
+messages to the `ActiveSupport::Deprecation#warn` method.
 
 ```ruby
 # config/initializers/capture_ruby_warnings.rb
@@ -98,11 +98,13 @@ warning if we are on Ruby < 3.
 # config/initializers/capture_ruby_warnings.rb
 Rails.application.deprecators[:ruby] = ActiveSupport::Deprecation.new(nil, 'Ruby')
 
-def warn(message)
-  if message =~ /deprecated/i
-    Rails.application.deprecators[:ruby].warn("#{message}", caller)
-  else
-    super
+module CaptureRubyWarnings
+  def warn(message)
+    if message =~ /deprecated/i
+      Rails.application.deprecators[:ruby].warn("#{message}", caller)
+    else
+      super
+    end
   end
 end
 
