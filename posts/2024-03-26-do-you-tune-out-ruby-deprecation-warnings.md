@@ -1,7 +1,7 @@
 ---
 created_at: 2024-03-26 16:11:04 +0100
 author: Piotr Jurewicz
-tags: [ Ruby Rails ]
+tags: [ 'ruby', 'rails' ]
 publish: true
 ---
 
