@@ -90,8 +90,9 @@ Warning.extend(CaptureRubyWarnings)
 Ruby >= 3, Rails >= 7.1
 </figcaption>
 
-Before Ruby 3, there is no `category` keyword argument in the `Kernel#warn` method, so we need to perform some string
-matching to determine if the warning is a deprecation warning.
+[Before Ruby 3](https://bugs.ruby-lang.org/issues/17122), there was not a `category` keyword argument in
+the `Kernel#warn` method, so we have to perform some string matching to determine if the message is a deprecation
+warning if we are on Ruby < 3.
 
 ```ruby
 # config/initializers/capture_ruby_warnings.rb
