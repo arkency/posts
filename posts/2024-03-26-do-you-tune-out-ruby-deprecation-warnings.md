@@ -50,8 +50,8 @@ end
 ```
 
 In the production environment, on the other hand, we normally want to log, but never raise.
-However, an auto-generated `production.rb` file sets `config.active_support.report_deprecations = false` which is
-equivalent to `:silence` behaviour.
+However, an auto-generated `config/environments/production.rb` file sets
+`config.active_support.report_deprecations = false` which is equivalent to `:silence` behaviour.
 We need manual intervention to start collecting deprecation warnings from the production environment.
 
 ## How about Ruby deprecation warnings?
@@ -62,3 +62,55 @@ It uses the built-in `Warning` module to notify about deprecated features being 
 However, by default warnings issued by Ruby are printed to `$stderr`, which is usually ignored by developers.
 Moreover, [Ruby starting from version 2.7.2](https://bugs.ruby-lang.org/issues/17591), would not issue this certain type
 of warnings unless we explicitly tell it to do so with `Warning[:deprecated] = true`.
+
+An approach that I recommend is to apply the same strategy to Ruby deprecation warnings as it is configured for Rails.
+
+We can do it by overriding the `Kernel#warn` method, which is used by Ruby to print warnings and make it pass certain
+messages to the ActiveSupport::Deprecation#warn method.
+
+<figure>
+```ruby
+# config/initializers/capture_ruby_warnings.rb
+Rails.application.deprecators[:ruby] = ActiveSupport::Deprecation.new(nil, 'Ruby')
+
+module CaptureRubyWarnings
+  def warn(message, category: nil)
+    if category == :deprecated
+      Rails.application.deprecators[:ruby].warn("#{message}", caller)
+    else
+      super
+    end
+  end
+end
+
+Warning[:deprecated] = true
+Warning.extend(CaptureRubyWarnings)
+```
+<figcaption>
+Ruby >= 3, Rails >= 7.1
+</figcaption>
+</figure>
+
+Before Ruby 3, there is no `category` keyword argument in the `Kernel#warn` method, so we need to perform some string
+matching to determine if the warning is a deprecation warning.
+
+<figure>
+```ruby
+# config/initializers/capture_ruby_warnings.rb
+Rails.application.deprecators[:ruby] = ActiveSupport::Deprecation.new(nil, 'Ruby')
+
+def warn(message)
+  if message =~ /deprecated/i
+    Rails.application.deprecators[:ruby].warn("#{message}", caller)
+  else
+    super
+  end
+end
+
+Warning[:deprecated] = true
+Warning.extend(CaptureRubyWarnings)
+```
+<figcaption>
+Ruby < 3, Rails >= 7.1
+</figcaption>
+</figure>
