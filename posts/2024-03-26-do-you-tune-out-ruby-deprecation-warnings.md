@@ -123,7 +123,7 @@ directly back then.
 module CaptureRubyWarnings
   def warn(message, category: nil)
     if category == :deprecated
-      Rails.application.deprecators[:ruby].warn("#{message}", caller)
+      ActiveSupport::Deprecation.warn("[RUBY] #{message}", caller)
     else
       super
     end
