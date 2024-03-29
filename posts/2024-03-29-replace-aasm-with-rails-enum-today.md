@@ -15,7 +15,7 @@ There’s a great chance that your Rails app contains one of the gems providing 
 
 I was struck by reckless use of this gem so many times that first thing I do after joining a new project is running `cat Gemfile | grep aasm` and here comes the meme which I made ~1.5 years ago:
 
-<img src="<%= src_fit("replace_assm_with_rails_enum_today/703rne.jpg") %>" width="100%">
+<img src="<%= src_fit("replace_aasm_with_rails_enum_today/703rne.jpg") %>" width="100%">
 
 My main concern with use of this gem is that you probably don’t need all the features it offers. More features means more temptation to use them. Greater use across the codebase means more coupling to external library which can be incompatible with upcoming Rails versions, blocking you from upgrade or making it pretty costly. You have to read yet another changelog to check if there aren’t any breaking changes or some subtle behavior change running your serious business application into problems.
 
@@ -249,7 +249,7 @@ However, _why use symbols to define possible state?_, you may ask. Because it’
 
 You know what’s even funnier? Database returns `String` when asked for `Transactions#status`. Serializing it to *JSON* will also turn it into `String` as *JSON* doesn’t implement symbols. I could imagine more scenarios when constant casting from `Symbol` to `String` back and forth happen without any particular reason. But that’s exactly how 3rd party gem (*AASM*) drives your architectural decisions.
 
-## We can do event better
+## We can do even better
 
 If you aren’t using scopes, you can simply disable them with `scopes: false`.
 
