@@ -85,7 +85,7 @@ end
 	* change the status to `successful` and run `save!` as we got used to it — same here, *enum* will do it’s job here if you call `transaction.successful!`
 * Set desired **initial state** for new objects — this can be done by providing `default` keyword argument to `enum` method, like `default: PROCESSING`.
 * Values need to be stored as strings, not as integers in the db — it’s possible since [Rails 7.0](https://api.rubyonrails.org/v7.0/files/activerecord/lib/active_record/enum_rb.html)
-* Hopefully there were no transitions or guards in state machines in our application — yet another reason to not employ *aasm* — but I can image implementing it with `ActiveRecord::Dirty` quite easy.
+* Hopefully there were no transitions or guards in state machines in our application — yet another reason to not employ *aasm* — but I can image implementing it with `ActiveRecord::Dirty` quite easy. Or even better, implement this behavior as a higher level abstracion and keep you model dummy in this matter.
 * No callbacks either, yay!
 * Constants containing all the possible states were already in place, so those defined by *aasm*, like `STATUS_PROCESSING, STATUS_SUCCESSFUL` and so on were something nobody asked for.
 
@@ -246,7 +246,7 @@ What exactly happens:
 2. `mapping` is asked to return a key for `”successful”` value, but there is no such in the hash, there’s a `Symbol` `:succesful` — yikes
 3. `deserialize("successful")` returns `nil` instead of `"successful"`
 
-Probably a single line in the docs like: _Don’t put symbols as values when defining the enum_ would do the job and save my time and potentially many other confused developers. What’s even more puzzling is the fact that you can provide default value as a `Symbol`, you can assign a value which is a `Symbol` and it will be stored as a `String` — which is understandable, but the definition has to contain string values — hence the `.transform_values(&:to_s)` trick.
+Probably a single line in the docs like: _Don’t put symbols as values when defining the enum_ would do the job and save my time and potentially many other confused developers. What’s even more puzzling is the fact that you can provide default value as a `Symbol`, you can assign a value which is a `Symbol` and it will be stored as a `String`, which is understandable, but the definition has to contain string values — hence the `.transform_values(&:to_s)` trick.
 
 However, _why use symbols to define possible state?_, you may ask. Because it’s a requirement of _aasm_. State has to be `Symbol` or object responding to `#name` method. If you provide `String`, you’ll see nice `NoMethodError` because it doesn’t respond to `name`.
 
@@ -256,7 +256,7 @@ You know what’s even funnier? Database returns `String` when asked for `Transa
 
 If you aren’t using scopes, you can simply disable them with `scopes: false`.
 
-Same goes for instance methods, those can be disabled with `instance_methods: false`.
+Same goes for instance methods like `succesful!` or `failed?`, those can be disabled with `instance_methods: false`.
 
 Most of the models that was rewritten required both, but whenever it was possible I disabled both of the features.
 
