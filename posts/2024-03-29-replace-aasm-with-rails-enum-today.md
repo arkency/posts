@@ -1,8 +1,8 @@
 ---
 created_at: 2024-03-29 23:36:29 +0100
 author: Szymon Fiedler
-tags: [rails, aasm, enum]
-publish: false
+tags: [rails, aasm, enum, active_record]
+publish: true
 ---
 
 # Replace aasm with Rails Enum today
