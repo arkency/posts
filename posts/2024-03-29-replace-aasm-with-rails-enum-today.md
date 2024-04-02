@@ -147,7 +147,6 @@ require 'bundler/inline'
 gemfile do
   source 'https://rubygems.org'
 
-  gem 'aasm'
   gem 'activerecord'
   gem 'sqlite3'
   gem 'minitest'
@@ -175,7 +174,11 @@ begin
     CANCELED = :canceled
 
     enum :status,
-         { processing: PROCESSING, failed: FAILED, successful: SUCCESSFUL, canceled: CANCELED },
+         { processing: PROCESSING,
+           failed: FAILED,
+           successful: SUCCESSFUL,
+           canceled: CANCELED
+         },
          default: PROCESSING,
          validate: true
   end
@@ -209,7 +212,7 @@ F
 Finished in 0.013456s, 74.3163 runs/s, 148.6326 assertions/s.
 
   1) Failure:
-TestTransaction#test_enum [enum.rb:41]:
+TestTransaction#test_enum [enum.rb:44]:
 Expected: "successful"
   Actual: nil
 
@@ -225,11 +228,11 @@ Let’s have a  look at our specific scenario:
 ```ruby
 # value = "successful"
 # mapping = ActiveSupport::HashWithIndifferentAccess.new({
-  "processing" => :processing,
-  "failed" => :failed,
-  "successful" => :successful,
-  "canceled" => :canceled,
-})
+#  "processing" => :processing,
+#  "failed" => :failed,
+#  "successful" => :successful,
+#  "canceled" => :canceled,
+# })
 # subtype = ActiveModel::Type::String instance
 
 def deserialize(value)
