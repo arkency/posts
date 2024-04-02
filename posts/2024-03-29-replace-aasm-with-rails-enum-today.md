@@ -193,7 +193,7 @@ begin
     end
   end
 ensure
-  File.delete(db_name) if File.exist?(db_name)
+  Dir.glob(db_name + '*').each { |file| File.delete(file) }
 end
 ```
 
