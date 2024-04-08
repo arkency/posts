@@ -297,4 +297,27 @@ Occurrences of `Model.aasm.states.map(&:name)` are replaceable by `Model.statuse
 `Model.aasm.states_for_select` helper can be replaced with `Model.statuses.values.map { |name, value| [I18n.l(name), value] }`. Extract this to one of your helpers.
 Maybe you don’t need to call `I18n` at all and simple `humanize` will be enough.
 
+Keep in mind that when you are not migrating from aasm but creating a brand new field with some kind of statuses
+it would a better idea to map the values to integers and create a field like:
+
+```ruby
+add_column :transactions, :status, :integer, limit: 1
+```
+
+This will require less space in the DB to store the same amount of information.
+
+```ruby
+class Transaction < ApplicationRecord
+    enum :status,
+         [
+             PROCESSING = :processing,
+             FAILED = :failed,
+             SUCCESSFUL = :successful,
+             CANCELED = :canceled,
+         ],
+         default: PROCESSING,
+         validate: true
+end
+```
+
 Now it’s your turn.
