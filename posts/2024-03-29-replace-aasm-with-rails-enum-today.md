@@ -116,6 +116,30 @@ end
 
 That’s it. Quit clean and understandable, isn’t it?
 
+### Less boilerplate
+
+We can do even better by removing unnecessary boilerplate. This in turn will make refactoring and adding new statuses a lot easier.
+
+```ruby
+class Transaction < ApplicationRecord
+    STATUSES = [
+      PROCESSING = :processing,
+      FAILED = :failed,
+      SUCCESSFUL = :successful,
+      CANCELED = :canceled,
+    ]
+
+    enum :status,
+         STATUSES.reduce({}) { |hash, status| hash[status] = status.to_s; hash },
+         default: PROCESSING.to_s,
+         validate: true
+end
+```
+
+We define constants that hold the valid status values and use the return values of these definitions as elements of an array of statuses.
+We can later on use `reduce` on this array when defining the enum to construct a `Hash` that maps symbol statuses to strings.
+This ensures that we have only a single place that we need to modify when adding, deleting or changing the possible statuses.
+
 ## The values quirk
 There’s one quirk, you’ve probably already noticed: `transform_values(&:to_s)`. I was quite confused what’s going on when I’ve provided symbols as values initially. Let’s see how the code looked like before:
 
