@@ -123,10 +123,10 @@ We can do even better by removing unnecessary boilerplate. This in turn will mak
 ```ruby
 class Transaction < ApplicationRecord
     STATUSES = [
-      PROCESSING = :processing,
-      FAILED = :failed,
-      SUCCESSFUL = :successful,
-      CANCELED = :canceled,
+        PROCESSING = :processing,
+        FAILED = :failed,
+        SUCCESSFUL = :successful,
+        CANCELED = :canceled,
     ]
 
     enum :status,
@@ -137,6 +137,14 @@ end
 ```
 
 We define constants that hold the valid status values and use the return values of these definitions as elements of an array of statuses.
+
+This is possible since constant assignment returns the assigned value.
+
+```ruby
+puts(FOO = "bar")
+#=> bar
+```
+
 We can later on use `reduce` on this array when defining the enum to construct a `Hash` that maps symbol statuses to strings.
 This ensures that we have only a single place that we need to modify when adding, deleting or changing the possible statuses.
 
