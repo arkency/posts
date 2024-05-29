@@ -16,7 +16,8 @@ Take a look at following functionality:
 <img src="https://arkency-images.s3.eu-central-1.amazonaws.com/hotwired-turbo-redirect-vs-turbo-stream/demo.gif" alt="demo of kanban example"></img>
 </div>
 
-The two approaches that can be used to implement this functionality are the redirect approach and the Turbo Streams approach.
+The two approaches that can be used to implement this functionality are the redirect approach and the Turbo Streams
+approach.
 
 <%= img_fit("hotwired-turbo-redirect-vs-turbo-stream/redirect_vs_turbo_stream.jpg") %>
 
@@ -32,7 +33,7 @@ improvements without any (or much) additional effort.
 
 The problem starts when the `kanban` endpoint slows down. Why would it slow down?
 
-Well.. why wouldn't it? ;) 
+Well.. why wouldn't it? ;)
 
 It might not be true for all pages
 in our applications, but the functionality usually stacks and grows. The feature is added here and there. It turns out,
@@ -52,9 +53,10 @@ Once you find yourself in that situation, it is a perfect moment to use Turbo St
 
 Besides the performance there are also other aspects worth noticing.
 
-### Amount of the data sent over the wire 
+### Amount of the data sent over the wire
 
-With the redirect approach, the whole page is sent over the wire. It is not a big deal for some pages, but as I mentioned
+With the redirect approach, the whole page is sent over the wire. It is not a big deal for some pages, but as I
+mentioned
 in the beginning, the pages have a tendency to grow in functionality, data, complexity, etc. Once you notice that you're
 sending too much data over the write, it is a good moment to take a look and consider using Turbo Streams.
 
@@ -71,8 +73,12 @@ Some of us just like to control what exactly will be the servers response. Then,
 ## Conclusion
 
 Personally, I prefer the Turbo Streams approach for the apps that I work with. But it mostly has to do with the
-fact that those are legacy applications. For the green field, I would consider the redirect approach. Here, I wrote that 😉.
+fact that those are legacy applications. For the green field, I would consider the redirect approach. Here, I wrote that
+😉.
 
-I also like how the developer happiness is mentioned when it comes to the redirect approach, and generally, the direction of 
-Turbo and Rails. To me, the biggest boost of developer happiness is that I don't have to use JavaScript to make my app
+I also like how the developer happiness is mentioned when it comes to the redirect approach, and generally, the
+direction of
+Turbo and Rails.
+
+To me, the biggest boost of developer happiness is that I don't have to use JavaScript to make my app
 interactive 😂. I mean, besides some Stimulus here and there. It's a great win!
