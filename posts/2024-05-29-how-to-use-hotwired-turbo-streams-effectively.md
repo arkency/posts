@@ -81,4 +81,6 @@ direction of
 Turbo and Rails.
 
 To me, the biggest boost of developer happiness is that I don't have to use JavaScript to make my app
-interactive 😂. I mean, besides some Stimulus here and there. It's a great win!
+interactive 😂.
+
+I mean, besides some Stimulus here and there. It's a great win!
