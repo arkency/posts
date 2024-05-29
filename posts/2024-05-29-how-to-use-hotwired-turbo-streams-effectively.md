@@ -10,6 +10,14 @@ publish: false
 Have you ever wondered which approach you should follow?
 Should it always be redirect? Or maybe you should always use Turbo Streams?
 
+Take a look at following functionality:
+
+<%= img_fit("hotwired-turbo-redirect-vs-turbo-stream/demo.gif") %>
+
+The two approaches that can be used to implement this functionality are the redirect approach and the Turbo Streams approach.
+
+<%= img_fit("hotwired-turbo-redirect-vs-turbo-stream/redirect_vs_turbo_stream.jpg") %>
+
 ## Let's take a look at the redirect approach first.
 
 For the developers it is simple, testable and last but not least, productive.
