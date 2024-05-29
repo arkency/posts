@@ -12,7 +12,9 @@ Should it always be redirect? Or maybe you should always use Turbo Streams?
 
 Take a look at following functionality:
 
-<%= img_fit("hotwired-turbo-redirect-vs-turbo-stream/demo.gif") %>
+<div class="not-prose">
+<img src="https://arkency-images.s3.eu-central-1.amazonaws.com/hotwired-turbo-redirect-vs-turbo-stream/demo.gif" alt="demo of kanban example"></img>
+</div>
 
 The two approaches that can be used to implement this functionality are the redirect approach and the Turbo Streams approach.
 
