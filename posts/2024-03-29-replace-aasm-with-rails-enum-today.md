@@ -7,7 +7,7 @@ publish: true
 
 # Replace aasm with Rails Enum today
 
-There’s a great chance that your Rails app contains one of the gems providing so called state machine implementation. There’s event a greater chance that it will be [aasm](https://github.com/aasm/aasm) formerly known as `acts_as_state_machine`. Btw. Who remembers [acts_as_hasselhoff](https://github.com/mariozig/acts_as_hasselhoff)? — ok, boomer. The _aasm_ does quite a lot when included into your `ActiveRecord` model — the question is do you really need all those things?
+There’s a great chance that your Rails app contains one of the gems providing so called state machine implementation. There’s even a greater chance that it will be [aasm](https://github.com/aasm/aasm) formerly known as `acts_as_state_machine`. Btw. Who remembers [acts_as_hasselhoff](https://github.com/mariozig/acts_as_hasselhoff)? — ok, boomer. The _aasm_ does quite a lot when included into your `ActiveRecord` model — the question is do you really need all those things?
 
 <!-- more -->
 
