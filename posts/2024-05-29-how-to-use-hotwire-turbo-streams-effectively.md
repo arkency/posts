@@ -2,7 +2,7 @@
 created_at: 2024-05-29 07:33:30 +0200
 author: Łukasz Reszke
 tags: [ 'hotwire', 'turbo', 'turbo streams' ]
-publish: false
+publish: true
 ---
 
 # How to use Hotwire Turbo Streams effectively?
