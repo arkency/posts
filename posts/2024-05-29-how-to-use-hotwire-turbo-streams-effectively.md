@@ -27,8 +27,8 @@ The two approaches that can be used to implement this functionality are the Redi
 
 For developers, it is easy, testable, and last but not least, productive.
 These are solid advantages that make it very tempting to use. And I don't think it's a bad idea to use it in some cases. I'll say even more, with latest Rails, it looks like a good starter.
-Also, what I really like is this little detail that my colleague [Tomek](https://blog.arkency.com/authors/tomasz-stolarczyk/) noticed. If you stop at Server Side Rendering
-and didn't join the SPA hype, all you need to do now is update your Rails application and you'd get nice UX
+Also, what I really like is this little detail that my colleague [Tomek](https://blog.arkency.com/authors/tomasz-stolarczyk/) noticed. If you stopped at Server Side Rendering
+few years ago and didn't join the SPA hype, all you need to do now is update your Rails application and you'd get nice UX
 improvements without any (or much) additional effort.
 
 ## The problem
