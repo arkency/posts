@@ -1,7 +1,7 @@
 ---
 created_at: 2024-05-29 07:33:30 +0200
 author: Łukasz Reszke
-tags: [ 'hotwire', 'turbo', 'turbo streams' ]
+tags: [ 'hotwire', 'turbo', 'turbo-streams', 'rails' ]
 publish: true
 ---
 
