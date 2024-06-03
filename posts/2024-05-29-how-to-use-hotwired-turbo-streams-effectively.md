@@ -1,11 +1,11 @@
 ---
 created_at: 2024-05-29 07:33:30 +0200
 author: Łukasz Reszke
-tags: [ 'hotwired', 'turbo', 'turbo streams' ]
+tags: [ 'hotwire', 'turbo', 'turbo streams' ]
 publish: false
 ---
 
-# How to use Hotwired Turbo Streams effectively?
+# How to use Hotwire Turbo Streams effectively?
 
 Have you ever wondered which approach to take?
 Should you always redirect? Or should you always use Turbo Streams?
