@@ -33,16 +33,16 @@ improvements without any (or much) additional effort.
 
 ## The problem
 
-The kanban endpoint is the one that renders the tables. This is the endpoint that the flow is redirected to after
+The `kanban` endpoint is the one that renders the tables. This is the endpoint that the flow is redirected to after
 the task is moved from one table to another.
-The problem starts when the `kanban' endpoint slows down.
+The problem starts when the `kanban` endpoint slows down.
 
-Why would it slow down?
+Why would it slow down? 🤔
 
-Well... why wouldn't it? ;)
+Well... why wouldn't it? 😛
 
 It may not be true for all pages in
-in our applications, but functionality tends to pile up and grow. The feature gets added here and there. It turns out
+in our applications, but functionality tends to pile up and grow. Little features get added here and there. It turns out
 that for this one particular page, it is important to include it. Live goes on, and we wake up with the page loading a lot of data and taking a lot of
 tons of data and takes a long time to render.
 
