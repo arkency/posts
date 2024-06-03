@@ -7,7 +7,10 @@ publish: false
 
 # How to use Hotwire Turbo Streams effectively?
 
+Redirects vs Turbo Streams.
+
 Have you ever wondered which approach to take?
+
 Should you always redirect? Or should you always use Turbo Streams?
 
 Take a look at the following functionality. It moves tasks between tables representing states in a Kanban board.
@@ -23,14 +26,18 @@ The two approaches that can be used to implement this functionality are the Redi
 ## Let's take a look at the redirect approach first.
 
 For developers, it is easy, testable, and last but not least, productive.
-These are solid advantages that make it very tempting to use. And I don't think it's a bad idea to use it in some cases.
-Also, what I really like is this little detail that my colleague Tomek noticed. If you stop at Server Side Rendering
+These are solid advantages that make it very tempting to use. And I don't think it's a bad idea to use it in some cases. I'll say even more, with latest Rails, it looks like a good starter.
+Also, what I really like is this little detail that my colleague [Tomek](https://blog.arkency.com/authors/tomasz-stolarczyk/) noticed. If you stop at Server Side Rendering
 and didn't join the SPA hype, all you need to do now is update your Rails application and you'd get nice UX
 improvements without any (or much) additional effort.
 
 ## The problem
 
-The problem starts when the `kanban' endpoint slows down. Why would it slow down?
+The kanban endpoint is the one that renders the tables. This is the endpoint that the flow is redirected to after
+the task is moved from one table to another.
+The problem starts when the `kanban' endpoint slows down.
+
+Why would it slow down?
 
 Well... why wouldn't it? ;)
 
@@ -72,7 +79,7 @@ Some of us just want to control exactly how the server responds. Then the Turbo 
 ## Conclusion
 
 Personally, I prefer the Turbo Streams approach for the applications I work with. But that mostly has to do with the fact that
-that these are legacy applications. For the greenfield, I would consider the redirect approach. Here is what I wrote
+that these are legacy applications. For the greenfield, I would consider the redirect approach. Here it is, I wrote it
 😉.
 
 I also like how the developer happiness is mentioned when it comes to the redirect approach, and generally the
