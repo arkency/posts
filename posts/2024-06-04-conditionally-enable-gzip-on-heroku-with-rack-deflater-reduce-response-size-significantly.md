@@ -11,7 +11,12 @@ If you came here after searching for something like "rack deflater path conditio
 your answer:
 
 ```ruby
-config.middleware.use Rack::Deflater, :if => lambda { |env, status, headers, body| env["PATH_INFO"] == "/your/endpoint/path/here" }
+config.middleware.use(
+  Rack::Deflater,
+  :if => lambda do |env, _, _, _| 
+    env["PATH_INFO"] == "/your/endpoint/path/here" 
+  end
+)
 ```
 
 Just insert this line in your `application.rb`, and you're set. We could wrap up this post here, but... But we all know 
