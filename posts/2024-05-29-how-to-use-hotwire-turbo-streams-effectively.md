@@ -43,8 +43,7 @@ Well... why wouldn't it? 😛
 
 It may not be true for all pages in
 in our applications, but functionality tends to pile up and grow. Little features get added here and there. It turns out
-that for this one particular page, it is important to include it. Live goes on, and we wake up with the page loading a lot of data and taking a lot of
-tons of data and takes a long time to render.
+that for this one particular page, it is important to include it. Live goes on, and we wake up with the page loading a lot of data and taking a lot of time to render.
 
 Then, when the redirect happens after a successful operation that should be quick and short,
 the server has to perform all the queries and retrieve all the data that would be needed to
