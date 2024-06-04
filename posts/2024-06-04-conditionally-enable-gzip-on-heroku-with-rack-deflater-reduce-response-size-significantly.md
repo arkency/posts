@@ -40,7 +40,7 @@ option with the `size_download` variable to see the download size.
 
 The downloaded content size was the same for both requests (with and without the `Accept-Encoding` header).
 
-<img src="<%= src_original("conditionally-enable-gzip-on-heroku-with-rack-deflater-reduce-response-size-significantly/post_content_compression_the_same_response.png") %>" width="100%">
+<img src="<%= src_original("conditionally-enable-gzip-on-heroku-with-rack-deflater-reduce-response-size-significantly/post_content_compression_the_same_response.jpg") %>" width="100%">
 
 This means the server does not support compression by default. As the project is hosted on a standard Heroku setup, there 
 is nothing like a reverse proxy there (with configured compression). In such a case, [Heroku tells us to compress on the application side](https://devcenter.heroku.com/articles/compressing-http-messages-with-gzip).
