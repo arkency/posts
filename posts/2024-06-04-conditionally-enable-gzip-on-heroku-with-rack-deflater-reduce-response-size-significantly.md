@@ -18,10 +18,12 @@ Just insert this line in your `application.rb`, and you're set. We could wrap up
 that we should not take a piece of random information from the Internet for granted. No matter what the most advanced, 
 AI-powered search engines in the world may suggest, adding non-toxic glue to pizza sauce is never a good choice.
 
+## Backstory
+
 Let's start by explaining how we ended up with such a config. Recently, we have been working on performance improvements 
 of the project's most complex (from the UI perspective) page. Well, basically, those are just... two tables and a chart. 
-But those tables are big, like very big, as they usually contain a few thousand cells. It's a lot of HTML when "hotwired" 
-<wink, wink>. You could say now that with JSON, it would be less data, but well, I love how Hotwire works, and I totally 
+But those tables are big, like very big, as they usually contain a few thousand cells. It's a lot of HTML when "hotwired"😉😉. 
+You could say now that with JSON, it would be less data, but well, I love how Hotwire works, and I totally 
 agree with this statement from their [handbook](https://turbo.hotwired.dev/handbook/introduction#turbo-streams%3A-deliver-live-page-changes):
 
 > Yes, the HTML payload might be a tad larger than a comparable JSON, but with gzip, the difference is usually negligible, 
@@ -54,15 +56,19 @@ want to see how we usually work with Hotwire in this YouTube episode: [Make your
 Moreover, we even disabled "gzipping" for assets (`config.assets.gzip = false`) so the CDN could do it better. 
 There is already a post about it here: [Don't waste your time on assets compilation on Heroku](https://blog.arkency.com/dont-waste-your-time-on-assets-compilation-on-heroku/).
 
-Nevertheless, for this one specific case, also given some timebox conditions, we consider enabling a `Rack::Deflater` 
-conditionally a good option. It also gave us satisfying results, as **we were able to reduce the response size from ~5MB to ~100KB** 😉
+## Reasoning behind going with Rack::Deflater
+
+For this specific case and given timebox conditions, we considered enabling a `Rack::Deflater` conditionally a good option. 
+With this solution we reduced the response size **from ~5MB to ~100KB** 😉. It was very satisfying result so we decided to give it a try.
 
 <img src="<%= src_original("conditionally-enable-gzip-on-heroku-with-rack-deflater-reduce-response-size-significantly/post_content_compression_curl_after_compression.png") %>" width="100%">
 
 We will probably stay with it as long as we don't need compression for many more endpoints (which is doubtful, 
 given [our way of working with Turbo Frames and Turbo Streams](https://www.youtube.com/watch?v=hc1C0r4a1J4)).
 
-Last but not least, some food for thought. In the long term, we could gather some metrics about response size and find 
+## Food for thought
+
+In the long term, we could gather some metrics about response size and find 
 some sweet spot for which responses (above which size, for example) we should compress. Then we could move the compression 
 part to the revere proxy (like nginx) using, for example, the [heroku-buildpack-nginx](https://github.com/heroku/heroku-buildpack-nginx). 
 Thanks to that, the app itself would not need to spend resources on compression, and that would be done by a specialized 
