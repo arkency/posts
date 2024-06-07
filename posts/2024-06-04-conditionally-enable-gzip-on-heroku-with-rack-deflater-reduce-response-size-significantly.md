@@ -2,7 +2,7 @@
 created_at: 2024-06-04 13:09:43 +0200
 author: Tomasz Stolarczyk
 tags: [gzip, compression, heroku, rack, deflater, middleware]
-publish: false
+publish: true
 ---
 
 # Conditionally Enable GZIP on Heroku with Rack::Deflater: Reduce Response Size Significantly
