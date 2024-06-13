@@ -82,8 +82,9 @@ Ok, it was quite fast, right? That’s correct for your dev machine, not necessa
 I’ll do the maths for you: *1300.4928s* means *21 minutes 40.49 seconds*. But it can be even longer — don’t ask me how I found about this.
 
 While the process of migration will end up eventually, the  migration blocking any other deployments to your application during this time may be unacceptable for various reasons:
-* process manager on a deployment machine may expect output within, e.g. 5 minutes. Such long running migration will get killed in such scenario.
+* you cannot release any other change to production until migration completes
 * something other goes wrong and you need to rapidly deploy a hotfix, but you can’t since the deployment is blocked by *long running migration™*
+* process manager on a deployment machine may expect output within, e.g. 5 minutes. Long running migration will get killed in such scenario.
 
 ## What to do then?
 Simply skip the migration body for `RAILS_ENV=production`:
