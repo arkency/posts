@@ -129,11 +129,11 @@ For the last option it’s also easy to enhance it with logging to easily identi
 ```ruby
 namespace :indexes do
   task add_index_on_active_users: :environment do
-	  Rails.logger.info("task indexes:add_index_on_active_users started")
-	  
+    Rails.logger.info("task indexes:add_index_on_active_users started")
+
     ActiveRecord::Migration.add_index :users, :active, if_not_exists: true
-    
-	  Rails.logger.info("task indexes:add_index_on_active_users finished")
+
+    Rails.logger.info("task indexes:add_index_on_active_users finished”)
   end
 end
 ```
