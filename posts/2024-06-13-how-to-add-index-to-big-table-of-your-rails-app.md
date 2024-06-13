@@ -2,7 +2,7 @@
 created_at: 2024-06-13 13:16:29 +0200
 author: Szymon Fiedler
 tags: [rails, mysql, postgresql, performance]
-publish: false
+publish: true
 ---
 
 # How to add index to big table of your Rails app
