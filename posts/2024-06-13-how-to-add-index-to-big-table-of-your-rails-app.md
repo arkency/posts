@@ -112,7 +112,7 @@ ActiveRecord::Migration.add_index :users, :active, if_not_exists: true
 bin/rails r "ActiveRecord::Migration.add_index :users, :active, if_not_exists: true"
 ```
 
-* Last, but not least, implement a `Rake` task. It has the advantage that it has to be committed to the repository so you don’t loose the history what’s happened:
+* Last, but not least, implement a `Rake` task. It has the advantage that it has to be committed to the repository so you don’t lose the history what’s happened:
 
 ```ruby
 namespace :indexes do
