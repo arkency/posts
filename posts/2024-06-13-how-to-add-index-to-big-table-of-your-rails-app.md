@@ -5,7 +5,7 @@ tags: [rails, mysql, postgresql, performance]
 publish: true
 ---
 
-# How to add index to big table of your Rails app
+# How to add index to a big table of your Rails app
 When your application is successful, some of the tables can grow pretty big — I’m looking at you *users* table. If you’re curious enough, you periodically check how your database performs. If any slow query pops up in the metrics, there’s a great chance that some index is missing. 
 
 <!-- more -->
