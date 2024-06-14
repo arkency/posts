@@ -11,7 +11,7 @@ When your application is successful, some of the tables can grow pretty big — 
 <!-- more -->
 
 ## State of the DB engines
-While most modern database engines create indexes in an asynchronous, non–blocking manner, it’s good to get familiar with all the exceptions from this rule. I highly recommend reading the documentation of [PostgreSQL](https://www.postgresql.org/docs/current/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY), [MySQL](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html#online-ddl-index-operations). I’m not sure about SQLite here as the documentation doesn’t clearly state that. However, my [quick chit–chat with LLM](https://chatgpt.com/share/248e939b-0fa4-49ad-a691-8535bab7dd08) may give you some insights.
+While most modern database engines can create indexes in an asynchronous, non–blocking manner, it’s good to get familiar with all the exceptions from this rule. I highly recommend reading the documentation of [PostgreSQL](https://www.postgresql.org/docs/current/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY), [MySQL](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html#online-ddl-index-operations). I’m not sure about SQLite here as the documentation doesn’t clearly state that. However, my [quick chit–chat with LLM](https://chatgpt.com/share/248e939b-0fa4-49ad-a691-8535bab7dd08) may give you some insights.
 
 ## What’s the problem then?
 As you already know `CREATE INDEX` statement will be handled asynchronously by the database if appropriate algorithm is used. This means that no reads, writes and update will be blocked. 
@@ -39,6 +39,8 @@ User.where(active: false)
 
 If you have enough *users*, speaking of dozens or hundreds of millions, doing full table scan could simply kill the database performance. Full table scan happens when database has no index to use and need to check every row whether it meets the criteria.
 
+I will stick with PostreSQL in the examples if not stated otherwise.
+
 ## Obvious solution
 
 Let’s add the index then:
@@ -52,9 +54,19 @@ Let’s add the index then:
 Implementation:
 
 ```ruby
+# PostgreSQL
+class AddIndexOnActiveUsers < ActiveRecord::Migration[7.1]
+  disable_ddl_transaction!
+
+  def change
+    add_index :users, :active, algorithm: :concurrently
+  end
+end
+
+# MySQL
 class AddIndexOnActiveUsers < ActiveRecord::Migration[7.1]
   def change
-    add_index :users, :active
+    add_index :users, :active, algorithm: :inplace
   end
 end
 ```
@@ -91,8 +103,10 @@ Simply skip the migration body for `RAILS_ENV=production`:
 
 ```ruby
 class AddIndexOnActiveUsers < ActiveRecord::Migration[7.1]
+  disable_ddl_transaction!
+
   def change
-    add_index :users, :active, if_not_exists: true unless Rails.env.production?
+    add_index :users, :active, algorithm: :concurrently, if_not_exists: true unless Rails.env.production?
   end
 end
 ```
@@ -103,21 +117,37 @@ But _Hey, where’s my index on production?!_ you might ask. And that’s a pret
 * Run it within `bin/rails console`:
 
 ```ruby
-ActiveRecord::Migration.add_index :users, :active, if_not_exists: true
+# PostgreSQL
+ActiveRecord::Migration.add_index :users, :active, algorithm: :concurrently, if_not_exists: true
+
+# MySQL
+ActiveRecord::Migration.add_index :users, :active, algorithm: :inplace, if_not_exists: true
 ```
 
 * Do the same via `bin/rails runner`:
 
 ```shell
-bin/rails r "ActiveRecord::Migration.add_index :users, :active, if_not_exists: true"
+# PostgreSQL
+bin/rails r "ActiveRecord::Migration.add_index :users, :active, algorithm: :concurrently, if_not_exists: true"
+
+#MySQL
+bin/rails r "ActiveRecord::Migration.add_index :users, :active, algorithm: :inplace, if_not_exists: true"
 ```
 
 * Last, but not least, implement a `Rake` task. It has the advantage that it has to be committed to the repository so you don’t lose the history what’s happened:
 
 ```ruby
+# PostgreSQL
 namespace :indexes do
   task add_index_on_active_users: :environment do
-    ActiveRecord::Migration.add_index :users, :active, if_not_exists: true
+    ActiveRecord::Migration.add_index :users, :active, algorithm: :concurrently, if_not_exists: true
+  end
+end
+
+# MySQL
+namespace :indexes do
+  task add_index_on_active_users: :environment do
+    ActiveRecord::Migration.add_index :users, :active, algorithm: :inplace, if_not_exists: true
   end
 end
 ```
@@ -131,12 +161,40 @@ namespace :indexes do
   task add_index_on_active_users: :environment do
     Rails.logger.info("task indexes:add_index_on_active_users started")
 
-    ActiveRecord::Migration.add_index :users, :active, if_not_exists: true
+    ActiveRecord::Migration.add_index :users, :active, algorithm: :concurrently, if_not_exists: true
 
     Rails.logger.info("task indexes:add_index_on_active_users finished”)
   end
 end
 ```
 
-### Tiny detail
+### Tiny details
 If you’re aware enough, you probably spotted `if_not_exists: true` flag. We like idempotence and that’s the reason. If anyone runs this task again, nothing will happen. If you prefer to see `ActiveRecord::StatementInvalid` instead, feel free to skip it.
+
+As mentioned in the preface, to use appropriate algorithm for index creation `algorithm: :concurrently` for *PostgreSQL* and `algorithm: inplace` for *MySQL* has to be specified.
+
+There’s another quirk for *PostgreSQL*:
+
+> Another difference is that a regular `CREATE INDEX` command can be performed within a transaction block, but `CREATE INDEX CONCURRENTLY` cannot.
+
+Each Rails migration execution is wrapped within transaction. To disable this behavior, you need to use `disable_ddl_transaction!` method within your migration. Otherwise, following error will pop up:
+
+```shell
+bin/rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled: (StandardError)
+
+PG::ActiveSqlTransaction: ERROR:  CREATE INDEX CONCURRENTLY cannot run inside a transaction block
+/Users/fidel/code/fidel/trololo/db/migrate/20240613121751_add_index_on_active_users.rb:5:in `change'
+
+Caused by:
+ActiveRecord::StatementInvalid: PG::ActiveSqlTransaction: ERROR:  CREATE INDEX CONCURRENTLY cannot run inside a transaction block (ActiveRecord::StatementInvalid)
+/Users/fidel/code/fidel/trololo/db/migrate/20240613121751_add_index_on_active_users.rb:5:in `change'
+
+Caused by:
+PG::ActiveSqlTransaction: ERROR:  CREATE INDEX CONCURRENTLY cannot run inside a transaction block (PG::ActiveSqlTransaction)
+/Users/fidel/code/fidel/trololo/db/migrate/20240613121751_add_index_on_active_users.rb:5:in `change'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+```
+
+However, it’s not a problem for our custom script or `Rake` task run on production environment.
