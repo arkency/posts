@@ -34,10 +34,11 @@ I've recently written a blog post on how to handle Ruby deprecation warnings, yo
 
 ### Semantic versioning
 The entity providing the software usually follows the rules of Semantic Versioning:
-Given a version number MAJOR.MINOR.PATCH, increment the:
-MAJOR version when you make incompatible API changes
-MINOR version when you add functionality in a backward compatible manner
-PATCH version when you make backward compatible bug fixes
+> Given a version number MAJOR.MINOR.PATCH, increment the:
+> - MAJOR version when you make incompatible API changes
+> - MINOR version when you add functionality in a backward compatible manner
+> - PATCH version when you make backward compatible bug fixes
+
 In effect, you should know what to expect from the upgrade process based on the version you're upgrading to.
 
 ### Semantic versioning in the Rails way
@@ -76,6 +77,7 @@ It should be reduced to 1-3 commits, which are easy to review and merge. We alwa
 When upgrading Ruby, there is also a way to split the scope of the upgrade into smaller steps.
 Ruby comes with a set of standard libraries that are bundled with the interpreter.
 You probably won't find them in the Gemfile but there is a high chance that you rely on them.
-Each Ruby version comes with a different set of standard libraries. Some of them are removed, some are added, and some are updated. Hopefully, you can easily verify which libraries are impacted by the upgrade.. I use the https://stdgems.org website for that purpose.
+Each Ruby version comes with a different set of standard libraries. Some of them are removed, some are added, and some are updated. Hopefully, you can easily verify which libraries are impacted by the upgrade.
+I use the https://stdgems.org website for that purpose.
 If you notice some important libraries change in the next Ruby version, you can start by updating them first.
 This will require explicit specification in the Gemfile, but it's worth it. Again, it will make the actual Ruby version change smoother.
