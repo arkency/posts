@@ -19,9 +19,17 @@ To make the whole process simpler, I always start with auditing the Gemfile.
 
 I check if there are any gems that are not supposed to be there anymore, and usually, find some of them.
 Especially, I look for:
-- Gems that are not referenced in the code. However, you should be careful with this one, because sometimes gems may be used in a non-obvious way. They can extend or patch some Ruby or Rails classes. We had such a hard experience with `active_model_serializers` gem for example.
-- Gems that are trivial to inline. For example, if you use a single 5-line method from a huge unmaintained gem, it's better to copy-paste it to your codebase. You won't encounter any problems with this gem's requirements later in the upgrade process.
-- Gems that duplicate the functionality of the framework. `activerecord-import` is a good example. It was super useful prior to Rails 6, but if you're on Rails 6 or newer, you can use built-in functions instead. Another example is `aasm` gem. Recently, Szymon wrote a [great blog post](https://blog.arkency.com/replace-aasm-with-rails-enum-today/) on how to replace it with Rails' built-in enum feature.
+- Gems that are not referenced in the code.
+
+However, you should be careful with this one, because sometimes gems may be used in a non-obvious way. They can extend or patch some Ruby or Rails classes. We had such a hard experience with `active_model_serializers` gem for example.
+- Gems that are trivial to inline.
+
+For example, if you use a single 5-line method from a huge unmaintained gem, it's better to copy-paste it to your codebase. You won't encounter any problems with this gem's requirements later in the upgrade process.
+- Gems that duplicate the functionality of the framework.
+
+`activerecord-import` is a good example. It was super useful prior to Rails 6, but if you're on Rails 6 or newer, you can use built-in functions instead.
+
+Another example is `aasm` gem. Recently, Szymon wrote a [great blog post](https://blog.arkency.com/replace-aasm-with-rails-enum-today/) on how to replace it with Rails' built-in enum feature.
 
 ### Security issues
 Another thing I always check in the very beginning is common vulnerabilities and exposures ([CVE](https://www.cve.org)s).
