@@ -31,7 +31,7 @@ For example, if you use a single 5-line method from a huge unmaintained gem, it'
 
 Another example is `aasm` gem. Recently, Szymon wrote a [great blog post](https://blog.arkency.com/replace-aasm-with-rails-enum-today/) on how to replace it with Rails' built-in enum feature.
 
-### Security issues
+### Mitigate security issues
 Another thing I always check in the very beginning is common vulnerabilities and exposures ([CVE](https://www.cve.org)s).
 
 I use `bundler-audit` gem to check if there are any known security issues with the gems present in the Gemfile.
@@ -39,6 +39,7 @@ Running `bundle audit`, you obtain a list of vulnerabilities with criticality le
 
 ### Make sure you collect deprecation warnings
 It’s quite common to handle deprecation warnings coming from Rails, but, I rarely see projects configured properly to handle deprecation warnings coming from Ruby itself.
+
 I've written a whole blog post on how to handle Ruby deprecation warnings, you can check it out [here](https://blog.arkency.com/do-you-tune-out-ruby-deprecation-warnings/).
 
 ## The upgrade map
