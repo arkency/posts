@@ -102,3 +102,9 @@ I use the [stdgems.org](https://stdgems.org) website for that purpose.
 
 If you notice any important changes to libraries in the next Ruby version, start by updating them first.
 This will require explicit specification in the Gemfile, but it's worth it. Doing so will help make the actual Ruby version change smoother.
+
+## Need help?
+
+If you're struggling with upgrading your Ruby or Rails application, don't hesitate to [contact us](https://arkency.com/hire-us/).
+
+We have experience in upgrading applications of various sizes and complexity levels. We can help you make the process smooth and painless.
