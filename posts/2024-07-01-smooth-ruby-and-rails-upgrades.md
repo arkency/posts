@@ -2,7 +2,7 @@
 created_at: 2024-07-01 13:30:20 +0200
 author: Piotr Jurewicz
 tags: ['ruby', 'rails', 'upgrades']
-publish: false
+publish: true
 ---
 
 # Smooth Ruby and Rails upgrades
