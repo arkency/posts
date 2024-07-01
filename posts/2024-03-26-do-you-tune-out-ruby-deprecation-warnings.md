@@ -100,7 +100,7 @@ Rails.application.deprecators[:ruby] = ActiveSupport::Deprecation.new(nil, 'Ruby
 
 module CaptureRubyWarnings
   def warn(message)
-    if message =~ /deprecated/i
+    if message =~ /deprecated|obsolete|will be removed/i
       Rails.application.deprecators[:ruby].warn("#{message}", caller)
     else
       super
@@ -122,7 +122,6 @@ directly back then.
 
 ```ruby
 # config/initializers/capture_ruby_warnings.rb
-
 module CaptureRubyWarnings
   def warn(message, category: nil)
     if category == :deprecated
@@ -143,10 +142,9 @@ Ruby >= 3, Rails < 7.1
 
 ```ruby
 # config/initializers/capture_ruby_warnings.rb
-
 module CaptureRubyWarnings
   def warn(message)
-    if message =~ /deprecated/i
+    if message =~ /deprecated|obsolete|will be removed/i
       ActiveSupport::Deprecation.warn("[RUBY] #{message}", caller)
     else
       super
