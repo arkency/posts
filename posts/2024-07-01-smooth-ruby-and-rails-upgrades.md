@@ -81,9 +81,9 @@ After taking each step, monitor the application for new issues, collect deprecat
 ### Low-level plan
 In practice, the upgrade process is more complex than simply transitioning from one version to another. The necessary steps are often unclear until you begin.
 
-Consider you are making a Rails upgrade. So far, you've bumped the version in the Gemfile, ran bundle install and it failed.
-It turned out that you have to update gem x first. Then you run bundle install again and it fails again.
-Gem y must be updated first to unlock gem x. But you can't simply update y without adjusting the code first.
+Consider you are making a Rails upgrade. So far, you've bumped the version in the Gemfile, run `bundle install` and it failed.
+It turned out that you have to update gem `x` first. Then you ran `bundle install` for the second time but it failed again. 
+Gem `y` must be updated first to unlock gem `x`. But you can't simply update `y` without adjusting the code first...
 
 Finally, you end up with a `bump-rails` branch with dozens of commits. The actual Rails version change is the last one. What would you do next? Are you bold enough to merge it into the main branch?
 
@@ -95,10 +95,10 @@ It should be reduced to 1-3 commits, which are easy to review and merge. We alwa
 When upgrading Ruby, there is also a way to split the scope of the upgrade into smaller steps.
 
 Ruby comes with a set of standard libraries that are bundled with the interpreter.
-You probably won't find them in the Gemfile but there is a high chance that you rely on them.
+You probably won't find them in the Gemfile, but it's highly likely that your application relies heavily on their specific behavior.
 
 Each Ruby version comes with a different set of standard libraries. Some of them are removed, some are added, and some are updated. Hopefully, you can easily verify which libraries are impacted by the upgrade.
 I use the [stdgems.org](https://stdgems.org) website for that purpose.
 
-If you notice some important libraries change in the next Ruby version, you can start by updating them first.
-This will require explicit specification in the Gemfile, but it's worth it. Again, it will make the actual Ruby version change smoother.
+If you notice any important changes to libraries in the next Ruby version, start by updating them first.
+This will require explicit specification in the Gemfile, but it's worth it. Doing so will help make the actual Ruby version change smoother.
