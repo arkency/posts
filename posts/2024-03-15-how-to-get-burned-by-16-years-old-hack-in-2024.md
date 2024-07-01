@@ -2,7 +2,7 @@
 title: How to get burned by 16 years old hack in 2024
 created_at: 2024-03-15T10:37:05.835Z
 author: Paweł Pacana
-tags: ['ruby', 'gems', 'macos']
+tags: ['ruby', 'gems', 'macos', 'ruby upgrade']
 publish: true
 ---
 

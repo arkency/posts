@@ -1,7 +1,7 @@
 ---
 created_at: 2023-03-02 14:00:31 +0100
 author: Piotr Jurewicz
-tags: ['ruby', 'parser', 'AST', 'rails', 'static analysis']
+tags: ['ruby', 'parser', 'AST', 'rails', 'static analysis', 'ruby upgrade']
 publish: true
 ---
 

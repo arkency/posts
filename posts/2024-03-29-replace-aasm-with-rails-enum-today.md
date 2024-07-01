@@ -1,7 +1,7 @@
 ---
 created_at: 2024-03-29 23:36:29 +0100
 author: Szymon Fiedler
-tags: [rails, aasm, enum, active_record]
+tags: [rails, aasm, enum, active_record, rails upgrade]
 publish: true
 ---
 

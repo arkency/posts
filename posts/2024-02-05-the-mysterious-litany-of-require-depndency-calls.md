@@ -1,7 +1,7 @@
 ---
 created_at: 2024-02-05 16:33:07 +0100
 author: Piotr Jurewicz
-tags: [ 'rails', 'zeitwerk', 'autoload' ]
+tags: [ 'rails', 'zeitwerk', 'autoload', 'rails upgrade' ]
 publish: true
 ---
 

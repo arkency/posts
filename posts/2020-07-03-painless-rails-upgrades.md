@@ -1,7 +1,7 @@
 ---
 created_at: 2020-07-03 15:35:09 +0200
 author: Szymon Fiedler
-tags: [rails]
+tags: [rails, rails upgrade]
 publish: true
 ---
 

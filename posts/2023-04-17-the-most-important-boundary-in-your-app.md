@@ -1,7 +1,7 @@
 ---
 created_at: 2023-04-17 10:52:52 +0200
 author: Piotr Jurewicz
-tags: ['rails', 'framework', 'decoupling']
+tags: ['rails', 'framework', 'decoupling', 'rails upgrade']
 publish: true
 ---
 

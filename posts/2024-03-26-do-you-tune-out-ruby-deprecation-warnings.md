@@ -1,7 +1,7 @@
 ---
 created_at: 2024-03-26 16:11:04 +0100
 author: Piotr Jurewicz
-tags: [ 'ruby', 'rails' ]
+tags: [ 'ruby', 'rails', 'rails upgrade', 'ruby upgrade']
 publish: true
 ---
 
