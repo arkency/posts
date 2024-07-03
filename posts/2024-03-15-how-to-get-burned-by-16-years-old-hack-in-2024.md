@@ -1,10 +1,11 @@
 ---
-title: How to get burned by 16 years old hack in 2024
 created_at: 2024-03-15T10:37:05.835Z
 author: Paweł Pacana
 tags: ['ruby', 'gems', 'macos', 'ruby upgrade']
 publish: true
 ---
+
+# How to get burned by 16 years old hack in 2024
 
 There's a project I'm consulting on where programmers develop predominantly in cloud environment. This setup simplifies a lot of moving parts and has the benefit of providing everyone homogenous containers to run code. If it runs on my box — it will run on everyone's box. In that case, that box is Linux-based. It has the drawback of having greater latency and being more resource-constrained than a beefy local machine a developer is equipped with, i.e. MacBook Pro running on Apple Silicon.
 
