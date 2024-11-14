@@ -44,7 +44,7 @@ It is also possible that a button outside of the specific frame can trigger an u
 you have to explicitly point to that frame:
 
 ```html
-<%= button_to "Delete", @projects.first, method: :delete, data: {turbo_frame: "projects"} %>
+button_to "Delete", @projects.first, method: :delete, data: {turbo_frame: "projects"}
 ```
 
 Above, in general, means that when working with frames, you always only "replace" the existing frame with new content.
