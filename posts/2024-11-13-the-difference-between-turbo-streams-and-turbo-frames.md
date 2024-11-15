@@ -2,7 +2,7 @@
 created_at: 2024-11-13 20:22:19 +0100
 author: Tomasz Stolarczyk
 tags: [ 'hotwire', 'turbo', 'turbo streams', 'turbo frames', 'rails' ]
-publish: false
+publish: true
 ---
 
 # The difference between Turbo Streams and Turbo Frames
