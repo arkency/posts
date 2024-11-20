@@ -36,7 +36,7 @@ When I have a feature to implement, I often like to work like this:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">for each desired change, make the change easy (warning: this may be hard), then make the easy change</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/250733358307500032?ref_src=twsrc%5Etfw">September 25, 2012</a></blockquote>
 
-Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course, we prefer the realtime style and a lot of applications evolve towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboartion with all the benefits of it.
+Think of Google-Docs-style realtime collaboration vs. emailing each other subsequent versions of a document. Of course, we prefer the realtime style and a lot of applications evolve towards it. But where do our code integration techniques fall on this spectrum? By allowing small atomic commits we're closer to realtime collaboration with all the benefits of it.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">From personal experience, it feels like using Google Docs compared to emailing each other Word documents.<br><br>Also refactoring much much more often since it&#39;s extremely cheap and fast. <br><br>Which helps with =&gt; <a href="https://t.co/jdN1eSmJPl">https://t.co/jdN1eSmJPl</a></p>&mdash; Miroslav Csonka (@miroslavcsonka) <a href="https://twitter.com/miroslavcsonka/status/1374497072884240391?ref_src=twsrc%5Etfw">March 23, 2021</a></blockquote>
 
@@ -74,7 +74,7 @@ Perhaps it's familiar to you:
 * someone reviewed your PR, but only pointed out simple things — actually relevant things were not addressed: data flow, architecture, corner cases
 * you were asked to review a PR, but you were only able to point out some simple things — you just submitted them to give the impression that you made some effort reviewing the code
 
-Why is that? In order to properly review a non-trivial piece of code, I need to focus, get deep enough and build enough context — almost to the extent that the PR author did while coding. The reviewer has to do it without the privilege of being able to put my hands on the keyboard and without the same amount of time. **Proper review takes the same amount of focus as actual coding. Why not pair-program instead?**
+Why is that? In order to properly review a non-trivial piece of code, I need to focus, get deep enough and build enough context — almost to the extent that the PR author did while coding. The reviewer has to do it without the privilege of being able to put his hands on the keyboard and without the same amount of time. **Proper review takes the same amount of focus as actual coding. Why not pair-program instead?**
 
 The superficiality of reviews is amplified by the following factors:
 
@@ -102,7 +102,7 @@ Which developer will faster learn to _code responsibly_? The first one knows tha
 
 The second one knows that every line they write can screw up things for other developers or even bring production down. They watch their step, they know they are the only one responsible for this change. **It shortens the delay between making a mistake and seeing the effect of it**.
 
-People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast can such a person stop relying on reviews on develop his own sense of responsibility?
+People argue that you need PRs because of junior programmers. Probably yes, but do you consider how fast such a person can stop relying on reviews and develop his own sense of responsibility?
 
 ## 8. PRs discourage _continuous refactoring_
 
