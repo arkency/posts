@@ -109,3 +109,7 @@ This will require explicit specification in the Gemfile, but it's worth it. Doin
 If you're struggling with upgrading your Ruby or Rails application, don't hesitate to [contact us](https://arkency.com/hire-us/).
 
 We have experience in upgrading applications of various sizes and complexity levels. We can help you make the process smooth and painless.
+
+## Prefer video?
+
+<iframe style="width:100%; height: 400px;" src="https://www.youtube.com/embed/di4Z2cc12ak?si=v4kEGN_nvpzJ8Wlj" frameborder="0" allowfullscreen></iframe>
