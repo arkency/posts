@@ -19,8 +19,7 @@ We have a record collection browser and we want to display a list of records, bu
 
 That's the basic markup:
 
-```html+erb
-
+```html
   <ul class="grid grid-cols-4 gap-8">
     <li>
       <div class="w-full bg-black aspect-square">
@@ -48,7 +47,7 @@ and it should look like this:
 Now we want to wrap the records in a turbo frame, without including the add new record button in it.
 
 
-```html+erb 
+```html
   <ul class="grid grid-cols-4 gap-8">
     <li>
       <div class="w-full bg-black aspect-square">
@@ -75,7 +74,7 @@ But the result is not what we expected:
 
 <img src="<%= src_fit("turbo-extra-node/turbo-extra-node-2.webp") %>" width="100%">
 
-## So what's the problem?
+### So what's the problem?
 
 Turbo Frames are inserted into the DOM as a new element, which can break the layout. Frame is inserted into the second column of the grid, and so are all the records.
 
@@ -98,7 +97,9 @@ This will make the frame transparent and the records will be displayed correctly
 ## Webinar: My Journey from React to Hotwire
 
 If you’re interested in similar topics, join my [webinar - From React to Hotwire](https://arkency.com/webinars/from-react-to-hotwire), where I’ll talk about my experiences I had along the way! 
-The webinar will take place on January 30 at 17:00 Warsaw time.
+
+The webinar will take place on January 30th at 17:00 Warsaw time.
+
 See you there!
 
 
