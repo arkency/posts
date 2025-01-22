@@ -19,25 +19,25 @@ We have a record collection browser and we want to display a list of records, bu
 
 That's the basic markup:
 
-```erb
+```html+erb
 
   <ul class="grid grid-cols-4 gap-8">
     <li>
       <div class="w-full bg-black aspect-square">
-        <%= link_to new_record_path, :class => "bg-blue-500 text-white px-2 py-1 rounded-md size-full flex items-center justify-center" do %>
+        <%%= link_to new_record_path, :class => "bg-blue-500 text-white px-2 py-1 rounded-md size-full flex items-center justify-center" do %>
           <span class="text-2xl text-center"><span class="text-4xl">+</span><br/> New Record</span>
-        <% end %>
+        <%% end %>
       </div>
     </li>
-    <% @records.each do |record| %>
+    <%% @records.each do |record| %>
       <li class="relative">
-        <%= link_to  record_path(record) do %>
+        <%%= link_to  record_path(record) do %>
           <div class="w-full bg-black aspect-square">
-            <%= image_tag record.cover, class: "size-full object-contain" if record.cover.present? %>
+            <%%= image_tag record.cover, class: "size-full object-contain" if record.cover.present? %>
           </div>
-        <% end %>
+        <%% end %>
       </li>
-    <% end %>
+    <%% end %>
   </ul>
 ```
 
@@ -48,26 +48,26 @@ and it should look like this:
 Now we want to wrap the records in a turbo frame, without including the add new record button in it.
 
 
-```erb 
+```html+erb 
   <ul class="grid grid-cols-4 gap-8">
     <li>
       <div class="w-full bg-black aspect-square">
-        <%= link_to  new_record_path, :class => "bg-blue-500 text-white px-2 py-1 rounded-md size-full flex items-center justify-center" do %>
+        <%%= link_to  new_record_path, :class => "bg-blue-500 text-white px-2 py-1 rounded-md size-full flex items-center justify-center" do %>
           <span class="text-2xl text-center"><span class="text-4xl">+</span><br/> New Record</span>
-        <% end %>
+        <%% end %>
       </div>
     </li>
-    <%= turbo_frame_tag "records" do %>
-      <% @records.each do |record| %>
+    <%%= turbo_frame_tag "records" do %>
+      <%% @records.each do |record| %>
         <li class="relative">
-          <%= link_to  record_path(record) do %>
+          <%%= link_to  record_path(record) do %>
             <div class="w-full bg-black aspect-square">
-              <%= image_tag record.cover, class: "size-full object-contain" if record.cover.present? %>
+              <%%= image_tag record.cover, class: "size-full object-contain" if record.cover.present? %>
             </div>
-          <% end %>
+          <%% end %>
         </li>
-      <% end %>
-    <% end %>
+      <%% end %>
+    <%% end %>
   </ul>
 ```
 
