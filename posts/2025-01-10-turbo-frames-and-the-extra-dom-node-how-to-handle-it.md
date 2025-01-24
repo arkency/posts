@@ -2,7 +2,7 @@
 created_at: 2025-01-10 23:55:51 +0100
 author: Maciek Korsan
 tags: ['frontend', 'css', 'hotwire', 'turbo', 'rails' ] 
-publish: false
+publish: true
 ---
 
 # Turbo Frames and the Extra DOM Node – How to Handle It?
