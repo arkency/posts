@@ -85,7 +85,7 @@ Turbo Frames are inserted into the DOM as a new element, which can break the lay
 Yes! One of the solutions is to use good old CSS to make the frame "transparent". The property we need is `display`, and we need to set it to `contents`. 
 
 ```css
-turbo-frame {
+.your-turbo-frame {
   display: contents;
 }
 ```
