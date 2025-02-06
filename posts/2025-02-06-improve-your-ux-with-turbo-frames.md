@@ -25,7 +25,7 @@ You drop a `<turbo-frame>` in your main view, pointing its `src` to the new endp
 
 ```html
 <h1>My super page</h1>
-<turbo-frame id="slow-section" src="<%= slow_data_path %>">
+<turbo-frame id="slow-section" src="<%%= slow_data_path %>">
   <!-- This can be empty or show a spinner / loading text -->
 </turbo-frame>
 ```
@@ -39,7 +39,7 @@ If you place links inside that frame, you might run into a second surprise: clic
 The fix is straightforward: add `data-turbo-frame="_top"` to any link that you want to break out of the frame and load as a full page.
 
 ```html
-<%= link_to "Go Full Page", some_full_page_path, data: { turbo_frame: "_top" } %>
+<%%= link_to "Go Full Page", some_full_page_path, data: { turbo_frame: "_top" } %>
 ```
 
 Or you can use the `target="_top"` on the frame itself to make all links open in the top frame.
