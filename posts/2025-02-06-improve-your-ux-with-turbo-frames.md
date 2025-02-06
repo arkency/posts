@@ -15,7 +15,7 @@ Imagine you have a view that shows a giant, complex list of data. Maybe it invol
 
 That’s obviously subpar for UX. The user might think the page is broken or slow, and they might leave before the content even shows up.
 
-<img src="<%= src_fit("improve-ux-turbo-frames/improve-ux-frame-1.avif") %>" width="100%">
+<img src="<%= src_fit("improve-ux-turbo-frames/improve-ux-frame-2.avif") %>" width="100%">
 
 ## Splitting Out the Slow Section
 
@@ -30,7 +30,7 @@ You drop a `<turbo-frame>` in your main view, pointing its `src` to the new endp
 </turbo-frame>
 ```
 
-<img src="<%= src_fit("improve-ux-turbo-frames/improve-ux-frame-2.avif") %>" width="100%">
+<img src="<%= src_fit("improve-ux-turbo-frames/improve-ux-frame-1.avif") %>" width="100%">
 
 ## Preventing Frame Navigation
 
