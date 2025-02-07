@@ -2,16 +2,16 @@
 created_at: 2025-02-06 18:52:04 +0100
 author: Maciek Korsan
 tags: [hotwire, turbo, rails, frontend]
-publish: false
+publish: true
 ---
 
 # Improve your user experience with Turbo Frames
 
 I’ve spent a good chunk of my career optimizing performance in web apps — mostly from the frontend perspective. Recently, I stumbled upon a simple trick with Turbo Frames that can improve the user experience when a particular part of the page is painfully slow to load. 
 
-## The Slow Page Dilemma
+## When Slow Pages Hurt UX
 
-Imagine you have a view that shows a giant, complex list of data. Maybe it involves heavy database queries, advanced filtering, or complicated logic that can take a couple of seconds to finish. Traditionally, the user is stuck watching a blank page until everything completes.
+Imagine you have a view that shows a giant, complex list of data. Maybe it involves heavy database queries, advanced filtering, or complicated logic that can take a couple of seconds to finish. Traditionally, the user is stuck watching a blank or previous page until everything completes.
 
 That’s obviously subpar for UX. The user might think the page is broken or slow, and they might leave before the content even shows up.
 
@@ -32,7 +32,7 @@ You drop a `<turbo-frame>` in your main view, pointing its `src` to the new endp
 
 <img src="<%= src_fit("improve-ux-turbo-frames/improve-ux-frame-1.avif") %>" width="100%">
 
-## Preventing Frame Navigation
+## Preventing In-Frame Navigation
 
 If you place links inside that frame, you might run into a second surprise: clicking a link will keep you “trapped” in the frame, rendering all subsequent pages inside it. That’s obviously not always what you want.
 
@@ -46,6 +46,6 @@ Or you can use the `target="_top"` on the frame itself to make all links open in
 
 That way, your users aren’t stuck inside a sub-view forever.
 
-## Conclusion
+## Final Thoughts
 
-This approach is nothing fancy or revolutionary — it’s more like a practical shortcut that lets you tackle performance bottlenecks on any given page. By moving the slow part behind a `<turbo-frame>` with its own endpoint, you keep the rest of the page fast and interactive. Your users (and your patience) will thank you.
+This approach may not be groundbreaking, but it’s a handy shortcut for dealing with performance bottlenecks on any page. It won't make your slow query faster - you still should think about optimizing it. By isolating the slow portion behind a `<turbo-frame>` that points to a separate endpoint, you keep the rest of the page quick and responsive. The overall perception of speed increases — and your users will appreciate the difference.
