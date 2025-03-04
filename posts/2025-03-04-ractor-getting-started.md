@@ -218,7 +218,7 @@ There are 2 types of communication between actors:
 
 ## Actor's lifecycle
 
-Actor likes basically as long as its incoming port is open.
+Actor lives basically as long as its incoming port is open.
 In this example:
 
 ```ruby
