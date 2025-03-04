@@ -1,7 +1,7 @@
 ---
 created_at: 2025-03-04 13:00:00 +0100
 author: Mirosław Pragłowski
-tags: [actor-model ractor ruby]
+tags: (actor-model ractor ruby)
 publish: false
 ---
 
@@ -48,7 +48,7 @@ Created here: obj: 167328, val: 167336
 Simple actor has: obj: 167344, val: 167352
 ```
 
-You could see that the instances of passed arguments are not the same as it has been created. (See more..)[https://docs.ruby-lang.org/en/3.4/ractor_md.html#label-Send+a+message+by+copying]
+You could see that the instances of passed arguments are not the same as it has been created. [See more...](https://docs.ruby-lang.org/en/3.4/ractor_md.html#label-Send+a+message+by+copying)
 
 Another thing worth notice is:
 ```
@@ -359,9 +359,9 @@ That's just the beginning...
 
 More reading:
 
-* [https://en.wikipedia.org/wiki/Actor_model]
-* [https://www.youtube.com/watch?v=7erJ1DV_Tlo] - Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know...)
-* [https://www.brianstorti.com/the-actor-model]
-* [https://docs.ruby-lang.org/en/3.4/Ractor.html]
-* [https://docs.ruby-lang.org/en/3.4/ractor_md.html]
-* [https://github.com/denyspoltorak/publications/blob/main/IntroductionToSoftwareArchitectureWithActors]
+* (https://en.wikipedia.org/wiki/Actor_model)
+* (https://www.youtube.com/watch?v=7erJ1DV_Tlo) - Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know...)
+* (https://www.brianstorti.com/the-actor-model)
+* (https://docs.ruby-lang.org/en/3.4/Ractor.html)
+* (https://docs.ruby-lang.org/en/3.4/ractor_md.html)
+* (https://github.com/denyspoltorak/publications/blob/main/IntroductionToSoftwareArchitectureWithActors)
