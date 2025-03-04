@@ -359,9 +359,9 @@ That's just the beginning...
 
 More reading:
 
-* (https://en.wikipedia.org/wiki/Actor_model)
-* (https://www.youtube.com/watch?v=7erJ1DV_Tlo) - Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know...)
-* (https://www.brianstorti.com/the-actor-model)
-* (https://docs.ruby-lang.org/en/3.4/Ractor.html)
-* (https://docs.ruby-lang.org/en/3.4/ractor_md.html)
-* (https://github.com/denyspoltorak/publications/blob/main/IntroductionToSoftwareArchitectureWithActors)
+* [Actor model - wikipedia](https://en.wikipedia.org/wiki/Actor_model)
+* [Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know...)](https://www.youtube.com/watch?v=7erJ1DV_Tlo)
+* [The actor model in 10 minutes](https://www.brianstorti.com/the-actor-model)
+* [RActor class documentation](https://docs.ruby-lang.org/en/3.4/Ractor.html)
+* [Ractor - Ruby’s Actor-like concurrent abstraction](https://docs.ruby-lang.org/en/3.4/ractor_md.html)
+* [Introduction to Software Architecture with Actors](https://github.com/denyspoltorak/publications/blob/main/IntroductionToSoftwareArchitectureWithActors)
