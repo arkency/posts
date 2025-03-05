@@ -1,7 +1,7 @@
 ---
 created_at: 2025-03-04 13:00:00 +0100
 author: Mirosław Pragłowski
-tags: [actor-model ractor ruby]
+tags: ['actor-model', 'ractor', 'ruby']
 publish: true
 ---
 
