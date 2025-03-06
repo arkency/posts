@@ -149,6 +149,29 @@ the exact same parameters. See the results below:
 
 <img src="<%= src_original("is-your-rails-application-special/load-test.png") %>" width="100%">
 
+
+## Number of database connections
+Before deploying the changes to both application servers, we also checked the number of database connections.
+It turned out that, with the new settings, we would be very close to the database connection limit.
+
+But wait—doesn't this application behave uniquely in that regard? Have you noticed how narrow the yellow area is
+in the middleware app breakdown chart?
+
+After a quick investigation, we discovered that the middleware app was using the database only for authentication
+and authorization. This happened in the before_action callback in the controller. We verified that it was safe
+to release the database connection back to the pool immediately after authentication and authorization.
+
+```ruby
+  authorize! :perform, @task
+  ActiveRecord::Base.connection_pool.release_connection
+
+  # the following takes a lot of time
+  render json: @task.perform
+```
+
+This allowed us to significantly reduce the number of database connections used by the middleware app.
+Each application process, configured with 20 threads, now used only 2 database connections.
+
 ## Final thoughts
 The stability of the system improved significantly after the changes. The client team was happy with the results.
 There is plenty of room for further improvements. It would be beneficial to break the public app dependency
