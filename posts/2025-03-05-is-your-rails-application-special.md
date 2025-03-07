@@ -1,7 +1,7 @@
 ---
 created_at: 2025-03-07 15:09:56 +0100
 author: Piotr Romańczuk
-tags: []
+tags: ['rails', 'puma', 'observability']
 publish: false
 ---
 
