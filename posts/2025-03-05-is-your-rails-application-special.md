@@ -127,11 +127,11 @@ With that of another Rails application we've worked with:
 
 <img src="<%= src_original("is-your-rails-application-special/standard-app-breakdown-by-segment.png") %>" width="100%">
 
-Do you see the difference? Our middleware app is mostly handling external requests, which means it is **IO-bound**.
-IO-bound workloads benefit from higher thread counts because threads spend most of their time waiting for I/O.
+Do you see the difference? Our middleware app is mostly handling external requests, which means it is **I/O-bound**.
+I/O-bound workloads benefit from higher thread counts because threads spend most of their time waiting for I/O.
 Since Ruby releases the GVL when waiting for I/O, threads can be utilized more efficiently in this scenario.
 
-### The solution. Tuning Puma concurrency settings
+### The solution - tuning Puma concurrency settings
 To ensure a safe, incremental rollout, we adjusted Ansible deployment roles to support different Puma configurations
 for each application server. We also had to tune haproxy configuration and introduce weighting based on the total
 threads count configured on each server. This allowed us to test different configurations gradually.
