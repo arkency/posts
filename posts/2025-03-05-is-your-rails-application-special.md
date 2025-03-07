@@ -99,7 +99,7 @@ Puma is the default Rails application server. It uses a multi-process, multi-thr
 
 For a long time, the default Puma configuration in Rails set the number of threads per worker to 5. Recently,
 [DHH suggested lowering it](https://github.com/rails/rails/issues/50450).
-After an interesting discussion, the default was changed to 3 threads per worker.
+After an interesting discussion, the default has been changed to 3 threads per worker since Rails 7.2.
 
 There is also a [rule of thumb from Nate Berkopec](https://github.com/puma/puma/discussions/3087#discussioncomment-5144762),
 a Rails performance expert and Puma committer:
