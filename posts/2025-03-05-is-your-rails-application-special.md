@@ -126,7 +126,7 @@ Do you see the difference? Our middleware app is mostly handling external reques
 IO-bound workloads benefit from higher thread counts because threads spend most of their time waiting for I/O.
 Since Ruby releases the GVL when waiting for I/O, threads can be utilized more efficiently in this scenario.
 
-Next, we focused on modifying the middleware’s concurrency settings.
+### The solution. Tuning Puma concurrency settings
 To ensure a safe, incremental rollout, we adjusted Ansible deployment roles to support different Puma configurations
 for each application server. We also had to tune haproxy configuration and introduce weighting based on the total
 threads count configured on each server. This allowed us to test different configurations gradually.
@@ -160,8 +160,8 @@ But wait—doesn't this application behave uniquely in that regard? Have you not
 in the middleware app breakdown chart?
 
 After a quick investigation, we discovered that the middleware app was using the database only for authentication
-and authorization. This happened in the before_action callback in the controller. We verified that it was safe
-to release the database connection back to the pool immediately after authentication and authorization.
+and authorization. We verified that it was safe to release the database connection back to the pool
+immediately after authentication and authorization.
 
 ```ruby
   authorize! :perform, @task
@@ -178,5 +178,3 @@ Each application process, configured with 20 threads, now used only 2 database c
 The stability of the system improved significantly after the changes. The client team was happy with the results.
 There is plenty of room for further improvements. It would be beneficial to break the public app dependency
 on the middleware on each request. Caching and eventual consistency patterns could be used to achieve this.
-
-We hope to continue working with the client to make their system even more reliable.
