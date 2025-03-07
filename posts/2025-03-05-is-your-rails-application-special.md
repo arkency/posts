@@ -87,6 +87,8 @@ We discovered that the middleware's throughput was an order of magnitude higher 
 It turned out that the middleware wasn’t only used by the public-facing application—it also handled traffic
 from internal applications, significantly increasing its load.
 
+<img src="<%= src_original("is-your-rails-application-special/throughput-comparison.png") %>" width="100%">
+
 To confirm our theory, we attempted to trigger public app outages by artificially increasing the load on the middleware.
 It worked: higher middleware load resulted in public app outages.
 This strengthened our hypothesis that the middleware's concurrency configuration was suboptimal.
