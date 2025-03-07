@@ -66,9 +66,14 @@ As a quick fix, we increased the number of middleware workers to 2.
 We also added the `X-Request-Start` HTTP header to Haproxy configurations to track request queuing in NewRelic.
 
 The change significantly reduced the frequency of outages, but the problem wasn't fully solved.
-Our hypothesis was that the middleware couldn't handle the load from the public app.
-We needed to prove it.
+Our hypothesis was that the middleware couldn't handle the load from the public app. We needed to prove it.
+
+<img src="<%= src_original("is-your-rails-application-special/response-time-comparison.png") %>" width="100%">
+
+
 We also started tracking middleware request queuing in NewRelic during outages.
+
+<img src="<%= src_original("is-your-rails-application-special/request-queuing.png") %>" width="100%">
 
 The investigation was paused because the agreed budget had been exhausted.
 
