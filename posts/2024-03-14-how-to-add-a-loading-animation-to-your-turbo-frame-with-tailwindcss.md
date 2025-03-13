@@ -1,6 +1,6 @@
 ---
 created_at: 2024-03-14 13:06:22 +0100
-author: Maciek Korsan
+author: Maciej Korsan
 tags: ['frontend', 'css', 'hotwire', 'tailwindcss', 'rails' ]
 publish: true
 ---

@@ -1,6 +1,6 @@
 ---
 created_at: 2025-01-10 23:55:51 +0100
-author: Maciek Korsan
+author: Maciej Korsan
 tags: ['frontend', 'css', 'hotwire', 'turbo', 'rails' ] 
 publish: true
 ---

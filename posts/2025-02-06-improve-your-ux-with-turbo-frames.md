@@ -1,6 +1,6 @@
 ---
 created_at: 2025-02-06 18:52:04 +0100
-author: Maciek Korsan
+author: Maciej Korsan
 tags: [hotwire, turbo, rails, frontend]
 publish: true
 ---
