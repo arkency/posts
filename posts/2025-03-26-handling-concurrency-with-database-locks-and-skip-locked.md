@@ -2,7 +2,7 @@
 created_at: 2025-03-26 14:01:00 +0100
 author: Mirosław Pragłowski
 tags: ['database', 'design', 'performance', 'active record']
-publish: false
+publish: true
 ---
 
 # Implementing an Inventory Module in Ruby on Rails: Handling Concurrency with Database Locks and SKIP LOCKED
