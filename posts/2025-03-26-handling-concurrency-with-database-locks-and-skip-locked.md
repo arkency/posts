@@ -45,7 +45,7 @@ Here, `with_lock` applies a row-level lock (`SELECT ... FOR UPDATE` under the ho
 
 ## Optimizing with SKIP LOCKED
 
-To improve performance, we can use SKIP LOCKED, which allows us to select an available inventory item without blocking other queries waiting for a lock. This technique is useful for queue-like processing where we want to allocate items efficiently.
+To improve performance, we can use `SKIP LOCKED`, which allows us to select an available inventory item without blocking other queries waiting for a lock. This technique is useful for queue-like processing where we want to allocate items efficiently.
 
 ## Improved Implementation:
 
@@ -78,7 +78,7 @@ end
 
 ## Performance Comparison
 
-When using with_lock, transactions can get stuck waiting for the lock to be released, leading to high contention and possible timeouts in a high-traffic system. In contrast, SKIP LOCKED ensures that transactions immediately move to the next available row, preventing delays and improving response times. The results below shows better system performance, reduced lock wait times (no lock timeout errors), and a more efficient allocation of inventory resources:
+When using `with_lock`, transactions can get stuck waiting for the lock to be released, leading to high contention and possible timeouts in a high-traffic system. In contrast, `SKIP LOCKED` ensures that transactions immediately move to the next available row, preventing delays and improving response times. The results below shows better system performance, reduced lock wait times (no lock timeout errors), and a more efficient allocation of inventory resources:
 
 ```
 Starting  LockingInventory: 1000 times trying to reserve product 928
@@ -103,6 +103,15 @@ This test simulate the significant workload, 1000 requests trying to reserve the
 * the non-locking inventory implementation is significantly faster (no waiting for locks)
 
 * the locking inventory reports some out of stock reservations, but as soon as locks starts to kick in the lock timeout error is raised
+
+
+## Drawbacks of SKIP LOCKED solution
+
+While `SKIP LOCKED` improves concurrency and throughput, it introduces some challenges:
+
+* More complex inventory management: Instead of a single counter tracking stock levels, inventory needs to be managed at the item level, requiring creating inventory items in required quantity.
+
+* No single counter for stock visibility: Since multiple rows are used to track inventory, querying the total stock count efficiently can be more complex. However it could be mitigated by asynchronous counter updates. To maintain an accurate stock counter, an asynchronous process (e.g., a background job) could periodically aggregate stock levels and update a summary counter.
 
 ## Conclusion
 
