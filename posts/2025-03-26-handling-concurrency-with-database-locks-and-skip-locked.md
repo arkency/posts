@@ -7,11 +7,12 @@ publish: true
 
 # Implementing an Inventory Module in Ruby on Rails: Handling Concurrency with Database Locks and SKIP LOCKED
 
-When implementing an inventory module in a Ruby on Rails application, ensuring consistency in stock levels is crucial. If multiple users try to purchase the same item simultaneously, concurrency issues can lead to overselling. In this post, we'll explore two approaches to handling inventory management:
+When implementing an inventory module in a Ruby on Rails application, ensuring consistency in stock levels is crucial. 
+If multiple users try to purchase the same item simultaneously, concurrency issues can lead to overselling.
 
-Using a simple counter with database locks to prevent race conditions.
-
-Improving performance using `SKIP LOCKED` for efficient inventory allocation.
+In this post, we'll explore two approaches to handling inventory management:
+* Using a simple counter with database locks to prevent race conditions.
+* Improving performance using `SKIP LOCKED` for efficient inventory allocation.
 
 <!-- more -->
 
@@ -32,16 +33,15 @@ class Inventory < ActiveRecord::Base
   end
 end
 ```
-
 Here, `with_lock` applies a row-level lock (`SELECT ... FOR UPDATE` under the hood), ensuring that only one transaction can modify the stock at a time. This prevents overselling but can cause performance bottlenecks under high concurrency due to contention on the locked rows.
 
 ### Performance Issues
 
-* If multiple transactions attempt to update the same record, they must wait for the lock to be released.
-
-* High contention can lead to deadlocks and slow performance.
-
-* This approach may not scale well when handling a large volume of transactions.
+If multiple transactions attempt to update the same record, they must wait for the lock to be released.
+High contention can lead to deadlocks and slow performance. This approach may not scale well when handling a large volume of transactions.
+It might cause reliability issues under heavy load. Imagine your system in promoted by some social media influencer with
+huge number of followers... and all the them want to get limited number of the same product. 
+We have had such a case in one of our projects :) 
 
 ## Optimizing with SKIP LOCKED
 
@@ -110,12 +110,16 @@ The sample code is [available here](https://gist.github.com/mpraglowski/5779da7c
 
 While `SKIP LOCKED` improves concurrency and throughput, it introduces some challenges:
 
-* More complex inventory management: Instead of maintaining a single counter for stock levels, inventory must be managed at the item level, requiring the creation of individual inventory records in the necessary quantity.
+First: more complex inventory management. Instead of maintaining a single counter for stock levels, 
+inventory must be managed at the item level, requiring the creation of individual inventory records in the necessary quantity.
 
-* No single counter for stock visibility: Since stock is distributed across multiple rows, efficiently querying the total stock count becomes more complex. This can be mitigated by asynchronously updating a summary counter. A background job, for example, could periodically aggregate stock levels and update a summary counter to provide accurate stock visibility.
+No single counter for stock visibility might also be an issue. Since stock is distributed across multiple rows, 
+efficiently querying the total stock count becomes more complex. This can be mitigated by asynchronously updating a summary counter. 
+A background job, for example, could periodically aggregate stock levels and update a summary counter to provide accurate stock visibility.
 
 ## Conclusion
 
-Using `with_lock` provides a safe way to manage inventory but suffers from performance issues under high load. By leveraging `SKIP LOCKED`, we can significantly improve concurrency and system efficiency, ensuring a smooth inventory management experience.
+Using `with_lock` provides a safe way to manage inventory but suffers from performance issues under high load. 
+By leveraging `SKIP LOCKED`, we can significantly improve concurrency and system efficiency, ensuring a smooth inventory management experience.
 
 If you're building a high-traffic e-commerce platform or a similar system, optimising database interactions using `SKIP LOCKED` can help maintain performance while ensuring inventory integrity.
