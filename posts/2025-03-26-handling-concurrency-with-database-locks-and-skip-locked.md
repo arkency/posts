@@ -104,6 +104,7 @@ This test simulate the significant workload, 1000 requests trying to reserve the
 
 * the locking inventory reports some out of stock reservations, but as soon as locks starts to kick in the lock timeout error is raised
 
+The sample code is [available here](https://gist.github.com/mpraglowski/5779da7cd3881e3210800df6fe905a05).
 
 ## Drawbacks of SKIP LOCKED solution
 
