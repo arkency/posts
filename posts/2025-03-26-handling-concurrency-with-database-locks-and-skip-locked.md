@@ -110,9 +110,9 @@ The sample code is [available here](https://gist.github.com/mpraglowski/5779da7c
 
 While `SKIP LOCKED` improves concurrency and throughput, it introduces some challenges:
 
-* More complex inventory management: Instead of a single counter tracking stock levels, inventory needs to be managed at the item level, requiring creating inventory items in required quantity.
+* More complex inventory management: Instead of maintaining a single counter for stock levels, inventory must be managed at the item level, requiring the creation of individual inventory records in the necessary quantity.
 
-* No single counter for stock visibility: Since multiple rows are used to track inventory, querying the total stock count efficiently can be more complex. However it could be mitigated by asynchronous counter updates. To maintain an accurate stock counter, an asynchronous process (e.g., a background job) could periodically aggregate stock levels and update a summary counter.
+* No single counter for stock visibility: Since stock is distributed across multiple rows, efficiently querying the total stock count becomes more complex. This can be mitigated by asynchronously updating a summary counter. A background job, for example, could periodically aggregate stock levels and update a summary counter to provide accurate stock visibility.
 
 ## Conclusion
 
