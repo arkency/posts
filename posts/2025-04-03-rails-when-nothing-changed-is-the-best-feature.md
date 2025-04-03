@@ -41,4 +41,4 @@ This stability creates enormous practical value. It means companies can maintain
 
 From a domain modeling perspective, this stability means you can focus on evolving your business logic and domain models without constantly rebuilding the technical foundation underneath them.
 
-I smile to myself every time I see a JS app team implementing from scratch a framework feature that is simply available in Rails.
+I smile to myself every time I see a JS app team implementing from scratch a framework feature that is simply available in Rails. Apparently, not everyone gets a chance to work with a mature web framework.
