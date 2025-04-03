@@ -33,7 +33,7 @@ New team members who have Rails experience can become productive quickly without
 ## Documentation stability
 Solutions and patterns documented years ago often still apply, creating a rich knowledge base that remains useful.
 
-## Reduced framework fatigue
+## Reduced "framework fatigue"
 While Rails has evolved, it hasn’t required developers to 
 completely relearn their workflow every quarter or two like JS ecosystem does.
 
