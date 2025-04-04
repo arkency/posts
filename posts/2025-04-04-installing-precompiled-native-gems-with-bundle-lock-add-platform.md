@@ -266,4 +266,10 @@ BUNDLED WITH
 
 It removed `PLATFORMS` entries and sufficient gems specifications we aren’t planning on using.
 
+_Ok, but why should I do that?_ — you might ask. And here’s the answer:
+
+* you won’t be downloading obsolete gem versions on your CI or production deployment
+* you save your bandwidth
+* you make [RubyGems.org](https://rubygems.org) happy by not pulling unnecessary stuff from their CDN
+
 Enjoy your fast and predictable builds 🖖
