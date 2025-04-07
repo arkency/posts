@@ -2,7 +2,7 @@
 created_at: 2025-04-04 09:27:12 +0200
 author: Szymon Fiedler
 tags: [ruby, rails, bundler, legacy]
-publish: false
+publish: true
 ---
 
 # Installing Precompiled Native Gems with bundle lock --add-platform

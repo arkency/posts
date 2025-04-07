@@ -2,7 +2,7 @@
 created_at: 2025-04-03 21:42:38 +0200
 author: Szymon Fiedler
 tags: [rails, legacy]
-publish: false
+publish: true
 ---
 
 # Rails: when "nothing changed" is the best feature
