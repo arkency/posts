@@ -7,7 +7,7 @@ publish: true
 
 # Rails: when "nothing changed" is the best feature
 
-Recently, I had a chat with a friend of mine, who used to do Rails back in the days. Since ~10 years he’s focused on mobile development. I was curious what are his observations and asked if he’s happy with his decision or maybe he actually misses web development. 
+Recently, I had a chat with a friend of mine, who used to do Rails back in the days. For the last ~10 years he’s focused on mobile development. I was curious what are his observations and asked if he’s happy with his decision or maybe he actually misses web development. 
 
 <!-- more -->
 
