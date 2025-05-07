@@ -2,7 +2,7 @@
 created_at: 2025-05-05 13:17:49 +0200
 author: Mirosław Pragłowski
 tags: ["multitenancy", rails_event_store', "database", "sharding", "rails"]
-publish: false
+publish: true
 ---
 
 # Multi tenant applications with horizontal sharding and Rails Event Store
