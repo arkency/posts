@@ -15,10 +15,10 @@ Horizontal sharding has been introduced in Rails 6.0 (just the API, with later a
 
 Let's sketch some non-functional requirements for our sample application.
 
-First: all tenant data is separated into a shard database,
-Second: tenant's management, shared data, cache & queues use a single shared database (admin's application),
-Third: embrace async, all event handlers will be async and implemented using Solid Queue,
-Fourth: each tenant uses separate domain.
+- First: all tenant data is separated into a shard database,
+- Second: tenant's management, shared data, cache & queues use a single shared database (admin's application),
+- Third: embrace async, all event handlers will be async and implemented using Solid Queue,
+- Fourth: each tenant uses separate domain.
 
 And one last thing ... the tenant database setup will be static, defined in `config/database.yml` file. This means to add a new tenant requires database setup, config file update & application deployment.
 
