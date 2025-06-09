@@ -204,6 +204,13 @@ The issue with `rails_event_store` was already fixed by Paweł (give kudos to hi
 
 If any gem explicitly does `require "active_record"` or other configurable Rails module — the `ActiveSupport.on_load` callbacks is triggered prematurely, and some settings from `new_framework_defaults_*.rb` may not be honored!
 
+The list of settings from `new_framework_defaults_*.rb` that can be affected by this issue is not exhaustive, but it includes:
+```ruby
+Rails.application.config.active_record.default_column_serializer # Rails 7.1 default
+Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction # Rails 7.1 default
+Rails.application.config.active_record.belongs_to_required_by_default # Rails 5.0 default
+```
+
 ## Detecting the problem
 
 To detect if this your scenario, I created a simple script that hooks into `ActiveSupport.on_load` for configurable Rails modules and records if they are loaded prematurely by any gem from your Gemfile.
