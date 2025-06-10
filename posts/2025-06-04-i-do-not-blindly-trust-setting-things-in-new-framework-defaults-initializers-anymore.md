@@ -30,7 +30,7 @@ irb(main):001> Rails.application.config.active_record.default_column_serializer
 irb(main):002> ActiveRecord::Base.default_column_serializer
 => ActiveRecord::Coders::YAMLColumn
 ```
-At first, I thought the setting might be obsolete or missdocumented. But I started digging — and discovered something surprising.
+At first, I thought the setting might be obsolete or misdocumented. But I started digging — and discovered something surprising.
 
 ## What is going on under the hood?
 
