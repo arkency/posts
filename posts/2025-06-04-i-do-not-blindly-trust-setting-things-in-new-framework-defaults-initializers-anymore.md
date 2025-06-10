@@ -5,7 +5,7 @@ tags: ['rails', 'rails upgrade', 'gems']
 publish: true
 ---
 
-# I do not blindly trust setting things in new_framework_defaults initializers anymore
+# I do not blindly trust setting things in new\_framework\_defaults initializers anymore
 
 > **TL;DR:** When upgrading Rails, don’t blindly assume settings in `new_framework_defaults_*.rb` are applied in time to affect the framework’s internals. Test them yourself, or/and move uncommented settings to `application.rb` after `config.load_defaults`.
 
