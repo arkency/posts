@@ -32,7 +32,7 @@ irb(main):002> ActiveRecord::Base.default_column_serializer
 ```
 At first, I thought the setting might be obsolete or missdocumented. But I started digging — and discovered something surprising.
 
-## What is going on under the neath?
+## What is going on under the hood?
 
 Rails has several initializers that run on startup that are all defined by using the `initializer` method from `Rails::Railtie`.
 They are responsible for setting up the framework and its components. These initializers are executed in a specific order.
@@ -184,7 +184,7 @@ set_clear_dependencies_hook
 ```
 `active_record.set_configs` is the one which sets up Active Record by using the settings in `Rails.application.config.active_record` and sending the method names as setters to `ActiveRecord::Base` and passing the values through.
 
-To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there. I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
+To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there.I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
 
 It happened before the `load_config_initializers` initializer was executed, which is responsible for loading initializers from `config/initializers`, including `new_framework_defaults_*.rb`.
 
@@ -195,7 +195,7 @@ The issue with `rails_event_store` was already [fixed](https://github.com/RailsE
 - [globalize](https://github.com/globalize/globalize/issues/786)
 - [pg_hero](https://github.com/ankane/pghero/issues/232)
 
-If any gem explicitly does `require "active_record"` or other configurable Rails module — the `ActiveSupport.on_load` callbacks is triggered prematurely, and some settings from `new_framework_defaults_*.rb` may not be honored!
+If any gem does load `ActiveRecord::Base` or other configurable Rails class during the boot process — the `ActiveSupport.on_load` callbacks is triggered prematurely, and some settings from `new_framework_defaults_*.rb` may not be honored!
 
 The list of settings from `new_framework_defaults_*.rb` that can be affected by this issue is not exhaustive, but it includes:
 ```ruby
@@ -206,7 +206,7 @@ Rails.application.config.active_record.belongs_to_required_by_default # Rails 5.
 
 ## Detecting the problem
 
-To detect if this your scenario, I created a simple script that hooks into `ActiveSupport.on_load` for configurable Rails modules and records if they are loaded prematurely by any gem from your Gemfile.
+To detect if this your scenario, I created a simple script that hooks into `ActiveSupport.on_load` for configurable Rails classes and records if they are loaded prematurely by any gem from your Gemfile.
 
 ```ruby
 # premature_load_check.rb
@@ -241,7 +241,7 @@ This script can be copied to your app directory and run manually via `bundle exe
 
 If you find that a gem loads a Rails module prematurely, you have to be super careful with the settings in `new_framework_defaults_*.rb`.
 
-The safe approach is to move each uncommented setting to `config/application.rb` after calling `config.load_defaults`. This way, you ensure that the proper configuration settings are set before other gems gets loaded, and before the Rails internals gets configured.
+The safer approach is to move any uncommented setting into `config/application.rb`, just after `config.load_defaults`. This way, you ensure that the proper configuration settings are set before other gems gets loaded, and before the Rails internals gets configured.
 
 ```ruby
 # config/application.rb
@@ -252,16 +252,16 @@ module MyApp
   end
 end
 ```
-Btw, it's just what `config.load_defaults` does internally, when it loads the defaults for a specific Rails version.
+By the way, this is essentially what `config.load_defaults` [does internally](https://github.com/rails/rails/blob/4b7fb1d14b954d2348d2065ff955466479509656/railties/lib/rails/application/configuration.rb#L291), when it loads the defaults for a specific Rails version.
 
 ## Final thoughts
 
 Rails gives us powerful configuration over framework defaults via `new_framework_defaults_*.rb`, but you have to be careful with them.
 
-Remember, that there are some known issues. Test your assumptions, especially when you rely on many other gems.
+Remember, that there are some known issues. Test your assumptions, especially if your app depends heavily on third-party gems.
 
 Use tools — like the script above — to keep your app safe when switching to a new Rails version defaults.
 
-Move what want you want to enable from `new_framework_defaults_*.rb` to `application.rb`.
+Move whatever you want to enable from `new_framework_defaults_*.rb` to `application.rb`.
 
 Always enable one setting at a time, and test your app thoroughly after each change.
