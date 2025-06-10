@@ -188,7 +188,7 @@ To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registe
 
 It happened before the `load_config_initializers` initializer was executed, which is responsible for loading initializers from `config/initializers`, including `new_framework_defaults_*.rb`.
 
-The backtrace pointed to `rails_event_store_active_record` gem, the `require "active_record"` line in the `event.rb` file.
+The backtrace pointed to `rails_event_store_active_record` gem, the `class Event < ::ActiveRecord::Base` definition.
 
 The issue with `rails_event_store` was already [fixed](https://github.com/RailsEventStore/rails_event_store/pull/1906) by Paweł (give kudos to him, this change would be released in RES 2.17.0 soon), and he also found that this is not an isolated case. See these issues with other popular gems:
 - [friendly_id](https://github.com/norman/friendly_id/issues/823)
