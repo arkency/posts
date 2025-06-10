@@ -18,28 +18,24 @@ In this post, I want to share a subtle configuration pitfall I ran into while up
 ## When expectations break
 
 After upgrading a project to **Rails 7.1**, I uncommented:
-
 ```ruby
 # config.active_record.default_column_serializer = nil
 ```
 from `config/initializers/new_framework_defaults_7_1.rb`, without any further changes, expecting it to raise errors. But it didn’t. Everything worked as before.
 
 I opened the Rails console and performed following check:
-
 ```ruby
 irb(main):001> Rails.application.config.active_record.default_column_serializer
 => nil
 irb(main):002> ActiveRecord::Base.default_column_serializer
 => ActiveRecord::Coders::YAMLColumn
 ```
-
 At first, I thought the setting might be obsolete or missdocumented. But I started digging — and discovered something surprising.
 
 ## What is going on under the neath?
 
-Rails has several initializers that run on startup that are all defined by using the initializer method from `Rails::Railtie`.
-They are responsible for setting up the framework and its components.
-
+Rails has several initializers that run on startup that are all defined by using the `initializer` method from `Rails::Railtie`.
+They are responsible for setting up the framework and its components. These initializers are executed in a specific order.
 ```
 active_support.deprecator
 action_dispatch.deprecator
@@ -186,8 +182,6 @@ add_internal_routes
 set_routes_reloader_hook
 set_clear_dependencies_hook
 ```
-These initializers are executed in a specific order.
-
 `active_record.set_configs` is the one which sets up Active Record by using the settings in `Rails.application.config.active_record` and sending the method names as setters to `ActiveRecord::Base` and passing the values through.
 
 To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there. I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
@@ -196,8 +190,7 @@ It happened before the `load_config_initializers` initializer was executed, whic
 
 The backtrace pointed to `rails_event_store_active_record` gem, the `require "active_record"` line in the `event.rb` file.
 
-The issue with `rails_event_store` was already fixed by Paweł (give kudos to him, this change would be released in RES 2.17.0 soon), and he also found that this is not an isolated case. See these issues with other popular gems:
-
+The issue with `rails_event_store` was already [fixed](https://github.com/RailsEventStore/rails_event_store/pull/1906) by Paweł (give kudos to him, this change would be released in RES 2.17.0 soon), and he also found that this is not an isolated case. See these issues with other popular gems:
 - [friendly_id](https://github.com/norman/friendly_id/issues/823)
 - [globalize](https://github.com/globalize/globalize/issues/786)
 - [pg_hero](https://github.com/ankane/pghero/issues/232)
