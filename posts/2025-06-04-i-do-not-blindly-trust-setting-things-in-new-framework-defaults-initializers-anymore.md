@@ -184,9 +184,10 @@ set_clear_dependencies_hook
 ```
 `active_record.set_configs` is the one which sets up Active Record by using the settings in `Rails.application.config.active_record` and sending the method names as setters to `ActiveRecord::Base` and passing the values through.
 
-To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there. I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
+To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered [there](https://github.com/rails/rails/blob/main/activerecord/lib/active_record/railtie.rb#L222-L255). I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
+The `ActiveSupport.run_load_hooks(:active_record, Base)` call is located at the very [bottom](https://github.com/rails/rails/blob/main/activerecord/lib/active_record/base.rb#L336) of the `ActiveRecord::Base` class definition.
 
-It happened before the `load_config_initializers` initializer was executed, which is responsible for loading initializers from `config/initializers`, including `new_framework_defaults_*.rb`.
+It all happened before the `load_config_initializers` initializer was executed, which is responsible for loading initializers from `config/initializers`, including `new_framework_defaults_*.rb`.
 
 The backtrace pointed to `rails_event_store_active_record` gem, the `class Event < ::ActiveRecord::Base` definition.
 
