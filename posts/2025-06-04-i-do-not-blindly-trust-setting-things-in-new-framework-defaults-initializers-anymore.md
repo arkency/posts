@@ -1,8 +1,8 @@
 ---
-created_at: 2025-06-09 17:20:07 +0200
+created_at: 2025-06-10 17:20:07 +0200
 author: Piotr Jurewicz
-tags: ['rails', 'rails upgrade']
-publish: false
+tags: ['rails', 'rails upgrade', 'gems']
+publish: true
 ---
 
 # I do not blindly trust setting things in new_framework_defaults initializers anymore
@@ -184,7 +184,7 @@ set_clear_dependencies_hook
 ```
 `active_record.set_configs` is the one which sets up Active Record by using the settings in `Rails.application.config.active_record` and sending the method names as setters to `ActiveRecord::Base` and passing the values through.
 
-To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there.I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
+To be precise, the `ActiveSupport.on_load(:active_record)` callback gets registered there. I inserted a breakpoint inside the callback block and verified it was executed immediately after registering it - which means the `ActiveRecord::Base` class was already loaded.
 
 It happened before the `load_config_initializers` initializer was executed, which is responsible for loading initializers from `config/initializers`, including `new_framework_defaults_*.rb`.
 
