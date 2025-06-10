@@ -199,9 +199,16 @@ If any gem does load `ActiveRecord::Base` or other configurable Rails class duri
 
 The list of settings from `new_framework_defaults_*.rb` that can be affected by this issue is not exhaustive, but it includes:
 ```ruby
-Rails.application.config.active_record.default_column_serializer # Rails 7.1 default
-Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction # Rails 7.1 default
-Rails.application.config.active_record.belongs_to_required_by_default # Rails 5.0 default
+Rails.application.config.active_record.belongs_to_required_by_default = true  # Rails 5.0 default
+Rails.application.config.active_record.cache_versioning = true                # Rails 5.2 default
+Rails.application.config.active_record.collection_cache_versioning = true     # Rails 6.0 default
+Rails.application.config.active_record.has_many_inversing = true              # Rails 6.1 default
+Rails.application.config.active_job.retry_jitter = 0.15                       # Rails 6.1 default
+Rails.application.config.action_mailer.deliver_later_queue_name = nil         # Rails 6.1 default
+Rails.application.config.active_record.partial_inserts = false                # Rails 7.0 default
+Rails.application.config.active_record.automatic_scope_inversing = true       # Rails 7.0 default
+Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false # Rails 7.1 default
+Rails.application.config.active_record.default_column_serializer = nil        # Rails 7.1 default
 ```
 
 ## Detecting the problem
@@ -217,7 +224,7 @@ require "bundler/setup"
 
 early_load = false
 
-[:action_cable, :action_mailer, :action_controller, :active_job, :active_record].each do |rails_module|
+[:action_mailer, :active_job, :active_record].each do |rails_module|
   ActiveSupport.on_load(rails_module) do
     early_load = true
     warn <<~MSG
