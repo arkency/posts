@@ -7,7 +7,7 @@ publish: false
 
 # I do not blindly trust setting things in new_framework_defaults initializers anymore
 
-> **TL;DR:** When upgrading Rails, don’t blindly assume settings in `new_framework_defaults_*.rb` are applied in time to affect the framework’s internals. Test it by your own, or move uncommented settings to `application.rb` after `config.load_defaults`.
+> **TL;DR:** When upgrading Rails, don’t blindly assume settings in `new_framework_defaults_*.rb` are applied in time to affect the framework’s internals. Test them yourself, or/and move uncommented settings to `application.rb` after `config.load_defaults`.
 
 Upgrading a Rails application to a new version involves reviewing the `new_framework_defaults_*.rb` initializer and uncommenting them one by one. It *feels* like a safe and incremental way to adopt changes.
 
