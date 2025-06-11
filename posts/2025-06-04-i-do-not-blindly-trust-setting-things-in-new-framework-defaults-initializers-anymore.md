@@ -210,7 +210,8 @@ Rails.application.config.action_mailer.deliver_later_queue_name = nil         # 
 Rails.application.config.active_record.partial_inserts = false                # Rails 7.0 default
 Rails.application.config.active_record.automatic_scope_inversing = true       # Rails 7.0 default
 Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false # Rails 7.1 default
-Rails.application.config.active_record.default_column_serializer = nil        # Rails 7.1 default
+Rails.application.config.active_record.default_column_serializer = nil          # Rails 7.1 default
+Rails.application.config.active_record.raise_on_assign_to_attr_readonly = true  # Rails 7.1 default (when eager_load is enabled)
 ```
 
 ## Detecting the problem
