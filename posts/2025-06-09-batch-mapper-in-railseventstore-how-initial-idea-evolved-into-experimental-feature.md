@@ -66,4 +66,4 @@ end
 
 This pseudocode is all what is needed. As the mapper now process events in batches before processing each batch it fetches required keys from the KMS system. No need for API call for each domain event, no need to fetch all keys before. You might implement your keys caching strategy in the keys repository and tune it to your usage.
 
-The full code to illustrate this use case is [here](https://gist.github.com/mpraglowski/a50234a77708b9cb7591f7932c7f95ef).
+The full code to illustrate this use case is [here](https://gist.github.com/mpraglowski/ca852ba76503888be85ec53bacb491fe).
