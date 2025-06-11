@@ -195,6 +195,7 @@ The issue with `rails_event_store` was already [fixed](https://github.com/RailsE
 - [friendly_id](https://github.com/norman/friendly_id/issues/823)
 - [globalize](https://github.com/globalize/globalize/issues/786)
 - [pg_hero](https://github.com/ankane/pghero/issues/232)
+- It was also discussed in the Rails [issue #31285](https://github.com/rails/rails/issues/31285)
 
 If any gem does load `ActiveRecord::Base` or other configurable Rails class during the boot process — the `ActiveSupport.on_load` callbacks is triggered prematurely, and some settings from `new_framework_defaults_*.rb` may not be honored!
 
