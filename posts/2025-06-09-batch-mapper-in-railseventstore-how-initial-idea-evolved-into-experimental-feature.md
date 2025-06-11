@@ -7,7 +7,7 @@ publish: false
 
 # Batch mapper in RailsEventStore - how initial idea evolved into experimental feature
 
-Some time ago one of the developers who uses RES in his project has reached to us with an performance issue. The data in his event store database are encrypted. RailsEventStore provides an `EncryptionMapper` to handle encryption/decryption of domain event's data, however in this case the simple use of it has caused performance issues.
+Some time ago [Bert](https://github.com/Bertg) who uses RES in his project has reached to us with an performance issue. The data in his event store database are encrypted. RailsEventStore provides an `EncryptionMapper` to handle encryption/decryption of domain event's data, however in this case the simple use of it has caused performance issues.
 
 <!-- more -->
 
