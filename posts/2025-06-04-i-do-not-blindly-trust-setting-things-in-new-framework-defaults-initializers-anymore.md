@@ -195,7 +195,8 @@ The issue with `rails_event_store` was already [fixed](https://github.com/RailsE
 - [friendly_id](https://github.com/norman/friendly_id/issues/823)
 - [globalize](https://github.com/globalize/globalize/issues/786)
 - [pg_hero](https://github.com/ankane/pghero/issues/232)
-- It was also discussed in the Rails [issue #31285](https://github.com/rails/rails/issues/31285)
+- [delayed_job_active_record](https://github.com/collectiveidea/delayed_job_active_record/issues/128)
+- It was also discussed in the Rails [issue #31285](https://github.com/rails/rails/issues/31285) and [issue #52740](https://github.com/rails/rails/issues/52740)
 
 If any gem does load `ActiveRecord::Base` or other configurable Rails class during the boot process — the `ActiveSupport.on_load` callbacks is triggered prematurely, and some settings from `new_framework_defaults_*.rb` may not be honored!
 
@@ -210,6 +211,7 @@ Rails.application.config.action_mailer.deliver_later_queue_name = nil         # 
 Rails.application.config.active_record.partial_inserts = false                # Rails 7.0 default
 Rails.application.config.active_record.automatic_scope_inversing = true       # Rails 7.0 default
 Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false # Rails 7.1 default
+Rails.application.config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA256               # Rails 7.1 default
 Rails.application.config.active_record.default_column_serializer = nil          # Rails 7.1 default
 Rails.application.config.active_record.raise_on_assign_to_attr_readonly = true  # Rails 7.1 default (when eager_load is enabled)
 ```
@@ -275,3 +277,5 @@ Use tools — like the script above — to keep your app safe when switching to 
 Move whatever you want to enable from `new_framework_defaults_*.rb` to `application.rb`.
 
 Always enable one setting at a time, and test your app thoroughly after each change.
+
+And if you are a gem author, be mindful of when you load Rails components in your code, use `ActiveSupport.on_load` to defer the loading of code until it is actually needed.
