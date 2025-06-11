@@ -212,6 +212,7 @@ Rails.application.config.active_record.partial_inserts = false                # 
 Rails.application.config.active_record.automatic_scope_inversing = true       # Rails 7.0 default
 Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false # Rails 7.1 default
 Rails.application.config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA256               # Rails 7.1 default
+Rails.application.config.action_controller.allow_deprecated_parameters_hash_equality = false                # Rails 7.1 default
 Rails.application.config.active_record.default_column_serializer = nil          # Rails 7.1 default
 Rails.application.config.active_record.raise_on_assign_to_attr_readonly = true  # Rails 7.1 default (when eager_load is enabled)
 ```
@@ -229,7 +230,7 @@ require "bundler/setup"
 
 early_load = false
 
-[:action_mailer, :active_job, :active_record].each do |rails_module|
+[:action_mailer, :active_job, :active_record, :action_controller].each do |rails_module|
   ActiveSupport.on_load(rails_module) do
     early_load = true
     warn <<~MSG
@@ -248,6 +249,8 @@ unless early_load
 end
 ```
 This script can be copied to your app directory and run manually via `bundle exec ruby premature_load_check.rb` to ensure none of your gems load Rails components too early.
+
+**UPDATE:** You can also check out this [gem](https://github.com/willnet/a-nti_manner_kick_course) by Shinichi Maeshima, which basically does the same thing.
 
 ## A safer upgrade path
 
