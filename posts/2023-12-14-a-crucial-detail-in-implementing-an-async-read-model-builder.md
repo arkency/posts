@@ -1,7 +1,7 @@
 ---
 created_at: 2023-12-14 09:02:21 +0100
 author: Łukasz Reszke
-tags: ["read model", "res"]
+tags: ["read model", "rails_event_store", "res"]
 publish: true
 ---
 
