@@ -2,7 +2,7 @@
 title: How to build a read model with Rails Event Store Projection
 created_at: 2021-05-01 00:58:27 +0200
 author: Szymon Fiedler
-tags: ["res", "projection", "read model", "ddd", "rails_event_store", "rails event store"]
+tags: ["res", "projection", "read model", "ddd", "rails event store"]
 publish: true
 ---
 
