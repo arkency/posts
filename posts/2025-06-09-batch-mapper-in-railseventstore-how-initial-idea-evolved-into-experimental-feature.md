@@ -1,7 +1,7 @@
 ---
 created_at: 2025-06-09 08:55:49 +0200
 author: Mirosław Pragłowski
-tags: ["railseventstore", "performance"]
+tags: ["res", "performance"]
 publish: true
 ---
 
