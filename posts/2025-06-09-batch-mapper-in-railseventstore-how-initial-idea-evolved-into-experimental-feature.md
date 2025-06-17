@@ -58,7 +58,7 @@ class CustomEncryptionMapper
   end
 
   def events_to_records(events)
-   fetch_keys(events)
+    fetch_keys(events)
     super
   end
 end
