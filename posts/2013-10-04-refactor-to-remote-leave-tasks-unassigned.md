@@ -91,7 +91,7 @@ prorities which you do for everything anyway.
 ## Find out more
 
 There is more beyond what we wrote in this article. Find out in our
-_<%= landing_link() %>_ ebook
+_["Async Remote"](https://blog.arkency.com/async-remote)_ ebook
 or by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 The newsletter will also containt exclusive content from the book that is

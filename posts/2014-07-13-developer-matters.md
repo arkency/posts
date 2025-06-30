@@ -18,7 +18,7 @@ Have you ever wondered **what does your regular workday look like**? Do you have
 
 <!-- more -->
 
-Since I'm working in Arkency, a lot of things changed for me. What is more, [recent blogpost](/2014/06/my-journey-to-arkency-world/) by [Tomek](/by/rybex/) gave me a fresh overview on my work, being productive and self organized. Moreover, I recently read [Robert](/by/pankowecki)'s book <%= landing_link %>, which gave me a better understanding of being a good developer so I'd like to share with you my impressions.
+Since I'm working in Arkency, a lot of things changed for me. What is more, [recent blogpost](/2014/06/my-journey-to-arkency-world/) by [Tomek](/by/rybex/) gave me a fresh overview on my work, being productive and self organized. Moreover, I recently read [Robert](/by/pankowecki)'s book ["Async Remote"](https://blog.arkency.com/async-remote), which gave me a better understanding of being a good developer so I'd like to share with you my impressions.
 
 ## What this is about?
 

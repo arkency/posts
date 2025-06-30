@@ -23,7 +23,7 @@ Do you feel the need for a change?
 
 My developer's career started in one of Wrocław corporations as a Java Developer. For most of my studies I had been developing my knowledge about that technology so It was effortless for me to work in that language.  I had been working for that company for almost a year, but I didn't really feel it.  Something was wrong. Days were similar to each other. I was working in mode "Daily meeting -> coffee -> fix old problem -> coffee etc.".  I started to think about it and I came to conclusion that I have to change something.
 
-A few months ago I went to local IT meeting.  Robert Pankowecki had there his lightning talk about <%= landing_link() %> and he was speaking about the style of work in Arkency. Thanks to his speech, I learned that you can work in a different way and I thought that "This is it!". After the meeting I started to look for information about Arkency (then I found this blog) and despite the lack of information about the application process I sent my application anyway. This is how things changed for me.
+A few months ago I went to local IT meeting.  Robert Pankowecki had there his lightning talk about ["Async Remote"](https://blog.arkency.com/async-remote) and he was speaking about the style of work in Arkency. Thanks to his speech, I learned that you can work in a different way and I thought that "This is it!". After the meeting I started to look for information about Arkency (then I found this blog) and despite the lack of information about the application process I sent my application anyway. This is how things changed for me.
 
 ## Begginings are difficult.
 

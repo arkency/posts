@@ -47,7 +47,7 @@ Get it done, deliver on production and forget about it.
 ## Get more
 
 You can find out more in our book:
-_<%= landing_link() %>_
+_["Async Remote"](https://blog.arkency.com/async-remote)_
 or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
 with tips and excerpts from the book similar in form to what you just read.
 

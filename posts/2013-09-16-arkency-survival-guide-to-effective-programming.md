@@ -81,7 +81,7 @@ Another topics that we hope to cover:
 
 ## Shut up and take my money
 
-The final release of _<%= landing_link() %>_ is already available.
+The final release of _["Async Remote"](https://blog.arkency.com/async-remote)_ is already available.
 
 ## or not
 

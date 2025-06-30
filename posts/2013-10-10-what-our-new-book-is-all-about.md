@@ -9,7 +9,7 @@ stories: ['async-remote']
 
 # Developers oriented project management: What our new book is all about?
 
-At first, we thought that our <%= landing_link("new book") %> is all about remote
+At first, we thought that our [new book](https://blog.arkency.com/async-remote) %> is all about remote
 work. But then after writing few chapters we saw that it is not. That those
 techniques can be applied to any team. So what is it all about?
 

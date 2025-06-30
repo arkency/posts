@@ -86,4 +86,4 @@ As you can see you can achieve Continuous Deployment step by step. It does not h
 * automatic deployment for all builds, but those with destructive migration will temporarily disable the app and will be only allowed to be executed during selected time window.
 * automatic deployment all the time, there are no interrupting migrations (your team does not write them), destroyed data are no longer used by application.
 
-This post is a small extract from a chapter of our <%= landing_link %> ebook.
+This post is a small extract from a chapter of our ["Async Remote"](https://blog.arkency.com/async-remote) ebook.
