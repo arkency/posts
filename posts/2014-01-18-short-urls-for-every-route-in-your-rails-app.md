@@ -92,7 +92,7 @@ need to remember about couple of things.
 
 First, you must make sure that slugs are unique across all your resources
 that you use this for. In our project this is the responsibility of
-<%= service_landing_link("services") %> which first try to reserve
+[services](https://rails-refactoring.com/) which first try to reserve
 the slug across the whole application,
 and assign it to the resource if it succeeded. But you can also implement
 it with a hook in your ActiveRecord class. It's up to you whether you choose

@@ -305,6 +305,6 @@ state that way that would not have happened in your real app, because you are ju
 
 ## More
 
-This is an excerpt from <%= service_landing_link %> . For our blog post and newsletter we end up here but in the book there will be a
+This is an excerpt from ["Fearless Refactoring: Rails Controllers"](https://rails-refactoring.com/). For our blog post and newsletter we end up here but in the book there will be a
 following discussion about shortening the setup. We will also talk about the value of setting UUIDs and generating them
 on frontend. As well why it is worth to have an `Input` class that keeps the incoming data for your service (usually user input).
