@@ -86,4 +86,4 @@ The final release of _["Async Remote"](https://blog.arkency.com/async-remote)_ i
 ## or not
 
 If you are not sure yet, but want to receive tips and excerpts from our upcoming
-book, just [subscribe to the newsletter](<%= aar_newsletter_subscription_link %>) below.
+book, just [subscribe to the newsletter](//arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=4) below.

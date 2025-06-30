@@ -84,7 +84,7 @@ the book even if remote working is not your highest priority right now.
 
 You can find out more in our book:
 **[Async Remote](http://blog.arkency.com/async-remote/) ebook**
-or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
+or if you are not sure yet, by [subscribing to the newsletter](//arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=4)
 with tips and excerpts from the book similar in form to what you can read in our previous blog posts:
 
 * [Story of size 1](/2013/09/story-of-size-1/)

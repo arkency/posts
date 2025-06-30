@@ -48,14 +48,14 @@ Get it done, deliver on production and forget about it.
 
 You can find out more in our book:
 _["Async Remote"](https://blog.arkency.com/async-remote)_
-or if you are not sure yet, by [subscribing to the newsletter](<%= aar_newsletter_subscription_link %>)
+or if you are not sure yet, by [subscribing to the newsletter](//arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=4)
 with tips and excerpts from the book similar in form to what you just read.
 
 ## In next episode
 
 The next blog post will be about _Project Managers_. Whether you actually need them
 and what are the alternatives to hiring them.
-[Subscribe](<%= aar_newsletter_subscription_link %>)
+[Subscribe](//arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=4)
 to be notified when it is out.
 
 ## How about you?

@@ -88,7 +88,7 @@ have their own nature and small tasks fits great in this environment.
 
 Did you like this article? You can find out more on this and similar topics
 in our book _["Async Remote"](https://blog.arkency.com/async-remote)_.
-You can also [subscribe to the newsletter](<%= aar_newsletter_subscription_link %>)
+You can also [subscribe to the newsletter](//arkency.us5.list-manage.com/subscribe?u=1bb42b52984bfa86e2ce35215&amp;id=4cee302d8a&group[15297]=4)
 below if you want to receive tips and excerpts from our work on the book.
 They will be similar in form to this blogpost.
 
