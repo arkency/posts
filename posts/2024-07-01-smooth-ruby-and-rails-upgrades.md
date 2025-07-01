@@ -25,7 +25,7 @@ However, you should be careful with this one, because sometimes gems may be used
 - Gems that are trivial to inline.
 
 For example, if you use a single 5-line method from a huge unmaintained gem, it's better to copy-paste it to your codebase. You won't encounter any problems with this gem's requirements later in the upgrade process.
-- Gems that duplicate the functionality of the framework.
+- [Gems that duplicate the functionality of the framework](https://blog.arkency.com/5-gems-you-no-longer-need-with-rails/).
 
 `activerecord-import` is a good example. It was super useful prior to Rails 6, but if you're on Rails 6 or newer, you can use built-in functions instead.
 
