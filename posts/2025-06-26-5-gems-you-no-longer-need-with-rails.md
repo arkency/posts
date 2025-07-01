@@ -3,7 +3,7 @@ title: 5 gems you no longer need with Rails
 created_at: 2025-06-26T19:51:41.218Z
 author: Paweł Pacana
 tags: []
-publish: false
+publish: true
 ---
 
 In my line of work as a consultant I'm often reviewing Rails codebases. Most of the time they're not the greenfield apps — developed with latest and greatest Rails and Ruby releases. They power successful businesses though. To keep them running smoothly and securely they sometimes need a little push to stay within [framework maintenance window](https://endoflife.date/rails).
