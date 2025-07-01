@@ -67,7 +67,7 @@ What if host already contains protocol?
 ## Solutions
 ### 1. Ruby’s URI
 
-Ruby has a built–in `URI` class that solves most of these problems:
+Ruby has a built–in [URI](https://docs.ruby-lang.org/en/master/URI.html) class that solves most of these problems:
 
 ```ruby
 require "uri"
