@@ -184,9 +184,9 @@ stub_request(:get, "https://api.example.com/users/123")
 1. WebMock will fail if the URL is malformed
 2. This will catch URL building errors:
 
-	* double slashes
-	* missing slashes
-	* unescaped parameters
+* double slashes
+* missing slashes
+* unescaped parameters
 
 WebMock forces you to be explicit about the exact URLs your code should generated, making URL building bugs much more visible during test runs.
 
