@@ -145,7 +145,7 @@ uri = Addressable::URI.new(
 )
 
 puts uri.to_s
-# => "https://api.example.com/users/123?include[]=profile&include[]=posts&format=json"
+# => "https://api.example.com/users/123?includes[]=profile&includes[]=posts&format=json"
 ```
 
 ### 4. Rails URL helpers
