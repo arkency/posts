@@ -59,7 +59,7 @@ I'm curious what are **your** top gems no longer needed with Rails. Here's the l
 
 ### request_store
 
-Obsolete since the introduction of [CurrentAttributes](https://edgeapi.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html) in Rails 5.2. Thank you, [inulty](https://x.com/inultydev)!
+Obsolete since the introduction of [ActiveSupport::CurrentAttributes](https://edgeapi.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html) in Rails 5.2. Thank you, [inulty](https://x.com/inultydev)!
 
 
 Happy upgrading!
