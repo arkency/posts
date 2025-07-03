@@ -2,13 +2,13 @@
 title: 5 gems you no longer need with Rails
 created_at: 2025-06-26T19:51:41.218Z
 author: Paweł Pacana
-tags: []
+tags: ['rails', 'gems', 'rails upgrade', 'legacy']
 publish: true
 ---
 
 In my line of work as a consultant I'm often reviewing Rails codebases. Most of the time they're not the greenfield apps — developed with latest and greatest Rails and Ruby releases. They power successful businesses though. To keep them running smoothly and securely they sometimes need a little push to stay within [framework maintenance window](https://endoflife.date/rails).
 
-Upgrading the Rails itself is the easiest part of the upgrade process. It's well documented. The framework and its parts play well together. You can do it gradually, dealing with new framework defaults one by one. 
+Upgrading the Rails itself is the easiest part of the upgrade process. It's well documented. The framework and its parts play well together. You can do it gradually, dealing with new framework defaults one by one.
 
 The trickier part is the non-framework dependencies. The ones that gave tremendous leg while bootstrapping the application. When upgrading, each of them adds some complexity:
 
@@ -20,7 +20,7 @@ The trickier part is the non-framework dependencies. The ones that gave tremendo
 
  * can you upgrade them gradually in disconnect with framework changing on the same step
 
-The more of them, the bigger the trouble. And eventually more changelogs to inspect each time. If we could remove some gems, it would be great help. There are many heuristics to detect dead gem dependencies. 
+The more of them, the bigger the trouble. And eventually more changelogs to inspect each time. If we could remove some gems, it would be great help. There are many heuristics to detect dead gem dependencies.
 
 Here is the one that I use — *replace external gems with framework features* and my personal top 5 list of gems you no longer need with Rails.
 
