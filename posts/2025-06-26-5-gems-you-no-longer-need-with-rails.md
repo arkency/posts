@@ -20,9 +20,11 @@ The trickier part is the non-framework dependencies. The ones that gave tremendo
 
  * can you upgrade them gradually in disconnect with framework changing on the same step
 
-The more of them, the bigger the trouble. And eventually more changelogs to inspect each time. If we could remove some gems, it would be great help. There are many heuristics to detect dead gem dependencies.
+The more of them, the bigger the trouble. And eventually more changelogs to inspect each time. If we could remove some gems, it would be great help.
 
-Here is the one that I use — *replace external gems with framework features* and my personal top 5 list of gems you no longer need with Rails.
+## The list
+
+There are many heuristics to detect dead gem dependencies. Here is the one that I use — *replace external gems with framework features* and my personal top 5 list of gems you no longer need with Rails.
 
 ### aasm
 
@@ -50,4 +52,14 @@ Rails introduced [encryption](https://guides.rubyonrails.org/active_record_encry
 
 The differences in storage — number, naming and payload of stored, encrypted database columns make this replacement not quite straight-forward. Here's a [possible upgrade path](https://pagertree.gitbook.io/blog/migrate-attr_encrypted-to-rails-7-active-record-encrypts) as described by the PagerTree team.
 
-I'm curious what are your top gems no longer needed with Rails. Happy upgrading!
+## Reader's picks
+
+I'm curious what are **your** top gems no longer needed with Rails. Here's the list collected from reader submissions.
+
+
+### request_store
+
+Obsolete since the introduction of [CurrentAttributes](https://edgeapi.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html) in Rails 5.2. Thank you, [inulty](https://x.com/inultydev)!
+
+
+Happy upgrading!
