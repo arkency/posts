@@ -39,6 +39,8 @@ end
 
 This way I managed to safely migrate my internal implementation and test that it will behave exactly in the same way as the previous one.
 
+## Cloning a singleton class
+
 Singleton module adds also the `clone` method on class level that is calling `__init__` but it has a slightly different behaviour as it returns a new anonymous singleton class with a fresh state rather than resetting the existing one:
 
 ```ruby
@@ -58,4 +60,4 @@ Singleton.__init__(Timer).instance.timestamp #=> 2025-07-04 09:31:42.419874 +020
 Timer.instance.timestamp #=> 2025-07-04 09:31:42.419874 +0200
 ```
 
-From my experience the `Singleton` pattern is not used very often but if you are using it and find a use case where you need to reset the instance for any reson, using `Singeton::__init__` may help you do so.
+From my experience the `Singleton` pattern is not used very often but if you are using it and find a use case where you need to reset the instance for any reason, using `Singeton::__init__` may help you do so.
