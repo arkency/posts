@@ -2,7 +2,7 @@
 created_at: 2025-07-04 08:45:43 +0200
 author: Jakub Kosiński
 tags: ['ruby', 'singleton']
-publish: false
+publish: true
 ---
 
 # Breaking the Singleton: How to Reload Ruby Singleton Instance
