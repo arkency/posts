@@ -1,5 +1,5 @@
 ---
-created_at: 2022-10-07 12:58:50 0200
+created_at: 2022-10-07 12:58:50 +0200
 author: Łukasz Reszke
 tags: ['rails event store', 'event sourcing', 'initial event', 'migration event', 'ddd']
 publish: true
