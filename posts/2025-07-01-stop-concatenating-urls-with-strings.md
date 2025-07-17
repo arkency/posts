@@ -97,7 +97,7 @@ class ApiClient
   end
   
   def build_url(path, query_params = {})
-    uri = @base_uri.dup
+    uri = @base_url.dup
     uri.path = File.join(uri.path, path)
     uri.query = URI.encode_www_form(query_params) unless query_params.empty?
     uri.to_s
