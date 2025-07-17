@@ -1,7 +1,7 @@
 ---
 created_at: 2025-07-01 16:10:21 +0200
 author: Szymon Fiedler
-tags: [ruby rails]
+tags: ['ruby', 'rails']
 publish: true
 ---
 
