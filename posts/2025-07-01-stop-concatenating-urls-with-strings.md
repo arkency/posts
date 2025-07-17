@@ -127,6 +127,13 @@ URI("file://#{full_path}")
 # => #<URI::File file:///var/www/uploads/user_123/avatar.jpg>
 ```
 
+One more cool trick with pathname is `/` method (alias for `+`):
+
+```ruby
+Pathname.new("/var") / "www" / "uploads"
+# => #<Pathname:/var/www/uploads>
+```
+
 ### 3. Addresable gem
 
 For more advanced use cases, consider the [addressable](https://github.com/sporkmonger/addressable) gem:
