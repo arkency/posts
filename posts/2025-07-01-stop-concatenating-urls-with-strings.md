@@ -1,8 +1,8 @@
 ---
 created_at: 2025-07-01 16:10:21 +0200
 author: Szymon Fiedler
-tags: []
-publish: false
+tags: [ruby rails]
+publish: true
 ---
 
 # Stop concatenating URLs with strings — Use proper tools instead
