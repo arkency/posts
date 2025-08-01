@@ -25,6 +25,9 @@ The deprecation warning was:
 [DEPRECATION] DEPRECATION WARNING: `Rails.application.secrets` is deprecated 
 in favor of `Rails.application.credentials` and will be removed in Rails 7.2.
 ```
+We moved all the secrets and encrypted secrets to the credentials file.
+
+We also moved the `secret_key_base` to credentials because it's the default place for this secret since introduction of the credentials feature in Rails 5.2.
 
 We removed values from `ENV["SECRET_KEY_BASE"]` to credentials and checked that the value was correct by calling
 `Rails.application.credentials.secret_key_base`.
@@ -32,7 +35,7 @@ We removed values from `ENV["SECRET_KEY_BASE"]` to credentials and checked that 
 It turned out that you can also get the secret_key_base by calling `Rails.application.secret_key_base`. 
 
 
-Let's take a look at this code: 
+Let's take a look at this code:
 
 ```ruby
 def secret_key_base
@@ -52,11 +55,11 @@ Ok so to sum it up, until now:
 
 Right? But instead...
 
-Instead it failed silently. So where’s the poop?
+Instead it failed silently. **All the cookies become invalid**. So where’s the poop?
 
 <img src="<%= src_original("deprecation_warning_rails_7-1_to_7-2/himym-wheres.gif") %>" width="100%">
 
-The poop is in Heroku trying to be smarter than developers. Unfortunately. It turned out that removing `SECRET_KEY_BASE` env leads to.. regenerating it with new **random** value.
+The poop is in Heroku trying to be smarter than developers. Unfortunately. It turned out that removing `SECRET_KEY_BASE` env leads to... regenerating it with new **random** value.
 
 So our external devices depending on it couldn’t work because of new, randomly generated key.
 
@@ -65,5 +68,5 @@ To sum it up:
 - If you’re getting rid of the `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2
 - And you’re on Heroku
 - And you’re using Heroku Buildpacks
-- Make sure you keep `SECRET_KEY_BASE` in both credentials and in Heroku ENV variable
+- Make sure you keep `SECRET_KEY_BASE` in both credentials and in Heroku config variable. Or at least in the latter.
 - Either way... you may end up in nasty silent error. Which is not good.
