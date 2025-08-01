@@ -1,8 +1,8 @@
 ---
 created_at: 2025-08-01 13:07:00 +0200
 author: Łukasz Reszke
-tags: []
-publish: false
+tags: ["rails", "rails upgrade", "heroku"]
+publish: true
 ---
 
 # Watch out for this one deprecation warning when upgrading from Rails 7.1 to 7.2 on Heroku
