@@ -59,7 +59,7 @@ Instead it failed silently. **All the cookies become invalid**. So where’s the
 
 <img src="<%= src_original("deprecation_warning_rails_7-1_to_7-2/himym-wheres.gif") %>" width="100%">
 
-The poop is in Heroku trying to be smarter than developers. Unfortunately. It turned out that removing `SECRET_KEY_BASE` env leads to... regenerating it with new **random** value.
+The poop is in Heroku trying to be smarter than developers. Unfortunately. It turned out that removing `SECRET_KEY_BASE` env leads to... [regenerating it with new **random** value.](https://github.com/heroku/heroku-buildpack-ruby/issues/1143)
 
 So our external devices depending on it couldn’t work because of new, randomly generated key.
 
