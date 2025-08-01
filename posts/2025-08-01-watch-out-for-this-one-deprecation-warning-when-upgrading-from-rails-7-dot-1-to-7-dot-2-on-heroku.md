@@ -54,6 +54,8 @@ Right? But instead...
 
 Instead it failed silently. So where’s the poop?
 
+<img src="<%= src_original("deprecation_warning_rails_7-1_to_7-2/himym-wheres.gif") %>" width="100%">
+
 The poop is in Heroku trying to be smarter than developers. Unfortunately. It turned out that removing `SECRET_KEY_BASE` env leads to.. regenerating it with new **random** value.
 
 So our external devices depending on it couldn’t work because of new, randomly generated key.
