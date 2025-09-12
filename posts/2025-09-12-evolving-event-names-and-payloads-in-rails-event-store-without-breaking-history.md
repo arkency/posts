@@ -66,7 +66,7 @@ We decided to create a custom `Transformations::RefundToReturnEventMapper`and in
 
 ### Key components
 
-1. Event class name transformation
+#### Event class name transformation
 
 ```ruby
   class_map = {
@@ -111,7 +111,7 @@ module Transformations
 end
 ```
 
-2. Payload data transformation
+#### Payload data transformation
 
 As you probably notice there's also a call to `transform_payload`, here's how it works:
 
@@ -159,7 +159,7 @@ As described in [this post](https://blog.arkency.com/4-strategies-when-you-need-
 
 After investigating its capabilities, we discovered that upcast can indeed handle both event class name changes and payload transformation through lambda functions. However, we chose to stick with our custom mapper approach for several practical reasons:
 
-1. Pipeline integration complexity
+### Pipeline integration complexity
 
 RES upcast works beautifully as a standalone solution, but doesn't integrate cleanly with the transformation pipeline we needed:
 
@@ -176,7 +176,7 @@ RES upcast works beautifully as a standalone solution, but doesn't integrate cle
 
 We needed `DomainEvent.new`, `SymbolizeMetadataKeys.new`, and `PreserveTypes.new` transformations, but upcast's `Default` mapper isn't designed to work within a transformation pipeline.
 
-2. Excessive boilerplate when using lambdas
+### Excessive boilerplate when using lambdas
 
 Lambdas could be used to handle paload transformation, however using upcast with lambdas required significant boilerplate code for each event type:
 
@@ -205,7 +205,7 @@ Without the transformation pipeline, we'd lose the automatic benefits of:
 
 We'd need to reimplement these features manually in each lambda.
 
-3. Code organization and maintainability
+### Code organization and maintainability
 
 Our custom mapper provides better separation of concerns:
 - single responsibility: one class handles all transformation logic
