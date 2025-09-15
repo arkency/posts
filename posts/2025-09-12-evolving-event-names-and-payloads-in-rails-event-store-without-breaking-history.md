@@ -159,56 +159,65 @@ As described in [this post](https://blog.arkency.com/4-strategies-when-you-need-
 
 After investigating its capabilities, we discovered that upcast can indeed handle both event class name changes and payload transformation through lambda functions. However, we chose to stick with our custom mapper approach for several practical reasons:
 
-### Pipeline integration complexity
-
-RES upcast works beautifully as a standalone solution, but doesn't integrate cleanly with the transformation pipeline we needed:
-
-```ruby
-  # This doesn't work - Default mapper isn't pipeline-compatible
-  RubyEventStore::Mappers::PipelineMapper.new(
-    RubyEventStore::Mappers::Pipeline.new(
-      RubyEventStore::Mappers::Default.new(events_class_remapping: upcast_map),  # No dump() method
-      RubyEventStore::Mappers::Transformation::DomainEvent.new,
-      RubyEventStore::Mappers::Transformation::PreserveTypes.new
-    )
-  )
-```
-
-We needed `DomainEvent.new`, `SymbolizeMetadataKeys.new`, and `PreserveTypes.new` transformations, but upcast's `Default` mapper isn't designed to work within a transformation pipeline.
-
 ### Excessive boilerplate when using lambdas
 
-Lambdas could be used to handle paload transformation, however using upcast with lambdas required significant boilerplate code for each event type:
-
-```ruby
-  'Ordering::DraftRefundCreated' => lambda { |record|
-    new_data = symbolize_keys(record.data.dup)  # Manual key conversion
-    new_data = transform_payload(new_data)      # Our transformation logic
-
-    record.class.new(                           # Manual object creation
-      event_id: record.event_id,                # Boilerplate
-      event_type: 'Ordering::DraftReturnCreated',
-      data: new_data,
-      metadata: symbolize_metadata_keys(record.metadata),  # Manual metadata handling
-      timestamp: record.timestamp,              # Manual preservation
-      valid_at: record.valid_at                # Manual preservation
-    )
-  }
-```
-
-This approach would require us to manually implement what DomainEvent.new and PreserveTypes.new handle automatically.
-
-Without the transformation pipeline, we'd lose the automatic benefits of:
-- type preservation for timestamps and other complex objects
-- metadata key symbolization
-- domain event hydration
-
-We'd need to reimplement these features manually in each lambda.
+Rails Event Store provides `Transformation::Upcast` which can handle both event class name changes and payload transformation through lambda functions. After investigating its capabilities, we chose to stick with our custom mapper approach for several practical reasons:
 
 ### Code organization and maintainability
 
-Our custom mapper provides better separation of concerns:
-- single responsibility: one class handles all transformation logic
-- easier testing: clear interface for unit tests
-- better debugging: stack traces point to specific transformation methods
-- DRY principle: Shared transformation logic across all event types
+While `Transformation::Upcast` is pipeline-compatible and would work with our transformation stack:
+
+```ruby
+  RubyEventStore::Mappers::PipelineMapper.new(
+  RubyEventStore::Mappers::Pipeline.new(
+    RubyEventStore::Mappers::Transformation::Upcast.new(upcast_map),
+    RubyEventStore::Mappers::Transformation::DomainEvent.new,
+    RubyEventStore::Mappers::Transformation::SymbolizeMetadataKeys.new,
+    RubyEventStore::Mappers::Transformation::PreserveTypes.new
+  )
+)
+
+However, it would require significant boilerplate code for each event type:
+
+```ruby
+upcast_map = {
+  'Ordering::DraftRefundCreated' => lambda { |record|
+    new_data = record.data.dup
+    new_data['return_id'] = new_data.delete('refund_id') if new_data['refund_id']    # Repeated logic
+    new_data['returnable_products'] = new_data.delete('refundable_products') if new_data['refundable_products']
+
+    record.class.new(                           # Boilerplate for each lambda
+      event_id: record.event_id,
+      event_type: 'Ordering::DraftReturnCreated',
+      data: new_data,
+      metadata: record.metadata,
+      timestamp: record.timestamp,
+      valid_at: record.valid_at
+    )
+  },
+  'Ordering::ItemAddedToRefund' => lambda { |record|
+    new_data = record.data.dup
+    new_data['return_id'] = new_data.delete('refund_id') if new_data['refund_id']    # Repeated logic again
+
+    record.class.new(                           # More boilerplate
+      event_id: record.event_id,
+      event_type: 'Ordering::ItemAddedToReturn',
+      data: new_data,
+      metadata: record.metadata,
+      timestamp: record.timestamp,
+      valid_at: record.valid_at
+    )
+  }
+}
+```
+
+Custom Mapper Approach provides:
+- single transformation method handles all event types
+- clear separation of concerns
+- easier unit testing
+- better debugging with stack traces pointing to specific methods
+
+On the other hand Transformation::Upcast shines for simpler use cases:
+- only event class names need changing, no payload transformation
+- simple one-to-one event mappings
+- minimal transformation logic
