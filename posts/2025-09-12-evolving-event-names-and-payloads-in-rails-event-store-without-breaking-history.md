@@ -52,12 +52,12 @@ We decided to create a custom `Transformations::RefundToReturnEventMapper`and in
   mapper = RubyEventStore::Mappers::PipelineMapper.new(
     RubyEventStore::Mappers::Pipeline.new(
       Transformations::RefundToReturnEventMapper.new(
-          'Ordering::DraftRefundCreated' => 'Ordering::DraftReturnCreated',
-          'Ordering::ItemAddedToRefund' => 'Ordering::ItemAddedToReturn',
-          'Ordering::ItemRemovedFromRefund' => 'Ordering::ItemRemovedFromReturn'
-        ),
+        'Ordering::DraftRefundCreated' => 'Ordering::DraftReturnCreated',
+        'Ordering::ItemAddedToRefund' => 'Ordering::ItemAddedToReturn',
+        'Ordering::ItemRemovedFromRefund' => 'Ordering::ItemRemovedFromReturn'
+      ),
       RubyEventStore::Mappers::Transformation::SymbolizeMetadataKeys.new,
-      RubyEventStore::Mappers::Transformation::PreserveTypes.new
+      to_domain_event: RubyEventStore::Mappers::Transformation::DomainEvent.new
     )
   )
   client = RailsEventStore::JSONClient.new(mapper: mapper)
@@ -90,20 +90,14 @@ module Transformations
 
       if old_class_name != new_class_name
         transformed_data = transform_payload(record.data, old_class_name)
-        begin
-          metadata_json = record.metadata.respond_to?(:to_json) ? record.metadata.to_json : record.metadata.to_h.to_json
-          RubyEventStore::SerializedRecord.new(
-            event_id: record.event_id,
-            event_type: new_class_name,
-            data: transformed_data.to_json,
-            metadata: metadata_json,
-            timestamp: record.timestamp,
-            valid_at: record.valid_at
-          )
-        rescue => e
-          puts "Mapper error: #{e.message}, falling back to original record"
-          record
-        end
+        RubyEventStore::Record.new(
+          event_id: record.event_id,
+          event_type: new_class_name,
+          data: transformed_data,
+          metadata: record.metadata,
+          timestamp: record.timestamp,
+          valid_at: record.valid_at
+        )
       else
         record
       end
@@ -128,10 +122,10 @@ module Transformations
     def transform_payload(data, old_class_name)
       case old_class_name
       when 'Ordering::DraftRefundCreated'
-        data = transform_key(data, :refund_id, :return_id)
-        transform_key(data, :refundable_products, :returnable_products)
+        data = transform_refund_to_return_payload(data, "refund_id", "return_id")
+        transform_refund_to_return_payload(data, "refundable_products", "returnable_products")
       when 'Ordering::ItemAddedToRefund', 'Ordering::ItemRemovedFromRefund'
-        transform_key(data, :refund_id, :return_id)
+        transform_refund_to_return_payload(data, "refund_id", "return_id")
       else
         data
       end
@@ -177,7 +171,8 @@ While `Transformation::Upcast` is pipeline-compatible and would work with our tr
   RubyEventStore::Mappers::Pipeline.new(
     RubyEventStore::Mappers::Transformation::Upcast.new(upcast_map),
     RubyEventStore::Mappers::Transformation::SymbolizeMetadataKeys.new,
-    RubyEventStore::Mappers::Transformation::PreserveTypes.new
+    RubyEventStore::Mappers::Transformation::PreserveTypes.new,
+    to_domain_event: RubyEventStore::Mappers::Transformation::DomainEvent.new
   )
 )
 
