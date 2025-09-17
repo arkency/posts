@@ -287,10 +287,10 @@ upcast_map = {
 ```
 
 Custom Mapper Approach provides:
-- single transformation method handles all event types
-- clear separation of concerns
-- easier unit testing
-- better debugging with stack traces pointing to specific methods
+- single transformation method handles all event types - one `transform_payload` method with case statements vs multiple lambda functions
+- better code organization - separates event type mapping logic from payload transformation logic into distinct methods (`load` vs `transform_payload`)
+- easier unit testing - all transformation logic is contained within a single class, so unit tests can be written by passing records with different data and event_type combinations to the load method. With upcast, lambdas are scattered across the configuration map, making it harder to test individual transformations in isolation
+- better debugging experience - stack traces show meaningful method names like `RefundToReturnEventMapper#transform_payload` instead of generic `<lambda>` calls
 
 On the other hand Transformation::Upcast shines for simpler use cases:
 - only event class names need changing, no payload transformation
