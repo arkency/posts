@@ -51,6 +51,7 @@ We decided to create a custom `Transformations::RefundToReturnEventMapper`and in
 ```ruby
   mapper = RubyEventStore::Mappers::PipelineMapper.new(
     RubyEventStore::Mappers::Pipeline.new(
+      preserve_types,  # Explained below
       Transformations::RefundToReturnEventMapper.new(
         'Ordering::DraftRefundCreated' => 'Ordering::DraftReturnCreated',
         'Ordering::ItemAddedToRefund' => 'Ordering::ItemAddedToReturn',
@@ -122,10 +123,10 @@ module Transformations
     def transform_payload(data, old_class_name)
       case old_class_name
       when 'Ordering::DraftRefundCreated'
-        data = transform_refund_to_return_payload(data, "refund_id", "return_id")
-        transform_refund_to_return_payload(data, "refundable_products", "returnable_products")
+        data = transform_refund_to_return_payload(data, :refund_id, :return_id)
+        transform_refund_to_return_payload(data, :refundable_products, :returnable_products)
       when 'Ordering::ItemAddedToRefund', 'Ordering::ItemRemovedFromRefund'
-        transform_refund_to_return_payload(data, "refund_id", "return_id")
+        transform_refund_to_return_payload(data, :refund_id, :return_id)
       else
         data
       end
@@ -143,6 +144,81 @@ module Transformations
   end
 end
 ```
+
+#### Preserve types
+
+Preserve types transformation is provided by RES and its job is to restore original types for event data and metadata. When data and metadata are hashes (the most common case), registered types will be restored according to their configuration. This means, in particular, that data keys will be symbolized if they were originally symbols and if config for `Symbol` was registered for `PreserveTypes` transformation.
+
+Let's set up `PreserveTypes` with the same types config that is used by `RailsEventStore::JSONClient` default mapper:
+
+
+```ruby
+preserve_types = begin
+  preserve_types = RubyEventStore::Mappers::Transformation::PreserveTypes.new
+
+  types_config = {
+    Symbol => {
+      serializer: ->(v) { v.to_s },
+      deserializer: ->(v) { v.to_sym }
+    },
+    Time => {
+      serializer: ->(v) { v.iso8601(RubyEventStore::TIMESTAMP_PRECISION) },
+      deserializer: ->(v) { Time.iso8601(v) }
+    },
+    Date => {
+      serializer: ->(v) { v.iso8601 },
+      deserializer: ->(v) { Date.iso8601(v) }
+    },
+    DateTime => {
+      serializer: ->(v) { v.iso8601 },
+      deserializer: ->(v) { DateTime.iso8601(v) }
+    },
+    BigDecimal => {
+      serializer: ->(v) { v.to_s },
+      deserializer: ->(v) { BigDecimal(v) }
+    }
+  }
+
+  if defined?(ActiveSupport::TimeWithZone)
+    types_config[ActiveSupport::TimeWithZone] = {
+      serializer: ->(v) { v.iso8601(RubyEventStore::TIMESTAMP_PRECISION) },
+      deserializer: ->(v) { Time.iso8601(v).in_time_zone },
+      stored_type: ->(*) { "ActiveSupport::TimeWithZone" }
+    }
+  end
+
+  if defined?(OpenStruct)
+    types_config[OpenStruct] = {
+      serializer: ->(v) { v.to_h },
+      deserializer: ->(v) { OpenStruct.new(v) }
+    }
+  end
+
+  types_config.each do |type, config|
+    preserve_types.register(type, **config)
+  end
+
+  preserve_types
+end
+
+```
+
+Now we can use it in the transformation pipeline as shown above.
+
+There's one more thing - `PreserveTypes` uses event metadata to store information about what needs to be transformed and how, something like this:
+
+```ruby
+"types": {
+   "data": {
+     "order_id": ["Symbol", "String"],
+     "refund_id": ["Symbol", "String"]
+   }
+ }
+```
+
+this will result in data keys with these names being restored from String to Symbols.
+
+Why does this matter in our case? Because old events were stored with `refund_id` data key, so `PreserveTypes` has to run before our custom `RefundToReturnEventMapper`. Otherwise it won't be able to symbolize `return_id` key because there's no corresponding type data in the event's metadata.
 
 ### Other considerations
 
