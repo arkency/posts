@@ -2,7 +2,7 @@
 created_at: 2025-09-12 12:26:59 +0200
 author: Jakub Rozmiarek
 tags: ["event store", "event sourcing", "ddd", "rails event store"]
-publish: false
+publish: true
 ---
 
 # Evolving event names and payloads in Rails Event Store without breaking history
