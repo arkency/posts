@@ -1,12 +1,11 @@
 ---
-title: "Before upgrading to Rails 8, update to JSON 2.14.0 to avoid being hit by strings vs symbols"
 created_at: 2025-09-25
 author: Piotr Jurewicz
 tags: ['rails', 'ruby', 'json', 'rails upgrade']
 publish: false
 ---
 
-# Before upgrading to Rails 8, update to JSON 2.14.0 to avoid being hit by strings vs symbols
+# Rails 8 upgrade story: duplicate keys sneaking into our JSON responses
 
 The upgrade from **Rails 7.2.2.2 to 8.0.2.1** went surprisingly smoothly.  
 After deployment, we didn’t notice any new exceptions, and the application seemed stable.  
@@ -28,7 +27,7 @@ We had something like this:
 attributes.merge(id: public_id)
 ```
 
-The intention was simple: replace the primary key with a public identifier used for inter-service communication.
+The intention was simple: replace the private database ID with a public identifier used for inter-service communication.
 
 The problem? `attributes` returns a hash with **string keys**, and we were merging in a value under a **symbol key**.  
 The result was a hash with both keys:
