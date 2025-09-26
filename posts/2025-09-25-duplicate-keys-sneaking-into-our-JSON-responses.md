@@ -1,5 +1,5 @@
 ---
-created_at: 2025-09-25
+created_at: 2025-09-25 12:26:59 +0200
 author: Piotr Jurewicz
 tags: ['rails', 'ruby', 'json', 'rails upgrade']
 publish: false
