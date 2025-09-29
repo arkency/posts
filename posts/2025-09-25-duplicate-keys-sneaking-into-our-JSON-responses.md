@@ -2,7 +2,7 @@
 created_at: 2025-09-25 12:26:59 +0200
 author: Piotr Jurewicz
 tags: ['rails', 'ruby', 'json', 'rails upgrade']
-publish: false
+publish: true
 ---
 
 # Rails 8 upgrade story: duplicate keys sneaking into our JSON responses
@@ -27,7 +27,7 @@ We had something like this:
 attributes.merge(id: public_id)
 ```
 
-The intention was simple: replace the foreign key with a public identifier used for inter-service communication.
+The intention was simple: replace the primary key with a public identifier used for inter-service communication.
 
 The problem? `attributes` returns a hash with **string keys**, and we were merging in a value under a **symbol key**.  
 The result was a hash with both keys:
@@ -43,32 +43,32 @@ When the controller executed:
 render json: { "id" => 1, :id => "one" }
 ```
 
-Rails would internally call `as_json`, which deduplicated keys. The final JSON always used the last provided value under the string key.
+Rails would internally call `as_json`, which deduplicated keys, so the final JSON always used the last provided value, regardless of whether the key was a string or a symbol.
 
 ## What changed in Rails 8?
 
 The real change came from this [Rails commit](https://github.com/rails/rails/commit/42d75ed3a8b96ee4610601ecde7c40e9d65e003f), which says:
 ```
 Only add template options when rendering template
-...
+[...]
 This commit avoids adding those keys unless we are rendering a template.
 
 This improves performance both by avoiding calculating the templates to  
 put into this options hash as well as enabling a fast path in `render json:`,  
 which can only be used when `.to_json` is given no options.
 ```
-That **fast path** made JSON rendering faster — but with one important side effect:  
-it no longer invoked `as_json`, which quietly normalized keys — turning symbol keys into strings.  
+That **fast path** improved JSON rendering performance - but with one important side effect:  
+it no longer invoked `as_json`, which quietly normalized keys - turning symbol keys into strings.  
 In our case, that invisible normalization prevented the duplicate key problem.
 
-With Rails 8, the fast path skipped [this line](https://github.com/rails/rails/blob/c3ad0afaa8045da0f420a0b25bdf0d38da614e61/activesupport/lib/active_support/json/encoding.rb#L57). Our mixed-key hash (`{"id" => 1, :id => "one"}`) stayed exactly as it was, and the JSON encoder output a response with **duplicate keys**.
+With Rails 8, the **fast path** skipped [this line](https://github.com/rails/rails/blob/c3ad0afaa8045da0f420a0b25bdf0d38da614e61/activesupport/lib/active_support/json/encoding.rb#L57). Our mixed-key hash (`{"id" => 1, :id => "one"}`) stayed exactly as it was, and the JSON encoder output a response with duplicate keys (`{"id":1,"id":"one"}`).
 
 So the root cause was in our code, but for years we were unknowingly relying on Rails’ implicit key normalization.  
 Once that disappeared, the bug became visible.
 
 ## The changelog confusion
 
-Interestingly, the [Rails 7.1.3 changelog](https://github.com/rails/rails/blob/7-1-stable/activesupport/CHANGELOG.md#rails-713-january-16-2024) claimed:
+Interestingly, the [ActiveSupport 7.1.3 changelog](https://github.com/rails/rails/blob/7-1-stable/activesupport/CHANGELOG.md#rails-713-january-16-2024) stated:
 
 ```
 Fix `ActiveSupport::JSON.encode` to prevent duplicate keys.
@@ -78,7 +78,7 @@ Fix `ActiveSupport::JSON.encode` to prevent duplicate keys.
 ```
 
 This gave the impression that duplicates would never occur.  
-Unfortunately, that fix was reverted before release — the changelog was misleading.  
+Unfortunately, that fix was reverted before release - the changelog was misleading.  
 We ended up creating a [PR to correct it](https://github.com/rails/rails/pull/55735).
 
 ## Guarding yourself before the upgrade
@@ -99,7 +99,7 @@ puts JSON.generate({ foo: 1, "foo" => 2 })
 # {"foo":1,"foo":2}
 ```
 
-In JSON 3.0 this will go even further and raise an error by default (unless you explicitly allow duplicates).
+In JSON 3.0, this will go even further and raise an error by default (unless you explicitly allow duplicates).
 
 You can also surface such warnings in your Rails test or development environments by treating them as disallowed deprecations:
 
@@ -108,8 +108,11 @@ config.active_support.disallowed_deprecation_warnings = [/detected duplicate key
 config.active_support.disallowed_deprecation = :raise
 ```
 
+**But this requires setting up non-Rails deprecation warnings to also be captured by the ActiveSupport deprecation framework.**
+I described how to achieve this in [this blog post](https://blog.arkency.com/do-you-tune-out-ruby-deprecation-warnings/#how_about_ruby_deprecation_warnings_).
+
 This way, even if you don’t assert every response body in detail, there’s still a good chance your automated or manual tests will trip over a duplicate key and fail early.
 
-It’s not a silver bullet — but it’s a lightweight safeguard that makes it much less likely duplicate keys sneak into your JSON responses unnoticed.
+It’s not a silver bullet - but it’s a lightweight safeguard that makes it much less likely duplicate keys sneak into your JSON responses unnoticed.
 
 Happy upgrading 🚀
