@@ -78,8 +78,8 @@ Fix `ActiveSupport::JSON.encode` to prevent duplicate keys.
 ```
 
 This gave the impression that duplicates would never occur.  
-Unfortunately, that fix was reverted before release - the changelog was misleading.  
-We ended up creating a [PR to correct it](https://github.com/rails/rails/pull/55735).
+Unfortunately, that fix was reverted in 7.1.4 which was never documented in the changelog.
+We ended up creating a [PR to correct it](https://github.com/rails/rails/pull/55806).
 
 ## Guarding yourself before the upgrade
 
