@@ -36,7 +36,7 @@ The result was a hash with both keys:
 { "id" => 1, :id => "one" }
 ```
 
-Up until Rails 7.2, this wasn’t a big deal.  
+With Rails 7.2, the problem never surfaced.
 When the controller executed:
 
 ```ruby
