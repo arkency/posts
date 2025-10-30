@@ -17,7 +17,7 @@ warning: literal string will be frozen in the future (run with --debug-frozen-st
 
 ## Ruby has both mutable and immutable strings
 
-Let's read [fxn explanation on this](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34):
+Let's read [fxn's explanation on this](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34):
 
 > In Ruby 3.4, by default, if a file does not have the magic comment and a string object that was instantiated with a literal gets mutated, Ruby still allows the mutation, but it now issues a warning
 
