@@ -100,7 +100,7 @@ After reviewing around 100 methods delivering different messages, I instantly no
 + 
  module Slack
    module Billing
-     BILLING_CHANNEL_NAME = 'billing'.freeze
+     BILLING_CHANNEL_NAME = 'billing'
 	
 	   extend self
 	
