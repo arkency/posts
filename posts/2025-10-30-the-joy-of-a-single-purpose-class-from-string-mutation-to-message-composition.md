@@ -331,7 +331,7 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
  end
 ```
 
-I can’t remember the last time I had so much joy introducing such a simple, single-purpose class. In such moments you rediscover the true beautiness of Ruby.
+I can’t remember the last time I had so much joy introducing such a simple, single-purpose class. In such moments you rediscover the true beauty of Ruby.
 
 ## Summary
 
