@@ -213,7 +213,7 @@ def to_s
 end
 ```
 
-It could be obviously splitted into private method, but I like the explicitness `compact_blank` provides and I’m fine with using it.
+It could be split into private method, but I like the explicitness `compact_blank` provides and I’m fine with using it.
 
 ### Pass a single string or multiple as an argument
 
