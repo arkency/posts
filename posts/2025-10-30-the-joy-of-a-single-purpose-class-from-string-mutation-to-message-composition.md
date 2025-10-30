@@ -47,9 +47,8 @@ module Slack
 	  send_message(BILLING_CHANNEL_NAME, message)
 	end
 
-	def payment_received(payment)
-	  message = payment_text(payment)
-	  message.push("\n #{payment_text(payment)}")
+	def payment_received(payment, locale)
+	  message = payment_text(payment, locale)
 	  message.push("\n Invoice: #{payment.invoice_number}")
 	  message.push("\n Customer: #{payment.customer_name}")
 
@@ -58,9 +57,9 @@ module Slack
 
     private
   
-    def payment_text(payment)
+    def payment_text(payment, locale)
       text = ':moneybag: *Payment Received*'
-      text << " | #{format_amount(payment.amount)}"
+      text << " | #{format_amount(payment.amount, locale)}"
       text << " | #{payment.channel}"
     
       text
@@ -118,13 +117,11 @@ After reviewing around 100 methods delivering different messages, I instantly no
 +	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
 	 end
 
-  	 def payment_received(payment)
--      message = payment_text(payment)
--      message.push("\n #{payment_text(payment)}")
+  	 def payment_received(payment, locale)
+-      message = payment_text(payment, locale)
 -      message.push("\n Invoice: #{payment.invoice_number}")
 -      message.push("\n Customer: #{payment.customer_name}")
-+	   message = [payment_text(payment)]
-+	   message.push("#{payment_text(payment)}")
++	   message = [payment_text(payment, locale)]
 +	   message.push("Invoice: #{payment.invoice_number}")
 +	   message.push("Customer: #{payment.customer_name}")
 	  
@@ -134,9 +131,9 @@ After reviewing around 100 methods delivering different messages, I instantly no
 
      private
 
-     def payment_text(payment)
+     def payment_text(payment, locale)
 -      text = ':moneybag: *Payment Received*'
--      text << " | #{format_amount(payment.amount)}"
+-      text << " | #{format_amount(payment.amount, locale)}"
 -      text << " | #{payment.channel}"
 +      text = [':moneybag: *Payment Received*']
 +      text << "#{format_amount(payment.amount)}"
@@ -296,13 +293,11 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 +	   send_message(BILLING_CHANNEL_NAME, message)
      end
 
-	 def payment_received(payment)
--	   message = [payment_text(payment)]
--	   message.push("#{payment_text(payment)}")
+	 def payment_received(payment, locale)
+-	   message = [payment_text(payment, locale)]
 -	   message.push("Invoice: #{payment.invoice_number}")
 -	   message.push("Customer: #{payment.customer_name}")
-+	   message = Message.new(payment_text(payment), delimiter: "\n")
-+	   message.push("#{payment_text(payment)}")
++	   message = Message.new(payment_text(payment, locale), delimiter: "\n")
 +	   message.push("Invoice: #{payment.invoice_number}")
 +	   message.push("Customer: #{payment.customer_name}")
 
@@ -312,12 +307,12 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 
      private
   
-     def payment_text(payment)
+     def payment_text(payment, locale)
 -      text = [':moneybag: *Payment Received*']
--      text << "#{format_amount(payment.amount)}"
+-      text << "#{format_amount(payment.amount, locale)}"
 -      text << "#{payment.channel}"
 +      text = Message.new(':moneybag: *Payment Received*')
-+      text << "#{format_amount(payment.amount)}"
++      text << "#{format_amount(payment.amount, locale)}"
 +      text << "#{payment.channel}"
 
 -      text.join(" | ")
