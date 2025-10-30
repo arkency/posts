@@ -19,7 +19,8 @@ warning: literal string will be frozen in the future (run with --debug-frozen-st
 
 In short, that’s the source of this behavior:
 
-> In Ruby 3.4, by default, if a file does not have the magic comment and a string object that was instantiated with a literal gets mutated, Ruby still allows the mutation, but it now issues a warning[^[Ruby: The future of frozen string literals by fxn](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34)]
+> In Ruby 3.4, by default, if a file does not have the magic comment and a string object that was instantiated with a literal gets mutated, Ruby still allows the mutation, but it now issues a warning
+[Ruby: The future of frozen string literals by fxn](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34)
 
 I was able to notice this early since my colleague [Piotr](https://blog.arkency.com/authors/piotr-jurewicz/) took care about [not tuning out the Ruby deprecation warnings](https://blog.arkency.com/do-you-tune-out-ruby-deprecation-warnings/).
 
@@ -301,12 +302,12 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 -	     message.push("#{payment_text(payment)}")
 -	     message.push("Invoice: #{payment.invoice_number}")
 -	     message.push("Customer: #{payment.customer_name}")
-+	     message = Message.new(payment_text(payment))
++	     message = Message.new(payment_text(payment), delimiter: "\n")
 +	     message.push("#{payment_text(payment)}")
 +	     message.push("Invoice: #{payment.invoice_number}")
 +	     message.push("Customer: #{payment.customer_name}")
 	  
--      send_message(BILLING_CHANNEL_NAME, messsage.join("\n"))
+-        send_message(BILLING_CHANNEL_NAME, messsage.join("\n"))
 +   	 send_message(BILLING_CHANNEL_NAME, message)
 	   end
 
