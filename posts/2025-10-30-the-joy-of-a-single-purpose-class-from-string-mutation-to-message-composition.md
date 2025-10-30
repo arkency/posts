@@ -2,7 +2,7 @@
 created_at: 2025-10-30 15:24:50 +0100
 author: Szymon Fiedler
 tags: [rails, ruby, legacy]
-publish: false
+publish: true
 ---
 
 # The Joy of a Single-Purpose Class: From String Mutation to Message Composition
