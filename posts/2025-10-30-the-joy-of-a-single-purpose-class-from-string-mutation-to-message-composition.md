@@ -158,7 +158,7 @@ What we’ve gained by this refactoring:
 
 1. No string literal mutation, so there will be no warnings on Ruby 3.4 and potential issues in the future
 2. Less repeatable code, no artisanal text delimiter crafting
-3. We still used the same methods for composing message as both `String` and `Array` provide `<<` and `push` methods. I wanted to keep this code similar to previous implementation without any radical changes so other maintainers would be familiar with it.
+3. We still used the same methods for composing message as both `String` and `Array` provide `<<` and `push` methods. I wanted to keep this code similar to previous implementation without any radical changes so other maintainers would be instantly familiarized with it.
 
 ## Improve the code
 
@@ -251,16 +251,16 @@ Slack::Message.new('kaka', 'dudu’, delimiter: „\n”).to_s
 => "kaka\ndudu"
 ```
 
-### Compose various `Slack::Message` object with different delimiters:
+### Compose various `Slack::Message` object with different delimiters
 
 ```ruby
 Slack::Message.new('kaka', Slack::Message.new('dudu', 'foo', delimiter: " — ")).to_s
 => "kaka | dudu — foo"
 
 msg = Slack::Message.new('kaka', delimiter: "\n")
-msg << Slack::Message.new('dudu')
+msg << Slack::Message.new('dudu', 'foo', delimiter: ' ~ ')
 msg.to_s
-=> "kaka\ndudu"
+=> "kaka\ndudu ~ foo"
 ```
 
 The magic happens through the `to_str` alias. When  `@message.join(@delimiter)` is called, Ruby's `Array#join` implicitly calls `to_str` on each element (it would fallback to `to_s` if not defined). Since `to_str` is aliased to `to_s`, nested `Slack::Message` objects get automatically stringified.
@@ -331,7 +331,7 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
  end
 ```
 
-I can’t remember the last time I had so much joy introducing such a simple, single-purpose class.
+I can’t remember the last time I had so much joy introducing such a simple, single-purpose class. In such moments you rediscover the true beautiness of Ruby.
 
 ## Summary
 
