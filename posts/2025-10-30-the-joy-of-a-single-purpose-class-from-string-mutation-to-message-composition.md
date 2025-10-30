@@ -34,27 +34,27 @@ The messages were composed in a few ways:
 ```ruby
 module Slack
   module Billing
-	  BILLING_CHANNEL_NAME = 'billing'.freeze
-	
-	  extend self
-	
-	  def invoice_sent(invoice)
+	BILLING_CHANNEL_NAME = 'billing'.freeze
+
+	extend self
+
+	def invoice_sent(invoice)
   	  message = ':postbox: *Invoice sent to customer*'
-	    message << " | #{invoice.customer_name}"
-	    message << " | #{invoice.customer_email}"
-	    message << " | <#{inovice.url}|#{invoice.number}>"
-	  
-	    send_message(BILLING_CHANNEL_NAME, message)
-	  end
-	
-	  def payment_received(payment)
-	    message = payment_text(payment)
-	    message.push("\n #{payment_text(payment)}")
-	    message.push("\n Invoice: #{payment.invoice_number}")
-	    message.push("\n Customer: #{payment.customer_name}")
-	  
-	    send_message(BILLING_CHANNEL_NAME, message)
-	  end
+	  message << " | #{invoice.customer_name}"
+	  message << " | #{invoice.customer_email}"
+	  message << " | <#{inovice.url}|#{invoice.number}>"
+
+	  send_message(BILLING_CHANNEL_NAME, message)
+	end
+
+	def payment_received(payment)
+	  message = payment_text(payment)
+	  message.push("\n #{payment_text(payment)}")
+	  message.push("\n Invoice: #{payment.invoice_number}")
+	  message.push("\n Customer: #{payment.customer_name}")
+
+	  send_message(BILLING_CHANNEL_NAME, message)
+	end
 
     private
   
@@ -101,39 +101,39 @@ After reviewing around 100 methods delivering different messages, I instantly no
  module Slack
    module Billing
      BILLING_CHANNEL_NAME = 'billing'
-	
-	   extend self
-	
-	   def invoice_sent(invoice)
--	     message = ':postbox: *Invoice sent to customer*'
--	     message << " | #{invoice.customer_name}"
--	     message << " | #{invoice.customer_email}"
--	     message << " | <#{inovice.url}|#{invoice.number}"
-+	     message = [':postbox: *Invoice sent to customer*']
-+	     message << "#{invoice.customer_name}"
-+	     message << "#{invoice.customer_email}"
-+	     message << "<#{inovice.url}|#{invoice.number}>"
-	  
--	     send_message(BILLING_CHANNEL_NAME, message)
-+	     send_message(BILLING_CHANNEL_NAME, message.join(" | "))
-	   end
-	
+
+	 extend self
+
+	 def invoice_sent(invoice)
+-	   message = ':postbox: *Invoice sent to customer*'
+-	   message << " | #{invoice.customer_name}"
+-	   message << " | #{invoice.customer_email}"
+-	   message << " | <#{inovice.url}|#{invoice.number}"
++	   message = [':postbox: *Invoice sent to customer*']
++	   message << "#{invoice.customer_name}"
++	   message << "#{invoice.customer_email}"
++	   message << "<#{inovice.url}|#{invoice.number}>"
+
+-	   send_message(BILLING_CHANNEL_NAME, message)
++	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
+	 end
+
   	 def payment_received(payment)
 -      message = payment_text(payment)
 -      message.push("\n #{payment_text(payment)}")
 -      message.push("\n Invoice: #{payment.invoice_number}")
 -      message.push("\n Customer: #{payment.customer_name}")
-+	     message = [payment_text(payment)]
-+	     message.push("#{payment_text(payment)}")
-+	     message.push("Invoice: #{payment.invoice_number}")
-+	     message.push("Customer: #{payment.customer_name}")
++	   message = [payment_text(payment)]
++	   message.push("#{payment_text(payment)}")
++	   message.push("Invoice: #{payment.invoice_number}")
++	   message.push("Customer: #{payment.customer_name}")
 	  
 -      send_message(BILLING_CHANNEL_NAME, messsage)
 + 	   send_message(BILLING_CHANNEL_NAME, message.join("\n")) 
      end
 
      private
-  
+
      def payment_text(payment)
 -      text = ':moneybag: *Payment Received*'
 -      text << " | #{format_amount(payment.amount)}"
@@ -141,11 +141,11 @@ After reviewing around 100 methods delivering different messages, I instantly no
 +      text = [':moneybag: *Payment Received*']
 +      text << "#{format_amount(payment.amount)}"
 +      text << "#{payment.channel}"
-     
+
 -      text
 +      text.join(" | ")
      end
-  
+
      def format_amount(amount, locale)
        number_to_currency(amount, locale: locale)
      end
@@ -279,36 +279,36 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
  module Slack
    module Billing
      BILLING_CHANNEL_NAME = 'billing'
-	
+
   	 extend self
-	
+
   	 def invoice_sent(invoice)
--	     message = [':postbox: *Invoice sent to customer*']
--	     message << "#{invoice.customer_name}"
--	     message << "#{invoice.customer_email}"
--	     message << "<#{inovice.url}|#{invoice.number}>"
-+	     message = Message.new(':postbox: *Invoice sent to customer*')
-+	     message << "#{invoice.customer_name}"
-+	     message << "#{invoice.customer_email}"
-+	     message << "<#{inovice.url}|#{invoice.number}"
-	  
--	     send_message(BILLING_CHANNEL_NAME, message.join(" | "))
-+	     send_message(BILLING_CHANNEL_NAME, message)
-	   end
-	
-	   def payment_received(payment)
--	     message = [payment_text(payment)]
--	     message.push("#{payment_text(payment)}")
--	     message.push("Invoice: #{payment.invoice_number}")
--	     message.push("Customer: #{payment.customer_name}")
-+	     message = Message.new(payment_text(payment), delimiter: "\n")
-+	     message.push("#{payment_text(payment)}")
-+	     message.push("Invoice: #{payment.invoice_number}")
-+	     message.push("Customer: #{payment.customer_name}")
-	  
--        send_message(BILLING_CHANNEL_NAME, messsage.join("\n"))
-+   	 send_message(BILLING_CHANNEL_NAME, message)
-	   end
+-	   message = [':postbox: *Invoice sent to customer*']
+-	   message << "#{invoice.customer_name}"
+-	   message << "#{invoice.customer_email}"
+-	   message << "<#{inovice.url}|#{invoice.number}>"
++	   message = Message.new(':postbox: *Invoice sent to customer*')
++	   message << "#{invoice.customer_name}"
++	   message << "#{invoice.customer_email}"
++	   message << "<#{inovice.url}|#{invoice.number}"
+
+-	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
++	   send_message(BILLING_CHANNEL_NAME, message)
+     end
+
+	 def payment_received(payment)
+-	   message = [payment_text(payment)]
+-	   message.push("#{payment_text(payment)}")
+-	   message.push("Invoice: #{payment.invoice_number}")
+-	   message.push("Customer: #{payment.customer_name}")
++	   message = Message.new(payment_text(payment), delimiter: "\n")
++	   message.push("#{payment_text(payment)}")
++	   message.push("Invoice: #{payment.invoice_number}")
++	   message.push("Customer: #{payment.customer_name}")
+
+-      send_message(BILLING_CHANNEL_NAME, messsage.join("\n"))
++      send_message(BILLING_CHANNEL_NAME, message)
+	 end
 
      private
   
@@ -323,7 +323,7 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 -      text.join(" | ")
 +      text
      end
-  
+
      def format_amount(amount, locale)
        number_to_currency(amount, locale: locale)
      end
