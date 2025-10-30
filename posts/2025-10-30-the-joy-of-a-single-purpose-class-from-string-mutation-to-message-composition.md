@@ -17,14 +17,13 @@ warning: literal string will be frozen in the future (run with --debug-frozen-st
 
 ## Ruby has both mutable and immutable strings
 
-In short, that’s the source of this behavior:
+Let's read [fxn explanation on this](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34):
 
 > In Ruby 3.4, by default, if a file does not have the magic comment and a string object that was instantiated with a literal gets mutated, Ruby still allows the mutation, but it now issues a warning
-[Ruby: The future of frozen string literals by fxn](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72#ruby-34)
 
 I was able to notice this early since my colleague [Piotr](https://blog.arkency.com/authors/piotr-jurewicz/) took care about [not tuning out the Ruby deprecation warnings](https://blog.arkency.com/do-you-tune-out-ruby-deprecation-warnings/).
 
-This article won’t be about benefits of freezing string literals, but if you’re curious about this topic, you should read this [gist by FXN](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72) with care and the article about [Past, Present and Future of Frozen String Literal by byroot](https://byroot.github.io/ruby/performance/2025/10/28/string-literals.html) if you want a deep dive into details.
+This article won’t be about benefits of freezing string literals, but if you’re curious about this topic, you should read this [gist by fxn](https://gist.github.com/fxn/bf4eed2505c76f4fca03ab48c43adc72) with care and the article about [Past, Present and Future of Frozen String Literal by byroot](https://byroot.github.io/ruby/performance/2025/10/28/string-literals.html) if you want a deep dive into details.
 
 ## Problem with string literal mutation in our code
 
