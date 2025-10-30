@@ -79,7 +79,9 @@ end
 
 Respective messages produced would be:
 
-`:postbox: | *Inovice sent to customer* | Jane Doh | jan.doh@example.com | <https://fancyurl.example.com|KAKADUDU123>`
+```
+:postbox: | *Inovice sent to customer* | Jane Doh | jan.doh@example.com | <https://fancyurl.example.com|KAKADUDU123>
+```
 
 and
 
@@ -207,7 +209,10 @@ Otherwise we would need to put a bit more effort into our class:
 
 ```ruby
 def to_s
-  @message.compact.reject { |part| part.respond_to?(:empty?) && part.empty? }.join(@delimiter)
+  @message
+    .compact
+    .reject { |part| part.respond_to?(:empty?) && part.empty? }
+    .join(@delimiter)
 end
 ```
 
@@ -324,7 +329,8 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
      end
 
      def send_message(channel_name, message)
-       Slack::Client.deliver_message(channel: channel_name, message: message.to_s)
+-      Slack::Client.deliver_message(channel: channel_name, message: message)
++      Slack::Client.deliver_message(channel: channel_name, message: message.to_s)
      end
    end
  end
