@@ -101,32 +101,32 @@ After reviewing around 100 methods delivering different messages, I instantly no
    module Billing
      BILLING_CHANNEL_NAME = 'billing'
 
-	 extend self
+     extend self
 
-	 def invoice_sent(invoice)
--	   message = ':postbox: *Invoice sent to customer*'
--	   message << " | #{invoice.customer_name}"
--	   message << " | #{invoice.customer_email}"
--	   message << " | <#{inovice.url}|#{invoice.number}"
-+	   message = [':postbox: *Invoice sent to customer*']
-+	   message << invoice.customer_name
-+	   message << invoice.customer_email
-+	   message << "<#{inovice.url}|#{invoice.number}>"
+     def invoice_sent(invoice)
+-	     message = ':postbox: *Invoice sent to customer*'
+-      message << " | #{invoice.customer_name}"
+-      message << " | #{invoice.customer_email}"
+-      message << " | <#{inovice.url}|#{invoice.number}"
++      message = [':postbox: *Invoice sent to customer*']
++      message << invoice.customer_name
++      message << invoice.customer_email
++      message << "<#{inovice.url}|#{invoice.number}>"
 
--	   send_message(BILLING_CHANNEL_NAME, message)
-+	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
-	 end
+-      send_message(BILLING_CHANNEL_NAME, message)
++      send_message(BILLING_CHANNEL_NAME, message.join(" | "))
+     end
 
-  	 def payment_received(payment, locale)
+     def payment_received(payment, locale)
 -      message = payment_text(payment, locale)
 -      message.push("\n Invoice: #{payment.invoice_number}")
 -      message.push("\n Customer: #{payment.customer_name}")
-+	     message = [payment_text(payment, locale)]
++      message = [payment_text(payment, locale)]
 +	     message.push("Invoice: #{payment.invoice_number}")
 +	     message.push("Customer: #{payment.customer_name}")
 	  
 -      send_message(BILLING_CHANNEL_NAME, messsage)
-+ 	   send_message(BILLING_CHANNEL_NAME, message.join("\n")) 
++      send_message(BILLING_CHANNEL_NAME, message.join("\n")) 
      end
 
      private
@@ -279,31 +279,31 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 
   	 extend self
 
-  	 def invoice_sent(invoice)
--	   message = [':postbox: *Invoice sent to customer*']
--	   message << invoice.customer_name
--	   message << invoice.customer_email
--	   message << "<#{inovice.url}|#{invoice.number}>"
-+	   message = Message.new(':postbox: *Invoice sent to customer*')
-+	   message << invoice.customer_name
-+	   message << invoice.customer_email
-+	   message << "<#{inovice.url}|#{invoice.number}"
+     def invoice_sent(invoice)
+-      message = [':postbox: *Invoice sent to customer*']
+-      message << invoice.customer_name
+-      message << invoice.customer_email
+-      message << "<#{inovice.url}|#{invoice.number}>"
++      message = Message.new(':postbox: *Invoice sent to customer*')
++      message << invoice.customer_name
++      message << invoice.customer_email
++      message << "<#{inovice.url}|#{invoice.number}"
 
--	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
-+	   send_message(BILLING_CHANNEL_NAME, message)
+-      send_message(BILLING_CHANNEL_NAME, message.join(" | "))
++      send_message(BILLING_CHANNEL_NAME, message))
      end
 
-	 def payment_received(payment, locale)
--	   message = [payment_text(payment, locale)]
--	   message.push("Invoice: #{payment.invoice_number}")
--	   message.push("Customer: #{payment.customer_name}")
-+	   message = Message.new(payment_text(payment, locale), delimiter: "\n")
-+	   message.push("Invoice: #{payment.invoice_number}")
-+	   message.push("Customer: #{payment.customer_name}")
+     def payment_received(payment, locale)
+-      message = [payment_text(payment, locale)]
+-      message.push("Invoice: #{payment.invoice_number}")
+-      message.push("Customer: #{payment.customer_name}")
++      message = Message.new(payment_text(payment, locale), delimiter: "\n")
++      message.push("Invoice: #{payment.invoice_number}")
++      message.push("Customer: #{payment.customer_name}")
 
 -      send_message(BILLING_CHANNEL_NAME, messsage.join("\n"))
 +      send_message(BILLING_CHANNEL_NAME, message)
-	 end
+     end
 
      private
   
