@@ -104,7 +104,7 @@ After reviewing around 100 methods delivering different messages, I instantly no
      extend self
 
      def invoice_sent(invoice)
--	     message = ':postbox: *Invoice sent to customer*'
+-      message = ':postbox: *Invoice sent to customer*'
 -      message << " | #{invoice.customer_name}"
 -      message << " | #{invoice.customer_email}"
 -      message << " | <#{inovice.url}|#{invoice.number}"
@@ -122,8 +122,8 @@ After reviewing around 100 methods delivering different messages, I instantly no
 -      message.push("\n Invoice: #{payment.invoice_number}")
 -      message.push("\n Customer: #{payment.customer_name}")
 +      message = [payment_text(payment, locale)]
-+	     message.push("Invoice: #{payment.invoice_number}")
-+	     message.push("Customer: #{payment.customer_name}")
++      message.push("Invoice: #{payment.invoice_number}")
++      message.push("Customer: #{payment.customer_name}")
 	  
 -      send_message(BILLING_CHANNEL_NAME, messsage)
 +      send_message(BILLING_CHANNEL_NAME, message.join("\n")) 
