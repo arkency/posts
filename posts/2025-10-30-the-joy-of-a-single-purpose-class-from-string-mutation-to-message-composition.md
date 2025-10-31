@@ -34,11 +34,11 @@ The messages were composed in a few ways:
 ```ruby
 module Slack
   module Billing
-	  BILLING_CHANNEL_NAME = 'billing'.freeze
+    BILLING_CHANNEL_NAME = 'billing'.freeze
 
-	  extend self
-
-	  def invoice_sent(invoice)
+    extend self
+    
+    def invoice_sent(invoice)
       message = ':postbox: *Invoice sent to customer*'
 	    message << " | #{invoice.customer_name}"
 	    message << " | #{invoice.customer_email}"
