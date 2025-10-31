@@ -40,20 +40,20 @@ module Slack
     
     def invoice_sent(invoice)
       message = ':postbox: *Invoice sent to customer*'
-	    message << " | #{invoice.customer_name}"
-	    message << " | #{invoice.customer_email}"
-	    message << " | <#{inovice.url}|#{invoice.number}>"
-
-	    send_message(BILLING_CHANNEL_NAME, message)
-	  end
-
-	  def payment_received(payment, locale)
-	    message = payment_text(payment, locale)
-	    message.push("\n Invoice: #{payment.invoice_number}")
-	    message.push("\n Customer: #{payment.customer_name}")
-
-	    send_message(BILLING_CHANNEL_NAME, message)
-	  end
+      message << " | #{invoice.customer_name}"
+      message << " | #{invoice.customer_email}"
+      message << " | <#{inovice.url}|#{invoice.number}>"
+      
+      send_message(BILLING_CHANNEL_NAME, message)
+    end
+      
+    def payment_received(payment, locale)
+      message = payment_text(payment, locale)
+      message.push("\n Invoice: #{payment.invoice_number}")
+      message.push("\n Customer: #{payment.customer_name}")
+      
+      send_message(BILLING_CHANNEL_NAME, message)
+    end
 
     private
   
