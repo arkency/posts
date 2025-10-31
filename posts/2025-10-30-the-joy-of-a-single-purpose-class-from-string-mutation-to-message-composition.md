@@ -247,7 +247,7 @@ message.to_s
 Slack::Message.new('kaka', 'dudu').to_s
 => "kaka | dudu"
 
-Slack::Message.new('kaka', 'dudu’, delimiter: „\n”).to_s
+Slack::Message.new('kaka', 'dudu', delimiter: "\n").to_s
 => "kaka\ndudu"
 ```
 
