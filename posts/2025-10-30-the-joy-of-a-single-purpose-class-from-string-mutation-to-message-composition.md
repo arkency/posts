@@ -34,26 +34,26 @@ The messages were composed in a few ways:
 ```ruby
 module Slack
   module Billing
-	BILLING_CHANNEL_NAME = 'billing'.freeze
+	  BILLING_CHANNEL_NAME = 'billing'.freeze
 
-	extend self
+	  extend self
 
-	def invoice_sent(invoice)
-  	  message = ':postbox: *Invoice sent to customer*'
-	  message << " | #{invoice.customer_name}"
-	  message << " | #{invoice.customer_email}"
-	  message << " | <#{inovice.url}|#{invoice.number}>"
+	  def invoice_sent(invoice)
+      message = ':postbox: *Invoice sent to customer*'
+	    message << " | #{invoice.customer_name}"
+	    message << " | #{invoice.customer_email}"
+	    message << " | <#{inovice.url}|#{invoice.number}>"
 
-	  send_message(BILLING_CHANNEL_NAME, message)
-	end
+	    send_message(BILLING_CHANNEL_NAME, message)
+	  end
 
-	def payment_received(payment, locale)
-	  message = payment_text(payment, locale)
-	  message.push("\n Invoice: #{payment.invoice_number}")
-	  message.push("\n Customer: #{payment.customer_name}")
+	  def payment_received(payment, locale)
+	    message = payment_text(payment, locale)
+	    message.push("\n Invoice: #{payment.invoice_number}")
+	    message.push("\n Customer: #{payment.customer_name}")
 
-	  send_message(BILLING_CHANNEL_NAME, message)
-	end
+	    send_message(BILLING_CHANNEL_NAME, message)
+	  end
 
     private
   
@@ -109,8 +109,8 @@ After reviewing around 100 methods delivering different messages, I instantly no
 -	   message << " | #{invoice.customer_email}"
 -	   message << " | <#{inovice.url}|#{invoice.number}"
 +	   message = [':postbox: *Invoice sent to customer*']
-+	   message << "#{invoice.customer_name}"
-+	   message << "#{invoice.customer_email}"
++	   message << invoice.customer_name
++	   message << invoice.customer_email
 +	   message << "<#{inovice.url}|#{invoice.number}>"
 
 -	   send_message(BILLING_CHANNEL_NAME, message)
@@ -121,9 +121,9 @@ After reviewing around 100 methods delivering different messages, I instantly no
 -      message = payment_text(payment, locale)
 -      message.push("\n Invoice: #{payment.invoice_number}")
 -      message.push("\n Customer: #{payment.customer_name}")
-+	   message = [payment_text(payment, locale)]
-+	   message.push("Invoice: #{payment.invoice_number}")
-+	   message.push("Customer: #{payment.customer_name}")
++	     message = [payment_text(payment, locale)]
++	     message.push("Invoice: #{payment.invoice_number}")
++	     message.push("Customer: #{payment.customer_name}")
 	  
 -      send_message(BILLING_CHANNEL_NAME, messsage)
 + 	   send_message(BILLING_CHANNEL_NAME, message.join("\n")) 
@@ -136,8 +136,8 @@ After reviewing around 100 methods delivering different messages, I instantly no
 -      text << " | #{format_amount(payment.amount, locale)}"
 -      text << " | #{payment.channel}"
 +      text = [':moneybag: *Payment Received*']
-+      text << "#{format_amount(payment.amount)}"
-+      text << "#{payment.channel}"
++      text << format_amount(payment.amount)
++      text << payment.channel
 
 -      text
 +      text.join(" | ")
@@ -281,12 +281,12 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
 
   	 def invoice_sent(invoice)
 -	   message = [':postbox: *Invoice sent to customer*']
--	   message << "#{invoice.customer_name}"
--	   message << "#{invoice.customer_email}"
+-	   message << invoice.customer_name
+-	   message << invoice.customer_email
 -	   message << "<#{inovice.url}|#{invoice.number}>"
 +	   message = Message.new(':postbox: *Invoice sent to customer*')
-+	   message << "#{invoice.customer_name}"
-+	   message << "#{invoice.customer_email}"
++	   message << invoice.customer_name
++	   message << invoice.customer_email
 +	   message << "<#{inovice.url}|#{invoice.number}"
 
 -	   send_message(BILLING_CHANNEL_NAME, message.join(" | "))
@@ -309,11 +309,11 @@ This recursive flattening happens transparently because `to_str` signals to Ruby
   
      def payment_text(payment, locale)
 -      text = [':moneybag: *Payment Received*']
--      text << "#{format_amount(payment.amount, locale)}"
--      text << "#{payment.channel}"
+-      text << format_amount(payment.amount, locale)
+-      text << payment.channel
 +      text = Message.new(':moneybag: *Payment Received*')
-+      text << "#{format_amount(payment.amount, locale)}"
-+      text << "#{payment.channel}"
++      text << format_amount(payment.amount, locale)
++      text << payment.channel
 
 -      text.join(" | ")
 +      text
