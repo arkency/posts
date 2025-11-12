@@ -155,17 +155,21 @@ The production code remains clean. No test hooks, no debug flags, no conditional
 
 Comment out the advisory lock:
 
+```ruby
 # ApplicationRecord.with_advisory_lock('transfer_items', source_order_id) do
 items = projection.items_in_order(source_order_id)
 transfer(items.take(2), source_order_id, target_order_id)
 # end
 
+```
 Run the test:
 
+```
 Failure/Error: expect(items_in_target_1 & items_in_target_2).to be_empty
 expected: []
      got: ["item_A", "item_B"]
 (items appeared in both target orders - race condition detected!)
+```
 
 Perfect. The test proves the lock is necessary.
 
