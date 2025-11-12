@@ -68,9 +68,11 @@ Ok. Let me explain. A concept of seam was explained by from Michael Feathers' in
 
 Looking at our code, the seam is the projection method:
 
+```ruby
 def projection
 @projection ||= OrderItemsProjection.new
 end
+```
 
 This method is our enabling point. In tests, we can replace this projection with a controlled version that synchronizes
 threads - without changing production code.
