@@ -145,7 +145,7 @@ This makes the race condition deterministic and reproducible.
 Without changing a single line of production code, we:
 
 1. Found a seam - the projection method that returns a projection instance
-2. Exploited the enabling point - RSpec's stubbing mechanism
+2. Changed method implementation by stubbing it
 3. Injected synchronization logic - CountDownLatch coordination
 4. Made the race deterministic - both threads guaranteed to see the same state
 
