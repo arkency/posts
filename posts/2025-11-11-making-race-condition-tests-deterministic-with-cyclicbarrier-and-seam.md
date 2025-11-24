@@ -68,9 +68,10 @@ end
 ```
 
 `Concurrent::CyclicBarrier` is an amazing class for race condition testing. Usually I would start with this
-simple approach and usually get the result that I need. However, this test didn't fail. 
+simple approach and get the result that I need. However, this test didn't fail. 
 It simply didn't match the right timing for the race condition to take a place. 
-Although, its not always a bad direction to do it this way. Depends on the code that is tested. 
+
+One could say, _just delay it with some sleeps_
 
 Adding sleep statements makes it worse - slower and flaky. There's nothing more frustrating than random failures 
 in CI. I didn't want to go this direction.
@@ -101,7 +102,7 @@ transfers. We need both threads to:
 2. Wait for each other (synchronization point)
 3. Then race to perform transfers
 
-`Concurrent::CyclicBarrier` gives us exactly this synchronization primitive:
+Concurrent::CyclicBarrier gives us exactly this synchronization primitive:
 
 ```ruby
 it 'fails without advisory lock, proving it is needed' do
