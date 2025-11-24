@@ -105,7 +105,7 @@ transfers. We need both threads to:
 
 ```ruby
 it 'fails without advisory lock, proving it is needed' do
-sync_latch = Concurrent::CyclicBarrier.new(2)
+barrier = Concurrent::CyclicBarrier.new(2)
 
 shared_projection = OrderItemsProjection.new
 original_method = shared_projection.method(:items_in_order)
@@ -115,7 +115,7 @@ allow(shared_projection).to receive(:items_in_order) do |order_id|
   items = original_method.call(order_id)
 
   # Both threads meet here after reading
-  sync_latch.wait(1)
+  barrier.wait(1)
 
   items
 end
@@ -180,14 +180,15 @@ end
 ```
 
 
-## How CountDownLatch synchronizes threads
+## How CyclicBarrier synchronizes threads
 
-The latch starts with a count of 2. Here's what happens:
-* In Thread 1 we read items that will be transferred - Latch Count is 2
-* `count_down` is called - Latch count drops to 1
-* `wait` blocks the Thread from continuing
-* When Thread 2 calls count_down, it brings the latch to 0, which simultaneously unblocks both threads. 
-* They both proceed with identical projection state and race to perform transfers.
+The barrier is initialized with a count of 2 (the number of threads we want to synchronize). Here's what happens:
+* Thread 1 reads items that will be transferred
+* Thread 1 calls `wait(1)` and blocks, waiting for the other thread
+* Thread 2 reads items that will be transferred
+* Thread 2 calls `wait(1)` - the barrier count is now satisfied
+* Both threads are released simultaneously and proceed with identical projection state
+* They race to perform transfers
 
 This makes the race condition deterministic and reproducible.
 
@@ -209,7 +210,7 @@ Comment out the advisory lock:
 ```ruby
 # ApplicationRecord.with_advisory_lock('transfer_items', source_order_id) do
 items = projection.items_in_order(source_order_id)
-transfer(items.take(2), source_order_id, target_order_id)
+transfer(items, source_order_id, target_order_id)
 # end
 
 ```
