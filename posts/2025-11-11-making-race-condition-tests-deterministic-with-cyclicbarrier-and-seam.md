@@ -7,7 +7,7 @@ publish: true
 
 # Making race condition tests deterministic with Concurrent::CyclicBarrier and seam
 
-During pair programming we wanted to use advisory lock to prevent race conditions during implementation of order splitting feature. 
+During pair programming we wanted to use advisory lock to prevent race conditions while implementing an order splitting feature. 
 One of the obvious question that can be ask during such session is:
 "How do we know this lock is really needed?"
 
