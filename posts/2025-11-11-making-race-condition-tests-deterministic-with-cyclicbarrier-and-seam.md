@@ -2,7 +2,7 @@
 created_at: 2025-11-11 20:07:06 +0100
 author: Łukasz Reszke
 tags: ['rails', 'race conditions', 'testing', 'event sourcing', 'projection']
-publish: false
+publish: true 
 ---
 
 # Making race condition tests deterministic with Concurrent::CyclicBarrier and seam
