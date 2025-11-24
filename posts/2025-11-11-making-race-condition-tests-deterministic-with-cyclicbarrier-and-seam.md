@@ -34,6 +34,7 @@ def perform(event)
       transfer(items, source_order_id, target_order_id)
     end
   end
+end
 ```
 
 The lock protects against this scenario: two threads read the same projection state, then both transfer the same items to
