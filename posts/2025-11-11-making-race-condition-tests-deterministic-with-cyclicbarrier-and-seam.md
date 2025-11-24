@@ -201,6 +201,7 @@ Without changing a single line of production code, we:
 2. Changed method implementation by stubbing it
 3. Injected synchronization logic - CyclicBarrier coordination
 4. Made the race deterministic - both threads guaranteed to see the same state
+
 The production code remains clean. No test hooks, no debug flags, no conditional logic.
 
 ## The proof
