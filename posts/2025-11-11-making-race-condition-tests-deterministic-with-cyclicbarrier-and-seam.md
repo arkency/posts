@@ -25,6 +25,7 @@ causing items to be transferred into two different target orders.
 
 ```ruby
 def perform(event)
+  case event
   when OrderSplitIntoTwo
     source_order_id = event.data[:source_order_id]
     target_order_id = event.data[:target_order_id]
