@@ -25,15 +25,15 @@ causing items to be transferred into two different target orders.
 
 ```ruby
 def perform(event)
-when OrderSplitIntoTwo
-  source_order_id = event.data[:source_order_id]
-  target_order_id = event.data[:target_order_id]
-
-  ApplicationRecord.with_advisory_lock('transfer_items', source_order_id) do
-    items = projection.items_in_order(source_order_id) # calculates which items should be transferred
-    transfer(items, source_order_id, target_order_id)
+  when OrderSplitIntoTwo
+    source_order_id = event.data[:source_order_id]
+    target_order_id = event.data[:target_order_id]
+  
+    ApplicationRecord.with_advisory_lock('transfer_items', source_order_id) do
+      items = projection.items_in_order(source_order_id) # calculates which items should be transferred
+      transfer(items, source_order_id, target_order_id)
+    end
   end
-end
 ```
 
 The lock protects against this scenario: two threads read the same projection state, then both transfer the same items to
@@ -45,25 +45,25 @@ Attempt 1: Run threads concurrently using `Concurrent::CyclicBarrier` to synchro
 
 ```ruby
 it 'prevents duplicate transfers' do
-barrier = Concurrent::CyclicBarrier.new(2)
-
-threads = [
-  Thread.new do 
-    barrier.wait(1); 
-    subject.perform(split_event_1) 
-  end,
-  Thread.new do 
-    barrier.wait(1); 
-    subject.perform(split_event_2) 
-  end,
-]
-
-threads.each(&:join)
-
-items_in_target_1 = order_items(target_order_1_id)
-items_in_target_2 = order_items(target_order_2_id)
-
-expect(items_in_target_1 & items_in_target_2).to be_empty
+  barrier = Concurrent::CyclicBarrier.new(2)
+  
+  threads = [
+    Thread.new do 
+      barrier.wait(1); 
+      subject.perform(split_event_1) 
+    end,
+    Thread.new do 
+      barrier.wait(1); 
+      subject.perform(split_event_2) 
+    end,
+  ]
+  
+  threads.each(&:join)
+  
+  items_in_target_1 = order_items(target_order_1_id)
+  items_in_target_2 = order_items(target_order_2_id)
+  
+  expect(items_in_target_1 & items_in_target_2).to be_empty
 end
 ```
 
@@ -86,7 +86,7 @@ Looking at our code, the seam is the projection method:
 
 ```ruby
 def projection
-@projection ||= OrderItemsProjection.new
+  @projection ||= OrderItemsProjection.new
 end
 ```
 
@@ -106,42 +106,42 @@ Concurrent::CyclicBarrier gives us exactly this synchronization primitive:
 
 ```ruby
 it 'fails without advisory lock, proving it is needed' do
-barrier = Concurrent::CyclicBarrier.new(2)
-
-shared_projection = OrderItemsProjection.new
-original_method = shared_projection.method(:items_in_order)
-
-# Intercept projection reads to synchronize both threads
-allow(shared_projection).to receive(:items_in_order) do |order_id|
-  items = original_method.call(order_id)
-
-  # Both threads meet here after reading
-  barrier.wait(1)
-
-  items
-end
-
-subject_1 = TransferItems.new
-subject_2 = TransferItems.new
-
-# Inject controlled projection via the seam
-allow(subject_1).to receive(:projection).and_return(shared_projection)
-allow(subject_2).to receive(:projection).and_return(shared_projection)
-
-results = Concurrent::Array.new
-
-threads = [
-  Thread.new { subject_1.perform(split_event_1); results << :success_1 },
-  Thread.new { subject_2.perform(split_event_2); results << :success_2 }
-]
-
-threads.each(&:join)
-
-items_in_target_1 = order_items(target_order_1_id)
-items_in_target_2 = order_items(target_order_2_id)
-
-expect(results.size).to eq(2) # make sure both threads finished what they had to do
-expect(items_in_target_1 & items_in_target_2).to be_empty # the desired business state
+  barrier = Concurrent::CyclicBarrier.new(2)
+  
+  shared_projection = OrderItemsProjection.new
+  original_method = shared_projection.method(:items_in_order)
+  
+  # Intercept projection reads to synchronize both threads
+  allow(shared_projection).to receive(:items_in_order) do |order_id|
+    items = original_method.call(order_id)
+  
+    # Both threads meet here after reading
+    barrier.wait(1)
+  
+    items
+  end
+  
+  subject_1 = TransferItems.new
+  subject_2 = TransferItems.new
+  
+  # Inject controlled projection via the seam
+  allow(subject_1).to receive(:projection).and_return(shared_projection)
+  allow(subject_2).to receive(:projection).and_return(shared_projection)
+  
+  results = Concurrent::Array.new
+  
+  threads = [
+    Thread.new { subject_1.perform(split_event_1); results << :success_1 },
+    Thread.new { subject_2.perform(split_event_2); results << :success_2 }
+  ]
+  
+  threads.each(&:join)
+  
+  items_in_target_1 = order_items(target_order_1_id)
+  items_in_target_2 = order_items(target_order_2_id)
+  
+  expect(results.size).to eq(2) # make sure both threads finished what they had to do
+  expect(items_in_target_1 & items_in_target_2).to be_empty # the desired business state
 end
 ```
 
@@ -158,25 +158,25 @@ to take care about cleanup on your own.
 ```ruby
 uses_transaction('to prove advisory lock is needed')
 it 'prevents duplicate transfers' do
-barrier = Concurrent::CyclicBarrier.new(2)
-
-threads = [
-  Thread.new do 
-    barrier.wait(1); 
-    subject.perform(split_event_1) 
-  end,
-  Thread.new do 
-    barrier.wait(1); 
-    subject.perform(split_event_2) 
-  end,
-]
-
-threads.each(&:join)
-
-items_in_target_1 = order_items(target_order_1_id)
-items_in_target_2 = order_items(target_order_2_id)
-
-expect(items_in_target_1 & items_in_target_2).to be_empty
+  barrier = Concurrent::CyclicBarrier.new(2)
+  
+  threads = [
+    Thread.new do 
+      barrier.wait(1); 
+      subject.perform(split_event_1) 
+    end,
+    Thread.new do 
+      barrier.wait(1); 
+      subject.perform(split_event_2) 
+    end,
+  ]
+  
+  threads.each(&:join)
+  
+  items_in_target_1 = order_items(target_order_1_id)
+  items_in_target_2 = order_items(target_order_2_id)
+  
+  expect(items_in_target_1 & items_in_target_2).to be_empty
 end
 ```
 
@@ -210,8 +210,8 @@ Comment out the advisory lock:
 
 ```ruby
 # ApplicationRecord.with_advisory_lock('transfer_items', source_order_id) do
-items = projection.items_in_order(source_order_id)
-transfer(items, source_order_id, target_order_id)
+  items = projection.items_in_order(source_order_id)
+  transfer(items, source_order_id, target_order_id)
 # end
 
 ```
