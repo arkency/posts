@@ -52,7 +52,7 @@ Even if something looks like a bug or the code seems wrong, don't change it.
 
 Why? Because what seems wrong might be a business requirement. Someone, somewhere, depends on this behavior, and the original developers might have had a good reason.
 
-Szymon Fiedler talked about this at wroclove.rb when describing his work with Lemonade. They discovered strange-looking code and were tempted to "fix" it, but they resisted because the behavior was intentional.
+Szymon Fiedler talked about this at wroclove.rb when describing [our work with Lemonade](https://clutch.co/go-to-review/deb08080-1847-4a21-af3b-1e92009311cd/365955). We discovered strange-looking code and were tempted to "fix" it, but we resisted because the behavior was intentional.
 
 <iframe style="width:100%; height: 400px;" src="https://www.youtube.com/embed/OnoOHE6qFX4" frameborder="0" allowfullscreen></iframe>
 
