@@ -21,7 +21,7 @@ We needed a way to rewrite with confidence.
 
 If you had asked me three years ago if insurtech could be exciting, I would have probably laughed. But it can be.
 
-[Lemonade](https://www.lemonade.com) is an innovative insurance company that hit $1 billion in premiums just 10 years after founding. It took other well-established insurance brands 40–60 years to reach that milestone. Even companies like Microsoft, Netflix, Salesforce, and Tesla needed more time to achieve that.
+[Lemonade](https://www.lemonade.com) is an innovative insurance company [that hit $1 billion in premiums just 10 years after founding](https://x.com/daschreiber/status/1904512746571345965?s=20). It took other well-established insurance brands 40–60 years to reach that milestone. Even companies like Microsoft, Netflix, Salesforce, and Tesla needed more time to achieve that.
 
 When we joined Lemonade three years ago, their Director of Engineering shared a story that perfectly illustrated the stakes of our work. They once had an issue with roof coverage in one of their product lines and had to hire a legal team for a six-month sprint to fix things. The legal costs exceeded the entire IT budget.
 
