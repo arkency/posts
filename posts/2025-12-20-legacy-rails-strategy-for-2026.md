@@ -51,7 +51,7 @@ Keep the monolith and improve it incrementally.
 Even if something looks like a bug or the code seems wrong, don't change it. What seems wrong might be a business requirement that someone depends on.
 
 But how do you ensure new code preserves behavior when rules are implicit and scattered across a million lines of code?
-This year, both at wroclove.rb and EuRuKo, [Szymon Fiedler](https://blog.arkency.com/authors/szymon-fiedler/) shared [our solution from the Lemonade project](https://clutch.co/go-to-review/deb08080-1847-4a21-af3b-1e92009311cd/365955): treat the existing system as the specification. We built a snapshot-based verifier that records Quote state and HTTP interactions from production, replays the new implementation in isolated transactions with stubbed responses, compares outcomes, and rolls back.
+This year, both at [wroclove.rb](https://2025.wrocloverb.com) and [EuRuKo](https://2025.euruko.org), [Szymon Fiedler](https://blog.arkency.com/authors/szymon-fiedler/) shared [our solution from the Lemonade project](https://clutch.co/go-to-review/deb08080-1847-4a21-af3b-1e92009311cd/365955): treat the existing system as the specification. We built a snapshot-based verifier that records Quote state and HTTP interactions from production, replays the new implementation in isolated transactions with stubbed responses, compares outcomes, and rolls back.
 
 This let us validate thousands of real-world scenarios systematically. We rewrote a complex insurance underwriting flow in three months, discovered dozens of obsolete attributes, and achieved 100% behavioral parity — all without breaking production.
 
