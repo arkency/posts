@@ -48,11 +48,14 @@ Keep the monolith and improve it incrementally.
 
 ## Rule #2: NEVER change existing behavior
 
-Even if something looks like a bug or the code seems wrong, don't change it.
+Even if something looks like a bug or the code seems wrong, don't change it. What seems wrong might be a business requirement that someone depends on.
 
-Why? Because what seems wrong might be a business requirement. Someone, somewhere, depends on this behavior, and the original developers might have had a good reason.
+But how do you ensure new code preserves behavior when rules are implicit and scattered across a million lines of code?
+This year, both at wroclove.rb and EuRuKo, [Szymon Fiedler](https://blog.arkency.com/authors/szymon-fiedler/) shared [our solution from the Lemonade project](https://clutch.co/go-to-review/deb08080-1847-4a21-af3b-1e92009311cd/365955): treat the existing system as the specification. We built a snapshot-based verifier that records Quote state and HTTP interactions from production, replays the new implementation in isolated transactions with stubbed responses, compares outcomes, and rolls back.
 
-Szymon Fiedler talked about this at wroclove.rb when describing [our work with Lemonade](https://clutch.co/go-to-review/deb08080-1847-4a21-af3b-1e92009311cd/365955). We discovered strange-looking code and were tempted to "fix" it, but we resisted because the behavior was intentional.
+This let us validate thousands of real-world scenarios systematically. We rewrote a complex insurance underwriting flow in three months, discovered dozens of obsolete attributes, and achieved 100% behavioral parity — all without breaking production.
+
+The lesson: you don't need to understand every business rule to rewrite safely. You need a reliable way to verify behavior hasn't changed.
 
 <iframe style="width:100%; height: 400px;" src="https://www.youtube.com/embed/OnoOHE6qFX4" frameborder="0" allowfullscreen></iframe>
 
