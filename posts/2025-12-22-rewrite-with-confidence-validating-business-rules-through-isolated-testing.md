@@ -103,6 +103,7 @@ And we hadn't even touched the HTTP communication part — all the first-party a
 We considered several alternatives before settling on our solution.
 
 **Shadow traffic** was an interesting option. This technique involves routing live production traffic to both the existing backend and a new shadow backend simultaneously. The shadow backend processes requests without affecting users, while comparison mechanisms validate behavior. Tools like [nginx plugins](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) or [Zalando's Skipper](https://github.com/zalando/skipper) can handle this elegantly.
+
 However, shadow traffic came with significant drawbacks for our use case:
 * Substantial infrastructure work and ongoing costs
 * Potential compliance issues using production data in non-production environments
