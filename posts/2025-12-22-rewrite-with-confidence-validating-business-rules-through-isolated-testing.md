@@ -21,7 +21,9 @@ We needed a way to rewrite with confidence.
 
 If you had asked me three years ago if insurtech could be exciting, I would have probably laughed. But it can be.
 
-[Lemonade](https://www.lemonade.com) is an innovative insurance company [that hit $1 billion in premiums just 10 years after founding](https://x.com/daschreiber/status/1904512746571345965?s=20). It took other well-established insurance brands 40–60 years to reach that milestone. Even companies like Microsoft, Netflix, Salesforce, and Tesla needed more time to achieve that.
+[Lemonade](https://www.lemonade.com) is an innovative insurance company that hit $1 billion in premiums just 10 years after founding. It took other well-established insurance brands 40–60 years to reach that milestone. Even companies like Microsoft, Netflix, Salesforce, and Tesla needed more time to achieve that.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">What a thrill for <a href="https://twitter.com/Lemonade_Inc?ref_src=twsrc%5Etfw">@lemonade_inc</a> to be in the 𝘛𝘳𝘦𝘴 𝘊𝘰𝘮𝘮𝘢𝘴 Club! I’m not particularly moved by a car “with doors that open like 𝘵𝘩𝘪𝘴 👐”, but I’m definitely exhilarated by the ride so far, and can’t wait for our <a href="https://twitter.com/hashtag/Next10X?src=hash&amp;ref_src=twsrc%5Etfw">#Next10X</a>! 🙌🏻🚀🎉 <a href="https://t.co/HKpgfyFO7Y">https://t.co/HKpgfyFO7Y</a></p>&mdash; Daniel Schreiber (@daschreiber) <a href="https://twitter.com/daschreiber/status/1904512746571345965?ref_src=twsrc%5Etfw">March 25, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 When we joined Lemonade three years ago, their Director of Engineering shared a story that perfectly illustrated the stakes of our work. They once had an issue with roof coverage in one of their product lines and had to hire a legal team for a six-month sprint to fix things. The legal costs exceeded the entire IT budget.
 
