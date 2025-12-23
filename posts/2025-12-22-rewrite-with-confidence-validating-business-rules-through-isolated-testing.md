@@ -2,7 +2,7 @@
 created_at: 2025-12-22 21:04:19 +0100
 author: Szymon Fiedler
 tags: [ruby, rails, legacy]
-publish: false
+publish: true
 ---
 
 # Rewrite with Confidence: Validating Business Rules Through Isolated Testing
