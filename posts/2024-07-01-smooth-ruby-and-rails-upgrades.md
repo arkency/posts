@@ -79,6 +79,14 @@ For this example, there would be 4 steps to take:
 
 After taking each step, monitor the application for new issues, collect deprecation warnings, and fix them before moving to the next step.
 
+#### Rails and Ruby upgrade sequencing
+
+Rails and Ruby upgrades are planned together, but executed separately.
+
+I treat Ruby and Rails as **two separate upgrade axes** and **never combine them in a single release**. Each upgrade is performed independently to keep the scope small and make failures easy to attribute.
+
+My default approach is to upgrade to a given minor Rails version **already running the Ruby minor version that was current when that Rails version was released**.
+
 ### Low-level plan
 In practice, the upgrade process is more complex than simply transitioning from one version to another. The necessary steps are often unclear until you begin.
 
@@ -110,6 +118,3 @@ If you're struggling with upgrading your Ruby or Rails application, don't hesita
 
 We have experience in upgrading applications of various sizes and complexity levels. We can help you make the process smooth and painless.
 
-## Prefer video?
-
-<iframe style="width:100%; height: 400px;" src="https://www.youtube.com/embed/di4Z2cc12ak?si=v4kEGN_nvpzJ8Wlj" frameborder="0" allowfullscreen></iframe>
