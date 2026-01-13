@@ -265,6 +265,9 @@ This was a successful run, but often it would catch its own hallucinations and t
 
 To summarize - it's still too early to evaluate the solution, I still need to finish some reviews. But it does seem promising to me and I'm happy with the outcome, despite the drawbacks.
 
-The key lesson for me wasn’t multi-tenancy itself, but that strong architectural foundation + mutation testing make large-scale AI-assisted refactors possible.
+The key lesson for me wasn't multi-tenancy itself, but that strong architectural foundation + mutation testing make large-scale AI-assisted refactors possible.
 
+---
+
+**Discuss this post on [X (Twitter)](https://x.com/andrzejkrzywda/status/2006210691271655673?s=20)**
 
