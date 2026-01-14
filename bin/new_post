@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'optparse'
-require 'bundler/inline'
+require "optparse"
+require "bundler/inline"
 
 gemfile do
-  source 'https://rubygems.org'
-  gem 'stringex'
-  gem 'git'
-  gem 'os'
+  source "https://rubygems.org"
+  gem "stringex"
+  gem "git"
+  gem "os"
 end
 
 $git = Git.open(File.join(__dir__, ".."))
@@ -15,8 +15,8 @@ $git = Git.open(File.join(__dir__, ".."))
 class Post
   def initialize(author, date, title)
     @author = author
-    @date   = date
-    @title  = title
+    @date = date
+    @title = title
   end
 
   def create
@@ -54,9 +54,7 @@ class Post
   private
 
   def cli_editor?(editor)
-    [
-      /\/?vim$/,
-    ].any? { |regex| regex.match(editor) }
+    [%r{/?vim$}].any? { |regex| regex.match(editor) }
   end
 
   def full_path
@@ -72,7 +70,7 @@ class Post
   end
 
   def formatted_date
-    @date.strftime('%Y-%m-%d')
+    @date.strftime("%Y-%m-%d")
   end
 
   def title_for_url
@@ -106,11 +104,11 @@ end
 
 parser =
   OptionParser.new do |opts|
-    opts.on('-t TITLE', String, "Title of the post you're about to write")
-    opts.on('-a AUTHOR', String, "How people call you")
-    opts.on('-b', "Open browser")
-    opts.on('-c', "Commit and push initial draft")
-    opts.on('-e EDITOR', "Open post with given editor")
+    opts.on("-t TITLE", String, "Title of the post you're about to write")
+    opts.on("-a AUTHOR", String, "How people call you")
+    opts.on("-b", "Open browser")
+    opts.on("-c", "Commit and push initial draft")
+    opts.on("-e EDITOR", "Open post with given editor")
   end
 begin
   parser.parse!(into: params = {})
@@ -121,10 +119,8 @@ rescue OptionParser::MissingArgument, OptionParser::InvalidOption
 end
 
 author = params[:a] || $git.config["user.name"]
-post   = Post.new(author, Time.now, params[:t])
+post = Post.new(author, Time.now, params[:t])
 post.create
-post.browse           if params[:b]
-post.commit($git)     if params[:c]
+post.browse if params[:b]
+post.commit($git) if params[:c]
 post.edit(params[:e]) if params[:e]
-
-
