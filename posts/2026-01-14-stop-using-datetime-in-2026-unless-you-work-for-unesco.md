@@ -104,7 +104,7 @@ DateTime.now + 1  # => 1 day later
 
 This has caused bugs. Many bugs.
 
-**Ignores DST**. `DateTime` doesn't track daylight saving time. We covered this in [our previous post about timezone bugs](#), but the summary: if you use DateTime for anything involving timezones, you will have bugs.
+**Ignores DST**. `DateTime` doesn't track daylight saving time. If you use DateTime for anything involving timezones, you will have bugs.
 
 **Performance**. `Time` is faster. Noticeably.
 
