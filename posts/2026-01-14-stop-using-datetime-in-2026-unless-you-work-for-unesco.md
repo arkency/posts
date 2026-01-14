@@ -104,7 +104,7 @@ DateTime.now + 1  # => 1 day later
 
 This has caused bugs. Many bugs.
 
-**Ignores DST**. `DateTime` doesn't track daylight saving time. If you use DateTime for anything involving timezones, you will have bugs.
+**Ignores DST**. `DateTime` doesn't track daylight saving time. If you use `DateTime` for anything involving timezones, you will have bugs.
 
 **Performance**. `Time` is faster. Noticeably.
 
@@ -133,7 +133,9 @@ legacy_gem.fetch_date.to_time.in_time_zone
 ## What to use instead
 
 For timestamps: `Time.current` or `Time.zone.now`
+
 For dates: `Date.current`
+
 For parsing: `Time.zone.parse('2026-01-14 13:00:00')`
 
 ## The only exception
