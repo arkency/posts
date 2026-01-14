@@ -7,7 +7,7 @@ publish: false
 
 # Stop using DateTime in 2026 (unless you work for UNESCO)
 
-`DateTime` has been deprecated in Ruby since 3.0. It's 2026. Why are people still using it?
+`DateTime` has been considered deprecated in Ruby since 3.0. It's 2026. Why are people still using it?
 
 <!-- more -->
 
