@@ -2,7 +2,7 @@
 created_at: 2026-01-14 15:08:58 +0100
 author: Szymon Fiedler
 tags: [ruby, rails, time, datetime, legacy]
-publish: false
+publish: true
 ---
 
 # Stop using DateTime in 2026 (unless you work for UNESCO)
