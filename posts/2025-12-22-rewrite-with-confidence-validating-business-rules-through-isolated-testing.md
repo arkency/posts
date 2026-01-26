@@ -39,7 +39,7 @@ Our scope was clear: implement a new quote flow for HO4 (renters insurance) in t
 
 ### The God Model
 
-Like many mature Rails applications, the system had a Quote model that accumulated responsibilities over time:
+Like many mature Rails applications, the system had a God model — `Quote` — that accumulated responsibilities over time:
 
 ```ruby
 class Quote < ApplicationRecord
