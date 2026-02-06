@@ -1,7 +1,7 @@
 ---
 created_at: 2023-01-27 18:54:42 +0100
 author: Szymon Fiedler
-tags: ['rails event store', 'json', 'jsonb']
+tags: ['rails event store', 'json', 'jsonb', 'time']
 publish: true
 ---
 
