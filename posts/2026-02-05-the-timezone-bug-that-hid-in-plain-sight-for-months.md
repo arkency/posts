@@ -2,7 +2,7 @@
 created_at: 2026-02-05 13:02:35 +0100
 author: Szymon Fiedler
 tags: [ruby, rails, time, timezone]
-publish: false
+publish: true
 ---
 
 # The timezone bug that hid in plain sight for months
