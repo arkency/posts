@@ -13,7 +13,7 @@ AI agents don't reliably follow your instructions. Here's how I made it hurt les
 
 My context:
 * I currently work on a 12-year-old Rails legacy code base
-* The code base is undergoing modernization. Some of the large Active Record classes have been split into smaller ones, each into its own bounded context. Events are becoming a first-class citizen in the code. We also pay close attention to keep direction of dependencies as designed by context maps.
+* The code base is undergoing modernization. Some of the large Active Record classes have been split into smaller ones, each into its own bounded context. Events are becoming a first-class citizens in the code. We also pay close attention to keep direction of dependencies as designed by context maps.
 * The client has a GitHub Copilot subscription. I mostly use Sonnet and Opus models.
 
 ## The basic setup
