@@ -19,7 +19,7 @@ My context:
 ## The basic setup
 
 Initially I started with the basics. I was curious where it would get us. There's an AGENTS.md file with general rules to follow. Besides the AGENTS.md file I've added a few skills.
-The goal of the skills is to tell the agent about how it should write code. I am a big fan of Szymon's way of using RSpec. So I put that into a skill. I also developed a few skills that tell the agent how I want it to deal with event sourcing, ddd technical patterns, hotwire, backfilling data (especially events) and mutation testing. The mutation skill is quite essential because without it the agent goes bananas and tries to achieve 100% of mutation coverage with hacking. 
+The goal of the skills is to tell the agent about how it should write code. I am a big fan of [Szymon's way of using RSpec](https://blog.arkency.com/test-which-reminded-me-why-i-dont-really-like-rspec/). So I put that into a skill. I also developed a few skills that tell the agent how I want it to deal with event sourcing, ddd technical patterns, hotwire, backfilling data (especially events) and mutation testing. The mutation skill is quite essential because without it the agent goes bananas and tries to achieve 100% of mutation coverage with hacking. 
 
 An example of hacking is calling `send(:method)`. 
 
