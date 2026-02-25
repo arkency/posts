@@ -1,8 +1,8 @@
 ---
 created_at: 2026-02-20 12:20:24 +0100
 author: Łukasz Reszke
-tags: []
-publish: false
+tags: ['ai', 'legacy', 'rails', 'ddd']
+publish: true 
 ---
 
 # Getting nondeterministic agent into deterministic guardrails
