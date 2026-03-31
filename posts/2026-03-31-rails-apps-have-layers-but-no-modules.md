@@ -95,7 +95,7 @@ It's usually around this phase in the architecture - MVCS - when a decision is m
 
 We will go microservices. 
 
-Sometimes it comes from the team itself - what can be a stronger boundary than a network? The team hopes it will enforce a better design. Sometimes the decision comes from the new CTO, who was just brought in from another world, possibly Kotlin, Go, or TypeScript. Microservices bring them the hope to create new code in their favourite and familiar language.
+Sometimes it comes from the team itself - what can be a stronger boundary than a network? The team hopes it will enforce a better design. Microservices bring the hope of starting fresh — new language, new design, better boundaries. But the boundaries still aren't modules.
 
 Are microservices helping with the modularisation?
 Nope. They are just yet another horizontal layer. This time we add a layer behind a network call. We no longer have transactions, it's harder to run tests, the build takes longer. All for the benefit for having 3 new Go microservices and adding new layers of serialisation/deserialisation.
