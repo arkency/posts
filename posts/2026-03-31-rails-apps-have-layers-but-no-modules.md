@@ -2,7 +2,7 @@
 created_at: 2026-03-31 12:00:00 +0100
 author: Andrzej Krzywda
 tags: ['rails', 'ddd', 'architecture', 'bounded contexts']
-publish: false
+publish: true
 ---
 
 # Rails apps have layers but no modules
