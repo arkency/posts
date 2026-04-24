@@ -72,7 +72,7 @@ There's one more part of the Rails Way that deserves a mention — concerns.
 
 We don't see them as often as we see the fat-model-plus-callback-plus-background-job pattern in the codebases we get called into. But concerns are definitely a significant part of the Rails Way too. Maybe they are more of the *official* Rails Way than the Rails Way we see in the wild.
 
-A good example is the Fizzy codebase from 37signals. We recorded a walkthrough of it on our YouTube channel: [How we architect Rails apps at 37signals: a Fizzy tour](https://www.youtube.com/watch?v=-L6fjY3HlBI). Fizzy leans on concerns to structure behavior across models. It's worth watching to see the pattern applied intentionally rather than as accidental accumulation.
+A good example is the Fizzy codebase from 37signals. We recorded a walkthrough of it on our YouTube channel: [Arkency reviews Fizzy, part 1](https://www.youtube.com/watch?v=-L6fjY3HlBI). Fizzy leans on concerns to structure behavior across models. It's worth watching to see the pattern applied intentionally rather than as accidental accumulation.
 
 So the full picture of the Rails Way in 2026 is probably: fat model, callback, service object, background job, process state living on Active Record and, where teams lean closer to the official Rails style, concerns as the way to organize all of that.
 
