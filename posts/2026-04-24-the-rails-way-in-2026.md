@@ -66,6 +66,8 @@ A single Active Record class ends up carrying:
 
 The process is not an object. The workflow is not an object. They live as emergent behavior across a model, its callbacks, its associations, and the jobs they enqueue.
 
+This isn't a new observation. Robert wrote about the same accumulation pattern years ago in [Why classes eventually reach 50 columns and hundreds of methods](https://blog.arkency.com/2017/03/why-your-classes-eventually-reach-50-columns-and-hundreds-of-methods/) — framed there through bounded contexts. What's different in 2026 is that the accumulated responsibilities are now explicitly *process* responsibilities.
+
 ## One more piece: concerns
 
 There's one more part of the Rails Way that deserves a mention — concerns.
