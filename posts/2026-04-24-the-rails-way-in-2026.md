@@ -2,7 +2,7 @@
 created_at: 2026-04-24 12:00:00 +0200
 author: Andrzej Krzywda
 tags: ['rails', 'ddd']
-publish: false
+publish: true
 ---
 
 # The Rails Way in 2026
