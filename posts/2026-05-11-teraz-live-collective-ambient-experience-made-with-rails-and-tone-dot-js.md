@@ -7,111 +7,166 @@ publish: false
 
 # TERAZ - live collective ambient experience made with Rails & tone.js
 
-For years I have been moving around ambient music as a DJ, artist, listener, and organizer of Up To Date Festival in Białystok. Ambient is very close to my heart. I keep discovering it, returning to it, and looking for new ways of experiencing it. At the same time, I have always been deeply involved in technology. I work with code, I think through systems, and I am naturally attracted to projects where music and software can meet in a meaningful way.
+The first time TERAZ actually worked, there were around seventy phones playing in one room.
 
-TERAZ came from that place — from wanting to connect those two parts of myself.
+I was standing at my laptop, looking at a grid of rectangles on the screen, slowly bringing the instruments in. Each rectangle was one person from the audience. Each phone had been randomly assigned a part: bass, piano, crackling noise, angel pads, drone, or bells.
 
-The name means “now” in Polish. For me, that word is not just a title. It is the core mechanism of the project. Now I am part of the orchestra. Now I am focusing on other sounds. Now I might be tempted to use my phone in the usual way, but if I do, I fall out of the orchestra.
+Before pressing start, I was still not completely sure what would happen. Local tests are one thing. Seventy people with their own phones, batteries, browsers, volume settings, operating systems, and expectations are another.
 
-TERAZ is a live ambient performance in which the audience becomes a distributed smartphone orchestra. People scan a QR code, join the system, and their phones are randomly assigned one of six musical parts. I control those parts live from my panel, gradually bringing instruments in and out, changing volumes, and shaping the whole piece in real time.
+Then the room started to sound like one strange, fragile ambient organism.
 
-The phones are not just passive speakers. They are small instruments.
+I got goosebumps.
 
-That distinction was important to me from the beginning. I did not want to stream audio to the devices. Instead, each phone generates its own sound locally. The server sends only control messages: whether a given track is active, how loud it should be, and when something changes. The actual sound happens on the devices in the audience.
+## Why I wanted to make this
 
-## Why phones?
+I have been orbiting around ambient music for years — as a DJ, artist, listener, and organizer of Up To Date Festival in Białystok. It is close to my heart. Ambient has always made sense to me because it can be both background and the whole world, depending on how much attention you give it.
 
-For a long time I have been thinking about how people use phones during concerts and performances. Very often, instead of simply being present, we document: we record, take photos, check something, look at notifications. The phone becomes a tool for escaping the moment, even when we are physically inside it.
+At the same time, I spend a lot of my life in technology. I write code, build systems, and think about how things communicate with each other. For a long time I wanted to make something where those two parts of me would actually meet, not as a gimmick, but as one idea.
 
-With TERAZ, I wanted to reverse that relationship.
+TERAZ came from that place.
 
-The phone becomes an instrument, but also a constraint. To stay in the orchestra, the participant has to keep a finger on the screen so the phone does not go to sleep. It is a simple physical gesture, but it changes the role of the device completely. You are still holding your phone, but you are not using it to leave the situation. You are holding it to remain inside it.
+The name means “now” in Polish. For me, that word became the whole mechanism of the piece. Now I am part of the orchestra. Now I am listening to what is happening around me. Now I might want to check my phone, take a photo, record something — but if I do, I fall out of the orchestra.
 
-That is why TERAZ has always felt a bit like a manifesto to me. It is about presence, attention, and collective listening. It is also a technological experiment, of course, and that part is very attractive to me. But the technical challenge is not separate from the artistic idea. The system exists in order to make that gesture possible.
+In TERAZ, I ask the audience to take out their phones. For once, not to record anything.
 
-## Before TERAZ
+They scan a QR code, keep a finger on the screen, and their devices become a temporary orchestra spread across the room. I control the piece live from my panel: bringing instruments in and out, changing volumes, and reacting to what I hear from the audience.
 
-A few years ago, I created a generative ambient music performance called Pogwar, which I presented at Arsenał Gallery in Białystok. That project was based on Tone.js and gave me an earlier opportunity to explore browser-based generative sound.
+The phones generate sound locally. They are little instruments, each one slightly different, slightly unreliable, slightly its own thing.
 
-Some of the ideas and technical tricks from Pogwar later returned in TERAZ. One of them was a hack that allowed JavaScript to keep running in the background on mobile devices: an infinite loop in an audio element, playing a silent MP3 file. It is not something I would broadly recommend, because it does not run with full power and can introduce artifacts, but in this context it helped me understand what was possible.
+## A soft manifesto, with a finger on the screen
 
-The idea for TERAZ had been with me for a few years, but I did not have the right motivation or occasion to finally build it. That changed with wroclove.rb, a Ruby conference supported by Arkency, the company I work for. I suggested the idea to the organizers, and suddenly the abstract concept had a deadline, a room, and an audience.
+I have been thinking for a long time about how we use phones during concerts and performances. Very often, instead of being fully in the room, we document the room. We record, take photos, check notifications, look at something else for a second. A phone can pull us out of the exact thing we came to experience.
 
-## How it works
+With TERAZ, I wanted to turn that around.
 
-The flow of the performance is simple from the audience perspective.
+The phone stays in your hand, but its role changes. To remain in the piece, you have to keep touching the screen so it does not go to sleep. It is a very simple gesture, almost stupidly simple, but it works. You are holding the device that usually distracts you, and now that same device requires your attention in order to keep playing.
 
-At the beginning, I welcome everyone and explain the rules. During the premiere at wroclove.rb, I could have prepared this introduction better, but it was the first public version of the project, so I also learned a lot from that situation.
+That is why TERAZ always felt a bit like a manifesto to me. A soft one, maybe. No slogans, no big statement from the stage — just a small rule: if you want to stay in the piece, stay with the phone.
 
-Participants scan a QR code shown on the main screen. After joining, the system randomly assigns each person one of six tracks:
+The technical challenge and the artistic idea grew together. The system exists to make that gesture possible.
+
+## Pogwar, Tone.js, and a useful ugly hack
+
+A few years earlier I made a generative ambient music performance called Pogwar, which I presented at Arsenał Gallery in Białystok. It was based on Tone.js and gave me a lot of space to explore browser-based generative sound.
+
+Some things from Pogwar came back later in TERAZ. One of them was a hack I discovered while working on that project: an infinite loop in an audio element, playing a silent MP3 file, which helps JavaScript keep running in the background on mobile devices.
+
+I would not broadly recommend this trick. It does not run with full power and can introduce artifacts. But it taught me something about what mobile browsers allow, what they block, and where the weird edges are.
+
+The idea for TERAZ had been sitting in my head for a few years. I liked it, but I did not have a deadline, a place, or enough pressure to actually build it.
+
+Then wroclove.rb happened.
+
+It is a Ruby conference supported by Arkency, the company I work for. I suggested the idea to the organizers, and suddenly the vague thing I had been thinking about had a date, a room, and an audience.
+
+That usually helps.
+
+## What the audience sees
+
+From the audience side, it goes like this.
+
+At the beginning I welcome everyone and explain the rules. During the premiere at wroclove.rb I could have done this better. It was the first public version, and I learned very quickly that people need to understand one important thing: their phone may not start playing immediately. The orchestra is built gradually.
+
+After the intro, people scan a QR code shown on the main screen. The system randomly assigns each person one of six tracks:
 
 - bass
+
 - piano
+
 - crackling noise
+
 - angel pads
+
 - drone
+
 - bells
 
-Once I press start, the QR code screen changes into a visualization: a matrix of rectangles, each representing one participant in the orchestra. Every phone in the room becomes one small element of a larger visual and sonic body.
+When I press start, the QR code screen changes into a visualization: a matrix of rectangles, each representing one participant. Every phone becomes one small block inside the larger organism.
 
-My control panel has a few main sections. I can see the six tracks, each with a volume slider and controls for locking or unlocking the instrument. Below that, I can see the list of participants, their assigned instruments, and their operating systems. I can also manually change assignments, which turned out to be very useful.
+My control panel is somewhere between a mixer, a conductor’s desk, and a small emergency room.
 
-For example, Android devices had problems with bass. On some of them, there was basically no sound below around 120 Hz. Because every instrument is technically available on every device, I could move an Android participant away from bass and assign a different instrument instead.
+I can see the six tracks, each with a volume slider and controls for locking or unlocking the instrument. Below that, I can see the participants, their assigned instruments, and their operating systems. I can also manually change assignments, which turned out to be very useful.
 
-The system is built with Ruby on Rails, Action Cable, Stimulus, and Hotwire. The sound generation happens in JavaScript with Tone.js. Apart from the piano, which uses a sample because generating it directly on the device would be more expensive computationally, the sounds are generated on participants’ phones.
+For example: Android and bass were not exactly best friends.
 
-The server does not stream audio. It only broadcasts small control messages through Action Cable when something changes. That makes the data flow very light and keeps the architecture much simpler and more reliable.
+On some Android devices, there was basically no sound below around 120 Hz. iPhones generally handled the sound much better and played more reliably. Because every instrument is technically available on every device, I could notice when an Android phone had received bass and move it to another instrument.
 
-I was prepared for more than 120 people. I tested locally using borrowed mobile devices from my wife and neighbors, and also with around 100 browser tabs in Chrome. That test was funny in its own way: I started clogging the audio context on my Mac. Only some tabs were able to play sound, while others froze or failed. I had to add special test parameters to avoid initializing audio and test only Action Cable communication.
+This kind of thing is exactly why the panel had to be more than a pretty interface. It had to let me conduct, but also fix things while the piece was running.
 
-The whole thing was hosted on the cheapest Hetzner server.
+## The server was fine. The phones were weird.
 
-In the end, I was worried about the performance of the “mother server” much more than I needed to be. The real complexity was not on the server side. It was in the unpredictable ecosystem of mobile devices, browsers, audio implementations, and operating systems.
+The system is built with Ruby on Rails, Action Cable, Stimulus, and Hotwire. Sound generation happens in JavaScript with Tone.js.
 
-## Composing for many small instruments
+I did not stream audio to the phones. That felt too heavy and too fragile. Instead, each phone can play any of the instruments locally. The server only sends small control messages through Action Cable: this track is active, this is the current volume, this changed.
 
-The musical process did not start in code. It started with sound.
+No audio stream. No constant flood of information. Just state changes.
 
-At first, I used Ableton Move to search for textures and ideas. I improvised a lot, looking for sounds that felt right for this kind of distributed ambient orchestra. Once I found something that worked musically, I started translating it into code and building instruments in Tone.js.
+The piano is the one exception in the sound design. It uses a sample, because generating a convincing piano directly on all those devices would be too expensive computationally. Everything else is generated on the participants’ phones.
 
-Each instrument moves somewhat randomly inside a defined area. I wanted controlled chaos. I did not want every phone to play perfectly evenly or identically. The small differences between devices, timing, behavior, and generated material give each phone a bit of individuality.
+I was ready for more than 120 people. At home, I tested with phones borrowed from my wife and neighbors, creating a tiny domestic orchestra. I also tested with around 100 browser tabs in Chrome.
 
-At the beginning, I had an idea that everything should be very precisely synchronized. Later I gave up on that. This is ambient music, and small timing differences are not a problem. They are part of the character of the piece. I did not measure latency in detail, because I did not need to. It sounded good, and the slight looseness helped the orchestra feel alive.
+This was funny, because my Mac gave up before the server did.
 
-Working with Tone.js was both enjoyable and demanding. It is a great library, but on weaker devices you have to think carefully about optimization. During testing, I discovered that some ideas were too heavy or unreliable across phones, so I simplified and limited parts of the system to get the widest possible compatibility.
+I kept opening tabs, but only some of them were actually able to play sound. Others started hanging or failing because I was clogging the local audio context. So I added special test parameters that skipped audio initialization and tested only the Action Cable communication.
 
-That was one of the main lessons of the project: the phone is not an abstract device. Every phone is a slightly different instrument.
+I was ready to blame the cheapest Hetzner box. In the end, the server was fine. The real fun was in the devices: mobile browsers, audio policies, operating systems, weird performance limits, and all the small differences between phones.
 
-## The premiere at wroclove.rb
+Every phone is a slightly different instrument. Some are better instruments than others.
 
-The first public performance of TERAZ happened at wroclove.rb. Around 70 people joined the orchestra.
+## Writing ambient music for tiny speakers
 
-Technically, everything worked very well. When I heard the first sounds of the whole smartphone orchestra, I had goosebumps. That was the moment when the project stopped being only an idea and became a real experience in the room.
+The music did not start in code.
 
-The audience was not a typical ambient audience. It was a room full of curious programmers, so the reaction was lively. People commented on what was happening, reacted audibly, and were interested in the mechanism of the whole thing. In a more ambient or art-oriented context, I would expect a different kind of attention and probably a quieter atmosphere.
+At first I used Ableton Move to search for sounds. I improvised a lot, trying to find textures that made sense for a room full of small speakers. When something felt right, I started translating it into code and rebuilding the idea as a Tone.js instrument.
 
-Because of that, the recording from the premiere contains quite a lot of room noise. I cleaned the audio as much as I could and extracted what was possible. The video also shows the visualization, so I will include it with this post.
+The six tracks have different roles: bass, piano, crackling noise, angel pads, drone, and bells. Together they create a slow ambient environment, but each participant only carries one part of it.
 
-From a performance perspective, I felt a bit like a conductor. I had a structure in mind, but I was also reacting to what I heard and saw in the room. Under different circumstances, I would probably stretch the quiet intro for longer. But during the premiere I could see people becoming impatient when their phones were not playing yet, so I brought in more layers faster than planned.
+I wanted controlled chaos.
 
-That tension was interesting. I was not only mixing six tracks. I was conducting a room full of devices and people, adjusting the form of the piece in response to the situation.
+Each instrument moves somewhat randomly inside a defined area. I did not want all phones to play perfectly evenly or identically. That would probably feel too clean. The small differences between devices, timing, and generated material give the whole thing a bit of life.
 
-## What I would change
+At first I thought I should make everything very precisely synchronized. Later I let go of that idea. This is ambient music. Small timing differences are fine. They actually help. I did not measure latency in detail, because once I heard it in the room, it made sense.
 
-The main thing I would improve before the next performance is the introduction.
+Tone.js is a great library, but you need to be careful with optimization, especially on weaker phones. Some ideas that worked nicely on my machine were too heavy or unreliable across devices. I had to simplify, remove, or limit some parts to keep compatibility as wide as possible.
 
-The audience needs to understand that this is not an app where everything immediately starts playing on every phone. It is an orchestra, and the orchestra is built gradually. Some people may wait before their phone becomes audible. That waiting is part of the composition, but it needs to be explained clearly.
+This was probably the biggest technical lesson for me: designing for a hundred phones is not the same as designing for “a browser”. There is no single browser. There is a crowd of strange little machines pretending to be one platform.
 
-I would also love to present TERAZ in a more ambient or art-oriented context, where the audience is more prepared for focus, silence, and slow development. At the same time, the project benefits from scale. More phones means a richer and more powerful orchestra. In this case, more really is better.
+## The first time the room played
 
-I can imagine TERAZ becoming an installation, but for now I am most interested in performing it live. The live version has a specific tension: the system, the room, the devices, the people, and my decisions all meet in one moment.
+The first public performance of TERAZ happened at wroclove.rb. Around 70 people joined.
 
-## Two hats
+I had hoped for a bit more, but it was enough to feel the idea properly.
 
-TERAZ is important to me because it proves that I can make something real while wearing both hats: artist and programmer.
+Technically, it worked really well. And when I heard the first sounds of the whole phone orchestra, I got goosebumps. That was the moment when the project stopped being a weird idea in my head and became something actually happening in the room.
 
-It is an ambient performance, a technological experiment, a small manifesto about phones, and a live system for collective listening. It comes from my love for ambient music, my experience with generative sound, my work around Up To Date Festival, and my need to question what we do with our attention during performances.
+The audience was a room full of curious programmers rather than a typical ambient crowd, so the reaction was lively. People were commenting, laughing, reacting to what their phones were doing, and trying to understand the mechanism while it was happening.
 
-TERAZ is a unique ambient experience in which smartphones stop being tools for escaping the concert and become part of the orchestra.
+For a quiet ambient performance this was not ideal. For a first public test at a Ruby conference, it was perfect in its own strange way.
 
-And for a couple of minutes, the audience is not only watching or listening. They are playing.
+The recording has quite a lot of room noise because of that. I cleaned the audio as much as I could and pulled out what was possible. I will include the video with this post, because it also shows the visualization from the screen.
+
+During the performance I felt a bit like a conductor. I had a structure in mind, but I was reacting to the room. Normally I would have stretched the quiet intro much longer. But I could see people getting impatient when their phones were not playing yet, so I brought in more layers faster.
+
+That was an interesting moment. The system was working, but the room was also teaching me how the piece should behave.
+
+## What I need to fix before the next one
+
+Before doing it again, I need to fix one very basic thing: the intro.
+
+People should know from the start that the piece grows slowly, and that waiting for your phone to enter is part of the experience. Otherwise some participants expect everything to play immediately, because that is how most digital interfaces behave.
+
+I would love to show TERAZ in a more ambient or art-oriented context, with an audience more prepared for silence, focus, and slow development. I also want to try it at a larger scale. With this project, more phones really means more orchestra.
+
+It could probably become an installation one day, but for now I am most interested in performing it live. The live version has tension. I can hear the room, see the system, feel the audience, and make decisions in the moment.
+
+That part matters to me.
+
+## Two hats, one problem
+
+I think TERAZ worked for me because I did not have to choose which hat to wear.
+
+The ambient part of me could care about slowness, texture, atmosphere, and attention. The programmer part could obsess over Action Cable, Android audio, sending as little data as possible, and keeping the thing alive on the cheapest Hetzner box.
+
+Somehow, for once, these were the same problem.
+
+TERAZ comes from my love for ambient music, my experience with generative sound, my work around Up To Date Festival, and my need to question what we do with our attention during performances.
