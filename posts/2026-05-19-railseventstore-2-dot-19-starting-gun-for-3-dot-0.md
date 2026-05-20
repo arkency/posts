@@ -19,7 +19,7 @@ We're deprecating a batch of APIs in 2.19 that will be removed in 3.0.
 
 ### RubyEventStore
 
-**`in_batches_of`**
+#### `in_batches_of`
 
 Renamed to `in_batches` for consistency with the rest of the API.
 
@@ -31,7 +31,7 @@ event_store.read.in_batches_of(100).each { |batch| ... }
 event_store.read.in_batches(100).each { |batch| ... }
 ```
 
-**`of_types`**
+#### `of_types`
 
 Renamed to `of_type`. Singular, consistent with other query methods.
 
@@ -43,7 +43,7 @@ event_store.read.of_types([OrderPlaced, OrderShipped])
 event_store.read.of_type([OrderPlaced, OrderShipped])
 ```
 
-**Projection API**
+#### Projection API
 
 The old API coupled projection definition to the data source upfront — you had to specify the stream when building the projection. The new API separates these concerns: define the projection once, call it with any scope from `event_store.read`.
 
@@ -64,7 +64,7 @@ Projection
 
 Also deprecated: calling `Projection#call` with multiple scopes — pass a single scope. Use `Projection.init` instead of `Projection.new`.
 
-**Class-based subscribers**
+#### Class-based subscribers
 
 Passing a class as a subscriber hides the lifecycle — RES had to decide when and how to instantiate it, with no control from the caller. An instance or lambda is explicit about what gets called and when.
 
@@ -76,11 +76,11 @@ event_store.subscribe(SendOrderConfirmation, to: [OrderPlaced])
 event_store.subscribe(SendOrderConfirmation.new, to: [OrderPlaced])
 ```
 
-**`EventClassRemapper` / `events_class_remapping:`**
+#### `EventClassRemapper` / `events_class_remapping:`
 
 Upcasting has been available since RES 2.1.0 and is the proper way to handle renamed or evolved event classes. It's composable, co-located with the transformation logic, and doesn't require configuring the mapper globally. `EventClassRemapper` is being removed.
 
-**`NullMapper`**
+#### `NullMapper`
 
 `Mappers::Default.new` without arguments does exactly what `NullMapper` did, with a name that doesn't imply it does nothing.
 
@@ -94,7 +94,7 @@ mapper: RubyEventStore::Mappers::Default.new
 
 ### RailsEventStore
 
-**`RailsEventStore::*` constant aliases**
+#### `RailsEventStore::*` constant aliases
 
 The `rails_event_store` gem is an integration layer — it wires RES into Rails. The domain objects (events, client, projections) live in `ruby_event_store`. Aliasing them under the `RailsEventStore` namespace implied they were Rails-specific, which caused confusion about what's portable and what isn't. In 3.0 those aliases are gone — use the source namespace directly.
 
@@ -108,11 +108,11 @@ RubyEventStore::Event
 RubyEventStore::JSONClient
 ```
 
-**`*.rails_event_store` instrumentation events**
+#### `*.rails_event_store` instrumentation events
 
 Same reason as above — the implementation is in `ruby_event_store`, so the instrumentation namespace should be too. During the 2.19 transition period both `*.rails_event_store` and `*.ruby_event_store` are dual-fired. After 3.0 only `*.ruby_event_store` remains — update your `ActiveSupport::Notifications` subscriptions.
 
-**Dispatcher naming**
+#### Dispatcher naming
 
 The `Async` in `ImmediateAsyncDispatcher` and `AfterCommitAsyncDispatcher` described the handler (a background job), not the dispatcher itself. The new names drop the misleading qualifier. `Dispatcher` becomes `SyncScheduler` — a more accurate description of what it actually does.
 
@@ -124,7 +124,7 @@ The `Async` in `ImmediateAsyncDispatcher` and `AfterCommitAsyncDispatcher` descr
 
 ### AggregateRoot
 
-**`apply_*` method convention**
+#### `apply_*` method convention
 
 The old convention mapped event handlers by method name — `apply_order_placed` would handle `OrderPlaced`. The problem, which we even documented at the time: you can't grep for usages of the event class. The `on` DSL references the event class explicitly.
 
@@ -148,7 +148,7 @@ class Order
 end
 ```
 
-**`AggregateRoot::Configuration` / `default_event_store`**
+#### `AggregateRoot::Configuration` / `default_event_store`
 
 Global state with a hidden dependency on the event store. Makes testing harder, makes the dependency invisible at the call site. Pass the event store explicitly to `Repository.new`.
 
