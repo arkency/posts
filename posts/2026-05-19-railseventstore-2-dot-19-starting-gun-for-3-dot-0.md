@@ -162,8 +162,6 @@ end
 repository = AggregateRoot::Repository.new(Rails.configuration.event_store)
 ```
 
----
-
 ## PostgreSQL `valid_at` index
 
 If you use bi-temporal queries (`as_of`), add this index.
@@ -181,7 +179,6 @@ The generator in 2.19.0 used a plain `CREATE INDEX` — which locks the table fo
 
 PostgreSQL only — MySQL and SQLite use different syntax for expression indexes.
 
----
 
 ## Under the hood
 
@@ -191,7 +188,6 @@ The test suite previously used multiple per-version dummy Rails apps. We've cons
 
 Mutation coverage gaps have been closed — some after the tag cut.
 
----
 
 ## Upgrading
 
