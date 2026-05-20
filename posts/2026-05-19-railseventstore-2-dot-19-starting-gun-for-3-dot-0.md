@@ -2,7 +2,7 @@
 created_at: 2026-05-19 14:56:25 +0200
 author: Szymon Fiedler
 tags: [res, ruby, rails]
-publish: false
+publish: true
 ---
 
 # RailsEventStore 2.19: Starting Gun for 3.0
