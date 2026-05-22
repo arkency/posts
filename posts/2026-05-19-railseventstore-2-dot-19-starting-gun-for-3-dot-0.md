@@ -7,7 +7,7 @@ publish: true
 
 # RailsEventStore 2.19: Starting Gun for 3.0
 
-RailsEventStore 2.19.1 is out — grab that one, not 2.19.0 (more on why below).
+RailsEventStore 2.19.2 is out — grab that one, not .0 or .1 (more on why below).
 
 This release is the starting gun for 3.0. We've added deprecation warnings for everything we're removing in the next major version. Run your test suite — every warning you see is a hard error in 3.0.
 
@@ -179,6 +179,21 @@ The generator in 2.19.0 used a plain `CREATE INDEX` — which locks the table fo
 
 PostgreSQL only — MySQL and SQLite use different syntax for expression indexes.
 
+## Deprecation warnings in tests
+
+The deprecation warnings in 2.19.0 and 2.19.1 had a concrete bug: the warning for `rails_event_store_active_record` was a plain warn at load time. Since rails_event_store requires it internally, anyone with `gem 'rails_event_store'` in their `Gemfile` got the warning on boot — even if they never referenced the old gem name in their own code. Most users were getting penalized for something that wasn't their problem.
+
+2.19.2 introduces `RubyEventStore::Deprecations` — a centralized mechanism where each unique warning fires at most once per process. The `rails_event_store` gem now explicitly suppresses the `rails_event_store_active_record` warning for itself before loading the shim. The warning only reaches users who directly require or reference `rails_event_store_active_record` in their own code — which is exactly who should act on it.
+
+You can use the same mechanism in your test suite to silence deprecations you've acknowledged while working through the migration:
+
+```ruby
+# e.g. in `spec_helper.rb`
+
+RubyEventStore::Deprecations.suppress(:of_types)`
+```
+
+Each key suppresses that specific warning for the duration of the process. Suppressions are cleared between test runs via `Deprecations.reset!`, so they won't accidentally mask new warnings you haven't seen yet.
 
 ## Under the hood
 
@@ -195,5 +210,5 @@ Mutation coverage gaps have been closed — some after the tag cut.
 gem 'rails_event_store', '~> 2.19'
 ```
 
-Full release notes: [v2.19.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.19.0), [v2.19.1](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.19.1)
+Full release notes: [v2.19.0](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.19.0), [v2.19.2](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.19.1), [v2.19.1](https://github.com/RailsEventStore/rails_event_store/releases/tag/v2.19.2)
 
