@@ -190,7 +190,7 @@ You can use the same mechanism in your test suite to silence deprecations you've
 ```ruby
 # e.g. in `spec_helper.rb`
 
-RubyEventStore::Deprecations.suppress(:of_types)`
+RubyEventStore::Deprecations.suppress(:of_types)
 ```
 
 Each key suppresses that specific warning for the duration of the process. Suppressions are cleared between test runs via `Deprecations.reset!`, so they won't accidentally mask new warnings you haven't seen yet.
