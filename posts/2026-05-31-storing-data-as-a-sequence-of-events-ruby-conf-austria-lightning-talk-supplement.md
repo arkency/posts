@@ -5,7 +5,7 @@ tags: ['event sourcing']
 publish: false
 ---
 
-# Storing data as a sequence of events - RubyConfA lightning talk supplement
+# Storing data as a sequence of events - RubyConfAt lightning talk supplement
 
 This post originated from the lightning talk and the discussions I had afterward at [RubyConfAt](http://rubyconf.at). 
 
@@ -35,11 +35,7 @@ If you make a mistake with the data, you make a correction.
 
 The cool part also comes when you analyze different kinds of mistakes and their consequences. 
 
-Consider the following: a developer made a mistake in the code. 
-
-Ok, so then they write migration script to address it. 
-
-Unfortunately they make another mistake. 
+Consider the following: a developer made a mistake in the code. Ok, so then they write migration script to address it. ...Unfortunately they make another mistake. 
 
 *Oshit.jpg what now?*
 
@@ -85,14 +81,14 @@ Projections read all events from a specific stream to build the state of an obje
 
 Representing a specific business concept is not the only use case for a stream.
 
-In [RailsEventStore](railseventstore.…) an event can be linked to multiple streams. 
+In [RailsEventStore](https://railseventstore.org/) an event can be linked to multiple streams. 
 You can use this technique to answer interesting business questions.
 
 Let’s look at a specific example. 
 
 Imagine you're organizing a conference in Vienna. 
 You could be interested in the number of tickets sold on a specific day. 
-To achieve that you should link all `TicketPurchased` events to `Ticket_sold_at_${Date.current}` stream.
+To achieve that you should link all `TicketPurchased` events to `Tickets_sold_at_${Date.current}` stream.
 
 We can go even further. If we had other events representing speaker, talk, agenda, or fun activities announcement, you could link all those events together, build a timeline (or feed an agent), and figure out what has the biggest impact on sales. 
 
@@ -108,11 +104,11 @@ That’s actually what Andrzej mentioned in his talk.
 
 Use events to build read models. 
 
-The way we often do it is that we move the pressure from reads to writes. This means that instead of having a long-running query, we’ll prepare the read model that the user displays upfront, based on specific events. 
+The way we often do it is that we move the pressure from reads to writes. This means that instead of building data for view on the fly (usually causing long-running query for more complex views), we’ll prepare the read model that the user displays upfront, based on specific events. 
 
 ## Summary
 
-There are many more aspects of event sourcing that I’d love to discuss in more detail. However, this is a good start. In general, I am very happy that we are starting to talk more about events in the Ruby community and that we allow ourselves to think outside of the Rails Way. Which is awesome, btw, up to a certain point. I hope that I’ll have a chance to discuss more interesting aspects like anti-patterns, case studies with happy endings that had some stress involved (aka fuckup stories) in upcoming conferences! 
+There are many more aspects of event sourcing that I’d love to discuss in more detail. However, this is a good start. In general, I am very happy that we are starting to talk more about events in the Ruby community and that we allow ourselves to think outside of the Rails Way. I hope that I’ll have a chance to discuss more interesting aspects like anti-patterns, case studies with happy endings that had some stress involved (aka fuckup stories) in upcoming conferences! 
 
 But before this happens, I must write one more thing. Event sourcing is a tool that you should have in your toolbox. But it’s not a silver bullet. In my experience, it makes the important parts of an application better in many different ways. However, I do not apply it everywhere, nor do I recommend doing that. 
 
