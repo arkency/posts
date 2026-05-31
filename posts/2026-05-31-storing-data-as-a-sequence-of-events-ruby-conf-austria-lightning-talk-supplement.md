@@ -106,6 +106,18 @@ Use events to build read models.
 
 The way we often do it is that we move the pressure from reads to writes. This means that instead of building data for view on the fly (usually causing long-running query for more complex views), we’ll prepare the read model that the user displays upfront, based on specific events. 
 
+## Common misconception #4 - I need new infra 
+
+Luckily, you don't. In one of previous paragraphs I mentioned [RailsEventStore](https://railseventstore.org/). 
+It is a gem that you can use to implement event sourcing in your current Rails application.
+
+Few facts:
+
+* It works with PostgreSQL, MySQL, SQLite
+* It comes with migrations – it'll create both events and streams table for you
+* It comes with [predefined template](https://railseventstore.org/docs/getting-started/install#existing-rails-application) that you can use to plug it into your existing Rails application
+* It doesn't require any additional bit of infrastructure
+
 ## Summary
 
 There are many more aspects of event sourcing that I’d love to discuss in more detail. However, this is a good start. In general, I am very happy that we are starting to talk more about events in the Ruby community and that we allow ourselves to think outside of the Rails Way. I hope that I’ll have a chance to discuss more interesting aspects like anti-patterns, case studies with happy endings that had some stress involved (aka fuckup stories) in upcoming conferences! 
