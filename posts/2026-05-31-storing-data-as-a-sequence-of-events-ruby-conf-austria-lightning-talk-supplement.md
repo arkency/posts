@@ -1,7 +1,7 @@
 ---
 created_at: 2026-05-31 15:42:04 +0200
 author: Łukasz Reszke
-tags: []
+tags: ['event sourcing']
 publish: false
 ---
 
