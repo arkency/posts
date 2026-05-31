@@ -2,7 +2,7 @@
 created_at: 2026-05-31 15:42:04 +0200
 author: Łukasz Reszke
 tags: ['event sourcing']
-publish: false
+publish: true
 ---
 
 # Storing data as a sequence of events - RubyConfAt lightning talk supplement
