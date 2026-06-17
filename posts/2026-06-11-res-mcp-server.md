@@ -5,9 +5,15 @@ tags: [res, ruby, rails]
 publish: false
 ---
 
-# Give Your AI Assistant Access to the Event Store with `res-mcp`
+# Let Your AI Assistant Explore the Event Store with `res-mcp`
 
-When you're debugging with an AI assistant, half the work is feeding it context — copy-pasting events, stream contents, and IDs into the chat so it has something to reason about. `ruby_event_store-mcp` cuts that out. It's the companion to the [`res` CLI](https://blog.arkency.com/res-cli): the same idea of reading your live event store, but instead of *you* typing commands in a terminal, it exposes the store as [MCP tools](https://modelcontextprotocol.io/) that AI assistants (Claude, etc.) call directly — you ask in plain English, the assistant reads the events itself.
+When you're debugging with an AI assistant, half the work is giving it enough context. You copy event payloads into the chat, paste stream contents, look up IDs, then repeat the process every time you need another piece of information.
+
+`ruby_event_store-mcp` removes that step. It's the companion to the [`res` CLI](https://blog.arkency.com/res-cli): instead of you querying the event store from the terminal, your AI assistant does it for you through [MCP tools](https://modelcontextprotocol.io/). You ask questions in plain English, it reads the events itself.
+
+The difference from copying the events into the chat yourself is that the assistant can ask follow-up questions on its own. If it needs to inspect another stream, load an aggregate's history, or trace a correlation, it simply calls another tool. You stay in the conversation instead of switching between your AI client and a terminal.
+
+That, to me, is the killer feature of MCP — not that it can read the event store once, but that it can iterate.
 
 <!-- more -->
 
@@ -60,7 +66,7 @@ That installs the `res-mcp` binary — but it doesn't register anything with you
 
 That's the whole setup. No routes, no mounts, no credentials.
 
-## What you can ask
+## Ask questions, not commands
 
 Once it's connected you just talk to the assistant — **no slash command, no skill**. You ask in plain English and it decides which tools to call (the first call asks your permission; allowlist the `res` server to stop being asked).
 
@@ -86,7 +92,7 @@ The server gives the assistant nine **read-only** tools over your event store. Y
 
 ## Examples
 
-Once it's wired up, you debug by asking:
+For example, instead of browsing the streams yourself, you can simply ask:
 
 > "What just happened? Show the 20 most recent events."
 
@@ -100,4 +106,6 @@ The assistant calls `recent`, `aggregate_history`, `search`, or `trace` behind t
 
 ## Why it's safe to point at any app
 
-Every tool goes through the public `event_store.*` API — the same one you use in application code, read from `Rails.configuration.event_store`. No raw SQL, no ActiveRecord internals, no adapter-specific hacks. And the tools are **read-only**: the assistant can inspect your events but can't append, link, or delete anything. The worst it can do is read — so you can connect it without worrying about an assistant mutating your store.
+Every tool uses the public `event_store.*` API — the same one your application uses through `Rails.configuration.event_store`. There's no direct SQL access, no ActiveRecord internals, and no adapter-specific code.
+
+The server is also intentionally read-only. Your AI assistant can inspect events, streams, and correlations, but it cannot append, link, or delete events. The worst it can do is answer your questions.
