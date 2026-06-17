@@ -9,27 +9,27 @@ publish: false
 
 A polemic with [Callbacks Are Not Invariants](https://baweaver.com/writing/2026/06/13/rails-sharp-parts-callbacks-are-not-invariants/) by Brandon Weaver.
 
-> A disclaimer: I’m a [RailsEventStore](https://railseventstore.org) maintainer and this article ends up on the Arkency blog — so cards are on the table. Despite this, I’m keeping the core of my argument in pure `ActiveRecord`: no steps of the reasoning requires RES. I only show the RES version at the end, separately, as "and this is what it looks like when you’re not typing it in manually". If you’re convinced by the bare-metal AR reasoning, not the library, that’s what matters.
+> A disclaimer: I’m a [RailsEventStore](https://railseventstore.org) maintainer and this article ends up on the Arkency blog — so cards are on the table. Despite this, I’m keeping the core of my argument in pure `ActiveRecord`: no step of the reasoning requires RES. I only show the RES version at the end, separately, as "and this is what it looks like when you’re not typing it in manually". If you’re convinced by the bare-metal AR reasoning, not the library, that’s what matters.
 
 <!-- more -->
 
 ## We agree about the disease
 
-I enjoy reading Brandon’s _Rails: The Sharp Parts_ series and sending it to the team — it’s one of the better pieces on the sharp edges of Rails that’s come out lately. The one about callbacks is no exception and the diagnosis is spot on. Census `_save_callbacks`, which shows eleven entries with two association lines and zero callbacks of its own. A mismatch between what fires before and after `COMMIT`. The best sentence in the entire text: _a callback is an invariant with a published bypass list_ — `update_all`, `insert_all`, `update_column` are holes in something that was supposed to _always happen_.
+I enjoy reading Brandon’s _Rails: The Sharp Parts_ series and sending it to the team — it’s one of the better pieces on the sharp edges of Rails that’s come out lately. The one about callbacks is no exception and the diagnosis is spot on. Census `_save_callbacks`, which shows eleven entries with two association lines and zero callbacks of its own. A mismatch between what fires before and after `COMMIT`. The best sentence in the entire text: "a callback is an invariant with a published bypass list" — `update_all`, `insert_all`, `update_column` are holes in something that was supposed to _always happen_.
 
-I’m not here to defend the callbacks. I hate them myself, for the same reasons. The dispute is about the drug.
+I’m not here to defend the callbacks. I hate them myself, for the same reasons. The dispute is about the cure.
 
-And I have one reservation for the drug Brandon proposes — and it doesn’t concern what he built, but how he named it. Because the name will travel beyond a single file, to anyone who copies the template.
+And I have one reservation for the cure Brandon proposes — and it doesn’t concern what he built, but how he named it. Because the name will travel beyond a single file, to anyone who copies the template.
 
 ## A name that promises more than it delivers
 
-What author calls `Command` is Fowler’s `Transaction Script`. One public call, a private `execute`, a procedure orchestrating `ActiveRecord` calls. And that’s a good pattern — it’s forty years old and still going strong. The thing is, he calls it a command (suggesting CQRS, which itself announces _next time_) and calls `ActiveSupport::Notifications` events.
+What the author calls `Command` is Fowler’s `Transaction Script`. One public call, a private `execute`, a procedure orchestrating `ActiveRecord` calls. And that’s a good pattern — it’s forty years old and still going strong. The thing is, he calls it a command (suggesting CQRS, which itself announces _next time_) and calls `ActiveSupport::Notifications` events.
 
-A name isn’t cosmetic. A name is a mental contract. When 500 engineers work in a monolith — and that’s the scale Weaver explicitly writes for — names are the only documentation anyone reads. If you tell them they’re building _commands_ and _events_, in a year a half of the company will think they’re building an event-driven architecture with procedures in their hands. That’s worse than no name, because it installs a mental model that doesn’t match the code.
+A name isn’t cosmetic. A name is a mental contract. When 500 engineers work in a monolith — and that’s the scale Weaver explicitly writes for — names are the only documentation anyone reads. If you tell them they’re building _commands_ and _events_, in a year, half the company will think they’re building an event-driven architecture with procedures in their hands. That’s worse than no name, because it installs a mental model that doesn’t match the code.
 
 And this isn’t about arguing with its values but about appealing to them. Brandon writes about himself that his goal is to make the invisible visible — and that the next person reading the code shouldn’t have to wonder what the author meant. I agree with that with both hands. And that’s precisely why calling a _procedure_ a _command_ and a _notification_ an _event_ plays against what he wants: it forces the reader to assume a contract — a serializable intent with a separate handler, a persistent domain fact — that doesn’t exist in the code. Correcting the names isn’t a quarrel with Weaver; it’s the completion of his own goal.
 
-## Core: ingress doesn’t own invariant
+## Core: ingress doesn’t own the invariant
 
 Single-ingress is correct — one write path per operation, one entry point that owns the state change. But look where the "space cannot be reserved twice" invariant lives after the refactor:
 
@@ -52,9 +52,9 @@ The rule is spread across there layers:
 
 This isn't a domain model. It's a `Seat.find` + `update!` wrapped in a procedure. Infrastructure-first, just repurposed from a callback to a service object. The question "who owns the reservation rule" still doesn't have a single answer.
 
-The same coupling remains — just moved. Two examples:
+The coupling is now deliberate and visible — but it's still there. One trade-off and one naming issue:
 
-Side effects return to the procedure. Weaver rightly criticizes callbacks for gluing persistence with side effects. And then `ReservationMailer.deliver_later` and `Webhooks::Emit.call` end up directly in the `announce` in the _command_ body. The coupling is now visible — and it's a real advantage over a _callback_ — but it's still there: one procedure mutates state and fires _IO_. Closer to the surface, but not closed.
+Side effects inline in `execute`. Weaver is explicit about this: `announce` belongs to the command body by design, not by accident — subscribers are reserved for observability only and cannot veto a write or introduce ordering dependencies. That's a defensible trade-off: visible coupling beats hidden coupling every time. My claim is narrower: `announce` fires after `with_lock` commits, so the timing is fine — but if the process dies between commit and `deliver_later`, the effect is gone forever. There is nothing to replay from, because the fact was never persisted.
 
 `event_name` from the namespace system. The event name extracted from `module_parent_name` ties the _event_ taxonomy — that is, _the contract_ — to the directory structure in the code. Move a module, and the names of events that someone might already be subscribed to change. This is exactly the kind of invisible coupling he's been fighting against throughout this article — only this time it moves a layer higher.
 
@@ -90,7 +90,7 @@ SeatReserved = Data.define(:seat_id, :reserved_by, :reserved_at) do
 end
 ```
 
-The _handler_ is a simple _PORO_ — one application use-case, one entrance for write. We're keeping Brandon's single-entry discipline because it's good; we're not inheriting its `ApplicationCommand` base — its only job was `announce`, and that role is now taken by the explicit `SeatReserved` with persistent log write and subscribers. There's no constructor, no ivars, and no `self.call` to `new.call` relay — the handler is so thin that there's nothing to decompose. And that's the point: the rule has been moved to the aggregate, so orchestration remains trivial, and everything happens on the correct side of the commit.
+The _handler_ is a simple _PORO_ — one application use-case, one entrance for write. We're keeping Brandon's single-entry discipline because it's good; we're not inheriting his `ApplicationCommand` base — its only job was `announce`, and that role is now taken by the explicit `SeatReserved` with persistent log write and subscribers. There's no constructor, no ivars, and no `self.call` to `new.call` relay — the handler is so thin that there's nothing to decompose. And that's the point: the rule has been moved to the aggregate, so orchestration remains trivial, and everything happens on the correct side of the commit.
 
 ```ruby
 module Seats
@@ -161,11 +161,10 @@ Let's compare both approaches:
 | --- | --- | --- |
 | Invariant | runtime check + `with_lock` + constraint | `Seat#reserve`, single place |
 | Event | `reserve_seat.seats` from namespace, payload = input | `seat_reserved`, explicit, payload = result |
-| Side-effects | inline in `announce` | subscribers | 
+| Side-effects | inline in `announce` (deliberate — observability subscribers can't veto writes) | subscribers react to the persisted fact | 
 | Delivery | fire-and-forget after commit, can be lost | event in a transaction, always replayable | 
 
-And here's the point I care about most — because it affects domain I'm currently working on: commit-coupled delivery isn't an add-on, it's an invariant. Weaver writes that if the process crashes between _commit_ and `deliver_later`, the side-effect gets lost — "and at scale, the response is outbox". 
-The correct answer isn't _outbox_ — it's the persistence of the fact. When `SeatReserved` is saved in the same transaction as the state change, no effect can be lost forever: since the fact remains, the reaction can always be recreated — retry the handler, replay from the log. This is the invariant in question, and you have it in bare _AR_ with a single `INSERT`. Outbox doesn't create this persistence — it only uses it, automating the delivery with an at-least-once guarantee — which means subscribers must be idempotent. Therefore, this isn't a "scale-by" issue: you save the persistence of the fact from day one, and you harden its delivery method as and when necessary.
+And here's the point I care about most — because it affects the domain I'm currently working on: persisting the fact isn't an add-on — it's a day-one invariant. Weaver himself is clear: _"If you need durable event delivery (guaranteed at-least-once), that's a transactional outbox or CDC, not a subscriber."_ So we agree on the destination. Where I part ways is the framing: he presents it as something you reach for at scale. When `SeatReserved` is saved in the same transaction as the state change, no effect can be lost forever: since the fact remains, the reaction can always be recreated — retry the handler, replay from the log. Outbox doesn't create this persistence — it only uses it, automating the delivery with an at-least-once guarantee — which means subscribers must be idempotent. You don't persist the fact because you scaled; you persist it from the first INSERT and harden delivery when the async scheduling gap becomes relevant.
 
 ## And if you don't want to write it by hand
 
@@ -189,9 +188,9 @@ class Seat
 end
 ```
 
-An invariant in reserve, a fact in `SeatReserved`, a state mutation in on — and this is an *event* that actually lands in the event store, with versioning and replay, not a notification whose name is derived from a namespace. You attach handlers (mailer, webhook) as subscribers exactly as above.
+An invariant in `reserve`, a fact in `SeatReserved`, a state mutation in `on` — and this is an *event* that actually lands in the event store, with versioning and replay, not a notification whose name is derived from a namespace. You attach handlers (mailer, webhook) as subscribers exactly as above.
 
-And delivery? _RES_ publish is exactly `Events.publish`: atomic write to the _event store_ plus synchronous dispatch, inside the caller's transaction. `ruby_event_store-outbox` patches the one gap I named above — transactional scheduling of async handlers — maintained, resistant to multiple workers, covered with mutation tests.
+And delivery? _RES_ publish is exactly `Events.publish`: atomic write to the _event store_ plus synchronous dispatch, inside the caller's transaction. `ruby_event_store-outbox` patches the one gap I named above — transactional scheduling of async handlers — maintained, safe under concurrent workers, covered with mutation tests.
 
 A complete walkthrough of *RES* — aggregates, subscriptions, outbox, strangler on an existing monolith — is a topic for a separate, much longer text. Let me preface this point, as Brandon rightly dislikes rewrites; this path isn't rewriting. It's strangler — precisely the incremental movement it describes, callback by callback, flag by flag. The punchline here is enough: the structure he's approaching is available as a ready-made library, not an exotic one.
 
@@ -199,7 +198,7 @@ A complete walkthrough of *RES* — aggregates, subscriptions, outbox, strangler
 
 I'm not advocating "always event sourcing". That would be precisely the dogmatic approach I combat in people who sell _event sourcing_ as a religion.
 
-His _Transaction Script_ is sufficient for most applications. One team, one write path, reasonable discipline — and a procedure with a single input carries water for years. The Strangler fig + Flipper migrations he describes are really good. Normalizes for pure transformations — agree. Constraints as truth in the database — agree, and strongly so.
+His _Transaction Script_ is sufficient for most applications. One team, one write path, reasonable discipline — and a procedure with a single input carries water for years. The Strangler fig + Flipper migrations he describes are really good. Normalizes for pure transformations — agree. Constraints as truth in the database — agree, and strongly so. His `CommandSingleEntrant` RuboCop cop makes the single-entry rule structural rather than disciplinary — and he's honest about its reach: "Both catch the common mistakes", with `class << self` patterns as a known blind spot.
 
 My point isn't "your pattern is too weak". It's: don't call it a _command_ and _event_ when it isn't. Because the difference between a _procedure_ and a _command_, and between _notification_ and a _domain event_, isn't pedantry — it's the difference between "an invariant has an owner" and "an invariant is smeared, but nicely named".
 
@@ -209,7 +208,7 @@ I anticipate three counterarguments:
 
 "ES is overkill." Agreed, for most people. But a persistent record of a fact isn't _event sourcing_ — it's a single `INSERT` in the same transaction as a state change, turning "effect can be lost" into "effect always recoverable". You don't skip this because you're not doing event sourcing; it's record path hygiene, not architecture.
 
-Steelman 37signals — whom Weaver honestly quotes — says that disciplined callbacks scale further than they're given credit for. In a single, cohesive team: they don't make mistakes. But the same caveat applies to his solution: _Transaction Script_ without an invariant owner also relies on discipline, which is generally absent with 500 people. The aggregate approach doesn't ask for discipline — the structure enforces the rule.
+Steelman 37signals — whom Weaver honestly quotes — says that disciplined callbacks scale further than they're given credit for. In a single, cohesive team: they're not wrong. But the same caveat applies to his solution: _Transaction Script_ without an invariant owner also relies on discipline, which is generally absent with 500 people. The aggregate approach doesn't ask for discipline — the structure enforces the rule.
 
 ## Landing
 
@@ -217,4 +216,4 @@ Single-ingress is correct. But an ingress that doesn't own the invariant isn't a
 
 The strongest version of his own argument isn't the one he wrote — it's the one he's getting closer to: an _aggregate_ that monitors the invariant, a true _domain event_, and a fact persisted in the same _transaction_ as the state change. Weaver ends with a CQRS announcement "next time," and it's a good announcement, because single-ingress without an invariant owner is only halfway down the road he's charted.
 
-I look forward to the continuation of the series - honestly, without irony.
+I look forward to the continuation of the series — honestly, without irony.
