@@ -45,7 +45,7 @@ def reserve
 end
 ```
 
-The rule is spread across there layers: 
+The rule is spread across three layers: 
 * a check in runtime (`if seat.reserved?`) 
 * a row lock (`with_lock`)
 * a constraint in the database — as Brandon rightly writes elsewhere.
