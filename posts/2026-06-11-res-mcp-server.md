@@ -7,7 +7,7 @@ publish: false
 
 # Give Your AI Assistant Access to the Event Store with `res-mcp`
 
-When you're debugging with an AI assistant, half the work is feeding it context — copy-pasting events, stream contents, and IDs into the chat so it has something to reason about. A new contrib gem — `ruby_event_store-mcp` — cuts that out. It exposes your event store as [MCP tools](https://modelcontextprotocol.io/) that AI assistants (Claude, etc.) can call directly: you ask in plain English, the assistant reads the events itself.
+When you're debugging with an AI assistant, half the work is feeding it context — copy-pasting events, stream contents, and IDs into the chat so it has something to reason about. `ruby_event_store-mcp` cuts that out. It's the companion to the [`res` CLI](https://blog.arkency.com/res-cli): the same idea of reading your live event store, but instead of *you* typing commands in a terminal, it exposes the store as [MCP tools](https://modelcontextprotocol.io/) that AI assistants (Claude, etc.) call directly — you ask in plain English, the assistant reads the events itself.
 
 <!-- more -->
 
@@ -23,7 +23,7 @@ gem "ruby_event_store-mcp"
 bundle install
 ```
 
-That installs the `res-mcp` binary — but it doesn't register anything with your AI client yet. The binary speaks MCP over **stdio**, launched from your app's root, where it loads `config/environment.rb` and reads the same `Rails.configuration.event_store` your app uses. There's no HTTP endpoint to mount and nothing to deploy. Telling your client about it is a separate, one-time step — and every MCP client takes the same server definition, only the file it goes in changes.
+That installs the `res-mcp` binary — but it doesn't register anything with your AI client yet. The binary speaks MCP over **stdio**, launched from your app's root, where — exactly like the `res` CLI — it loads `config/environment.rb` and reads your app's `Rails.configuration.event_store`. There's no HTTP endpoint to mount and nothing to deploy. Telling your client about it is a separate, one-time step — and every MCP client takes the same server definition, only the file it goes in changes.
 
 **Claude Code** — drop a `.mcp.json` in your project root:
 
