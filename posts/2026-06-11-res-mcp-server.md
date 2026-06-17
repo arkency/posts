@@ -9,11 +9,9 @@ publish: false
 
 When you're debugging with an AI assistant, half the work is giving it enough context. You copy event payloads into the chat, paste stream contents, look up IDs, then repeat the process every time you need another piece of information.
 
-`ruby_event_store-mcp` removes that step. It's the companion to the [`res` CLI](https://blog.arkency.com/res-cli): instead of you querying the event store from the terminal, your AI assistant does it for you through [MCP tools](https://modelcontextprotocol.io/). You ask questions in plain English, it reads the events itself.
+`ruby_event_store-mcp` removes that step. It's the companion to the [res CLI](https://blog.arkency.com/res-cli). Instead of you querying the event store from the terminal, your AI assistant does it for you through [MCP tools](https://modelcontextprotocol.io/). You ask questions in plain English, it reads the events itself.
 
 The difference from copying the events into the chat yourself is that the assistant can ask follow-up questions on its own. If it needs to inspect another stream, load an aggregate's history, or trace a correlation, it simply calls another tool. You stay in the conversation instead of switching between your AI client and a terminal.
-
-That, to me, is the killer feature of MCP — not that it can read the event store once, but that it can iterate.
 
 <!-- more -->
 
