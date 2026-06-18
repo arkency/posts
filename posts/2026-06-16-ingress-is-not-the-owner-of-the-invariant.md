@@ -1,15 +1,15 @@
 ---
 created_at: 2026-06-16 15:21:30 +0200
 author: Szymon Fiedler
-tags: []
-publish: false
+tags: [rails, ruby, event-driven, ddd, res, architecture]
+publish: true
 ---
 
 # Ingress is not the owner of the invariant
 
 A polemic with [Callbacks Are Not Invariants](https://baweaver.com/writing/2026/06/13/rails-sharp-parts-callbacks-are-not-invariants/) by Brandon Weaver.
 
-> A disclaimer: I’m a [RailsEventStore](https://railseventstore.org) maintainer and this article ends up on the Arkency blog — so cards are on the table. Despite this, I’m keeping the core of my argument in pure `ActiveRecord`: no step of the reasoning requires RES. I only show the RES version at the end, separately, as "and this is what it looks like when you’re not typing it in manually". If you’re convinced by the bare-metal AR reasoning, not the library, that’s what matters.
+> A disclaimer: I’m a [RailsEventStore](https://railseventstore.org) maintainer and this article ends up on the Arkency blog — so cards are on the table. Despite this, I’m keeping the core of my argument in pure `ActiveRecord`: no step of the reasoning requires _RES_. I only show the _RES_ version at the end, separately, as "and this is what it looks like when you’re not typing it in manually". If you’re convinced by the bare-metal _AR_ reasoning, not the library, that’s what matters.
 
 <!-- more -->
 
@@ -45,7 +45,7 @@ def reserve
 end
 ```
 
-The rule is spread across three layers: 
+The rule is spread across three layers:
 * a check in runtime (`if seat.reserved?`) 
 * a row lock (`with_lock`)
 * a constraint in the database — as Brandon rightly writes elsewhere.
@@ -54,9 +54,9 @@ This isn't a domain model. It's a `Seat.find` + `update!` wrapped in a procedure
 
 The coupling is now deliberate and visible — but it's still there. One trade-off and one naming issue:
 
-Side effects inline in `execute`. Weaver is explicit about this: `announce` belongs to the command body by design, not by accident — subscribers are reserved for observability only and cannot veto a write or introduce ordering dependencies. That's a defensible trade-off: visible coupling beats hidden coupling every time. My claim is narrower: `announce` fires after `with_lock` commits, so the timing is fine — but if the process dies between commit and `deliver_later`, the effect is gone forever. There is nothing to replay from, because the fact was never persisted.
+**Side effects inline in `execute`**. Weaver is explicit about this: `announce` belongs to the command body by design, not by accident — subscribers are reserved for observability only and cannot veto a write or introduce ordering dependencies. That's a defensible trade-off: visible coupling beats hidden coupling every time. My claim is narrower: `announce` fires after `with_lock` commits, so the timing is fine — but if the process dies between commit and `deliver_later`, the effect is gone forever. There is nothing to replay from, because the fact was never persisted.
 
-`event_name` from the namespace system. The event name extracted from `module_parent_name` ties the _event_ taxonomy — that is, _the contract_ — to the directory structure in the code. Move a module, and the names of events that someone might already be subscribed to change. This is exactly the kind of invisible coupling he's been fighting against throughout this article — only this time it moves a layer higher.
+**`event_name` from the namespace system**. The event name extracted from `module_parent_name` ties the _event_ taxonomy — that is, _the contract_ — to the directory structure in the code. Move a module, and the names of events that someone might already be subscribed to change. This is exactly the kind of invisible coupling he's been fighting against throughout this article — only this time it moves a layer higher.
 
 ## What it looks like when an invariant has an owner
 
@@ -212,8 +212,8 @@ Steelman 37signals — whom Weaver honestly quotes — says that disciplined cal
 
 ## Landing
 
-Single-ingress is correct. But an ingress that doesn't own the invariant isn't a fix — it's moving the same rule spread from a callback to a procedure. And calling that procedure a _command_ and the notification an _event_ installs a mental model for 500 engineers that doesn't fit the code they have in their hands.
+Single-ingress is correct. But an ingress that doesn't own the invariant isn't a fix — it's moving the same rule spread from a callback to a procedure. And calling that _procedure_ a _command_ and the _notification_ an _event_ installs a mental model for 500 engineers that doesn't fit the code they have in their hands.
 
-The strongest version of his own argument isn't the one he wrote — it's the one he's getting closer to: an _aggregate_ that monitors the invariant, a true _domain event_, and a fact persisted in the same _transaction_ as the state change. Weaver ends with a CQRS announcement "next time," and it's a good announcement, because single-ingress without an invariant owner is only halfway down the road he's charted.
+The strongest version of his own argument isn't the one he wrote — it's the one he's getting closer to: an _aggregate_ that monitors the _invariant_, a true _domain event_, and a fact persisted in the same _transaction_ as the state change. Weaver ends with a CQRS announcement "next time," and it's a good announcement, because single-ingress without an invariant owner is only halfway down the road he's charted.
 
 I look forward to the continuation of the series — honestly, without irony.
