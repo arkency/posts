@@ -2,7 +2,7 @@
 created_at: 2026-06-11T10:00:00.000Z
 author: Tomasz Patrzek
 tags: [res, ruby, rails]
-publish: false
+publish: true
 ---
 
 # Let Your AI Assistant Explore the Event Store with `res-mcp`
