@@ -17,7 +17,7 @@ If you've already addressed all deprecation warnings in 2.19, upgrading to 3.0 s
 
 <!-- more -->
 
----
+***
 
 ## Lean API: the deprecations are gone
 
@@ -103,7 +103,7 @@ A handful of smaller cleanups round out the release, grouped by where they'd rea
 
 And one warning simply went away — the spurious `rails_event_store_active_record` rename warning is gone ([backstory in the 2.19 post](/railseventstore-2-dot-19-starting-gun-for-3-dot-0/#deprecation_warnings_in_tests)).
 
----
+***
 
 ## Upgrade guide
 
