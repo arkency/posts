@@ -2,7 +2,7 @@
 created_at: 2026-06-02T10:00:00.000Z
 author: Tomasz Patrzek
 tags: [res, ruby, rails]
-publish: false
+publish: true
 ---
 
 # What's New in Rails Event Store 3.0
