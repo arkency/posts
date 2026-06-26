@@ -7,9 +7,13 @@ publish: false
 
 # What's New in Rails Event Store 3.0
 
-Rails Event Store 3.0 is a milestone release. After years of the 2.x series, where we added features and backfilled deprecation warnings for everything we wanted to clean up, it's time to actually do the cleaning.
+Rails Event Store 3.0 is primarily a cleanup release.
 
-3.0 is a lean release: everything deprecated in 2.x is now gone. There's no new API to learn — just a smaller, more consistent surface, and a handful of defaults that are now stricter.
+Throughout the 2.x series we introduced new features while gradually deprecating APIs we no longer wanted to maintain. In 3.0, those deprecated APIs are finally gone.
+
+There are no major new concepts or APIs to learn. The public API is simply smaller, more consistent, and comes with a few stricter defaults.
+
+If you've already addressed all deprecation warnings in 2.19, upgrading to 3.0 should be straightforward. This post summarizes what changed, while the [2.19 release announcement](/railseventstore-2-dot-19-starting-gun-for-3-dot-0/) explains the motivation behind each deprecation in more detail.
 
 <!-- more -->
 
@@ -17,9 +21,7 @@ Rails Event Store 3.0 is a milestone release. After years of the 2.x series, whe
 
 ## Lean API: the deprecations are gone
 
-The 2.x series was conservative — we kept old method names alive and just warned you about them. 3.0 removes the training wheels.
-
-Every deprecation warning you saw on 2.19 is now a removal. The [2.19 announcement](/railseventstore-2-dot-19-starting-gun-for-3-dot-0/) walks through each change with the reasoning behind it and is your full migration guide. Here's the at-a-glance list of what's gone and what replaces it:
+The 2.x series was conservative — we kept old method names alive and just warned you about them. 3.0 removes the training wheels: every name kept around for compatibility is gone. Here's the at-a-glance list of what's removed and what replaces it (each row links to the reasoning in the 2.19 post):
 
 | Removed | Use instead |
 |---|---|
@@ -105,9 +107,7 @@ And one warning simply went away — the spurious `rails_event_store_active_reco
 
 ## Upgrade guide
 
-If you kept up with the deprecation warnings on 2.19, the upgrade is mostly mechanical: the table above is your checklist, and the [2.19 announcement](/railseventstore-2-dot-19-starting-gun-for-3-dot-0/) is the step-by-step guide with the reasoning behind each change. Clear every warning on 2.19 first — once your test suite is quiet, you're ready for 3.0.
-
-Three changes need a real edit rather than a rename.
+Start on 2.19 and clear every deprecation warning first — once your test suite is quiet, the table above is your checklist and the rest of the upgrade is mostly find-and-replace. Three changes need a real edit rather than a rename.
 
 **Projection API** — define the projection once, then call it with any scope:
 
