@@ -15,7 +15,7 @@ Process managers are meant to map business process into code. The more readable 
 
 Over the last years, we have experimented with several approaches on how to implement process managers in Ruby.
 
-The foundation here is RailsEventStore and the architecture where events are published and commands are used to tell what to do next.
+The foundation here is [RailsEventStore](https://railseventstore.org) and the architecture where events are published and commands are used to tell what to do next.
 
 Most business processes can be mapped into some sort of a checklist of requirements and when certain conditions are met we decide (a command) what to do next.
 
@@ -269,6 +269,6 @@ end
 
 ## The ruby_event_store-process_manager gem
 
-As you see, RailsEventStore together with the [ruby_event_store-process_manager](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-process_manager) gem, allows to map complex business processes into modules, which encapsulates the logic, but hides the infrastructure.
+As you see, [RailsEventStore](https://railseventstore.org) together with the [ruby_event_store-process_manager](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-process_manager) gem, allows to map complex business processes into modules, which encapsulates the logic, but hides the infrastructure.
 
 In a typical non-event-driven Rails app such processes are usually scattered across models, service objects and callbacks. The alternative approach requires publishing events (which provides event log for free) but the benefits might be worth it.
