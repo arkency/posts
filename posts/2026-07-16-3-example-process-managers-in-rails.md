@@ -2,7 +2,7 @@
 created_at: 2026-07-16 11:03:31 +0200
 author: Andrzej Krzywda
 tags: ['rails', 'process manager', 'ddd']
-publish: false
+publish: true
 ---
 
 # 3 example process managers in Rails
