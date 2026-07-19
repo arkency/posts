@@ -11,7 +11,7 @@ publish: false
 When your web application grows, you often start seeing that some of your endpoints' response times are not satisfactory anymore. One of the possible solutions for this problem is to move some parts of the endpoint logic outside the main request-response cycle. Usually you start to implement some asynchronous jobs that are executed by a separate process outside your web server. Similarly, when you are using [RailsEventStore](https://railseventstore.org) with only synchronous handlers you may find them taking too long to execute and you start moving them to asynchronous ones.
 Usually, in order to prevent failures caused by starting jobs too early (before the transaction that enqueues jobs commits or in case of a rollback), most developers start enqueueing jobs in the after commit callback. The same approach may be used with asynchronous handlers using RailsEventStore's `AfterCommitAsyncDispatcher` configured with e.g. `RailsEventStore::ActiveJobScheduler`. The sequence diagram below illustrates the flow for such a scenario:
 
-<img src="<%= src_fit("durable-event-delivery/without-outbox.svg") %>" width="70%">
+<img class="w-full" src="<%= src_fit("durable-event-delivery/without-outbox.png") %>" width="70%">
 
 <!-- more -->
 
@@ -19,7 +19,7 @@ Usually, in order to prevent failures caused by starting jobs too early (before 
 
 This simple flow allows you to postpone enqueuing handlers until after the main transaction is committed so you don't need to care about errors from your workers that tried to load entities that were not written to the database yet or - even worse - have loaded stale state from the DB (as the up-to-date one has not been committed yet). But there is one serious issue with this solution - you cannot guarantee that your code executed after the commit will always execute successfully. There are many things that may fail here, including network errors, out-of-memory issues, Redis running out of space and many other things that may happen, and as a result you end up with an inconsistent state of the whole system - your business logic was executed, domain events were published but some or all side effects failed:
 
-<img src="<%= src_fit("durable-event-delivery/after-commit-issue.svg") %>" width="70%">
+<img class="w-full" src="<%= src_fit("durable-event-delivery/after-commit-issue.png") %>">
 
 ## Transactional outbox
 
@@ -35,7 +35,7 @@ If you want to have less overhead and more configuration, we have something for 
 
 The new gem modifies only the handling of asynchronous handlers - your temporary or synchronous handlers work the same way as before.
 
-<img src="<%= src_fit("durable-event-delivery/outbox-relay.svg") %>" width="70%">
+<img class="w-full" src="<%= src_fit("durable-event-delivery/outbox-relay.png") %>">
 
 For asynchronous subscribers, the message relay process fetches unpublished events from the database and dispatches them to the broker. Once a broker accepts events, they are marked as published. Events are read in the global position order so if you are using only a single relay process, they are delivered to a broker in the same order as they were published. Please note that they don't need to be handled in the same order, though. All event metadata is preserved so you won't lose your `correlation_id`, `causation_id` and other metadata. If a broker fails, events are re-read in the next loop. This guarantees at least once delivery, so it's your responsibility to make your handlers idempotent as they might be called more than once with the same event. To enable idempotency, you may e.g. store processed event IDs for some time and use them as the idempotency key.
 
