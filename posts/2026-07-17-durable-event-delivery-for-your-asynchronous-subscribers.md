@@ -9,7 +9,7 @@ publish: false
 
 
 When your web application grows, you often start seeing that some of your endpoints' response times are not satisfactory anymore. One of the possible solutions for this problem is to move some parts of the endpoint logic outside the main request-response cycle. Usually you start to implement some asynchronous jobs that are executed by a separate process outside your web server. Similarly, when you are using [RailsEventStore](https://railseventstore.org) with only synchronous handlers you may find them taking too long to execute and you start moving them to asynchronous ones.
-Usually, in order to prevent failures caused by starting jobs too early (before the transaction that enqueues jobs commits or in case of a rollback), most developers start enqueueing jobs in the after commit callback. The same approach may be used with asynchronous handlers using RailsEventStore's `AfterCommitAsyncDispatcher` configured with e.g. `RailsEventStore::ActiveJobScheduler`. The sequence diagram below illustrates the flow for such a scenario:
+Usually, in order to prevent failures caused by starting jobs too early (before the transaction that enqueues jobs commits or in case of a rollback), most developers start enqueueing jobs in the after commit callback. The same approach may be used with asynchronous handlers using RailsEventStore's `AfterCommitDispatcher` configured with e.g. `RailsEventStore::ActiveJobScheduler`. The sequence diagram below illustrates the flow for such a scenario:
 
 <img class="w-full" src="<%= src_fit("durable-event-delivery/without-outbox.png") %>" width="70%">
 
@@ -27,7 +27,7 @@ In most cases you would like to achieve durable event delivery - once you subscr
 
 ### The simplest RailsEventStore outbox 
 
-If you want to implement the transactional outbox pattern in your application that uses RailsEventStore and Sidekiq for running asynchronous handlers, there is a [`ruby_event_store-outbox`](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-outbox) gem that helps you achieve this. However, it works only with Sidekiq and requires a new table where you serialize the whole event with full payload in a format Sidekiq understands. Then you run a separate process that reads data from that table and sends it to Redis using the Sidekiq API. Once events are marked as sent to Sidekiq, they are periodically removed from the database by a cleanup task.
+If you want to implement the transactional outbox pattern in your application that uses RailsEventStore and Sidekiq for running asynchronous handlers, there is a [`ruby_event_store-outbox`](https://github.com/RailsEventStore/rails_event_store/tree/master/contrib/ruby_event_store-outbox) gem that helps you achieve this. However, it works only with Sidekiq and requires a new table where you serialize the whole event with full payload in a format Sidekiq understands. Then you run a separate process that reads data from that table and sends it to Redis. Once events are marked as sent to Redis (where Sidekiq workers will take them from), they are periodically removed from the database by a cleanup task.
 
 ### A better RailsEventStore outbox
 
