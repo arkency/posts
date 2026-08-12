@@ -268,12 +268,24 @@ Each node's page shows its full history: created in, last updated in, read by N 
 
 <img src="<%= src_original("arkency-planet/provenance.png") %>" width="100%">
 
+## Keeping an eye on the costs
+
+Besides auditing changes in the graph, we also track how much each extraction costs: token usage and the resulting price.  
+When you work with an LLM API, it is worth keeping a hand on the pulse here.  
+A transcript of a few hours of conversation, processed in multiple rounds interleaved with tool calls, can generate serious costs.  
+[Prompt caching](https://rubyllm.com/chat/#anthropic-prompt-caching) helps a lot - the system prompt and the content stay identical between rounds, so most of the input is billed at the cache-read rate.
+
+The exact numbers depend on the model you run the extraction on, but most of ours fit within a dozen or so cents.
+
+<img src="<%= src_original("arkency-planet/extractions-cost.png") %>" width="100%">
+
 ## Human in the loop
 
 We don't let the LLM write to the graph directly.  
 Extraction produces a **proposal** with the before/after diffs, and applying it to the graph is a separate step.
 
 Proposals can sit in a review window before they get applied.  
+As soon as an extraction completes, we get a short summary of it on Slack.  
 A human can inspect the diff, apply it early, or just let it flow after the configured delay.
 
 Time passes between propose and apply, so the graph may have moved in the meantime.  
