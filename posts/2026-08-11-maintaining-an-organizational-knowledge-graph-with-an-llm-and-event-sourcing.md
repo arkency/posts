@@ -2,7 +2,7 @@
 created_at: 2026-08-11 12:00:00 +0200
 author: Piotr Jurewicz
 tags: ['ai', 'llm', 'knowledge graph', 'rails event store', 'ruby_llm']
-publish: false
+publish: true
 ---
 
 # Maintaining an organizational knowledge graph with an LLM and event sourcing
@@ -15,7 +15,7 @@ Decisions are made on calls, insights get buried in Slack threads, and a month l
 At Arkency, I had a feeling that some things slip away from us too from time to time.  
 Weekly calls, ad-hoc meetings, our book clubs, Slack discussions, GitHub mentions, e-mail inbox - we could use some support in organizing all those signals.
 
-Then Ruby Community Conference 2026 happened in March.  
+Then [Ruby Community Conference 2026](https://rubycommunityconference.com) happened in March.  
 In Kraków, **Obie Fernandez** showed some parts of his NEXUS system.  
 He had already described it [on his blog](https://obie.medium.com/what-used-to-take-months-now-takes-days-cc8883cc21e9) back in January, but the conference was where I first came across it.  
 That was the push I needed to start building our own software.
@@ -24,14 +24,14 @@ When it was already taking shape, Andrej Karpathy published his [LLM Wiki](https
 Instead of a RAG system rediscovering your documents on every query, an LLM incrementally maintains a persistent wiki: interlinked markdown pages, immutable sources underneath, and a human curating the loop.  
 It was quite exciting to realize I was working on something that had just become one of the hottest topics in the industry.
 
-We ended up with _Planet Arkency_ - a **knowledge graph with a closed ontology**, built on Rails Event Store.  
+We ended up with _Planet Arkency_ - a multi-tenant **knowledge graph with a closed ontology**, built on Rails Event Store.  
 In this post, I want to walk you through the design decisions I made.
 
 ## Unstructured input is where LLMs actually shine
 
 For structured data, you could have built such a system like twenty years ago.  
 Webhooks, forms, integrations - parsing structured input into a graph is a solved problem.  
-The input that was never solved is the one with the most interesting knowledge inside: meeting transcripts, Slack discussions, emails, or anything coming from an integration nobody has built yet.  
+But the most interesting knowledge lives in the input no parser could ever handle: meeting transcripts, Slack discussions, emails, or anything coming from an integration nobody has built yet.  
 This is where LLMs changed the game for us.
 
 Everything flows into the system through a single ingestion endpoint.  
@@ -271,11 +271,11 @@ Each node's page shows its full history: created in, last updated in, read by N 
 ## Keeping an eye on the costs
 
 Besides auditing changes in the graph, we also track how much each extraction costs: token usage and the resulting price.  
-When you work with an LLM API, it is worth keeping a hand on the pulse here.  
-A transcript of a few hours of conversation, processed in multiple rounds interleaved with tool calls, can generate serious costs.  
+When you work with an LLM API, it is worth keeping a finger on the pulse here.  
+A transcript of a few hours of conversation, processed in multiple rounds interleaved with tool calls, can generate significant costs.  
 [Prompt caching](https://rubyllm.com/chat/#anthropic-prompt-caching) helps a lot - the system prompt and the content stay identical between rounds, so most of the input is billed at the cache-read rate.
 
-The exact numbers depend on the model you run the extraction on, but most of ours fit within a dozen or so cents.
+The exact numbers depend on the model you run the extraction on, but most of ours cost well under a dollar.
 
 <img src="<%= src_original("arkency-planet/extractions-cost.png") %>" width="100%">
 
