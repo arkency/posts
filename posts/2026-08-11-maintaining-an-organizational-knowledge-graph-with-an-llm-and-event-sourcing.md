@@ -13,7 +13,7 @@ Decisions are made on calls, insights get buried in Slack threads, and a month l
 <!-- more -->
 
 Arkency is no exception.  
-Weekly calls, ad-hoc meetings, our book clubs, Slack discussions, GitHub mentions, e-mail inbox - we could use some support in organizing all those signals.
+Weekly calls, ad-hoc meetings, our book clubs, Slack discussions, GitHub mentions, email inbox - we could use some support in organizing all those signals.
 
 Then [Ruby Community Conference 2026](https://rubycommunityconference.com) happened in March.  
 In Kraków, **Obie Fernandez** showed some parts of his NEXUS system.  
@@ -59,8 +59,8 @@ In a typed graph, `person --works_on--> project` is a piece of data: you can que
 
 The graph itself sits on PostgreSQL: a `nodes` table, an `edges` table with a unique `(source, target, relation)` triple, `jsonb` attributes on both - no rocket science here.  
 Dedicated graph databases (Neo4j, triple stores like the one NEXUS uses) could be a better fit for some specific workloads, like deep multi-hop traversal.  
-But nothing above is Postgres-specific.
-A schema this plain is what makes the storage an actual detail — there is little to port when you write another adapter for the data layer.
+But nothing above is Postgres-specific.  
+A schema this plain is what makes the storage an actual detail - there is little to port when you write another adapter for the data layer.
 
 ### The ontology
 
@@ -88,7 +88,7 @@ In my opinion, it is better to tell the model upfront what to look for.
 _"The organizational knowledge graph"_ suggests one universal graph for all different purposes.  
 We don't believe in that, and DDD practitioners will recognize why.
 
-We use multi-tenant architecture to maintain separate graphs with their own ontologies, which really means their own ubiquitous languages.  
+We use a multi-tenant architecture to maintain separate graphs with their own ontologies, which really means their own ubiquitous languages.  
 Our internal Arkency graph speaks in people, projects and decisions - a domain quite close to a CRM.  
 The graph we run as Rails Event Store maintainers speaks in releases, known problems and community content:
 
