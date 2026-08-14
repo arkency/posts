@@ -12,7 +12,7 @@ Decisions are made on calls, insights get buried in Slack threads, and a month l
 
 <!-- more -->
 
-At Arkency, I had a feeling that some things slip away from us too from time to time.  
+Arkency is no exception.  
 Weekly calls, ad-hoc meetings, our book clubs, Slack discussions, GitHub mentions, e-mail inbox - we could use some support in organizing all those signals.
 
 Then [Ruby Community Conference 2026](https://rubycommunityconference.com) happened in March.  
