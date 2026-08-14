@@ -364,6 +364,9 @@ I hope some of that knowledge stays with you after reading this post.
 It also reassured me about the tools we have been using at Arkency for years.  
 Event-driven architecture and Rails Event Store carried this project naturally.
 
+At the time of writing, the main production Arkency graph holds almost 2000 nodes and over 5200 edges, built by around 300 extractions.  
+And behind all of that, over 3600 events recording how every single fact got there.
+
 I still have a head full of ideas on where to take this project next.
 
 Working with [RubyLLM](https://rubyllm.com) was a pure pleasure - credits to Carmine Paolino for this gem.
