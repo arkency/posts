@@ -57,10 +57,10 @@ In a wiki, the fact that someone works on some project is written down in a sent
 The knowledge is there, but only a reader can make use of it.  
 In a typed graph, `person --works_on--> project` is a piece of data: you can query it, traverse it, count it.
 
-The graph itself sits on PostgreSQL: a `nodes` table, an `edges` table with a unique `(source, target, relation)` triple, `jsonb` attributes on both.  
-No rocket science here.  
+The graph itself sits on PostgreSQL: a `nodes` table, an `edges` table with a unique `(source, target, relation)` triple, `jsonb` attributes on both - no rocket science here.  
 Dedicated graph databases (Neo4j, triple stores like the one NEXUS uses) could be a better fit for some specific workloads, like deep multi-hop traversal.  
-But that is a storage detail - the kind you could change later by writing another adapter for the data layer.
+But nothing above is Postgres-specific.
+A schema this plain is what makes the storage an actual detail — there is little to port when you write another adapter for the data layer.
 
 ### The ontology
 
