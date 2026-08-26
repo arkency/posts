@@ -10,7 +10,6 @@ publish: false
 A long, long time ago, when [Akinator](https://en.akinator.com/) was the peak of "advanced AI" on the internet, before services became micro, and deployments meant sending a file directly from a local computer via FTP to a server, I was introduced to the Dreyfus Skill Model. As a junior dev back then, I liked it because it explained why my senior and architect colleagues could sometimes make impactful decisions intuitively, while I, on the contrary, was expecting step-by-step instructions on how to convert HTML form input into a database row.
 
 In short, the Dreyfus Skill Model describes that when learning a new skill, a learner goes through 5 stages to acquire it:
-
 1. Novice. We need/expect step-by-step instructions and rules here, and we have problems in situations that don't follow them.
 2. Advanced beginner. We start to recognize some situation-specific nuances and use our experience instead of just rules.
 3. Competent. We consciously define goals and priorities and plan our actions according to the situation.
@@ -38,7 +37,6 @@ This is especially important now, when a lot changes literally every week, meani
 We are all juniors, and let's have some fun with it!
 
 That said, and as this whole post was about sharing knowledge, here you have some links from us:
-
 * [Piotr about maintaining an organizational knowledge graph with an LLM and event sourcing.](https://blog.arkency.com/maintaining-an-organizational-knowledge-graph-with-an-llm-and-event-sourcing/)
 * [Łukasz about getting a nondeterministic agent into deterministic guardrails.](https://blog.arkency.com/getting-nondeterministic-agent-into-deterministic-guardrails/)
 * [Szymon on RBQ 2026 about mutation testing becoming critical in the era of AI agents.](https://www.youtube.com/watch?v=Mavtkt79lpA)
