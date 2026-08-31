@@ -2,7 +2,7 @@
 created_at: 2026-08-26 16:40:52 +0200
 author: Tomasz Stolarczyk
 tags: ['lifestyle', 'motivation', 'ai', 'juniors', 'seniors', 'ai-native', 'Dreyfus', 'skill']
-publish: false
+publish: true
 ---
 
 # We are all juniors again
