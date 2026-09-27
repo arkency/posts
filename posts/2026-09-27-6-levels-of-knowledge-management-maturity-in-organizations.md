@@ -2,24 +2,27 @@
 created_at: 2026-09-27 12:00:00 +0200
 author: Piotr Jurewicz
 tags: ['ai', 'llm', 'knowledge graph', 'rag']
-publish: false
+publish: true
 ---
 
 # 6 levels of knowledge management maturity in organizations
 
 "Zapomniałem" is Polish for "I forgot".  
+
 On Arkency's Slack, our main communication channel, it has been used over 1200 times.  
 And I truly believe I work with exceptionally organized and meticulous people.
 
 <!-- more -->
 
-That only confirms what I wrote in my [previous post](https://blog.arkency.com/maintaining-an-organizational-knowledge-graph-with-an-llm-and-event-sourcing/): organizations are surprisingly good at forgetting.  
+That only confirms what I wrote in my [previous post](https://blog.arkency.com/maintaining-an-organizational-knowledge-graph-with-an-llm-and-event-sourcing/): _organizations are surprisingly good at forgetting_.  
+
 That post described how we maintain an organizational knowledge graph with an LLM and event sourcing.  
 It was about the destination.  
 This one is about the road that led us there.
 
 Looking back at how we handle knowledge at Arkency, I identified 6 levels of maturity.  
 I presented them yesterday at [Programistok](https://programistok.org) in Białystok, and I am writing this post on the train back home.  
+
 Check where your organization stands.
 
 ## Level 0: written sources
@@ -28,7 +31,7 @@ You communicate mostly via email and instant messengers.
 You record transcripts of your conversations.  
 Agreements made on calls are confirmed in writing: someone posts a note stating what the parties have agreed on.
 
-This is our starting point.  
+**This was our starting point**.  
 Arkency embraced remote work long before it was cool, and the [async remote](https://blog.arkency.com/async-remote) philosophy has always relied on written artifacts: status updates, meeting summaries, decision records.
 
 ## Level 1: one silo
@@ -38,10 +41,10 @@ They land in a single silo.
 
 This is the stage at which you start transcribing meetings automatically and using an LLM to generate summaries.
 
-In our case, Slack is the silo and we record our meetings on Zoom.  
+In our case, we use Slack, and we started recording our meetings on Zoom.  
 Configuring a Zapier automation that generates a summary of each meeting and posts it to the right channel took literally 15 minutes, including writing the prompt.  
 The prompt is 30 lines long.  
-The cost of reaching this level was close to zero.
+**The cost of reaching this level was close to zero.**
 
 If you know what you are looking for, you will usually find it.  
 Sometimes only because you remember a specific word that was said.
@@ -56,7 +59,7 @@ When a question comes in, the most semantically similar chunks are put into the 
 This technique is called [RAG](https://arxiv.org/abs/2005.11401) (Retrieval-Augmented Generation).  
 It is hardly news anymore - the idea dates back to 2020 and has been widely adopted since 2023.
 
-For many companies, level 2 is perfectly enough.  
+**For many companies, level 2 is perfectly enough.**  
 If you want to build chatbots or virtual assistants answering specific kinds of questions (customer support, onboarding based on product documentation, policies and regulations), you don't need to go further.  
 There is one condition though: the questions have to be **local**.  
 The answer has to sit in a single chunk, not be smeared across the whole dataset.  
@@ -91,7 +94,8 @@ The search engine stopped merely matching strings and started recognizing entiti
 In 2024, Microsoft stirred up the RAG world with [GraphRAG](https://arxiv.org/abs/2404.16130).  
 They used an LLM to extract nodes and edges from chunks of text, then detected communities in the graph - groups of nodes more strongly connected with each other than with the rest.  
 Each community gets a summary.  
-With those summaries in context, an LLM can answer **global** questions, like "what are the main themes?" or "what trends can we see?", where the answer is spread over a huge number of sources.  
+When a question comes in, an LLM generates a partial answer from each community summary, filters out the unhelpful ones, and combines the rest into a final answer.  
+This way, an LLM can answer **global** questions, like "what are the main themes?" or "what trends can we see?", where the answer is spread over a huge number of sources.  
 Plain RAG cannot do that.
 
 Two things are crucial at this level: an ontology that frames the graph and cuts out the noise, and identity resolution that keeps the same entity from appearing as many nodes.  
@@ -106,7 +110,7 @@ At level 5, your agents work with the graph, traversing it while carrying out co
 To let that happen, you need solid foundations.  
 From my perspective, these are the must-haves:
 
-- **Human in the loop.** The LLM only proposes changes, and a human approves them before they land in the graph.
+- **Human in the loop.** The LLM only proposes changes, and a human gets a chance to review them before they land in the graph.
 - **Full provenance.** Every fact traces back to its source, and every decision of the model traces back to what it read from the graph.
 - **Temporal relations.** Relations between entities change over time, and two sources saying different things do not necessarily contradict each other. The graph should model time frames as attributes of relations.
 
