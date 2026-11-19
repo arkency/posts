@@ -46,3 +46,116 @@ Once the goals are accomplished, this blogpost will be published, linked from Ar
 
 ## Alternative solutions to typical Rails conventions
 
+# Meaningful path helpers
+
+I was a rails dev for a few years but haven't touched it in a while, and since being locked down I've had a chance to make a quiz app that I've been putting off for a while. I made a route structure that looked like this:
+
+```
+Rails.application.routes.draw do
+  get "/", to: "application#index"
+
+  resources :logins
+  resources :games do
+    resources :submissions
+  end
+
+  namespace :admin do
+    get "/", to: "admin#index"
+    resources :quizzes do
+      resources :questions do
+        resources :choices
+      end
+
+      resources :games
+    end
+  end
+end
+```
+
+This gave me the URL structure I wanted, which also gave me a useful folder structure too:
+
+- controllers
+  - admin
+    - admin_controller.rb
+    - games_controller.rb
+    - logins_controller.rb
+    - questions_controller.rb
+    - quizzes_controller.rb
+  - games_controller.rb
+  - submissions_controller.rb
+
+Note that the use of `namespace` gives us a new directory for our controllers to live under, while the `resources` directive doesn't nest - this makes sense to me. The views directory does something similar
+
+- views
+  - admin
+    - admin
+    - games
+    - logins
+    - questions
+    - quizzes
+  - games
+
+Then it comes time to start adding forms and links that navigate these routes. We'll make a landing page that links to all of the Game models:
+
+```
+<div>
+  <ol>
+    <% Game.find_each do |game| %>
+    <li><%= link_to game.title, game %></li>
+    <% end %>
+  </ol>
+</div>
+```
+
+Note that the link_to helper can take a model and infer what to do - it knows that there are routes for Game on the base level, so these convert to `games/:id`. What happens on the game pages?
+
+```
+<div>
+  <%= form_with(model: [@game, @submission]) do %>
+    <ul>
+      <% @question.choices.each do |choice| %>
+        <ol><%= radio_button_tag :choice_id, choice.id %> <%= label_tag :choice_id, choice.description %></ol>
+      <% end %>
+    </ul>
+    <%= submit_tag %>
+  <% end %>
+</div>
+```
+
+Again, we haven't called the path helper directly, we've passed an array to the `form_with` method that knows to traverse the route structure of Game->Submission, and creates a POST form to `games/submissions`
+
+Let's see how this looks in the admin screen. It's in the admin namespace, so links get prefixed with `admin/`
+
+```
+<%= link_to "Quizzes", admin_quizzes_path %>
+```
+
+Makes sense to me! Now inside this index page, how do we create and link to individual quizzes?
+
+```
+<div><%= link_to "Admin", admin_path %></div>
+<div><%= link_to "Create quiz", new_admin_quiz_path %></div>
+<div>
+  Quizzes:
+  <ol>
+    <% Quiz.find_each do |quiz| %>
+    <li><%= link_to quiz.name, [:admin, quiz] %></li>
+    <% end %>
+  </ol>
+</div>
+```
+
+So we can see both ways of linking in Rails:
+
+- With an array of models - this calls the path helper internally, finds the right route and generates an appropriate URL
+- With the path helpers - we can use language to decide which method will be used in the route; compare `game_path`, `games_path`, and `new_games_path`
+
+How do Rails conventions help us here?
+
+- The only configuration is in the `routes.rb` file. Everything else is dictated from there.
+- Using a namespace alters the URL and implies a nested directory for controllers/views
+- Using nested resources alters the URL but doesn't change the directory structure
+- Passing arrays of models implies a path_helper call which implies a route which implies a resourceful URL
+- The model names are intrinsically linked to the controller names and route names
+- Subtle things like plurals change the meaning of our routes (plural = index, singular = show)
+
