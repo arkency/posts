@@ -13,6 +13,8 @@ In order to get Rails security upgrades we, sometimes, must do nasty things. One
 
 So together with our client’s team we gathered up and figured out how to speed up the migration. The migration plan was there. It was already under execution. The problem was that… the user tests lagged behind. And it shouldn’t really surprise you. That’s mundane work that takes hours to get through. However… decision’s decision, to quote a famous rapper. I decided to help with verification. Execution was simple enough. Verification was the bottleneck.
 
+## Verification
+
 Let’s focus on verification. What do you need to check during verification of bootstrap upgrade migration?
 
 1. Of course the page should render
@@ -37,6 +39,8 @@ Among other things, the skill compared rendered layout – computed styles, boun
 Sounds good, right? I was happy with that setup for a while. We were able to speed up verification. But I was hoping for better speed gains and less feedback from my side. First good call was to reduce the scope of the project. That was one of valuable lessons – doing something just because you can doesn’t mean you should do it. At least not in one step. Let me explain…
 
 During bootstrap upgrade it was also tempting to rewrite haml format to erb. The reason for that was simple. Some of the old pages were written in HAML since the good old days. It seemed almost harmless to include this small addition. However once this step was removed, the verification provided better results. I think that the reason for improvement was better usage of context window during single execution of bootstrap 3 -> 5 migration. However no speed gain.
+
+### The breakthrough
 
 Then I figured something out. For other small tasks in this project I was using Haiku 5.5 and it provided really good results, waaaaaaaaaaay faster than opus or sonnet. The better prompt I wrote, the better results I had. So I thought – I already have a good workflow defined (via skill) instructing an agent how to perform verification – let’s try to use cheaper, less smart but faster model and compare the results.
 
