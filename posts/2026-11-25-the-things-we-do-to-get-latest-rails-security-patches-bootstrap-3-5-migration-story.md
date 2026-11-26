@@ -2,7 +2,7 @@
 created_at: 2026-11-25 16:28:29 +0100
 author: Łukasz Reszke
 tags: ['rails', 'bootstrap', 'ai', 'legacy']
-publish: false
+publish: true
 ---
 
 # The things we do to get latest Rails security patches: Bootstrap 3 -> 5 migration story
