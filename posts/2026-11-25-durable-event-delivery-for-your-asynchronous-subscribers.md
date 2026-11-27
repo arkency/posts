@@ -3,7 +3,7 @@ created_at: 2026-11-25 23:15:40 +0100
 author: Jakub Kosiński
 tags: ['rails event store', 'transactional outbox', 'durable delivery', 'at least once']
 mermaid: true
-publish: false
+publish: true
 ---
 
 # Durable event delivery for your asynchronous subscribers
